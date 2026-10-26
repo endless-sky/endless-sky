@@ -498,15 +498,7 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 	}
 
 	// Figure out if a system was clicked on.
-	Point click = Point(x, y) / Zoom() - center;
-	const System *system = nullptr;
-	for(const auto &it : GameData::Systems())
-		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
-				&& (player.HasSeen(it.second) || &it.second == specialSystem))
-		{
-			system = &it.second;
-			break;
-		}
+	const System *system = ClickedSystem(x, y);
 	if(system)
 	{
 		Select(system);

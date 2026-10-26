@@ -174,6 +174,8 @@ namespace {
 		{"leak resistance", 2},
 		{"burn resistance", 2},
 
+		{"flotsam chance", 3},
+
 		{"cloak by mass", 3},
 		{"shield multiplier", 3},
 		{"hull multiplier", 3},
@@ -449,7 +451,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 
 	for(const auto &[name, value] : outfit)
 	{
-		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), name))
+		// Attributes that are expected to be negative and boolean attributes
+		// are displayed separately.
+		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), name) || BOOLEAN_ATTRIBUTES.contains(name))
 			continue;
 
 		// Only show positive values here, with some exceptions.
@@ -466,19 +470,29 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		else if(value < 0 && !IsNotRequirement(name))
 			continue;
 
-		auto bit = BOOLEAN_ATTRIBUTES.find(name);
-		if(bit != BOOLEAN_ATTRIBUTES.end())
+		attributeLabels.emplace_back(name + ":");
+		attributeValues.emplace_back(FormatAttribute(name, value));
+		attributesHeight += 20;
+		hasNormalAttributes = true;
+	}
+
+	bool firstBoolean = true;
+	for(const auto &[name, display] : BOOLEAN_ATTRIBUTES)
+	{
+		double value = outfit.GetPrecise(name);
+		if(!value)
+			continue;
+		if(firstBoolean && hasNormalAttributes)
 		{
-			attributeLabels.emplace_back(bit->second);
-			attributeValues.emplace_back(" ");
-			attributesHeight += 20;
+			attributeLabels.emplace_back();
+			attributeValues.emplace_back();
+			attributesHeight += 10;
 		}
-		else
-		{
-			attributeLabels.emplace_back(name + ":");
-			attributeValues.emplace_back(FormatAttribute(name, value));
-			attributesHeight += 20;
-		}
+		firstBoolean = false;
+
+		attributeLabels.emplace_back(display);
+		attributeValues.emplace_back(" ");
+		attributesHeight += 20;
 		hasNormalAttributes = true;
 	}
 

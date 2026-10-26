@@ -132,57 +132,6 @@ namespace {
 		Messages::Add({tag + message, GameData::MessageCategories().Get("normal")});
 	}
 
-	Point FlareCurve(double x)
-	{
-		double x2 = x * x;
-		double x3 = x2 * x;
-		return Point(x2, x3);
-	}
-
-	Point ScaledFlareCurve(const Ship &ship, Ship::ThrustKind kind)
-	{
-		// When a ship lands, its thrusters should scale with it.
-		return FlareCurve(ship.ThrustHeldFraction(kind)) * ship.Zoom();
-	}
-
-	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
-		const vector<pair<Drawable, int>> &flareSprites, uint8_t side, bool reverse)
-	{
-		Point thrustScale = ScaledFlareCurve(ship, reverse ? Ship::ThrustKind::REVERSE : Ship::ThrustKind::FORWARD);
-		Point leftTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
-		Point rightTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::RIGHT);
-
-		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
-			* -ship.Commands().Turn();
-
-		for(const Ship::EnginePoint &point : enginePoints)
-		{
-			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
-			Angle flareAngle = ship.Facing() + point.facing + gimbal;
-			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
-			auto DrawFlares = [&draw, &pos, &ship, &flareAngle, &point](const pair<Drawable, int> &it, const Point &scale)
-			{
-				// If multiple engines with the same flare are installed, draw up to
-				// three copies of the flare sprite.
-				for(int i = 0; i < it.second && i < 3; ++i)
-				{
-					Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom, scale);
-					draw.Add(sprite, ship.Cloaking());
-				}
-			};
-			for(const auto &it : flareSprites)
-				if(point.side == side)
-				{
-					if(point.steering == Ship::EnginePoint::NONE)
-						DrawFlares(it, thrustScale);
-					else if(point.steering == Ship::EnginePoint::LEFT && leftTurnScale)
-						DrawFlares(it, leftTurnScale);
-					else if(point.steering == Ship::EnginePoint::RIGHT && rightTurnScale)
-						DrawFlares(it, rightTurnScale);
-				}
-		}
-	}
-
 	const Color &GetTargetOutlineColor(int type)
 	{
 		if(type == Radar::PLAYER)
@@ -1085,6 +1034,11 @@ void Engine::Step(bool isActive)
 			doClick = !ammoDisplay.Click(clickPoint, hasControl);
 		if(doClick && clickBox.Dimensions())
 			doClick = !player.SelectEscorts(clickBox, hasShift);
+		// If the click box has dimensions, then the click being handled now was the result of
+		// a mouse release after a drag selection was made. If the drag selection didn't handle
+		// anything, don't try to process the release as a normal left click.
+		if(uiClickBox.Dimensions())
+			doClick = false;
 		if(doClick)
 		{
 			const vector<weak_ptr<Ship>> &stack = escorts.Click(clickPoint);
@@ -1092,11 +1046,6 @@ void Engine::Step(bool isActive)
 			{
 				player.SelectShips(stack, hasShift);
 				doClick = false;
-			}
-			else
-			{
-				const Interface *hud = GameData::Interfaces().Get("hud");
-				clickPoint /= isRadarClick ? hud->GetValue("radar scale") : zoom;
 			}
 		}
 	}
@@ -1411,27 +1360,32 @@ void Engine::Draw() const
 
 
 // Select the object the player clicked on.
-void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasControl)
+void Engine::LeftClick(const Point &point, bool hasShift, bool hasControl, int clicks)
 {
-	// First, see if this is a click on an escort icon.
 	doClickNextStep = true;
 	this->hasShift = hasShift;
 	this->hasControl = hasControl;
 	mouseButton = MouseButton::LEFT;
+	numClicks = clicks;
 
-	// Determine if the left-click was within the radar display.
-	const Interface *hud = GameData::Interfaces().Get("hud");
-	Point radarCenter = hud->GetPoint("radar");
-	double radarRadius = hud->GetValue("radar radius");
-	if(Preferences::Has(Preferences::HUD_CLICKABLE_RADAR) && (from - radarCenter).Length() <= radarRadius)
-		isRadarClick = true;
-	else
-		isRadarClick = false;
+	LocateClick(point);
+	uiClickBox = Rectangle();
+	clickBox = Rectangle();
+}
 
-	clickPoint = isRadarClick ? from - radarCenter : from;
+
+
+void Engine::ReleaseDrag(const Point &from, const Point &to)
+{
+	doClickNextStep = true;
+	// Dragging can only occur with left mouse button, in which case Engine::LeftClick
+	// must have been called before this to set the other click details.
+
 	uiClickBox = Rectangle::WithCorners(from, to);
 	if(isRadarClick)
 	{
+		const Interface *hud = GameData::Interfaces().Get("hud");
+		Point radarCenter = hud->GetPoint("radar");
 		double radarScale = hud->GetValue("radar scale");
 		clickBox = Rectangle::WithCorners(
 			(from - radarCenter) / radarScale + camera.Center(),
@@ -1443,23 +1397,17 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 
 
 
-void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
+void Engine::RightOrMiddleClick(const Point &point, MouseButton button, int clicks)
 {
 	doClickNextStep = true;
 	hasShift = false;
+	hasControl = false;
 	mouseButton = button;
+	numClicks = clicks;
 
-	// Determine if the right/middle-click was within the radar display, and if so, rescale.
-	const Interface *hud = GameData::Interfaces().Get("hud");
-	Point radarCenter = hud->GetPoint("radar");
-	double radarRadius = hud->GetValue("radar radius");
-	if(Preferences::Has(Preferences::HUD_CLICKABLE_RADAR) && (point - radarCenter).Length() <= radarRadius)
-	{
-		double radarScale = hud->GetValue("radar scale");
-		clickPoint = (point - radarCenter) / radarScale;
-	}
-	else
-		clickPoint = point / zoom;
+	LocateClick(point);
+	uiClickBox = Rectangle();
+	clickBox = Rectangle();
 }
 
 
@@ -1486,6 +1434,32 @@ void Engine::BreakTargeting(const Government *gov)
 		if((projectileGov == playerGov && targetGov == gov)
 			|| (projectileGov == gov && targetGov == playerGov))
 			projectile.BreakTarget();
+	}
+}
+
+
+
+void Engine::DisengageAutopilot()
+{
+	ai.DisengageAutopilot(false);
+}
+
+
+
+void Engine::LocateClick(const Point &point)
+{
+	isRadarClick = false;
+	clickPoint = point;
+	if(Preferences::Has(Preferences::HUD_CLICKABLE_RADAR))
+	{
+		const Interface *hud = GameData::Interfaces().Get("hud");
+		Point radarCenter = hud->GetPoint("radar");
+		double radarRadius = hud->GetValue("radar radius");
+		if((point - radarCenter).Length() <= radarRadius)
+		{
+			isRadarClick = true;
+			clickPoint -= radarCenter;
+		}
 	}
 }
 
@@ -1725,7 +1699,7 @@ void Engine::CalculateStep()
 		{
 			if(ship.get() != flagship)
 			{
-				DrawShipSprites(*ship);
+				ship->Draw(draw[currentCalcBuffer], visuals);
 				if(timePaused)
 					continue;
 				if(ship->IsThrusting() && !ship->EnginePoints().empty())
@@ -1749,7 +1723,7 @@ void Engine::CalculateStep()
 		}
 
 	if(flagship && showFlagship)
-		DrawShipSprites(*flagship);
+		flagship->Draw(draw[currentCalcBuffer], visuals);
 	if(!timePaused && flagship && showFlagship)
 	{
 		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
@@ -2313,6 +2287,9 @@ void Engine::HandleMouseClicks()
 	// If there is no click event sent while the engine was active, bail out.
 	if(!doClick)
 		return;
+	// Scale the click point to the world coordinates.
+	clickPoint /= isRadarClick ? GameData::Interfaces().Get("hud")->GetValue("radar scale") : zoom;
+	clickPoint += camera.Center();
 
 	// Check for clicks on stellar objects. Only left clicks apply, and the
 	// flagship must not be in the process of landing or taking off.
@@ -2324,9 +2301,8 @@ void Engine::HandleMouseClicks()
 			{
 				// If the player clicked to land on a planet,
 				// do so unless already landing elsewhere.
-				Point position = object.Position() - camera.Center();
 				const Planet *planet = object.GetPlanet();
-				if(planet->IsAccessible(flagship) && (clickPoint - position).Length() < object.Radius())
+				if(planet->IsAccessible(flagship) && (clickPoint - object.Position()).Length() < object.Radius())
 				{
 					if(&object == flagship->GetTargetStellar())
 					{
@@ -2354,9 +2330,8 @@ void Engine::HandleMouseClicks()
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem && &*ship != flagship && ship->IsTargetable())
 		{
-			Point position = ship->Position() - camera.Center();
 			const Mask &mask = ship->GetMask(step);
-			double range = mask.Range(clickPoint - position, ship->Facing());
+			double range = mask.Range(clickPoint - ship->Position(), ship->Facing());
 			if(range <= clickRange)
 			{
 				clickRange = range;
@@ -2406,8 +2381,7 @@ void Engine::HandleMouseClicks()
 			if(!(player.CanScan(minable) & ScanType::ASTEROID))
 				continue;
 
-			Point position = minable->Position() - camera.Center();
-			double range = clickPoint.Distance(position) - minable->Radius();
+			double range = clickPoint.Distance(minable->Position()) - minable->Radius();
 			if(range <= clickRange)
 			{
 				clickedAsteroid = true;
@@ -2421,7 +2395,7 @@ void Engine::HandleMouseClicks()
 	if(!clickTarget && !clickedAsteroid && mouseButton == secondaryMouseButton)
 	{
 		UI::PlaySound(UI::UISound::TARGET);
-		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
+		ai.IssueMoveTarget(clickPoint, playerSystem);
 	}
 
 	// Treat an "empty" click as a request to clear targets and selections.
@@ -2429,7 +2403,8 @@ void Engine::HandleMouseClicks()
 	{
 		// Setting the target ship also resets the target asteroid.
 		flagship->SetTargetShip(nullptr);
-		flagship->SetTargetStellar(nullptr);
+		if(numClicks > 1)
+			flagship->SetTargetStellar(nullptr);
 		player.ClearSelectedEscorts();
 	}
 }
@@ -2936,83 +2911,6 @@ void Engine::FillRadar()
 		radar[currentCalcBuffer].Add(isEnemy || (isBlast && !isSafe) ? Radar::SPECIAL : Radar::INACTIVE,
 			projectile.Position(), isBlast ? 1.8 : 1.);
 	}
-}
-
-
-
-// Each ship is drawn as an entire stack of sprites, including hardpoint sprites
-// and engine flares and any fighters it is carrying externally.
-void Engine::DrawShipSprites(const Ship &ship)
-{
-	bool hasFighters = ship.PositionFighters();
-	double cloak = ship.Cloaking();
-	bool drawCloaked = (cloak && ship.IsYours());
-	bool fancyCloak = Preferences::Has(Preferences::SHIP_OUTLINES_CLOAKED);
-	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
-	auto &itemsToDraw = draw[currentCalcBuffer];
-	auto drawObject = [&itemsToDraw, cloak, drawCloaked, fancyCloak, cloakSwizzle](const Body &body) -> void
-	{
-		// Draw cloaked/cloaking sprites swizzled red or transparent (depending on whether we are using fancy
-		// cloaking effects), and overlay this solid sprite with an increasingly transparent "regular" sprite.
-		if(drawCloaked)
-			itemsToDraw.AddSwizzled(body, cloakSwizzle, fancyCloak ? 0.5 : 0.25);
-		itemsToDraw.Add(body, cloak);
-	};
-
-	if(hasFighters)
-		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.side == Ship::Bay::UNDER && bay.ship)
-				drawObject(*bay.ship);
-
-	auto DrawEngineFlares = [&](uint8_t where)
-	{
-		if(ship.ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !ship.EnginePoints().empty())
-			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.EnginePoints(),
-				ship.Attributes().FlareSprites(), where, false);
-		else if(ship.ThrustHeldFrames(Ship::ThrustKind::REVERSE) && !ship.ReverseEnginePoints().empty())
-			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.ReverseEnginePoints(),
-				ship.Attributes().ReverseFlareSprites(), where, true);
-		if((ship.ThrustHeldFrames(Ship::ThrustKind::LEFT) || ship.ThrustHeldFrames(Ship::ThrustKind::RIGHT))
-			&& !ship.SteeringEnginePoints().empty())
-			DrawFlareSprites(ship, draw[currentCalcBuffer], ship.SteeringEnginePoints(),
-				ship.Attributes().SteeringFlareSprites(), where, false);
-	};
-	DrawEngineFlares(Ship::EnginePoint::UNDER);
-
-	auto drawHardpoint = [&drawObject, &ship](const Hardpoint &hardpoint) -> void
-	{
-		const Weapon *weapon = hardpoint.GetWeapon();
-		if(!weapon)
-			return;
-		const Drawable &sprite = weapon->HardpointSprite();
-		if(!sprite.HasSprite())
-			return;
-
-		Body body(
-			sprite,
-			ship.Position() + ship.Zoom() * ship.Facing().Rotate(hardpoint.GetPoint()),
-			ship.Velocity(),
-			ship.Facing() + hardpoint.GetAngle(),
-			ship.Zoom());
-		if(body.InheritsParentSwizzle())
-			body.SetSwizzle(ship.GetSwizzle());
-		drawObject(body);
-	};
-
-	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
-			drawHardpoint(hardpoint);
-	drawObject(ship);
-	for(const Hardpoint &hardpoint : ship.Weapons())
-		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
-			drawHardpoint(hardpoint);
-
-	DrawEngineFlares(Ship::EnginePoint::OVER);
-
-	if(hasFighters)
-		for(const Ship::Bay &bay : ship.Bays())
-			if(bay.side == Ship::Bay::OVER && bay.ship)
-				drawObject(*bay.ship);
 }
 
 

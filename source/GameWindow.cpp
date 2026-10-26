@@ -22,9 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "windows/WinWindow.h"
 #endif
 
-#include "SDL.h"
-
 #include "opengl.h"
+#include "SDL.h"
 
 #include <cstring>
 #include <sstream>
@@ -283,6 +282,16 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 
+	if(*glVersion < '2')
+	{
+		ostringstream out;
+		out << "Endless Sky requires OpenGL version 2.0 or higher, and 3.0 is recommended." << endl;
+		out << "Your OpenGL version is " << glVersion << "." << endl;
+		out << "Please update your graphics drivers.";
+		ExitWithError(out.str());
+		return false;
+	}
+
 	const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
 	if(!glslVersion || !*glslVersion)
 	{
@@ -292,17 +301,8 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 
-	if(*glVersion < '2')
-	{
-		ostringstream out;
-		out << "Endless Sky requires OpenGL version 2.0 or higher, and 3.0 is recommended." << endl;
-		out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
-		out << "Please update your graphics drivers.";
-		ExitWithError(out.str());
-		return false;
-	}
 #ifndef ES_GLES
-	else if(*glVersion == '2')
+	if(*glVersion == '2')
 	{
 		OpenGL::DisableOpenGL3();
 		Logger::Log("Experimental OpenGL 2 support has been enabled.", Logger::Level::INFO);
@@ -385,6 +385,9 @@ void GameWindow::AdjustViewport(bool noResizeEvent)
 	int roundWidth = (windowWidth + 1) & ~1;
 	int roundHeight = (windowHeight + 1) & ~1;
 	Screen::SetRaw(roundWidth, roundHeight, noResizeEvent);
+
+	if(!context)
+		return;
 
 	// Find out the drawable dimensions. If this is a high-DPI display, this
 	// may be larger than the window.
@@ -477,6 +480,13 @@ int GameWindow::DrawWidth()
 int GameWindow::DrawHeight()
 {
 	return drawHeight;
+}
+
+
+
+bool GameWindow::IsInFocus()
+{
+	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_INPUT_FOCUS);
 }
 
 

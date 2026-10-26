@@ -163,7 +163,7 @@ std::string PilotProfile::GetIdentifier(const std::string &pilotName)
 
 
 
-void PilotProfile::DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui)
+void PilotProfile::DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI *ui, bool onlySaves)
 {
 	bool failed = false;
 	for(const std::string &file : pilot->Files() | views::keys)
@@ -172,15 +172,18 @@ void PilotProfile::DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI 
 		Files::Delete(path);
 		failed |= Files::Exists(path);
 	}
-	Files::Delete(pilot->Path());
-	failed |= Files::Exists(pilot->Path());
-	if(!failed)
+	if(!onlySaves)
+	{
+		Files::Delete(pilot->Path());
+		failed |= Files::Exists(pilot->Path());
+	}
+	if(!failed && !onlySaves)
 	{
 		auto it = ranges::find(pilots, pilot);
 		if(it != pilots.end())
 			pilots.erase(it);
 	}
-	else if(ui)
+	else if(failed && ui)
 		ui->Push(DialogPanel::Info("Deleting pilot files failed."));
 }
 
@@ -207,7 +210,11 @@ void PilotProfile::Load()
 		const string &key = child.Token(0);
 		bool hasValue = child.Size() >= 2;
 
-		if(key == "conditions")
+		if(key == "locked")
+			isLocked = true;
+		else if(key == "moment of death")
+			momentOfDeath.Load(child);
+		else if(key == "conditions")
 			conditions.Load(child);
 		else if(key == "gamerules" && hasValue)
 		{
@@ -225,6 +232,10 @@ void PilotProfile::Load()
 			if(child.HasChildren())
 				gamerules.Load(child);
 		}
+		else if(key == "playtime" && hasValue)
+			playTime = child.Value(1);
+		else if(key == "idle time" && hasValue)
+			idleTime = child.Value(1);
 	}
 
 	// If the pilot's gamerules were never loaded, then this is an
@@ -246,6 +257,18 @@ void PilotProfile::Save()
 		return;
 	DataWriter out(filePath);
 
+	if(isLocked)
+		out.Write("locked");
+
+	if(!momentOfDeath.IsEmpty())
+	{
+		out.Write("moment of death");
+		out.BeginChild();
+		{
+			momentOfDeath.Save(out);
+		}
+		out.EndChild();
+	}
 	conditions.Save(out);
 
 	// Only save gamerules that were customized to be different from the defaults of the chosen preset.
@@ -255,6 +278,9 @@ void PilotProfile::Save()
 	if(!preset)
 		preset = &GameData::DefaultGamerules();
 	gamerules.Save(out, *preset);
+
+	out.Write("playtime", playTime);
+	out.Write("idle time", idleTime);
 }
 
 
@@ -294,6 +320,56 @@ const vector<pair<string, filesystem::file_time_type>> &PilotProfile::Files() co
 
 
 
+bool PilotProfile::HasFile(const string &fileName) const
+{
+	if(fileName.empty())
+		return false;
+
+	auto FindFile = [&](const pair<string, filesystem::file_time_type> &file) -> bool {
+		return file.first == fileName;
+	};
+	return ranges::any_of(files, FindFile);
+}
+
+
+
+void PilotProfile::AddSave(const string &fileName)
+{
+	filesystem::path filePath = Files::Saves() / fileName;
+	if(!HasFile(fileName) && Files::Exists(filePath))
+		files.emplace_back(fileName, Files::Timestamp(filePath));
+}
+
+
+
+void PilotProfile::SetLock(bool lock)
+{
+	isLocked = lock;
+}
+
+
+
+bool PilotProfile::IsLocked() const
+{
+	return isLocked;
+}
+
+
+
+void PilotProfile::SetMomentOfDeath(const PlayerInfo &player)
+{
+	momentOfDeath = SavedGame(player);
+}
+
+
+
+const SavedGame &PilotProfile::MomentOfDeath() const
+{
+	return momentOfDeath;
+}
+
+
+
 ConditionsStore &PilotProfile::Conditions()
 {
 	return conditions;
@@ -325,4 +401,14 @@ const Gamerules &PilotProfile::GetGamerules() const
 void PilotProfile::ApplyGamerules() const
 {
 	GameData::SetGamerules(&gamerules);
+}
+
+
+
+void PilotProfile::AddPlayTime(std::chrono::nanoseconds timeVal, bool isIdle)
+{
+	if(isIdle)
+		idleTime += timeVal.count() * .000000001;
+	else
+		playTime += timeVal.count() * .000000001;
 }

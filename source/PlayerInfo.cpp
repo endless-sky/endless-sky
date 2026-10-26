@@ -367,6 +367,8 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 			isCloaking = true;
 		else if(key == "playtime" && hasValue)
 			playTime = child.Value(1);
+		else if(key == "idle time" && hasValue)
+			idleTime = child.Value(1);
 		else if(key == "travel" && hasValue)
 			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(key == "travel destination" && hasValue)
@@ -522,14 +524,10 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 				if(grand.Size() >= 3)
 				{
 					Date date(grand.Value(0), grand.Value(1), grand.Value(2));
-					for(const DataNode &great : grand)
-						logbook[date].Load(great);
+					logbook[date].Load(grand);
 				}
 				else if(grand.Size() >= 2)
-				{
-					for(const DataNode &great : grand)
-						specialLogs[grand.Token(0)][grand.Token(1)].Load(great);
-				}
+					specialLogs[grand.Token(0)][grand.Token(1)].Load(grand);
 			}
 		}
 		else if(key == "start")
@@ -650,7 +648,7 @@ void PlayerInfo::Save() const
 	// Remember that this was the most recently saved player.
 	Files::Write(Files::Config() / "recent.txt", filePath + '\n');
 
-	if(filePath.ends_with(".txt"))
+	if(!pilot->GetGamerules().SingleSaveFile() && filePath.ends_with(".txt"))
 	{
 		// Only update the backups if this save will have a newer date.
 		SavedGame saved(filePath);
@@ -663,10 +661,18 @@ void PlayerInfo::Save() const
 			{
 				const string toMove = rootPrevious + to_string(i) + ".txt";
 				if(Files::Exists(toMove))
-					Files::Move(toMove, rootPrevious + to_string(i + 1) + ".txt");
+				{
+					string file = rootPrevious + to_string(i + 1) + ".txt";
+					Files::Move(toMove, file);
+					pilot->AddSave(file);
+				}
 			}
 			if(Files::Exists(filePath))
-				Files::Move(filePath, rootPrevious + "1.txt");
+			{
+				string file = rootPrevious + "1.txt";
+				Files::Move(filePath, file);
+				pilot->AddSave(file);
+			}
 			if(planet->HasServices())
 				Save(rootPrevious + "spaceport.txt");
 		}
@@ -686,6 +692,28 @@ void PlayerInfo::Save() const
 shared_ptr<PilotProfile> &PlayerInfo::Pilot()
 {
 	return pilot;
+}
+
+
+
+void PlayerInfo::ApplyPermadeath() const
+{
+	Gamerules::PermadeathMode mode = pilot->GetGamerules().GetPermadeathMode();
+	if(mode == Gamerules::PermadeathMode::OFF)
+		return;
+
+	bool onTakeoff = mode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF
+		|| mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
+	if(!isDead && !onTakeoff)
+		return;
+
+	// Save info about the moment of death/takeoff.
+	pilot->SetMomentOfDeath(*this);
+	pilot->SetLock();
+	pilot->Save();
+	if((mode == Gamerules::PermadeathMode::DELETE_ON_DEATH && isDead)
+			|| mode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF)
+		PilotProfile::DeleteProfile(pilot, nullptr, true);
 }
 
 
@@ -789,6 +817,7 @@ void PlayerInfo::AddEvent(GameEvent event, const Date &date)
 void PlayerInfo::Die(int response, const shared_ptr<Ship> &capturer)
 {
 	isDead = true;
+	ApplyPermadeath();
 	// The player loses access to all their ships if they die on a planet.
 	if(GetPlanet() || !flagship)
 	{
@@ -1611,6 +1640,13 @@ const CargoHold &PlayerInfo::Cargo() const
 
 
 
+int PlayerInfo::LargestCargoHold() const
+{
+	return largestCargoHold;
+}
+
+
+
 // Get items stored on the player's current planet.
 CargoHold &PlayerInfo::Storage()
 {
@@ -1661,11 +1697,15 @@ void PlayerInfo::UpdateCargoCapacities()
 {
 	int size = 0;
 	int bunks = 0;
+	largestCargoHold = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetPlanet() == planet && !ship->IsParked())
 		{
-			size += ship->Attributes().Get("cargo space");
+			int space = ship->Attributes().Get("cargo space");
+			size += space;
+			if(space > largestCargoHold)
+				largestCargoHold = space;
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
 			bunks += ship->Attributes().Get("bunks") - crew;
 		}
@@ -1684,7 +1724,11 @@ void PlayerInfo::Land(UI &ui)
 		return;
 
 	if(!freshlyLoaded)
+	{
+		// Unlock the pilot if it was locked via permadeath mode being active.
+		pilot->SetLock(false);
 		Audio::Play(Audio::Get("landing"), SoundCategory::ENGINE);
+	}
 	Audio::PlayMusic(planet->MusicName());
 
 	// Mark this planet as visited.
@@ -2120,9 +2164,12 @@ double PlayerInfo::GetPlayTime() const noexcept
 
 
 
-void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
+void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal, bool isIdle)
 {
-	playTime += timeVal.count() * .000000001;
+	if(isIdle)
+		idleTime += timeVal.count() * .000000001;
+	else
+		playTime += timeVal.count() * .000000001;
 }
 
 
@@ -2137,7 +2184,11 @@ const map<Date, BookEntry> &PlayerInfo::Logbook() const
 
 void PlayerInfo::AddLogEntry(const BookEntry &logbookEntry)
 {
-	logbook[date].Add(logbookEntry);
+	BookEntry &dateEntry = logbook[date];
+	dateEntry.Add(logbookEntry);
+	// If this entry doesn't already have a source system, give it one.
+	if(!dateEntry.SourceSystem())
+		dateEntry.SetSourceSystem(system);
 }
 
 
@@ -2997,7 +3048,7 @@ int64_t PlayerInfo::GetTributeTotal() const
 
 // Check if the player knows the location of the given system (whether or not
 // they have actually visited it).
-bool PlayerInfo::HasSeen(const System &system) const
+bool PlayerInfo::HasSeen(const System &system, bool excludeMissions) const
 {
 	if(&system == this->system)
 		return true;
@@ -3007,23 +3058,26 @@ bool PlayerInfo::HasSeen(const System &system) const
 	if(!shrouded && seen.contains(&system))
 		return true;
 
-	auto usesSystem = [&system](const Mission &m) noexcept -> bool
+	if(!excludeMissions)
 	{
-		if(!m.IsVisible())
-			return false;
-		if(m.Waypoints().contains(&system))
-			return true;
-		if(m.MarkedSystems().contains(&system))
-			return true;
-		for(auto &&p : m.Stopovers())
-			if(p->IsInSystem(&system))
+		auto usesSystem = [&system](const Mission &m) noexcept -> bool
+		{
+			if(!m.IsVisible())
+				return false;
+			if(m.Waypoints().contains(&system))
 				return true;
-		return m.Destination()->IsInSystem(&system);
-	};
-	if(any_of(availableJobs.begin(), availableJobs.end(), usesSystem))
-		return true;
-	if(any_of(missions.begin(), missions.end(), usesSystem))
-		return true;
+			if(m.MarkedSystems().contains(&system))
+				return true;
+			for(auto &&p : m.Stopovers())
+				if(p->IsInSystem(&system))
+					return true;
+			return m.Destination()->IsInSystem(&system);
+		};
+		if(any_of(availableJobs.begin(), availableJobs.end(), usesSystem))
+			return true;
+		if(any_of(missions.begin(), missions.end(), usesSystem))
+			return true;
+	}
 
 	if(shrouded)
 	{
@@ -3071,18 +3125,21 @@ bool PlayerInfo::HasVisited(const Planet &planet) const
 
 // Check if the player knows the name of a system, either from visiting there or
 // because a job or active mission includes the name of that system.
-bool PlayerInfo::KnowsName(const System &system) const
+bool PlayerInfo::KnowsName(const System &system, bool excludeMissions) const
 {
 	if(CanView(system))
 		return true;
 
-	for(const Mission &mission : availableJobs)
-		if(mission.Destination()->IsInSystem(&system))
-			return true;
+	if(!excludeMissions)
+	{
+		for(const Mission &mission : availableJobs)
+			if(mission.Destination()->IsInSystem(&system))
+				return true;
 
-	for(const Mission &mission : missions)
-		if(mission.IsVisible() && mission.Destination()->IsInSystem(&system))
-			return true;
+		for(const Mission &mission : missions)
+			if(mission.IsVisible() && mission.Destination()->IsInSystem(&system))
+				return true;
+	}
 
 	return false;
 }
@@ -3965,8 +4022,6 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	conditions["net worth"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, max(-limit, accounts.NetWorth())); });
-	conditions["credits"].ProvideNamed([this](const ConditionEntry &ce) {
-		return min(limit, accounts.Credits()); });
 	conditions["unpaid mortgages"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.TotalDebt("Mortgage")); });
 	conditions["unpaid fines"].ProvideNamed([this](const ConditionEntry &ce) {
@@ -3981,6 +4036,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		return accounts.CreditScore(); });
 
 	// Read/write assets and debts.
+	conditions["credits"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return min(limit, accounts.Credits());
+	}, [this](ConditionEntry &ce, int64_t value) -> void {
+		accounts.SetCredits(clamp<int64_t>(value, 0, limit));
+	});
 	conditions["salary: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		const map<string, int64_t> &si = accounts.SalariesIncome();
 		auto it = si.find(ce.NameWithoutPrefix());
@@ -4945,7 +5005,7 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 void PlayerInfo::Autosave() const
 {
-	if(!CanBeSaved() || filePath.length() < 4)
+	if(!CanBeSaved() || filePath.length() < 4 || pilot->GetGamerules().SingleSaveFile())
 		return;
 
 	string path = filePath.substr(0, filePath.length() - 4) + "~autosave.txt";
@@ -4962,6 +5022,7 @@ void PlayerInfo::Save(const string &filePath) const
 	{
 		DataWriter out(filePath);
 		Save(out);
+		pilot->AddSave(filePath);
 	}
 }
 
@@ -4989,6 +5050,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
 	out.Write("playtime", playTime);
+	out.Write("idle time", idleTime);
 	// This flag is set if the player must leave the planet immediately upon
 	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
@@ -5558,7 +5620,7 @@ void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
 // Check that this player's current state can be saved.
 bool PlayerInfo::CanBeSaved() const
 {
-	return (!isDead && planet && system && !filePath.empty());
+	return (!isDead && planet && system && !filePath.empty() && !pilot->IsLocked());
 }
 
 
@@ -5614,9 +5676,31 @@ void PlayerInfo::DoAccounting()
 
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	int64_t assets = 0;
+	map<const Ship *, int> shipCount;
+	map<const Outfit *, int> outfitCount;
 	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
+	{
+		const Ship *base = GameData::Ships().Get(ship->VariantName());
+		++shipCount[base];
+		for(const auto &[outfit, count] : ship->Outfits())
+			outfitCount[outfit] += count;
+
+		const CargoHold &cargo = ship->Cargo();
+		for(const auto &[commodity, count] : cargo.Commodities())
+			assets += static_cast<int64_t>(system->Trade(commodity)) * count;
+		for(const auto &[outfit, count] : cargo.Outfits())
+			outfitCount[outfit] += count;
+	}
+	for(const auto &storage : planetaryStorage | views::values)
+		for(const auto &[outfit, count] : storage.Outfits())
+			outfitCount[outfit] += count;
+
+	int day = date.DaysSinceEpoch();
+	for(const auto &[ship, count] : shipCount)
+		assets += depreciation.Value(ship, day, count);
+	for(const auto &[outfit, count] : outfitCount)
+		assets += depreciation.Value(outfit, day, count);
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.

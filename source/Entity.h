@@ -87,8 +87,9 @@ public:
 	// entity becomes disabled. Returns 0 if the entity's hull is already below the
 	// disabled threshold.
 	double HullLevelUntilDisabled() const;
-	// Whether this entity is currently disabled.
+	// Whether this entity is currently disabled or destroyed.
 	virtual bool IsDisabled() const;
+	bool IsDestroyed() const;
 
 	// Whether this entity can be targeted by ships and projectiles.
 	virtual bool IsTargetable() const;
@@ -136,7 +137,9 @@ protected:
 	// Cache commonly requested attributes into fields on the Entity-level.
 	virtual void CacheAttributes();
 	// TakeDamage logic that is specific to the Entity type.
-	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy) = 0;
+	// wasDisabled and wasDestroyed record the state prior to the damage being applied.
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+		bool wasDestroyed) = 0;
 
 
 protected:

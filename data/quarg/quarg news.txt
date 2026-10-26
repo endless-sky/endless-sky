@@ -99,6 +99,8 @@ news "linguist on quarg planets in human and hai space"
 			"understand it"
 			"speak it"
 		word
+			"."
+		word
 			`"`
 	message
 		word

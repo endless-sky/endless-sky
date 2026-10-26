@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "image/Mask.h"
 #include "Random.h"
+#include "image/Sprite.h"
 #include "Visual.h"
 #include "Weapon.h"
 
@@ -233,6 +234,13 @@ bool Entity::IsDisabled() const
 
 
 
+bool Entity::IsDestroyed() const
+{
+	return levels.hull < 0;
+}
+
+
+
 bool Entity::IsTargetable() const
 {
 	return true;
@@ -256,7 +264,16 @@ bool Entity::IsCloaked() const
 
 double Entity::OpticalSize() const
 {
-	return opticalSize ? opticalSize : Mass();
+	if(opticalSize)
+		return opticalSize;
+	if(!sprite)
+		return 0.;
+	double area = sprite->Area();
+	if(scale != Point(1., 1.))
+		area *= scale.X() * scale.Y();
+	// 16 was determined to be a good scaling factor from the
+	// old method of optical tracking being based off of mass.
+	return area / 16.;
 }
 
 
@@ -480,6 +497,9 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *hitBy)
 {
+	bool wasDisabled = IsDisabled();
+	bool wasDestroyed = IsDestroyed();
+
 	levels.Damage(damage.Levels());
 
 	// Prevent various stats from reaching unallowable values.
@@ -492,7 +512,7 @@ int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, 
 	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
 		CreateSparks(visuals, effect, count * damage.Scaling());
 
-	return DoTakeDamage(damage, hitBy);
+	return DoTakeDamage(damage, hitBy, wasDisabled, wasDestroyed);
 }
 
 

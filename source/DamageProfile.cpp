@@ -115,8 +115,10 @@ DamageDealt DamageProfile::CalculateDamage() const
 	damage.levels.shields *= shieldFraction;
 	double totalHullProtection = (ScaleType(1., 0., entity.DamageProtection().hull +
 		(entity.IsCloaked() ? entity.CloakedHullProtection() : 0.)));
-	damage.levels.hull = (weapon.HullDamage() + weapon.RelativeHullDamage() * entity.MaxHull())
-		* totalHullProtection;
+	bool isMinable = entity.EntityType() == Entity::Type::MINABLE;
+	double hullDamage = isMinable ? weapon.MinableDamage() : weapon.HullDamage();
+	double relativeHullDamage = isMinable ? weapon.RelativeMinableDamage() : weapon.RelativeHullDamage();
+	damage.levels.hull = (hullDamage + relativeHullDamage * entity.MaxHull()) * totalHullProtection;
 	double hull = entity.HullLevelUntilDisabled();
 	if(damage.levels.hull > hull)
 	{
@@ -135,8 +137,8 @@ DamageDealt DamageProfile::CalculateDamage() const
 	// DoT damage types with an instantaneous analog.
 	// Ion and burn damage are blocked 50% by shields.
 	// Corrosion and leak damage are blocked 100%.
-	// Discharge damage is blocked 50% by the absence of shields.
-	damage.levels.discharge = weapon.DischargeDamage() * ScaleType(0., .5, entity.DamageProtection().discharge);
+	// Discharge damage is blocked 100% by the absence of shields.
+	damage.levels.discharge = weapon.DischargeDamage() * ScaleType(0., 1., entity.DamageProtection().discharge);
 	damage.levels.corrosion = weapon.CorrosionDamage() * ScaleType(1., 0., entity.DamageProtection().corrosion);
 	damage.levels.ionization = weapon.IonDamage() * ScaleType(.5, 0., entity.DamageProtection().ionization);
 	damage.levels.burning = weapon.BurnDamage() * ScaleType(.5, 0., entity.DamageProtection().burning);
@@ -144,10 +146,10 @@ DamageDealt DamageProfile::CalculateDamage() const
 
 	// Unique special damage types.
 	// Slowing and scrambling are blocked 50% by shields.
-	// Disruption is blocked 50% by the absence of shields.
+	// Disruption is blocked 100% by the absence of shields.
 	damage.levels.slowness = weapon.SlowingDamage() * ScaleType(.5, 0., entity.DamageProtection().slowness);
 	damage.levels.scrambling = weapon.ScramblingDamage() * ScaleType(.5, 0., entity.DamageProtection().scrambling);
-	damage.levels.disruption = weapon.DisruptionDamage() * ScaleType(0., .5, entity.DamageProtection().disruption);
+	damage.levels.disruption = weapon.DisruptionDamage() * ScaleType(0., 1., entity.DamageProtection().disruption);
 
 	// Hit force is unaffected by shields.
 	double hitForce = weapon.HitForce() * ScaleType(0., 0., entity.ForceProtection());

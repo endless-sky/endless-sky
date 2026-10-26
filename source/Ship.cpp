@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DamageDealt.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "shader/DrawList.h"
 #include "Effect.h"
 #include "Flotsam.h"
 #include "text/Format.h"
@@ -43,7 +44,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipEvent.h"
 #include "audio/Sound.h"
 #include "image/Sprite.h"
-#include "image/SpriteSet.h"
 #include "StellarObject.h"
 #include "Swizzle.h"
 #include "System.h"
@@ -156,6 +156,313 @@ namespace {
 	{
 		return scrambling > .1 ? 1. - pow(2., -1. * (scrambling / 70.)) : 0.;
 	}
+
+	Point FlareCurve(double x)
+	{
+		double x2 = x * x;
+		double x3 = x2 * x;
+		return Point(x2, x3);
+	}
+
+	Point ScaledFlareCurve(const Ship &ship, Ship::ThrustKind kind)
+	{
+		// When a ship lands, its thrusters should scale with it.
+		return FlareCurve(ship.ThrustHeldFraction(kind)) * ship.Zoom();
+	}
+
+	void DrawFlareSprites(const Ship &ship, DrawList &draw, const vector<Ship::EnginePoint> &enginePoints,
+		const vector<pair<Drawable, int>> &flareSprites, uint8_t side, bool reverse)
+	{
+		Point thrustScale = ScaledFlareCurve(ship, reverse ? Ship::ThrustKind::REVERSE : Ship::ThrustKind::FORWARD);
+		Point leftTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
+		Point rightTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::RIGHT);
+
+		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
+			* -ship.Commands().Turn();
+
+		for(const Ship::EnginePoint &point : enginePoints)
+		{
+			Angle gimbal = Angle(gimbalDirection * point.gimbal.Degrees());
+			Angle flareAngle = ship.Facing() + point.facing + gimbal;
+			Point pos = ship.Facing().Rotate(point) * ship.Zoom() + ship.Position();
+			auto DrawFlares = [&](const pair<Drawable, int> &it, const Point &scale)
+			{
+				// If multiple engines with the same flare are installed, draw up to
+				// three copies of the flare sprite.
+				for(int i = 0; i < it.second && i < 3; ++i)
+				{
+					Body sprite(it.first, pos, ship.Velocity(), flareAngle, point.zoom, scale);
+					draw.Add(sprite, ship.Cloaking());
+				}
+			};
+			for(const auto &it : flareSprites)
+				if(point.side == side)
+				{
+					if(point.steering == Ship::EnginePoint::NONE)
+						DrawFlares(it, thrustScale);
+					else if(point.steering == Ship::EnginePoint::LEFT && leftTurnScale)
+						DrawFlares(it, leftTurnScale);
+					else if(point.steering == Ship::EnginePoint::RIGHT && rightTurnScale)
+						DrawFlares(it, rightTurnScale);
+				}
+		}
+	}
+}
+
+
+
+Ship::LiveSpark::LiveSpark(const DataNode &node)
+{
+	effect = GameData::Effects().Get(node.Token(1));
+	if(node.Size() >= 3)
+		amount = node.Value(2);
+
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(key == "period" && hasValue)
+		{
+			period = max(1., child.Value(1));
+			if(child.Size() >= 3)
+				random = max(0., child.Value(2));
+		}
+		else if(key == "start delay" && hasValue)
+			delay = max<int>(0, child.Value(1));
+		else if(key == "over")
+			side = PlacementSide::OVER;
+		else if(key == "under")
+			side = PlacementSide::UNDER;
+		else if(key == "always on")
+			activity |= PlacementActivity::ALWAYS_ON;
+		else if(key == "active")
+			activity |= PlacementActivity::WHEN_ACTIVE;
+		else if(key == "disabled")
+			activity |= PlacementActivity::WHEN_DISABLED;
+		else if(key == "exploding")
+			activity |= PlacementActivity::WHEN_EXPLODING;
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	if(!activity)
+		activity |= PlacementActivity::WHEN_ACTIVE;
+}
+
+
+
+void Ship::LiveSpark::Save(DataWriter &out) const
+{
+	out.Write("live spark", effect->TrueName(), amount);
+	out.BeginChild();
+	{
+		if(random)
+			out.Write("period", period, random);
+		else
+			out.Write("period", period);
+		if(delay)
+			out.Write("start delay", delay);
+		if(side == PlacementSide::OVER)
+			out.Write("over");
+		else if(side == PlacementSide::UNDER)
+			out.Write("under");
+		if(activity == PlacementActivity::ALWAYS_ON)
+			out.Write("always on");
+		else
+		{
+			if(activity & PlacementActivity::WHEN_ACTIVE)
+				out.Write("active");
+			if(activity & PlacementActivity::WHEN_DISABLED)
+				out.Write("disabled");
+			if(activity & PlacementActivity::WHEN_EXPLODING)
+				out.Write("exploding");
+		}
+	}
+	out.EndChild();
+}
+
+
+
+Ship::LiveEffect::LiveEffect(const DataNode &node)
+{
+	effect = GameData::Effects().Get(node.Token(1));
+	if(node.Size() >= 3)
+		amount = node.Value(2);
+
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(key == "period" && hasValue)
+		{
+			period = max(1., child.Value(1));
+			if(child.Size() >= 3)
+				random = max(0., child.Value(2));
+		}
+		else if(key == "start delay" && hasValue)
+			delay = max<int>(0, child.Value(1));
+		else if(key == "position" && child.Size() >= 3)
+			position = Point(child.Value(1), child.Value(2));
+		else if(key == "angle" && hasValue)
+			angle = Angle(child.Value(1));
+		else if(key == "over")
+			side = PlacementSide::OVER;
+		else if(key == "under")
+			side = PlacementSide::UNDER;
+		else if(key == "always on")
+			activity |= PlacementActivity::ALWAYS_ON;
+		else if(key == "active")
+			activity |= PlacementActivity::WHEN_ACTIVE;
+		else if(key == "disabled")
+			activity |= PlacementActivity::WHEN_DISABLED;
+		else if(key == "exploding")
+			activity |= PlacementActivity::WHEN_EXPLODING;
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	if(!activity)
+		activity |= PlacementActivity::WHEN_ACTIVE;
+}
+
+
+
+void Ship::LiveEffect::Save(DataWriter &out) const
+{
+	out.Write("live effect", effect->TrueName());
+	out.BeginChild();
+	{
+		if(random)
+			out.Write("period", period, random);
+		else
+			out.Write("period", period);
+		if(delay)
+			out.Write("start delay", delay);
+		if(angle.Degrees())
+			out.Write("angle", angle.Degrees());
+		if(position)
+			out.Write("position", position.X(), position.Y());
+		if(side == PlacementSide::OVER)
+			out.Write("over");
+		else if(side == PlacementSide::UNDER)
+			out.Write("under");
+		if(activity == PlacementActivity::ALWAYS_ON)
+			out.Write("always on");
+		else
+		{
+			if(activity & PlacementActivity::WHEN_ACTIVE)
+				out.Write("active");
+			if(activity & PlacementActivity::WHEN_DISABLED)
+				out.Write("disabled");
+			if(activity & PlacementActivity::WHEN_EXPLODING)
+				out.Write("exploding");
+		}
+	}
+	out.EndChild();
+}
+
+
+
+Ship::Decor::Decor(const DataNode &node)
+{
+	if(node.Size() >= 3)
+		position = Point(node.Value(1), node.Value(2));
+	for(const DataNode &child : node)
+	{
+		const string &key = child.Token(0);
+		bool hasValue = child.Size() >= 2;
+
+		if(key == "sprite" && hasValue)
+			sprite.LoadSprite(child);
+		else if(key == "position" && child.Size() >= 3)
+			position = Point(child.Value(1), child.Value(2));
+		else if(key == "over")
+			side = PlacementSide::OVER;
+		else if(key == "under")
+			side = PlacementSide::UNDER;
+		else if(key == "always on")
+			activity |= PlacementActivity::ALWAYS_ON;
+		else if(key == "active")
+			activity |= PlacementActivity::WHEN_ACTIVE;
+		else if(key == "disabled")
+			activity |= PlacementActivity::WHEN_DISABLED;
+		else if(key == "exploding")
+			activity |= PlacementActivity::WHEN_EXPLODING;
+		else if(key == "synced")
+			synced = true;
+		else if(key == "static")
+		{
+			behavior = DecorBehavior::STATIC;
+			if(hasValue)
+				angle = Angle(child.Value(1));
+		}
+		else if(key == "rotating" && hasValue)
+		{
+			behavior = DecorBehavior::ROTATING;
+			rotationSpeed = child.Value(1);
+		}
+		else if(key == "moving" && hasValue)
+		{
+			behavior = DecorBehavior::MOVING;
+			rotationSpeed = max(0., child.Value(1));
+		}
+		else if(key == "targeting" && hasValue)
+		{
+			behavior = DecorBehavior::TARGETING;
+			rotationSpeed = max(0., child.Value(1));
+		}
+		else if(key == "start delay" && hasValue)
+			delay = max<int>(0, child.Value(1));
+		else
+			child.PrintTrace("Skipping unrecognized attribute:");
+	}
+	if(!activity)
+		activity |= PlacementActivity::WHEN_ACTIVE;
+}
+
+
+
+void Ship::Decor::Save(DataWriter &out) const
+{
+	out.Write("static decor", position.X(), position.Y());
+	out.BeginChild();
+	{
+		if(sprite.HasSprite())
+			sprite.SaveSprite(out);
+		if(side == PlacementSide::OVER)
+			out.Write("over");
+		else if(side == PlacementSide::UNDER)
+			out.Write("under");
+		if(activity == PlacementActivity::ALWAYS_ON)
+			out.Write("always on");
+		else
+		{
+			if(activity & PlacementActivity::WHEN_ACTIVE)
+				out.Write("active");
+			if(activity & PlacementActivity::WHEN_DISABLED)
+				out.Write("disabled");
+			if(activity & PlacementActivity::WHEN_EXPLODING)
+				out.Write("exploding");
+		}
+		if(synced)
+			out.Write("synced");
+		if(behavior == DecorBehavior::STATIC)
+		{
+			if(angle.Degrees())
+				out.Write("static", angle.Degrees());
+			else
+				out.Write("static");
+		}
+		else if(behavior == DecorBehavior::ROTATING)
+			out.Write("rotating", rotationSpeed);
+		else if(behavior == DecorBehavior::MOVING)
+			out.Write("moving", rotationSpeed);
+		else if(behavior == DecorBehavior::TARGETING)
+			out.Write("targeting", rotationSpeed);
+		if(delay)
+			out.Write("start delay", delay);
+	}
+	out.EndChild();
 }
 
 
@@ -193,6 +500,9 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	bool hasFinalExplode = false;
 	bool hasOutfits = false;
 	bool hasDescription = false;
+	bool hasLiveSparks = false;
+	bool hasLiveEffects = false;
+	bool hasDecor = false;
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
@@ -219,7 +529,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "noun" && hasValue)
 			noun = child.Token(1);
 		else if(key == "swizzle" && hasValue)
-			customSwizzleName = child.Token(1);
+			customSwizzle = GameData::Swizzles().Get(child.Token(1));
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "administrative cost" && hasValue)
@@ -439,7 +749,52 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				leak.openPeriod = child.Value(2);
 			if(child.Size() >= 4)
 				leak.closePeriod = child.Value(3);
+			for(const DataNode &grand : child)
+			{
+				const string &grandKey = grand.Token(0);
+				if(grandKey == "always on")
+					leak.activity |= PlacementActivity::ALWAYS_ON;
+				else if(grandKey == "active")
+					leak.activity |= PlacementActivity::WHEN_ACTIVE;
+				else if(grandKey == "disabled")
+					leak.activity |= PlacementActivity::WHEN_DISABLED;
+				else if(grandKey == "exploding")
+					leak.activity |= PlacementActivity::WHEN_EXPLODING;
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
+			if(!leak.activity)
+				leak.activity |= PlacementActivity::WHEN_EXPLODING;
 			leaks.push_back(leak);
+		}
+		else if(key == "synced effects")
+			syncedEffects = true;
+		else if(key == "live spark" && hasValue)
+		{
+			if(!hasLiveSparks)
+			{
+				liveSparks.clear();
+				hasLiveSparks = true;
+			}
+			liveSparks.emplace_back(child);
+		}
+		else if(key == "live effect" && hasValue)
+		{
+			if(!hasLiveEffects)
+			{
+				liveEffects.clear();
+				hasLiveEffects = true;
+			}
+			liveEffects.emplace_back(child);
+		}
+		else if(key == "static decor" && child.HasChildren())
+		{
+			if(!hasDecor)
+			{
+				decorations.clear();
+				hasDecor = true;
+			}
+			decorations.emplace_back(child);
 		}
 		else if(key == "explode" && hasValue)
 		{
@@ -585,8 +940,8 @@ void Ship::FinishLoading(bool isNewInstance)
 	{
 		if(!GetSprite())
 			static_cast<Body &>(*this) = *base;
-		if(customSwizzleName.empty())
-			customSwizzleName = base->CustomSwizzleName();
+		if(!customSwizzle)
+			customSwizzle = base->CustomSwizzle();
 		if(!administrativeCost.has_value())
 			administrativeCost = base->administrativeCost;
 		if(baseAttributes.Empty())
@@ -787,8 +1142,7 @@ void Ship::FinishLoading(bool isNewInstance)
 		weaponRadius = max(weaponRadius, hardpoint.GetPoint().Length());
 
 	// Allocate enough firing bits for this ship.
-	firingCommands.SetHardpoints(armament.Get().size());
-	onTarget.SetHardpoints(armament.Get().size());
+	firingCommands.SetHardpoints(armament.Get().size(), decorations.size());
 
 	// Ensure that all defined bays are of a valid category. Remove and warn about any
 	// invalid bays. Add a default "launch effect" to any remaining internal bays if
@@ -879,14 +1233,6 @@ void Ship::FinishLoading(bool isNewInstance)
 			targetSystem = nullptr;
 		}
 	}
-
-	if(!customSwizzleName.empty())
-	{
-		customSwizzle = GameData::Swizzles().Get(customSwizzleName);
-		if(!customSwizzle->IsLoaded())
-			Logger::Log("Ship \"" + GivenName() + "\" refers to nonexistent swizzle \"" + customSwizzleName + "\".",
-				Logger::Level::WARNING);
-	}
 }
 
 
@@ -923,8 +1269,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("never disabled");
 		if(!isCapturable)
 			out.Write("uncapturable");
-		if(customSwizzle && customSwizzle->IsLoaded())
-			out.Write("swizzle", customSwizzle->Name());
+		if(customSwizzle)
+			out.Write("swizzle", customSwizzle->TrueName());
 		if(administrativeCost.has_value())
 			out.Write("administrative cost", administrativeCost.value());
 
@@ -1100,7 +1446,32 @@ void Ship::Save(DataWriter &out) const
 			}
 		}
 		for(const Leak &leak : leaks)
+		{
 			out.Write("leak", leak.effect->TrueName(), leak.openPeriod, leak.closePeriod);
+			out.BeginChild();
+			{
+				if(leak.activity == PlacementActivity::ALWAYS_ON)
+					out.Write("always on");
+				else
+				{
+					if(leak.activity & PlacementActivity::WHEN_ACTIVE)
+						out.Write("active");
+					if(leak.activity & PlacementActivity::WHEN_DISABLED)
+						out.Write("disabled");
+					if(leak.activity & PlacementActivity::WHEN_EXPLODING)
+						out.Write("exploding");
+				}
+			}
+			out.EndChild();
+		}
+		if(syncedEffects)
+			out.Write("synced effects");
+		for(const LiveSpark &spark : liveSparks)
+			spark.Save(out);
+		for(const LiveEffect &effect : liveEffects)
+			effect.Save(out);
+		for(const Decor &decor : decorations)
+			decor.Save(out);
 
 		using EffectElement = pair<const Effect *const, int>;
 		auto effectSort = [](const EffectElement *lhs, const EffectElement *rhs)
@@ -1331,6 +1702,8 @@ vector<string> Ship::FlightCheck() const
 			checks.emplace_back("limited thrust?");
 		if(energy < turnEnergy)
 			checks.emplace_back("limited turn?");
+		if(energy < thrustEnergy + turnEnergy)
+			checks.emplace_back("limited movement?");
 		if(energy - .8 * solar < .2 * (turnEnergy + thrustEnergy))
 			checks.emplace_back("solar power?");
 		if(fuel < 0.)
@@ -1420,6 +1793,27 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 			if(bay.ship)
 				bay.ship->SetSwizzle(bay.ship->customSwizzle ? bay.ship->customSwizzle : swizzle);
 		}
+	}
+
+	// Randomize the timing and angle of live sparks, effects, and non-static, non-synced decorations.
+	for(LiveSpark &spark : liveSparks)
+	{
+		spark.tick = spark.delay;
+		if(!syncedEffects)
+			spark.tick += Random::Int(spark.period + spark.random);
+	}
+	for(LiveEffect &effect : liveEffects)
+	{
+		effect.tick = effect.delay;
+		if(!syncedEffects)
+			effect.tick += Random::Int(effect.period + effect.random);
+	}
+	Angle syncedAngle = syncedEffects ? Angle(0.) : Angle::Random();
+	for(Decor decor : decorations)
+	{
+		decor.tick = decor.delay;
+		if(decor.behavior != DecorBehavior::STATIC)
+			decor.angle = decor.synced || syncedEffects ? syncedAngle : Angle::Random();
 	}
 }
 
@@ -1640,10 +2034,9 @@ void Ship::SetCommands(const Command &command)
 
 
 
-void Ship::SetCommands(const FireCommand &firingCommand, const FireCommand &targeting)
+void Ship::SetCommands(const FireCommand &firingCommand)
 {
 	firingCommands.UpdateWith(firingCommand);
-	onTarget.UpdateWith(targeting);
 }
 
 
@@ -1682,8 +2075,17 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	if(!isBeingDestroyed)
 		DoGeneration();
 
+	PlacementActivity currentState = PlacementActivity::WHEN_ACTIVE;
+	if(isBeingDestroyed)
+		currentState = PlacementActivity::WHEN_EXPLODING;
+	else if(IsDisabled())
+		currentState = PlacementActivity::WHEN_DISABLED;
+	StepLeaks(currentState);
+	StepLiveEffects();
+	StepDecorations(currentState);
+
 	// Adjust the error in the pilot's targeting.
-	confusion.UpdateConfusion(onTarget.IsFiring());
+	confusion.UpdateConfusion(firingCommands.IsOnTarget());
 
 	DoStatusSparks(visuals);
 	DoJettison(flotsam);
@@ -1728,6 +2130,183 @@ void Ship::Move(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flotsam)
 	// Start fading the damage overlay.
 	if(damageOverlayTimer)
 		--damageOverlayTimer;
+}
+
+
+
+void Ship::Draw(DrawList &draw, vector<Visual> &visuals) const
+{
+	Draw(draw, visuals, Position(), Facing(), Zoom());
+}
+
+
+
+void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visuals, const Point &pos,
+	const Angle &facing, float zoom, optional<double> parentCloakState) const
+{
+	// An empty visuals optional means this is being called from a UI panel and not Engine.
+	bool isUi = !visuals.has_value();
+
+	Ship::PlacementActivity state = Ship::PlacementActivity::WHEN_ACTIVE;
+	if(IsDestroyed())
+		state = Ship::PlacementActivity::WHEN_EXPLODING;
+	else if(IsDisabled())
+		state = Ship::PlacementActivity::WHEN_DISABLED;
+
+	bool hasFighters = PositionFighters();
+	bool isDocked = parentCloakState.has_value();
+	double cloak = isDocked ? *parentCloakState : Cloaking();
+	bool drawCloaked = !isUi && IsYours() && cloak;
+	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
+	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
+
+	auto drawFighter = [&](const Ship::Bay &bay) -> void
+	{
+		if(bay.ship)
+			bay.ship->Draw(draw, visuals, pos + zoom * facing.Rotate(bay.point), facing + bay.facing, zoom, cloak);
+	};
+	auto drawObject = [&draw, cloak, drawCloaked, fancyCloak, cloakSwizzle](const Body &body) -> void
+	{
+		// Draw cloaked/cloaking sprites swizzled red or transparent (depending on whether we are using fancy
+		// cloaking effects), and overlay this solid sprite with an increasingly transparent "regular" sprite.
+		if(drawCloaked)
+			draw.AddSwizzled(body, cloakSwizzle, fancyCloak ? 0.5 : 0.25);
+		draw.Add(body, cloak);
+	};
+	auto drawEffects = [&, this](Ship::PlacementSide side) -> void
+	{
+		if(isUi || isDocked)
+			return;
+		for(const Ship::LiveEffect &effect : liveEffects)
+		{
+			if(effect.side != side || !(effect.activity & state) || effect.tick)
+				continue;
+
+			for(int i = 0; i < effect.amount; ++i)
+				visuals->get().emplace_back(*effect.effect,
+					pos + zoom * facing.Rotate(effect.position),
+					isUi ? Point(0., 0.) : Velocity(),
+					facing + effect.angle,
+					Point(),
+					1.,
+					zoom);
+		}
+	};
+	auto drawSparks = [&, this](Ship::PlacementSide side) -> void
+	{
+		if(isUi || isDocked)
+			return;
+		for(const Ship::LiveSpark &spark : liveSparks)
+		{
+			if(spark.side != side || !(spark.activity & state) || spark.tick)
+				continue;
+			CreateSparks(*visuals, spark.effect, spark.amount);
+		}
+	};
+	auto drawEngineFlares = [&, this](uint8_t where)
+	{
+		if(isUi || isDocked)
+			return;
+		if(ThrustHeldFrames(Ship::ThrustKind::FORWARD) && !EnginePoints().empty())
+			DrawFlareSprites(*this, draw, EnginePoints(),
+				Attributes().FlareSprites(), where, false);
+		else if(ThrustHeldFrames(Ship::ThrustKind::REVERSE) && !ReverseEnginePoints().empty())
+			DrawFlareSprites(*this, draw, ReverseEnginePoints(),
+				Attributes().ReverseFlareSprites(), where, true);
+		if((ThrustHeldFrames(Ship::ThrustKind::LEFT) || ThrustHeldFrames(Ship::ThrustKind::RIGHT))
+			&& !SteeringEnginePoints().empty())
+			DrawFlareSprites(*this, draw, SteeringEnginePoints(),
+				Attributes().SteeringFlareSprites(), where, false);
+	};
+	auto drawHardpoint = [&, this](const Hardpoint &hardpoint) -> void
+	{
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(!weapon)
+			return;
+		const Drawable &sprite = weapon->HardpointSprite();
+		if(!sprite.HasSprite())
+			return;
+
+		Body body(
+			sprite,
+			pos + zoom * facing.Rotate(hardpoint.GetPoint()),
+			isUi ? Point(0., 0.) : Velocity(),
+			facing + hardpoint.GetAngle(),
+			zoom);
+		if(body.InheritsParentSwizzle())
+			body.SetSwizzle(GetSwizzle());
+		drawObject(body);
+	};
+	auto drawDecor = [&, this](const Ship::Decor &decor) -> void
+	{
+		const Drawable &sprite = decor.sprite;
+		if(!sprite.HasSprite())
+			return;
+
+		Body body(
+			sprite,
+			pos + zoom * facing.Rotate(decor.position),
+			isUi ? Point(0., 0.) : Velocity(),
+			facing + decor.angle,
+			zoom);
+		if(body.InheritsParentSwizzle())
+			body.SetSwizzle(GetSwizzle());
+		drawObject(body);
+	};
+	auto drawLeaks = [&, this]() -> void
+	{
+		if(isUi || isDocked)
+			return;
+		for(const Ship::Leak &leak : activeLeaks)
+		{
+			// Leaks always "flicker" every other frame.
+			if(!Random::Int(2))
+				return;
+			visuals->get().emplace_back(*leak.effect,
+				pos + zoom * facing.Rotate(leak.location),
+				isUi ? Point(0., 0.) : Velocity(),
+				facing + leak.angle,
+				Point(),
+				1.,
+				zoom);
+		}
+	};
+
+	if(hasFighters)
+		for(const Ship::Bay &bay : Bays())
+			if(bay.side == Ship::Bay::UNDER)
+				drawFighter(bay);
+
+	drawEngineFlares(Ship::EnginePoint::UNDER);
+	drawSparks(Ship::PlacementSide::UNDER);
+	drawEffects(Ship::PlacementSide::UNDER);
+
+	for(const Hardpoint &hardpoint : Weapons())
+		if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
+			drawHardpoint(hardpoint);
+	for(const Ship::Decor &decor : Decorations())
+		if(decor.side == Ship::PlacementSide::UNDER)
+			drawDecor(decor);
+	if(isUi)
+		drawObject(Body(*this, pos, Point(), facing, zoom));
+	else
+		drawObject(*this);
+	drawLeaks();
+	for(const Ship::Decor &decor : Decorations())
+		if(decor.side == Ship::PlacementSide::OVER)
+			drawDecor(decor);
+	for(const Hardpoint &hardpoint : Weapons())
+		if(hardpoint.GetSide() == Hardpoint::Side::OVER)
+			drawHardpoint(hardpoint);
+
+	drawEffects(Ship::PlacementSide::OVER);
+	drawSparks(Ship::PlacementSide::OVER);
+	drawEngineFlares(Ship::EnginePoint::OVER);
+
+	if(hasFighters)
+		for(const Ship::Bay &bay : Bays())
+			if(bay.side == Ship::Bay::OVER && bay.ship)
+				drawFighter(bay);
 }
 
 
@@ -2559,13 +3138,6 @@ const Swizzle *Ship::CustomSwizzle() const
 
 
 
-const string &Ship::CustomSwizzleName() const
-{
-	return customSwizzleName;
-}
-
-
-
 // Check if the ship is thrusting. If so, the engine sound should be played.
 bool Ship::IsThrusting() const
 {
@@ -2617,6 +3189,13 @@ const vector<Ship::EnginePoint> &Ship::SteeringEnginePoints() const
 
 
 
+const vector<Ship::Decor> &Ship::Decorations() const
+{
+	return decorations;
+}
+
+
+
 // Reduce a ship's hull to low enough to disable it. This is so a ship can be
 // created as a derelict.
 void Ship::Disable()
@@ -2661,14 +3240,6 @@ bool Ship::IsDamaged() const
 {
 	// Account for ships with no shields when determining if they're damaged.
 	return (MaxShields() != 0 && ShieldFraction() != 1.) || HullFraction() != 1.;
-}
-
-
-
-// Check if this ship has been destroyed.
-bool Ship::IsDestroyed() const
-{
-	return (levels.hull < 0.);
 }
 
 
@@ -2894,6 +3465,14 @@ bool Ship::NeedsEnergy() const
 
 	// Ships that don't need energy to move shouldn't ask for energy.
 	if(!RequiresMovementEnergy())
+		return false;
+
+	// If movement itself produces energy, the ship doesn't need energy.
+	ResourceLevels available = AvailableResources();
+	if((cache.thrustCost.energy < 0. && available.FractionalUsage(cache.thrustCost))
+			|| (cache.reverseThrustCost.energy < 0. && available.FractionalUsage(cache.reverseThrustCost))
+			|| (cache.turnCost.energy < 0. && available.FractionalUsage(cache.turnCost))
+			|| (cache.afterburnerThrustCost.energy < 0. && available.CanExpend(cache.afterburnerThrustCost)))
 		return false;
 
 	// If a ship has no energy capacity or no room for more energy, it does not need energy.
@@ -3974,27 +4553,30 @@ bool Ship::SilentJumps() const
 
 double Ship::CloakFuelCost() const
 {
-	// The fuel cost of cloaking is not only the cost of the cloak itself,
-	// but also the natural fuel gain or lost due to fuel consumption and generation.
+	double fuelCost = cache.cloakCost.fuel;
+	if(fuelCost <= 0.)
+		return 0.;
+	// If cloaking requires fuel, then the fuel cost of cloaking is not only the cost of the cloak itself,
+	// but also the natural fuel gained or lost due to fuel consumption and generation.
 	// If fuel generation outpaces fuel lost due to cloaking or fuel consumption, then consider
 	// the fuel cost to be 0.
-	return min(0., cache.cloakCost.fuel + cache.fuelConsumption - cache.fuelGeneration);
+	return max(0., fuelCost + cache.fuelConsumption - cache.fuelGeneration);
 }
 
 
 
 bool Ship::HasFuelForCloak() const
 {
-	double fuelCost = CloakFuelCost();
 	// Don't cloak if it would result in you becoming stranded.
 	// If the ship has a ramscoop, assume that it won't be stranded due to cloak usage.
+	double fuelCost = CloakFuelCost();
 	if(fuelCost && !cache.ramscoop)
 	{
 		double fuel = levels.fuel;
 		int steps = ceil((1. - Cloaking()) / CloakingSpeed());
 		// Only cloak if you will be able to fully cloak and also maintain it
 		// for as long as it will take you to reach full cloak.
-		fuel -= CloakFuelCost() * (1 + 2 * steps);
+		fuel -= fuelCost * (1 + 2 * steps);
 		if(fuel < JumpNavigation().JumpFuel())
 			return false;
 	}
@@ -4038,6 +4620,20 @@ double Ship::TurretTurnMultiplier() const
 
 
 
+bool Ship::HasFuelGeneration() const
+{
+	double fuelGen = cache.fuelGeneration;
+	if(currentSystem)
+	{
+		System::SolarGeneration generation = currentSystem->GetSolarGeneration(position,
+			cache.ramscoop, cache.solarCollection, cache.solarHeat);
+		fuelGen += generation.fuel;
+	}
+	return fuelGen > 0.;
+}
+
+
+
 void Ship::CacheAttributes()
 {
 	// Capacity related attributes:
@@ -4073,7 +4669,8 @@ void Ship::CacheAttributes()
 
 
 
-int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy)
+int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+	bool wasDestroyed)
 {
 	// If the damage source government deals a DoT effect to this ship that
 	// disables or kills it outside of this function call, that event should
@@ -4084,15 +4681,12 @@ int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy)
 		lastHitBy = hitBy;
 	damageOverlayTimer = TOTAL_DAMAGE_FRAMES;
 
-	bool wasDisabled = IsDisabled();
-	bool wasDestroyed = IsDestroyed();
-
-	if(damage.Levels().shields && !isDisabled)
+	if(damage.Levels().shields > 0. && !isDisabled)
 	{
 		int disabledDelay = cache.depletedShieldDelay;
 		shieldDelay = max(shieldDelay, (levels.shields <= 0. && disabledDelay) ? disabledDelay : cache.shieldDelay);
 	}
-	if(damage.Levels().hull && !isDisabled)
+	if(damage.Levels().hull > 0. && !isDisabled)
 		hullDelay = max(hullDelay, cache.repairDelay);
 
 	if(damage.HitForce())
@@ -4130,17 +4724,38 @@ int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy)
 
 	// If this ship did not consider itself an enemy of the ship that hit it,
 	// it is now "provoked" against that government.
-	if(hitBy && !hitBy->IsEnemy(government)
-			&& !personality.IsPacifist() && (!personality.IsForbearing()
-				|| ((damage.Levels().shields || damage.Levels().discharge) && ShieldFraction() < .9)
-				|| ((damage.Levels().hull || damage.Levels().corrosion) && HullFraction() < .9)
-				|| ((damage.Levels().heat || damage.Levels().burning) && isOverheated)
-				|| ((damage.Levels().energy || damage.Levels().ionization) && EnergyFraction() < 0.5)
-				|| ((damage.Levels().fuel || damage.Levels().leakage) && levels.fuel < navigation.JumpFuel() * 2.)
-				|| (damage.Levels().scrambling && CalculateJamChance(levels.scrambling) > 0.1)
-				|| (damage.Levels().slowness && levels.slowness > 10.)
-				|| (damage.Levels().disruption && levels.disruption > 100.)))
-		type |= ShipEvent::PROVOKE;
+	if(hitBy && !hitBy->IsEnemy(government) && !personality.IsPacifist())
+	{
+		// Allow weapons that heal a target to not provoke them.
+		const ResourceLevels &levels = damage.Levels();
+		bool shieldDamage = levels.shields > 0. || levels.discharge > 0.;
+		bool hullDamage = levels.hull > 0. || levels.corrosion > 0.;
+		bool energyDamage = levels.energy > 0. || levels.ionization > 0.;
+		bool heatDamage = levels.heat > 0. || levels.burning > 0.;
+		bool fuelDamage = levels.fuel > 0. || levels.leakage > 0.;
+		bool scramblingDamage = levels.scrambling > 0.;
+		bool slowingDamage = levels.slowness > 0.;
+		bool disruptionDamage = levels.disruption > 0.;
+		// Forbearing ships need to exceed certain thresholds before they consider
+		// an attack to be provoking.
+		if(personality.IsForbearing() && ((shieldDamage && ShieldFraction() < .9)
+			|| (hullDamage && HullFraction() < .9)
+			|| (heatDamage && isOverheated)
+			|| (energyDamage && EnergyFraction() < 0.5)
+			|| (fuelDamage && levels.fuel < navigation.JumpFuel() * 2.)
+			|| (scramblingDamage && CalculateJamChance(levels.scrambling) > 0.1)
+			|| (slowingDamage && levels.slowness > 10.)
+			|| (disruptionDamage && levels.disruption > 100.)))
+		{
+			type |= ShipEvent::PROVOKE;
+		}
+		// All other ships are provoked by any positive amount of damage.
+		else if(shieldDamage || hullDamage || energyDamage || heatDamage || fuelDamage || scramblingDamage
+			|| slowingDamage || disruptionDamage)
+		{
+			type |= ShipEvent::PROVOKE;
+		}
+	}
 
 	return type;
 }
@@ -4256,32 +4871,89 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 		CreateExplosion(visuals);
 
 	// Handle hull "leaks."
-	for(const Leak &leak : leaks)
-		if(GetMask().IsLoaded() && leak.openPeriod > 0 && !Random::Int(leak.openPeriod))
-		{
-			activeLeaks.push_back(leak);
-			const auto &outlines = GetMask().Outlines();
-			const vector<Point> &outline = outlines[Random::Int(outlines.size())];
-			int i = Random::Int(outline.size() - 1);
-
-			// Position the leak along the outline of the ship, facing "outward."
-			activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
-			activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
-		}
-	for(Leak &leak : activeLeaks)
-		if(leak.effect)
-		{
-			// Leaks always "flicker" every other frame.
-			if(Random::Int(2))
-				visuals.emplace_back(*leak.effect,
-					angle.Rotate(leak.location) + position,
-					velocity,
-					leak.angle + angle);
-
-			if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
-				leak.effect = nullptr;
-		}
 	return -1;
+}
+
+
+
+void Ship::StepLeaks(PlacementActivity state)
+{
+	if(!GetMask().IsLoaded())
+		return;
+	const auto &outlines = GetMask().Outlines();
+
+	for(const Leak &leak : leaks)
+	{
+		if(!(leak.activity & state) || (leak.openPeriod > 0 && Random::Int(leak.openPeriod)))
+			continue;
+		activeLeaks.push_back(leak);
+		const vector<Point> &outline = outlines[Random::Int(outlines.size())];
+		int i = Random::Int(outline.size() - 1);
+
+		// Position the leak along the outline of the ship, facing "outward."
+		activeLeaks.back().location = (outline[i] + outline[i + 1]) * .5;
+		activeLeaks.back().angle = Angle(outline[i] - outline[i + 1]) + Angle(90.);
+	}
+
+	for(auto it = activeLeaks.begin(); it != activeLeaks.end(); )
+	{
+		Leak leak = *it;
+		if(leak.closePeriod > 0 && !Random::Int(leak.closePeriod))
+			it = activeLeaks.erase(it);
+		else
+			++it;
+	}
+}
+
+
+
+void Ship::StepLiveEffects()
+{
+	for(LiveSpark &spark : liveSparks)
+	{
+		if(!spark.tick)
+		{
+			spark.tick = spark.period;
+			if(spark.random)
+				spark.tick += Random::Int(spark.random);
+		}
+		else
+			--spark.tick;
+	}
+	for(LiveEffect &effect : liveEffects)
+	{
+		if(!effect.tick)
+		{
+			effect.tick = effect.period;
+			if(effect.random)
+				effect.tick += Random::Int(effect.random);
+		}
+		else
+			--effect.tick;
+	}
+}
+
+
+
+void Ship::StepDecorations(PlacementActivity state)
+{
+	for(unsigned i = 0; i < decorations.size(); ++i)
+	{
+		Decor &decor = decorations[i];
+		if(!decor.sprite.HasSprite() || decor.behavior == DecorBehavior::STATIC)
+			continue;
+		if(decor.tick)
+			--decor.tick;
+		if(!(decor.activity & state) || decor.tick)
+		{
+			decor.sprite.PauseAnimation();
+			continue;
+		}
+		if(decor.behavior == DecorBehavior::ROTATING)
+			decor.angle += decor.rotationSpeed;
+		else if(decor.behavior == DecorBehavior::MOVING || decor.behavior == DecorBehavior::TARGETING)
+			decor.angle += decor.rotationSpeed * firingCommands.AimDecor(i);
+	}
 }
 
 
@@ -4774,6 +5446,7 @@ bool Ship::DoLandingLogic()
 			SetTargetAsteroid(nullptr);
 			SetTargetFlotsam(nullptr);
 			SetTargetShip(nullptr);
+			SetTargetStellar(nullptr);
 
 			zoom = 0.f;
 		}
@@ -4784,7 +5457,6 @@ bool Ship::DoLandingLogic()
 			|| !landingPlanet->GetPort().CanRecharge(Port::RechargeType::Fuel, isYours))
 	{
 		zoom = min(1.f, zoom + landingSpeed);
-		SetTargetStellar(nullptr);
 		landingPlanet = nullptr;
 	}
 	else

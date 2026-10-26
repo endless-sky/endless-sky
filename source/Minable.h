@@ -44,9 +44,12 @@ public:
 	public:
 		Payload(const DataNode &node);
 
+		// The outfit type that this payload will drop.
 		const Outfit *outfit;
 		// The maximum number of outfits that this payload can drop.
 		int maxDrops = 1;
+		// The minimum number of outfits that this payload can drop.
+		int minDrops = 0;
 		// The average percentage of the maximum number that drop.
 		double dropRate = 0.25;
 		// How resistant this payload is to having its drop rate increased by prospecting.
@@ -93,7 +96,8 @@ public:
 
 
 protected:
-	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy) override;
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+		bool wasDestroyed) override;
 
 
 private:
