@@ -106,7 +106,19 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "fleet multiplier")
 			storage.fleetMultiplier = max(0., child.Value(1));
 		else if(key == "spawn raid fleets")
-			storage.spawnRaidFleets = child.BoolValue(1);
+		{
+			child.PrintTrace("The \"spawn raid fleets\" gamerule has been deprecated. "
+					"Use \"raid fleet roll chance\" instead.");
+			storage.raidFleetRollChance = child.BoolValue(1);
+		}
+		else if(key == "raid fleet roll chance")
+			storage.raidFleetRollChance = clamp(child.Value(1), 0., 1.);
+		else if(key == "raid attraction multiplier")
+			storage.raidAttractionMultiplier = max(0., child.Value(1));
+		else if(key == "raid deterrence multiplier")
+			storage.raidDeterrenceMultiplier = max(0., child.Value(1));
+		else if(key == "raid fleet spawn attempts")
+			storage.raidFleetSpawnAttempts = max<int>(1, child.Value(1));
 		else if(key == "fleet size limitation")
 		{
 			const string &value = child.Token(1);
@@ -208,8 +220,14 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		}
 		if(storage.fleetMultiplier != preset.storage.fleetMultiplier)
 			out.Write("fleet multiplier", storage.fleetMultiplier);
-		if(storage.spawnRaidFleets != preset.storage.spawnRaidFleets)
-			out.Write("spawn raid fleets", storage.spawnRaidFleets ? 1 : 0);
+		if(storage.raidFleetRollChance != preset.storage.raidFleetRollChance)
+			out.Write("raid fleet roll chance", storage.raidFleetRollChance);
+		if(storage.raidAttractionMultiplier != preset.storage.raidAttractionMultiplier)
+			out.Write("raid attraction multiplier", storage.raidAttractionMultiplier);
+		if(storage.raidDeterrenceMultiplier != preset.storage.raidDeterrenceMultiplier)
+			out.Write("raid deterrence multiplier", storage.raidDeterrenceMultiplier);
+		if(storage.raidFleetSpawnAttempts != preset.storage.raidFleetSpawnAttempts)
+			out.Write("raid fleet spawn attempts", storage.raidFleetSpawnAttempts);
 		if(storage.fleetSizeLimitation != preset.storage.fleetSizeLimitation)
 		{
 			if(storage.fleetSizeLimitation == FleetSizeLimitation::NONE)
@@ -302,8 +320,14 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.habitableArrivalMax = preset.storage.habitableArrivalMax;
 	else if(rule == "fleet multiplier")
 		storage.fleetMultiplier = preset.storage.fleetMultiplier;
-	else if(rule == "spawn raid fleets")
-		storage.spawnRaidFleets = preset.storage.spawnRaidFleets;
+	else if(rule == "raid fleet roll chance")
+		storage.raidFleetRollChance = preset.storage.raidFleetRollChance;
+	else if(rule == "raid attraction multiplier")
+		storage.raidAttractionMultiplier = preset.storage.raidAttractionMultiplier;
+	else if(rule == "raid deterrence multiplier")
+		storage.raidDeterrenceMultiplier = preset.storage.raidDeterrenceMultiplier;
+	else if(rule == "raid fleet spawn attempts")
+		storage.raidFleetSpawnAttempts = preset.storage.raidFleetSpawnAttempts;
 	else if(rule == "fleet size limitation")
 		storage.fleetSizeLimitation = preset.storage.fleetSizeLimitation;
 	else if(rule == "default max escort count")
@@ -468,9 +492,30 @@ void Gamerules::SetFleetMultiplier(double value)
 
 
 
-void Gamerules::SetSpawnRaidFleets(bool value)
+void Gamerules::SetRaidFleetRollChance(double value)
 {
-	storage.spawnRaidFleets = value;
+	storage.raidFleetRollChance = clamp(value, 0., 1.);
+}
+
+
+
+void Gamerules::SetRaidAttractionMultiplier(double value)
+{
+	storage.raidAttractionMultiplier = max(0., value);
+}
+
+
+
+void Gamerules::SetRaidDeterrenceMultiplier(double value)
+{
+	storage.raidDeterrenceMultiplier = max(0., value);
+}
+
+
+
+void Gamerules::SetRaidFleetSpawnAttempts(int value)
+{
+	storage.raidFleetSpawnAttempts = max(1, value);
 }
 
 
@@ -561,8 +606,18 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.systemArrivalMin.value_or(0.) * 1000;
 	if(rule == "fleet multiplier")
 		return storage.fleetMultiplier * 1000;
+	// "spawn raid fleets" has been replaced by "raid fleet roll chance".
+	// Keeping this in place for reverse compatibility.
 	if(rule == "spawn raid fleets")
-		return storage.spawnRaidFleets;
+		return storage.raidFleetRollChance > 0.;
+	if(rule == "raid fleet roll chance")
+		return storage.raidFleetRollChance * 1000;
+	if(rule == "raid attraction multiplier")
+		return storage.raidAttractionMultiplier * 1000;
+	if(rule == "raid deterrence multiplier")
+		return storage.raidDeterrenceMultiplier * 1000;
+	if(rule == "raid fleet spawn attempts")
+		return storage.raidFleetSpawnAttempts;
 	if(rule == "fleet size limitation")
 		return static_cast<int>(storage.fleetSizeLimitation);
 	if(rule == "default max escort count")
@@ -705,9 +760,30 @@ double Gamerules::FleetMultiplier() const
 
 
 
-bool Gamerules::SpawnRaidFleets() const
+double Gamerules::RaidFleetRollChance() const
 {
-	return storage.spawnRaidFleets;
+	return storage.raidFleetRollChance;
+}
+
+
+
+double Gamerules::RaidAttractionMultiplier() const
+{
+	return storage.raidAttractionMultiplier;
+}
+
+
+
+double Gamerules::RaidDeterrenceMultiplier() const
+{
+	return storage.raidDeterrenceMultiplier;
+}
+
+
+
+int Gamerules::RaidFleetSpawnAttempts() const
+{
+	return storage.raidFleetSpawnAttempts;
 }
 
 

@@ -36,7 +36,11 @@
 	"lock gamerules" true
 	"disabled fighters avoid projectiles" "all"
 	"universal ammo restocking" true
-	"spawn raid fleets" true
+	
+	"raid fleet roll chance" 1.
+	"raid attraction multiplier" 1.
+	"raid deterrence multiplier" 1.
+	"raid fleet spawn attempts" 10
 	
 	"fleet size limitation" "none"
 	"default max escort count" 6
