@@ -407,6 +407,8 @@ conversation "remnant key stones"
 	
 	branch hai1
 		or
+			has "discovered hai space"
+			has "discovered unfettered space"
 			has "First Contact: Hai: offered"
 			has "First Contact: Unfettered: offered"
 	
@@ -433,6 +435,8 @@ conversation "remnant key stones"
 	label equipped
 	`As you are walking through the spaceport, a man comes up to you and introduces himself as the manager of the local outfitter. He says, "I could not help but notice that you have a Key Stone that looks different from the ones from our mines. You may have noticed the red anomalies scattered within this region of space. What you may not have known is that these are wormholes, accessible only with the possession of a Quantum Key Stone. My people highly value these Key Stones because of this, but our mines produce very few of them. Have you found another world where these stones can be mined?"`
 	branch "don't know"
+		not "discovered hai space"
+		not "discovered unfettered space"
 		not "First Contact: Hai: offered"
 		not "First Contact: Unfettered: offered"
 	
@@ -496,6 +500,8 @@ mission "Remnant: Key Stones (Pre-Hai) 1"
 			has "outfit: Quantum Keystone"
 			has "event: remnant: void sprite research"
 			has "Remnant: Defense 3: done"
+		not "discovered hai space"
+		not "discovered unfettered space"
 		not "First Contact: Hai: offered"
 		not "First Contact: Unfettered: offered"
 		has "remnant: blood test pure"
@@ -555,6 +561,8 @@ mission "Remnant: Key Stones"
 			has "event: remnant: void sprite research"
 			has "Remnant: Defense 3: done"
 		or
+			has "discovered hai space"
+			has "discovered unfettered space"
 			has "First Contact: Hai: offered"
 			has "First Contact: Unfettered: offered"
 		has "remnant: blood test pure"
