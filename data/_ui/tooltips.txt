@@ -304,10 +304,14 @@ tip "heat capacity:"
 	`Increases the maximum heat this ship is able to withstand before becoming overheated. A value of one has the same influence on a ship's maximum heat as one ton of mass, without the effects that mass has on movement.`
 
 tip "hull (repair):"
-	`Total hull strength and repair rate per second. The smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+	`Total hull strength and repair rate per second.`
 
 tip "hull:"
-	`Total hull strength. Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
+	`Total hull strength.`
+
+tip "disabled at:"
+	`If this ship's hull integrity drops below this level, it will become disabled. Disabled ships lose all functionality and are able to be assisted by other ships to repair them, or boarded to plunder from or capture them.`
+	`Ships with a higher hull strength are able to take more damage as a proportion of their total strength before being disabled; the smallest of ships are disabled when their hull strength drops below about 45%, while very large ships are disabled at close to 10%.`
 
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
@@ -494,6 +498,12 @@ tip "mass:"
 
 tip "max speed:"
 	`The maximum speed of this ship when using thrusters. Excludes the effect of afterburners, unless there are no normal thrusters installed.`
+
+tip "    w/ afterburner:"
+	`Movement while both your primary thrusters and afterburners are active.`
+
+tip "    reversed:"
+	`Movement while using reverse thrusters.`
 
 tip "movement:"
 	`How quickly this ship can accelerate and turn.`
@@ -909,28 +919,44 @@ tip "  + outfits:"
 
 # Ship heat and energy summary fields:
 tip "idle:"
-	`Energy and heat generated when this ship is idle, i.e. not firing weapons, turning, or thrusting.`
+	`Energy and heat generated per second when this ship is idle, i.e. not firing weapons, moving, or using any other systems.`
 
 tip "moving:"
-	`Energy consumed and heat generated when this ship is turning and thrusting. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is turning and thrusting. Includes the cost of using an afterburner if one is installed, or uses the cost of using reverse thrust if that is greater than the cost of forward thrust. This is in addition to the "idle" amount.`
+
+tip "thrusting:"
+	`Energy consumed and heat generated per second when this ship is thrusting. This is in addition to the "idle" amount.`
+
+tip "reversing:"
+	`Energy consumed and heat generated per second when this ship is using reverse thrusters. This is in addition to the "idle" amount.`
+
+tip "afterburner:"
+	`Energy consumed and heat generated per second when this ship is using its afterburner. This is in addition to the "idle" amount.`
+
+tip "turning:"
+	`Energy consumed and heat generated per second when this ship is turning. This is in addition to the "idle" amount.`
 
 tip "firing:"
-	`Energy consumed and heat generated when this ship is firing all its weapons. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is firing all its weapons. This is in addition to the "idle" amount. Note that weapons may consume or generate more energy or heat than this at the moment they fire, and this is the average value over time.`
 
 tip "shields / hull:"
-	`Energy consumed and heat generated when this ship is recharging shields and repairing its hull at the same time. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is recharging shields and repairing its hull at the same time. This is in addition to the "idle" amount.`
 
 tip "repairing hull:"
-	`Energy consumed and heat generated when this ship is repairing its hull. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is repairing its hull. This is in addition to the "idle" amount.`
 
 tip "charging shields:"
-	`Energy consumed and heat generated when this ship is recharging its shields. This is in addition to the "idle" amount.`
+	`Energy consumed and heat generated per second when this ship is recharging its shields. This is in addition to the "idle" amount.`
 
 tip "net change:"
-	`The sum of the energy consumed and heat generated from the above energy and heat values. Represents the worst case scenario when all systems are active at once.`
+	`The sum of the energy consumed and heat generated per second from the above energy and heat values. Represents the worst case scenario when all possible systems are active at once.`
 
 tip "capacity:"
-	`Energy storage capacity and heat capacity. Energy capacity allows a ship to temporarily draw more energy than it produces, and can be increased by installing batteries. The heat capacity is the highest your heat generation can be without eventually causing your ship to overheat, and is influenced by the mass of the ship.`
+	`Energy capacity allows a ship to temporarily draw more energy than it produces, and can be increased by installing batteries.`
+	`Heat capacity is the highest your heat generation can be without eventually causing your ship to overheat, and is influenced by the mass of the ship. If the "net change" value for heat is greater than this value, then the ship can overheat itself. Weapons with high firing heat per shot can cause you to become overheated even if "net change" is below heat capacity.`
+
+tip "surge:"
+	`This ship lacks energy storage. Therefore, this is the greatest amount of energy that can be drawn by any of this ship's systems in a single instant, such as the energy required for a single shot of a weapon. Systems that require more than this amount of energy to activate will be unusable.`
 
 
 
@@ -1298,6 +1324,9 @@ tip "limited thrust?"
 tip "limited turn?"
 	`This ship's energy supply is not sufficient to run the steering at full power. Its turn rate will be diminished.`
 
+tip "limited movement?"
+	`This ship's energy supply is not sufficient to run both thrusters and steering at the same time. Its movement will be diminished.`
+
 tip "solar power?"
 	`This ship is powered entirely by solar energy. It could be difficult to maneuver if you fly too far from the center of a star system, because your engines will only have a fraction of the power they require.`
 
@@ -1314,7 +1343,7 @@ tip "no bays?"
 	`There are insufficient bays available to carry this ship. If it took off, it would be unable to leave this star system.`
 
 tip "insufficient energy to fire?"
-	`This ship has insufficient energy storage to fire an installed weapon.`
+	`This ship has insufficient energy storage to fire an installed weapon. Install outfits that increase your energy storage, or if you have no energy storage, ensure that your "surge" energy is greater than the firing energy per shot of your weapons.`
 
 
 
@@ -1603,6 +1632,8 @@ tip "Aim turrets with mouse"
 
 tip "Automatic aiming"
 	`Automatically turn your ship towards your target to aim fixed weapons.`
+	`If you have multiple fixed weapons with differing projectile velocities, aiming will be done using the weapons with the highest damage per second.`
+	`If you have any active and loaded non-homing weapons that use ammo, they will be used for aiming in order to make your limited ammunition count, even if your primary weapons have a higher damage per second.`
 
 tip "Automatic firing"
 	`Automatically fire your primary weapons if your enemy is within the weapon's range.`
@@ -1672,7 +1703,7 @@ tip "Show stored outfits on map"
 	`If you have outfits stored on a planet, marks systems with stored outfits on the star map.`
 
 tip "Always underline shortcuts"
-	`Always underline the shortcut key for any buttons. Holding the alt key in any panel will also underline the button shortcut keys if this setting is off.`
+	`Always underline the shortcut key for any buttons. Holding the alt key in any panel will also underline the button shortcut keys if this setting is off. For buttons that contain a character that is underlined twice, the hotkey is shift plus the double underlined character.`
 
 tip "Reactivate first-time help"
 	`Reactivate the first-time help dialogs.`
@@ -1818,9 +1849,66 @@ tip "Default max escort crew"
 tip `Default admin cap`
 	`If the fleet size limitation is "admin cap," then this is the default maximum administrative capacity. Ships will have individual administrative costs that count toward your capacity. This value may be increased through story events. Changing this value on an existing pilot will have no effect.`
 
-# Boarding panel
+tip "Permadeath"
+	`Whether permadeath mode is active, and how it should behave.`
+	`- "lock on death": When you die, this pilot will be locked. You will be unable to load any of its saves after it enters this state, but you'll still have the save files to share and for keeping memories.`
+	`- "delete on death": When you die, this pilot's save files will be deleted.`
+	`- "lock on takeoff": When you depart from a planet, this pilot will be locked. It will be unlocked again upon landing on a planet. Forces the "Restricted save loading" gamerule to be on.`
+	`- "delete on takeoff": When you depart from a planet, this pilot's save file will be deleted and will only be recreated when you land. Forces the "Single save file" and "Restricted save loading" gamerules to be on.`
+
+tip "Single save file"
+	`If true, this pilot will only be able to have a single save file at a time. You will be unable to create snapshots and the game will not create autosaves for previous days. Only your most recent landing point will be saved.`
+
+tip "Restricted save loading"
+	`If true, this pilot will be unable to reload save files while not on the safety of a planet.`
+
+
+
+# Boarding panel:
 tip `boarding: in cargo`
 	`This item is in the ship's cargo hold.`
 
 tip `boarding: installed`
 	`This item is installed on the ship. Removal may leave the ship inoperable.`
+
+
+
+# Player info panel:
+tip `player info: player:`
+	`Your name. Also known as what other people call you.`
+
+tip `player info: net worth:`
+	`The total credit worth of the credits available in your account and the value of all your assets, minus any outstanding debts.`
+
+tip `player info: time played:`
+	`The total amount of time you have played on this save file. Reloading a prior save file loses any recorded time played after that checkpoint.`
+
+tip `player info: combat rating:`
+	`Your combat experience stats. Being highly adept at combat can unlock certain doors in the galaxy, or draw unwanted attention...`
+
+tip `player info: rank:`
+	`Your current combat rank and title. There are 22 total ranks, and each rank is increasingly more difficult to reach than the last.`
+
+tip `player info: experience:`
+	`The total amount of combat experience that you have accrued. Combat experience is gained by disabling ships. The more valuable a ship, the more experience you gain for disabling it. Ships can be disabled either directly by you, or by one of your escorts.`
+
+tip `player info: for next rank:`
+	`The amount of combat experience required to reach the next rank.`
+
+tip `player info: piracy threat:`
+	`The chance upon entering each system that a piracy raid fleet will be present. Raid fleets appear when your fleet has a high volume of cargo space without a sufficient amount of firepower to defend it. The higher your "cargo" rating is than your "fleet" rating, the higher your chances of encountering a raid fleet.`
+
+tip `player info: cargo:`
+	`A measure of your entire fleet's cargo space, as it applies to your piracy threat.`
+
+tip `player info: fleet:`
+	`A measure of your entire fleet's firepower, as it applies to your piracy threat.`
+
+tip `player info: salary:`
+	`Daily income from salaries that have been granted to you.`
+
+tip `player info: tribute:`
+	`Daily income from planets that you have conquered.`
+
+tip `player info: licenses:`
+	`The licenses that you own. Licenses grant access to purchasing certain outfits and ships.`

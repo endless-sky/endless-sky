@@ -231,6 +231,11 @@ private:
 
 private:
 	bool isLoaded = false;
+	bool safeRangeOverriden = false;
+	bool disabledDamageSet = false;
+	bool minableDamageSet = false;
+	bool relativeDisabledDamageSet = false;
+	bool relativeMinableDamageSet = false;
 
 	// Sprites and sounds.
 	Drawable projectileSprite;

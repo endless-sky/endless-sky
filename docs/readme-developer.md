@@ -51,6 +51,7 @@ Install [Homebrew](https://brew.sh). Once it is installed, use it to install the
 ```bash
 $ brew install cmake ninja mad libpng jpeg-turbo sdl2 minizip libavif catch2 flac
 ```
+If you're building with SDL3, replace `sdl2` with `sdl3`.
 
 **Note**: If you are on Apple Silicon (and want to compile for ARM), make sure that you are using ARM Homebrew!
 
@@ -78,7 +79,10 @@ Additionally, if you want to build unit tests:
 ```
 catch2
 ```
+If you're building with SDL3, replace `libsdl2-dev` with `libsdl3-dev`.
+
 While sufficient versions of other dependencies are available, Ubuntu 22.04 does not provide an up to date version of catch2 (3.0 or newer is required), so this will need to be built from source if unit tests are desired.
+libsdl3 will also need to be built from source on Ubuntu releases older than 25.10.
 
 
 </details>
@@ -97,6 +101,7 @@ Additionally, if you want to build unit tests:
 ```
 catch2-devel
 ```
+If you're building with SDL3, replace `SDL2-devel` with `SDL3-devel`.
 
 </details>
 
@@ -134,6 +139,8 @@ Replace `<preset>` with one of the following presets:
 - Linux: `linux` (builds with the default compiler), `linux-gles` (compiles with GLES instead of OpenGL support), `linux-armv7` (provides better support for 32-bit ARM systems)
 
 You can list all of available presets with `cmake --list-presets`.
+
+If you want to build the game with SDL3 instead of SDL2, add a special option to the configure command: `cmake --preset <preset> -DES_USE_SDL3=ON`. Your choice will be cached, so you don't need to change anything in the build command. To disable this feature, configure the project once again with `cmake --preset <preset> -DES_USE_SDL3=OFF`. If you're using your system-provided libraries, make sure to install the correct version of libsdl.
 
 <details>
 <summary>Alternative linkers</summary>

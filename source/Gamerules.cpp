@@ -127,6 +127,26 @@ void Gamerules::Load(const DataNode &node)
 			storage.defaultMaxEscortCrew = max<int>(0, child.Value(1));
 		else if(key == "default admin cap")
 			storage.defaultAdminCap = max<int>(0, child.Value(1));
+		else if(key == "permadeath mode")
+		{
+			const string &value = child.Token(1);
+			if(value == "off")
+				storage.permadeathMode = PermadeathMode::OFF;
+			else if(value == "lock on death")
+				storage.permadeathMode = PermadeathMode::LOCK_ON_DEATH;
+			else if(value == "delete on death")
+				storage.permadeathMode = PermadeathMode::DELETE_ON_DEATH;
+			else if(value == "lock on takeoff")
+				storage.permadeathMode = PermadeathMode::LOCK_ON_TAKEOFF;
+			else if(value == "delete on takeoff")
+				storage.permadeathMode = PermadeathMode::DELETE_ON_TAKEOFF;
+			else
+				child.PrintTrace("Skipping unrecognized value for gamerule:");
+		}
+		else if(key == "single save file")
+			storage.singleSaveFile = child.BoolValue(1);
+		else if(key == "restricted save loading")
+			storage.restrictedSaveLoading = child.BoolValue(1);
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -207,6 +227,23 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write("default max escort crew", storage.defaultMaxEscortCrew);
 		if(storage.defaultAdminCap != preset.storage.defaultAdminCap)
 			out.Write("default admin cap", storage.defaultAdminCap);
+		if(storage.permadeathMode != preset.storage.permadeathMode)
+		{
+			if(storage.permadeathMode == PermadeathMode::OFF)
+				out.Write("permadeath mode", "none");
+			else if(storage.permadeathMode == PermadeathMode::LOCK_ON_DEATH)
+				out.Write("permadeath mode", "lock on death");
+			else if(storage.permadeathMode == PermadeathMode::DELETE_ON_DEATH)
+				out.Write("permadeath mode", "delete on death");
+			else if(storage.permadeathMode == PermadeathMode::LOCK_ON_TAKEOFF)
+				out.Write("permadeath mode", "lock on takeoff");
+			else
+				out.Write("permadeath mode", "delete on takeoff");
+		}
+		if(storage.singleSaveFile != preset.storage.singleSaveFile)
+			out.Write("single save file", storage.singleSaveFile ? 1 : 0);
+		if(storage.restrictedSaveLoading != preset.storage.restrictedSaveLoading)
+			out.Write("restricted save loading", storage.restrictedSaveLoading ? 1 : 0);
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
@@ -275,6 +312,12 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 		storage.defaultMaxEscortCrew = preset.storage.defaultMaxEscortCrew;
 	else if(rule == "default admin cap")
 		storage.defaultAdminCap = preset.storage.defaultAdminCap;
+	else if(rule == "permadeath mode")
+		storage.permadeathMode = preset.storage.permadeathMode;
+	else if(rule == "single save file")
+		storage.singleSaveFile = preset.storage.singleSaveFile;
+	else if(rule == "restricted save loading")
+		storage.restrictedSaveLoading = preset.storage.restrictedSaveLoading;
 	else
 	{
 		auto it = preset.storage.miscRules.find(rule);
@@ -460,6 +503,27 @@ void Gamerules::SetDefaultAdminCap(int value)
 
 
 
+void Gamerules::SetPermadeathMode(PermadeathMode permadeathMode)
+{
+	storage.permadeathMode = permadeathMode;
+}
+
+
+
+void Gamerules::SetSingleSaveFile(bool value)
+{
+	storage.singleSaveFile = value;
+}
+
+
+
+void Gamerules::SetRestrictedSaveLoading(bool value)
+{
+	storage.restrictedSaveLoading = value;
+}
+
+
+
 void Gamerules::SetMiscValue(const string &rule, int value)
 {
 	storage.miscRules[rule] = value;
@@ -507,6 +571,12 @@ int Gamerules::GetValue(const string &rule) const
 		return storage.defaultMaxEscortCrew;
 	if(rule == "default admin cap")
 		return storage.defaultAdminCap;
+	if(rule == "permadeath mode")
+		return static_cast<int>(storage.permadeathMode);
+	if(rule == "single save file")
+		return storage.singleSaveFile;
+	if(rule == "restricted save loading")
+		return storage.restrictedSaveLoading;
 
 	auto it = storage.miscRules.find(rule);
 	if(it == storage.miscRules.end())
@@ -666,6 +736,28 @@ int Gamerules::GetDefaultMaxEscortCrew() const
 int Gamerules::GetDefaultAdminCap() const
 {
 	return storage.defaultAdminCap;
+}
+
+
+
+Gamerules::PermadeathMode Gamerules::GetPermadeathMode() const
+{
+	return storage.permadeathMode;
+}
+
+
+
+bool Gamerules::SingleSaveFile() const
+{
+	return storage.singleSaveFile || storage.permadeathMode == PermadeathMode::DELETE_ON_TAKEOFF;
+}
+
+
+
+bool Gamerules::RestrictedSaveLoading() const
+{
+	return storage.restrictedSaveLoading || storage.permadeathMode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF
+		|| storage.permadeathMode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
 }
 
 

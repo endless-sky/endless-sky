@@ -83,6 +83,7 @@ color "flagship highlight" .5 .8 .2 0.
 color "cloak highlight" .45 0. 0. .65
 
 color "drag select" .2 1. 0. 0.
+color "drag select invalid" 1. .2 0. 0.
 
 # Colors used for drawing mission or job pointers on the map,
 # to indicate where the player should go.
@@ -201,6 +202,7 @@ color "map name" .6 .6 .6 .6
 color "map travel ok fleet" .2 .5 0. 0.
 color "map travel ok flagship" .5 .4 0. 0.
 color "map travel ok none" .55 .1 0. 0.
+color "map travel jumping flagship" 0. .1 .55 0.
 color "map wormhole" .5 .2 .9 1.
 color "map orbits fleet destination" 1. 1. 1. 1.
 color "map danger none" .1 .6 0. .4
@@ -276,7 +278,7 @@ interface "map detail panel"
 	visible if "has escort destination"
 	sprite "ui/wide button"
 		center -256 56
-	button c "Cancel order"
+	button c "_Cancel order"
 		center -256 56
 		dimensions 90 30
 
@@ -322,7 +324,7 @@ interface "main menu"
 	sprite "_menu/side panel"
 		center 360 0
 	
-	visible if "pilot loaded"
+	visible if "can load"
 	button e "_Enter Ship"
 		center 435 155
 		dimensions 90 30
@@ -532,12 +534,12 @@ interface "load menu"
 		center -435 195
 		dimensions 90 30
 	
-	active if "pilot alive"
+	active if "can add snapshot"
 	button a "_Add Snapshot"
 		center -60 155
 		dimensions 120 30
-	active if "snapshot selected"
-	button R "Remove"
+	active if "can remove snapshot"
+	button R "__Remove"
 		center 75 155
 		dimensions 90 30
 	
@@ -545,7 +547,7 @@ interface "load menu"
 	button b "_Back to Menu"
 		center 300 155
 		dimensions 120 30
-	active if "pilot loaded"
+	active if "can load"
 	button l "_Load Game"
 		center 435 155
 		dimensions 90 30
@@ -1989,7 +1991,7 @@ interface "boarding"
 		dimensions 70 30
 	
 	active if "can exit"
-	button x "_Done"
+	button d "_Done"
 		center -155 115
 		dimensions 70 30
 	
@@ -2004,7 +2006,7 @@ interface "boarding"
 		dimensions 80 30
 	
 	active if "can defend"
-	button D "_Defend"
+	button D "__Defend"
 		center 210 185
 		dimensions 80 30
 
@@ -2261,28 +2263,35 @@ interface "trade"
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 120 355
-	button u "B_uy All"
+	button u "__B_uy All"
 		center 120 355
 		dimensions 70 30
 
 	active if "can sell"
 	sprite "ui/dialog cancel"
 		center 200 355
-	button e "S_ell All"
+	button e "__S_ell All"
 		center 200 355
 		dimensions 70 30
+
+	active if "can store outfits"
+	sprite "ui/wide button"
+		center 10 355
+	button r "Sto_re Outfits"
+		center 10 355
+		dimensions 90 30
 
 	active if "can sell minables"
 	sprite "ui/wide button"
 		center -90 355
-	button n "Sell Mi_nables"
+	button n "Sell __Mi_nables"
 		center -90 355
 		dimensions 90 30
 
 	active if "can sell outfits"
 	sprite "ui/wide button"
 		center -190 355
-	button f "Sell Out_fits"
+	button f "Sell __Out_fits"
 		center -190 355
 		dimensions 90 30
 
@@ -2346,28 +2355,35 @@ interface "trade (small screen)"
 	active if "can buy"
 	sprite "ui/dialog cancel"
 		center 60 355
-	button u "B_uy All"
+	button u "__B_uy All"
 		center 60 355
 		dimensions 70 30
 
 	active if "can sell"
 	sprite "ui/dialog cancel"
 		center 140 355
-	button e "S_ell All"
+	button e "__S_ell All"
 		center 140 355
 		dimensions 70 30
+
+	active if "can store outfits"
+	sprite "ui/wide button"
+		center -50 355
+	button r "Sto_re Outfits"
+		center -50 355
+		dimensions 90 30
 
 	active if "can sell minables"
 	sprite "ui/wide button"
 		center -150 355
-	button n "Sell Mi_nables"
+	button n "Sell __Mi_nables"
 		center -150 355
 		dimensions 90 30
 
 	active if "can sell outfits"
 	sprite "ui/wide button"
 		center -250 355
-	button f "Sell Out_fits"
+	button f "Sell __Out_fits"
 		center -250 355
 		dimensions 90 30
 
@@ -2439,7 +2455,7 @@ interface "mission" bottom
 		dimensions 130 30
 	
 	active if "can abort"
-	button A "Abort"
+	button A "__Abort"
 		center 70 -25
 		dimensions 80 30
 
@@ -2537,6 +2553,32 @@ interface "map buttons (small screen)" bottom right
 	button d "_Done"
 		from -80 -40 to -10 -10
 
+	active
+	sprite "ui/dialog cancel"
+		from 0 -40 to -90 -90
+	button f "_Find"
+		from -80 -80 to -10 -50
+
+	sprite "ui/zoom"
+		from 0 -80 to -90 -130
+	active if "!max zoom"
+	button + "_+"
+		from -10 -90 to -40 -120
+		size 18
+	active if "!min zoom"
+	button - "_-"
+		from -50 -90 to -80 -120
+		size 18
+
+
+
+interface "map buttons (simplified)" bottom right
+	active
+	sprite "ui/dialog cancel"
+		from -90 -50 to 0 0
+	button d "_Done"
+		from -80 -40 to -10 -10
+	
 	active
 	sprite "ui/dialog cancel"
 		from 0 -40 to -90 -90
@@ -2686,7 +2728,7 @@ interface "info panel"
 		from 250 -290 to 500 280
 	
 	visible if "ship tab"
-	button R
+	button r
 		center -375 -270
 		dimensions 250 30
 	sprite "ui/ship tab"
@@ -2752,8 +2794,15 @@ interface "info panel"
 	visible if "show disown"
 	sprite "ui/dialog cancel"
 		center -150 305
-	button D "Disown"
+	button D "__Disown"
 		center -150 305
+		dimensions 70 30
+	
+	visible if "ship tab"
+	sprite "ui/dialog cancel"
+		center -245 305
+	button r "_Rename"
+		center -245 305
 		dimensions 70 30
 	
 	visible if "show dump/jettison button"
@@ -2833,7 +2882,7 @@ interface "message log"
 	sprite "ui/dialog cancel"
 		center 654 -80 bottom left
 	active if "!empty"
-	button c "Clear"
+	button c "_Clear"
 		center 654 -80 bottom left
 		dimensions 70 30
 

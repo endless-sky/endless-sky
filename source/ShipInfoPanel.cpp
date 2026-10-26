@@ -117,7 +117,7 @@ void ShipInfoPanel::Draw()
 		interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
 		interfaceInfo.SetCondition("show disown");
 	}
-	else if(!panelState.CanEdit())
+	else if(!panelState.CanEdit() && shipIt != panelState.Ships().end() && !shipIt->get()->IsDestroyed())
 	{
 		interfaceInfo.SetCondition("show dump/jettison button");
 		interfaceInfo.SetCondition(selectedOutfit ? "show jettison" : "show dump");
@@ -178,7 +178,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		GetUI().Pop(this);
 		GetUI().Push(new PlayerInfoPanel(player, std::move(panelState)));
 	}
-	else if(key == 'R' || (key == 'r' && shift))
+	else if(key == 'r')
 		GetUI().Push(ShipNameDialogPanel::Create(
 			DialogPanel::FunctionButton(this, "Rename", 'r', &ShipInfoPanel::Rename),
 			"Change this ship's name?", (*shipIt)->GivenName()));
@@ -234,6 +234,13 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		int amount = (*shipIt)->Cargo().Get(selectedCommodity);
 		int plunderAmount = (*shipIt)->Cargo().Get(selectedPlunder);
 		int outfitAmount = (*shipIt)->OutfitCount(selectedOutfit);
+
+		auto AddUniqueMessage = [](const string &initial, const Outfit *outfit) -> string {
+			if(outfit->GetPrecise("unique"))
+				return initial + " This outfit is unique and you may not be able to regain it after jettisoning it.";
+			return initial;
+		};
+
 		if(amount)
 		{
 			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpCommodities,
@@ -249,24 +256,26 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		else if(plunderAmount == 1)
 		{
 			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
-				"Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?"));
+				AddUniqueMessage("Are you sure you want to jettison a " + selectedPlunder->DisplayName() + "?",
+				selectedPlunder)));
 		}
 		else if(plunderAmount > 1)
 		{
 			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpPlunder,
-				"How many " + selectedPlunder->PluralName() + " do you want to jettison?",
-				plunderAmount));
+				AddUniqueMessage("How many " + selectedPlunder->PluralName() + " do you want to jettison?",
+				selectedPlunder), plunderAmount));
 		}
 		else if(outfitAmount == 1)
 		{
 			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipInfoPanel::Dump,
-				"Are you sure you want to jettison a " + selectedOutfit->DisplayName() + "?"));
+				AddUniqueMessage("Are you sure you want to jettison a " + selectedOutfit->DisplayName() + "?",
+				selectedOutfit)));
 		}
 		else if(outfitAmount > 1)
 		{
 			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpInstalled,
-				"How many " + selectedOutfit->PluralName() + " do you want to jettison?",
-				plunderAmount));
+				AddUniqueMessage("How many " + selectedOutfit->PluralName() + " do you want to jettison?",
+				selectedOutfit), plunderAmount));
 		}
 		else if(commodities)
 		{
@@ -787,7 +796,7 @@ bool ShipInfoPanel::Rename(const string &name)
 
 bool ShipInfoPanel::CanDump() const
 {
-	if(panelState.CanEdit() || shipIt == panelState.Ships().end())
+	if(panelState.CanEdit() || shipIt == panelState.Ships().end() || shipIt->get()->IsDestroyed())
 		return false;
 
 	CargoHold &cargo = (*shipIt)->Cargo();
@@ -850,7 +859,7 @@ void ShipInfoPanel::Dump()
 	selectedPlunder = nullptr;
 	selectedOutfit = nullptr;
 
-	info.Update(**shipIt, player);
+	UpdateInfo();
 	if(loss)
 		Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
 			GameData::MessageCategories().Get("normal")});
@@ -866,7 +875,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		info.Update(**shipIt, player);
+		UpdateInfo();
 
 		if(loss)
 			Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
@@ -886,7 +895,7 @@ void ShipInfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		info.Update(**shipIt, player);
+		UpdateInfo();
 
 		if(loss)
 			Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
@@ -902,7 +911,7 @@ void ShipInfoPanel::DumpInstalled(int count)
 	if(count > 0)
 	{
 		(*shipIt)->JettisonInstalled(selectedOutfit, count);
-		info.Update(**shipIt, player);
+		UpdateInfo();
 
 		Messages::Add({"You jettisoned " + to_string(count) + " "
 				+ (count == 1 ? selectedOutfit->DisplayName() : selectedOutfit->PluralName()),

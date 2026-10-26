@@ -42,34 +42,55 @@ SCENARIO( "Creating a FireCommand instance", "[firecommand]") {
 SCENARIO( "A FireCommand instance is being copied", "[firecommand]" ) {
 	FireCommand command;
 	GIVEN( "a specific bitset" ) {
-		command.SetHardpoints(5);
+		command.SetHardpoints(5, 5);
 		command.SetFire(0);
+		command.SetOnTarget(0);
 		command.SetFire(3);
 		command.SetAim(2, 1.);
+		command.SetAimDecor(2, 1.);
 
 		WHEN( "the copy is made" ) {
 			auto copy = command;
 			THEN( "the copy has the correct properties" ) {
 				CHECK( copy.IsFiring() == command.IsFiring() );
+				CHECK( copy.IsOnTarget() == command.IsOnTarget() );
 				CHECK( copy.HasFire(0) == command.HasFire(0) );
 				CHECK( copy.HasFire(1) == command.HasFire(1) );
 				CHECK( copy.HasFire(2) == command.HasFire(2) );
 				CHECK( copy.HasFire(3) == command.HasFire(3) );
 				CHECK( copy.HasFire(4) == command.HasFire(4) );
+				CHECK( copy.HasTarget(0) == command.HasTarget(0) );
+				CHECK( copy.HasTarget(1) == command.HasTarget(1) );
+				CHECK( copy.HasTarget(2) == command.HasTarget(2) );
+				CHECK( copy.HasTarget(3) == command.HasTarget(3) );
+				CHECK( copy.HasTarget(4) == command.HasTarget(4) );
 				CHECK_THAT( copy.Aim(0), Catch::Matchers::WithinAbs(command.Aim(0), 0.0001) );
 				CHECK_THAT( copy.Aim(1), Catch::Matchers::WithinAbs(command.Aim(1), 0.0001) );
 				CHECK_THAT( copy.Aim(2), Catch::Matchers::WithinAbs(command.Aim(2), 0.0001) );
 				CHECK_THAT( copy.Aim(3), Catch::Matchers::WithinAbs(command.Aim(3), 0.0001) );
 				CHECK_THAT( copy.Aim(4), Catch::Matchers::WithinAbs(command.Aim(4), 0.0001) );
+				CHECK_THAT( copy.AimDecor(0), Catch::Matchers::WithinAbs(command.AimDecor(0), 0.0001) );
+				CHECK_THAT( copy.AimDecor(1), Catch::Matchers::WithinAbs(command.AimDecor(1), 0.0001) );
+				CHECK_THAT( copy.AimDecor(2), Catch::Matchers::WithinAbs(command.AimDecor(2), 0.0001) );
+				CHECK_THAT( copy.AimDecor(3), Catch::Matchers::WithinAbs(command.AimDecor(3), 0.0001) );
+				CHECK_THAT( copy.AimDecor(4), Catch::Matchers::WithinAbs(command.AimDecor(4), 0.0001) );
 			}
 			THEN( "the two bitsets are independent" ) {
 				command.SetAim(1, -1.);
 				CHECK_THAT( command.Aim(1), Catch::Matchers::WithinAbs(-1, 0.0001) );
 				CHECK_FALSE( copy.Aim(1) );
 
+				command.SetAimDecor(1, -1.);
+				CHECK_THAT( command.AimDecor(1), Catch::Matchers::WithinAbs(-1, 0.0001) );
+				CHECK_FALSE( copy.AimDecor(1) );
+
 				copy.SetFire(4);
 				CHECK_FALSE( command.HasFire(4) );
 				CHECK( copy.HasFire(4) );
+
+				copy.SetOnTarget(2);
+				CHECK_FALSE( command.HasTarget(2) );
+				CHECK( copy.HasTarget(2) );
 			}
 		}
 	}
@@ -79,17 +100,38 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 	GIVEN( "an empty FireCommand" ) {
 		FireCommand command;
 		THEN( "resizing it works" ) {
-			command.SetHardpoints(20);
+			command.SetHardpoints(20, 20);
 			command.SetFire(0);
 			command.SetFire(18);
 			CHECK( command.HasFire(0) );
 			CHECK( command.HasFire(18) );
+			command.SetOnTarget(0);
+			command.SetOnTarget(18);
+			CHECK( command.HasTarget(0) );
+			CHECK( command.HasTarget(18) );
 		}
 	}
 	GIVEN( "a FireCommand of a specific size" ) {
 		FireCommand command;
-		command.SetHardpoints(10);
+		command.SetHardpoints(10, 10);
 
+		AND_GIVEN( "an index is targeting" ) {
+			command.SetOnTarget(0);
+			command.SetOnTarget(4);
+			command.SetOnTarget(9);
+
+			REQUIRE( command.HasTarget(0) );
+			REQUIRE( command.HasTarget(4) );
+			REQUIRE( command.HasTarget(9) );
+			WHEN( "clear is called" ) {
+				command.Clear();
+				THEN( "the command is empty" ) {
+					CHECK_FALSE( command.HasTarget(0) );
+					CHECK_FALSE( command.HasTarget(4) );
+					CHECK_FALSE( command.HasTarget(9) );
+				}
+			}
+		}
 		AND_GIVEN( "an index is firing" ) {
 			command.SetFire(0);
 			command.SetFire(4);
@@ -127,13 +169,16 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 	}
 	GIVEN( "two non-empty FireCommands" ) {
 		FireCommand one;
-		one.SetHardpoints(4);
+		one.SetHardpoints(4, 4);
 		one.SetFire(3);
 		one.SetFire(2);
+		one.SetOnTarget(3);
+		one.SetOnTarget(2);
 		CHECK( one.IsFiring() );
+		CHECK( one.IsOnTarget() );
 
 		FireCommand two;
-		two.SetHardpoints(3);
+		two.SetHardpoints(3, 3);
 		two.SetFire(1);
 		CHECK( two.IsFiring() );
 
@@ -143,6 +188,8 @@ SCENARIO( "A FireCommand instance is being used", "[firecommand]") {
 			CHECK_FALSE( two.HasFire(1) );
 			CHECK( two.HasFire(2) );
 			CHECK( two.IsFiring() );
+			CHECK( two.HasTarget(2) );
+			CHECK( two.IsOnTarget() );
 		}
 	}
 }

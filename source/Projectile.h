@@ -44,8 +44,8 @@ class Projectile : public Body {
 public:
 	class ImpactInfo {
 	public:
-		ImpactInfo(const Weapon &weapon, Point position, double distanceTraveled)
-			: weapon(weapon), position(std::move(position)), distanceTraveled(distanceTraveled) {}
+		ImpactInfo(const Weapon &weapon, const Point &position, double distanceTraveled)
+			: weapon(weapon), position(position), distanceTraveled(distanceTraveled) {}
 
 		const Weapon &weapon;
 		Point position;

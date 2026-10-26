@@ -47,7 +47,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include "opengl.h"
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 #include <algorithm>
 
