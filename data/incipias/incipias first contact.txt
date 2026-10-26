@@ -11,6 +11,16 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Incipia Space"
+	entering
+	invisible
+	non-blocking
+	source
+		government "Hicemus"
+	on offer
+		set "discovered incipia space"
+		fail
+
 mission "Incipias: Warning of the Guardian"
 	invisible
 	entering
