@@ -246,7 +246,7 @@ tip "energy consumption:"
 tip "energy generation:"
 	`Energy generated per second. If your ship has weapons other than beam weapons, you will probably also need batteries to store energy in.`
 
-tip "docked shield generation:"
+tip "docked energy generation:"
 	`Energy generated per second for charging the batteries of docked fighters.`
 
 tip "engine capacity needed:"
