@@ -195,7 +195,7 @@ void TradingPanel::Draw()
 	}
 
 	bool hasOutfitter = planet.HasOutfitter();
-	canSellOutfits = outfitCargo && (hasOutfitter || Preferences::Has("Sell outfits without outfitter"));
+	canSellOutfits = outfitCargo && (hasOutfitter || Preferences::Has(Preferences::TRADE_SELL_OUTFITS_WITHOUT_SHOP));
 	canStoreOutfits = outfitCargo && hasOutfitter;
 	if(canSellOutfits)
 		info.SetCondition("can sell outfits");
@@ -251,7 +251,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	}
 	else if((key == 'n' || (key == 'm' && shift)) && player.Cargo().MinablesSizePrecise())
 	{
-		if(Preferences::Has("Confirm selling minables"))
+		if(Preferences::Has(Preferences::TRADE_CONFIRM_MINABLES))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(true); },
 				OutfitSalesMessage(true), 1, Truncate::NONE, true));
 		else
@@ -259,7 +259,7 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	}
 	else if((key == 'f' || (key == 'o' && shift)) && canSellOutfits)
 	{
-		if(Preferences::Has("Confirm selling outfits"))
+		if(Preferences::Has(Preferences::TRADE_CONFIRM_OUTFITS))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(false); },
 				OutfitSalesMessage(false), 1, Truncate::NONE, true));
 		else

@@ -155,7 +155,7 @@ void StarField::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 void StarField::Step(Point vel, double zoom)
 {
-	if(Preferences::Has("Fixed starfield zoom"))
+	if(Preferences::Has(Preferences::FIXED_STARFIELD_ZOOM))
 	{
 		baseZoom = fixedZoom;
 		vel /= velocityReducer;
@@ -195,7 +195,7 @@ void StarField::Draw(const Point &blur, const System *system) const
 
 	// Draw the starfield unless it is disabled in the preferences.
 	double zoom = baseZoom;
-	if(Preferences::Has("Draw starfield") && density > 0.)
+	if(Preferences::Has(Preferences::DRAW_STARFIELD) && density > 0.)
 	{
 		glUseProgram(shader->Object());
 		if(OpenGL::HasVaoSupport())
@@ -273,7 +273,7 @@ void StarField::Draw(const Point &blur, const System *system) const
 	}
 
 	// Draw the background haze unless it is disabled in the preferences.
-	if(!Preferences::Has("Draw background haze"))
+	if(!Preferences::Has(Preferences::DRAW_BACKGROUND_HAZE))
 		return;
 
 	// Modify zoom for the second parallax layer.

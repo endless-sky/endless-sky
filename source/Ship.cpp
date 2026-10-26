@@ -2157,7 +2157,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	bool isDocked = parentCloakState.has_value();
 	double cloak = isDocked ? *parentCloakState : Cloaking();
 	bool drawCloaked = !isUi && IsYours() && cloak;
-	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
+	bool fancyCloak = Preferences::Has(Preferences::SHIP_OUTLINES_CLOAKED);
 	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
 
 	auto drawFighter = [&](const Ship::Bay &bay) -> void
@@ -2822,7 +2822,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 
 	double jamChance = CalculateJamChance(levels.scrambling);
 
-	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
+	bool opportunisticEscorts = !Preferences::Has(Preferences::TURRETS_FOCUS_FIRE);
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
@@ -3919,7 +3919,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 
 	// NPC ships should always transfer cargo. Player ships should only
 	// transfer cargo if they set the AI preference.
-	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
+	const bool shouldTransferCargo = !IsYours() || Preferences::Has(Preferences::FIGHTERS_TRANSFER_CARGO);
 
 	for(Bay &bay : bays)
 		if((bay.category == category) && !bay.ship)
@@ -5510,7 +5510,7 @@ void Ship::StepPilot()
 		{
 			if(!parent.lock())
 				Messages::Add(*GameData::Messages().Get("undercrewed flagship"));
-			else if(Preferences::Has("Extra fleet status messages"))
+			else if(Preferences::Has(Preferences::HUD_EXTRA_STATUS_MSGS))
 				Messages::Add({"The " + givenName + " is moving erratically because there are not enough crew to pilot it.",
 					GameData::MessageCategories().Get("low")});
 		}

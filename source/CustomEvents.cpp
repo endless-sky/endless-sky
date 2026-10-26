@@ -20,14 +20,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 namespace {
 	Uint32 resize = -1;
 	Uint32 adjustText = -1;
+	Uint32 tooltipUpdate = -1;
 }
 
 
 
 void CustomEvents::Init()
 {
-	resize = SDL_RegisterEvents(2);
+	resize = SDL_RegisterEvents(3);
 	adjustText = resize + 1;
+	tooltipUpdate = adjustText + 1;
 }
 
 
@@ -61,5 +63,22 @@ void CustomEvents::SendAdjustText()
 {
 	SDL_Event event;
 	event.type = GetAdjustText();
+	SDL_PushEvent(&event);
+}
+
+
+
+Uint32 CustomEvents::GetTooltipUpdate()
+{
+	assert(tooltipUpdate != static_cast<Uint32>(-1) && "Custom events must be registered");
+	return tooltipUpdate;
+}
+
+
+
+void CustomEvents::SendTooltipUpdate()
+{
+	SDL_Event event;
+	event.type = GetTooltipUpdate();
 	SDL_PushEvent(&event);
 }
