@@ -29,9 +29,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
-class ConditionAlias;
 class CategoryList;
 class Color;
+class ConditionAlias;
 class ConditionsStore;
 class Confusion;
 class Conversation;
