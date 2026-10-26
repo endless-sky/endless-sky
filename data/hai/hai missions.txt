@@ -16,7 +16,7 @@ mission "Discovery: Hai Space"
 	invisible
 	non-blocking
 	source
-		government "Hai" "Hai (Unfettered)"
+		government "Hai"
 	on offer
 		set "discovered hai space"
 		fail
