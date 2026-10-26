@@ -29,7 +29,9 @@
 		],
 		"regexChecks": [
 			{
-				"excludedNodes": [],
+				"excludedNodes": [
+					"^\"display capacities\"$"
+				],
 				"checks": [
 					{
 						"description": "multiple consecutive space characters",
@@ -141,7 +143,12 @@
 				]
 			},
 			{
-				"excludedNodes": ["^word$", "^replace$", "^substitutions$"],
+				"excludedNodes": [
+					"^word$",
+					"^replace$",
+					"^substitutions$",
+					"^\"display capacities\"$"
+				],
 				"checks": [
 					{
 						"description": "whitespace before end of text",
