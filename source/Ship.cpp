@@ -2157,7 +2157,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	bool isDocked = parentCloakState.has_value();
 	double cloak = isDocked ? *parentCloakState : Cloaking();
 	bool drawCloaked = !isUi && IsYours() && cloak;
-	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
+	bool fancyCloak = Preferences::Has(Preferences::SHIP_OUTLINES_CLOAKED);
 	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
 
 	auto drawFighter = [&](const Ship::Bay &bay) -> void
