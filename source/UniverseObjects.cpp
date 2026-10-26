@@ -135,6 +135,10 @@ void UniverseObjects::FinishLoading()
 	// Sort all category lists.
 	for(auto &list : categories)
 		list.second.Sort();
+
+	// Guard against infinite loops in condition aliases.
+	for(auto &alias : conditionAliases | views::values)
+		alias.FinishLoading();
 }
 
 

@@ -15,6 +15,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConditionAlias.h"
 
+#include "GameData.h"
+#include "Logger.h"
+
+#include <ranges>
+
 using namespace std;
 
 
@@ -26,7 +31,24 @@ void ConditionAlias::Load(const DataNode &node, const ConditionsStore *playerCon
 
 
 
+void ConditionAlias::FinishLoading()
+{
+	set<string> usesConditions = conditions.RelevantConditions();
+	for(const string &otherName : GameData::ConditionAliases() | views::keys)
+	{
+		if(usesConditions.contains(otherName))
+		{
+			Logger::Log("Condition alias \"" + name + "\" will be disabled, as it contains the alias \"" + otherName
+				+ "\". Condition aliases may not contain other condition aliases.", Logger::Level::WARNING);
+			isValid = false;
+			return;
+		}
+	}
+}
+
+
+
 bool ConditionAlias::Test() const
 {
-	return conditions.Test();
+	return isValid ? conditions.Test() : false;
 }

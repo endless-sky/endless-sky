@@ -30,9 +30,14 @@ public:
 
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 
+	// Invalidate aliases that contain other aliases.
+	void FinishLoading();
+
 	bool Test() const;
 
 
 private:
+	bool isValid = true;
+	std::string name;
 	ConditionSet conditions;
 };
