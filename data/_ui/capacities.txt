@@ -12,55 +12,40 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 "display capacities"
-	attribute "outfit space"
-		display "outfit space free:"
+	"outfit space" "outfit space free:"
 		required
-	attribute "weapon capacity"
-		display "    weapon capacity:"
+	"weapon capacity" "    weapon capacity:"
 		required
-	attribute "engine capacity"
-		display "    engine capacity:"
+	"engine capacity" "    engine capacity:"
 		required
-	attribute "gun ports"
-		display "gun ports free:"
+	"gun ports" "gun ports free:"
 		required
 	# A rare gun port type found on some massive ships:
-	attribute "spinal mount"
-		display "spinal mounts free:"
+	"spinal mount" "spinal mounts free:"
 		optional
-	attribute "turret mounts"
-		display "turret mounts free:"
+	"turret mounts" "turret mounts free:"
 		required
 	
 	# Avgi capacities:
-	attribute "anchor point"
-		display "anchor points free:"
+	"anchor point" "anchor points free:"
 		optional
-	attribute "lasing power"
-		display "lasing power free:"
+	"lasing power" "lasing power free:"
 		optional
-	attribute "magnetic nozzle"
-		display "magnetic nozzles free:"
+	"magnetic nozzle" "magnetic nozzles free:"
 		optional
 	
 	# Bunrodea capacities:
-	attribute "reactor upgrades"
-		display "reactor upgrades free:"
+	"reactor upgrades" "reactor upgrades free:"
 		optional
-	attribute "relay upgrades"
-		display "relay upgrades free:"
+	"relay upgrades" "relay upgrades free:"
 		optional
-	attribute "nanite upgrades"
-		display "nanite upgrades free:"
+	"nanite upgrades" "nanite upgrades free:"
 		optional
-	attribute "solar cell"
-		display "solar cells free:"
+	"solar cell" "solar cells free:"
 		optional
 	
 	# Successor capacities:
-	attribute "multimodal armor"
-		display "multimodal armor free"
+	"multimodal armor" "multimodal armor free"
 		optional
-	attribute "shield connection point"
-		display "shield connections free"
+	"shield connection point" "shield connections free"
 		optional

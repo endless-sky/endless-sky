@@ -33,15 +33,13 @@ CapacityList::Capacity::Capacity(const DataNode &node)
 
 void CapacityList::Capacity::Load(const DataNode &node)
 {
-	backingAttribute = node.Token(1);
+	backingAttribute = node.Token(0);
+	displayName = node.Token(1);
 
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
-		bool hasValue = child.Size() >= 2;
-		if(key == "display" && hasValue)
-			displayName = child.Token(1);
-		else if(key == "required")
+		if(key == "required")
 			required = true;
 		else if(key == "optional")
 			required = false;
@@ -100,17 +98,12 @@ void CapacityList::Load(const DataNode &node)
 {
 	for(const DataNode &child : node)
 	{
-		if(child.Token(0) != "attribute")
-		{
-			child.PrintTrace("Skipping unrecognized attribute:");
-			continue;
-		}
 		if(child.Size() < 2)
 		{
 			child.PrintTrace("Expected key to have a value:");
 			continue;
 		}
-		const string &attribute = child.Token(1);
+		const string &attribute = child.Token(0);
 		if(child.Size() >= 3)
 			currentPrecedence = child.Value(2);
 
