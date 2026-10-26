@@ -26,6 +26,7 @@ using namespace std;
 
 void ConditionAlias::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
+	name = node.Token(1);
 	conditions.Load(node, playerConditions);
 }
 
