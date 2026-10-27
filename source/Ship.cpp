@@ -3858,20 +3858,22 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 {
 	if(cache.immovable)
 		return;
-	if(gravitational)
-	{
-		// Treat all ships as if they have a mass of 400. This prevents
-		// gravitational hit force values from needing to be extremely
-		// small in order to have a reasonable effect.
-		acceleration += force / 400.;
-		return;
-	}
 
-	double currentMass = InertialMass();
+	// Gravitational forces treat all ships as if they have a mass of 400.
+	// This prevents gravitational hit force values from needing to be extremely
+	// small in order to have a reasonable effect.
+	double currentMass = gravitational ? 400. : InertialMass();
 	if(!currentMass)
 		return;
 
-	acceleration += force / currentMass;
+	// Since ships with inertialess thrust always angle their acceleration toward
+	// their facing angle, apply external forces as an instant position impulse.
+	// Otherwise, applying external forces as an acceleration has odd effects
+	// on an inertialess ship's movement.
+	if(cache.inertialessThrust)
+		position += force / currentMass;
+	else
+		acceleration += force / currentMass;
 }
 
 
