@@ -367,6 +367,8 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 			isCloaking = true;
 		else if(key == "playtime" && hasValue)
 			playTime = child.Value(1);
+		else if(key == "idle time" && hasValue)
+			idleTime = child.Value(1);
 		else if(key == "travel" && hasValue)
 			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(key == "travel destination" && hasValue)
@@ -2162,9 +2164,12 @@ double PlayerInfo::GetPlayTime() const noexcept
 
 
 
-void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
+void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal, bool isIdle)
 {
-	playTime += timeVal.count() * .000000001;
+	if(isIdle)
+		idleTime += timeVal.count() * .000000001;
+	else
+		playTime += timeVal.count() * .000000001;
 }
 
 
@@ -5045,6 +5050,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
 	out.Write("playtime", playTime);
+	out.Write("idle time", idleTime);
 	// This flag is set if the player must leave the planet immediately upon
 	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
@@ -5667,9 +5673,31 @@ void PlayerInfo::DoAccounting()
 
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	int64_t assets = 0;
+	map<const Ship *, int> shipCount;
+	map<const Outfit *, int> outfitCount;
 	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
+	{
+		const Ship *base = GameData::Ships().Get(ship->VariantName());
+		++shipCount[base];
+		for(const auto &[outfit, count] : ship->Outfits())
+			outfitCount[outfit] += count;
+
+		const CargoHold &cargo = ship->Cargo();
+		for(const auto &[commodity, count] : cargo.Commodities())
+			assets += static_cast<int64_t>(system->Trade(commodity)) * count;
+		for(const auto &[outfit, count] : cargo.Outfits())
+			outfitCount[outfit] += count;
+	}
+	for(const auto &storage : planetaryStorage | views::values)
+		for(const auto &[outfit, count] : storage.Outfits())
+			outfitCount[outfit] += count;
+
+	int day = date.DaysSinceEpoch();
+	for(const auto &[ship, count] : shipCount)
+		assets += depreciation.Value(ship, day, count);
+	for(const auto &[outfit, count] : outfitCount)
+		assets += depreciation.Value(outfit, day, count);
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.

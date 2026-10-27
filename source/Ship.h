@@ -597,6 +597,8 @@ public:
 
 	double TurretTurnMultiplier() const;
 
+	bool HasFuelGeneration() const;
+
 
 protected:
 	virtual void CacheAttributes() override;

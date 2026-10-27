@@ -222,7 +222,7 @@ optional<double> Outfit::LowerLimit(const string &attribute)
 {
 	optional<int64_t> precise = LowerLimitPrecise(attribute);
 	if(precise.has_value())
-		return precise.value() / ATTRIBUTE_PRECISION;
+		return static_cast<double>(precise.value()) / ATTRIBUTE_PRECISION;
 	// No minimum override means a minimum of 0.
 	return 0.;
 }

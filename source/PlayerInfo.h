@@ -231,7 +231,7 @@ public:
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
-	void AddPlayTime(std::chrono::nanoseconds timeVal);
+	void AddPlayTime(std::chrono::nanoseconds timeVal, bool isIdle);
 
 	// Get the player's logbook.
 	const std::map<Date, BookEntry> &Logbook() const;
@@ -502,6 +502,7 @@ private:
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;
+	double idleTime = 0.;
 
 	Account accounts;
 	// The licenses that the player owns.

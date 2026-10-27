@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "InfoPanelState.h"
 #include "text/Layout.h"
 #include "Point.h"
+#include "Tooltip.h"
 
 #include <cstdint>
 #include <vector>
@@ -67,6 +68,7 @@ private:
 
 	// Handle mouse hover (also including hover during drag actions):
 	bool Hover(const Point &point);
+	void CheckHover(const Rectangle &zone, const std::string &label);
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
 	// Try to scroll to the given position. Return true if position changed.
@@ -103,6 +105,8 @@ private:
 	// Initialize mouse point to something off-screen to not
 	// make the game think the player is hovering on something.
 	Point hoverPoint = Point(-10000, -10000);
+
+	Tooltip tooltip;
 
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;
