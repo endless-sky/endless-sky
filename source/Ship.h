@@ -462,6 +462,7 @@ public:
 	double Mass() const override;
 	double InertialMass() const;
 	bool InertialessFlight() const;
+	double InertialessThrottle() const;
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity(bool withAfterburner = false) const;
@@ -814,6 +815,10 @@ private:
 	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
+	// If the ship uses inertialess thrust, this is how much throttle is currently applied.
+	// A value from 0 to 1 measuring how much of the maximum velocity should be applied
+	// to the ship in its facing direction.
+	double inertialessThrottle = 0.;
 	// The amount of time in frames that an engine has been on for.
 	std::array<uint8_t, 4> thrustHeldFrames = {};
 

@@ -11,6 +11,24 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+outfit "Vell-os Mind Engine"
+	category "Engines"
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"inertialess thrust" 28
+	"inertialess braking" 28
+	"inertialess flight energy" 1
+	"inertialess flight heat" .5
+	"turn" 600
+	"turning energy" 1
+	"turning heat" .5
+	"flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"flare sound" "atomic tiny"
+	description `This outfit is in your mind. It still takes up space on your ship to give you room to pace around and ponder your life decisions.`
+
+
 outfit "Volcano Afterburner"
 	category "Engines"
 	series "Afterburners"
@@ -93,25 +111,6 @@ effect "ionic afterburner"
 	"random spin" 30
 	"random velocity" 1.
 	"velocity scale" 1.
-
-
-outfit "Vell-os Mind Engine"
-	category "Engines"
-	"mass" 30
-	"outfit space" -30
-	"engine capacity" -30
-	"immovable" 1
-	"inertialess thrust" 28
-	"inertialess braking" 14
-	"inertialess flight energy" 1
-	"inertialess flight heat" .5
-	"turn" 600
-	"turning energy" 1
-	"turning heat" .5
-	"flare sprite" "effect/atomic flare/tiny"
-		"frame rate" 14
-	"flare sound" "atomic tiny"
-	description `This outfit is in your mind. It still takes up space on your ship to give you room to pace around and ponder your life decisions.`
 
 
 outfit "X1050 Ion Engines"

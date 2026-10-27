@@ -1696,8 +1696,9 @@ void Engine::CalculateStep()
 	// Draw the ships. Skip the flagship, then draw it on top of all the others.
 	bool showFlagship = false;
 	auto PlayThrustSounds = [](const Ship *ship, bool usePosition) -> void {
-		if((ship->IsThrusting() || (ship->InertialessFlight() && ship->Velocity()))
-			&& !ship->EnginePoints().empty())
+		// TODO: It'd be nice if the throttle changed the volume of the engine sound, but
+		//  sound volume is currently only tied to the sound category.
+		if((ship->IsThrusting() || ship->InertialessThrottle()) && !ship->EnginePoints().empty())
 		{
 			for(const auto &sound : ship->Attributes().FlareSounds() | views::keys)
 			{
