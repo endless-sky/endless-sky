@@ -851,6 +851,52 @@ tip "turning slowing:"
 tip "turning disruption:"
 	`Accumulated shield interference per second when turning.`
 
+tip "inertialess thrust:"
+	`Inertialess thrust produced by engines. Higher thrust increases a ship's acceleration and top speed. The more mass a ship has, the more thrust is needed to achieve the same acceleration.`
+	`Inertialess flight is throttled up or down to control the speed that the ship moves at. The ship will always move in the direction that it is facing at the speed set by the throttle.`
+
+tip "inertialess braking:"
+	`Inertialess braking produced by engines. Controls the speed that you can decrease the throttle on inertialess flight.`
+
+tip "inertialess flight energy:"
+	`Energy consumed per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight heat:"
+	`Heat generated per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight shields:"
+	`Shield damage dealt to the ship per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight hull:"
+	`Hull damage dealt to the ship per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight fuel:"
+	`Fuel consumed per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight discharge:"
+	`Accumulated shield discharging per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight corrosion:"
+	`Accumulated hull corrosion per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight ion:"
+	`Accumulated ionization per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight scramble:"
+	`Accumulated scrambling per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight leakage:"
+	`Accumulated leaking fuel per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight burn:"
+	`Accumulated exothermic interactions per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight slowing:"
+	`Accumulated engine interference per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
+tip "inertialess flight disruption:"
+	`Accumulated shield interference per second during inertialess flight, scaled with the amount of throttle applied to the engines.`
+
 tip "turret mounts needed:"
 	`This weapon can fire in any direction, tracking your currently selected target. It uses up one of your ship's turret mounts.`
 
