@@ -167,6 +167,7 @@ double MapDetailPanel::PlanetPanelHeight()
 
 bool MapDetailPanel::Hover(int x, int y)
 {
+	hoverPoint = Point(x, y);
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	isPlanetViewSelected = (x < Screen::Left() + planetCardInterface->GetValue("width")
 		&& y < Screen::Top() + PlanetPanelHeight());
@@ -425,13 +426,11 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 	// Check the planet cards.
 	const Interface *planetCardInterface = GameData::Interfaces().Get("map planet card");
 	const double planetCardWidth = planetCardInterface->GetValue("width");
-	const Interface *mapInterface = GameData::Interfaces().Get("map detail panel");
-	const double arrowOffset = mapInterface->GetValue("arrow x offset");
-	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth + arrowOffset + 10)
+	if(y <= Screen::Top() + planetPanelHeight + 30 && x <= Screen::Left() + planetCardWidth)
 	{
 		for(auto &card : planetCards)
 		{
-			MapPlanetCard::ClickAction clickAction = card.Click(x, y, clicks);
+			MapPlanetCard::ClickAction clickAction = card.Click(clickPoint, clicks);
 			if(clickAction == MapPlanetCard::ClickAction::GOTO_SHIPYARD)
 			{
 				isStars = false;
@@ -554,6 +553,10 @@ void MapDetailPanel::GeneratePlanetCards(const System &system)
 			shown.insert(planet);
 			++number;
 		}
+	// This must be done after all planet cards are generated
+	// so that we know whether the government category is displaying.
+	for(MapPlanetCard &card : planetCards)
+		card.SelectCategory(MapPlanetCard::MapModeToCategory(commodity));
 	shownSystem = &system;
 }
 
@@ -565,6 +568,7 @@ void MapDetailPanel::DrawInfo()
 {
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &medium = *GameData::Colors().Get("medium");
+	const Color &highlight = *GameData::Colors().Get("faint");
 
 	const Color &back = *GameData::Colors().Get("map side panel background");
 
@@ -599,7 +603,7 @@ void MapDetailPanel::DrawInfo()
 		{
 			// Fit another planet, if we can, also give scrolling freedom to reach the planets at the end.
 			// This updates the location of the card so it needs to be called before AvailableSpace().
-			card.DrawIfFits(uiPoint);
+			card.DrawIfFits(uiPoint, hoverPoint);
 			uiPoint.Y() += planetCardHeight;
 		}
 		scroll.SetMaxValue(planetCards.size() * planetCardHeight);
@@ -668,17 +672,25 @@ void MapDetailPanel::DrawInfo()
 	uiPoint.Y() -= (tradeSprite->Height() / 2. - textMargin);
 
 	// Add the danger icon click zone.
-	clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), governmentY - 30),
-		Point(mapInterface->GetValue("text margin"), 30)), SHOW_DANGER);
+	double margin = mapInterface->GetValue("text margin");
+	clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), governmentY - 25),
+		Point(margin, 20)), SHOW_DANGER);
+	if(clickZones.back().Contains(hoverPoint))
+		FillShader::Fill(clickZones.back(), highlight);
 
 	// Add the reputation click zone.
 	clickZones.emplace_back(Rectangle::FromCorner(
-		Point(Screen::Left() + mapInterface->GetValue("text margin"), governmentY - 30),
-		Point(160 - mapInterface->GetValue("text margin"), 30)), SHOW_REPUTATION);
+		Point(Screen::Left() + margin, governmentY - 25),
+		Point(160 - margin, 20)), SHOW_REPUTATION);
+	if(clickZones.back().Contains(hoverPoint))
+		FillShader::Fill(clickZones.back(), highlight);
 
 	// Add the government click zone.
-	clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), governmentY),
-		Point(160, 25)), SHOW_GOVERNMENT);
+	clickZones.emplace_back(Rectangle::FromCorner(
+		Point(Screen::Left() + margin, governmentY - 5),
+		Point(160 - margin, 20)), SHOW_GOVERNMENT);
+	if(clickZones.back().Contains(hoverPoint))
+		FillShader::Fill(clickZones.back(), highlight);
 
 	// Don't "compare" prices if the current system is uninhabited and thus has no prices to compare to.
 	bool noCompare = !player.GetSystem() || !player.GetSystem()->IsInhabited(player.Flagship());
@@ -716,8 +728,9 @@ void MapDetailPanel::DrawInfo()
 
 		// The player clicked on a tradable commodity. Color the map by its price.
 		// Add the click zone for this commodity.
-		clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), uiPoint.Y()), Point(170, 20)), i);
-
+		clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), uiPoint.Y() - 2.5), Point(170, 20)), i);
+		if(clickZones.back().Contains(hoverPoint))
+			FillShader::Fill(clickZones.back(), highlight);
 		font.Draw(commodity.name, uiPoint, color);
 
 		string price;
@@ -817,4 +830,6 @@ void MapDetailPanel::SetCommodity(int index)
 		isStars = false;
 
 	player.SetMapColoring(commodity);
+	for(MapPlanetCard &card : planetCards)
+		card.SelectCategory(MapPlanetCard::MapModeToCategory(index));
 }
