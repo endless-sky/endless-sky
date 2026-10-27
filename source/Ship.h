@@ -461,8 +461,6 @@ public:
 	// Get this ship's movement characteristics.
 	double Mass() const override;
 	double InertialMass() const;
-	bool InertialessFlight() const;
-	double InertialessThrottle() const;
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity(bool withAfterburner = false) const;
@@ -474,9 +472,15 @@ public:
 	// These two values are the ship's effective maximum acceleration and turn rate,
 	// accounting for the effects of insufficient crew.
 	double CrewAcceleration() const;
+	double CrewReverseAcceleration() const;
 	double CrewTurnRate() const;
 	// The ship's current speed right now
 	double CurrentSpeed() const;
+	// Inertialess flight characteristics:
+	bool InertialessFlight() const;
+	double InertialessThrottle() const;
+	double InertialessAcceleratingStep() const;
+	double InertialessBrakingStep() const;
 
 	double ThrustHeldFraction(ThrustKind kind) const;
 	uint8_t ThrustHeldFrames(ThrustKind kind) const;

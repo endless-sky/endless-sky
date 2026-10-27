@@ -3760,6 +3760,22 @@ double Ship::InertialessThrottle() const
 
 
 
+double Ship::InertialessAcceleratingStep() const
+{
+	return Acceleration() / MaxVelocity();
+}
+
+
+
+double Ship::InertialessBrakingStep() const
+{
+	if(cache.inertialessBraking)
+		return -ReverseAcceleration() / MaxVelocity();
+	return -InertialessAcceleratingStep();
+}
+
+
+
 double Ship::TurnRate() const
 {
 	return cache.turn / InertialMass() * cache.turnMult;
@@ -3801,6 +3817,14 @@ double Ship::CrewAcceleration() const
 {
 	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
 	return Acceleration() * min(1., static_cast<double>(Crew()) / RequiredCrew());
+}
+
+
+
+double Ship::CrewReverseAcceleration() const
+{
+	// If RequiredCrew() is 0, the ratio is either inf or nan, which should return 1.
+	return ReverseAcceleration() * min(1., static_cast<double>(Crew()) / RequiredCrew());
 }
 
 
@@ -5278,8 +5302,9 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 	if(!hyperspaceSystem && !hyperspaceCount)
 		return false;
 
-	// Don't apply external acceleration while jumping.
+	// Don't apply external acceleration or inertialess thrust while jumping.
 	acceleration = Point();
+	inertialessThrottle = 0.;
 
 	// Enter hyperspace.
 	int direction = hyperspaceSystem ? 1 : -1;
@@ -5394,7 +5419,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			// is, about acos(.8) from the proper angle). So:
 			// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 			// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
-			double exitV = max(HYPER_A, MaxVelocity());
+			double exitV = cache.inertialessThrust ? HYPER_A : max(HYPER_A, MaxVelocity());
 			double a = (.5 / Acceleration() - .25);
 			double b = 150. / TurnRate();
 			double discriminant = b * b - 4. * a * -HYPER_D;
@@ -5570,6 +5595,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 
 	double mass = InertialMass();
 	double dragForce = DragForce();
+	double maxVelocity = MaxVelocity();
 	double slowMultiplier = 1. / (1. + levels.slowness * .05);
 
 	bool inertialess = cache.inertialessThrust;
@@ -5582,10 +5608,11 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		velocity *= 1. - dragForce;
 		inertialessThrottle = 0.;
 	}
-	// Remove the influence that inertialess flight had on the previous frame's velocity.
 	else if(inertialess && inertialessThrottle)
 	{
-		velocity -= MaxVelocity() * inertialessThrottle * angle.Unit();
+		// Remove the influence that inertialess flight had on the previous frame's velocity.
+		// Do this before movement handling this frame changes the throttle or facing angle.
+		velocity -= maxVelocity * inertialessThrottle * angle.Unit();
 		// If the ship doesn't have enough resources to expend on inertialess flight,
 		// then force a back command to slow down and reduce the flight cost. If the ship
 		// continues to not have enough resources, then this will eventually bring it to
@@ -5639,10 +5666,10 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				hasThrust = useThrust ? cache.inertialessThrust : cache.inertialessBraking;
 				// The thrust commands increase or decrease the throttle on inertialess thrusters instead
 				// of acting on acceleration.
-				inertialessThrottle += slowMultiplier * thrustCommand
-					* (useThrust ? Acceleration() : ReverseAcceleration()) / MaxVelocity();
+				inertialessThrottle += slowMultiplier
+					* (useThrust ? InertialessAcceleratingStep() : InertialessBrakingStep());
 				inertialessThrottle = clamp(inertialessThrottle, 0., 1.);
-				// Interperate bringing the throttle to 0 as a stop command so that the
+				// Interpret bringing the throttle to 0 as a stop command so that the
 				// code further down to cheat off any final velocity runs.
 				if(!inertialessThrottle)
 					commands.Set(Command::STOP);
@@ -5687,6 +5714,29 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		}
 	}
 
+	// Apply inertialess thrust.
+	if(inertialess && !drift)
+	{
+		// A ship with inertialess movement bleeds any velocity that doesn't come from the
+		// inertialess thrusters. Without this, an inertialess ship would continually accrue
+		// velocity from external forces due to the inertialess velocity not acting upon
+		// acceleration. This is done prior to handling this frame's acceleration so that
+		// we're only bleeding last frame's external velocity.
+		// This drag force is increased at low throttle.
+		velocity *= max(0., 1. - dragForce * (1. + (1. - inertialessThrottle)));
+		if(inertialessThrottle)
+		{
+			// Inertialess thrust is velocity applied toward the facing direction.
+			velocity += maxVelocity * inertialessThrottle * angle.Unit();
+			// The inertialess flight cost is constantly spent and scales with the throttle,
+			// even if no movement command was sent this frame. If the ship doesn't have
+			// enough resources to fully expend on inertialess movement, then it'll be forced
+			// to slow down next frame.
+			double scale = min(inertialessThrottle, AvailableResources().FractionalUsage(inertialessFlightCost));
+			levels.Damage(inertialessFlightCost, scale);
+		}
+	}
+
 	// Apply acceleration accrued from all sources this frame to the ship's velocity.
 	if(acceleration)
 	{
@@ -5728,28 +5778,6 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			velocity += dragAcceleration;
 		}
 		acceleration = Point();
-	}
-
-	// Apply inertialess thrust.
-	if(inertialess && !drift)
-	{
-		// A ship with inertialess movement bleeds any velocity that doesn't come from the
-		// inertialess thrusters. Without this, an inertialess ship would continually accure
-		// velocity from external forces due to the inertialess velocity not acting upon
-		// acceleration.
-		velocity *= 1. - dragForce;
-		if(inertialessThrottle)
-		{
-			// Inertialess thrust is velocity applied toward the facing direction.
-			velocity += MaxVelocity() * inertialessThrottle * angle.Unit();
-			// The inertialess flight cost is constantly spent as a fraction
-			// of the current speed to the maximum possible speed, even if no
-			// movement command was sent. If the ship doesn't have enough resources
-			// to fully expend on inertialess movement, then it'll be forced to
-			// slow down next frame.
-			double scale = min(inertialessThrottle, AvailableResources().FractionalUsage(inertialessFlightCost));
-			levels.Damage(inertialessFlightCost, scale);
-		}
 	}
 }
 
