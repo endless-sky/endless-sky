@@ -1,0 +1,475 @@
+# Copyright (c) 2026 by Arachi-Lover
+#
+# Endless Sky is free software: you can redistribute it and/or modify it under the
+# terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+#
+# Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+# WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+# PARTICULAR PURPOSE. See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program. If not, see <https://www.gnu.org/licenses/>.
+
+# Entering Coalition space
+mission "Coalition Message Buoy: Entering Coalition Space"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		government "Heliarch" "Coalition"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		and
+			not "previous system government: Coalition"
+			not "previous system government: Heliarch"
+	on offer
+		message
+			phrase "entering coalition space"
+		fail
+
+phrase "entering coalition space"
+	word
+		"Message buoy to all ships: Entered you have in"
+	word
+		" a system belonging to the Coalition"
+		" the territory of the Coalition"
+		" the territory of the Tripartite Coalition of Independent Peoples"
+		" Coalition space"
+		" territory under Heliarch rule"
+	word
+		"."
+		". Visitors and friends alike, welcome."
+		". Open for trade and thought, we are."
+		". Enjoy your stay."
+		". Happy to assist, we are."
+		". A beacon of prosperity and safety."
+		". The most prosperous sector in the galaxy."
+		". The safest sector in the galaxy."
+		". Tolerated, unlawful activity will not be."
+		". Met with force, any and all aggression will be."
+		". All Quarg ships, beware!"
+		". All Quarg ships, turn back!"
+		". If a Quarg you are, leave."
+		", where welcome, no Quarg oppressor is."
+
+# Entering Heliarch ring systems
+mission "Coalition Message Buoy: Entering Heliarch Ring System"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		government "Heliarch"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+	on offer
+		message
+			phrase "entering heliarch ring system"
+		fail
+
+phrase "entering heliarch ring system"
+	word
+		"Message buoy to all ships: Entered you have in a ringworld system"
+	word
+		"."
+		". Oblige you must all Heliarch commands."
+		". Carried out at random, ship inspections will be."
+		". Selected for a surprise inspection, your ship may be."
+		". We ask that please with all scanning and surveillance efforts you cooperate."
+		". Prepare in advance you must all paperwork regarding transported cargo."
+		". Have all their documents in hand, all passengers and captains must."
+		". For the safety of all civilians, prohibited it is to enter the restricted sections."
+		". An opportunity for growth and development, we provide!"
+		". Available for families of construction workers, free lodging, education and career plans are."
+		". A beacon of our freedom."
+		". A testimony to our friendship."
+		". A demonstration of our power."
+		". A symbol of our wisdom."
+		". Behold, the proof of our victory!"
+		". Behold! Grounds of our victory!"
+		", with our ancestors' blood won."
+		", by a millennium of battles earned."
+		". Forget not what it cost."
+
+# Entering each species' home system
+mission "Coalition Message Buoy: Entering Sol Saryd"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Sol Saryd"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+	on offer
+		message
+			phrase "entering sol saryd"
+		fail
+
+phrase "entering sol saryd"
+	word
+		"Message buoy to all ships: Entered you have in"
+	word
+		" the Saryd home system"
+		" Sol Saryd"
+	word
+		"."
+		", home of the twin moons."
+		", home of venerable Saros."
+		", the loyal emerald."
+
+mission "Coalition Message Buoy: Entering Sol Kimek"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Sol Kimek"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+	on offer
+		message
+			phrase "entering sol kimek"
+		fail
+
+phrase "entering sol kimek"
+	word
+		"Message buoy to all ships: Entered you have in"
+	word
+		" the Kimek home system"
+		" Sol Kimek"
+	word
+		"."
+		", home to countless billions."
+		", where none now hunger."
+		", the mighty ruby."
+
+mission "Coalition Message Buoy: Entering Sol Arach"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Sol Arach"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+	on offer
+		message
+			phrase "entering sol arach"
+		fail
+
+phrase "entering sol arach"
+	word
+		"Message buoy to all ships: Entered you have in"
+	word
+		" the Arach home system"
+		" Sol Arach"
+	word
+		"."
+		`, home of the royal house of Oberegt. "Honor and might."`
+		", where peace reigns."
+		", the keen sapphire."
+
+# Entering Systems with Arach Houses
+mission "Coalition Message Buoy: House Ablomab"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Bloptab"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			phrase "entering house ablomab"
+		fail
+
+phrase "entering house ablomab"
+	word
+		"Message buoy to all ships: Welcome to Bloptab, home of House Ablomab"
+	word
+		"."
+		", leading mining guild of the Coalition."
+		`. The way to riches and treasure we lead."`
+
+mission "Coalition Message Buoy: House Bebliss"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Flugbu"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			phrase "entering house bebliss"
+		fail
+
+phrase "entering house bebliss"
+	word
+		"Message buoy to all ships: Welcome to Flugbu, home of House Bebliss"
+	word
+		"."
+		", maintainers of our hyperspace communications network."
+		`. "In secrets and knowledge, power lies."`
+
+mission "Coalition Message Buoy: House Chamgar"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Debrugt"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			phrase "entering house chamgar"
+		fail
+
+phrase "entering house chamgar"
+	word
+		"Message buoy to all ships: Welcome to Debrugt, home of House Chamgar"
+	word
+		"."
+		", proud defiers of Quarg censorship and tyranny."
+		`. "Leading the fight!"`
+
+mission "Coalition Message Buoy: House Debdo"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Belugt"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			phrase "entering house debdo"
+		fail
+
+phrase "entering house debdo"
+	word
+		"Message buoy to all ships: Welcome to Belugt, home of House Debdo"
+	word
+		"."
+		", achievers of dreams."
+		`. "What we make of it, truth is."`
+
+mission "Coalition Message Buoy: House Garbarag"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Tebuteb"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			phrase "entering house garbarag"
+		fail
+
+phrase "entering house garbarag"
+	word
+		"Message buoy to all ships: Welcome to Tebuteb, home of House Garbarag"
+	word
+		"."
+		", providers for all."
+		`. "The best harvests, by us brought."`
+
+mission "Coalition Message Buoy: House Idriss"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Ablub"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			phrase "entering house idriss"
+		fail
+
+phrase "entering house idriss"
+	word
+		"Message buoy to all ships: Welcome to Ablub, home of House Idriss"
+	word
+		"."
+		", leading mining guild of the Coalition."
+		`. "Sparked with spirit."`
+
+mission "Coalition Message Buoy: House Mallob"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Gupta"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			phrase "entering house mallob"
+		fail
+
+phrase "entering house mallob"
+	word
+		"Message buoy to all ships: Welcome to Gupta, home of House Mallob"
+	word
+		"."
+		", largest civil shipyard of the Coalition."
+		`. "Strong as the mountains, spacious as the skies."`
+
+mission "Coalition Message Buoy: House Plumtab"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Blugtad"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			phrase "entering house plumtab"
+		fail
+
+phrase "entering house plumtab"
+	word
+		"Message buoy to all ships: Welcome to Blugtad, home of House Plumtab"
+	word
+		"."
+		". Let us help your wealth safekeep."
+		`. "Deep vaults. Strong wills."`
+
+# Other message buoys
+mission "Coalition Message Buoy: 14 Pole"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "14 Pole"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			phrase "entering 14 pole"
+		fail
+
+phrase "entering 14 pole"
+	word
+		"Message buoy to all ships: 14 Pole, this is. A Kimek system"
+	word
+		"."
+		". Keep the peace."
+		". Keep to yourself."
+		". Be brief."
+
+mission "Coalition Message Buoy: Hunter"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Hunter"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			text "Message buoy to all ships: Welcome to Hunter, home to Starlit University."
+		fail
+
+mission "Coalition Message Buoy: Belug"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Belug"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			text "Message buoy to all ships: Welcome to Belug, home to the Heliarch Academy."
+		fail
+
+mission "Coalition Message Buoy: Saryd Factory World 1"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Steep Roof"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+	on offer
+		message
+			text "Message buoy to all ships: Welcome to Steep Roof. To keep a safe distance from the factories of Ceaseless Toil, authorities advise."
+		fail
+
+mission "Coalition Message Buoy: Saryd Factory World 2"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "Belonging"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+	on offer
+		message
+			text "Message buoy to all ships: Welcome to Belonging. To keep a safe distance from the factories of Diligent Hand, authorities advise."
+		fail
+
+mission "Coalition Message Buoy: Garden Empyreal"
+	invisible
+	entering
+	non-blocking
+	repeat
+	source
+		system "9 Spring Above"
+	destination "Earth"
+	to offer
+		not "entered system by: takeoff"
+		has "language: Coalition"
+	on offer
+		message
+			text "Message buoy to all ships: The largest megastructure ever built by us - visit Garden Empyreal today!"
+		fail
