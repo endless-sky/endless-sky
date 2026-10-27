@@ -40,7 +40,10 @@ public:
 
 
 private:
-	static bool LoopCheck(const std::string &root, std::set<std::string> &visited, const ConditionAlias &alias);
+	// Determine if there are any looping references of aliases starting from the given root name.
+	// The set of visited aliases is passed by value so that each branch of references can
+	// independently check for a loop.
+	static bool LoopCheck(const std::string &root, std::set<std::string> visited, const ConditionAlias &alias);
 
 
 private:

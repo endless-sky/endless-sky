@@ -48,7 +48,7 @@ bool ConditionAlias::Test() const
 
 
 
-bool ConditionAlias::LoopCheck(const string &root, set<string> &visited, const ConditionAlias &alias)
+bool ConditionAlias::LoopCheck(const string &root, set<string> visited, const ConditionAlias &alias)
 {
 	set<string> usesConditions = alias.conditions.RelevantConditions();
 	for(const auto &[otherName, otherAlias] : GameData::ConditionAliases())
