@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
+#include "shader/LineShader.h"
 #include "Logger.h"
 #include "MapPanel.h"
 #include "image/Mask.h"
@@ -1356,6 +1357,10 @@ void Engine::Draw() const
 
 	// Draw escort status.
 	escorts.Draw(hud->GetBox("escorts"));
+
+	const Ship *flagship = player.Flagship();
+	if(flagship)
+		LineShader::Draw(Point(), flagship->Velocity() * 2., 2., Color(1., 0., 0.));
 }
 
 

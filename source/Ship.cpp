@@ -5393,6 +5393,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			else
 				arrivalAngle = Angle::Random();
 			position = target + arrivalAngle.Unit() * (300. * (Random::Real() + 1.) + extraArrivalDistance);
+			velocity = Point();
 			return true;
 		}
 
@@ -5419,7 +5420,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			// is, about acos(.8) from the proper angle). So:
 			// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 			// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
-			double exitV = cache.inertialessThrust ? HYPER_A : max(HYPER_A, MaxVelocity());
+			double exitV = InertialessFlight() ? 0. : max(HYPER_A, MaxVelocity());
 			double a = (.5 / Acceleration() - .25);
 			double b = 150. / TurnRate();
 			double discriminant = b * b - 4. * a * -HYPER_D;
@@ -5434,7 +5435,15 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			const Point facingUnit = angle.Unit();
 			if(velocity.Dot(facingUnit) <= exitV)
 			{
-				velocity = facingUnit * exitV;
+				// For inertialess flight ships, convert the exit velocity to the
+				// corresponding throttle that creates that much velocity.
+				if(InertialessFlight())
+				{
+					inertialessThrottle = max(1., exitV / MaxVelocity());
+					velocity = Point();
+				}
+				else
+					velocity = facingUnit * exitV;
 				hyperspaceCount = 0;
 			}
 		}
@@ -5513,6 +5522,7 @@ bool Ship::DoLandingLogic()
 			SetTargetFlotsam(nullptr);
 			SetTargetShip(nullptr);
 			SetTargetStellar(nullptr);
+			inertialessThrottle = 0.;
 
 			zoom = 0.f;
 		}
@@ -5532,6 +5542,13 @@ bool Ship::DoLandingLogic()
 	// scaled based on how small it is now.
 	if(zoom > 0.f)
 		position += velocity * zoom;
+	// For inertialess flight ships, convert the launch velocity to the
+	// corresponding throttle that creates that much velocity.
+	if(zoom == 1. && InertialessFlight())
+	{
+		inertialessThrottle = velocity.Length() / MaxVelocity();
+		velocity = Point();
+	}
 
 	return true;
 }
