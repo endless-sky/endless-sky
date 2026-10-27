@@ -3866,14 +3866,7 @@ void Ship::ApplyForce(const Point &force, bool gravitational)
 	if(!currentMass)
 		return;
 
-	// Since ships with inertialess thrust always angle their acceleration toward
-	// their facing angle, apply external forces as an instant position impulse.
-	// Otherwise, applying external forces as an acceleration has odd effects
-	// on an inertialess ship's movement.
-	if(cache.inertialessThrust)
-		position += force / currentMass;
-	else
-		acceleration += force / currentMass;
+	acceleration += force / currentMass;
 }
 
 
@@ -5605,6 +5598,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				Turn(commands.Turn() * TurnRate() * slowMultiplier);
 			}
 		}
+
 		double thrustCommand = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
 		double thrust = 0.;
 		if(thrustCommand)
@@ -5639,6 +5633,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 				}
 			}
 		}
+
 		bool applyAfterburner = (commands.Has(Command::AFTERBURNER) || (thrustCommand > 0. && !thrust))
 				&& !CannotAct(Ship::ActionType::AFTERBURNER);
 		if(applyAfterburner)
@@ -5655,6 +5650,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			}
 		}
 	}
+
 	if(acceleration)
 	{
 		acceleration *= slowMultiplier;
@@ -5695,10 +5691,15 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		}
 		acceleration = Point();
 	}
+
 	// Inertialess ships always move toward their facing direction.
 	if(inertialess)
 	{
 		// If this ship is reversing and has a low speed, bring it to a stop.
+		// TODO: Track inertialess throttling separately and add the effective
+		//  of the inertialess engines to the velocity instead of overriding
+		//  velocity entirely. That way external forces can still influence
+		//  the ship without it being weird.
 		double speed = velocity.Length();
 		if(isReversing && speed < 0.1)
 			velocity = Point();
