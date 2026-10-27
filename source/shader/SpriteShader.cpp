@@ -193,7 +193,7 @@ void SpriteShader::Add(const Item &item, bool withBlur)
 	glUniform2fv(positionI, 1, item.position);
 	glUniformMatrix2fv(transformI, 1, false, item.transform);
 	// Special case: check if the blur should be applied or not.
-	static const float UNBLURRED[2] = {0.f, 0.f};
+	static constexpr float UNBLURRED[2] = {0.f, 0.f};
 	glUniform2fv(blurI, 1, withBlur ? item.blur : UNBLURRED);
 	glUniform1f(clipI, item.clip);
 	glUniform1f(alphaI, item.alpha);

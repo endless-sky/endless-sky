@@ -37,7 +37,7 @@ public:
 
 
 public:
-	virtual ~Entity() {};
+	virtual ~Entity() = default;
 
 	// What type of entity this is.
 	Type EntityType() const;

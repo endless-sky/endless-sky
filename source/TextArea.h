@@ -32,7 +32,6 @@ class TextArea : public ScrollArea
 public:
 	TextArea();
 	explicit TextArea(const Rectangle &r);
-	virtual ~TextArea() override;
 
 	void SetRect(const Rectangle &r) override;
 

@@ -34,7 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "PreferencesPanel.h"
 #include "SavedGame.h"
-#include "Ship.h"
 #include "shader/StarField.h"
 #include "StartConditionsPanel.h"
 #include "System.h"
@@ -49,7 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const int SCROLL_MOD = 2;
+	constexpr int SCROLL_MOD = 2;
 	int scrollSpeed = 1;
 	bool showCreditsWarning = true;
 }
@@ -78,7 +77,7 @@ MenuPanel::MenuPanel(PlayerInfo &player, UI &gamePanels)
 	}
 	else if(showCreditsWarning)
 	{
-		Logger::Log("Interface \"main menu\" does not contain a box for \"credits\".", Logger::Level::WARNING);
+		Logger::Log(R"(Interface "main menu" does not contain a box for "credits".)", Logger::Level::WARNING);
 		showCreditsWarning = false;
 	}
 
@@ -127,8 +126,8 @@ void MenuPanel::Step()
 	{
 		scroll += scrollSpeed;
 		if(scroll < 0)
-			scroll = (20 * static_cast<long long int>(credits.size()) + 299) * SCROLL_MOD;
-		if(scroll >= (20 * static_cast<long long int>(credits.size()) + 300) * SCROLL_MOD)
+			scroll = (20 * static_cast<int>(credits.size()) + 299) * SCROLL_MOD;
+		if(scroll >= (20 * static_cast<int>(credits.size()) + 300) * SCROLL_MOD)
 			scroll = 0;
 	}
 }

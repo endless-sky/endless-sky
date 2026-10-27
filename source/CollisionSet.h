@@ -90,7 +90,7 @@ private:
 	unsigned WRAP_MASK;
 
 	// The current game engine step.
-	int step;
+	int step = 0;
 
 	// Vectors to store the objects in the collision set.
 	std::vector<Body *> all;

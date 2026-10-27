@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <cstdlib>
+#include <ranges>
 
 using namespace std;
 
@@ -240,9 +241,9 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 	else if(key == "message")
 	{
 		if(hasValue)
-			messages.push_back(ExclusiveItem<Message>{GameData::Messages().Get(child.Token(1))});
+			messages.emplace_back(GameData::Messages().Get(child.Token(1)));
 		else
-			messages.push_back(ExclusiveItem<Message>{Message{child}});
+			messages.emplace_back(Message{child});
 	}
 	else
 		conditions.Add(child, playerConditions);
@@ -266,18 +267,18 @@ void GameAction::Save(DataWriter &out) const
 				specialLogEntry.Save(out);
 			}
 		}
-	for(auto &&it : specialLogClear)
+	for(const auto &[category, entries] : specialLogClear)
 	{
-		if(it.second.empty())
-			out.Write("remove", "log", it.first);
+		if(entries.empty())
+			out.Write("remove", "log", category);
 		else
-			for(auto &&jt : it.second)
-				out.Write("remove", "log", it.first, jt);
+			for(const string &entry : entries)
+				out.Write("remove", "log", category, entry);
 	}
 	for(auto &&it : giftShips)
 		it.Save(out);
-	for(auto &&it : giftOutfits)
-		out.Write("outfit", it.first->TrueName(), it.second);
+	for(const auto &[outfit, count] : giftOutfits)
+		out.Write("outfit", outfit->TrueName(), count);
 	if(payment)
 		out.Write("payment", payment);
 	if(fine)
@@ -293,8 +294,8 @@ void GameAction::Save(DataWriter &out) const
 		}
 		out.EndChild();
 	}
-	for(auto &&it : events)
-		out.Write("event", it.first->TrueName(), it.second.first, it.second.second);
+	for(const auto &[event, days] : events)
+		out.Write("event", event->TrueName(), days.first, days.second);
 	for(const System *system : mark)
 		out.Write("mark", system->TrueName());
 	for(const auto &[mission, marks] : markOther)
@@ -329,33 +330,33 @@ void GameAction::Save(DataWriter &out) const
 string GameAction::Validate() const
 {
 	// Events which get activated by this action must be valid.
-	for(auto &&event : events)
+	for(const auto &event : events | views::keys)
 	{
-		string reason = event.first->IsValid();
+		string reason = event->IsValid();
 		if(!reason.empty())
-			return "event \"" + event.first->TrueName() + "\" - Reason: " + reason;
+			return "event \"" + event->TrueName() + "\" - Reason: " + reason;
 	}
 
 	// Transferred content must be defined & valid.
 	for(auto &&it : giftShips)
 		if(!it.ShipModel()->IsValid())
 			return "gift ship model \"" + it.ShipModel()->VariantName() + "\"";
-	for(auto &&outfit : giftOutfits)
-		if(!outfit.first->IsDefined())
-			return "gift outfit \"" + outfit.first->TrueName() + "\"";
+	for(const auto &outfit : giftOutfits | views::keys)
+		if(!outfit->IsDefined())
+			return "gift outfit \"" + outfit->TrueName() + "\"";
 
 	// Marked and unmarked system must be valid.
 	for(auto &&system : mark)
 		if(!system->IsValid())
 			return "system \"" + system->TrueName() + "\"";
-	for(const auto &[mission, marks] : markOther)
+	for(const auto &marks : markOther | views::values)
 		for(const System *system : marks)
 			if(!system->IsValid())
 				return "system \"" + system->TrueName() + "\"";
 	for(auto &&system : unmark)
 		if(!system->IsValid())
 			return "system \"" + system->TrueName() + "\"";
-	for(const auto &[mission, unmarks] : unmarkOther)
+	for(const auto &unmarks : unmarkOther | views::values)
 		for(const System *system : unmarks)
 			if(!system->IsValid())
 				return "system \"" + system->TrueName() + "\"";
@@ -415,13 +416,13 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(const auto &[category, nextMap] : specialLogEntries)
 		for(const auto &[heading, specialLogEntry] : nextMap)
 			player.AddSpecialLog(category, heading, specialLogEntry);
-	for(auto &&it : specialLogClear)
+	for(const auto &[category, entries] : specialLogClear)
 	{
-		if(it.second.empty())
-			player.RemoveSpecialLog(it.first);
+		if(entries.empty())
+			player.RemoveSpecialLog(category);
 		else
-			for(auto &&jt : it.second)
-				player.RemoveSpecialLog(it.first, jt);
+			for(auto &&jt : entries)
+				player.RemoveSpecialLog(category, jt);
 	}
 
 	// If multiple outfits, ships are being transferred, first remove the ships,
@@ -429,14 +430,14 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(auto &&it : giftShips)
 		if(!it.Giving())
 			it.Do(player);
-	for(auto &&it : giftOutfits)
-		if(it.second < 0)
-			DoGift(player, it.first, it.second, ui);
+	for(const auto &[outfit, count] : giftOutfits)
+		if(count < 0)
+			DoGift(player, outfit, count, ui);
 	bool giftedItem = false;
-	for(auto &&it : giftOutfits)
-		if(it.second > 0)
+	for(const auto &[outfit, count] : giftOutfits)
+		if(count > 0)
 		{
-			DoGift(player, it.first, it.second, ui);
+			DoGift(player, outfit, count, ui);
 			giftedItem = true;
 		}
 	for(auto &&it : giftShips)
@@ -469,8 +470,8 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(const auto &debtEntry : debt)
 		player.Accounts().AddDebt(debtEntry.amount, debtEntry.interest, debtEntry.term);
 
-	for(const auto &it : events)
-		player.AddEvent(*it.first, player.GetDate() + it.second.first);
+	for(const auto &[event, days] : events)
+		player.AddEvent(*event, player.GetDate() + days.first);
 
 	if(caller)
 	{
@@ -529,13 +530,13 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	GameAction result;
 	result.isEmpty = isEmpty;
 
-	for(auto &&it : events)
+	for(const auto &[event, days] : events)
 	{
 		// Allow randomization of event times. The second value in the pair is
 		// always greater than or equal to the first, so Random::Int() will
 		// never be called with a value less than 1.
-		int day = it.second.first + Random::Int(it.second.second - it.second.first + 1);
-		result.events[it.first] = make_pair(day, day);
+		int day = days.first + Random::Int(days.second - days.first + 1);
+		result.events[event] = make_pair(day, day);
 	}
 
 	for(auto &&it : giftShips)

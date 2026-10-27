@@ -74,10 +74,10 @@ private:
 	// Exit this panel and do whatever needs to happen next, which includes
 	// possibly activating a callback function and, if docked with an NPC,
 	// destroying it or showing the BoardingPanel (if it is hostile).
-	void Exit();
+	void Exit() const;
 	// Handle mouse click on the "ok," "done," or a conversation choice.
 	void ClickName(int side);
-	void ClickChoice(int index);
+	void ClickChoice(int choice);
 	// Given an index into the list of displayed choices (i.e. not including
 	// conditionally-skipped choices), return its "raw index" in the
 	// conversation (i.e. including conditionally-skipped choices)

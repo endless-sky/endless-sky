@@ -35,8 +35,8 @@ public:
 	void Reset();
 	void Update(const Ship &flagship);
 	void Draw(const Rectangle &ammoBox, const Point &iconDimensions) const;
-	bool Click(const Point &clickPoint, bool control);
-	bool Click(const Rectangle &clickBox);
+	bool Click(const Point &clickPoint, bool control) const;
+	bool Click(const Rectangle &clickBox) const;
 
 private:
 	std::map<const Outfit *, int> ammo;

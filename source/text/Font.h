@@ -74,10 +74,10 @@ private:
 	std::string TruncateMiddle(const std::string &str, int &width) const;
 
 	std::string TruncateEndsOrMiddle(const std::string &str, int &width,
-		std::function<std::string(const std::string &, int)> getResultString) const;
+		const std::function<std::string(const std::string &, int)> &getResultString) const;
 
 private:
-	const Shader *shader;
+	const Shader *shader{};
 	GLuint texture = 0;
 
 	int height = 0;
@@ -88,7 +88,7 @@ private:
 	GLfloat glyphWidth = 0.f;
 	GLfloat glyphHeight = 0.f;
 
-	static const int GLYPHS = 98;
+	static constexpr int GLYPHS = 98;
 	int advance[GLYPHS * GLYPHS] = {};
 	int widthEllipses = 0;
 };

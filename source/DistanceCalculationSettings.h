@@ -35,6 +35,6 @@ public:
 
 
 private:
-	enum WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
+	WormholeStrategy wormholeStrategy = WormholeStrategy::NONE;
 	bool assumesJumpDrive = false;
 };

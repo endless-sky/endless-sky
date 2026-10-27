@@ -54,7 +54,7 @@ public:
 	// substitutions and instantiating any actions.
 	Conversation Instantiate(std::map<std::string, std::string> &subs, int jumps = 0, int payload = 0) const;
 
-	// Scenes that could be diplsayed by this conversation.
+	// Scenes that could be displayed by this conversation.
 	const std::set<const Sprite *> &Scenes() const;
 
 	// The beginning of the conversation is node 0. Some nodes have choices for

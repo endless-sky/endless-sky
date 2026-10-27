@@ -34,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <iostream>
 #include <map>
+#include <ranges>
 #include <set>
 
 using namespace std;
@@ -156,14 +157,13 @@ namespace {
 				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
 				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << '\n';
 
-			for(auto &it : GameData::Ships())
+			for(const auto &[name, ship] : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships.
-				if(it.second.TrueModelName() != it.first)
+				if(ship.TrueModelName() != name)
 					continue;
 
-				const Ship &ship = it.second;
-				cout << DataWriter::Quote(it.first) << ',';
+				cout << DataWriter::Quote(name) << ',';
 
 				const Outfit &attributes = ship.BaseAttributes();
 				cout << DataWriter::Quote(attributes.Category()) << ',';
@@ -214,14 +214,13 @@ namespace {
 				<< DataWriter::Quote("gun mounts") << ',' << DataWriter::Quote("turret mounts") << ','
 				<< DataWriter::Quote("fighter bays") << ',' << DataWriter::Quote("drone bays") << ',' << "deterrence" << '\n';
 
-			for(auto &it : GameData::Ships())
+			for(const auto &[name, ship] : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
-				if(it.second.TrueModelName() != it.first && !variants)
+				if(ship.TrueModelName() != name && !variants)
 					continue;
 
-				const Ship &ship = it.second;
-				cout << DataWriter::Quote(it.first) << ',';
+				cout << DataWriter::Quote(name) << ',';
 
 				const Outfit &attributes = ship.Attributes();
 				cout << DataWriter::Quote(attributes.Category()) << ',';
@@ -263,14 +262,14 @@ namespace {
 					+ attributes.Get("solar heat")
 					+ attributes.Get("cloaking heat");
 
-				for(const auto &oit : ship.Outfits())
+				for(const auto &[outfit, count] : ship.Outfits())
 				{
-					const Weapon *weapon = oit.first->GetWeapon().get();
+					const Weapon *weapon = outfit->GetWeapon().get();
 					if(weapon && weapon->Reload())
 					{
 						double reload = weapon->Reload();
-						energyConsumed += oit.second * weapon->FiringEnergy() / reload;
-						heatProduced += oit.second * weapon->FiringHeat() / reload;
+						energyConsumed += count * weapon->FiringEnergy() / reload;
+						heatProduced += count * weapon->FiringHeat() / reload;
 					}
 				}
 				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
@@ -316,13 +315,13 @@ namespace {
 
 		auto PrintShipList = [](bool variants) -> void
 		{
-			for(auto &it : GameData::Ships())
+			for(const auto &[name, ship] : GameData::Ships())
 			{
 				// Skip variants and unnamed / partially-defined ships, unless specified otherwise.
-				if(it.second.TrueModelName() != it.first && !variants)
+				if(ship.TrueModelName() != name && !variants)
 					continue;
 
-				cout << DataWriter::Quote(it.first) << "\n";
+				cout << DataWriter::Quote(name) << "\n";
 			}
 		};
 
@@ -369,15 +368,14 @@ namespace {
 				<< DataWriter::Quote("leak dmg/s") << ',' << "push/s" << ',' << ',' << "strength" << ','
 				<< "deterrence" << '\n';
 
-			for(auto &it : GameData::Outfits())
+			for(const auto &[name, outfit] : GameData::Outfits())
 			{
 				// Skip non-weapons and submunitions.
-				const Outfit &outfit = it.second;
 				const Weapon *weapon = outfit.GetWeapon().get();
 				if(!weapon || outfit.Category().empty())
 					continue;
 
-				cout << DataWriter::Quote(it.first)<< ',';
+				cout << DataWriter::Quote(name)<< ',';
 				cout << DataWriter::Quote(outfit.Category()) << ',';
 				cout << outfit.Cost() << ',';
 				cout << -outfit.Get("weapon capacity") << ',';
@@ -433,8 +431,8 @@ namespace {
 				cout << fuelDmg << ',';
 				double leakDmg = weapon->LeakDamage() * 100. * fireRate;
 				cout << leakDmg << ',';
-				double hitforce = weapon->HitForce() * fireRate;
-				cout << hitforce << ',';
+				double hitForce = weapon->HitForce() * fireRate;
+				cout << hitForce << ',';
 
 				double strength = weapon->MissileStrength() + weapon->AntiMissile();
 				cout << strength << ',';
@@ -457,14 +455,13 @@ namespace {
 				<< DataWriter::Quote("afterburner thrust/s") << ',' << DataWriter::Quote("afterburner energy/s") << ','
 				<< DataWriter::Quote("afterburner heat/s") << ',' << DataWriter::Quote("afterburner fuel/s") << '\n';
 
-			for(auto &it : GameData::Outfits())
+			for(const auto &[name, outfit] : GameData::Outfits())
 			{
 				// Skip non-engines.
-				if(it.second.Category() != "Engines")
+				if(outfit.Category() != "Engines")
 					continue;
 
-				const Outfit &outfit = it.second;
-				cout << DataWriter::Quote(it.first) << ',';
+				cout << DataWriter::Quote(name) << ',';
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
@@ -493,14 +490,13 @@ namespace {
 				<< DataWriter::Quote("energy generation") << ',' << DataWriter::Quote("heat generation") << ','
 				<< DataWriter::Quote("energy capacity") << '\n';
 
-			for(auto &it : GameData::Outfits())
+			for(const auto &[name, outfit] : GameData::Outfits())
 			{
 				// Skip non-power.
-				if(it.second.Category() != "Power")
+				if(outfit.Category() != "Power")
 					continue;
 
-				const Outfit &outfit = it.second;
-				cout << DataWriter::Quote(it.first) << ',';
+				cout << DataWriter::Quote(name) << ',';
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass() << ',';
 				cout << outfit.Get("outfit space") << ',';
@@ -515,21 +511,17 @@ namespace {
 		auto PrintOutfitsAllStats = []() -> void
 		{
 			set<string> attributes;
-			for(auto &it : GameData::Outfits())
-			{
-				const Outfit &outfit = it.second;
+			for(const auto &outfit : GameData::Outfits() | views::values)
 				for(const auto &[name, value] : outfit)
 					attributes.insert(name);
-			}
 
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
 			for(const auto &attribute : attributes)
 				cout << ',' << DataWriter::Quote(attribute);
 			cout << '\n';
 
-			for(auto &it : GameData::Outfits())
+			for(const auto &outfit : GameData::Outfits() | views::values)
 			{
-				const Outfit &outfit = it.second;
 				cout << DataWriter::Quote(outfit.TrueName()) << ',';
 				cout << DataWriter::Quote(outfit.Category()) << ',';
 				cout << outfit.Cost() << ',';
@@ -624,12 +616,12 @@ namespace {
 				string indent = "\t";
 				indentation[object.Index()] = object.Parent() >= 0 ? indentation[object.Parent()] + 1 : 0;
 				for(int i = 0; i < indentation[object.Index()] ; ++i)
-					indent += "\t";
+					indent += '\t';
 				if(object.GetPlanet())
 					cout << indent << "object " << DataWriter::Quote(object.GetPlanet()->TrueName()) << "\n";
 				else
 					cout << indent << "object\n";
-				indent += "\t";
+				indent += '\t';
 				if(object.HasSprite())
 					cout << indent << "sprite " << DataWriter::Quote(object.GetSprite()->Name()) << "\n";
 				cout << indent << "distance " << object.Distance() << "\n";
@@ -645,8 +637,8 @@ namespace {
 			string name = *it;
 			if(name == "-a" || name == "--all")
 			{
-				for(const auto &system : GameData::Systems())
-					PrintOrbits(system.second);
+				for(const auto &system : GameData::Systems() | views::values)
+					PrintOrbits(system);
 				break;
 			}
 			if(name == "-s" || name == "--systems")
@@ -672,15 +664,14 @@ namespace {
 		auto PrintPlanetDescriptions = []() -> void
 		{
 			cout << "planet::description::spaceport\n";
-			for(auto &it : GameData::Planets())
+			for(const auto &[name, planet] : GameData::Planets())
 			{
-				cout << it.first << "::";
-				const Planet &planet = it.second;
-				for(auto &whenText : planet.Description())
-					cout << whenText.second;
+				cout << name << "::";
+				for(const auto &whenText : planet.Description() | views::values)
+					cout << whenText;
 				cout << "::";
-				for(auto &whenText : planet.GetPort().Description())
-					cout << whenText.second;
+				for(const auto &whenText : planet.GetPort().Description() | views::values)
+					cout << whenText;
 				cout << "\n";
 			}
 		};
@@ -757,13 +748,13 @@ namespace {
 		}
 
 		cout << "Systems matching provided location filter:\n";
-		for(const auto &it : GameData::Systems())
-			if(filter.Matches(&it.second))
-				cout << it.first << '\n';
+		for(const auto &[name, system] : GameData::Systems())
+			if(filter.Matches(&system))
+				cout << name << '\n';
 		cout << "Planets matching provided location filter:\n";
-		for(const auto &it : GameData::Planets())
-			if(filter.Matches(&it.second))
-				cout << it.first << '\n';
+		for(const auto &[name, planet] : GameData::Planets())
+			if(filter.Matches(&planet))
+				cout << name << '\n';
 	}
 
 

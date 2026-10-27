@@ -24,19 +24,19 @@ class DataWriter;
 // Actions that a Conversation or Dialog can end with.
 class Endpoint {
 public:
-	static const int ACCEPT = -1;
-	static const int DECLINE = -2;
-	static const int DEFER = -3;
+	static constexpr int ACCEPT = -1;
+	static constexpr int DECLINE = -2;
+	static constexpr int DEFER = -3;
 	// These 3 options force the player to TakeOff (if landed), or cause
 	// the boarded NPCs to explode, in addition to respectively duplicating
 	// the above mission outcomes.
-	static const int LAUNCH = -4;
-	static const int FLEE = -5;
-	static const int DEPART = -6;
+	static constexpr int LAUNCH = -4;
+	static constexpr int FLEE = -5;
+	static constexpr int DEPART = -6;
 	// The player may simply die (if landed on a planet or captured while
 	// in space), or the flagship might also explode.
-	static const int DIE = -7;
-	static const int EXPLODE = -8;
+	static constexpr int DIE = -7;
+	static constexpr int EXPLODE = -8;
 
 	// Check whether the given outcome is one that forces the
 	// player to immediately depart.

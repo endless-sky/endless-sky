@@ -659,9 +659,8 @@ void GamerulesPanel::DrawPresets()
 	int firstY = presetListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(presetListScroll.AnimatedValue())));
 
-	for(const auto &it : GameData::GamerulesPresets())
+	for(const auto &preset : GameData::GamerulesPresets() | views::values)
 	{
-		const auto &preset = it.second;
 		const string &name = preset.Name();
 		if(name.empty())
 			continue;
@@ -1027,7 +1026,7 @@ void GamerulesPanel::HandleGamerulesString(const string &str)
 
 
 
-void GamerulesPanel::SelectPreset(const string &name)
+void GamerulesPanel::SelectPreset(const string &name) const
 {
 	gamerules.Replace(*GameData::GamerulesPresets().Get(name));
 }

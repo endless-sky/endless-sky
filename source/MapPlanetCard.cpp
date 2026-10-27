@@ -111,9 +111,9 @@ MapPlanetCard::ClickAction MapPlanetCard::Click(int x, int y, int clicks)
 			else
 				clickAction = ClickAction::SELECTED;
 
-			static const int SHOW[5] = {MapPanel::SHOW_GOVERNMENT, MapPanel::SHOW_REPUTATION,
-										MapPanel::SHOW_SHIPYARD, MapPanel::SHOW_OUTFITTER,
-										MapPanel::SHOW_VISITED};
+			static constexpr int SHOW[5] = {MapPanel::SHOW_GOVERNMENT, MapPanel::SHOW_REPUTATION,
+				MapPanel::SHOW_SHIPYARD, MapPanel::SHOW_OUTFITTER,
+				MapPanel::SHOW_VISITED};
 			if(clickAction != ClickAction::SELECTED)
 			{
 				// If there are no governments shown, the first category is the reputation.

@@ -15,11 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "ConversationPanel.h"
 
-#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "BoardingPanel.h"
 #include "text/Clipboard.h"
-#include "Color.h"
 #include "Command.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
@@ -52,9 +50,9 @@ using namespace std;
 
 namespace {
 	// Width of the conversation text.
-	const int WIDTH = 540;
+	constexpr int WIDTH = 540;
 	// Margin on either side of the text.
-	const int MARGIN = 20;
+	constexpr int MARGIN = 20;
 }
 
 
@@ -79,8 +77,8 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	}
 	player.AddPlayerSubstitutions(subs);
 	// Restore substitutions that need to be preserved.
-	for(auto &it : savedSubs)
-		subs[it.first].swap(it.second);
+	for(auto &[from, to] : savedSubs)
+		subs[from].swap(to);
 	if(ship)
 	{
 		subs["<ship>"] = ship->GivenName();
@@ -221,11 +219,9 @@ void ConversationPanel::Draw()
 	{
 		string label = "0:";
 		int index = 0;
-		for(const auto &it : choices)
+		for(const auto &paragraph : choices | views::keys)
 		{
 			++label[0];
-
-			const auto &paragraph = it.first;
 
 			Point center = point + paragraph.Center();
 			Point size(WIDTH, paragraph.Height());
@@ -296,7 +292,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		// Names must contain characters valid for use in file names. They also can't include '~', as that is
 		// reserved by the game for differentiating between main saves and snapshot saves.
 		size_t maxSaveLength = Files::MaxFilenameLength(Files::Saves());
-		auto NameCharFilter = [](char32_t ch) -> bool { return Files::IsValidCharacter(ch) && ch != '~'; };
+		auto NameCharFilter = [](char ch) -> bool { return Files::IsValidCharacter(ch) && ch != '~'; };
 		if(Clipboard::KeyDown(name, key, mod, maxSaveLength, NameCharFilter))
 		{
 			// Input handled by Clipboard.
@@ -322,8 +318,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 		else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && !firstName.empty() && !lastName.empty())
 		{
 			// Display the name the player entered.
-			string name = "\t\tName: " + firstName + " " + lastName + ".\n";
-			text.emplace_back(name);
+			text.emplace_back("\t\tName: " + firstName + " " + lastName + ".\n");
 
 			player.SetName(firstName, lastName);
 			subs["<first>"] = player.FirstName();
@@ -488,7 +483,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 
 
 // Exit this panel and do whatever needs to happen next.
-void ConversationPanel::Exit()
+void ConversationPanel::Exit() const
 {
 	// Finish the PlayerInfo transaction so any changes get saved again.
 	if(useTransactions)
@@ -530,10 +525,10 @@ void ConversationPanel::ClickName(int side)
 
 
 // The player just clicked on a conversation choice.
-void ConversationPanel::ClickChoice(int index)
+void ConversationPanel::ClickChoice(int choice)
 {
-	if(conversation.ChoiceIsActive(node, MapChoice(index)))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
+	if(conversation.ChoiceIsActive(node, MapChoice(choice)))
+		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
 	else
 		UI::PlaySound(UI::UISound::FAILURE);
 }

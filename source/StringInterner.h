@@ -26,5 +26,5 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class StringInterner {
 public:
 	static const char *Intern(const char *key);
-	static const char *Intern(const std::string key);
+	static const char *Intern(const std::string &key);
 };

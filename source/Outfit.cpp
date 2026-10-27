@@ -188,7 +188,7 @@ namespace {
 
 	void AddFlareSprites(vector<pair<Drawable, int>> &thisFlares, const pair<Drawable, int> &it, int count)
 	{
-		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
+		auto oit = ranges::find_if(thisFlares,
 			[&it](const pair<Drawable, int> &flare)
 			{
 				return (it.first.GetSprite() == flare.first.GetSprite()
@@ -887,7 +887,7 @@ const Sprite *Outfit::FlotsamSprite() const
 // Add the license with the given name to the licenses required by this outfit, if it is not already present.
 void Outfit::AddLicense(const string &name)
 {
-	const auto it = find(licenses.begin(), licenses.end(), name);
+	const auto it = ranges::find(licenses, name);
 	if(it == licenses.end())
 		licenses.push_back(name);
 }

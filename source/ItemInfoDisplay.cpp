@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Color.h"
-#include "shader/FillShader.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -26,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "text/Table.h"
 
-#include <algorithm>
 #include <cmath>
 
 using namespace std;

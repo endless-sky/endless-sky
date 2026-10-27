@@ -50,8 +50,8 @@ void DataFile::Load(const filesystem::path &path)
 		data.push_back('\n');
 
 	// Note what file this node is in, so it will show up in error traces.
-	root.tokens.push_back("file");
-	root.tokens.push_back(path.string());
+	root.tokens.emplace_back("file");
+	root.tokens.emplace_back(path.string());
 
 	LoadData(data);
 }
@@ -63,7 +63,7 @@ void DataFile::Load(istream &in)
 {
 	string data;
 
-	static const size_t BLOCK = 4096;
+	static constexpr size_t BLOCK = 4096;
 	while(in)
 	{
 		size_t currentSize = data.size();

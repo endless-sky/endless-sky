@@ -25,8 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Ship.h"
 
-#include <cstdlib>
-
 using namespace std;
 
 
@@ -74,7 +72,7 @@ void ShipManager::Load(const DataNode &node)
 	}
 
 	if(taking && !id.empty() && count > 1)
-		node.PrintTrace("Use of \"id\" to refer to the ship is only supported when \"count\" is equal to 1.");
+		node.PrintTrace(R"(Use of "id" to refer to the ship is only supported when "count" is equal to 1.)");
 }
 
 
@@ -197,11 +195,11 @@ vector<shared_ptr<Ship>> ShipManager::SatisfyingShips(const PlayerInfo &player) 
 		// If "with outfits" or "requires outfits" is specified,
 		// this ship must have each outfit specified in that variant definition.
 		if(requireOutfits)
-			for(const auto &it : model->Outfits())
+			for(const auto &[baseOutfit, count] : model->Outfits())
 			{
-				const auto &outfit = ship->Outfits().find(it.first);
+				const auto &outfit = ship->Outfits().find(baseOutfit);
 				int amountEquipped = (outfit != ship->Outfits().end() ? outfit->second : 0);
-				if(it.second > amountEquipped)
+				if(count > amountEquipped)
 				{
 					hasRequiredOutfits = false;
 					break;

@@ -51,7 +51,7 @@ using namespace std;
 
 namespace {
 	// Number of lines per page of the fleet listing.
-	const int LINES_PER_PAGE = 26;
+	constexpr int LINES_PER_PAGE = 26;
 
 	bool CompareName(const shared_ptr<Ship> &lhs, const shared_ptr<Ship> &rhs)
 	{
@@ -144,8 +144,8 @@ PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player)
 
 
 
-PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, InfoPanelState panelState)
-	: player(player), panelState(std::move(panelState)),
+PlayerInfoPanel::PlayerInfoPanel(PlayerInfo &player, const InfoPanelState &panelState)
+	: player(player), panelState(panelState),
 	tooltip(250, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"), true)
 {
@@ -603,7 +603,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 
 	// Two columns of opposite alignment are used to simulate a single visual column.
 	Table table;
-	const int columnWidth = 230;
+	constexpr int columnWidth = 230;
 	table.AddColumn(0, {columnWidth, Alignment::LEFT});
 	table.AddColumn(columnWidth, {columnWidth, Alignment::RIGHT});
 	table.SetUnderline(0, columnWidth);
@@ -621,7 +621,7 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 
 	// Determine the player's combat rating.
 	int combatExperience = player.Conditions().Get("combat rating");
-	int combatLevel = log(max<int64_t>(1, combatExperience));
+	int combatLevel = static_cast<int>(log(max<int64_t>(1, combatExperience)));
 	string combatRating = GameData::Rating("combat", combatLevel);
 	if(!combatRating.empty())
 	{
@@ -683,14 +683,14 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	vector<pair<string, int64_t>> salary;
 	for(const auto &[name, value] : player.Accounts().SalariesIncome())
 		salary.emplace_back(name, value);
-	sort(salary.begin(), salary.end(), std::greater<>());
+	ranges::sort(salary, std::greater<>());
 	DrawList(salary, salaryArea, start, columnWidth, "salary:", player.Accounts().SalariesIncomeTotal(),
 		min<int>(salary.size(), 4) * 20);
 
 	vector<pair<string, int64_t>> tribute;
 	for(const auto &[planet, value] : player.GetTribute())
 		tribute.emplace_back(planet->TrueName(), value);
-	sort(tribute.begin(), tribute.end(), std::greater<>());
+	ranges::sort(tribute, std::greater<>());
 	DrawList(tribute, tributeArea, start, columnWidth, "tribute:", player.GetTributeTotal(),
 		min<int>(tribute.size(), 4) * 20);
 
@@ -984,7 +984,7 @@ bool PlayerInfoPanel::Scroll(int distance)
 
 
 PlayerInfoPanel::SortableColumn::SortableColumn(
-	string name,
+	const string &name,
 	double offset,
 	double endX,
 	Layout layout,

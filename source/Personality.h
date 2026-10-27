@@ -102,7 +102,7 @@ private:
 private:
 	// Make sure this matches the number of items in PersonalityTrait,
 	// or the build will fail.
-	static const int PERSONALITY_COUNT = 39;
+	static constexpr int PERSONALITY_COUNT = 39;
 
 	bool isDefined = false;
 

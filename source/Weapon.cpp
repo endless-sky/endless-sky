@@ -426,7 +426,7 @@ void Weapon::Load(const DataNode &node)
 	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
 	{
 		tracking = 1.;
-		node.PrintTrace("Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
+		node.PrintTrace(R"(Deprecated use of "homing" without use of "[optical|infrared|radar] tracking.")");
 	}
 
 	// Convert the "live effect" counts from occurrences per projectile lifetime

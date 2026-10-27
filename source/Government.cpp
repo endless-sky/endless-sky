@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <ranges>
 
 using namespace std;
 
@@ -109,12 +110,12 @@ namespace {
 	Government::PenaltyEffect PenaltyHelper(int eventType, const map<int, Government::PenaltyEffect> &penalties)
 	{
 		Government::PenaltyEffect penalty;
-		for(const auto &it : penalties)
-			if(eventType & it.first)
+		for(const auto &[type, effect] : penalties)
+			if(eventType & type)
 			{
-				penalty.reputationChange += it.second.reputationChange;
-				if(it.second.specialPenalty > penalty.specialPenalty)
-					penalty.specialPenalty = it.second.specialPenalty;
+				penalty.reputationChange += effect.reputationChange;
+				if(effect.specialPenalty > penalty.specialPenalty)
+					penalty.specialPenalty = effect.specialPenalty;
 			}
 		return penalty;
 	}
@@ -310,22 +311,22 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			bool clearTrusted = !trusted.empty();
 			for(const DataNode &grand : child)
 			{
-				bool remove = grand.Token(0) == "remove";
-				bool add = grand.Token(0) == "add";
-				if((add || remove) && grand.Size() < 2)
+				bool removeGrand = grand.Token(0) == "remove";
+				bool addGrand = grand.Token(0) == "add";
+				if((addGrand || removeGrand) && grand.Size() < 2)
 				{
 					grand.PrintTrace("Skipping invalid \"" + child.Token(0) + "\" tag:");
 					continue;
 				}
-				if(clearTrusted && !add && !remove)
+				if(clearTrusted && !addGrand && !removeGrand)
 				{
 					trusted.clear();
 					clearTrusted = false;
 				}
-				const Government *gov = GameData::Governments().Get(grand.Token(remove || add));
+				const Government *gov = GameData::Governments().Get(grand.Token(removeGrand || addGrand));
 				if(gov)
 				{
-					if(remove)
+					if(removeGrand)
 						trusted.erase(gov);
 					else
 						trusted.insert(gov);
@@ -523,7 +524,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		else if(key == "enforces" && child.Token(valueIndex) == "all")
 		{
 			enforcementZones.clear();
-			child.PrintTrace("Deprecated use of \"enforces all\". Use \"remove enforces\" instead:");
+			child.PrintTrace(R"(Deprecated use of "enforces all". Use "remove enforces" instead:)");
 		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
@@ -629,8 +630,8 @@ Government::PenaltyEffect Government::PenaltyFor(int eventType, const Government
 		return PenaltyHelper(eventType, penalties);
 
 	map<int, PenaltyEffect> tempPenalties = penalties;
-	for(const auto &penalty : it->second)
-		tempPenalties[penalty.first] = penalty.second;
+	for(const auto &[type, effect] : it->second)
+		tempPenalties[type] = effect;
 	return PenaltyHelper(eventType, tempPenalties);
 }
 
@@ -662,9 +663,9 @@ double Government::GetFineFraction() const
 
 
 
-bool Government::Trusts(const Government *government) const
+bool Government::Trusts(const Government *other) const
 {
-	return government == this || trusted.contains(government);
+	return other == this || trusted.contains(other);
 }
 
 
@@ -904,9 +905,9 @@ int Government::Fines(const Outfit *outfit) const
 	if(!fine)
 		return 0;
 
-	for(const auto &it : illegalOutfits)
-		if(it.first == outfit)
-			return it.second;
+	for(const auto &[illegal, outfitFine] : illegalOutfits)
+		if(illegal == outfit)
+			return outfitFine;
 	return IgnoresUniversalIllegals() ? 0 : outfit->Get("illegal");
 }
 
@@ -918,9 +919,9 @@ int Government::Fines(const Ship *ship) const
 	if(!fine)
 		return 0;
 
-	for(const auto &it : illegalShips)
-		if(it.first == ship->TrueModelName())
-			return it.second;
+	for(const auto &[name, shipFine] : illegalShips)
+		if(name == ship->TrueModelName())
+			return shipFine;
 	return IgnoresUniversalIllegals() ? 0 : ship->BaseAttributes().Get("illegal");
 }
 
@@ -935,8 +936,8 @@ bool Government::IgnoresUniversalIllegals() const
 
 bool Government::FinesContents(const Ship *ship) const
 {
-	for(auto &it : ship->Outfits())
-		if(this->Fines(it.first) || this->Condemns(it.first).isAtrocity)
+	for(const auto &outfit : ship->Outfits() | views::keys)
+		if(this->Fines(outfit) || this->Condemns(outfit).isAtrocity)
 			return true;
 
 	return ship->Cargo().IllegalCargoFine(this).first;
