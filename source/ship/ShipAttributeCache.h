@@ -41,6 +41,7 @@ private:
 	void Turn(const Outfit &attributes);
 	void ReverseThrust(const Outfit &attributes);
 	void AfterburnerThrust(const Outfit &attributes);
+	void InertialessMovement(const Outfit &attributes);
 
 	void Cloaking(const Outfit &attributes);
 	void Scanning(const Outfit &attributes);
@@ -109,6 +110,10 @@ private:
 	ResourceLevels reverseThrustCost;
 	double afterburnerThrust = 0.;
 	ResourceLevels afterburnerThrustCost;
+	double inertialessThrust = 0.;
+	double inertialessBraking = 0.;
+	ResourceLevels inertialessFlightCost;
+	bool instantBraking = false;
 
 	ResourceLevels cloakCost;
 	double cloak = 0.;
@@ -150,4 +155,6 @@ private:
 	double selfDestruct = 0.;
 
 	double turretTurnMult = 1.;
+
+	bool immovable = false;
 };

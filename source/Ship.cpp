@@ -169,7 +169,7 @@ namespace {
 		// When a ship lands, its thrusters should scale with it.
 		// If a ship is inertialess, then its forward thrusting flares scale with the fraction of its
 		// max speed that it is currently traveling at instead of how long the thrust key has been held.
-		if(kind == Ship::ThrustKind::FORWARD && ship.Attributes().Get("inertialess"))
+		if(kind == Ship::ThrustKind::FORWARD && ship.InertialessFlight())
 		{
 			double scale = min(1., ship.Velocity().Length() / ship.MaxVelocity());
 			scale = sqrt(-scale * (scale - 2));
@@ -1669,11 +1669,12 @@ vector<string> Ship::FlightCheck() const
 	double fuelChange = cache.fuelGeneration - cache.fuelConsumption;
 	double fuelCapacity = MaxFuel();
 	double fuel = fuelCapacity + fuelChange;
-	double thrust = cache.thrust;
-	double reverseThrust = cache.reverseThrust;
+	double thrust = cache.inertialessThrust ? cache.inertialessThrust : cache.thrust;
+	double reverseThrust = cache.inertialessBraking ? cache.inertialessBraking
+		: (cache.inertialessThrust ? cache.inertialessThrust : cache.reverseThrust);
 	double afterburner = cache.afterburnerThrust;
-	double thrustEnergy = cache.thrustCost.energy;
-	double thrustHeat = cache.thrustCost.heat;
+	double thrustEnergy = cache.inertialessThrust ? cache.inertialessFlightCost.energy : cache.thrustCost.energy;
+	double thrustHeat = cache.inertialessThrust ? cache.inertialessFlightCost.heat : cache.thrustCost.heat;
 	double turn = cache.turn;
 	double turnEnergy = cache.turnCost.energy;
 	double turnHeat = cache.turnCost.heat;
@@ -2217,7 +2218,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	{
 		if(isUi || isDocked)
 			return;
-		if(ThrustHeldFrames(Ship::ThrustKind::FORWARD) || attributes.Get("inertialess"))
+		if(ThrustHeldFrames(Ship::ThrustKind::FORWARD) || cache.inertialessThrust)
 			DrawFlareSprites(*this, draw, EnginePoints(), attributes.FlareSprites(), where, false);
 		else if(ThrustHeldFrames(Ship::ThrustKind::REVERSE))
 			DrawFlareSprites(*this, draw, ReverseEnginePoints(), attributes.ReverseFlareSprites(), where, true);
@@ -3744,6 +3745,13 @@ double Ship::InertialMass() const
 
 
 
+bool Ship::InertialessFlight() const
+{
+	return cache.inertialessThrust;
+}
+
+
+
 double Ship::TurnRate() const
 {
 	return cache.turn / InertialMass() * cache.turnMult;
@@ -3768,7 +3776,7 @@ double Ship::CrewTurnRate() const
 
 double Ship::Acceleration() const
 {
-	double thrust = cache.thrust;
+	double thrust = cache.inertialessThrust ? cache.inertialessThrust : cache.thrust;
 	return (thrust ? thrust : cache.afterburnerThrust) / InertialMass() * cache.accelerationMult;
 }
 
@@ -3794,7 +3802,7 @@ double Ship::MaxVelocity(bool withAfterburner) const
 	// v * drag / mass == thrust / mass
 	// v * drag == thrust
 	// v = thrust / drag
-	double thrust = cache.thrust;
+	double thrust = cache.inertialessThrust ? cache.inertialessThrust : cache.thrust;
 	double afterburnerThrust = cache.afterburnerThrust;
 	return (thrust ? thrust + afterburnerThrust * withAfterburner : afterburnerThrust) / Drag();
 }
@@ -3803,14 +3811,21 @@ double Ship::MaxVelocity(bool withAfterburner) const
 
 double Ship::ReverseAcceleration() const
 {
-	return cache.reverseThrust / InertialMass() * cache.accelerationMult;
+	// A ship with inertialess movement uses reverse acceleration to slow down,
+	// but won't be able to move backwards.
+	double thrust = cache.inertialessBraking ? cache.inertialessBraking : cache.reverseThrust;
+	return thrust / InertialMass() * cache.accelerationMult;
 }
 
 
 
 double Ship::MaxReverseVelocity() const
 {
-	return cache.reverseThrust / Drag();
+	// A ship with inertialess movement can't reverse.
+	if(cache.inertialessThrust)
+		return 0.;
+	double thrust = cache.reverseThrust;
+	return thrust / Drag();
 }
 
 
@@ -3841,6 +3856,8 @@ double Ship::CurrentSpeed() const
 // impact, or from firing a weapon, for example.
 void Ship::ApplyForce(const Point &force, bool gravitational)
 {
+	if(cache.immovable)
+		return;
 	if(gravitational)
 	{
 		// Treat all ships as if they have a mass of 400. This prevents
@@ -4517,6 +4534,8 @@ bool Ship::CanCommunicateWhileCloaked() const
 
 double Ship::ReverseThrust() const
 {
+	if(cache.inertialessThrust)
+		return cache.inertialessBraking ? cache.inertialessBraking : cache.inertialessThrust;
 	return cache.reverseThrust;
 }
 
@@ -5545,13 +5564,20 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 {
 	isUsingAfterburner = false;
 
-	bool inertialess = attributes.Get("inertialess");
 	double mass = InertialMass();
 	double dragForce = DragForce();
 	double slowMultiplier = 1. / (1. + levels.slowness * .05);
 
+	bool inertialess = cache.inertialessThrust;
+	const ResourceLevels &inertialessFlightCost = cache.inertialessFlightCost;
+	double maxVelocity = MaxVelocity();
+	double throttleStrength = velocity.Length() / maxVelocity;
+	bool drift = inertialess && !AvailableResources().CanExpend(inertialessFlightCost * throttleStrength);
+
 	// Ships that can't move due to being disabled or a lack of energy should drift to a stop.
-	if(isDisabled || NeedsEnergy())
+	// Inertialess ships without enough energy to maintain their inertialess movement this
+	// frame will also drift.
+	if(isDisabled || NeedsEnergy() || drift)
 		velocity *= 1. - dragForce;
 	else if(!pilotError)
 	{
@@ -5581,21 +5607,33 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		double thrust = 0.;
 		if(thrustCommand)
 		{
-			// Check if we are able to apply this thrust.
-			const ResourceLevels &thrustCost = (thrustCommand > 0.) ? cache.thrustCost : cache.reverseThrustCost;
-			thrustCommand *= AvailableResources().FractionalUsage(thrustCost);
-			if(thrustCommand)
+			if(inertialess)
 			{
-				// If a reverse thrust is commanded and the capability does not
-				// exist, ignore it (do not even slow under drag).
 				isThrusting = (thrustCommand > 0.);
-				isReversing = !isThrusting && cache.reverseThrust;
-				thrust = isThrusting ? cache.thrust : cache.reverseThrust;
-				IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
-				if(thrust)
+				isReversing = !isThrusting;
+				// A ship with inertial thrust but no inertial braking uses its thrust as its braking.
+				bool useThrust = (isThrusting || !cache.inertialessBraking);
+				thrust = useThrust ? cache.inertialessThrust : cache.inertialessBraking;
+				acceleration += angle.Unit() * thrustCommand * (useThrust ? Acceleration() : ReverseAcceleration());
+			}
+			else
+			{
+				// Check if we are able to apply this thrust.
+				const ResourceLevels &thrustCost = (thrustCommand > 0.) ? cache.thrustCost : cache.reverseThrustCost;
+				thrustCommand *= AvailableResources().FractionalUsage(thrustCost);
+				if(thrustCommand)
 				{
-					levels.Damage(thrustCost, fabs(thrustCommand));
-					acceleration += angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
+					// If a reverse thrust is commanded and the capability does not
+					// exist, ignore it (do not even slow under drag).
+					isThrusting = (thrustCommand > 0.);
+					isReversing = !isThrusting && cache.reverseThrust;
+					thrust = isThrusting ? cache.thrust : cache.reverseThrust;
+					IncrementThrusterHeld(isReversing ? ThrustKind::REVERSE : ThrustKind::FORWARD);
+					if(thrust)
+					{
+						levels.Damage(thrustCost, fabs(thrustCommand));
+						acceleration += angle.Unit() * thrustCommand * (isThrusting ? Acceleration() : ReverseAcceleration());
+					}
 				}
 			}
 		}
@@ -5632,7 +5670,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			// when trying to stop and ending up headed in the other direction.
 			if(commands.Has(Command::STOP))
 			{
-				if(attributes.Get("inertialess braking"))
+				if(cache.instantBraking)
 				{
 					velocity = Point();
 					dragAcceleration = Point();
@@ -5656,12 +5694,6 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		acceleration = Point();
 	}
 	// Inertialess ships always move toward their facing direction.
-	// TODO: Update the AI to be able to understand this flight mode.
-	// TODO: Constantly expend thrust resources as a fraction of the current speed to the maximum? What happens when
-	//  you run out?
-	// TODO: Have down-throttling be controlled by something other than reverse thrust? Separate attribute where
-	//  down-throttling occurs at a fraction of the forward rate? (Would only make sense with the constant
-	//  expenditure of resources when thrusting.)
 	if(inertialess)
 	{
 		// If this ship is reversing and has a low speed, bring it to a stop.
@@ -5670,6 +5702,17 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 			velocity = Point();
 		else
 			velocity = speed * angle.Unit();
+		if(velocity)
+		{
+			// The inertialess flight cost is constantly spent as a fraction
+			// of the current speed to the maximum possible speed, even if no
+			// movement command was sent. If the ship doesn't have enough resources
+			// to fully expend on inertialess movement this frame, then it'll be
+			// set adrift next frame.
+			double scale = max(1., speed / maxVelocity);
+			scale = min(scale, AvailableResources().FractionalUsage(inertialessFlightCost));
+			levels.Damage(inertialessFlightCost, scale);
+		}
 	}
 }
 

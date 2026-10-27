@@ -1843,7 +1843,6 @@ ship "Flivver"
 		"outfit space" 130
 		"weapon capacity" 16
 		"engine capacity" 45
-		"inertialess" 1
 		weapon
 			"blast radius" 16
 			"shield damage" 160
