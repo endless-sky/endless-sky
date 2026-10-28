@@ -66,7 +66,6 @@ effect "caldera afterburner"
 	"velocity scale" 1.
 
 
-
 outfit "Ionic Afterburner"
 	category "Engines"
 	series "Afterburners"
@@ -94,6 +93,7 @@ effect "ionic afterburner"
 	"random spin" 30
 	"random velocity" 1.
 	"velocity scale" 1.
+
 
 
 outfit "X1050 Ion Engines"
