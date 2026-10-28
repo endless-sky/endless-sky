@@ -73,7 +73,7 @@ mission "Coalition Message Buoy: Entering Heliarch Ring System"
 
 phrase "entering heliarch ring system"
 	word
-		"Message buoy to all ships: Entered you have in a ringworld system"
+		"Message buoy to all ships: Entered you have a ringworld system"
 	word
 		"."
 		". Oblige you must all Heliarch commands."
