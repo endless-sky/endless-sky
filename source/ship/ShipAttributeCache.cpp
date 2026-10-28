@@ -260,7 +260,6 @@ void ShipAttributeCache::InertialessMovement(const Outfit &attributes)
 {
 	inertialessThrust = attributes.Get("inertialess thrust");
 	inertialessBraking = attributes.Get("inertialess braking");
-	instantBraking = attributes.Get("instant braking");
 
 	inertialessFlightCost.hull = attributes.Get("inertialess flight hull");
 	inertialessFlightCost.shields = attributes.Get("inertialess flight shields");
@@ -343,4 +342,5 @@ void ShipAttributeCache::Misc(const Outfit &attributes)
 	turretTurnMult = 1. + attributes.Get("turret turn multiplier");
 
 	immovable = attributes.Get("immovable");
+	instantBraking = attributes.Get("instant braking");
 }

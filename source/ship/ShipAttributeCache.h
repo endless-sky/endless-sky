@@ -113,7 +113,6 @@ private:
 	double inertialessThrust = 0.;
 	double inertialessBraking = 0.;
 	ResourceLevels inertialessFlightCost;
-	bool instantBraking = false;
 
 	ResourceLevels cloakCost;
 	double cloak = 0.;
@@ -157,4 +156,5 @@ private:
 	double turretTurnMult = 1.;
 
 	bool immovable = false;
+	bool instantBraking = false;
 };
