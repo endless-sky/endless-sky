@@ -408,15 +408,31 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double movingHeatPerFrame = attributes.Get("turning heat");
 	if(mainThrust && reverseThrust)
 	{
-		movingEnergyPerFrame += max(attributes.Get("thrusting energy") + attributes.Get("afterburner energy"),
-			attributes.Get("reverse thrusting energy"));
-		movingHeatPerFrame += max(attributes.Get("thrusting heat") + attributes.Get("afterburner heat"),
-			attributes.Get("reverse thrusting heat"));
+		if(inertialess)
+		{
+			movingEnergyPerFrame += attributes.Get("inertialess flight energy") + attributes.Get("afterburner energy");
+			movingHeatPerFrame += attributes.Get("inertialess flight heat") + attributes.Get("afterburner heat");
+		}
+		else
+		{
+			movingEnergyPerFrame += max(attributes.Get("thrusting energy") + attributes.Get("afterburner energy"),
+				attributes.Get("reverse thrusting energy"));
+			movingHeatPerFrame += max(attributes.Get("thrusting heat") + attributes.Get("afterburner heat"),
+				attributes.Get("reverse thrusting heat"));
+		}
 	}
 	else if(mainThrust)
 	{
-		movingEnergyPerFrame += attributes.Get("thrusting energy") + attributes.Get("afterburner energy");
-		movingHeatPerFrame += attributes.Get("thrusting heat") + attributes.Get("afterburner heat");
+		if(inertialess)
+		{
+			movingEnergyPerFrame += attributes.Get("inertialess flight energy") + attributes.Get("afterburner energy");
+			movingHeatPerFrame += attributes.Get("inertialess flight heat") + attributes.Get("afterburner heat");
+		}
+		else
+		{
+			movingEnergyPerFrame += attributes.Get("thrusting energy") + attributes.Get("afterburner energy");
+			movingHeatPerFrame += attributes.Get("thrusting heat") + attributes.Get("afterburner heat");
+		}
 	}
 	else if(reverseThrust)
 	{
@@ -427,9 +443,17 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	if(scrollingPanel)
 	{
 		tableLabels.push_back("thrusting:");
-		energyTable.push_back(Format::Number(-60. * attributes.Get("thrusting energy")));
-		heatTable.push_back(Format::Number(60. * attributes.Get("thrusting heat")));
-		if(reverseThrust)
+		if(inertialess)
+		{
+			energyTable.push_back(Format::Number(-60. * attributes.Get("inertialess flight energy")));
+			heatTable.push_back(Format::Number(60. * attributes.Get("inertialess flight heat")));
+		}
+		else
+		{
+			energyTable.push_back(Format::Number(-60. * attributes.Get("thrusting energy")));
+			heatTable.push_back(Format::Number(60. * attributes.Get("thrusting heat")));
+		}
+		if(reverseThrust && !inertialess)
 		{
 			attributesHeight += 20;
 			tableLabels.push_back("reversing:");
