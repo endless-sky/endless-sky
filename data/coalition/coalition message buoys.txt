@@ -200,7 +200,7 @@ phrase "entering house ablomab"
 	word
 		"."
 		", leading mining guild of the Coalition."
-		`. The way to riches and treasure we lead."`
+		`. "The way to riches and treasure we lead."`
 
 mission "Coalition Message Buoy: House Bebliss"
 	invisible
