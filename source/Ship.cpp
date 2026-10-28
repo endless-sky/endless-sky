@@ -5420,7 +5420,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			// is, about acos(.8) from the proper angle). So:
 			// Stopping distance = .5*a*(v/a)^2 + (150/turn)*v.
 			// Exit distance = HYPER_D + .25 * v^2 = stopping distance.
-			double exitV = InertialessFlight() ? 0. : max(HYPER_A, MaxVelocity());
+			double exitV = max(HYPER_A, MaxVelocity());
 			double a = (.5 / Acceleration() - .25);
 			double b = 150. / TurnRate();
 			double discriminant = b * b - 4. * a * -HYPER_D;
@@ -5435,15 +5435,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 			const Point facingUnit = angle.Unit();
 			if(velocity.Dot(facingUnit) <= exitV)
 			{
-				// For inertialess flight ships, convert the exit velocity to the
-				// corresponding throttle that creates that much velocity.
-				if(InertialessFlight())
-				{
-					inertialessThrottle = max(1., exitV / MaxVelocity());
-					velocity = Point();
-				}
-				else
-					velocity = facingUnit * exitV;
+				velocity = facingUnit * exitV;
 				hyperspaceCount = 0;
 			}
 		}
@@ -5455,6 +5447,14 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 		double length = hyperspaceOffset.Length();
 		if(length > 1000.)
 			hyperspaceOffset *= 1000. / length;
+	}
+	// For inertialess flight ships, convert the exit velocity to the
+	// corresponding throttle that creates that much velocity.
+	if(!hyperspaceCount && InertialessFlight())
+	{
+		inertialessThrottle = min(1., velocity.Length() / MaxVelocity());
+		velocity = Point();
+		negateThrottle = false;
 	}
 
 	return true;
@@ -5548,6 +5548,7 @@ bool Ship::DoLandingLogic()
 	{
 		inertialessThrottle = velocity.Length() / MaxVelocity();
 		velocity = Point();
+		negateThrottle = false;
 	}
 
 	return true;
@@ -5629,7 +5630,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 	{
 		// Remove the influence that inertialess flight had on the previous frame's velocity.
 		// Do this before movement handling this frame changes the throttle or facing angle.
-		velocity -= maxVelocity * inertialessThrottle * angle.Unit();
+		if(negateThrottle)
+			velocity -= maxVelocity * inertialessThrottle * angle.Unit();
 		// If the ship doesn't have enough resources to expend on inertialess flight,
 		// then force a back command to slow down and reduce the flight cost. If the ship
 		// continues to not have enough resources, then this will eventually bring it to
@@ -5745,6 +5747,7 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		{
 			// Inertialess thrust is velocity applied toward the facing direction.
 			velocity += maxVelocity * inertialessThrottle * angle.Unit();
+			negateThrottle = true;
 			// The inertialess flight cost is constantly spent and scales with the throttle,
 			// even if no movement command was sent this frame. If the ship doesn't have
 			// enough resources to fully expend on inertialess movement, then it'll be forced

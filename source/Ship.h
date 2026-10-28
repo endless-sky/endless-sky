@@ -823,6 +823,11 @@ private:
 	// A value from 0 to 1 measuring how much of the maximum velocity should be applied
 	// to the ship in its facing direction.
 	double inertialessThrottle = 0.;
+	// Each frame that inertialess thrust is provided, the influence of inertialess thrust
+	// from the prior frame is removed for re-adding it with the latest facing angle.
+	// This step is fixed if there was no inertialess thrust added in the previous frame,
+	// such as when taking off from a planet or exiting hyperspace.
+	bool negateThrottle = false;
 	// The amount of time in frames that an engine has been on for.
 	std::array<uint8_t, 4> thrustHeldFrames = {};
 
