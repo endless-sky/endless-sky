@@ -1,3 +1,88 @@
+Version 0.11.4:
+  * Breaking changes:
+    * A definition for an interface that has been previously loaded now adds to that, instead of clearing the previously loaded definition by default. (@TomGoodIdea)
+  * Bug fixes:
+    * Content bugs:
+      * Typos. (@BobbyCobby, @Daeridanii1, @Terin, @TheGiraffe3)
+      * "Lightning in a Bottle 5" now offers on landing, correcting the flow of this mission chain. (@beccabunny)
+      * Fixed completion of Successors Ghosts 14. (@Daeridanii1)
+      * Qasa-Sija-Iri side missions now offer after Ghosts. (@Daeridanii1)
+      * Added administrative cost values to some new Successor ships. (@Daeridanii1)
+      * Timothy Radrickson 3d now has a description. (@TheGiraffe3)
+      * Corrected and improved the description of "Successors: Ghosts Aqrabe 3". (@Daeridanii1)
+      * The "Ursa Polaris" and "Patrol Team" Person ships can no longer be disabled. (@Amazinite)
+      * Fixed an issue where events adding the Flamethrower to existing fleets were overwriting instead of adding to those fleets. (@Amazinite)
+      * Various fixes and edits to the structure and flow of the Lost Racer mission chain. (@TheGiraffe3)
+      * Marauder fleets from jobs no longer spawn in Quarg space. (@brendanjones)
+      * Removed references to shields working in the Patir galaxy, since shields are not supposed to work there. (@Amazinite)
+      * Added a patch mission to remove "Successors: Ghosts 14" when it is stuck in the save file. (@Amazinite)
+      * Fixed issues in the behaviour of "Ka'het: Lightning in a Bottle" missions 5 and Epilogue 1. (@Amazinite)
+      * The player's autopilot commands are now cleared on landing. (@Amazinite)
+      * Disabled ships are now able to send hails again. (@Amazinite)
+    * Engine bugs:
+      * Updated some remaining header includes to use our own SDL interface for 2/3 hybrid support. (@papatonyhill)
+      * A ship that has no energy but can generate it using its engines will no longer be treated s disabled. (@Amazinite)
+      * Docked fighters will no longer be drawn with engine flares and will use the carrier's cloak state. (@Amazinite)
+      * Minable damage now works again. (@Amazinite)
+      * Negative surge values will no longer be displayed. (@Amazinite)
+      * Fixed issues with cloaking introduced by the attribute caching feature. (@Amazinite)
+      * Custom swizzles on ships will now always be saved. (@TomGoodIdea)
+      * Cargo cannot be dumped from a destroyed ship. (@Amazinite)
+      * Fixed an issue in the ship info panel when jettisonning every unit of an installed outfit. (@Amazinite)
+      * Fixed an issue in the way some non-integer outfit attributes were being displayed. (@Amazinite)
+      * Outfits in storage are now included when calculating the player's total asset value. (@Amazinite)
+  * Game content:
+    * Mission changes:
+      * Added "minor" to various Remnant intro missions. (@Amazinite)
+      * Removed "priority" from every non-intro mission that had it. (@Amazinite)
+        * Someone make a list here, idk.
+    * Balance:
+      * Increase human plasma weapon "heat damage" to account for changes to heat dissipation and mass in recent updates. (@LixiChronikouOriou)
+        * Plasma Cannon and Turret: 340 -> 425
+        * Plasma Repeater: 144 -> 180
+      * Adjusted the Berserker to be slower and tougher to differentiate it from other Interceptors. (@Quantumshark)
+        * Shields: 2200 -> 2400
+        * Hull: 500 -> 900
+        * Mass: 130 -> 200
+        * Drag: 2.5 -> 2.8
+    * Other:
+      * Removed some outfits from the Shattered Light that did not fit the era it is from. (@Amazinite)
+        * Replaced its two Laser Turrets with two Quad Blaster Turrets, in addition to the one it already had, and removed the D94-YV Shield Generator.
+  * Game mechanics:
+    * New mechanics:
+      * Minables can now set a minimum drop amount and all vanilla ore minables will drop at least one unit. (@goran-damjanovic)
+    * Mechanics changes:
+      * It is no longer possible to move an outfit to cargo if it is larger than any single cargo hold from the available ships (such an outfit would need to be stored or sold on take off). (@Amazinite)
+      * Attribute values exceeding the maximum value that can be stored by the game will now be ignored and generate a warning. (@Amazinite)
+      * The number of credits the player has can now be modified with the "credits" condition instead of just the "payment" keyword inside actions. (@TomGoodIdea)
+      * Discharge and Disruption damage are no longer applied to a ship when the damage is being dealt to the hull. (@Amazinite)
+      * Weapons that only have negative damage values will no longer provoke ships they hit. (@Amazinite)
+      * Adjusted how play time is tracked. (@Amazinite)
+  * Graphics:
+    * Animated sprites can be made to not use frame tweening. (@Amazinite)
+  * User interface:
+    * Added a "Rename" button to the ship info panel. (@Amazinite)
+    * Shortcut keys that require the shift key to be held down can be marked in button labels with a double underline. (@Amazinite)
+    * Flotsam chance is now shown as a percentage in the outfitter. (@Amazinite)
+    * Shift+O is now an additional shortcut for the sell outfits button in the trading panel. (@Amazinite)
+    * Added a button to the trading panel to move all outfits from cargo to storage. (@Amazinite)
+    * Gamerule preset selection now uses radio buttons instead of checkboxes. (@Amazinite)
+    * Ship info now includes reversed movement and disabled hull threshold stats. (@Amazinite)
+    * Clarified the message about cargo needing to be sold or stored on take off. (@Amazinite)
+    * Mission destinations in the current system will now be targeted on take off. (@Amazinite)
+    * Swapped the error messages that are displayed when GLSL is missing and an unsupported OpenGL version is detected. (@Amazinite)
+    * Boolean attributes are now displayed in a separate section from numeric ones in the outfit info display. (@Amazinite)
+    * Added tooltips to the player info panel. (@Amazinite)
+    * Clearing a target planet now requires a double-click instead of a single-click. (@Amazinite)
+  * Performance:
+  * Under the hood:
+    * Corrected include ordering for "SDL.h". (@TomGoodIdea)
+    * Corrected various style issues in the Panel class. (@TomGoodIdea)
+  * CI/CD and development environment:
+    * Cmake will no longer fetch dependencies from vcpkg that are not required for the requested configuration. (@TomGoodIdea)
+    * Added CI jobs that build and test against SDL3. (@TomGoodIdea)
+  * Documentation:
+
 Version 0.11.3:
   * Breaking change:
     * All plugins with tractor beam outfits should divide their "tractor beam" attribute by 5 in order to have the same pull strength as before this update.
