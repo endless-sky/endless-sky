@@ -464,6 +464,7 @@ public:
 	double TurnRate() const;
 	double Acceleration() const;
 	double MaxVelocity(bool withAfterburner = false) const;
+	double ReverseThrust() const;
 	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
 	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
@@ -477,7 +478,7 @@ public:
 	// The ship's current speed right now
 	double CurrentSpeed() const;
 	// Inertialess flight characteristics:
-	bool InertialessFlight() const;
+	bool InertialessMovement() const;
 	double InertialessThrottle() const;
 	double InertialessAcceleratingStep() const;
 	double InertialessBrakingStep() const;
@@ -602,7 +603,6 @@ public:
 	bool Inscrutable() const;
 	bool CanCommunicateWhileCloaked() const;
 
-	double ReverseThrust() const;
 	// Whether this ship has an afterburner installed and it can be used. Does not consider
 	// the resource cost of using the afterburner.
 	bool CanUseAfterburner() const;
@@ -824,8 +824,8 @@ private:
 	// to the ship in its facing direction.
 	double inertialessThrottle = 0.;
 	// Each frame that inertialess thrust is provided, the influence of inertialess thrust
-	// from the prior frame is removed for re-adding it with the latest facing angle.
-	// This step is fixed if there was no inertialess thrust added in the previous frame,
+	// from the prior frame is removed before re-adding it with the latest facing angle.
+	// This step is skipped if there was no inertialess thrust added in the previous frame,
 	// such as when taking off from a planet or exiting hyperspace.
 	bool negateThrottle = false;
 	// The amount of time in frames that an engine has been on for.

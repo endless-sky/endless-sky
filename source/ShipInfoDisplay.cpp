@@ -258,24 +258,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	double fullMass = emptyMass + attributes.Get("cargo space");
 	isGeneric &= (fullMass != emptyMass);
-	bool inertialess = false;
-	double thrust = attributes.Get("thrust");
-	if(attributes.Get("inertialess thrust"))
-	{
-		thrust = attributes.Get("inertialess thrust");
-		inertialess = true;
-	}
+	bool inertialess = ship.InertialessMovement();
+	double thrust = inertialess ? attributes.Get("inertialess thrust") : attributes.Get("thrust");
 	double afterburnerThrust = attributes.Get("afterburner thrust");
 	double mainThrust = thrust ? thrust : afterburnerThrust;
 	double allThrust = thrust + afterburnerThrust;
-	double reverseThrust = attributes.Get("reverse thrust");
-	if(inertialess)
-	{
-		if(attributes.Get("inertialess braking"))
-			reverseThrust = attributes.Get("inertialess braking");
-		else
-			reverseThrust = thrust;
-	}
+	double reverseThrust = inertialess ? (attributes.Get("inertialess braking")
+		? attributes.Get("inertialess braking") : thrust) : attributes.Get("reverse thrust");
 	double drag = ship.Drag();
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());

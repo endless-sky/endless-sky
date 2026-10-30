@@ -3697,23 +3697,24 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 			return position;
 
 		// Calculate where the ship will be after it finishes exiting hyperspace.
-		double exitVelocity = ship.InertialessFlight() ? 2. : maxVelocity;
+		double exitVelocity = ship.InertialessMovement() ? 2. : maxVelocity;
 		double jumpTime = (v - exitVelocity) / 2.;
 		position += velocity.Unit() * (jumpTime * (v + exitVelocity) * .5);
 		v = exitVelocity;
 	}
 
 	double stopDistance = 0.;
-	if(ship.InertialessFlight())
+	if(ship.InertialessMovement())
 	{
 		// Inertialess ships just need to throttle their thrust down until reaching the target velocity.
 		double throttle = ship.InertialessThrottle();
 		double targetThrottle = targetVelocity.Length() / maxVelocity;
-		double brakingStep = ship.InertialessBrakingStep();
+		// Account for piloting errors caused by low crew. Assume no slowness stacks.
+		double crewError = min(1., static_cast<double>(ship.Crew()) / ship.RequiredCrew());
+		double brakingStep = ship.InertialessBrakingStep() * crewError;
 		if(throttle > targetThrottle)
 		{
 			shouldReverse = true;
-			// Assume no slowness stacks.
 			// Determine the number of frames that must be spent braking and the average distance
 			// traveled during each of those frames
 			int brakeFrames = ceil((throttle - targetThrottle) / -brakingStep);

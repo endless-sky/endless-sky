@@ -260,6 +260,8 @@ void ShipAttributeCache::InertialessMovement(const Outfit &attributes)
 {
 	inertialessThrust = attributes.Get("inertialess thrust");
 	inertialessBraking = attributes.Get("inertialess braking");
+	if(!inertialessBraking)
+		inertialessBraking = inertialessThrust;
 
 	inertialessFlightCost.hull = attributes.Get("inertialess flight hull");
 	inertialessFlightCost.shields = attributes.Get("inertialess flight shields");
