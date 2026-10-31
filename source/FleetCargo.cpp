@@ -78,7 +78,7 @@ namespace {
 		}
 		// Sort this list of choices ascending by mass, so it can be easily trimmed to just
 		// the outfits that fit as the ship's free space decreases.
-		sort(outfits.begin(), outfits.end(), [](const Outfit *a, const Outfit *b)
+		ranges::sort(outfits, [](const Outfit *a, const Outfit *b)
 			{ return a->Mass() < b->Mass(); });
 		return outfits;
 	}
@@ -92,12 +92,16 @@ namespace {
 			// If a list of possible commodities was given, pick one of them at
 			// random and then double-check that it's a valid commodity name.
 			const string &name = commodities[Random::Int(commodities.size())];
+			int validIndex = -1;
 			for(const auto &it : GameData::Commodities())
+			{
+				++validIndex;
 				if(it.name == name)
 				{
-					index = &it - &GameData::Commodities().front();
+					index = validIndex;
 					break;
 				}
+			}
 		}
 
 		const Trade::Commodity &commodity = GameData::Commodities()[index];
@@ -174,8 +178,8 @@ void FleetCargo::SetCargo(Ship *ship) const
 			break;
 		// Remove any outfits that do not fit into remaining cargo.
 		if(canChooseOutfits && !outfits.empty())
-			outfits.erase(remove_if(outfits.begin(), outfits.end(),
-					[&free](const Outfit *a) { return a->Mass() > free; }),
+			outfits.erase(ranges::remove_if(outfits,
+				[&free](const Outfit *a) { return a->Mass() > free; }).begin(),
 				outfits.end());
 
 		if(canChooseCommodities && canChooseOutfits)

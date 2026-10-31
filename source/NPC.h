@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Personality.h"
 #include "ship/ShipFactory.h"
 
+#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>

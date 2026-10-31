@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MessageLogPanel.h"
 
-#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "Color.h"
 #include "Command.h"
@@ -35,8 +34,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const double PAD = 10.;
-	const double LINE_HEIGHT = 25.;
+	constexpr double PAD = 10.;
+	constexpr double LINE_HEIGHT = 25.;
 }
 
 

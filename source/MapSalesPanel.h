@@ -79,7 +79,7 @@ protected:
 
 	void DoFind(const std::string &text);
 	void ScrollTo(int index);
-	void ClickCategory(const std::string &name);
+	void ClickCategory(const std::string &name) const;
 
 
 protected:

@@ -40,16 +40,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const double SIDEBAR_WIDTH = 100.;
-	const double TEXT_WIDTH = 400.;
-	const double PAD = 10.;
-	const double WIDTH = SIDEBAR_WIDTH + TEXT_WIDTH;
-	const double LINE_HEIGHT = 25.;
+	constexpr double SIDEBAR_WIDTH = 100.;
+	constexpr double TEXT_WIDTH = 400.;
+	constexpr double PAD = 10.;
+	constexpr double WIDTH = SIDEBAR_WIDTH + TEXT_WIDTH;
+	constexpr double LINE_HEIGHT = 25.;
 
 	// The minimum distance in pixels between the selected month and the edge of the screen before the month gets centered
-	const double MINIMUM_SELECTION_DISTANCE = LINE_HEIGHT * 3;
+	constexpr double MINIMUM_SELECTION_DISTANCE = LINE_HEIGHT * 3;
 
-	const double GAP = 30.;
+	constexpr double GAP = 30.;
 	const string MONTH[] = {
 		"  January", "  February", "  March", "  April", "  May", "  June",
 		"  July", "  August", "  September", "  October", "  November", "  December"};
@@ -78,8 +78,8 @@ void LogbookPanel::Step()
 	if(!hasLoadedScenes)
 	{
 		hasLoadedScenes = true;
-		for(const auto &entry : player.Logbook())
-			for(const Sprite *scene : entry.second.GetScenes())
+		for(const auto &entry : player.Logbook() | views::values)
+			for(const Sprite *scene : entry.GetScenes())
 				SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), scene);
 	}
 }
@@ -495,7 +495,7 @@ vector<pair<string, string>> LogbookPanel::AvailableSelections(bool visibleOnly)
 			// the selection should jump to the first page in an expandable
 			// section, instead of falling on the section header, which
 			// has no contents.
-			selections.emplace_back(make_pair("", ""));
+			selections.emplace_back("", "");
 			for(const auto &pageName : section | views::keys)
 				selections.emplace_back(name, pageName);
 		}

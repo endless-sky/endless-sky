@@ -94,14 +94,14 @@ namespace {
 
 		operator Preferences::OverlayState() const { return state; }
 
-		const bool IsActive() const { return state != Preferences::OverlayState::DISABLED; }
+		bool IsActive() const { return state != Preferences::OverlayState::DISABLED; }
 
 		const string &ToString() const
 		{
 			return OVERLAY_SETTINGS[max<int>(0, min<int>(OVERLAY_SETTINGS.size() - 1, static_cast<int>(state)))];
 		}
 
-		const int ToInt() const { return static_cast<int>(state); }
+		int ToInt() const { return static_cast<int>(state); }
 
 		void SetState(int value)
 		{

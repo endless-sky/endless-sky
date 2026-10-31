@@ -180,8 +180,8 @@ void ConditionAssignments::Add(const DataNode &node, const ConditionsStore *cond
 	{
 		// Parse the assignment operator.
 		AssignOp ao = AssignOp::ASSIGN;
-		const string assignOpString = node.Token(1);
-		auto it = find_if(ASSIGN_OP_TO_TEXT.begin(), ASSIGN_OP_TO_TEXT.end(),
+		const string &assignOpString = node.Token(1);
+		auto it = ranges::find_if(ASSIGN_OP_TO_TEXT,
 			[&assignOpString](const pair<AssignOp, const string> &e) {
 				return e.second == assignOpString;
 			});
@@ -214,8 +214,9 @@ void ConditionAssignments::Add(const DataNode &node, const ConditionsStore *cond
 
 
 
-ConditionAssignments::Assignment::Assignment(string conditionToAssignTo, AssignOp assignOperator,
-	ConditionSet expressionToEvaluate) : conditionToAssignTo(conditionToAssignTo), assignOperator(assignOperator),
+ConditionAssignments::Assignment::Assignment(const string &conditionToAssignTo, AssignOp assignOperator,
+	const ConditionSet &expressionToEvaluate)
+	: conditionToAssignTo(conditionToAssignTo), assignOperator(assignOperator),
 	expressionToEvaluate(expressionToEvaluate)
 {
 }

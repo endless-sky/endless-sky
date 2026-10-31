@@ -17,6 +17,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DistanceMap.h"
 
+#include <ranges>
+
 using namespace std;
 
 
@@ -98,8 +100,8 @@ int RoutePlan::RequiredFuel() const
 vector<const System *> RoutePlan::Plan() const
 {
 	vector<const System *> steps;
-	for(const auto &it : plan)
-		steps.push_back(it.first);
+	for(const auto &system : plan | views::keys)
+		steps.push_back(system);
 	return steps;
 }
 
@@ -109,7 +111,7 @@ vector<const System *> RoutePlan::Plan() const
 vector<pair<const System *, int>> RoutePlan::FuelCosts() const
 {
 	vector<pair<const System *, int>> steps;
-	for(const auto &it : plan)
-		steps.emplace_back(it.first, it.second.fuel);
+	for(const auto &[system, edge] : plan)
+		steps.emplace_back(system, edge.fuel);
 	return steps;
 }

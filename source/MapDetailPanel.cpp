@@ -63,8 +63,8 @@ using namespace std;
 
 namespace {
 	// Commodity comparison arrow min/max sizes
-	const double MIN_ARROW = 4;
-	const double MAX_ARROW = 14;
+	constexpr double MIN_ARROW = 4;
+	constexpr double MAX_ARROW = 14;
 
 	// Convert the angle between two vectors into a sortable angle, i.e. an angle
 	// plus a length that is used as a tie-breaker.
@@ -475,13 +475,13 @@ bool MapDetailPanel::Click(int x, int y, MouseButton button, int clicks)
 		selectedPlanet = nullptr;
 		const double planetCardHeight = MapPlanetCard::Height();
 		double distance = numeric_limits<double>::infinity();
-		for(const auto &it : planets)
+		for(const auto &[planet, position] : planets)
 		{
-			double d = click.Distance(it.second);
+			double d = click.Distance(position);
 			if(d < distance)
 			{
 				distance = d;
-				selectedPlanet = it.first;
+				selectedPlanet = planet;
 				int place = 0;
 				for(auto &planetCard : planetCards)
 				{
@@ -629,12 +629,12 @@ void MapDetailPanel::DrawInfo()
 			const double arrowOffsetX = mapInterface->GetValue("arrow x offset");
 			const double arrowOffsetY = mapInterface->GetValue("arrow y offset");
 
-			Point top(Screen::Left() + planetWidth + arrowOffsetX,
+			Point topScroll(Screen::Left() + planetWidth + arrowOffsetX,
 				Screen::Top() + arrowOffsetY);
-			Point bottom(Screen::Left() + planetWidth + arrowOffsetX,
+			Point bottomScroll(Screen::Left() + planetWidth + arrowOffsetX,
 				Screen::Top() - arrowOffsetY + planetPanelHeight);
 
-			scrollbar.SyncDraw(scroll, top, bottom);
+			scrollbar.SyncDraw(scroll, topScroll, bottomScroll);
 		}
 	}
 
@@ -741,12 +741,12 @@ void MapDetailPanel::DrawInfo()
 			{
 				value -= localValue;
 				if(Preferences::Has("Parenthesize trade profits"))
-					price += "(";
+					price += '(';
 				if(value > 0)
 					price += '+';
 				price += to_string(value);
 				if(Preferences::Has("Parenthesize trade profits"))
-					price += ")";
+					price += ')';
 			}
 
 			// Draw colored icons when values are displayed.

@@ -584,17 +584,17 @@ void Edit::Redo()
 }
 
 
-Point Edit::AlignedOffset(size_t offset)
+Point Edit::AlignedOffset(size_t offset) const
 {
 	const Font &font = FontSet::Get(fontSize);
 	const string &s = Text();
 	Point ret{};
 	switch(alignment)
 	{
-	case Edit::LEFT:
+	case LEFT:
 		ret = Point(textBounds.Left(), textBounds.Center().Y() - font.Height() / 2.0);
 		break;
-	case Edit::RIGHT:
+	case RIGHT:
 		ret = Point(textBounds.Right() - font.Width(s), textBounds.Center().Y() - font.Height() / 2.0);
 		break;
 	default: // CENTER

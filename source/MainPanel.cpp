@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "opengl.h"
 
 #include <cmath>
+#include <ranges>
 #include <sstream>
 #include <string>
 
@@ -321,7 +322,7 @@ bool MainPanel::Scroll(double dx, double dy)
 
 
 
-void MainPanel::ShowScanDialog(const ShipEvent &event)
+void MainPanel::ShowScanDialog(const ShipEvent &event) const
 {
 	const shared_ptr<Ship> &target = event.Target();
 	string name = target->DisplayModelName();
@@ -499,28 +500,28 @@ bool MainPanel::ShowHelp(bool force)
 	if(Preferences::Has("Control ship with mouse"))
 	{
 		if(force)
-			forced.push_back("control ship with mouse");
+			forced.emplace_back("control ship with mouse");
 		else if(DoHelp("control ship with mouse"))
 			return true;
 	}
 	if(flagship->IsTargetable())
 	{
 		if(force)
-			forced.push_back("navigation");
+			forced.emplace_back("navigation");
 		else if(DoHelp("navigation"))
 			return true;
 	}
 	if(flagship->IsDestroyed())
 	{
 		if(force)
-			forced.push_back("dead");
+			forced.emplace_back("dead");
 		else if(DoHelp("dead"))
 			return true;
 	}
 	else if(flagship->IsDisabled())
 	{
 		if(force)
-			forced.push_back("disabled");
+			forced.emplace_back("disabled");
 		else if(DoHelp("disabled"))
 			return true;
 	}
@@ -528,7 +529,7 @@ bool MainPanel::ShowHelp(bool force)
 	if(!flagship->IsHyperspacing() && !flagship->JumpsRemaining() && !canRefuel)
 	{
 		if(force)
-			forced.push_back("stranded");
+			forced.emplace_back("stranded");
 		else if(DoHelp("stranded"))
 			return true;
 	}
@@ -536,21 +537,21 @@ bool MainPanel::ShowHelp(bool force)
 	if(target && target->IsDisabled() && !target->GetGovernment()->IsEnemy())
 	{
 		if(force)
-			forced.push_back("friendly disabled");
+			forced.emplace_back("friendly disabled");
 		else if(DoHelp("friendly disabled"))
 			return true;
 	}
 	if(player.Ships().size() > 1)
 	{
 		if(force)
-			forced.push_back("multiple ship controls");
+			forced.emplace_back("multiple ship controls");
 		else if(DoHelp("multiple ship controls"))
 			return true;
 	}
 	if(flagship->IsTargetable() && player.Ships().size() > 1)
 	{
 		if(force)
-			forced.push_back("fleet harvest tutorial");
+			forced.emplace_back("fleet harvest tutorial");
 		else if(DoHelp("fleet harvest tutorial"))
 			return true;
 	}
@@ -560,8 +561,8 @@ bool MainPanel::ShowHelp(bool force)
 		// because we're displaying the forced messages in reverse order.
 		if(force)
 		{
-			forced.push_back("fleet asteroid mining");
-			forced.push_back("fleet asteroid mining shortcuts");
+			forced.emplace_back("fleet asteroid mining");
+			forced.emplace_back("fleet asteroid mining shortcuts");
 		}
 		else if(DoHelp("fleet asteroid mining shortcuts") && DoHelp("fleet asteroid mining"))
 			return true;
@@ -569,14 +570,14 @@ bool MainPanel::ShowHelp(bool force)
 	if(player.DisplayCarrierHelp())
 	{
 		if(force)
-			forced.push_back("try out fighters transfer cargo");
+			forced.emplace_back("try out fighters transfer cargo");
 		else if(DoHelp("try out fighters transfer cargo"))
 			return true;
 	}
 	if(Preferences::Has("Fighters transfer cargo"))
 	{
 		if(force)
-			forced.push_back("fighters transfer cargo");
+			forced.emplace_back("fighters transfer cargo");
 		else if(DoHelp("fighters transfer cargo"))
 			return true;
 	}
@@ -602,8 +603,8 @@ bool MainPanel::ShowHelp(bool force)
 
 	bool hasValidHelp = false;
 	// Reverse-iterate so that the player will see the basic messages first.
-	for(auto it = forced.rbegin(); it != forced.rend(); ++it)
-		hasValidHelp |= DoHelp(*it, true);
+	for(auto &it : std::views::reverse(forced))
+		hasValidHelp |= DoHelp(it, true);
 	return hasValidHelp;
 }
 

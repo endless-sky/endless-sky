@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Visual.h"
 
 #include <cmath>
+#include <ranges>
 
 using namespace std;
 
@@ -104,19 +105,19 @@ void Weather::Step(vector<Visual> &visuals, const Point &center)
 		// Estimate the number of visuals to be generated this frame.
 		// MAYBE: create only a subset of possible effects per frame.
 		float totalAmount = 0;
-		for(auto &&effect : hazard->EnvironmentalEffects())
-			totalAmount += effect.second;
+		for(const auto &amount : hazard->EnvironmentalEffects() | views::values)
+			totalAmount += amount;
 		totalAmount *= effectMultiplier;
 		visuals.reserve(visuals.size() + static_cast<int>(totalAmount));
 
-		for(auto &&effect : hazard->EnvironmentalEffects())
-			for(int i = 0; i < effect.second * effectMultiplier; ++i)
+		for(const auto &[effect, amount] : hazard->EnvironmentalEffects())
+			for(int i = 0; i < amount * effectMultiplier; ++i)
 			{
 				Point angle = Angle::Random().Unit();
 				double magnitude = (maxRange - minRange) * sqrt(Random::Real());
 				Point pos = (hazard->SystemWide() ? center : origin)
 					+ (minRange + magnitude) * angle;
-				visuals.emplace_back(*effect.first, std::move(pos), Point(), Angle::Random());
+				visuals.emplace_back(*effect, pos, Point(), Angle::Random());
 			}
 	}
 

@@ -37,7 +37,6 @@ class RenderBuffer;
 class PreferencesPanel : public Panel {
 public:
 	explicit PreferencesPanel(PlayerInfo &player);
-	virtual ~PreferencesPanel();
 
 	// Draw this panel.
 	virtual void Draw() override;
@@ -68,7 +67,7 @@ private:
 
 	void DrawTooltips();
 
-	void Exit();
+	void Exit() const;
 
 	void HandleSettingsString(const std::string &str, Point cursorPosition);
 
@@ -89,9 +88,9 @@ private:
 	int editing = -1;
 	int selected = 0;
 	int hover = -1;
-	int oldSelected;
-	int oldHover;
-	int latest;
+	int oldSelected{};
+	int oldHover{};
+	int latest{};
 	// Which page of the preferences we're on.
 	char page = 'c';
 

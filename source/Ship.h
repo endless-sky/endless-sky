@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipJumpNavigation.h"
 
 #include <array>
+#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>
@@ -89,9 +90,9 @@ public:
 		std::string category;
 
 		uint8_t side = 0;
-		static const uint8_t INSIDE = 0;
-		static const uint8_t OVER = 1;
-		static const uint8_t UNDER = 2;
+		static constexpr uint8_t INSIDE = 0;
+		static constexpr uint8_t OVER = 1;
+		static constexpr uint8_t UNDER = 2;
 
 		// The angle at which the carried ship will depart, relative to the carrying ship.
 		Angle facing;
@@ -105,13 +106,13 @@ public:
 		EnginePoint(Point pos, double zoom) : Point(pos), zoom(zoom) {}
 
 		uint8_t side = 0;
-		static const uint8_t UNDER = 0;
-		static const uint8_t OVER = 1;
+		static constexpr uint8_t UNDER = 0;
+		static constexpr uint8_t OVER = 1;
 
 		uint8_t steering = 0;
-		static const uint8_t NONE = 0;
-		static const uint8_t LEFT = 1;
-		static const uint8_t RIGHT = 2;
+		static constexpr uint8_t NONE = 0;
+		static constexpr uint8_t LEFT = 1;
+		static constexpr uint8_t RIGHT = 2;
 
 		double zoom;
 		Angle facing;
@@ -176,21 +177,6 @@ public:
 
 
 public:
-	// Functions provided by the Body base class:
-	// bool HasSprite() const;
-	// const Sprite *GetSprite() const;
-	// int Width() const;
-	// int Height() const;
-	// int GetSwizzle() const;
-	// Frame GetFrame(int step = -1) const;
-	// const Mask &GetMask(int step = -1) const;
-	// const Point &Position() const;
-	// const Point &Velocity() const;
-	// const Angle &Facing() const;
-	// Point Unit() const;
-	// double Zoom() const;
-	// const Government *GetGovernment() const;
-
 	Ship() = default;
 	// Construct and Load() at the same time.
 	Ship(const DataNode &node, const ConditionsStore *playerConditions);
@@ -207,7 +193,7 @@ public:
 
 	const EsUuid &UUID() const noexcept;
 	// Explicitly set this ship's ID.
-	void SetUUID(const EsUuid &id);
+	void SetUUID(const EsUuid &id) const;
 
 	// Get the name of this particular ship.
 	const std::string &GivenName() const;
@@ -720,7 +706,7 @@ private:
 
 	// Helper functions for jettisoning flotsam.
 	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false);
-	void Jettison(std::shared_ptr<Flotsam> toJettison);
+	void Jettison(const std::shared_ptr<Flotsam> &toJettison);
 
 
 private:

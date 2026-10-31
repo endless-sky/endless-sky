@@ -31,8 +31,7 @@ using namespace std;
 
 bool BookEntry::IsEmpty() const
 {
-	return all_of(items.begin(), items.end(),
-		[](const Item &item) { return holds_alternative<std::monostate>(item); });
+	return ranges::all_of(items, [](const Item &item) { return holds_alternative<std::monostate>(item); });
 }
 
 

@@ -26,11 +26,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "GameEvent.h"
 #include "Outfit.h"
-#include "Phrase.h"
 #include "PlayerInfo.h"
 #include "Ship.h"
 #include "TextReplacements.h"
 #include "UI.h"
+
+#include <ranges>
 
 using namespace std;
 
@@ -106,7 +107,7 @@ void MissionAction::LoadSingle(const DataNode &child, const ConditionsStore *pla
 	// The legacy syntax "outfit <outfit> 0" means "the player must have this outfit installed."
 	else if(key == "outfit" && child.Size() >= 3 && child.Token(2) == "0")
 	{
-		child.PrintTrace("Deprecated use of \"outfit\" with count of 0. Use \"require <outfit>\" instead:");
+		child.PrintTrace(R"(Deprecated use of "outfit" with count of 0. Use "require <outfit>" instead:)");
 		requiredOutfits[GameData::Outfits().Get(child.Token(1))] = 1;
 	}
 	else if(key == "system")
@@ -168,8 +169,8 @@ void MissionAction::SaveBody(DataWriter &out) const
 		dialog.Save(out);
 	if(conversation && !conversation->IsEmpty())
 		conversation->Save(out);
-	for(const auto &it : requiredOutfits)
-		out.Write("require", it.first->TrueName(), it.second);
+	for(const auto &[outfit, count] : requiredOutfits)
+		out.Write("require", outfit->TrueName(), count);
 
 	action.Save(out);
 }
@@ -202,9 +203,9 @@ string MissionAction::Validate() const
 	}
 
 	// Required content must be defined & valid.
-	for(auto &&outfit : requiredOutfits)
-		if(!outfit.first->IsDefined())
-			return "required outfit \"" + outfit.first->TrueName() + "\"";
+	for(const Outfit *outfit : requiredOutfits | views::keys)
+		if(!outfit->IsDefined())
+			return "required outfit \"" + outfit->TrueName() + "\"";
 
 	return action.Validate();
 }
@@ -229,10 +230,10 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed,
 		return false;
 
 	const Ship *flagship = player.Flagship();
-	for(auto &&it : action.Outfits())
+	for(const auto &[outfit, count] : action.Outfits())
 	{
 		// If this outfit is being given, the player doesn't need to have it.
-		if(it.second > 0)
+		if(count > 0)
 			continue;
 
 		// Outfits may always be taken from the flagship, either installed or in cargo.
@@ -240,11 +241,11 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed,
 		// If in-flight, not boarding, and the action is to be executed while landed,
 		// show mission status by checking the cargo holds of ships that would
 		// contribute to pooled cargo if landed.
-		int available = flagship ? flagship->OutfitCount(it.first) : 0;
-		available += (boardingShip || !executeWhenLanded) ? flagship->Cargo().Get(it.first)
-				: CountInCargo(it.first, player);
+		int available = flagship ? flagship->OutfitCount(outfit) : 0;
+		available += (boardingShip || !executeWhenLanded) ? flagship->Cargo().Get(outfit)
+				: CountInCargo(outfit, player);
 
-		if(available < -it.second)
+		if(available < -count)
 			return false;
 	}
 
@@ -252,13 +253,13 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed,
 		if(!it.CanBeDone(player))
 			return false;
 
-	for(auto &&it : requiredOutfits)
+	for(const auto &[outfit, count] : requiredOutfits)
 	{
 		// Maps are not normal outfits; they represent the player's spatial awareness.
-		int mapSize = it.first->Get("map");
+		int mapSize = outfit->Get("map");
 		if(mapSize > 0)
 		{
-			bool needsUnmapped = it.second == 0;
+			bool needsUnmapped = count == 0;
 			// This action can't be done if it requires an unmapped region, but the region is
 			// mapped, or if it requires a mapped region but the region is not mapped.
 			if(needsUnmapped == player.HasMapped(mapSize, false))
@@ -268,26 +269,26 @@ bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed,
 
 		// Requiring the player to have 0 of this outfit means all ships and all cargo holds
 		// must be checked, even if the ship is disabled, parked, or out-of-system.
-		if(!it.second)
+		if(!count)
 		{
 			// When landed, ships pool their cargo into the player's cargo.
-			if(player.GetPlanet() && player.Cargo().Get(it.first))
+			if(player.GetPlanet() && player.Cargo().Get(outfit))
 				return false;
 
 			for(const auto &ship : player.Ships())
 				if(!ship->IsDestroyed())
-					if(ship->OutfitCount(it.first) || ship->Cargo().Get(it.first))
+					if(ship->OutfitCount(outfit) || ship->Cargo().Get(outfit))
 						return false;
 		}
 		else
 		{
 			// Required outfits must be present on the player's flagship or
 			// in the cargo holds of able ships at the player's location.
-			int available = flagship ? flagship->OutfitCount(it.first) : 0;
-			available += boardingShip ? flagship->Cargo().Get(it.first)
-					: CountInCargo(it.first, player);
+			int available = flagship ? flagship->OutfitCount(outfit) : 0;
+			available += boardingShip ? flagship->Cargo().Get(outfit)
+					: CountInCargo(outfit, player);
 
-			if(available < it.second)
+			if(available < count)
 				return false;
 		}
 	}
@@ -314,7 +315,7 @@ bool MissionAction::RequiresGiftedShip(const string &shipId) const
 
 
 void MissionAction::Do(PlayerInfo &player, UI *ui, const Mission *caller, const System *destination,
-	const shared_ptr<Ship> &ship, const bool isUnique) const
+	const shared_ptr<Ship> &ship, bool isUnique) const
 {
 	if(ui)
 	{

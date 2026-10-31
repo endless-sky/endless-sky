@@ -28,15 +28,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
-#include <cstdlib>
 #include <cstring>
 
 using namespace std;
 
 namespace {
 	bool showUnderlines = false;
-	const int KERN = 2;
-	const float UNDERLINE_OFFSET = 2.f;
+	constexpr int KERN = 2;
+	constexpr float UNDERLINE_OFFSET = 2.f;
 
 	/// Shared VAO and VBO quad (0,0) -> (1,1)
 	GLuint vao = 0;
@@ -152,7 +151,7 @@ void Font::DrawAliased(const string &str, double x, double y, const Color &color
 	bool isAfterSpace = true;
 	bool underlineChar = false;
 	bool doubleUnderlineChar = false;
-	const int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
+	constexpr int underscoreGlyph = max(0, min(GLYPHS - 1, '_' - 32));
 
 	for(char c : str)
 	{
@@ -308,7 +307,7 @@ void Font::CalculateAdvances(ImageBuffer &image)
 				uint32_t *pend = begin + previous * width;
 				uint32_t *pit = pend + width;
 				while(pit != pend && (*--pit & mask) < half) {}
-				int distance = (pit - pend) + 1;
+				int distance = static_cast<int>(pit - pend) + 1;
 				glyphWidth = max(distance, glyphWidth);
 
 				// Special case: if "next" is zero (i.e. end of line of text),
@@ -325,7 +324,7 @@ void Font::CalculateAdvances(ImageBuffer &image)
 					// pend + width - pit   <- pixels after the previous glyph.
 					// nit - (nend - width) <- pixels before the next glyph.
 					// So for zero kerning distance, you would want:
-					distance += 1 - (nit - (nend - width));
+					distance += 1 - static_cast<int>(nit - (nend - width));
 				}
 				maxD = max(maxD, distance);
 
@@ -459,9 +458,9 @@ string Font::TruncateText(const DisplayText &text, int &width) const
 string Font::TruncateBack(const string &str, int &width) const
 {
 	return TruncateEndsOrMiddle(str, width,
-		[](const string &str, int charCount)
+		[](const string &s, int charCount)
 		{
-			return str.substr(0, charCount) + "...";
+			return s.substr(0, charCount) + "...";
 		});
 }
 
@@ -470,9 +469,9 @@ string Font::TruncateBack(const string &str, int &width) const
 string Font::TruncateFront(const string &str, int &width) const
 {
 	return TruncateEndsOrMiddle(str, width,
-		[](const string &str, int charCount)
+		[](const string &s, int charCount)
 		{
-			return "..." + str.substr(str.size() - charCount);
+			return "..." + s.substr(s.size() - charCount);
 		});
 }
 
@@ -481,16 +480,16 @@ string Font::TruncateFront(const string &str, int &width) const
 string Font::TruncateMiddle(const string &str, int &width) const
 {
 	return TruncateEndsOrMiddle(str, width,
-		[](const string &str, int charCount)
+		[](const string &s, int charCount)
 		{
-			return str.substr(0, (charCount + 1) / 2) + "..." + str.substr(str.size() - charCount / 2);
+			return s.substr(0, (charCount + 1) / 2) + "..." + s.substr(s.size() - charCount / 2);
 		});
 }
 
 
 
 string Font::TruncateEndsOrMiddle(const string &str, int &width,
-	function<string(const string &, int)> getResultString) const
+	const function<string(const string &, int)> &getResultString) const
 {
 	int firstWidth = WidthRawString(str.c_str());
 	if(firstWidth <= width)

@@ -22,8 +22,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const double CAMERA_VELOCITY_TRACKING = 0.1;
-	const double CAMERA_POSITION_CENTERING = 0.01;
+	constexpr double CAMERA_VELOCITY_TRACKING = 0.1;
+	constexpr double CAMERA_POSITION_CENTERING = 0.01;
 }
 
 

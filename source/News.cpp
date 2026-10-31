@@ -79,8 +79,8 @@ void News::Load(const DataNode &node, const ConditionsStore *playerConditions,
 					toRemove.emplace(SpriteSet::Get(child.Token(i)));
 
 				// Erase them in unison.
-				portraits.erase(remove_if(portraits.begin(), portraits.end(),
-						[&toRemove](const Sprite *sprite) { return toRemove.find(sprite) != toRemove.end(); }),
+				portraits.erase(ranges::remove_if(portraits,
+					[&toRemove](const Sprite *sprite) { return toRemove.contains(sprite); }).begin(),
 					portraits.end());
 			}
 			else

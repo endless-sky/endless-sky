@@ -49,6 +49,6 @@ private:
 
 private:
 	std::chrono::steady_clock::time_point next;
-	std::chrono::steady_clock::duration step;
-	std::chrono::steady_clock::duration maxLag;
+	std::chrono::steady_clock::duration step{};
+	std::chrono::steady_clock::duration maxLag{};
 };

@@ -23,12 +23,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Ship.h"
 #include "Weapon.h"
 
-#include <algorithm>
-
 using namespace std;
 
 namespace {
-	const double DANGEROUS_ABOVE = .1;
+	constexpr double DANGEROUS_ABOVE = .1;
 }
 
 
@@ -62,7 +60,7 @@ AlertLabel::AlertLabel(const Point &position, const Projectile &projectile, cons
 
 void AlertLabel::Draw() const
 {
-	const double angle[3] = {330., 210., 90.};
+	constexpr double angle[3] = {330., 210., 90.};
 	for(int i = 0; i < 3; i++)
 	{
 		RingShader::Draw(position * zoom, radius, 1.2f, .16f, *color, 0.f, angle[i] + rotation);

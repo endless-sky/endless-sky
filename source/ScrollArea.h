@@ -36,7 +36,8 @@ class ScrollArea : public Panel
 public:
 	ScrollArea();
 	explicit ScrollArea(const Rectangle &r);
-	virtual ~ScrollArea() override;
+
+	virtual void Draw() override;
 
 	virtual void SetRect(const Rectangle &r);
 	void SetScrollbarOffset(int offset);
@@ -49,7 +50,6 @@ public:
 
 
 protected:
-	virtual void Draw() override;
 	virtual void DrawText(const Point &topLeft);
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
 	virtual bool Release(int x, int y, MouseButton button) override;

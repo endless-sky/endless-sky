@@ -21,20 +21,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Outfit.h"
 #include "../Ship.h"
 
-namespace {
-	bool Helper(const Outfit &a, const Outfit &b, const std::string &nameA, const std::string &nameB)
+
+
+inline bool Helper(const Outfit &a, const Outfit &b, const std::string &nameA, const std::string &nameB)
+{
+	static const CategoryList &series = GameData::GetCategory(CategoryType::SERIES);
+	if(a.Series() == b.Series())
 	{
-		static const CategoryList &series = GameData::GetCategory(CategoryType::SERIES);
-		if(a.Series() == b.Series())
-		{
-			if(a.Index() == b.Index())
-				return nameA < nameB;
-			return a.Index() < b.Index();
-		}
-		const CategoryList::Category catA = series.GetCategory(a.Series());
-		const CategoryList::Category catB = series.GetCategory(b.Series());
-		return catA < catB;
+		if(a.Index() == b.Index())
+			return nameA < nameB;
+		return a.Index() < b.Index();
 	}
+	const CategoryList::Category catA = series.GetCategory(a.Series());
+	const CategoryList::Category catB = series.GetCategory(b.Series());
+	return catA < catB;
 }
 
 template<class T>

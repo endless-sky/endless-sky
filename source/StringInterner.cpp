@@ -46,7 +46,7 @@ const char *StringInterner::Intern(const char *key)
 
 
 
-const char *StringInterner::Intern(const string key)
+const char *StringInterner::Intern(const string &key)
 {
 	return Intern(key.c_str());
 }

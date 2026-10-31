@@ -28,7 +28,7 @@ namespace {
 	// Trace out outlines from an image frame.
 	void Trace(const ImageBuffer &image, int frame, vector<vector<Point>> &raw, const string &fileName)
 	{
-		const uint32_t on = 0xFF000000;
+		constexpr uint32_t on = 0xFF000000;
 		const int width = image.Width();
 		const int height = image.Height();
 		const int numPixels = width * height;

@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <atomic>
 #include <map>
 #include <queue>
+#include <ranges>
 #include <set>
 
 using namespace std;
@@ -47,11 +48,11 @@ namespace {
 	// The sprites that use deferred loading.
 	map<const Sprite *, shared_ptr<ImageSet>> deferred;
 	// Up to 20 landscape images will be preloaded at a time, with the oldest being culled to make room for new ones.
-	const int LANDSCAPE_LIMIT = 20;
+	constexpr int LANDSCAPE_LIMIT = 20;
 	map<const Sprite *, int> preloadedLandscapes;
 	// Stellar objects and thumbnails remain loaded for up to 100 in-game days before they're culled. This prevents
 	// us from repeatedly reloading sprites that the player is frequently encountering.
-	const int DAY_LIMIT = 100;
+	constexpr int DAY_LIMIT = 100;
 	map<const Sprite *, int> loadedStellarObjects;
 	map<const Sprite *, int> loadedThumbnails;
 	// Scenes remain loaded for only one in-game day before they're culled, as they are not commonly requested.
@@ -307,9 +308,9 @@ void SpriteLoadManager::LoadLandscape(TaskQueue &queue, const Sprite *sprite, co
 	map<const Sprite *, int>::iterator pit = preloadedLandscapes.find(sprite);
 	if(pit != preloadedLandscapes.end())
 	{
-		for(pair<const Sprite *const, int> &it : preloadedLandscapes)
-			if(it.second < pit->second)
-				++it.second;
+		for(auto &lastSeen : preloadedLandscapes | views::values)
+			if(lastSeen < pit->second)
+				++lastSeen;
 
 		pit->second = 0;
 		return;

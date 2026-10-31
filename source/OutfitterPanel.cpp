@@ -74,9 +74,8 @@ namespace {
 		// within the fleet. Since a particular ammunition outfit is not bound to
 		// any particular weapon (i.e. one weapon may consume it, while another may
 		// only require it be installed), we always want to restock these outfits.
-		for(auto &&it : ship.Outfits())
+		for(const Outfit *outfit : ship.Outfits() | views::keys)
 		{
-			const Outfit *outfit = it.first;
 			const set<const Outfit *> &ammo = outfit->AmmoStored();
 			if(!outfit->GetWeapon() && !ammo.empty())
 				toRefill.insert(ammo.begin(), ammo.end());
@@ -117,11 +116,11 @@ namespace {
 OutfitterPanel::OutfitterPanel(PlayerInfo &player, const Sale<Outfit> &stock)
 	: ShopPanel(player, true), outfitter(stock)
 {
-	for(const pair<const string, Outfit> &it : GameData::Outfits())
-		catalog[it.second.Category()].push_back(it.first);
+	for(const auto &[name, outfit] : GameData::Outfits())
+		catalog[outfit.Category()].push_back(name);
 
-	for(pair<const string, vector<string>> &it : catalog)
-		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Outfit>());
+	for(auto &names : catalog | views::values)
+		ranges::sort(names, BySeriesAndIndex<Outfit>());
 
 	for(auto &ship : player.Ships())
 		if(ship->GetPlanet() == planet)
@@ -413,7 +412,6 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				return "No ship selected.";
 
 			vector<pair<string, vector<string>>> dependentOutfitErrors;
-			vector<string> errorDetails;
 			bool foundOutfit = false;
 			for(const Ship *ship : playerShips)
 			{
@@ -438,6 +436,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					// Looping over each ship which has the selected outfit, identify the reasons why it cannot be
 					// <verb>'d. Make a list of ship to errors to assemble into a string afterward.
 					// TODO: when there are multiples of the same better verbiage could be used rather than restating.
+					vector<string> errorDetails;
 					for(const auto &[name, value] : selectedOutfit->Precise())
 						if(attributes.GetPrecise(name) < value)
 						{
@@ -473,8 +472,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				{
 					if(playerShips.size() > 1)
 					{
-						errorMessage += to_string(++i) + ". You cannot " + actionName + " this outfit from \""
-							+ shipName + "\", because:\n";
+						errorMessage += to_string(++i) + ". You cannot " + actionName + " this outfit from \"";
+						errorMessage += shipName + "\", because:\n";
 					}
 					for(const string &error : errors)
 						errorMessage += "- " + error + '\n';
@@ -659,7 +658,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 
 				// For unhandled outfit requirements, show a catch-all error message.
 				if(errors.empty())
-					errors.push_back("You cannot install this outfit in your ship.");
+					errors.emplace_back("You cannot install this outfit in your ship.");
 
 				// Return the errors in the appropriate format.
 				if(errors.size() == 1)
@@ -989,7 +988,7 @@ ShopPanel::TransactionResult OutfitterPanel::MoveOutfit(OutfitLocation fromLocat
 
 
 
-bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly)
+bool OutfitterPanel::ButtonActive(char key, bool shipRelatedOnly) const
 {
 	if(key == 'b')
 		return static_cast<bool>(CanMoveOutfit(OutfitLocation::Shop, OutfitLocation::Ship));
@@ -1215,13 +1214,13 @@ void OutfitterPanel::CheckRefill()
 	}
 
 	int64_t cost = 0;
-	for(auto &it : needed)
+	for(auto &[outfit, count] : needed)
 	{
 		// Don't count cost of anything installed from cargo or storage.
-		it.second = max(0, it.second - player.Cargo().Get(it.first) - player.Storage().Get(it.first));
-		if(!outfitter.Has(it.first))
-			it.second = min(it.second, max(0, player.Stock(it.first)));
-		cost += player.StockDepreciation().Value(it.first, day, it.second);
+		count = max(0, count - player.Cargo().Get(outfit) - player.Storage().Get(outfit));
+		if(!outfitter.Has(outfit))
+			count = min(count, max(0, player.Stock(outfit)));
+		cost += player.StockDepreciation().Value(outfit, day, count);
 	}
 	if(!needed.empty() && cost < player.Accounts().Credits())
 	{
@@ -1278,7 +1277,7 @@ void OutfitterPanel::Refill()
 
 // Determine which ships of the selected ships should be referenced in this
 // iteration of Buy / Sell.
-const vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isInstall) const
+vector<Ship *> OutfitterPanel::GetShipsToOutfit(bool isInstall) const
 {
 	vector<Ship *> shipsToOutfit;
 	int compareValue = isInstall ? numeric_limits<int>::max() : 0;
@@ -1340,9 +1339,9 @@ void OutfitterPanel::DrawButtons()
 	//  [ Buy  ] [  Install  ] [  Cargo  ]
 	//  [ Sell ] [ Uninstall ] [ Storage ]
 	//   Quantity [Dropdown]   [  Leave  ]
-	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	constexpr double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
 	const double rowBaseY = Screen::BottomRight().Y() - 2 * rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
-	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	constexpr double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
 	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2 - 1.;
 	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
 

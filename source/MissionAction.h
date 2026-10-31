@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameAction.h"
 #include "LocationFilter.h"
 
+#include <cstdint>
 #include <map>
 #include <string>
 
@@ -51,7 +52,7 @@ public:
 
 	void Load(const DataNode &node, const ConditionsStore *playerConditions,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
-	void LoadSingle(const DataNode &node, const ConditionsStore *playerConditions,
+	void LoadSingle(const DataNode &child, const ConditionsStore *playerConditions,
 		const std::set<const System *> *visitedSystems, const std::set<const Planet *> *visitedPlanets);
 	// Note: the Save() function can assume this is an instantiated mission, not
 	// a template, so it only has to save a subset of the data.
@@ -74,7 +75,7 @@ public:
 	// will be highlighted in the map if you bring it up.
 	void Do(PlayerInfo &player, UI *ui, const Mission *caller,
 		const System *destination = nullptr, const std::shared_ptr<Ship> &ship = nullptr,
-		const bool isUnique = true) const;
+		bool isUnique = true) const;
 
 	// "Instantiate" this action by filling in the wildcard text for the actual
 	// destination, payment, cargo, etc.

@@ -28,7 +28,7 @@ using namespace std;
 namespace {
 	// For tracking the player's average income, store daily net worth over this
 	// number of days.
-	const unsigned HISTORY = 100;
+	constexpr unsigned HISTORY = 100;
 }
 
 
@@ -92,8 +92,8 @@ void Account::Save(DataWriter &out) const
 			out.Write("salaries income");
 			out.BeginChild();
 			{
-				for(const auto &income : salariesIncome)
-					out.Write(income.first, income.second);
+				for(const auto &[name, amount] : salariesIncome)
+					out.Write(name, amount);
 			}
 			out.EndChild();
 		}
