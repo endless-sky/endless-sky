@@ -1,5 +1,5 @@
 Welcome to Endless Sky!
-version 0.11.4-alpha
+version 0.11.4
 
 The player's manual and other
 resources are available at:
@@ -202,6 +202,7 @@ contributed to Endless Sky:
   Bladewood
   BlazingDiesel
   blue-four-seven
+  BobbyCobby
   bobrobbow
   bojidar-bg
   brendanjones
@@ -282,6 +283,7 @@ contributed to Endless Sky:
   gecko-locator
   GefullteTaubenbrust2
   geojak
+  goran-damjanovic
   guillochon
   gunqqer
   Hacklin
@@ -363,6 +365,7 @@ contributed to Endless Sky:
   Matteo Mazzitti
   mattsoulanille
   MauriceTaniel
+  maxonkart0n
   maxrd2
   mbartlett21
   McloughlinGuy
@@ -403,6 +406,7 @@ contributed to Endless Sky:
   OverYrPaygrade
   pakyinwww
   palant
+  papatonyhill
   PaulBlay
   PeacefulPotato
   pega3
@@ -439,7 +443,7 @@ contributed to Endless Sky:
   reticent-rem
   retrue
   RighthandSon
-  Ririshi
+  ririshi
   RisingLeaf
   rlane
   roadrunner56
