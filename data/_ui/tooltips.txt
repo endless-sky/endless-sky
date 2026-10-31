@@ -1416,6 +1416,7 @@ tip "Toggle turret tracking"
 
 tip "Select secondary weapon"
 	`Cycle to your flagship's next secondary weapon. After cycling through all secondary weapons individually, selects every secondary weapon at once, then selects no weapons.`
+	`Secondary weapons can also be selected by clicking on their icons in the HUD. Use Ctrl+Click to select multiple weapons.`
 
 tip "Fire secondary weapon"
 	`Fire your flagship's selected secondary weapon(s).`
