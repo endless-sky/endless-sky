@@ -1869,6 +1869,7 @@ void PlayerInfo::Land(UI &ui)
 
 	freshlyLoaded = false;
 	flagship.reset();
+	boardingCasualties.clear();
 }
 
 
@@ -4999,6 +5000,21 @@ bool PlayerInfo::RecacheJumpRoutes()
 	bool recache = recacheJumpRoutes;
 	recacheJumpRoutes = false;
 	return recache;
+}
+
+
+
+void PlayerInfo::AddBoardingCasualties(const shared_ptr<Ship> &ship, int casualties)
+{
+	boardingCasualties[ship] += casualties;
+}
+
+
+
+int PlayerInfo::GetBoardingCasualties(const shared_ptr<Ship> &ship) const
+{
+	auto it = boardingCasualties.find(ship);
+	return it == boardingCasualties.end() ? 0 : it->second;
 }
 
 

@@ -67,6 +67,17 @@ public:
 		DELETE_ON_TAKEOFF = 4,
 	};
 
+	// Defines how the value from a captured ship is shared with the crew.
+	enum class CaptureProfitSharing {
+		OFF = 0,
+		// Death benefits must be paid to the family of crew members who died when capturing a ship.
+		DEAD_CREW = 1,
+		// Living crew members get a share of the value of captured ships.
+		LIVING_CREW = 2,
+		// Both living crew members and the families of dead crew members get a share of captured ship value.
+		ALL_CREW = 3,
+	};
+
 
 public:
 	Gamerules() = default;
@@ -113,6 +124,12 @@ public:
 	void SetSingleSaveFile(bool value);
 	void SetRestrictedSaveLoading(bool value);
 	void SetMiscValue(const std::string &rule, int value);
+	void SetCaptureProfitSharing(CaptureProfitSharing value);
+	void SetCaptureCaptainShares(double value);
+	void SetCaptureDeadCrewShares(double value);
+	void SetCaptureLivingCrewShares(double value);
+	void SetCaptureMinimumDeathBenefit(int value);
+	void SetCaptureValueBasis(std::optional<double> value);
 
 	int GetValue(const std::string &rule) const;
 
@@ -141,6 +158,12 @@ public:
 	PermadeathMode GetPermadeathMode() const;
 	bool SingleSaveFile() const;
 	bool RestrictedSaveLoading() const;
+	CaptureProfitSharing GetCaptureProfitSharing() const;
+	double CaptureCaptainShares() const;
+	double CaptureDeadCrewShares() const;
+	double CaptureLivingCrewShares() const;
+	int CaptureMinimumDeathBenefit() const;
+	std::optional<double> CaptureValueBasis() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -184,6 +207,12 @@ private:
 		PermadeathMode permadeathMode = PermadeathMode::OFF;
 		bool singleSaveFile = false;
 		bool restrictedSaveLoading = false;
+		CaptureProfitSharing captureProfitSharing = CaptureProfitSharing::OFF;
+		double captureCaptainShares = 2.;
+		double captureDeadCrewShares = 1.;
+		double captureLivingCrewShares = 1.;
+		int captureMinimumDeathBenefit = 100000;
+		std::optional<double> captureValueBasis;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;
