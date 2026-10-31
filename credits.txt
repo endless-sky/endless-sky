@@ -365,6 +365,7 @@ contributed to Endless Sky:
   Matteo Mazzitti
   mattsoulanille
   MauriceTaniel
+  maxonkart0n
   maxrd2
   mbartlett21
   McloughlinGuy
@@ -442,7 +443,7 @@ contributed to Endless Sky:
   reticent-rem
   retrue
   RighthandSon
-  Ririshi
+  ririshi
   RisingLeaf
   rlane
   roadrunner56
