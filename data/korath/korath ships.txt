@@ -22,8 +22,8 @@ ship "Rano'erek"
 		"cost" 29370000
 		"shields" 32500
 		"hull" 16500
-		"required crew" 137
-		"bunks" 357
+		"required crew" 68
+		"bunks" 135
 		"mass" 3542
 		"drag" 32.5
 		"heat dissipation" .24
@@ -48,7 +48,7 @@ ship "Rano'erek"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 190
+		"Thermal Repeater Rifle" 135
 		
 		"Reverser (Lunar Class)"
 		"Steering (Planetary Class)"
@@ -105,8 +105,8 @@ ship "Palavret"
 		"cost" 16570000
 		"shields" 27000
 		"hull" 9000
-		"required crew" 145
-		"bunks" 250
+		"required crew" 72
+		"bunks" 128
 		"mass" 1770
 		"drag" 20.4
 		"heat dissipation" .3
@@ -134,7 +134,7 @@ ship "Palavret"
 		"Large Heat Shunt"
 		"Small Heat Shunt" 3
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 196
+		"Thermal Repeater Rifle" 128
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -180,8 +180,8 @@ ship "Tubfalet"
 		"cost" 22895000
 		"shields" 29500
 		"hull" 11000
-		"required crew" 157
-		"bunks" 250
+		"required crew" 78
+		"bunks" 128
 		"mass" 2228
 		"drag" 25.5
 		"heat dissipation" .36
@@ -210,7 +210,7 @@ ship "Tubfalet"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt" 2
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 196
+		"Thermal Repeater Rifle" 128
 		
 		"Thruster (Planetary Class)"
 		"Thruster (Lunar Class)"
@@ -295,8 +295,8 @@ ship "'nra'ret"
 		"cost" 24760000
 		"shields" 32700
 		"hull" 9850
-		"required crew" 193
-		"bunks" 221
+		"required crew" 96
+		"bunks" 124
 		"mass" 2228
 		"drag" 18.7
 		"heat dissipation" .39
@@ -323,7 +323,7 @@ ship "'nra'ret"
 		"Fuel Processor" 3
 		"Triple Plasma Core"
 		"Liquid Sodium Cooler"
-		"Thermal Repeater Rifle" 219
+		"Thermal Repeater Rifle" 124
 
 		"Afterburner (Planetary Class)"
 		"Steering (Lunar Class)"
