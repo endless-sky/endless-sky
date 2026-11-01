@@ -735,7 +735,7 @@ void MapDetailPanel::DrawInfo()
 
 		// The player clicked on a tradable commodity. Color the map by its price.
 		// Add the click zone for this commodity.
-		clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), uiPoint.Y() - 2.5), Point(170, 20)), i);
+		clickZones.emplace_back(Rectangle::FromCorner(Point(Screen::Left(), uiPoint.Y() - 2), Point(170, 20)), i);
 		if(clickZones.back().Contains(hoverPoint))
 			FillShader::Fill(clickZones.back(), highlight);
 		font.Draw(commodity.name, uiPoint, color);
