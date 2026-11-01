@@ -83,7 +83,6 @@ private:
 	bool isPlanetViewSelected = false;
 	bool isStars = false;
 
-	Point hoverPoint;
 	ScrollVar<double> scroll;
 	ScrollBar scrollbar;
 
