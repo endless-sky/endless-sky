@@ -350,7 +350,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				// Panels need to receive this update before anything else, since event handling
 				// and the step/draw calls that happen later this frame rely on the hoverPoint being
 				// set.
-				activeUI.SetHoverPoint();
+				menuPanels.SetHoverPoint();
+				gamePanels.SetHoverPoint();
 			}
 
 #ifdef ES_USE_SDL3
