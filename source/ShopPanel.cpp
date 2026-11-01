@@ -311,6 +311,47 @@ void ShopPanel::DrawThumbnail(const Drawable &thumbnail, bool animate, const Poi
 
 
 
+int ShopPanel::DrawShipInfo(const Point &point, const Ship &ship, bool isSale)
+{
+	string descriptionType = isSale ? "description" : "ship description";
+	shipInfo.Update(ship, player, hasFleetCapacity, collapsed.contains(descriptionType), true, isSale);
+
+	const bool hasDescription = shipInfo.DescriptionHeight();
+	double descriptionOffset = hasDescription ? 40. : 0.;
+	if(hasDescription)
+	{
+		if(!collapsed.contains(descriptionType))
+		{
+			descriptionOffset = shipInfo.DescriptionHeight();
+			shipInfo.DrawDescription(point);
+		}
+		else
+		{
+			const Font &font = FontSet::Get(14);
+			const Color &dim = *GameData::Colors().Get("medium");
+			font.Draw("description", point + Point(35., 12.), dim);
+			const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+			SpriteShader::Draw(collapsedArrow, point + Point(20., 20.));
+		}
+
+		// Calculate the ClickZone for the description and add it.
+		const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+		const Point descriptionCenter(point.X() + INFOBAR_WIDTH / 2, point.Y() + descriptionOffset / 2);
+		const ClickZone<string> collapseDescription(descriptionCenter, descriptionDimensions, descriptionType);
+		categoryZones.emplace_back(collapseDescription);
+	}
+
+	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter && !isSale);
+	const Point attributesPoint(point.X(), point.Y() + descriptionOffset);
+	const Point outfitsPoint(point.X(), attributesPoint.Y() + attributesHeight);
+	shipInfo.DrawAttributes(attributesPoint, !isOutfitter && !isSale);
+	shipInfo.DrawOutfits(outfitsPoint);
+
+	return descriptionOffset + attributesHeight + shipInfo.OutfitsHeight();
+}
+
+
+
 void ShopPanel::CheckForMissions(Mission::Location location) const
 {
 	if(!GetUI().IsTop(this))
@@ -629,7 +670,6 @@ bool ShopPanel::Hover(int x, int y)
 	infobarScrollbar.Hover(x, y);
 	sidebarScrollbar.Hover(x, y);
 
-	hoverPoint = Point(x, y);
 	// Check that the point is not in the button area.
 	hoverButton = CheckButton(x, y);
 	if(hoverButton)
@@ -639,8 +679,8 @@ bool ShopPanel::Hover(int x, int y)
 	}
 	else
 	{
-		shipInfo.Hover(hoverPoint);
-		outfitInfo.Hover(hoverPoint);
+		shipInfo.Hover();
+		outfitInfo.Hover();
 	}
 
 	activePane = ShopPane::Main;
@@ -828,7 +868,6 @@ void ShopPanel::DrawShipsSidebar()
 
 	// Check whether flight check tooltips should be shown.
 	const auto flightChecks = player.FlightCheck();
-	Point mouse = UI::GetMouse();
 	warningType.clear();
 	shipName.clear();
 	shipZones.clear();
@@ -861,7 +900,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 
-		if(mouse.Y() < Screen::Bottom() - ButtonPanelHeight() && shipZones.back().Contains(mouse))
+		if(hoverPoint.Y() < Screen::Bottom() - ButtonPanelHeight() && shipZones.back().Contains(hoverPoint))
 		{
 			shipName = ship->GivenName() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
 			shipsTooltip.SetZone(shipZones.back());
@@ -873,7 +912,7 @@ void ShopPanel::DrawShipsSidebar()
 			const string &check = (*checkIt).second.front();
 			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
-			if(shipZones.back().Contains(mouse))
+			if(shipZones.back().Contains(hoverPoint))
 				warningType = check;
 		}
 
@@ -1065,12 +1104,7 @@ void ShopPanel::DrawMain()
 
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, hasFleetCapacity, collapsed.contains("description"), true);
-	shipInfo.DrawAttributes(point, !isOutfitter);
-	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
-	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
-
-	return attributesHeight + shipInfo.OutfitsHeight();
+	return DrawShipInfo(point, *playerShip, false);
 }
 
 

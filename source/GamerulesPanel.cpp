@@ -264,8 +264,6 @@ bool GamerulesPanel::Click(int x, int y, MouseButton button, int clicks)
 
 bool GamerulesPanel::Hover(int x, int y)
 {
-	hoverPoint = Point(x, y);
-
 	hoverItem.clear();
 	tooltip.Clear();
 
@@ -639,7 +637,7 @@ void GamerulesPanel::DrawPresets()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	const Sprite *box[2] = { SpriteSet::Get("ui/radial unselected"), SpriteSet::Get("ui/radial selected") };
+	const Sprite *box[2] = { SpriteSet::Get("ui/radio unselected"), SpriteSet::Get("ui/radio selected") };
 
 	// Animate scrolling.
 	presetListScroll.Step();

@@ -477,7 +477,6 @@ bool LoadPanel::Hover(int x, int y)
 		sideHasFocus = false;
 
 	hasHover = true;
-	hoverPoint = Point(x, y);
 	// Tooltips should not pop up unless the mouse stays in one place for the
 	// full hover time. Otherwise, every time the user scrubs the mouse over the
 	// list, tooltips will appear after one second.
@@ -622,9 +621,8 @@ void LoadPanel::LoadCallback()
 
 	GetUI().PopThrough(GetUI().Root().get());
 	gamePanels.Push(new MainPanel(player));
-	// It takes one step to figure out the planet panel should be created, and
-	// another step to actually place it. So, take two steps to avoid a flicker.
-	gamePanels.StepAll();
+	// It takes one step to figure out the planet panel should be created,
+	// to avoid a flicker.
 	gamePanels.StepAll();
 }
 

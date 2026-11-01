@@ -593,6 +593,15 @@ void Panel::DoUpdateTextDisplay()
 
 
 
+void Panel::SetHoverPoint(const Point &hoverPoint)
+{
+	this->hoverPoint = hoverPoint;
+	for(auto &child : children)
+		child->SetHoverPoint(hoverPoint);
+}
+
+
+
 int Panel::EnumerateTreeAndFindActivePanel(vector<Panel *> &descendants)
 {
 	int currentFocusIdx = -1;
