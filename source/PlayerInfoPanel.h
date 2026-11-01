@@ -21,8 +21,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "InfoPanelState.h"
 #include "text/Layout.h"
 #include "Point.h"
+#include "Tooltip.h"
 
-#include <set>
 #include <vector>
 
 class PlayerInfo;
@@ -67,6 +67,7 @@ private:
 
 	// Handle mouse hover (also including hover during drag actions):
 	bool Hover();
+	void CheckHover(const Rectangle &zone, const std::string &label);
 	// Adjust the scroll by the given amount. Return true if it changed.
 	bool Scroll(int distance);
 	// Try to scroll to the given position. Return true if position changed.
@@ -98,6 +99,8 @@ private:
 
 	// Keep track of which ship the mouse is hovering over.
 	int hoverIndex = -1;
+
+	Tooltip tooltip;
 
 	// When reordering ships, the names of ships being moved are displayed alongside the cursor.
 	bool isDragging = false;

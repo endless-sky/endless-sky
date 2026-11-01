@@ -74,4 +74,5 @@ protected:
 	mutable Tooltip tooltip;
 	bool hasHover = false;
 	mutable bool hoveringTooltip = false;
+	bool isShip = false;
 };

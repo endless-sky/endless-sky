@@ -379,7 +379,6 @@ public:
 	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
 	const Swizzle *CustomSwizzle() const;
-	const std::string &CustomSwizzleName() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -612,6 +611,8 @@ public:
 
 	double TurretTurnMultiplier() const;
 
+	bool HasFuelGeneration() const;
+
 
 protected:
 	virtual void CacheAttributes() override;
@@ -758,7 +759,6 @@ private:
 	bool isCapturable = true;
 	bool isInvisible = false;
 	const Swizzle *customSwizzle = nullptr;
-	std::string customSwizzleName;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.

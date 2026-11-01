@@ -117,7 +117,7 @@ void ShipInfoPanel::Draw()
 		interfaceInfo.SetCondition((*shipIt)->IsParked() ? "show unpark" : "show park");
 		interfaceInfo.SetCondition("show disown");
 	}
-	else if(!panelState.CanEdit())
+	else if(!panelState.CanEdit() && shipIt != panelState.Ships().end() && !shipIt->get()->IsDestroyed())
 	{
 		interfaceInfo.SetCondition("show dump/jettison button");
 		interfaceInfo.SetCondition(selectedOutfit ? "show jettison" : "show dump");
@@ -793,7 +793,7 @@ bool ShipInfoPanel::Rename(const string &name)
 
 bool ShipInfoPanel::CanDump() const
 {
-	if(panelState.CanEdit() || shipIt == panelState.Ships().end())
+	if(panelState.CanEdit() || shipIt == panelState.Ships().end() || shipIt->get()->IsDestroyed())
 		return false;
 
 	CargoHold &cargo = (*shipIt)->Cargo();
@@ -856,7 +856,7 @@ void ShipInfoPanel::Dump()
 	selectedPlunder = nullptr;
 	selectedOutfit = nullptr;
 
-	info.Update(**shipIt, player);
+	UpdateInfo();
 	if(loss)
 		Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
 			GameData::MessageCategories().Get("normal")});
@@ -872,7 +872,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	{
 		loss += count * selectedPlunder->Cost();
 		(*shipIt)->Jettison(selectedPlunder, count);
-		info.Update(**shipIt, player);
+		UpdateInfo();
 
 		if(loss)
 			Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
@@ -892,7 +892,7 @@ void ShipInfoPanel::DumpCommodities(int count)
 		loss += basis;
 		player.AdjustBasis(selectedCommodity, -basis);
 		(*shipIt)->Jettison(selectedCommodity, count);
-		info.Update(**shipIt, player);
+		UpdateInfo();
 
 		if(loss)
 			Messages::Add({"You jettisoned " + Format::CreditString(loss) + " worth of cargo.",
@@ -908,7 +908,7 @@ void ShipInfoPanel::DumpInstalled(int count)
 	if(count > 0)
 	{
 		(*shipIt)->JettisonInstalled(selectedOutfit, count);
-		info.Update(**shipIt, player);
+		UpdateInfo();
 
 		Messages::Add({"You jettisoned " + to_string(count) + " "
 				+ (count == 1 ? selectedOutfit->DisplayName() : selectedOutfit->PluralName()),

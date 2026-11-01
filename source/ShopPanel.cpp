@@ -311,6 +311,47 @@ void ShopPanel::DrawThumbnail(const Drawable &thumbnail, bool animate, const Poi
 
 
 
+int ShopPanel::DrawShipInfo(const Point &point, const Ship &ship, bool isSale)
+{
+	string descriptionType = isSale ? "description" : "ship description";
+	shipInfo.Update(ship, player, hasFleetCapacity, collapsed.contains(descriptionType), true, isSale);
+
+	const bool hasDescription = shipInfo.DescriptionHeight();
+	double descriptionOffset = hasDescription ? 40. : 0.;
+	if(hasDescription)
+	{
+		if(!collapsed.contains(descriptionType))
+		{
+			descriptionOffset = shipInfo.DescriptionHeight();
+			shipInfo.DrawDescription(point);
+		}
+		else
+		{
+			const Font &font = FontSet::Get(14);
+			const Color &dim = *GameData::Colors().Get("medium");
+			font.Draw("description", point + Point(35., 12.), dim);
+			const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+			SpriteShader::Draw(collapsedArrow, point + Point(20., 20.));
+		}
+
+		// Calculate the ClickZone for the description and add it.
+		const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+		const Point descriptionCenter(point.X() + INFOBAR_WIDTH / 2, point.Y() + descriptionOffset / 2);
+		const ClickZone<string> collapseDescription(descriptionCenter, descriptionDimensions, descriptionType);
+		categoryZones.emplace_back(collapseDescription);
+	}
+
+	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter && !isSale);
+	const Point attributesPoint(point.X(), point.Y() + descriptionOffset);
+	const Point outfitsPoint(point.X(), attributesPoint.Y() + attributesHeight);
+	shipInfo.DrawAttributes(attributesPoint, !isOutfitter && !isSale);
+	shipInfo.DrawOutfits(outfitsPoint);
+
+	return descriptionOffset + attributesHeight + shipInfo.OutfitsHeight();
+}
+
+
+
 void ShopPanel::CheckForMissions(Mission::Location location) const
 {
 	if(!GetUI().IsTop(this))
@@ -1063,12 +1104,7 @@ void ShopPanel::DrawMain()
 
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, hasFleetCapacity, collapsed.contains("description"), true);
-	shipInfo.DrawAttributes(point, !isOutfitter);
-	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
-	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
-
-	return attributesHeight + shipInfo.OutfitsHeight();
+	return DrawShipInfo(point, *playerShip, false);
 }
 
 

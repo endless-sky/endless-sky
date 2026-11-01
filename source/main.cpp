@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "Files.h"
 #include "text/Font.h"
-#include "text/FontSet.h"
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -45,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
+#include "Statistics.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
 #include "test/TestContext.h"
@@ -304,6 +304,9 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// menuPanels is used for the panels related to pilot creation, preferences,
 	// game loading and game saving.
 	UI menuPanels;
+
+	// Record statistics about the player's play session.
+	Statistics stats(player);
 
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
@@ -581,8 +584,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			timer.Wait();
 
 			// If the player ended this frame in-game, count the elapsed time as played time.
-			if(menuPanels.IsEmpty())
-				player.AddPlayTime(chrono::steady_clock::now() - start);
+			// If the game window isn't in focus, track this as idle time.
+			stats.AddPlayTime(chrono::steady_clock::now() - start, menuPanels.IsEmpty(), !GameWindow::IsInFocus());
 		}
 	}
 	// Game loop when running the game as part of an integration test.
@@ -645,6 +648,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// If player quit while landed on a planet, save the game if there are changes.
 	if(player.GetPlanet() && gamePanels.CanSave())
 		player.Save();
+	// Always save statistics on the way out, regardless of the player state.
+	stats.Save();
 }
 
 
