@@ -214,7 +214,6 @@ protected:
 	OutfitInfoDisplay outfitInfo;
 
 	bool delayedAutoScroll = false;
-	Point hoverPoint;
 
 	Tooltip shipsTooltip;
 	Tooltip creditsTooltip;
