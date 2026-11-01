@@ -3494,9 +3494,13 @@ bool Ship::NeedsEnergy() const
 
 	// If movement itself produces energy, the ship doesn't need energy.
 	ResourceLevels available = AvailableResources();
-	if((cache.thrustCost.energy < 0. && available.FractionalUsage(cache.thrustCost))
-			|| (cache.reverseThrustCost.energy < 0. && available.FractionalUsage(cache.reverseThrustCost))
-			|| (cache.turnCost.energy < 0. && available.FractionalUsage(cache.turnCost))
+	bool inertialess = InertialessMovement();
+	if(inertialess && cache.inertialessFlightCost.energy < 0. && available.FractionalUsage(cache.inertialessFlightCost))
+		return false;
+	if(!inertialess && ((cache.thrustCost.energy < 0. && available.FractionalUsage(cache.thrustCost))
+			|| (cache.reverseThrustCost.energy < 0. && available.FractionalUsage(cache.reverseThrustCost))))
+		return false;
+	if((cache.turnCost.energy < 0. && available.FractionalUsage(cache.turnCost))
 			|| (cache.afterburnerThrustCost.energy < 0. && available.CanExpend(cache.afterburnerThrustCost)))
 		return false;
 
@@ -5920,8 +5924,8 @@ void Ship::DoEngineVisuals(vector<Visual> &visuals, bool isUsingAfterburner) con
 
 bool Ship::RequiresMovementEnergy() const
 {
-	bool hasForwardThrust = cache.thrust;
-	return cache.thrustCost.energy > 0.
+	bool hasForwardThrust = InertialessMovement() || cache.thrust;
+	return (InertialessMovement() ? cache.inertialessFlightCost.energy > 0. : cache.thrustCost.energy > 0.)
 		|| (!hasForwardThrust && cache.reverseThrustCost.energy > 0.)
 		|| cache.turnCost.energy > 0.
 		|| (!hasForwardThrust && !cache.reverseThrust && cache.afterburnerThrustCost.energy > 0.);
