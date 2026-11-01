@@ -48,7 +48,7 @@ ship "Rano'erek"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt"
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 190
+		"Thermal Repeater Rifle" 135
 		
 		"Reverser (Lunar Class)"
 		"Steering (Planetary Class)"
@@ -134,7 +134,7 @@ ship "Palavret"
 		"Large Heat Shunt"
 		"Small Heat Shunt" 3
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 196
+		"Thermal Repeater Rifle" 128
 		
 		"Thruster (Planetary Class)"
 		"Steering (Planetary Class)"
@@ -210,7 +210,7 @@ ship "Tubfalet"
 		"Large Heat Shunt" 2
 		"Small Heat Shunt" 2
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 196
+		"Thermal Repeater Rifle" 128
 		
 		"Thruster (Planetary Class)"
 		"Thruster (Lunar Class)"
@@ -323,7 +323,7 @@ ship "'nra'ret"
 		"Fuel Processor" 3
 		"Triple Plasma Core"
 		"Liquid Sodium Cooler"
-		"Thermal Repeater Rifle" 219
+		"Thermal Repeater Rifle" 162
 
 		"Afterburner (Planetary Class)"
 		"Steering (Lunar Class)"
