@@ -40,9 +40,17 @@ using namespace std;
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
-	bool descriptionCollapsed, bool scrollingPanel)
+	bool descriptionCollapsed, bool scrollingPanel, bool isDefinition)
 {
-	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
+	if(isDefinition)
+		UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
+	else
+	{
+		// If the given ship is not a ship definition, then it won't have a description.
+		// Locate the description it's supposed to have from its definition.
+		const Ship *definition = GameData::Ships().Get(ship.VariantName());
+		UpdateDescription(definition->Description(), ship.Attributes().Licenses(), true);
+	}
 	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
