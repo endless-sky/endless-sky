@@ -190,7 +190,7 @@ bool Hardpoint::IsSpecial() const
 	if(!outfit)
 		return false;
 	const Weapon *weapon = outfit->GetWeapon().get();
-	return weapon->AntiMissile() || weapon->TractorBeam();
+	return weapon->AntiMissile() || weapon->TractorBeam() || weapon->IsDecorative();
 }
 
 
