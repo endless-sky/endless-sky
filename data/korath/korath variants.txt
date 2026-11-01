@@ -145,7 +145,7 @@ ship "Rano'erek" "Rano'erek (Ground Assault)"
 		"Double Plasma Core"
 		"Large Heat Shunt"
 		"Fuel Processor"
-		"Thermal Repeater Rifle" 449
+		"Thermal Repeater Rifle" 335
 		
 		"Reverser (Asteroid Class)"
 		"Steering (Lunar Class)"
