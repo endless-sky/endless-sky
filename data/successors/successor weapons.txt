@@ -319,7 +319,7 @@ outfit "Overcharged Laser Turret"
 		"hull damage" 20.09
 		"piercing" 0.08
 		"cluster"
-	description `Hand-crafted by the more colorful members of the People's Houses, this bespoke overcharged Pulse Laser turret has had even more power pumped into its laser generator compared to the fixed version. In addition, rapid actuators within the turret assembly allow it to partially for jitter produced by the overcharging process, improving the weapon's performance at longer ranges.`
+	description `Hand-crafted by the more colorful members of the People's Houses, this bespoke overcharged Pulse Laser turret has had even more power pumped into its laser generator compared to the fixed version. In addition, rapid actuators within the turret assembly allow it to partially compensate for jitter produced by the overcharging process, improving the weapon's performance at longer ranges.`
 
 effect "overcharged pulse laser impact"
 	sprite "effect/overcharged pulse laser impact"
