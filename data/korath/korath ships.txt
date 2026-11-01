@@ -296,7 +296,7 @@ ship "'nra'ret"
 		"shields" 32700
 		"hull" 9850
 		"required crew" 96
-		"bunks" 162
+		"bunks" 124
 		"mass" 2228
 		"drag" 18.7
 		"heat dissipation" .39
@@ -323,7 +323,7 @@ ship "'nra'ret"
 		"Fuel Processor" 3
 		"Triple Plasma Core"
 		"Liquid Sodium Cooler"
-		"Thermal Repeater Rifle" 162
+		"Thermal Repeater Rifle" 124
 
 		"Afterburner (Planetary Class)"
 		"Steering (Lunar Class)"
