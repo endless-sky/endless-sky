@@ -14,7 +14,7 @@
 mission "Discovery: Archon"
 	entering
 	invisible
-	non-blosking
+	non-blocking
 	source
 		system "Fasitopfar" "Kasikfar" "Peresedersi" "Sayaiban"
 	on offer
