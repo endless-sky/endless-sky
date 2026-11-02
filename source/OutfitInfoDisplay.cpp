@@ -267,14 +267,6 @@ std::string OutfitInfoDisplay::FormatAttribute(const std::string &attribute, dou
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
-		bool canSell, bool descriptionCollapsed)
-{
-	Update(outfit, player, canSell, descriptionCollapsed);
-}
-
-
-
 // Call this every time the ship changes.
 void OutfitInfoDisplay::Update(const Outfit &outfit, const PlayerInfo &player, bool canSell, bool descriptionCollapsed)
 {
@@ -497,7 +489,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	}
 
 	const Weapon *weapon = outfit.GetWeapon().get();
-	if(!weapon)
+	if(!weapon || weapon->IsDecorative())
 		return;
 
 	// Insert padding if any normal attributes were listed above.

@@ -55,8 +55,8 @@ public:
 public:
 	// Get the limit to how low an attribute is allowed to go on a ship when installing outfits.
 	// An empty optional means that there is no lower limit.
-	static std::optional<double> LowerLimit(const std::string &attribute);
-	static std::optional<int64_t> LowerLimitPrecise(const std::string &attribute);
+	static std::optional<double> LowerLimit(const std::string &attribute, bool isAutomaton);
+	static std::optional<int64_t> LowerLimitPrecise(const std::string &attribute, bool isAutomaton);
 
 
 public:
@@ -124,6 +124,9 @@ public:
 	// be added to a ship with the attributes represented by this instance. If
 	// not, return the maximum number that can be added.
 	int CanAdd(const Outfit &other, int count = 1) const;
+	// CanAdd, but if the outfit can't be added up to the given amount, returns
+	// the attribute names that caused the failure to add the outfit.
+	std::pair<int, std::vector<std::string>> CanAddWithReasons(const Outfit &other, int count = 1) const;
 	// For tracking a combination of outfits in a ship: add the given number of
 	// instances of the given outfit to this outfit.
 	void Add(const Outfit &other, int count = 1);

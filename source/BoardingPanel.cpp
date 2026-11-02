@@ -563,7 +563,6 @@ bool BoardingPanel::Click(int x, int y, MouseButton button, int clicks)
 
 bool BoardingPanel::Hover(int x, int y)
 {
-	hoverPoint = Point(x, y);
 	scrollBar.Hover(x, y);
 	return true;
 }

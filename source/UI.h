@@ -49,6 +49,8 @@ public:
 
 
 public:
+	// Let every panel know where the current mouse location is.
+	void SetHoverPoint();
 	// Handle an event. The event is handed to each panel on the stack until one
 	// of them handles it. If none do, this returns false.
 	bool Handle(const SDL_Event &event);

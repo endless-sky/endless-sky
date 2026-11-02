@@ -566,7 +566,7 @@ bool PlayerInfoPanel::Click(int x, int y, MouseButton button, int clicks)
 bool PlayerInfoPanel::Drag(double dx, double dy)
 {
 	isDragging = true;
-	return Hover(hoverPoint + Point(dx, dy));
+	return Hover();
 }
 
 
@@ -927,14 +927,13 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 
 bool PlayerInfoPanel::Hover(int x, int y)
 {
-	return Hover(Point(x, y));
+	return Hover();
 }
 
 
 
-bool PlayerInfoPanel::Hover(const Point &point)
+bool PlayerInfoPanel::Hover()
 {
-	hoverPoint = point;
 	hoverIndex = -1;
 
 	return true;

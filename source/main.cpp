@@ -345,7 +345,15 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
+			{
 				cursorTime = 0;
+				// We only need to update the hover point after mouse movement has occurred.
+				// Panels need to receive this update before anything else, since event handling
+				// and the step/draw calls that happen later this frame rely on the hoverPoint being
+				// set.
+				menuPanels.SetHoverPoint();
+				gamePanels.SetHoverPoint();
+			}
 
 #ifdef ES_USE_SDL3
 			SDL_Keycode eventKeyCode = event.key.key;
@@ -721,7 +729,7 @@ Conversation LoadConversation(const PlayerInfo &player)
 		{"<original first>", "[Original First]"},
 		{"<original last>", "[Original Last]"},
 		{"<origin>", "[Origin Planet]"},
-		{"<passengers>", "[your passengers]"},
+		{"<passengers>", "[passengers]"},
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
 		{"<model>", "[Ship Model]"},

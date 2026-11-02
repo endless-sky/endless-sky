@@ -470,7 +470,7 @@ void Entity::CreateSparks(vector<Visual> &visuals, const string &name, double am
 
 
 
-void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount) const
+void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount, int frameOffset) const
 {
 	if(forget || amount <= 0.)
 		return;
@@ -489,7 +489,10 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());
 		if(GetMask().Contains(point, Angle()))
+		{
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
+			visuals.back().AddFrameOffset(frameOffset);
+		}
 	}
 }
 

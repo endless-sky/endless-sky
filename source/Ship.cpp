@@ -936,7 +936,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// If this ship has a base class, copy any attributes not defined here.
 	// Exception: uncapturable and "never disabled" flags don't carry over.
-	if(base && base != this)
+	if(base && base != this && isNewInstance)
 	{
 		if(!GetSprite())
 			static_cast<Body &>(*this) = *base;
@@ -1252,7 +1252,10 @@ bool Ship::IsValid() const
 // Save a full description of this ship, as currently configured.
 void Ship::Save(DataWriter &out) const
 {
-	out.Write("ship", trueModelName);
+	if(variantName.empty())
+		out.Write("ship", trueModelName);
+	else
+		out.Write("ship", trueModelName, variantName);
 	out.BeginChild();
 	{
 		out.Write("name", givenName);
@@ -2011,7 +2014,7 @@ bool Ship::CanSendHail(const PlayerInfo &player, bool allowUntranslated) const
 		return false;
 
 	// Make sure this ship is able to send a hail.
-	if(CannotAct(Ship::ActionType::COMMUNICATION) || !Crew() || GetPersonality().IsMute() || GetPersonality().IsQuiet())
+	if(CannotAct(Ship::ActionType::COMMUNICATION) || GetPersonality().IsMute() || GetPersonality().IsQuiet())
 		return false;
 
 	// Ships that don't share a language with the player shouldn't communicate when hailed directly.
@@ -2182,14 +2185,18 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 			if(effect.side != side || !(effect.activity & state) || effect.tick)
 				continue;
 
+			vector<Visual> &visualsRef = visuals->get();
 			for(int i = 0; i < effect.amount; ++i)
-				visuals->get().emplace_back(*effect.effect,
+			{
+				visualsRef.emplace_back(*effect.effect,
 					pos + zoom * facing.Rotate(effect.position),
 					isUi ? Point(0., 0.) : Velocity(),
 					facing + effect.angle,
 					Point(),
 					1.,
 					zoom);
+				visualsRef.back().AddFrameOffset(effect.delay);
+			}
 		}
 	};
 	auto drawSparks = [&, this](Ship::PlacementSide side) -> void
@@ -2200,7 +2207,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 		{
 			if(spark.side != side || !(spark.activity & state) || spark.tick)
 				continue;
-			CreateSparks(*visuals, spark.effect, spark.amount);
+			CreateSparks(*visuals, spark.effect, spark.amount, spark.delay);
 		}
 	};
 	auto drawEngineFlares = [&, this](uint8_t where)
@@ -2249,6 +2256,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 			isUi ? Point(0., 0.) : Velocity(),
 			facing + decor.angle,
 			zoom);
+		body.AddFrameOffset(decor.delay);
 		if(body.InheritsParentSwizzle())
 			body.SetSwizzle(GetSwizzle());
 		drawObject(body);
@@ -2257,12 +2265,13 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	{
 		if(isUi || isDocked)
 			return;
+		vector<Visual> &visualsRef = visuals->get();
 		for(const Ship::Leak &leak : activeLeaks)
 		{
 			// Leaks always "flicker" every other frame.
 			if(!Random::Int(2))
 				return;
-			visuals->get().emplace_back(*leak.effect,
+			visualsRef.emplace_back(*leak.effect,
 				pos + zoom * facing.Rotate(leak.location),
 				isUi ? Point(0., 0.) : Velocity(),
 				facing + leak.angle,
@@ -2965,34 +2974,46 @@ bool Ship::CanLand() const
 
 bool Ship::CannotAct(ActionType actionType) const
 {
-	bool cannotAct = zoom != 1.f || isDisabled || hyperspaceCount || pilotError ||
-		(actionType == ActionType::COMMUNICATION && !Crew());
-	if(cannotAct)
+	// Ships which are taking off, landing, entering or exiting hyperspace,
+	// or are experiencing piloting errors due to low crew can't engage in
+	// any action.
+	if(zoom != 1.f || hyperspaceCount || pilotError)
 		return true;
-	bool canActCloaked = true;
-	if(cloak)
-		switch(actionType)
-		{
-			case ActionType::AFTERBURNER:
-				canActCloaked = cache.canAfterburnerWhileCloaked;
-				break;
-			case ActionType::BOARD:
-				canActCloaked = cache.canBoardWhileCloaked;
-				break;
-			case ActionType::COMMUNICATION:
-				canActCloaked = cache.canCommunicateWhileCloaked;
-				break;
-			case ActionType::FIRE:
-				canActCloaked = cache.canFireWhileCloaked;
-				break;
-			case ActionType::PICKUP:
-				canActCloaked = cache.canPickupWhileCloaked;
-				break;
-			case ActionType::SCAN:
-				canActCloaked = cache.canScanWhileCloaked;
-				break;
-		}
-	return (cloak == 1. && !canActCloaked) || (cloak != 1. && cloak && !cloakDisruption && !canActCloaked);
+	// Ships with crew can communicate while disabled, but other action types
+	// aren't possible while disabled.
+	if(actionType == ActionType::COMMUNICATION)
+	{
+		if(!Crew())
+			return true;
+	}
+	else if(isDisabled)
+		return true;
+	// Fully uncloaked ships can take actions.
+	if(!cloak)
+		return false;
+	bool canActCloaked = false;
+	switch(actionType)
+	{
+		case ActionType::AFTERBURNER:
+			canActCloaked = cache.canAfterburnerWhileCloaked;
+			break;
+		case ActionType::BOARD:
+			canActCloaked = cache.canBoardWhileCloaked;
+			break;
+		case ActionType::COMMUNICATION:
+			canActCloaked = cache.canCommunicateWhileCloaked;
+			break;
+		case ActionType::FIRE:
+			canActCloaked = cache.canFireWhileCloaked;
+			break;
+		case ActionType::PICKUP:
+			canActCloaked = cache.canPickupWhileCloaked;
+			break;
+		case ActionType::SCAN:
+			canActCloaked = cache.canScanWhileCloaked;
+			break;
+	}
+	return !canActCloaked;
 }
 
 
