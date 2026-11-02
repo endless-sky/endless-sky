@@ -174,7 +174,7 @@ void SpriteLoadManager::PreventSpriteUpload()
 void SpriteLoadManager::FindDeferredFolders()
 {
 	// Landscape images are always deferred.
-	if(Preferences::Has("Defer loading images"))
+	if(Preferences::Has(Preferences::DEFER_LOADING_IMAGES))
 		deferredFolders = {"land", "thumbnail", "outfit", "scene", "star", "planet"};
 	else
 		deferredFolders = {"land"};

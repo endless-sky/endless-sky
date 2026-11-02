@@ -37,4 +37,9 @@ public:
 	static Uint32 GetAdjustText();
 	// Send the custom adjust text event.
 	static void SendAdjustText();
+
+	// Get the registered ID of the custom tooltip update event.
+	static Uint32 GetTooltipUpdate();
+	// Send the custom tooltip update event.
+	static void SendTooltipUpdate();
 };
