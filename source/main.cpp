@@ -723,7 +723,7 @@ Conversation LoadConversation(const PlayerInfo &player)
 		{"<original first>", "[Original First]"},
 		{"<original last>", "[Original Last]"},
 		{"<origin>", "[Origin Planet]"},
-		{"<passengers>", "[your passengers]"},
+		{"<passengers>", "[passengers]"},
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
 		{"<model>", "[Ship Model]"},
