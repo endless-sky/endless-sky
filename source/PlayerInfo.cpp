@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AI.h"
 #include "audio/Audio.h"
+#include "ConditionAlias.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
@@ -3982,6 +3983,13 @@ void PlayerInfo::ValidateLoad()
 // Helper to register derived conditions.
 void PlayerInfo::RegisterDerivedConditions()
 {
+	// Read-only custom defined aliases. Add these first so that if a condition alias matches
+	// a reserved condition name, then this provider will be overwritten.
+	for(const auto &name : GameData::ConditionAliases() | views::keys)
+		conditions[name].ProvideNamed([](const ConditionEntry &ce) -> int64_t {
+			return GameData::ConditionAliases().Get(ce.Name())->Test();
+		});
+
 	// Read-only date functions.
 	conditions["day"].ProvideNamed([this](const ConditionEntry &ce) { return date.Day(); });
 	conditions["month"].ProvideNamed([this](const ConditionEntry &ce) { return date.Month(); });

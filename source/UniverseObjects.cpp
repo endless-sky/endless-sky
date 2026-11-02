@@ -135,6 +135,10 @@ void UniverseObjects::FinishLoading()
 	// Sort all category lists.
 	for(auto &list : categories)
 		list.second.Sort();
+
+	// Guard against infinite loops in condition aliases.
+	for(auto &alias : conditionAliases | views::values)
+		alias.FinishLoading();
 }
 
 
@@ -732,6 +736,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 			else
 				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
+		}
+		else if(key == "condition" && hasValue)
+		{
+			ConditionAlias *alias = conditionAliases.Get(node.Token(1));
+			if(overwrite)
+				*alias = ConditionAlias();
+			alias->Load(node, playerConditions);
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
