@@ -272,11 +272,13 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 
 	double fullMass = emptyMass + attributes.Get("cargo space");
 	isGeneric &= (fullMass != emptyMass);
-	double thrust = attributes.Get("thrust");
+	bool inertialess = ship.InertialessMovement();
+	double thrust = inertialess ? attributes.Get("inertialess thrust") : attributes.Get("thrust");
 	double afterburnerThrust = attributes.Get("afterburner thrust");
 	double mainThrust = thrust ? thrust : afterburnerThrust;
 	double allThrust = thrust + afterburnerThrust;
-	double reverseThrust = attributes.Get("reverse thrust");
+	double reverseThrust = inertialess ? (attributes.Get("inertialess braking")
+		? attributes.Get("inertialess braking") : thrust) : attributes.Get("reverse thrust");
 	double drag = ship.Drag();
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
@@ -295,7 +297,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 			attributeValues.push_back(Format::Number(60. * allThrust / drag));
 			attributesHeight += 20;
 		}
-		if(reverseThrust)
+		if(reverseThrust && !inertialess)
 		{
 			attributeLabels.push_back("    reversed:");
 			attributeValues.push_back(Format::Number(60. * reverseThrust / drag));
@@ -409,15 +411,31 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double movingHeatPerFrame = attributes.Get("turning heat");
 	if(mainThrust && reverseThrust)
 	{
-		movingEnergyPerFrame += max(attributes.Get("thrusting energy") + attributes.Get("afterburner energy"),
-			attributes.Get("reverse thrusting energy"));
-		movingHeatPerFrame += max(attributes.Get("thrusting heat") + attributes.Get("afterburner heat"),
-			attributes.Get("reverse thrusting heat"));
+		if(inertialess)
+		{
+			movingEnergyPerFrame += attributes.Get("inertialess flight energy") + attributes.Get("afterburner energy");
+			movingHeatPerFrame += attributes.Get("inertialess flight heat") + attributes.Get("afterburner heat");
+		}
+		else
+		{
+			movingEnergyPerFrame += max(attributes.Get("thrusting energy") + attributes.Get("afterburner energy"),
+				attributes.Get("reverse thrusting energy"));
+			movingHeatPerFrame += max(attributes.Get("thrusting heat") + attributes.Get("afterburner heat"),
+				attributes.Get("reverse thrusting heat"));
+		}
 	}
 	else if(mainThrust)
 	{
-		movingEnergyPerFrame += attributes.Get("thrusting energy") + attributes.Get("afterburner energy");
-		movingHeatPerFrame += attributes.Get("thrusting heat") + attributes.Get("afterburner heat");
+		if(inertialess)
+		{
+			movingEnergyPerFrame += attributes.Get("inertialess flight energy") + attributes.Get("afterburner energy");
+			movingHeatPerFrame += attributes.Get("inertialess flight heat") + attributes.Get("afterburner heat");
+		}
+		else
+		{
+			movingEnergyPerFrame += attributes.Get("thrusting energy") + attributes.Get("afterburner energy");
+			movingHeatPerFrame += attributes.Get("thrusting heat") + attributes.Get("afterburner heat");
+		}
 	}
 	else if(reverseThrust)
 	{
@@ -428,9 +446,17 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	if(scrollingPanel)
 	{
 		tableLabels.push_back("thrusting:");
-		energyTable.push_back(Format::Number(-60. * attributes.Get("thrusting energy")));
-		heatTable.push_back(Format::Number(60. * attributes.Get("thrusting heat")));
-		if(reverseThrust)
+		if(inertialess)
+		{
+			energyTable.push_back(Format::Number(-60. * attributes.Get("inertialess flight energy")));
+			heatTable.push_back(Format::Number(60. * attributes.Get("inertialess flight heat")));
+		}
+		else
+		{
+			energyTable.push_back(Format::Number(-60. * attributes.Get("thrusting energy")));
+			heatTable.push_back(Format::Number(60. * attributes.Get("thrusting heat")));
+		}
+		if(reverseThrust && !inertialess)
 		{
 			attributesHeight += 20;
 			tableLabels.push_back("reversing:");

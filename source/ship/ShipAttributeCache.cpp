@@ -40,6 +40,7 @@ void ShipAttributeCache::Calibrate(const Ship &ship)
 	Turn(attributes);
 	ReverseThrust(attributes);
 	AfterburnerThrust(attributes);
+	InertialessMovement(attributes);
 
 	// Miscellaneous actions and attributes:
 	Cloaking(attributes);
@@ -255,6 +256,31 @@ void ShipAttributeCache::AfterburnerThrust(const Outfit &attributes)
 
 
 
+void ShipAttributeCache::InertialessMovement(const Outfit &attributes)
+{
+	inertialessThrust = attributes.Get("inertialess thrust");
+	inertialessBraking = attributes.Get("inertialess braking");
+	if(!inertialessBraking)
+		inertialessBraking = inertialessThrust;
+
+	inertialessFlightCost.hull = attributes.Get("inertialess flight hull");
+	inertialessFlightCost.shields = attributes.Get("inertialess flight shields");
+	inertialessFlightCost.energy = attributes.Get("inertialess flight energy");
+	inertialessFlightCost.heat = attributes.Get("inertialess flight heat");
+	inertialessFlightCost.fuel = attributes.Get("inertialess flight fuel");
+
+	inertialessFlightCost.corrosion = attributes.Get("inertialess flight corrosion");
+	inertialessFlightCost.discharge = attributes.Get("inertialess flight discharge");
+	inertialessFlightCost.ionization = attributes.Get("inertialess flight ion");
+	inertialessFlightCost.scrambling = attributes.Get("inertialess flight scramble");
+	inertialessFlightCost.burning = attributes.Get("inertialess flight burn");
+	inertialessFlightCost.leakage = attributes.Get("inertialess flight leakage");
+	inertialessFlightCost.disruption = attributes.Get("inertialess flight disruption");
+	inertialessFlightCost.slowness = attributes.Get("inertialess flight slowing");
+}
+
+
+
 void ShipAttributeCache::Cloaking(const Outfit &attributes)
 {
 	cloakCost.shields = attributes.Get("cloaking shields");
@@ -316,4 +342,7 @@ void ShipAttributeCache::Misc(const Outfit &attributes)
 	selfDestruct = attributes.Get("self destruct");
 
 	turretTurnMult = 1. + attributes.Get("turret turn multiplier");
+
+	immovable = attributes.Get("immovable");
+	instantBraking = attributes.Get("instant braking");
 }
