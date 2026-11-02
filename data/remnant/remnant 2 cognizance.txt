@@ -47,6 +47,8 @@ mission "Remnant: Cognizance 1"
 		system "Nenia"
 		personality staying heroic disables uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
+		on encounter
+			set "discovered archon"
 	npc
 		government "Korath"
 		system "Nenia"
