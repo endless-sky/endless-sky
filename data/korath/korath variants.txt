@@ -131,37 +131,6 @@ ship "Rano'erek" "Rano'erek (Shunt)"
 	turret "Warder Anti-Missile"
 
 
-ship "Rano'erek" "Rano'erek (Ground Assault)"
-	"crew" 224
-	add attributes
-		"bunks" 200
-		"mass" 115
-		"cargo space" -120
-		"outfit space" -248
-	outfits
-		"Banisher Grav-Turret" 2
-		"Warder Anti-Missile" 2
-		
-		"Double Plasma Core"
-		"Large Heat Shunt"
-		"Fuel Processor"
-		"Thermal Repeater Rifle" 335
-		
-		"Reverser (Asteroid Class)"
-		"Steering (Lunar Class)"
-		"Thruster (Lunar Class)"
-		"Hyperdrive"
-		"Jump Drive"
-
-	turret
-	turret
-	turret
-	turret "Warder Anti-Missile"
-	turret "Banisher Grav-Turret"
-	turret "Warder Anti-Missile"
-	turret "Banisher Grav-Turret"
-
-
 ship "Rano'erek" "Rano'erek (Heaver)"
 	outfits
 		"Langrage Hyper-Heaver" 4
