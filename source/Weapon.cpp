@@ -46,7 +46,9 @@ void Weapon::Load(const DataNode &node)
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
-		if(key == "stream")
+		if(key == "decorative")
+			isDecorative = true;
+		else if(key == "stream")
 			isStreamed = true;
 		else if(key == "cluster")
 			isClustered = true;

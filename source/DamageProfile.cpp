@@ -113,19 +113,32 @@ DamageDealt DamageProfile::CalculateDamage() const
 	// Hull damage is blocked 100%.
 	// Shield damage is blocked 0%.
 	damage.levels.shields *= shieldFraction;
+
 	double totalHullProtection = (ScaleType(1., 0., entity.DamageProtection().hull +
 		(entity.IsCloaked() ? entity.CloakedHullProtection() : 0.)));
-	bool isMinable = entity.EntityType() == Entity::Type::MINABLE;
-	double hullDamage = isMinable ? weapon.MinableDamage() : weapon.HullDamage();
-	double relativeHullDamage = isMinable ? weapon.RelativeMinableDamage() : weapon.RelativeHullDamage();
-	damage.levels.hull = (hullDamage + relativeHullDamage * entity.MaxHull()) * totalHullProtection;
-	double hull = entity.HullLevelUntilDisabled();
-	if(damage.levels.hull > hull)
+	double minimumHull = entity.MinHull();
+	bool isDisabled = minimumHull && entity.HullLevel() < minimumHull;
+	if(!isDisabled)
 	{
-		double hullFraction = hull / damage.levels.hull;
-		damage.levels.hull *= hullFraction;
-		damage.levels.hull += (weapon.DisabledDamage() + weapon.RelativeDisabledDamage() * entity.MaxHull())
-			* totalHullProtection * (1. - hullFraction);
+		bool isMinable = entity.EntityType() == Entity::Type::MINABLE;
+		double hullDamage = isMinable ? weapon.MinableDamage() : weapon.HullDamage();
+		double relativeHullDamage = isMinable ? weapon.RelativeMinableDamage() : weapon.RelativeHullDamage();
+		damage.levels.hull = (hullDamage + relativeHullDamage * entity.MaxHull()) * totalHullProtection;
+	}
+
+	double hullUntilDisabled = entity.HullLevelUntilDisabled();
+	if(minimumHull && (isDisabled || damage.levels.hull > hullUntilDisabled))
+	{
+		double disabledHullDamage = (weapon.DisabledDamage() + weapon.RelativeDisabledDamage() * entity.MaxHull())
+			* totalHullProtection;
+		if(isDisabled)
+			damage.levels.hull = disabledHullDamage;
+		else
+		{
+			double hullFraction = hullUntilDisabled / damage.levels.hull;
+			damage.levels.hull = hullUntilDisabled;
+			damage.levels.hull += disabledHullDamage * (1. - hullFraction);
+		}
 	}
 	damage.levels.energy = (weapon.EnergyDamage() + weapon.RelativeEnergyDamage() * entity.MaxEnergy())
 		* ScaleType(.5, 0., entity.DamageProtection().energy);
@@ -137,8 +150,8 @@ DamageDealt DamageProfile::CalculateDamage() const
 	// DoT damage types with an instantaneous analog.
 	// Ion and burn damage are blocked 50% by shields.
 	// Corrosion and leak damage are blocked 100%.
-	// Discharge damage is blocked 50% by the absence of shields.
-	damage.levels.discharge = weapon.DischargeDamage() * ScaleType(0., .5, entity.DamageProtection().discharge);
+	// Discharge damage is blocked 100% by the absence of shields.
+	damage.levels.discharge = weapon.DischargeDamage() * ScaleType(0., 1., entity.DamageProtection().discharge);
 	damage.levels.corrosion = weapon.CorrosionDamage() * ScaleType(1., 0., entity.DamageProtection().corrosion);
 	damage.levels.ionization = weapon.IonDamage() * ScaleType(.5, 0., entity.DamageProtection().ionization);
 	damage.levels.burning = weapon.BurnDamage() * ScaleType(.5, 0., entity.DamageProtection().burning);
@@ -146,10 +159,10 @@ DamageDealt DamageProfile::CalculateDamage() const
 
 	// Unique special damage types.
 	// Slowing and scrambling are blocked 50% by shields.
-	// Disruption is blocked 50% by the absence of shields.
+	// Disruption is blocked 100% by the absence of shields.
 	damage.levels.slowness = weapon.SlowingDamage() * ScaleType(.5, 0., entity.DamageProtection().slowness);
 	damage.levels.scrambling = weapon.ScramblingDamage() * ScaleType(.5, 0., entity.DamageProtection().scrambling);
-	damage.levels.disruption = weapon.DisruptionDamage() * ScaleType(0., .5, entity.DamageProtection().disruption);
+	damage.levels.disruption = weapon.DisruptionDamage() * ScaleType(0., 1., entity.DamageProtection().disruption);
 
 	// Hit force is unaffected by shields.
 	double hitForce = weapon.HitForce() * ScaleType(0., 0., entity.ForceProtection());

@@ -131,6 +131,13 @@ void Drawable::UnpauseAnimation() const
 
 
 
+void Drawable::AddFrameOffset(int offset) const
+{
+	frameOffset += offset;
+}
+
+
+
 // Zoom factor. This controls how big the sprite should be drawn.
 double Drawable::Zoom() const
 {

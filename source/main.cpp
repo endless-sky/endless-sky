@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "Files.h"
 #include "text/Font.h"
-#include "text/FontSet.h"
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -45,6 +44,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Screen.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
+#include "Statistics.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
 #include "test/TestContext.h"
@@ -305,6 +305,9 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// game loading and game saving.
 	UI menuPanels;
 
+	// Record statistics about the player's play session.
+	Statistics stats(player);
+
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
 	bool dataFinishedLoading = false;
@@ -341,7 +344,15 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
+			{
 				cursorTime = 0;
+				// We only need to update the hover point after mouse movement has occurred.
+				// Panels need to receive this update before anything else, since event handling
+				// and the step/draw calls that happen later this frame rely on the hoverPoint being
+				// set.
+				menuPanels.SetHoverPoint();
+				gamePanels.SetHoverPoint();
+			}
 
 #ifdef ES_USE_SDL3
 			SDL_Keycode eventKeyCode = event.key.key;
@@ -574,8 +585,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			timer.Wait();
 
 			// If the player ended this frame in-game, count the elapsed time as played time.
-			if(menuPanels.IsEmpty())
-				player.AddPlayTime(chrono::steady_clock::now() - start);
+			// If the game window isn't in focus, track this as idle time.
+			stats.AddPlayTime(chrono::steady_clock::now() - start, menuPanels.IsEmpty(), !GameWindow::IsInFocus());
 		}
 	}
 	// Game loop when running the game as part of an integration test.
@@ -638,6 +649,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// If player quit while landed on a planet, save the game if there are changes.
 	if(player.GetPlanet() && gamePanels.CanSave())
 		player.Save();
+	// Always save statistics on the way out, regardless of the player state.
+	stats.Save();
 }
 
 

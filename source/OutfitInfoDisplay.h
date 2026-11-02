@@ -37,22 +37,12 @@ public:
 
 public:
 	OutfitInfoDisplay() = default;
-	OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
-			bool canSell = false, bool descriptionCollapsed = true);
 
 	// Call this every time the ship changes.
 	void Update(const Outfit &outfit, const PlayerInfo &player, bool canSell = false, bool descriptionCollapsed = true);
 
-	// Provided by ItemInfoDisplay:
-	// int PanelWidth();
-	// int MaximumHeight() const;
-	// int DescriptionHeight() const;
-	// int AttributesHeight() const;
 	int RequirementsHeight() const;
 
-	// Provided by ItemInfoDisplay:
-	// void DrawDescription(const Point &topLeft) const;
-	// void DrawAttributes(const Point &topLeft) const;
 	void DrawRequirements(const Point &topLeft) const;
 
 

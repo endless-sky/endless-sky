@@ -135,7 +135,8 @@ mission "Successors: Ghosts QSI 1"
 					goto proceed
 
 mission "Successors: Ghosts QSI 2"
-	priority
+	minor
+	invisible
 	source
 		government "House Kaatrij"
 	to offer
@@ -887,7 +888,6 @@ mission "Successors: Ghosts Cloak Prompt"
 
 
 mission "Successors: Ghosts 8"
-	priority
 	landing
 	source "Qasa-Sija-Iri"
 	to offer
@@ -1452,6 +1452,21 @@ mission "Successors: Ghosts 14"
 
 	on fail
 		dialog phrase "successor ghosts story failed"
+
+
+
+# A patch for players who played Ghosts 14 and 15 during v0.11.3
+# and can't complete Ghosts 14.
+mission "Successors: Ghosts 14 to 15 Patch"
+	landing
+	invisible
+	non-blocking
+	to offer
+		has "Successors: Ghosts 15: done"
+		not "successors: ghosts entered kasii-sola"
+	on offer
+		set "successors: ghosts entered kasii-sola"
+		fail
 
 
 

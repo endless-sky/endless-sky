@@ -156,6 +156,12 @@ protected:
 	void AddOrRemove();
 
 
+protected:
+	// Initialize mouse point to something off-screen to not
+	// make the game think the player is hovering on something.
+	Point hoverPoint = Point(-10000., -10000.);
+
+
 private:
 	class Zone : public Rectangle {
 	public:
@@ -187,6 +193,8 @@ private:
 
 	void DoResize();
 	void DoUpdateTextDisplay();
+
+	void SetHoverPoint(const Point &hoverPoint);
 
 	// Call a method on all the children in reverse order, and then on this
 	// object. Recursion stops as soon as any child returns true.

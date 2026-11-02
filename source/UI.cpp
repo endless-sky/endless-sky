@@ -28,6 +28,15 @@ using namespace std;
 
 
 
+void UI::SetHoverPoint()
+{
+	Point hoverPoint = GetMouse();
+	for(shared_ptr<Panel> &panel : stack)
+		panel->SetHoverPoint(hoverPoint);
+}
+
+
+
 // Handle an event. The event is handed to each panel on the stack until one
 // of them handles it. If none do, this returns false.
 bool UI::Handle(const SDL_Event &event)
@@ -130,7 +139,12 @@ void UI::DrawAll()
 			break;
 
 	for( ; it != stack.end(); ++it)
+	{
+		// Panels that are about to be popped shouldn't get drawn.
+		if(count(toPop.begin(), toPop.end(), it->get()))
+			continue;
 		(*it)->DoDraw();
+	}
 }
 
 

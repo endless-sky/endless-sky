@@ -299,19 +299,16 @@ void MapPanel::Step()
 
 	// The mouse should be pointing to the same map position before and after zooming.
 	bool needsRecenter = !zoom.IsAnimationDone();
-	Point mouse, anchor;
+	Point anchor;
 	if(needsRecenter)
-	{
-		mouse = UI::GetMouse();
-		anchor = mouse / Zoom() - center;
-	}
+		anchor = hoverPoint / Zoom() - center;
 
 	zoom.Step();
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
 	if(needsRecenter)
-		center = mouse / Zoom() - anchor;
+		center = hoverPoint / Zoom() - anchor;
 }
 
 

@@ -105,9 +105,6 @@ public:
 	void AddMissionCargo(const Mission *mission);
 	void RemoveMissionCargo(const Mission *mission);
 
-	// Get the total value of all this cargo, in the given system.
-	int64_t Value(const System *system) const;
-
 	// If anything you are carrying is illegal, return the maximum fine you can
 	// be charged for any illegal outfits plus the sum of the fines for all
 	// missions. If the returned value is negative, you are carrying something

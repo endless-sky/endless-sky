@@ -53,6 +53,7 @@ public:
 	float GetFrame(int step = -1) const;
 	void PauseAnimation() const;
 	void UnpauseAnimation() const;
+	void AddFrameOffset(int offset) const;
 
 	// Positional attributes.
 	double Zoom() const;
