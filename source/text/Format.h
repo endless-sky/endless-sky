@@ -115,6 +115,8 @@ public:
 	static int Search(const std::string &str, const std::string &sub);
 
 	// Return a string containing the elements separated with commas and "and" where needed.
+	template<template<class...> class C>
+	static std::string List(const C<std::string> &elements);
 	template<template<class...> class C, class... T>
 	static std::string List(const C<T...> &elements,
 		std::function<std::string(typename C<T...>::const_reference)> toString);
@@ -126,6 +128,14 @@ public:
 		std::function<std::string(typename C<T...>::const_reference)> toString,
 		std::optional<int> maxLines = std::nullopt);
 };
+
+
+
+template<template<class...> class C>
+std::string Format::List(const C<std::string> &elements)
+{
+	return List<C, std::string>(elements, [](const std::string &value) -> std::string { return value; });
+}
 
 
 
