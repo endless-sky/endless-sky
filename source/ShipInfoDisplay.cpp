@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoDisplay.h"
 
 #include "text/Alignment.h"
+#include "CapacityList.h"
 #include "CategoryList.h"
 #include "CategoryType.h"
 #include "Depreciation.h"
@@ -341,29 +342,33 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double baseTurn = 60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"));
 	MassInfluencedMovementDisplay(baseTurn);
 
-	// Find out how much outfit, engine, and weapon space the chassis has.
-	map<string, double> chassis;
-	static const vector<string> NAMES = {
-		"outfit space free:", "outfit space",
-		"    weapon capacity:", "weapon capacity",
-		"    engine capacity:", "engine capacity",
-		"gun ports free:", "gun ports",
-		"turret mounts free:", "turret mounts"
-	};
-	for(unsigned i = 1; i < NAMES.size(); i += 2)
-		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
-	for(const auto &it : ship.Outfits())
-		for(auto &cit : chassis)
-			cit.second -= min(0., it.second * it.first->Get(cit.first));
+	// Find out how much of each displayed capacity the chassis has, like outfit, engine, and weapon space.
+	const CapacityList &capacities = GameData::GetCapacities();
+	map<string, pair<double, double>> chassisCapacities;
+	for(const CapacityList::Capacity &capacity : capacities)
+	{
+		bool required = capacity.Required();
+		if(!required && !scrollingPanel)
+			continue;
+		double remaining = attributes.Get(capacity.Attribute());
+		double total = remaining;
+		for(const auto &[outfit, count] : ship.Outfits())
+			total -= min(0., count * outfit->Get(capacity.Attribute()));
+		if(!required && !total)
+			continue;
+		chassisCapacities[capacity.Name()] = make_pair(remaining, total);
+	}
 
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	for(unsigned i = 0; i < NAMES.size(); i += 2)
+	for(const CapacityList::Capacity &capacity : capacities)
 	{
-		attributeLabels.push_back(NAMES[i]);
-		attributeValues.push_back(Format::Number(attributes.Get(NAMES[i + 1]))
-			+ " / " + Format::Number(chassis[NAMES[i + 1]]));
+		auto it = chassisCapacities.find(capacity.Name());
+		if(it == chassisCapacities.end())
+			continue;
+		attributeLabels.push_back(it->first);
+		attributeValues.push_back(Format::Number(it->second.first) + " / " + Format::Number(it->second.second));
 		attributesHeight += 20;
 	}
 

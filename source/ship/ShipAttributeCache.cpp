@@ -19,6 +19,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cmath>
 
+using namespace std;
+
 
 
 void ShipAttributeCache::Calibrate(const Ship &ship)
@@ -51,9 +53,7 @@ void ShipAttributeCache::Calibrate(const Ship &ship)
 
 void ShipAttributeCache::Capacity(const Outfit &attributes, const Outfit &baseAttributes)
 {
-	outfitCapacity = baseAttributes.Get("outfit space");
-	weaponCapacity = baseAttributes.Get("weapon capacity");
-	engineCapacity = baseAttributes.Get("engine capacity");
+	baseOutfitCapacity = baseAttributes.Get("outfit space");
 
 	cargoSpace = attributes.Get("cargo space");
 	automaton = attributes.Get("automaton");
