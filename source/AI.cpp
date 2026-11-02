@@ -2750,7 +2750,7 @@ void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 	if(!hasHyperdrive && !hasJumpDrive)
 		return;
 
-	bool isJump = (ship.JumpNavigation().GetCheapestJumpType(ship.GetTargetSystem()).first == JumpType::JUMP_DRIVE);
+	bool isJump = (ship.JumpNavigation().GetCheapestJump(ship.GetTargetSystem()).type == JumpType::JUMP_DRIVE);
 
 	Point direction = ship.GetTargetSystem()->Position() - ship.GetSystem()->Position();
 	double departure = isJump ?
@@ -2795,9 +2795,9 @@ void AI::PrepareForHyperspace(const Ship &ship, Command &command)
 	}
 	// If we're a jump drive, just stop.
 	else if(isJump)
-		Stop(ship, command, ship.JumpNavigation().JumpSpeed());
+		Stop(ship, command, ship.JumpNavigation().JumpSpeedThreshold());
 	// Else stop in the fastest way to end facing in the right direction
-	else if(Stop(ship, command, ship.JumpNavigation().JumpSpeed(), direction))
+	else if(Stop(ship, command, ship.JumpNavigation().JumpSpeedThreshold(), direction))
 		command.SetTurn(TurnToward(ship, direction));
 }
 
