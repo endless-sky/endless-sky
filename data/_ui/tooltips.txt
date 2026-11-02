@@ -1913,7 +1913,27 @@ tip "Single save file"
 tip "Restricted save loading"
 	`If true, this pilot will be unable to reload save files while not on the safety of a planet.`
 
+tip "Capture profit sharing"
+	`Controls whether and how the value of captured ships is shared among the crew members of your flagship.`
+	`- "off": You keep the full value of the captured ship.`
+	`- "dead crew": Death benefits must be paid to the families of crew members who died in the process of capturing a ship. A minimum payment per casualty may also be applied regardless of a successful capture.`
+	`- "living crew": Living crew members must be paid a bonus based on the value of the captured ship.`
+	`- "all crew": Both dead and living crew must be paid according to the rules stated above.`
 
+tip "Captain shares"
+	`If capture profit sharing is active and you successfully capture a ship, this is the number of shares in the value of the captured ship that you as the captain receive.`
+
+tip "Dead crew shares"
+	`If capture profit sharing is set to "dead crew" or "all crew", this is the number of shares in the value of the captured ship that each family of the dead crew members receives.`
+
+tip "Living crew shares"
+	`If capture profit sharing is set to "living crew" or "all crew", this is the number of shares in the value of the captured ship that each living crew member receives.`
+
+tip "Minimum per casualty"
+	`If death benefits are active and you lose crew during a boarding action, this is the minimum number of credits that must be paid to the families of the crew members who died. This amount must be paid even if you didn't successfully capture a ship.`
+
+tip "Capture value basis"
+	`Controls what percentage of the value of a captured ship is used to determine the size of a share. If unset, then a ship is valued at its sale price as it is captured.`
 
 # Boarding panel:
 tip `boarding: in cargo`

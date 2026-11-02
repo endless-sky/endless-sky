@@ -62,6 +62,8 @@ public:
 	void AddMortgage(int64_t principal);
 	void AddFine(int64_t amount);
 	void AddDebt(int64_t amount, std::optional<double> interest, int term);
+	void AddDeathBenefits(int64_t amount);
+	void AddCrewBonus(int64_t amount);
 	int64_t Prequalify() const;
 	// Assets:
 	int64_t NetWorth() const;

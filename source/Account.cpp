@@ -219,6 +219,8 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	int64_t mortgagesPaid = 0;
 	int64_t finesPaid = 0;
 	int64_t debtPaid = 0;
+	int64_t deathBenefitsPaid = 0;
+	int64_t crewBonusesPaid = 0;
 	for(Mortgage &mortgage : mortgages)
 	{
 		int64_t payment = mortgage.Payment();
@@ -238,8 +240,12 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 				mortgagesPaid += payment;
 			else if(mortgage.Type() == "Fine")
 				finesPaid += payment;
-			else
+			else if(mortgage.Type() == "Debt")
 				debtPaid += payment;
+			else if(mortgage.Type() == "Death Benefits")
+				deathBenefitsPaid += payment;
+			else
+				crewBonusesPaid += payment;
 		}
 		assets -= mortgage.Principal();
 	}
@@ -263,7 +269,7 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 	creditScore = max(200, min(800, creditScore + (missedPayment ? -5 : 1)));
 
 	// If you didn't make any payments, no need to continue further.
-	if(!(salariesPaid + maintenancePaid + mortgagesPaid + finesPaid + debtPaid))
+	if(!(salariesPaid + maintenancePaid + mortgagesPaid + finesPaid + debtPaid + deathBenefitsPaid + crewBonusesPaid))
 		return out.str();
 	else if(missedPayment)
 		out << " ";
@@ -281,6 +287,10 @@ string Account::Step(int64_t assets, int64_t salaries, int64_t maintenance)
 		typesPaid["fines"] = finesPaid;
 	if(debtPaid)
 		typesPaid["debt"] = debtPaid;
+	if(deathBenefitsPaid)
+		typesPaid["death benefits"] = deathBenefitsPaid;
+	if(crewBonusesPaid)
+		typesPaid["crew bonuses"] = crewBonusesPaid;
 
 	out << Format::List<map, string, int64_t>(typesPaid,
 		[](const pair<string, int64_t> &it)
@@ -391,6 +401,22 @@ void Account::AddDebt(int64_t amount, optional<double> interest, int term)
 		mortgages.emplace_back("Debt", amount, *interest, term);
 	else
 		mortgages.emplace_back("Debt", amount, creditScore, term);
+}
+
+
+
+void Account::AddDeathBenefits(int64_t amount)
+{
+	// Death benefits have a short term but lower interest than the best mortgage rate.
+	mortgages.emplace_back("Death Benefits", amount, 1000, 60);
+}
+
+
+
+void Account::AddCrewBonus(int64_t amount)
+{
+	// Crew bonuses have zero interest.
+	mortgages.emplace_back("Crew Bonus", amount, 0., 365);
 }
 
 

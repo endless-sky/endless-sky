@@ -144,6 +144,7 @@ private:
 	bool playerDied = false;
 	bool isCapturing = false;
 	bool isFirstCaptureAction = true;
+	bool successfulCapture = false;
 	// Calculating the odds of combat success, and the expected casualties, is
 	// non-trivial. So, cache the results for all crew amounts up to full.
 	CaptureOdds attackOdds;
@@ -154,4 +155,9 @@ private:
 
 	// Whether or not the ship can be captured.
 	bool canCapture = false;
+
+	// If the player boarded this ship multiple times, remember how many casualties
+	// occurred on previous boardings.
+	int pastCasualties;
+	int remainingCrew;
 };
