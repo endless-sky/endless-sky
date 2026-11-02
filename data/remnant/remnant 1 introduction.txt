@@ -13,6 +13,26 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Ember Waste Space"
+	entering
+	invisible
+	non-blocking
+	source
+		attributes "ember waste"
+	on offer
+		set "discovered ember waste space"
+		fail
+
+mission "Discovery: Remnant Space"
+	entering
+	invisible
+	non-blocking
+	source
+		government "Remnant"
+	on offer
+		set "discovered remnant space"
+		fail
+
 mission "First Contact: Remnant"
 	landing
 	invisible
@@ -708,6 +728,8 @@ mission "Remnant: Void Sprites 3"
 		system "Nenia"
 		personality staying heroic nemesis frugal uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
+		on encounter
+			set "discovered archon"
 	on stopover
 		conversation
 			`You have dodged the Archon and landed on the second of the two gas giants where the void sprites live. The hull of your tiny ship creaks and groans under the high atmospheric pressure, but seems to be holding together. Its sensors pick up flocks of void sprites floating between the planet's cloud layers, presumably feeding on airborne creatures too small to detect from this range.`
@@ -2098,6 +2120,8 @@ mission "Remnant: Return the Samples"
 		system "Nenia"
 		personality staying heroic nemesis frugal uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
+		on encounter
+			set "discovered archon"
 	on accept
 		log "People" "Plume" `A Remnant researcher specializing in xenobiology, Plume is at the forefront of recent efforts to restart research on the void sprites and a leading expert in non-carbon based lifeforms.`
 	on stopover
@@ -2140,6 +2164,8 @@ mission "Remnant: Return the Samples 2"
 		system "Nenia"
 		personality staying heroic nemesis uninterested frugal
 		ship "Archon" "Lifted Lorax"
+		on encounter
+			set "discovered archon"
 	on stopover
 		conversation
 			`As you approach Slylandro you watch the Archon like a hawk, but this time it doesn't attempt to drive you off with tridents of white energy. Cautiously you make your way to Slylandro and begin your descent.`

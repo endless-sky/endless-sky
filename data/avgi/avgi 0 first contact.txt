@@ -11,6 +11,35 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Twilight Space"
+	entering
+	invisible
+	non-blocking
+	source
+		attributes "twilight"
+	on offer
+		set "discovered twilight space"
+		fail
+
+mission "Discovery: Tangled Shroud Space"
+	entering
+	invisible
+	non-blocking
+	source
+		attributes "tangled shroud"
+	on offer
+		set "discovered tangled shroud space"
+		fail
+
+mission "Discovery: Avgi Space"
+	entering
+	invisible
+	non-blocking
+	source
+		attributes "avgi"
+	on offer
+		set "discovered avgi space"
+		fail
 
 mission "Avgi: Lost in Twilight"
 	invisible

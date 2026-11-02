@@ -11,6 +11,16 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Archon"
+	entering
+	invisible
+	non-blosking
+	source
+		system "Fasitopfar" "Kasikfar" "Peresedersi" "Sayaiban"
+	on offer
+		set "discovered archon"
+		fail
+
 mission "Drak guarding Korath space"
 	invisible
 	non-blocking
@@ -124,6 +134,8 @@ mission "Drak guarding Void Sprites"
 		personality heroic vindictive staying frugal
 		system Nenia
 		ship "Archon (Cloaked)" "Sleeping Dragon"
+		on encounter
+			set "discovered archon"
 
 mission "Drak guarding Incipias space"
 	invisible
@@ -142,6 +154,8 @@ mission "Drak guarding Incipias space"
 		personality forbearing frugal heroic vindictive
 		system "Il'le"
 		ship "Archon (Hyperdrive Cloaked)" "Guardian of Spring"
+		on encounter
+			set "discovered archon"
 
 # Mission for those who had a savefile prior to 0.9.15 with the old Archon missions
 mission "Archon Personality Compatibility Patch"

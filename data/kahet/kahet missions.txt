@@ -11,6 +11,16 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Graveyard Space"
+	entering
+	invisible
+	non-blocking
+	source
+		attributes "graveyard"
+	on offer
+		set "discovered graveyard space"
+		fail
+
 mission "Graveyard Label"
 	landing
 	invisible
