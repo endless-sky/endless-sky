@@ -661,7 +661,7 @@ void Preferences::Load()
 		it = unrecognized.find(oldName);
 		if(it != unrecognized.end())
 		{
-			unrecognized[newName] = it->second;
+			settings[newName].SetIndex(it->second);
 			unrecognized.erase(it);
 		}
 	}
