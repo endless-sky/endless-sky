@@ -24,8 +24,7 @@ class UI;
 
 
 
-// Represents a settings, such as a preference or gamerule.
-// Handles how the setting is displayed and modified.
+// Represents a preference setting. Handles how the setting is displayed and modified.
 class Setting {
 public:
 	// A simple boolean setting with an on and an off value.
