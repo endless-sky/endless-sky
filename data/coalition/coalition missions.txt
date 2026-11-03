@@ -3915,19 +3915,19 @@ mission "Coalition: Powerless 1"
 				`	"I can tell. Don't worry, you get used to it."`
 			`	He clicks his mandibles for a second. "Hope I do that right you are."`
 			label where
-			`	Reaching into his clothes, he produces a note with what you guess is an address scribbled into it. You two find a local Heliarch agent, and inquire them about it. The instruct you to head to one of the largest buildings on the city outskirts, so you take a tram there.`
+			`	Reaching into his clothes, he produces a note with what you guess is an address scribbled into it. You two find a local Heliarch agent, and ask them about it. They instruct you to head to one of the largest buildings on the city outskirts to you take a tram there.`
 			`	The building itself is very reminiscent of one of the Kimek's "hunger towers", the gigantic skyscrapers	used to produce and store rations in case of emergencies.`
 			`	"Ah, read about this, I have!" Pa'ee says as you two go up the stairs to the entrance. "One of the first ever hunger towers, this was. An older design, of course. Converted it has been into an office for the planetary agricultural administration."`
-			`	You check in at the reception, where Pa'ee provides his credentials and the workers verify his appointment. You go up an elevator for well over a minute, before reaching a waiting room. Pa'ee keeps murmuring to himself something your translator can't quite pick up, but as you notice it sounding pretty much the same every time, you figure out he is rehearsing his proposal for the arbiter.`
+			`	You check in at the reception, where Pa'ee provides his credentials and the workers verify his appointment. You go up in an elevator for well over a minute before reaching a waiting room. Pa'ee keeps murmuring to himself something your translator can't quite pick up, but as you notice it sounds pretty much the same every time, you figure he is rehearsing his proposal for the arbiter.`
 			`	After about half an hour, Pa'ee is called in, and the secretary mentions you may accompany him if you'd like. You follow him inside a simple office, where an older-looking Kimek is seated by the window. She is no doubt the Heliarch Arbiter Pa'ee mentioned, as her garb and circlet indicate her rank.`
 			branch license
 				has "joined the heliarchs"
-			`	Looking up from some documents she was reading, she hides no surprise in seeing you here. "A human? Well now, the most interesting appointment of the day, this might be!" She welcomes you in and offers you two to take your seats. "But not the inquirer for this session you are, correct, Captain <last>?"`
+			`	Looking up from some documents she was reading, she hides no surprise in seeing you here. "A human? Well now, the most interesting appointment of the day, this might be!" She welcomes you in and offers you a pair of seats. "But not the inquirer for this session you are, correct, Captain <last>?"`
 			label choice
 			choice
 				`	"No, I am here as a friend of Pa'ee."`
 				`	"No, I am just accompanying Pa'ee."`
-			`	She nods, and turn to Pa'ee. "Well then. Arbiter Kyrra Ieka, at your service. How may I assist, Pa'ee?"`
+			`	She nods and turns to Pa'ee. "Well then. Arbiter Kyrra Ieka, at your service. How may I assist, Pa'ee?"`
 			`	He fidgets with his words for a moment. "Contact you over a request for my village, I did... No power there, do we have."`
 			`	Arbiter Kyrra is puzzled. "Forgive me, Pa'ee, but not responsible for screening the appointment requests, I am. Give me more details, could you?"`
 			`	Pa'ee seems genuinely taken aback by that, seemingly having thought the arbiter had personally approved the current meeting. He recomposes himself, and begins recounting what he told you, of the small rural village he comes from, and how the people there struggle with no electricity. The arbiter listens in silence, making notes on her computer occasionally. "So, I guess, asking for help I am with building a bioreactor plant for my village. Read I have at work that always at a surplus, the farms here on <planet> operate. Spare a tiny amount could you, as feed for the reactor?"`
@@ -3949,15 +3949,15 @@ mission "Coalition: Powerless 1"
 							has "start: syndicate"
 			`	To that, Arbiter Kyrra, pauses her search and looks to you in what you guess is a mix of horror and disbelief. She then looks to Pa'ee and says, almost apologetically. "No idea had I that in such precarious conditions, our people could be living!" She turns to you briefly. "No offense intended, Captain, please understand." She gets back to Pa'ee. "Life enough in me I have left to fight for this, should other arbiters or the consuls chime in negatively. Meet you two at the spaceport I shall, at the break of dawn. Prepared you should be for transporting me and 5 of my aides, along with Pa'ee here, back to <origin>, Captain <last>!"`
 			`	Pa'ee is ecstatic, and practically jumps out of his chair. "Thank you, arbiter! Thank you! Knew I did that a true champion of Iiechakayi, you were!" You are unsure what exactly the word he just used is, as your translator does nothing to address it.`
-			`	Arbiter Kyrra Ieka accommodates his enthusiasm, and thanks you two for bringing this to her attention. She sees you off the office, and right after you leave another Kimek goes in for their own appointment. You two return to the spaceport, where Pa'ee, now reinvigorated, decides to explore around before meeting with the arbiter and her aides after dawn. You tell him to be careful not to get lost, and return to the ship.`
+			`	Arbiter Kyrra Ieka accommodates his enthusiasm, and thanks you two for bringing this to her attention. She sees you off the office, and right after you leave another Kimek goes in for their own appointment. You two return to the spaceport, where Pa'ee, now reinvigorated, decides to explore before the dawn meeting with the arbiter and her aides. You tell him to be careful not to get lost, and return to the ship.`
 				decline
 			label license
-			`	Looking up from some documents she was reading, she hides no surprise in seeing you here, her eyes darting to your own circlet. "A human? And one from our own ranks at that? Well now, the most interesting appointment of the day, this might be!" She welcomes you in and offers you two to take your seats. "But not the inquirer for this session you are, correct, Captain <last>?"`
+			`	Looking up from some documents she was reading, she hides no surprise in seeing you here, her eyes darting to your own circlet. "A human? And one from our own ranks at that? Well now, the most interesting appointment of the day, this might be!" She welcomes you in and offers you both a seat. "But not the inquirer for this session you are, correct, Captain <last>?"`
 				goto choice
 
 mission "Coalition: Powerless 2"
 	name "Arbiter to <planet>"
-	description "Bring Arbiter Kyrra Ieka and her delegation to Pa'ee's village on <planet>, so that they can see the situation first hand, and determine on the viability for a bioreactor plant."
+	description "Bring Arbiter Kyrra Ieka and her delegation to Pa'ee's village on <planet> so that they can see the situation first hand and determine the viability of a bioreactor plant."
 	passengers 7
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
 	to offer
@@ -3966,7 +3966,7 @@ mission "Coalition: Powerless 2"
 	destination "Fourth Shadow"
 	on offer
 		conversation
-			`Pa'ee is window browsing the local shops in the spaceport when you find him. He seems to have taken a liking to cataloguing a list of the most expensive items shown in the shops here, and is finding it amusing to laugh at the absurdity of some of the prices.`
+			`Pa'ee is window browsing the local shops in the spaceport when you find him. He seems to have started cataloguing a list of the most expensive items shown in the shops here, and is laughing at the absurdity of some of the prices.`
 			`	"Glad I am that helped me you did, Captain. Not only help my village, this is, but a good bit of fun, the trip is being!"`
 			choice
 				`	"I am glad you're enjoying it. Let's have another look around before the arbiter arrives."`
@@ -3975,21 +3975,21 @@ mission "Coalition: Powerless 2"
 			`	He looks back at you, thinking for a second. "Iiechakayi?" He asks, and as the translator does nothing at all, you nod. "Ah, I see. From Kimek spiritual and cultural beliefs, the word is. Maybe because of that, not translated, it is?" He thinks for a while. "Think I do that the closest words to its meaning, 'cultivating growth', or maybe 'growing dwelling' are. One of the paths us Kimek follow, it is."`
 			choice
 				`	"So there are more paths?"`
-				`	"What's the meaning of it?"`
-			`	He thinks for a while longer. "Two broad paths, do we follow. One is 'Iiechakayi', as I mentioned. The other, 'Priyepichia', stands for... 'Uncharted fortunes' or 'rich adventures', the closest translations are, I think. Responsible for our growth and survival as a species, they are. War and disasters wrecked my species' home world, to the point that sustain us, those of Iiechakayi could not. Famine followed. Nearly extinct, we were... But in a desperate attempt, to the stars, those of Priyepichia looked, and colonies we established. Iiechakayi populated and maintained worlds like this one, or Brass Second as well. Meanwihile kept expanding, and looking for new technologies, Priyepichia did. Space stations, terraforming studies, research into gas giants... All possible, only because kept our species afloat, the stable harvests of Iiechakayi did. Kept us alive." He looks up, and while the spaceport lights obscure the night sky, you imagine he must be thinking about the vastness of space as he talks about the Kimek expansion. "The vast majority, Kimek dedicated to Priyepichia are, fierce adventurers. But, only possible that is, because of the many dutiful Iiechakayi that sustain us, and in truth the Coalition as a whole. One path depends on the other, and completes the other."`
+				`	"What is the meaning of it?"`
+			`	He thinks for a while longer. "Two broad paths, do we follow. One is 'Iiechakayi', as I mentioned. The other, 'Priyepichia', stands for... 'Uncharted fortunes' or 'rich adventures', the closest translations are, I think. Responsible for our growth and survival as a species, they are. War and disasters wrecked my species' home world, to the point that sustain us, those of Iiechakayi could not. Famine followed. Nearly extinct, we were... But in a desperate attempt, to the stars, those of Priyepichia looked, and colonies we established. Iiechakayi populated and maintained worlds like this one, or Brass Second as well. Meanwhile kept expanding, and looking for new technologies, Priyepichia did. Space stations, terraforming studies, research into gas giants... All possible, only because kept our species afloat, the stable harvests of Iiechakayi did. Kept us alive." He looks up, and while the spaceport lights obscure the night sky, you imagine he must be thinking about the vastness of space as he talks about the Kimek expansion. "The vast majority, Kimek dedicated to Priyepichia are, fierce adventurers. But, only possible that is, because of the many dutiful Iiechakayi that sustain us, and in truth the Coalition as a whole. One path depends on the other, and completes the other."`
 			label accept
-			`	You two walk around the spaceport for a while longer, before a Heliarch agent finds you, and asks that you meet with Arbiter Kyrra, who is waiting by your ship.`
-			`	Pa'ee follows you there, and you two find the arbiter, along with 5 other Heliarchs, waiting for you. "Everything in order for the trip, Captain? Set for <destination> at once, we should."`
+			`	You two walk around the spaceport for a while longer, before a Heliarch agent finds you and asks that you meet with Arbiter Kyrra, who is waiting by your ship.`
+			`	Pa'ee follows you there, and you find the arbiter, along with 5 other Heliarchs, waiting for you. "Everything in order for the trip, Captain? Set for <destination> at once, we should."`
 			`	You agree, and show everyone to their bunks. When you're back in your cockpit, you prepare for the journey back to <planet>.`
 				accept
 	on visit
 		dialog `You land on <planet>, but realize that your escort carrying Pa'ee, Arbiter Kyrra and the other Heliarchs hasn't entered the system yet. Better depart and wait for it.`
 	on complete
 		conversation
-			`You receive a message from Arbiter Kyrra, instructing you with some flight coordinates to reach Pa'ee's home village. You fly far from the main spaceport, close to northern tropical region. As you are flying over the basin-shaped mountain formation that surrounds the village, you realize that, by Kimek standards, a "small village" apparently means a town with well over fifthy thousand people.`
+			`You receive a message from Arbiter Kyrra, giving you instructions for how to reach Pa'ee's home village. You fly far from the main spaceport, close to northern tropical region. As you are flying over the basin-shaped mountain formation that surrounds the village, you realize that, by Kimek standards, a "small village" apparently means a town with well over fifty thousand people.`
 			`	After landing your ship a good distance away from their crop fields, you, Pa'ee, and Arbiter Kyrra's delegation move to the village. The locals recognize Pa'ee and are happy to see his return, but upon learning that he brought a Heliarch arbiter to inspect their village and help bring power to the region, they seem to manifest a festival out of thin air, bringing about gifts of local dishes and candy, artisanal goods, and some even bring their newborn and children to ask for the arbiter's guidance.`
-			`	Pa'ee and the other Heliarchs do their best to calm the locals and give the Kyrra some breathing room, and after a few hours of what surely just became the village's highlight of the year, she is let to do what she came here to do. She interacts with the local authorities and farm heads, asking about their needs and how they manage when they do need power. Half of her delegation helps her with taking notes and discussing, while the rest have gone out to the fields and outskirts of the village to look for the best place for the bioreactor plant to be built.`
-			`	Night has fallen by the time you leave, and the lack of electricity becomes evident over the many near falls you experience on the walk back to your ship. Despite the rugged terrain's best efforts, you reach the <ship> without any serious injuries, and fly everyone back to the main spaceport, where they disperse, as Pa'ee heads for his living quarters here to rest, while Arbiter Kyrra heads to speak with the local Heliarchs and discuss the arrangement. Everyone agrees to meet in the spaceport within a few hours, and leave you to your ship.`
+			`	Pa'ee and the other Heliarchs do their best to calm the locals and give the Arbiter some breathing room, and after a few hours of what surely just became the village's highlight of the year, she is left to do what she came here to do. She interacts with the local authorities and farm heads, asking about their needs and how they manage when they do need power. Half of her delegation helps her with taking notes and discussing, while the rest have gone out to the fields and outskirts of the village to look for the best place for the bioreactor plant to be built.`
+			`	Night has fallen by the time you leave, and the lack of electricity becomes evident over the many near falls you experience on the walk back to your ship. Despite the rugged terrain's best efforts, you reach the <ship> without any serious injuries and fly everyone back to the main spaceport. Pa'ee heads for his living quarters here to rest, while Arbiter Kyrra heads to speak with the local Heliarchs and discuss the arrangement. Everyone agrees to meet in the spaceport within a few hours, and leaves you to your ship.`
 
 mission "Coalition: Powerless 3"
 	name "Return to <planet>"
@@ -4029,7 +4029,7 @@ mission "Coalition: Powerless Epilogue"
 	destination "Earth"
 	on offer
 		conversation
-			`When you land, you seen you've received a message from Pa'ee, the Kimek worker from Fourth Shadow, who you helped in petitioning for a bioreactor plant for his home village.`
+			`When you land, you receive a message from Pa'ee, the Kimek worker from Fourth Shadow who you helped in petitioning for a bioreactor plant in his home village.`
 			`	"Dear Captain <last>, hope I am that safe travels, you have had! Sending this from my home village, I am! Completed, the power plant has been, and provided us with hypercomms receptors and a public computer for the village, the Heliarchs have! Also completed the lighting complex for the village at night, they have, and all residential lights too. Thank you enough for your help in all of this, we never could, but hope I do that aware you are of how many lives you helped improve. Also, recommended me for a Heliarch agent, Arbiter Kyrra has! Still believe it, I cannot, that joined the ranks I have!"`
 			`	He has attached a video, shot from his home village. It seems to be a timelapse, indicating the village throughout the day, showing it fully lit up at night, and also locals using the newly installed power stations to tune in on radios, computers and other devices.`
 			`	After the video ends, you look around online and find that Arbiter Kyrra Ieka has made this into something of a project, seeking to provide similar aid for villages in situations like those of Pa'ee's home. Nearly all of the villages that are being helped are in Fourth Shadow, but you note a couple in some other Kimek planets, where fringe groups have also struggled with a lack of power.`
