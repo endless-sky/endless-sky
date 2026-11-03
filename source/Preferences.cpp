@@ -663,18 +663,18 @@ void Preferences::Load()
 		}
 	}
 
-	// For people updating from a version before 0.11.3,
+	// For people updating from a version before 0.11.5,
 	// where "Escorts expend ammo" and "Escorts use ammo frugally" were replaced with "Escort ammo usage".
 	it = unrecognized.find("Escorts expend ammo");
 	auto sit = unrecognized.find("Escorts use ammo frugally");
+	if(sit != unrecognized.end() && sit->second)
+		settings[ESCORT_AMMO_USAGE].SetIndex(static_cast<int>(EscortAmmoUsage::FRUGALLY));
+	else if(it != unrecognized.end() && it->second)
+		settings[ESCORT_AMMO_USAGE].SetIndex(static_cast<int>(EscortAmmoUsage::ALWAYS));
+	else if(it != unrecognized.end() || sit != unrecognized.end())
+		settings[ESCORT_AMMO_USAGE].SetIndex(static_cast<int>(EscortAmmoUsage::NEVER));
 	if(it != unrecognized.end())
-	{
-		if(sit != unrecognized.end() && sit->second)
-			settings[ESCORT_AMMO_USAGE].SetIndex(static_cast<int>(EscortAmmoUsage::FRUGALLY));
-		else if(it->second)
-			settings[ESCORT_AMMO_USAGE].SetIndex(static_cast<int>(EscortAmmoUsage::ALWAYS));
 		unrecognized.erase(it);
-	}
 	if(sit != unrecognized.end())
 		unrecognized.erase(sit);
 
