@@ -573,26 +573,26 @@ void Preferences::Load()
 			scrollSpeed = node.Value(1);
 		else if(key == TOOLTIP_ACTIVATION_TIME && hasValue)
 			tooltipActivation = node.Value(1);
-		else if(key == ZOOM_FACTOR_VIEW)
+		else if(key == ZOOM_FACTOR_VIEW && hasValue)
 			zoomIndex = max(0., node.Value(1));
-		else if(key == STATUS_OVERLAYS_ALL)
+		else if(key == STATUS_OVERLAYS_ALL && hasValue)
 			statusOverlaySettings[OverlayType::ALL].SetState(node.Value(1));
-		else if(key == STATUS_OVERLAYS_FLAGSHIP)
+		else if(key == STATUS_OVERLAYS_FLAGSHIP && hasValue)
 			statusOverlaySettings[OverlayType::FLAGSHIP].SetState(node.Value(1));
-		else if(key == STATUS_OVERLAYS_ESCORT)
+		else if(key == STATUS_OVERLAYS_ESCORT && hasValue)
 			statusOverlaySettings[OverlayType::ESCORT].SetState(node.Value(1));
-		else if(key == STATUS_OVERLAYS_ENEMY)
+		else if(key == STATUS_OVERLAYS_ENEMY && hasValue)
 			statusOverlaySettings[OverlayType::ENEMY].SetState(node.Value(1));
-		else if(key == STATUS_OVERLAYS_NEUTRAL)
+		else if(key == STATUS_OVERLAYS_NEUTRAL && hasValue)
 			statusOverlaySettings[OverlayType::NEUTRAL].SetState(node.Value(1));
 		else if(key == PREVIOUS_SAVES && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(settings.contains(key))
-			settings[key].SetIndex(!hasValue || node.Value(1));
+			settings[key].SetIndex(hasValue ? node.Value(1) : 0);
 		else if(key.starts_with("help: "))
-			help[key] = (!hasValue || node.Value(1));
+			help[key] = hasValue ? node.Value(1) : false;
 		else
-			unrecognized[key] = (!hasValue || node.Value(1));
+			unrecognized[key] = hasValue ? node.Value(1) : 0;
 	}
 
 	// For people updating from a version before the visual red alert indicator,
@@ -666,18 +666,17 @@ void Preferences::Load()
 	// For people updating from a version before 0.11.3,
 	// where "Escorts expend ammo" and "Escorts use ammo frugally" were replaced with "Escort ammo usage".
 	it = unrecognized.find("Escorts expend ammo");
+	auto sit = unrecognized.find("Escorts use ammo frugally");
 	if(it != unrecognized.end())
 	{
-		auto sit = unrecognized.find("Escorts use ammo frugally");
 		if(sit != unrecognized.end() && sit->second)
-		{
 			settings[ESCORT_AMMO_USAGE].SetIndex(static_cast<int>(EscortAmmoUsage::FRUGALLY));
-			unrecognized.erase(sit);
-		}
 		else if(it->second)
 			settings[ESCORT_AMMO_USAGE].SetIndex(static_cast<int>(EscortAmmoUsage::ALWAYS));
 		unrecognized.erase(it);
 	}
+	if(sit != unrecognized.end())
+		unrecognized.erase(sit);
 
 	for(const auto &key : unrecognized | views::keys)
 		Logger::Log("Unrecognized preference: " + key, Logger::Level::WARNING);
