@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 class DataNode;
+class DataWriter;
 class UI;
 
 
@@ -51,6 +52,7 @@ public:
 	std::pair<std::string, bool> DisplayValue() const;
 
 	void SetIndex(int index);
+	bool SetValue(const std::string &value);
 	int Index() const;
 	int Toggle(UI *ui);
 	void Scroll(double dy);
@@ -60,7 +62,7 @@ public:
 	// The string value in the options vector matching the current index.
 	const std::string &Option() const;
 
-	bool Save() const;
+	void Save(DataWriter &out, const std::string &identifier) const;
 
 
 private:

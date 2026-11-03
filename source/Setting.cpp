@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Setting.h"
 
 #include "DataNode.h"
+#include "DataWriter.h"
 #include "UI.h"
 
 #include <algorithm>
@@ -105,6 +106,19 @@ void Setting::SetIndex(int index)
 
 
 
+bool Setting::SetValue(const string &value)
+{
+	auto it = ranges::find(options, value);
+	if(it != options.end())
+	{
+		index = distance(options.begin(), it);
+		return true;
+	}
+	return false;
+}
+
+
+
 int Setting::Index() const
 {
 	return index;
@@ -149,7 +163,12 @@ const string &Setting::Option() const
 
 
 
-bool Setting::Save() const
+void Setting::Save(DataWriter &out, const string &identifier) const
 {
-	return save;
+	if(!save)
+		return;
+	if(!options.empty())
+		out.Write(identifier, options[index]);
+	else
+		out.Write(identifier, index);
 }

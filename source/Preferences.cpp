@@ -588,7 +588,12 @@ void Preferences::Load()
 		else if(key == PREVIOUS_SAVES && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(settings.contains(key))
-			settings[key].SetIndex(hasValue ? node.Value(1) : 0);
+		{
+			if(!hasValue || node.IsNumber(1))
+				settings[key].SetIndex(hasValue ? node.Value(1) : 0);
+			else if(!settings[key].SetValue(node.Token(1)))
+				node.PrintTrace("\"" + node.Token(1) + "\" is not a recognized value for the preference \"" + key + "\"");
+		}
 		else if(key.starts_with("help: "))
 			help[key] = hasValue ? node.Value(1) : false;
 		else
@@ -703,8 +708,7 @@ void Preferences::Save()
 	out.Write(PREVIOUS_SAVES, previousSaveCount);
 
 	for(const auto &[identifier, setting] : settings)
-		if(setting.Save())
-			out.Write(identifier, setting.Index());
+		setting.Save(out, identifier);
 	for(const auto &[identifier, value] : help)
 		out.Write(identifier, value);
 	// Retain unrecognized settings in case they're here because the player jumped between versions.
