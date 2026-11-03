@@ -589,10 +589,8 @@ void Preferences::Load()
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(settings.contains(key))
 		{
-			if(!hasValue || node.IsNumber(1))
+			if(!hasValue || !settings[key].SetValue(node.Token(1)))
 				settings[key].SetIndex(hasValue ? node.Value(1) : 0);
-			else if(!settings[key].SetValue(node.Token(1)))
-				node.PrintTrace("\"" + node.Token(1) + "\" is not a recognized value for the preference \"" + key + "\"");
 		}
 		else if(key.starts_with("help: "))
 			help[key] = hasValue ? node.Value(1) : false;
