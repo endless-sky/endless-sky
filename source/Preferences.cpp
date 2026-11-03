@@ -588,10 +588,7 @@ void Preferences::Load()
 		else if(key == PREVIOUS_SAVES && hasValue)
 			previousSaveCount = max<int>(3, node.Value(1));
 		else if(settings.contains(key))
-		{
-			if(!hasValue || !settings[key].SetValue(node.Token(1)))
-				settings[key].SetIndex(hasValue ? node.Value(1) : 0);
-		}
+			settings[key].SetIndex(hasValue ? node.Value(1) : 0);
 		else if(key.starts_with("help: "))
 			help[key] = hasValue ? node.Value(1) : false;
 		else
@@ -691,8 +688,12 @@ void Preferences::Save()
 {
 	DataWriter out(Files::Config() / "preferences.txt");
 
+	out.WriteComment("Volume settings");
 	for(const auto &[name, category] : VOLUME_SETTINGS)
 		out.Write(name, Audio::Volume(category) / VOLUME_SCALE);
+
+	out.Write();
+	out.WriteComment("Unique settings");
 	out.Write(WINDOW_SIZE, Screen::RawWidth(), Screen::RawHeight());
 	out.Write(ZOOM_FACTOR_MAIN, Screen::UserZoom());
 	out.Write(SCROLL_SPEED, scrollSpeed);
@@ -705,13 +706,24 @@ void Preferences::Save()
 	out.Write(STATUS_OVERLAYS_NEUTRAL, statusOverlaySettings[OverlayType::NEUTRAL].ToInt());
 	out.Write(PREVIOUS_SAVES, previousSaveCount);
 
+	out.Write();
+	out.WriteComment("Toggle settings");
 	for(const auto &[identifier, setting] : settings)
 		setting.Save(out, identifier);
+
+	out.Write();
+	out.WriteComment("Help dialogs");
 	for(const auto &[identifier, value] : help)
 		out.Write(identifier, value);
+
 	// Retain unrecognized settings in case they're here because the player jumped between versions.
-	for(const auto &[identifier, value] : unrecognized)
-		out.Write(identifier, value);
+	if(!unrecognized.empty())
+	{
+		out.Write();
+		out.WriteComment("Unrecognized settings");
+		for(const auto &[identifier, value] : unrecognized)
+			out.Write(identifier, value);
+	}
 }
 
 

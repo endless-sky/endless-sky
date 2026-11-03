@@ -167,8 +167,5 @@ void Setting::Save(DataWriter &out, const string &identifier) const
 {
 	if(!save)
 		return;
-	if(!options.empty())
-		out.Write(identifier, options[index]);
-	else
-		out.Write(identifier, index);
+	out.Write(identifier, index);
 }
