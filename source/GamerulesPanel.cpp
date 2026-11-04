@@ -417,7 +417,7 @@ void GamerulesPanel::DrawGamerules()
 		table.SetHighlight(-120, 120);
 		gameruleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), rule);
 
-		const string &displayName = Preferences::DisplayName(rule);
+		const string &displayName = gamerules.DisplayName(rule);
 		if(rule == hoverItem)
 		{
 			table.SetHighlight(-120, 120);
@@ -431,7 +431,7 @@ void GamerulesPanel::DrawGamerules()
 		}
 
 		auto [text, isOn] = gamerules.DisplayValue(rule);
-		table.Draw(rule, isOn ? medium : dim);
+		table.Draw(displayName, isOn ? medium : dim);
 		table.Draw(text, isOn ? bright : medium);
 	}
 

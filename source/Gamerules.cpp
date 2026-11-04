@@ -916,7 +916,7 @@ void Gamerules::Replace(const Gamerules &rules)
 
 void Gamerules::Reset(const string &rule, const Gamerules &preset)
 {
-	auto it = settings.find(name);
+	auto it = settings.find(rule);
 	if(it != settings.end())
 	{
 		it->second.ResetRule(preset);
