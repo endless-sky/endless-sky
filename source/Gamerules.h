@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Setting.h"
+
 #include <map>
 #include <optional>
 #include <string>
@@ -22,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 class Sprite;
+class UI;
 
 
 
@@ -69,7 +72,37 @@ public:
 
 
 public:
-	Gamerules() = default;
+	// Identifiers for specific gamerules.
+	static const std::string LOCK_GAMERULES;
+	static const std::string UNIVERSAL_RAMSCOOP;
+	static const std::string PERSON_SPAWN_PERIOD;
+	static const std::string NO_PERSON_SPAWN_WEIGHT;
+	static const std::string NPC_MAX_MINING_TIME;
+	static const std::string UNIVERSAL_FRUGAL_THRESHOLD;
+	static const std::string DEPRECIATION_MIN;
+	static const std::string DEPRECIATION_DAILY;
+	static const std::string DEPRECIATION_GRACE_PERIOD;
+	static const std::string DEPRECIATION_MAX_AGE;
+	static const std::string FIGHTER_DODGE_POLICY;
+	static const std::string SYSTEM_DEPARTURE_MIN;
+	static const std::string SYSTEM_ARRIVAL_MIN;
+	static const std::string HABITABLE_BASED_ARRIVAL_DISTANCE;
+	static const std::string HABITABLE_ARRIVAL_MIN;
+	static const std::string HABITABLE_ARRIVAL_MAX;
+	static const std::string FLEET_MULTIPLIER;
+	static const std::string SPAWN_RAID_FLEETS;
+	static const std::string FLEET_SIZE_LIMITATION;
+	static const std::string DEFAULT_MAX_ESCORT_COUNT;
+	static const std::string DEFAULT_MAX_ESCORT_CREW;
+	static const std::string DEFAULT_ADMIN_CAP;
+	static const std::string PERMADEATH_MODE;
+	static const std::string SINGLE_SAVE_FILE;
+	static const std::string RESTRICTED_SAVE_LOADING;
+	static const std::string UNIVERSAL_AMMO_RESTOCKING;
+
+
+public:
+	Gamerules();
 
 	// Load a gamerules node.
 	void Load(const DataNode &node);
@@ -78,9 +111,15 @@ public:
 	// existing save files, but any customizations that a player made to their gamerules will remain.
 	void Save(DataWriter &out, const Gamerules &preset) const;
 
+	// Toggle a rule given its identifier.
+	void Toggle(const std::string &name, UI *ui = nullptr);
+	// Given a rule's identifier, return its display name in the UI.
+	const std::string &DisplayName(const std::string &name) const;
+	// Given a rule's identifier, return its current display value and whether it appears as on or off.
+	std::pair<std::string, bool> DisplayValue(const std::string &name) const;
 	// Replace the name and all the rule values with those of the given gamerules.
 	void Replace(const Gamerules &rules);
-	// Reset a particular value to the value used by the preset.
+	// Reset a particular rule to the value used by the preset.
 	void Reset(const std::string &rule, const Gamerules &preset);
 
 	const std::string &Name() const;
@@ -88,32 +127,7 @@ public:
 	const Sprite *Thumbnail() const;
 
 	void SetLockGamerules(bool value);
-	void SetUniversalRamscoopActive(bool value);
-	void SetPersonSpawnPeriod(int value);
-	void SetNoPersonSpawnWeight(int value);
-	void SetNPCMaxMiningTime(int value);
-	void SetUniversalFrugalThreshold(double value);
-	void SetDepreciationMin(double value);
-	void SetDepreciationDaily(double value);
-	void SetDepreciationGracePeriod(int value);
-	void SetDepreciationMaxAge(int value);
-	void SetFighterDodgePolicy(FighterDodgePolicy value);
-	void SetSystemDepartureMin(double value);
-	void SetSystemArrivalMin(std::optional<double> value);
-	void SetHabitableBasedArrivalDistance(bool value);
-	void SetHabitableArrivalMin(std::optional<double> value);
-	void SetHabitableArrivalMax(std::optional<double> value);
-	void SetFleetMultiplier(double value);
-	void SetSpawnRaidFleets(bool value);
-	void SetFleetSizeLimitation(FleetSizeLimitation value);
-	void SetDefaultMaxEscortCount(int value);
-	void SetDefaultMaxEscortCrew(int value);
-	void SetDefaultAdminCap(int value);
-	void SetPermadeathMode(PermadeathMode permadeathMode);
-	void SetSingleSaveFile(bool value);
-	void SetRestrictedSaveLoading(bool value);
 	void SetMiscValue(const std::string &rule, int value);
-
 	int GetValue(const std::string &rule) const;
 
 	bool LockGamerules() const;
@@ -195,4 +209,5 @@ private:
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	Storage storage;
+	std::map<std::string, Setting> settings;
 };

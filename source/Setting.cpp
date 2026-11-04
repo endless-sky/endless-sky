@@ -83,6 +83,20 @@ void Setting::SetScrollFunc(std::function<void(double)> scrollFunc)
 
 
 
+void Setting::SetConditionFunc(std::function<int()> conditionFunc)
+{
+	this->conditionFunc = std::move(conditionFunc);
+}
+
+
+
+void Setting::SetResetRuleFunc(std::function<void(const Gamerules &)> resetRuleFunc)
+{
+	this->resetRuleFunc = std::move(resetRuleFunc);
+}
+
+
+
 const string &Setting::DisplayName() const
 {
 	return displayName;
@@ -139,10 +153,27 @@ int Setting::Toggle(UI *ui)
 
 
 
-void Setting::Scroll(double dy)
+void Setting::Scroll(double dy) const
 {
 	if(scrollFunc)
 		scrollFunc(dy);
+}
+
+
+
+int Setting::GetCondition() const
+{
+	if(conditionFunc)
+		return conditionFunc();
+	return 0;
+}
+
+
+
+void Setting::ResetRule(const Gamerules &preset) const
+{
+	if(resetRuleFunc)
+		resetRuleFunc(preset);
 }
 
 

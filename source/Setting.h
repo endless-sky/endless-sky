@@ -20,11 +20,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class DataNode;
 class DataWriter;
+class Gamerules;
 class UI;
 
 
 
-// Represents a preference setting. Handles how the setting is displayed and modified.
+// Represents a setting, such as a preference or gamerule.
+// Handles the display and modification of the setting through the UI,
+// and is also capable of holding the setting's value.
 class Setting {
 public:
 	// A simple boolean setting with an on and an off value.
@@ -45,6 +48,8 @@ public:
 	void SetToggleFunc(std::function<int(int, UI *)> toggleFunc);
 	void SetOnToggleFunc(std::function<void(UI *)> onToggleFunc);
 	void SetScrollFunc(std::function<void(double)> scrollFunc);
+	void SetConditionFunc(std::function<int()> conditionFunc);
+	void SetResetRuleFunc(std::function<void(const Gamerules &)> resetRuleFunc);
 
 	const std::string &DisplayName() const;
 	// The value to display for this setting, and whether it is "on"/"off" (i.e. should be drawn bright/dim).
@@ -54,7 +59,9 @@ public:
 	bool SetValue(const std::string &value);
 	int Index() const;
 	int Toggle(UI *ui);
-	void Scroll(double dy);
+	void Scroll(double dy) const;
+	int GetCondition() const;
+	void ResetRule(const Gamerules &preset) const;
 
 	// Update the index to the next option without running the toggle functions.
 	int CycleIndex();
@@ -83,4 +90,8 @@ private:
 	std::function<void(UI *)> onToggleFunc;
 	// Controls updating of the setting when scrolling.
 	std::function<void(double)> scrollFunc;
+	// Returns the value of this setting as a condition.
+	std::function<int()> conditionFunc;
+	// Reset this rule's value to its default.
+	std::function<void(const Gamerules &)> resetRuleFunc;
 };
