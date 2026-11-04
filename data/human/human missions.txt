@@ -11841,13 +11841,13 @@ mission "Silver Talon 1"
 			`	While the woman is talking, Klaus extracts himself from the crate, spraying packing peanuts all over the place and sending the bazooka clattering to the ground. He glowers at the woman before trying to put the lid back on the box, failing, and ending up inside it again. The woman completely ignores him, clearing her throat and peering up at you.`
 			
 			label job
-			`	"Here's the thing, captain. I figure you're a reasonable person, know your business, all that. So I'm not going to sugar-coat. We're the Silver Talon, a group of bounty hunters headed out to the Rim right now for, uh, work. Our previous ride bailed on us, so we're stranded here at the moment and need some help. What do you say?"`
+			`	"Here's the thing, captain. I figure you're a reasonable person, know your business, all that. So I'm not going to sugar-coat. We're the Silver Talon, a group of bounty hunters headed down South right now for, uh, work. Our previous ride bailed on us, so we're stranded here at the moment and need some help. What do you say?"`
 
 			choice
 				`	"Sorry, but I don't help killers."`
 				`	"How many people would this be?"`
 					goto number
-				`	"Where exactly on the Rim are you trying to get to?"`
+				`	"Where exactly in the South are you trying to get to?"`
 					goto greenrock
 				`	"Is this 'work' of yours legal?"`
 					goto legal
@@ -11859,7 +11859,7 @@ mission "Silver Talon 1"
 			label number
 			`	"Five of us, all told. Klaus you've met, Dagger and Pict are in town getting drunk, and Louis is out looking for decent motels."`
 			choice
-				`	"Where exactly on the Rim are you trying to get to?"`
+				`	"Where exactly in the South are you trying to get to?"`
 				`	"Is this 'work' of yours legal?"`
 					goto legal
 
@@ -11982,40 +11982,21 @@ mission "Silver Talon 2"
 				launch
 	npc
 		government "Pirate"
-		personality
-			"hunting"
-			"vindictive"
-			"opportunistic"
-			"coward"
-			"waiting"
-			"target"
+		personality hunting vindictive opportunistic coward waiting target
 			confusion 5
 		ship "Bastion (Laser)" "Swift Scimitar"
-		fleet "Large Southern Pirates" 1
+		fleet "Large Southern Pirates"
 		fleet "Small Southern Pirates" 2
 	npc
 		government "Pirate"
-		personality
-			"hunting"
-			"vindictive"
-			"opportunistic"
-			"coward"
-			"waiting"
-			"target"
+		personality hunting vindictive opportunistic coward waiting target
 			confusion 10
 		ship "Bastion (Heavy)" "Red Tide"
-		fleet "Large Southern Pirates" 1
-		fleet "Small Southern Pirates" 1
+		fleet "Large Southern Pirates"
+		fleet "Small Southern Pirates"
 	npc
 		government "Pirate"
-		personality
-			"hunting"
-			"vindictive"
-			"opportunistic"
-			"coward"
-			"waiting"
-			"staying"
-			"target"
+		personality hunting vindictive opportunistic coward waiting staying target
 			confusion 10
 		system "Lesath"
 		ship "Osprey (Missile)" "Lurker's Shank"
@@ -12138,7 +12119,7 @@ mission "Silver Talon 3"
 					goto firefight
 				`	(Look for a way out.)`
 			
-			`	It is not hard to find an alternate exit from the bar. The only issue is, every other patron has come to the same conclusion as you have and are now pushing their way toward a very ordinary-sized door.`
+			`	It is not hard to find an alternate exit from the bar. The only issue is, every other patron has come to the same conclusion as you have and there is now a horde of civilians trying to squeeze through the narrow back door.`
 			`	As lasers scorch the walls around you and Klaus' weapon cracks off shot after shot, your eyes settle on the kitchen door. A door which leads to a room that, according to galactic fire codes, should have another exit.`
 			`	Bellowing at the bounty hunters to follow, you duck into the kitchen, coming face-to-face with a large, open window and face-to-back with three fleeing cooks. You follow suit, leaping into an alleyway just ahead of Klaus and Dagger. Behind you, Pict hurls her knife through the door and slams it shut before dragging Cerridwyn out of the building.`
 			`	A look passes between the five of you, and you're suddenly running full speed for the <ship>. It's not until you reach orbit that your heart rate returns to normal.`
@@ -12184,25 +12165,13 @@ mission "Silver Talon 3"
 
 	npc
 		government "Pirate"
-		personality
-			"hunting"
-			"vindictive"
-			"opportunistic"
-			"coward"
-			"entering"
-			"target"
+		personality hunting vindictive opportunistic coward entering target
 			confusion 10
 		ship "Osprey" "Stiletto"
 		fleet "Small Southern Pirates" 6
 	npc
 		government "Pirate"
-		personality
-			"hunting"
-			"vindictive"
-			"opportunistic"
-			"coward"
-			"launching"
-			"target"
+		personality hunting vindictive opportunistic coward launching target
 			confusion 10
 		ship "Hawk" "Charon's Watchman"
 	
@@ -12268,44 +12237,25 @@ mission "Silver Talon 4"
 
 	npc
 		government "Pirate"
-		personality
-			"hunting"
-			"vindictive"
-			"opportunistic"
-			"entering"
-			"coward"
+		personality hunting vindictive opportunistic coward entering
 			confusion 10
 		fleet "Small Southern Pirates" 2
 
 	npc
 		government "Pirate"
-		personality
-			"hunting"
-			"vindictive"
-			"opportunistic"
-			"entering"
-			"coward"
+		personality hunting vindictive opportunistic coward entering
 			confusion 20
 		fleet "Small Southern Pirates" 2
 
 	npc
 		government "Pirate"
-		personality
-			"hunting"
-			"vindictive"
-			"opportunistic"
-			"entering"
-			"coward"
+		personality hunting vindictive opportunistic coward entering
 			confusion 10
 		fleet "Large Southern Pirates"
 
 	npc
 		government "Merchant"
-		personality
-			"heroic"
-			"vindictive"
-			"frugal"
-			"launching"
+		personality heroic vindictive frugal launching
 			confusion 30
 		ship "Corvette" "Steam Hammer"
 		ship "Fury" "Luck's Eyebrows"
@@ -12466,11 +12416,7 @@ mission "Pict's Legacy 1"
 
 	npc
 		government "Republic"
-		personality
-			"heroic"
-			"opportunistic"
-			"launching"
-			"staying"
+		personality heroic opportunistic launching staying
 			confusion 10
 		fleet "Large Republic"
 		fleet "Small Republic" 3
@@ -12553,10 +12499,7 @@ mission "Pict's Legacy 2"
 
 	npc
 		government "Republic"
-		personality
-			"heroic"
-			"opportunistic"
-			"launching"
+		personality heroic opportunistic launching
 			confusion 10
 		fleet "Large Republic"
 		fleet "Small Republic"
@@ -12564,20 +12507,14 @@ mission "Pict's Legacy 2"
 	# These heavy reinforcements will arrive if the player can hold on for long enough.
 	npc
 		government "Republic"
-		personality
-			"heroic"
-			"opportunistic"
+		personality heroic opportunistic
 			confusion 10
 		system "Wazn"
 		fleet "Large Republic" 3
 	
 	npc kill
 		government "Alpha"
-		personality
-			"heroic"
-			"staying"
-			"target"
-			"vindictive"
+		personality heroic vindictive staying target
 		system destination
 		ship "Leviathan (Heavy)" "Doomsday"
 		ship "Firebird (Plasma)" "Red Nova"
@@ -12800,11 +12737,7 @@ mission "Pict's Quest 2"
 				accept
 	
 	npc
-		personality
-			"waiting"
-			"staying"
-			"heroic"
-			"opportunistic"
+		personality heroic opportunistic waiting staying
 			confusion 10
 		system "Acamar"
 		government "Republic"
