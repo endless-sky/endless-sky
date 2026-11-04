@@ -422,13 +422,13 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 	int interval = 1;
 	switch(state)
 	{
-		case Preferences::VSync::adaptive:
+		case Preferences::VSync::ADAPTIVE:
 			interval = -1;
 			break;
-		case Preferences::VSync::off:
+		case Preferences::VSync::OFF:
 			interval = 0;
 			break;
-		case Preferences::VSync::on:
+		case Preferences::VSync::ON:
 			interval = 1;
 			break;
 		default:

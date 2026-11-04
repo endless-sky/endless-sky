@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Setting.h"
 
+#include <cstdint>
 #include <map>
 #include <optional>
 #include <string>
@@ -29,45 +30,45 @@ class UI;
 
 
 // Gamerules contains a list of constants and booleans that define game behavior,
-// for example, the spawnrate of person ships or whether universal ramscoops are active.
+// for example, the spawn rate of person ships or whether universal ramscoops are active.
 class Gamerules {
 public:
 	// Defines which disabled fighters can dodge stray projectiles.
-	enum class FighterDodgePolicy {
+	enum class FighterDodgePolicy : int_fast8_t {
 		NONE = 0,
-		ONLY_PLAYER = 1,
-		ALL = 2,
+		ONLY_PLAYER,
+		ALL,
 	};
 
 	// Defines how big the player's active fleet can get.
 	// If the player's fleet size is limited, the flagship does not count toward the limit.
-	enum class FleetSizeLimitation {
+	enum class FleetSizeLimitation : int_fast8_t {
 		// No limit on how many ships the player can own.
 		NONE = 0,
 		// The player can only have a set number of ships active at once.
 		// Carried ships do not contribute to this limit.
-		SHIP_CAP = 1,
+		SHIP_CAP,
 		// The player can only command up to this many crew at once.
 		// Only the base required crew of ships is taken into account.
 		// Crew equivalent is used where present, such as on automata.
-		CREW_CAP = 2,
+		CREW_CAP,
 		// The player has an "administration capacity" that limits how many ships
 		// they can have active, with bigger ships having a higher administrative cost.
-		ADMIN_CAP = 3,
+		ADMIN_CAP,
 	};
 
 	// Whether permadeath is active and how it should behave.
-	enum class PermadeathMode {
+	enum class PermadeathMode : int_fast8_t {
 		// Permadeath is off.
 		OFF = 0,
 		// Your pilot gets locked when you die. Locked pilots can't have their save files loaded.
-		LOCK_ON_DEATH = 1,
+		LOCK_ON_DEATH,
 		// Your pilot gets completely deleted when you die.
-		DELETE_ON_DEATH = 2,
+		DELETE_ON_DEATH,
 		// Your pilot gets locked the moment you take off from a planet.
-		LOCK_ON_TAKEOFF = 3,
+		LOCK_ON_TAKEOFF,
 		// Your pilot gets completely deleted the moment you take off from a planet.
-		DELETE_ON_TAKEOFF = 4,
+		DELETE_ON_TAKEOFF,
 	};
 
 

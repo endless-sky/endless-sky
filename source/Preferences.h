@@ -27,9 +27,9 @@ class UI;
 class Preferences {
 public:
 	enum class VSync : int_fast8_t {
-		off = 0,
-		on,
-		adaptive,
+		OFF = 0,
+		ON,
+		ADAPTIVE,
 	};
 
 	enum class CameraAccel : int_fast8_t {
@@ -41,13 +41,13 @@ public:
 	enum class DateFormat : int_fast8_t {
 		DMY = 0, ///< Day-first format. (Sat, 4 Oct 1941)
 		MDY,     ///< Month-first format. (Sat, Oct 4, 1941)
-		YMD      ///< All-numeric ISO 8601. (1941-10-04)
+		YMD,      ///< All-numeric ISO 8601. (1941-10-04)
 	};
 
 	enum class NotificationSetting : int_fast8_t {
 		OFF = 0,
 		MESSAGE,
-		BOTH
+		BOTH,
 	};
 
 	enum class OverlayState : int_fast8_t {
@@ -63,129 +63,129 @@ public:
 		FLAGSHIP,
 		ESCORT,
 		ENEMY,
-		NEUTRAL
+		NEUTRAL,
 	};
 
 	enum class TurretOverlays : int_fast8_t {
 		OFF = 0,
 		ALWAYS_ON,
-		BLINDSPOTS_ONLY
+		BLINDSPOTS_ONLY,
 	};
 
 	enum class AutoAim : int_fast8_t {
 		OFF = 0,
 		ALWAYS_ON,
-		WHEN_FIRING
+		WHEN_FIRING,
 	};
 
 	enum class AutoFire : int_fast8_t {
 		OFF = 0,
 		ON,
 		GUNS_ONLY,
-		TURRETS_ONLY
+		TURRETS_ONLY,
 	};
 
 	enum class BoardingPriority : int_fast8_t {
 		PROXIMITY = 0,
 		VALUE,
-		MIXED
+		MIXED,
 	};
 
 	enum class FlotsamCollection : int_fast8_t {
 		OFF = 0,
 		ON,
 		FLAGSHIP,
-		ESCORT
+		ESCORT,
 	};
 
-	enum class BackgroundParallax : int {
+	enum class BackgroundParallax : int_fast8_t {
 		OFF = 0,
 		FANCY,
-		FAST
+		FAST,
 	};
 
-	enum class ExtendedJumpEffects : int {
+	enum class ExtendedJumpEffects : int_fast8_t {
 		OFF = 0,
 		MEDIUM,
-		HEAVY
+		HEAVY,
 	};
 
 	enum class AlertIndicator : int_fast8_t {
 		NONE = 0,
 		AUDIO,
 		VISUAL,
-		BOTH
+		BOTH,
 	};
 
 	enum class MinimapDisplay : int_fast8_t {
 		OFF = 0,
 		WHEN_JUMPING,
-		ALWAYS_ON
+		ALWAYS_ON,
 	};
 
 	enum class FlagshipSpacePriority : int_fast8_t {
 		NONE = 0,
 		PASSENGERS,
 		CARGO,
-		BOTH
+		BOTH,
 	};
 
 	enum class LargeGraphicsReduction : int_fast8_t {
-		OFF,
+		OFF = 0,
 		LARGEST_ONLY,
-		ALL
+		ALL,
 	};
 
 	enum class HighlightShips : int_fast8_t {
-		OFF,
+		OFF = 0,
 		FLAGSHIP,
 		OWNED_SHIPS,
-		ALL
+		ALL,
 	};
 
 	enum class TributeConfirmation : int_fast8_t {
 		OFF = 0,
 		FRIENDLY_ONLY,
-		ALWAYS
+		ALWAYS,
 	};
 
 	enum class AmmoRefill : int_fast8_t {
 		NEVER = 0,
 		ASK,
 		WHEN_FREE,
-		ALWAYS
+		ALWAYS,
 	};
 
 	enum class FastForwardCapsLockSync : int_fast8_t {
 		DEFAULT = 0,
 		NEVER,
-		ALWAYS
+		ALWAYS,
 	};
 
 	enum class TargetAsteroidStrategy : int_fast8_t {
 		PROXIMITY = 0,
 		EXPECTED_VALUE,
-		QUALITY
+		QUALITY,
 	};
 
 	enum class EscortAmmoUsage : int_fast8_t {
 		NEVER = 0,
 		FRUGALLY,
-		ALWAYS
+		ALWAYS,
 	};
 
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
-		DEFAULT,
+		DEFAULT = 0,
 		LIGHT,
-		DARK
+		DARK,
 	};
 
 	enum class WindowRounding : int_fast8_t {
-		DEFAULT,
+		DEFAULT = 0,
 		OFF,
 		LARGE,
-		SMALL
+		SMALL,
 	};
 #endif
 
