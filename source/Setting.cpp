@@ -123,7 +123,8 @@ pair<string, bool> Setting::DisplayValue() const
 
 void Setting::SetIndex(int index)
 {
-	this->index = clamp<int>(index, 0, options.size() - 1);
+	if(!options.empty())
+		this->index = clamp<int>(index, 0, options.size() - 1);
 }
 
 
@@ -192,7 +193,8 @@ void Setting::ResetRule(const Gamerules &preset)
 
 int Setting::CycleIndex()
 {
-	index = (index + 1) % options.size();
+	if(!options.empty())
+		index = (index + 1) % options.size();
 	return index;
 }
 
