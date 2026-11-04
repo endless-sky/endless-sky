@@ -20,15 +20,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <optional>
 #include <utility>
 
 using namespace std;
 
 
 
-Setting Setting::Boolean(const string &name, bool defaultValue)
+Setting Setting::OnOff(const string &name, bool defaultValue)
 {
 	return Setting(name, {"off", "on"}, defaultValue, true, false);
+}
+
+
+
+Setting Setting::TrueFalse(const string &name, bool defaultValue)
+{
+	return Setting(name, {"false", "true"}, defaultValue, true, false);
 }
 
 
@@ -55,7 +63,7 @@ Setting::Setting(const string &displayName, const vector<string> &options, int d
 
 
 
-void Setting::SetDisplayFunc(std::function<pair<string, bool>()> displayFunc)
+void Setting::SetDisplayFunc(function<pair<string, bool>()> displayFunc)
 {
 	this->displayFunc = std::move(displayFunc);
 }
@@ -76,21 +84,21 @@ void Setting::SetOnToggleFunc(function<void(UI *)> onToggleFunc)
 
 
 
-void Setting::SetScrollFunc(std::function<void(double)> scrollFunc)
+void Setting::SetScrollFunc(function<void(double)> scrollFunc)
 {
 	this->scrollFunc = std::move(scrollFunc);
 }
 
 
 
-void Setting::SetConditionFunc(std::function<int()> conditionFunc)
+void Setting::SetConditionFunc(function<int()> conditionFunc)
 {
 	this->conditionFunc = std::move(conditionFunc);
 }
 
 
 
-void Setting::SetResetRuleFunc(std::function<void(const Gamerules &)> resetRuleFunc)
+void Setting::SetResetRuleFunc(function<optional<int>(const Gamerules &)> resetRuleFunc)
 {
 	this->resetRuleFunc = std::move(resetRuleFunc);
 }
@@ -165,15 +173,19 @@ int Setting::GetCondition() const
 {
 	if(conditionFunc)
 		return conditionFunc();
-	return 0;
+	return index;
 }
 
 
 
-void Setting::ResetRule(const Gamerules &preset) const
+void Setting::ResetRule(const Gamerules &preset)
 {
 	if(resetRuleFunc)
-		resetRuleFunc(preset);
+	{
+		optional<int> newIndex = resetRuleFunc(preset);
+		if(newIndex.has_value())
+			index = *newIndex;
+	}
 }
 
 

@@ -112,11 +112,11 @@ public:
 	void Save(DataWriter &out, const Gamerules &preset) const;
 
 	// Toggle a rule given its identifier.
-	void Toggle(const std::string &name, UI *ui = nullptr);
+	void Toggle(const std::string &rule, UI *ui = nullptr);
 	// Given a rule's identifier, return its display name in the UI.
-	const std::string &DisplayName(const std::string &name) const;
+	const std::string &DisplayName(const std::string &rule) const;
 	// Given a rule's identifier, return its current display value and whether it appears as on or off.
-	std::pair<std::string, bool> DisplayValue(const std::string &name) const;
+	std::pair<std::string, bool> DisplayValue(const std::string &rule) const;
 	// Replace the name and all the rule values with those of the given gamerules.
 	void Replace(const Gamerules &rules);
 	// Reset a particular rule to the value used by the preset.
@@ -157,6 +157,11 @@ public:
 	bool RestrictedSaveLoading() const;
 
 	bool operator==(const Gamerules &other) const;
+
+
+private:
+	// Sync the display settings with the underlying gamerule values.
+	void SyncSettings();
 
 
 private:

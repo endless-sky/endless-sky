@@ -60,32 +60,22 @@ const string Gamerules::UNIVERSAL_AMMO_RESTOCKING = "universal ammo restocking";
 
 Gamerules::Gamerules()
 {
-	settings[LOCK_GAMERULES] = Setting::Unique("Lock gamerules");
-	settings[LOCK_GAMERULES].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(LockGamerules() ? "true" : "false", true);
-	});
+	settings[LOCK_GAMERULES] = Setting::TrueFalse("Lock gamerules", true);
 	settings[LOCK_GAMERULES].SetOnToggleFunc([this](UI *) -> void {
 		storage.lockGamerules = !storage.lockGamerules;
 	});
-	settings[LOCK_GAMERULES].SetConditionFunc([this]() -> int {
-		return LockGamerules();
-	});
-	settings[LOCK_GAMERULES].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[LOCK_GAMERULES].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.lockGamerules = preset.storage.lockGamerules;
+		return storage.lockGamerules;
 	});
 
-	settings[UNIVERSAL_RAMSCOOP] = Setting::Unique("Universal ramscoop");
-	settings[UNIVERSAL_RAMSCOOP].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(UniversalRamscoopActive() ? "true" : "false", true);
-	});
+	settings[UNIVERSAL_RAMSCOOP] = Setting::TrueFalse("Universal ramscoop", true);
 	settings[UNIVERSAL_RAMSCOOP].SetOnToggleFunc([this](UI *) -> void {
 		storage.universalRamscoop = !storage.universalRamscoop;
 	});
-	settings[UNIVERSAL_RAMSCOOP].SetConditionFunc([this]() -> int {
-		return UniversalRamscoopActive();
-	});
-	settings[UNIVERSAL_RAMSCOOP].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[UNIVERSAL_RAMSCOOP].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.universalRamscoop = preset.storage.universalRamscoop;
+		return storage.universalRamscoop;
 	});
 
 	settings[PERSON_SPAWN_PERIOD] = Setting::Unique("Spawn attempt period");
@@ -104,8 +94,9 @@ Gamerules::Gamerules()
 	settings[PERSON_SPAWN_PERIOD].SetConditionFunc([this]() -> int {
 		return PersonSpawnPeriod();
 	});
-	settings[PERSON_SPAWN_PERIOD].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[PERSON_SPAWN_PERIOD].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.personSpawnPeriod = preset.storage.personSpawnPeriod;
+		return std::nullopt;
 	});
 
 	settings[NO_PERSON_SPAWN_WEIGHT] = Setting::Unique("No spawn weight");
@@ -124,8 +115,9 @@ Gamerules::Gamerules()
 	settings[NO_PERSON_SPAWN_WEIGHT].SetConditionFunc([this]() -> int {
 		return NoPersonSpawnWeight();
 	});
-	settings[NO_PERSON_SPAWN_WEIGHT].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[NO_PERSON_SPAWN_WEIGHT].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.noPersonSpawnWeight = preset.storage.noPersonSpawnWeight;
+		return std::nullopt;
 	});
 
 	settings[NPC_MAX_MINING_TIME] = Setting::Unique("NPC max mining time");
@@ -144,8 +136,9 @@ Gamerules::Gamerules()
 	settings[NPC_MAX_MINING_TIME].SetConditionFunc([this]() -> int {
 		return NPCMaxMiningTime();
 	});
-	settings[NPC_MAX_MINING_TIME].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[NPC_MAX_MINING_TIME].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.npcMaxMiningTime = preset.storage.npcMaxMiningTime;
+		return std::nullopt;
 	});
 
 	settings[UNIVERSAL_FRUGAL_THRESHOLD] = Setting::Unique("Universal frugal threshold");
@@ -164,8 +157,9 @@ Gamerules::Gamerules()
 	settings[UNIVERSAL_FRUGAL_THRESHOLD].SetConditionFunc([this]() -> int {
 		return UniversalFrugalThreshold() * 1000;
 	});
-	settings[UNIVERSAL_FRUGAL_THRESHOLD].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[UNIVERSAL_FRUGAL_THRESHOLD].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.universalFrugalThreshold = preset.storage.universalFrugalThreshold;
+		return std::nullopt;
 	});
 
 	settings[DEPRECIATION_MIN] = Setting::Unique("Minimum value");
@@ -184,8 +178,9 @@ Gamerules::Gamerules()
 	settings[DEPRECIATION_MIN].SetConditionFunc([this]() -> int {
 		return DepreciationMin() * 1000;
 	});
-	settings[DEPRECIATION_MIN].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[DEPRECIATION_MIN].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.depreciationMin = preset.storage.depreciationMin;
+		return std::nullopt;
 	});
 
 	settings[DEPRECIATION_DAILY] = Setting::Unique("Daily depreciation");
@@ -204,8 +199,9 @@ Gamerules::Gamerules()
 	settings[DEPRECIATION_DAILY].SetConditionFunc([this]() -> int {
 		return DepreciationDaily() * 1000;
 	});
-	settings[DEPRECIATION_DAILY].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[DEPRECIATION_DAILY].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.depreciationDaily = preset.storage.depreciationDaily;
+		return std::nullopt;
 	});
 
 	settings[DEPRECIATION_GRACE_PERIOD] = Setting::Unique("Grace period");
@@ -224,8 +220,9 @@ Gamerules::Gamerules()
 	settings[DEPRECIATION_GRACE_PERIOD].SetConditionFunc([this]() -> int {
 		return DepreciationGracePeriod();
 	});
-	settings[DEPRECIATION_GRACE_PERIOD].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[DEPRECIATION_GRACE_PERIOD].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.depreciationGracePeriod = preset.storage.depreciationGracePeriod;
+		return std::nullopt;
 	});
 
 	settings[DEPRECIATION_MAX_AGE] = Setting::Unique("Maximum age");
@@ -244,42 +241,18 @@ Gamerules::Gamerules()
 	settings[DEPRECIATION_MAX_AGE].SetConditionFunc([this]() -> int {
 		return DepreciationMaxAge();
 	});
-	settings[DEPRECIATION_MAX_AGE].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[DEPRECIATION_MAX_AGE].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.depreciationMaxAge = preset.storage.depreciationMaxAge;
+		return std::nullopt;
 	});
 
-	settings[FIGHTER_DODGE_POLICY] = Setting::Unique("Fighter crossfire immunity");
-	settings[FIGHTER_DODGE_POLICY].SetDisplayFunc([this]() -> pair<string, bool> {
-		string text;
-		switch(FightersHitWhenDisabled())
-		{
-		case FighterDodgePolicy::ALL:
-			text = "all";
-			break;
-		case FighterDodgePolicy::ONLY_PLAYER:
-			text = "player";
-			break;
-		case FighterDodgePolicy::NONE:
-			text = "none";
-			break;
-		}
-		return make_pair(text, true);
-	});
+	settings[FIGHTER_DODGE_POLICY] = Setting::List("Fighter crossfire immunity", 2, {"none", "player", "all"});
 	settings[FIGHTER_DODGE_POLICY].SetOnToggleFunc([this](UI *) -> void {
-		FighterDodgePolicy value = FightersHitWhenDisabled();
-		if(value == FighterDodgePolicy::ALL)
-			value = FighterDodgePolicy::NONE;
-		else if(value == FighterDodgePolicy::NONE)
-			value = FighterDodgePolicy::ONLY_PLAYER;
-		else if(value == FighterDodgePolicy::ONLY_PLAYER)
-			value = FighterDodgePolicy::ALL;
-		storage.fighterHitPolicy = value;
+		storage.fighterHitPolicy = static_cast<FighterDodgePolicy>(settings[FIGHTER_DODGE_POLICY].Index());
 	});
-	settings[FIGHTER_DODGE_POLICY].SetConditionFunc([this]() -> int {
-		return static_cast<int>(FightersHitWhenDisabled());
-	});
-	settings[FIGHTER_DODGE_POLICY].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[FIGHTER_DODGE_POLICY].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.fighterHitPolicy = preset.storage.fighterHitPolicy;
+		return static_cast<int>(storage.fighterHitPolicy);
 	});
 
 	settings[SYSTEM_DEPARTURE_MIN] = Setting::Unique("Minimum departure distance");
@@ -298,8 +271,9 @@ Gamerules::Gamerules()
 	settings[SYSTEM_DEPARTURE_MIN].SetConditionFunc([this]() -> int {
 		return SystemDepartureMin() * 1000;
 	});
-	settings[SYSTEM_DEPARTURE_MIN].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[SYSTEM_DEPARTURE_MIN].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.systemDepartureMin = preset.storage.systemDepartureMin;
+		return std::nullopt;
 	});
 
 	settings[SYSTEM_ARRIVAL_MIN] = Setting::Unique("Minimum arrival distance");
@@ -322,22 +296,18 @@ Gamerules::Gamerules()
 	settings[SYSTEM_ARRIVAL_MIN].SetConditionFunc([this]() -> int {
 		return SystemArrivalMin().value_or(0.) * 1000;
 	});
-	settings[SYSTEM_ARRIVAL_MIN].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[SYSTEM_ARRIVAL_MIN].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.systemArrivalMin = preset.storage.systemArrivalMin;
+		return std::nullopt;
 	});
 
-	settings[HABITABLE_BASED_ARRIVAL_DISTANCE] = Setting::Unique("Habitable arrival distance");
-	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(HabitableBasedArrivalDistance() ? "true" : "false", true);
-	});
+	settings[HABITABLE_BASED_ARRIVAL_DISTANCE] = Setting::TrueFalse("Habitable arrival distance", true);
 	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetOnToggleFunc([this](UI *ui) -> void {
 		storage.habitableBasedArrivalDistance = !storage.habitableBasedArrivalDistance;
 	});
-	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetConditionFunc([this]() -> int {
-		return HabitableBasedArrivalDistance();
-	});
-	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.habitableBasedArrivalDistance = preset.storage.habitableBasedArrivalDistance;
+		return storage.habitableBasedArrivalDistance;
 	});
 
 	settings[HABITABLE_ARRIVAL_MIN] = Setting::Unique("   Minimum distance");
@@ -362,8 +332,9 @@ Gamerules::Gamerules()
 	settings[HABITABLE_ARRIVAL_MIN].SetConditionFunc([this]() -> int {
 		return HabitableArrivalMin().value_or(0.) * 1000;
 	});
-	settings[HABITABLE_ARRIVAL_MIN].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[HABITABLE_ARRIVAL_MIN].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.habitableArrivalMin = preset.storage.habitableArrivalMin;
+		return std::nullopt;
 	});
 
 	settings[HABITABLE_ARRIVAL_MAX] = Setting::Unique("   Maximum distance");
@@ -388,8 +359,9 @@ Gamerules::Gamerules()
 	settings[HABITABLE_ARRIVAL_MAX].SetConditionFunc([this]() -> int {
 		return HabitableArrivalMax().value_or(0.) * 1000;
 	});
-	settings[HABITABLE_ARRIVAL_MAX].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[HABITABLE_ARRIVAL_MAX].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.habitableArrivalMax = preset.storage.habitableArrivalMax;
+		return std::nullopt;
 	});
 
 	settings[FLEET_MULTIPLIER] = Setting::Unique("Fleet multiplier");
@@ -408,61 +380,28 @@ Gamerules::Gamerules()
 	settings[FLEET_MULTIPLIER].SetConditionFunc([this]() -> int {
 		return FleetMultiplier() * 1000;
 	});
-	settings[FLEET_MULTIPLIER].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[FLEET_MULTIPLIER].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.fleetMultiplier = preset.storage.fleetMultiplier;
+		return std::nullopt;
 	});
 
-	settings[SPAWN_RAID_FLEETS] = Setting::Unique("Spawn raid fleets");
-	settings[SPAWN_RAID_FLEETS].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(SpawnRaidFleets() ? "true" : "false", true);
-	});
+	settings[SPAWN_RAID_FLEETS] = Setting::TrueFalse("Spawn raid fleets", true);
 	settings[SPAWN_RAID_FLEETS].SetOnToggleFunc([this](UI *) -> void {
 		storage.spawnRaidFleets = !storage.spawnRaidFleets;
 	});
-	settings[SPAWN_RAID_FLEETS].SetConditionFunc([this]() -> int {
-		return SpawnRaidFleets();
-	});
-	settings[SPAWN_RAID_FLEETS].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[SPAWN_RAID_FLEETS].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.spawnRaidFleets = preset.storage.spawnRaidFleets;
+		return storage.spawnRaidFleets;
 	});
 
-	settings[FLEET_SIZE_LIMITATION] = Setting::Unique("Fleet size limitation");
-	settings[FLEET_SIZE_LIMITATION].SetDisplayFunc([this]() -> pair<string, bool> {
-		string text;
-		switch(GetFleetSizeLimitation())
-		{
-			case FleetSizeLimitation::NONE:
-				text = "none";
-				break;
-			case FleetSizeLimitation::SHIP_CAP:
-				text = "ship cap";
-				break;
-			case FleetSizeLimitation::CREW_CAP:
-				text = "crew cap";
-				break;
-			case FleetSizeLimitation::ADMIN_CAP:
-				text = "admin cap";
-				break;
-		}
-		return make_pair(text, true);
-	});
+	settings[FLEET_SIZE_LIMITATION] = Setting::List("Fleet size limitation", 0,
+		{"none", "ship cap", "crew cap", "admin cap"});
 	settings[FLEET_SIZE_LIMITATION].SetOnToggleFunc([this](UI *) -> void {
-		FleetSizeLimitation value = GetFleetSizeLimitation();
-		if(value == FleetSizeLimitation::NONE)
-			value = FleetSizeLimitation::SHIP_CAP;
-		else if(value == FleetSizeLimitation::SHIP_CAP)
-			value = FleetSizeLimitation::CREW_CAP;
-		else if(value == FleetSizeLimitation::CREW_CAP)
-			value = FleetSizeLimitation::ADMIN_CAP;
-		else if(value == FleetSizeLimitation::ADMIN_CAP)
-			value = FleetSizeLimitation::NONE;
-		storage.fleetSizeLimitation = value;
+		storage.fleetSizeLimitation = static_cast<FleetSizeLimitation>(settings[FLEET_SIZE_LIMITATION].Index());
 	});
-	settings[FLEET_SIZE_LIMITATION].SetConditionFunc([this]() -> int {
-		return static_cast<int>(GetFleetSizeLimitation());
-	});
-	settings[FLEET_SIZE_LIMITATION].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[FLEET_SIZE_LIMITATION].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.fleetSizeLimitation = preset.storage.fleetSizeLimitation;
+		return static_cast<int>(storage.fleetSizeLimitation);
 	});
 
 	settings[DEFAULT_MAX_ESCORT_COUNT] = Setting::Unique("Default max escort count");
@@ -483,8 +422,9 @@ Gamerules::Gamerules()
 	settings[DEFAULT_MAX_ESCORT_COUNT].SetConditionFunc([this]() -> int {
 		return GetDefaultMaxEscortCount();
 	});
-	settings[DEFAULT_MAX_ESCORT_COUNT].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[DEFAULT_MAX_ESCORT_COUNT].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.defaultMaxEscortCount = preset.storage.defaultMaxEscortCount;
+		return std::nullopt;
 	});
 
 	settings[DEFAULT_MAX_ESCORT_CREW] = Setting::Unique("Default max escort crew");
@@ -505,8 +445,9 @@ Gamerules::Gamerules()
 	settings[DEFAULT_MAX_ESCORT_CREW].SetConditionFunc([this]() -> int {
 		return GetDefaultMaxEscortCrew();
 	});
-	settings[DEFAULT_MAX_ESCORT_CREW].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[DEFAULT_MAX_ESCORT_CREW].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.defaultMaxEscortCrew = preset.storage.defaultMaxEscortCrew;
+		return std::nullopt;
 	});
 
 	settings[DEFAULT_ADMIN_CAP] = Setting::Unique("Default admin cap");
@@ -527,83 +468,41 @@ Gamerules::Gamerules()
 	settings[DEFAULT_ADMIN_CAP].SetConditionFunc([this]() -> int {
 		return GetDefaultAdminCap();
 	});
-	settings[DEFAULT_ADMIN_CAP].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[DEFAULT_ADMIN_CAP].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.defaultAdminCap = preset.storage.defaultAdminCap;
+		return std::nullopt;
 	});
 
-	settings[PERMADEATH_MODE] = Setting::Unique("Permadeath");
-	settings[PERMADEATH_MODE].SetDisplayFunc([this]() -> pair<string, bool> {
-		string text;
-		bool isOn = true;
-		switch(GetPermadeathMode())
-		{
-			case PermadeathMode::OFF:
-				text = "off";
-				isOn = false;
-				break;
-			case PermadeathMode::LOCK_ON_DEATH:
-				text = "lock on death";
-				break;
-			case PermadeathMode::DELETE_ON_DEATH:
-				text = "delete on death";
-				break;
-			case PermadeathMode::LOCK_ON_TAKEOFF:
-				text = "lock on takeoff";
-				break;
-			case PermadeathMode::DELETE_ON_TAKEOFF:
-				text = "delete on takeoff";
-				break;
-		}
-		return make_pair(text, isOn);
-	});
+	settings[PERMADEATH_MODE] = Setting::List("Permadeath", 0,
+		{"off", "lock on death", "delete on death", "lock on takeoff", "delete on takeoff"});
 	settings[PERMADEATH_MODE].SetOnToggleFunc([this](UI *) -> void {
-		PermadeathMode value = GetPermadeathMode();
-		if(value == PermadeathMode::OFF)
-			value = PermadeathMode::LOCK_ON_DEATH;
-		else if(value == PermadeathMode::LOCK_ON_DEATH)
-			value = PermadeathMode::DELETE_ON_DEATH;
-		else if(value == PermadeathMode::DELETE_ON_DEATH)
-			value = PermadeathMode::LOCK_ON_TAKEOFF;
-		else if(value == PermadeathMode::LOCK_ON_TAKEOFF)
-			value = PermadeathMode::DELETE_ON_TAKEOFF;
-		else if(value == PermadeathMode::DELETE_ON_TAKEOFF)
-			value = PermadeathMode::OFF;
-		storage.permadeathMode = value;
+		storage.permadeathMode = static_cast<PermadeathMode>(settings[PERMADEATH_MODE].Index());
 	});
-	settings[PERMADEATH_MODE].SetConditionFunc([this]() -> int {
-		return static_cast<int>(GetPermadeathMode());
-	});
-	settings[PERMADEATH_MODE].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[PERMADEATH_MODE].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.permadeathMode = preset.storage.permadeathMode;
+		return static_cast<int>(storage.permadeathMode );
 	});
 
-	settings[SINGLE_SAVE_FILE] = Setting::Unique("Single save file");
-	settings[SINGLE_SAVE_FILE].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(SingleSaveFile() ? "true" : "false", true);
-	});
-	settings[SINGLE_SAVE_FILE].SetOnToggleFunc([this](UI *ui) -> void {
+	settings[SINGLE_SAVE_FILE] = Setting::TrueFalse("Single save file", false);
+	settings[SINGLE_SAVE_FILE].SetToggleFunc([this](int, UI *ui) -> int {
 		if(!ui)
-			return;
+			return storage.singleSaveFile;
 		if(GetPermadeathMode() == PermadeathMode::DELETE_ON_TAKEOFF)
 			ui->Push(DialogPanel::Info("This gamerule is locked to true because \"Permadeath\" is set "
 				"to \"delete on takeoff\". Change the permadeath rule to a different value to toggle this rule."));
 		else
 			storage.singleSaveFile = !storage.singleSaveFile;
+		return storage.singleSaveFile;
 	});
-	settings[SINGLE_SAVE_FILE].SetConditionFunc([this]() -> int {
-		return SingleSaveFile();
-	});
-	settings[SINGLE_SAVE_FILE].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[SINGLE_SAVE_FILE].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.singleSaveFile = preset.storage.singleSaveFile;
+		return storage.singleSaveFile;
 	});
 
-	settings[RESTRICTED_SAVE_LOADING] = Setting::Unique("Restricted save loading");
-	settings[RESTRICTED_SAVE_LOADING].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(RestrictedSaveLoading() ? "true" : "false", true);
-	});
-	settings[RESTRICTED_SAVE_LOADING].SetOnToggleFunc([this](UI *ui) -> void {
+	settings[RESTRICTED_SAVE_LOADING] = Setting::TrueFalse("Restricted save loading", false);
+	settings[RESTRICTED_SAVE_LOADING].SetToggleFunc([this](int, UI *ui) -> int {
 		if(!ui)
-			return;
+			return storage.restrictedSaveLoading;
 		PermadeathMode mode = GetPermadeathMode();
 		if(mode == PermadeathMode::LOCK_ON_TAKEOFF || mode == PermadeathMode::DELETE_ON_TAKEOFF)
 			ui->Push(DialogPanel::Info("This gamerule is locked to true because \"Permadeath\" is set "
@@ -611,29 +510,21 @@ Gamerules::Gamerules()
 				"value to toggle this rule."));
 		else
 			storage.restrictedSaveLoading = !storage.restrictedSaveLoading;
+		return storage.restrictedSaveLoading;
 	});
-	settings[RESTRICTED_SAVE_LOADING].SetConditionFunc([this]() -> int {
-		return RestrictedSaveLoading();
-	});
-	settings[RESTRICTED_SAVE_LOADING].SetResetRuleFunc([this](const Gamerules &preset) -> void {
+	settings[RESTRICTED_SAVE_LOADING].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.restrictedSaveLoading = preset.storage.restrictedSaveLoading;
+		return storage.restrictedSaveLoading;
 	});
 
-	settings[UNIVERSAL_AMMO_RESTOCKING] = Setting::Unique("Universal ammo stocking");
-	settings[UNIVERSAL_AMMO_RESTOCKING].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(GetValue(UNIVERSAL_AMMO_RESTOCKING) ? "true" : "false", true);
-	});
+	settings[UNIVERSAL_AMMO_RESTOCKING] = Setting::TrueFalse("Universal ammo stocking", true);
 	settings[UNIVERSAL_AMMO_RESTOCKING].SetOnToggleFunc([this](UI *) -> void {
 		SetMiscValue(UNIVERSAL_AMMO_RESTOCKING, !GetValue(UNIVERSAL_AMMO_RESTOCKING));
 	});
-	settings[UNIVERSAL_AMMO_RESTOCKING].SetConditionFunc([this]() -> int {
-		auto it = storage.miscRules.find(UNIVERSAL_AMMO_RESTOCKING);
-		if(it == storage.miscRules.end())
-			return 0;
-		return it->second;
-	});
-	settings[UNIVERSAL_AMMO_RESTOCKING].SetResetRuleFunc([this](const Gamerules &preset) -> void {
-		storage.defaultMaxEscortCount = preset.storage.defaultMaxEscortCount;
+	settings[UNIVERSAL_AMMO_RESTOCKING].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		auto it = preset.storage.miscRules.find(UNIVERSAL_AMMO_RESTOCKING);
+		storage.miscRules[UNIVERSAL_AMMO_RESTOCKING] = it != preset.storage.miscRules.end() ? it->second : 0;
+		return storage.miscRules[UNIVERSAL_AMMO_RESTOCKING];
 	});
 }
 
@@ -764,6 +655,7 @@ void Gamerules::Load(const DataNode &node)
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
+	SyncSettings();
 }
 
 
@@ -879,28 +771,36 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 
 
 
-void Gamerules::Toggle(const string &name, UI *ui)
+void Gamerules::Toggle(const string &rule, UI *ui)
 {
-	auto it = settings.find(name);
+	auto it = settings.find(rule);
 	if(it != settings.end())
+	{
 		it->second.Toggle(ui);
+		// The state of permadeath mode influences the display of other settings.
+		if(rule == PERMADEATH_MODE)
+		{
+			settings[SINGLE_SAVE_FILE].SetIndex(SingleSaveFile());
+			settings[RESTRICTED_SAVE_LOADING].SetIndex(RestrictedSaveLoading());
+		}
+	}
 }
 
 
 
-const string &Gamerules::DisplayName(const string &name) const
+const string &Gamerules::DisplayName(const string &rule) const
 {
 	static const string UNKNOWN = "UNKNOWN SETTING";
-	auto it = settings.find(name);
+	auto it = settings.find(rule);
 	return it != settings.end() ? it->second.DisplayName() : UNKNOWN;
 }
 
 
 
-pair<string, bool> Gamerules::DisplayValue(const string &name) const
+pair<string, bool> Gamerules::DisplayValue(const string &rule) const
 {
 	static const string UNKNOWN = "UNKNOWN SETTING";
-	auto it = settings.find(name);
+	auto it = settings.find(rule);
 	return it != settings.end() ? it->second.DisplayValue() : make_pair(UNKNOWN, false);
 }
 
@@ -910,6 +810,7 @@ void Gamerules::Replace(const Gamerules &rules)
 {
 	name = rules.name;
 	storage = rules.storage;
+	SyncSettings();
 }
 
 
@@ -920,6 +821,12 @@ void Gamerules::Reset(const string &rule, const Gamerules &preset)
 	if(it != settings.end())
 	{
 		it->second.ResetRule(preset);
+		// The state of permadeath mode influences the display of other settings.
+		if(rule == PERMADEATH_MODE)
+		{
+			settings[SINGLE_SAVE_FILE].SetIndex(SingleSaveFile());
+			settings[RESTRICTED_SAVE_LOADING].SetIndex(RestrictedSaveLoading());
+		}
 		return;
 	}
 
@@ -1149,8 +1056,8 @@ bool Gamerules::SingleSaveFile() const
 
 bool Gamerules::RestrictedSaveLoading() const
 {
-	return storage.restrictedSaveLoading || storage.permadeathMode == Gamerules::PermadeathMode::LOCK_ON_TAKEOFF
-		|| storage.permadeathMode == Gamerules::PermadeathMode::DELETE_ON_TAKEOFF;
+	return storage.restrictedSaveLoading || storage.permadeathMode == PermadeathMode::LOCK_ON_TAKEOFF
+		|| storage.permadeathMode == PermadeathMode::DELETE_ON_TAKEOFF;
 }
 
 
@@ -1158,4 +1065,20 @@ bool Gamerules::RestrictedSaveLoading() const
 bool Gamerules::operator==(const Gamerules &other) const
 {
 	return name == other.name && storage == other.storage;
+}
+
+
+
+void Gamerules::SyncSettings()
+{
+	settings[LOCK_GAMERULES].SetIndex(LockGamerules());
+	settings[UNIVERSAL_RAMSCOOP].SetIndex(UniversalRamscoopActive());
+	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetIndex(HabitableBasedArrivalDistance());
+	settings[SPAWN_RAID_FLEETS].SetIndex(SpawnRaidFleets());
+	settings[SINGLE_SAVE_FILE].SetIndex(SingleSaveFile());
+	settings[RESTRICTED_SAVE_LOADING].SetIndex(RestrictedSaveLoading());
+	settings[UNIVERSAL_AMMO_RESTOCKING].SetIndex(storage.miscRules[UNIVERSAL_AMMO_RESTOCKING]);
+	settings[FIGHTER_DODGE_POLICY].SetIndex(static_cast<int>(FightersHitWhenDisabled()));
+	settings[FLEET_SIZE_LIMITATION].SetIndex(static_cast<int>(GetFleetSizeLimitation()));
+	settings[PERMADEATH_MODE].SetIndex(static_cast<int>(GetPermadeathMode()));
 }
