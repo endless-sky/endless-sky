@@ -12209,6 +12209,7 @@ mission "Silver Talon 4"
 
 			label hero
 			`	"Wow, you're really Captain <last>?" asks John. "Can I get your..." he spots Cerridwyn's disapproving frown and trails off. "Sorry, not the time."`
+			`	Cerridwyn clears her throat.`
 
 			label plan
 			`	"Look, you all know why you're here," she continues. "There's no point making a speech, so I'll just go over the plan one more time.`
