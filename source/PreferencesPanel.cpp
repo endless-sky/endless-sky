@@ -661,7 +661,7 @@ void PreferencesPanel::DrawSettings()
 		Preferences::ZOOM_FACTOR_VIEW,
 		Preferences::FONT_SIZE,
 		Preferences::TEXT_ALIGNMENT,
-		Preferences::SCREEN_MODE,
+		Preferences::FULLSCREEN,
 		Preferences::BLOCK_SCREEN_SAVER,
 		Preferences::VSYNC,
 		"",

@@ -331,6 +331,7 @@ public:
 	static const std::string FLAGSHIP_SPACE_PRIORITY;
 	static const std::string FLOTSAM_COLLECTION;
 	static const std::string FONT_SIZE;
+	static const std::string FULLSCREEN;
 	static const std::string HUD_ASTEROID_OVERLAY;
 	static const std::string HUD_CLICKABLE_RADAR;
 	static const std::string HUD_EXTRA_STATUS_MSGS;
@@ -355,7 +356,6 @@ public:
 	static const std::string REDUCE_LARGE_GRAPHICS;
 	static const std::string REHIRE_LOST_CREW;
 	static const std::string SAVE_MSG_LOGS;
-	static const std::string SCREEN_MODE;
 	static const std::string SCREEN_MAXIMIZED;
 	static const std::string SCROLL_SPEED;
 	static const std::string SHIP_HIGHLIGHTS;

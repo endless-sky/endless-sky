@@ -229,8 +229,6 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 			message = "expend ammo always";
 		else if(ammoUsage == Preferences::EscortAmmoUsage::FRUGALLY)
 			message = "expend ammo frugally";
-		else
-			message = "expend ammo never";
 		Messages::Add(*GameData::Messages().Get(message));
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)

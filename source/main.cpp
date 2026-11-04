@@ -279,7 +279,7 @@ int main(int argc, char *argv[])
 
 	// Remember the window state and preferences if quitting normally.
 	Preferences::Set(Preferences::SCREEN_MAXIMIZED, GameWindow::IsMaximized());
-	Preferences::Set(Preferences::SCREEN_MODE, GameWindow::IsFullscreen());
+	Preferences::Set(Preferences::FULLSCREEN, GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height(), true);
 	Preferences::Save();
 	PluginManager::Save();
@@ -408,7 +408,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					|| (eventKeyCode == SDLK_RETURN && (eventKeyMod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
-				Preferences::Toggle(Preferences::SCREEN_MODE);
+				Preferences::Toggle(Preferences::FULLSCREEN);
 			}
 			else if(event.type == SDL_KEYDOWN && Command(eventKeyCode).Has(Command::PERFORMANCE_DISPLAY))
 				Preferences::Toggle(Preferences::SHOW_PERFORMANCE_METRICS);

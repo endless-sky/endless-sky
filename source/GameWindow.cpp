@@ -190,7 +190,7 @@ bool GameWindow::Init(bool headless)
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
 
-	if(Preferences::Has(Preferences::SCREEN_MODE))
+	if(Preferences::Has(Preferences::FULLSCREEN))
 		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 	else if(Preferences::Has(Preferences::SCREEN_MAXIMIZED))
 		flags |= SDL_WINDOW_MAXIMIZED;

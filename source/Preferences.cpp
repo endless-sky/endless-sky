@@ -168,6 +168,7 @@ const string Preferences::FIXED_STARFIELD_ZOOM = "Fixed starfield zoom";
 const string Preferences::FLAGSHIP_SPACE_PRIORITY = "Prioritize flagship use";
 const string Preferences::FLOTSAM_COLLECTION = "Flotsam collection";
 const string Preferences::FONT_SIZE = "font size";
+const string Preferences::FULLSCREEN = "fullscreen";
 const string Preferences::HUD_ASTEROID_OVERLAY = "Show asteroid scanner overlay";
 const string Preferences::HUD_CLICKABLE_RADAR = "Clickable radar display";
 const string Preferences::HUD_EXTRA_STATUS_MSGS = "Extra fleet status messages";
@@ -192,7 +193,6 @@ const string Preferences::REACTIVATE_HELP = "reactivate help";
 const string Preferences::REDUCE_LARGE_GRAPHICS = "Reduce large graphics";
 const string Preferences::REHIRE_LOST_CREW = "Rehire extra crew when lost";
 const string Preferences::SAVE_MSG_LOGS = "Save message log";
-const string Preferences::SCREEN_MODE = "fullscreen";
 const string Preferences::SCREEN_MAXIMIZED = "maximized";
 const string Preferences::SCROLL_SPEED = "scroll speed";
 const string Preferences::SHIP_HIGHLIGHTS = "Highlight ships";
@@ -276,6 +276,12 @@ void Preferences::Init()
 	settings[FONT_SIZE] = Setting::List("UI font size", 0, {"14", "18"}, true);
 	settings[FONT_SIZE].SetOnToggleFunc([](UI *) -> void { CustomEvents::SendAdjustText(); });
 
+	settings[FULLSCREEN] = Setting::List("Screen mode", 1, {"windowed", "fullscreen"}, true);
+	settings[FULLSCREEN].SetToggleFunc([](int, UI *) -> int {
+		GameWindow::ToggleFullscreen();
+		return GameWindow::IsFullscreen();
+	});
+
 	settings[HUD_ASTEROID_OVERLAY] = Setting::OnOff("Show asteroid scanner overlay", true);
 	settings[HUD_CLICKABLE_RADAR] = Setting::OnOff("Clickable radar display", false);
 	settings[HUD_EXTRA_STATUS_MSGS] = Setting::OnOff("Extra fleet status messages", true);
@@ -332,12 +338,6 @@ void Preferences::Init()
 	settings[REDUCE_LARGE_GRAPHICS] = Setting::List("Reduce large graphics", 0, {"off", "largest only", "all"});
 	settings[REHIRE_LOST_CREW] = Setting::OnOff("Rehire extra crew when lost", false);
 	settings[SAVE_MSG_LOGS] = Setting::OnOff("Save message log", false);
-
-	settings[SCREEN_MODE] = Setting::List("Screen mode", 1, {"windowed", "fullscreen"}, true);
-	settings[SCREEN_MODE].SetToggleFunc([](int, UI *) -> int {
-		GameWindow::ToggleFullscreen();
-		return GameWindow::IsFullscreen();
-	});
 
 	settings[SCROLL_SPEED] = Setting::Unique("Scroll speed");
 	settings[SCROLL_SPEED].SetDisplayFunc([]() -> pair<string, bool> {
