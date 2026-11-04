@@ -15,9 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Gamerules.h"
 
-#include "DialogPanel.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "DialogPanel.h"
 #include "text/Format.h"
 #include "OptionalInputDialogPanel.h"
 #include "image/SpriteSet.h"
