@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "NPCAction.h"
 
+#include "ActionResult.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "PlayerInfo.h"
@@ -44,8 +45,18 @@ void NPCAction::Load(const DataNode &node, const ConditionsStore *playerConditio
 	{
 		const string &key = child.Token(0);
 
-		if(key == "triggered")
-			triggered = true;
+		if(key == "result")
+		{
+			if(child.Size() >= 2)
+				result = child.Value(1);
+			else
+				child.PrintTrace("Missing result code for NPC action:");
+		}
+		else if(key == "triggered")
+		{
+			child.PrintTrace("Deprecated use of \"triggered\".");
+			result = ActionResult::TRIGGERED | ActionResult::BLOCKING;
+		}
 		else
 			action.LoadSingle(child, playerConditions, visitedSystems, visitedPlanets);
 	}
@@ -60,8 +71,8 @@ void NPCAction::Save(DataWriter &out) const
 	out.Write("on", trigger);
 	out.BeginChild();
 	{
-		if(triggered)
-			out.Write("triggered");
+		if(result != ActionResult::NONE)
+			out.Write("result", result);
 
 		action.SaveBody(out);
 	}
@@ -79,17 +90,19 @@ string NPCAction::Validate() const
 
 
 
-void NPCAction::Do(PlayerInfo &player, UI &ui, const Mission *caller, const shared_ptr<Ship> &target)
+int NPCAction::Do(PlayerInfo &player, UI &ui, const Mission *caller, const shared_ptr<Ship> &target)
 {
 	// All actions are currently one-time-use. Actions that are used
-	// are marked as triggered, and cannot be used again.
-	if(triggered)
-		return;
-	triggered = true;
-	action.Do(player, &ui, caller, nullptr, target);
+	// will replay that result so that other actions can react correctly.
+	if(result == ActionResult::NONE)
+		result = action.Do(player, &ui, caller, nullptr, target);
+	return result;
 }
 
-
+void NPCAction::TryBlock() {
+	if(result == ActionResult::NONE)
+		result = ActionResult::BLOCKED;
+}
 
 // Convert this validated template into a populated action.
 NPCAction NPCAction::Instantiate(map<string, string> &subs, const System *origin,
