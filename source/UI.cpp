@@ -20,11 +20,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 #include "Screen.h"
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 #include <algorithm>
 
 using namespace std;
+
+
+
+void UI::SetHoverPoint()
+{
+	Point hoverPoint = GetMouse();
+	for(shared_ptr<Panel> &panel : stack)
+		panel->SetHoverPoint(hoverPoint);
+}
 
 
 
@@ -72,8 +81,13 @@ bool UI::Handle(const SDL_Event &event)
 			handled = (*it)->DoScroll(event.wheel.x, event.wheel.y);
 		else if(event.type == SDL_KEYDOWN)
 		{
+#ifdef ES_USE_SDL3
+			Command command(event.key.key);
+			handled = (*it)->DoKeyDown(event.key.key, event.key.mod, command, !event.key.repeat);
+#else
 			Command command(event.key.keysym.sym);
 			handled = (*it)->DoKeyDown(event.key.keysym.sym, event.key.keysym.mod, command, !event.key.repeat);
+#endif
 		}
 		else if(event.type == SDL_TEXTINPUT)
 			handled = (*it)->DoTextInput(event.text.text);
@@ -125,7 +139,12 @@ void UI::DrawAll()
 			break;
 
 	for( ; it != stack.end(); ++it)
+	{
+		// Panels that are about to be popped shouldn't get drawn.
+		if(count(toPop.begin(), toPop.end(), it->get()))
+			continue;
 		(*it)->DoDraw();
+	}
 }
 
 
@@ -305,8 +324,8 @@ void UI::AdjustTextDisplay() const
 // Get the current mouse position.
 Point UI::GetMouse()
 {
-	int x = 0;
-	int y = 0;
+	mouse_pos_t x = 0;
+	mouse_pos_t y = 0;
 	SDL_GetMouseState(&x, &y);
 	return Screen::TopLeft() + Point(x, y) * (100. / Screen::Zoom());
 }

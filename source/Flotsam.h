@@ -59,6 +59,8 @@ public:
 	// Move the object one time-step forward.
 	void Move(std::vector<Visual> &visuals);
 	void SetVelocity(const Point &velocity);
+	// Prevent lifetime decay from occurring this frame due to the flotsam being within a tractor beam.
+	void InTractorBeam();
 
 	// This is the one ship that cannot pick up this flotsam.
 	const Ship *Source() const;

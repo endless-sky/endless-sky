@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 
 #include "ActionResult.h"
+#include "Conversation.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "DialogPanel.h"
@@ -110,6 +111,23 @@ namespace {
 				return "on disabled";
 			default:
 				return "unknown trigger";
+		}
+	}
+
+	bool LocationInFlight(Mission::Location location)
+	{
+		switch(location)
+		{
+			case Mission::Location::ASSISTING:
+				return true;
+			case Mission::Location::BOARDING:
+				return true;
+			case Mission::Location::ENTERING:
+				return true;
+			case Mission::Location::TRANSITION:
+				return true;
+			default:
+				return false;
 		}
 	}
 }
@@ -441,7 +459,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(!isVisible)
 			out.Write("invisible");
 		auto saveColor = [&out](const ExclusiveItem<Color> &color, string tokenName) noexcept -> void {
-			if(!color->IsLoaded())
+			if(!color || !color->IsLoaded())
 				return;
 			if(!color->TrueName().empty())
 				out.Write("color", tokenName, color->TrueName());
@@ -645,23 +663,23 @@ bool Mission::IsVisible() const
 
 // The colors that should be used to display the mission name if it is shown
 // in your mission list.
-const Color &Mission::Unavailable() const
+const Color *Mission::Unavailable() const
 {
-	return *unavailable;
+	return unavailable.Ptr();
 }
 
 
 
-const Color &Mission::Unselected() const
+const Color *Mission::Unselected() const
 {
-	return *unselected;
+	return unselected.Ptr();
 }
 
 
 
-const Color &Mission::Selected() const
+const Color *Mission::Selected() const
 {
-	return *selected;
+	return selected.Ptr();
 }
 
 
@@ -1044,28 +1062,29 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		return false;
 
 	bool isFailed = IsFailed();
+	bool offersInFlight = LocationInFlight(location);
 	auto it = actions.find(OFFER);
 	if(it != actions.end())
 		for(const auto &action : it->second)
-			if(!action.CanBeDone(player, isFailed, boardingShip))
+			if(!action.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 				return false;
 
 	it = actions.find(ACCEPT);
 	if(it != actions.end())
 		for(const auto &action : it->second)
-			if(!action.CanBeDone(player, isFailed, boardingShip))
+			if(!action.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 				return false;
 
 	it = actions.find(DECLINE);
 	if(it != actions.end())
 		for(const auto &action : it->second)
-			if(!action.CanBeDone(player, isFailed, boardingShip))
+			if(!action.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 				return false;
 
 	it = actions.find(DEFER);
 	if(it != actions.end())
 		for(const auto &action : it->second)
-			if(!action.CanBeDone(player, isFailed, boardingShip))
+			if(!action.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 				return false;
 
 	return true;
@@ -1079,16 +1098,17 @@ bool Mission::CanAccept(const PlayerInfo &player) const
 		return false;
 
 	bool isFailed = IsFailed();
+	bool offersInFlight = LocationInFlight(location);
 	auto it = actions.find(OFFER);
 	if(it != actions.end())
 		for(const auto &action : it->second)
-			if(!action.CanBeDone(player, isFailed))
+			if(!action.CanBeDone(player, isFailed, !offersInFlight))
 				return false;
 
 	it = actions.find(ACCEPT);
 	if(it != actions.end())
 		for(const auto &action : it->second)
-			if(!action.CanBeDone(player, isFailed))
+			if(!action.CanBeDone(player, isFailed, !offersInFlight))
 				return false;
 	return HasSpace(player);
 }
@@ -1141,7 +1161,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 	auto it = actions.find(COMPLETE);
 	if(it != actions.end())
 		for(const auto &action : it->second)
-			if(it != actions.end() && !action.CanBeDone(player, IsFailed()))
+			if(it != actions.end() && !action.CanBeDone(player, IsFailed(), true))
 				return false;
 
 	// NPCs which must be accompanied or evaded must be present (or not),
@@ -1339,7 +1359,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	// Don't update any further conditions if this action exists and can't be completed.
 	if(it != actions.end())
 		for(const auto &action : it->second)
-			if(!action.CanBeDone(player, IsFailed(), boardingShip))
+			if(!action.CanBeDone(player, IsFailed(), player.GetPlanet(), boardingShip))
 				return false;
 
 	if(trigger == ACCEPT)
@@ -1906,7 +1926,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 	{
 		for(const auto &action : eit->second)
 		{
-			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed()))
+			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed(), false))
 			{
 				const auto result = action.Do(player, &ui, this);
 				if(result & ActionResult::TRIGGERED)
@@ -1925,7 +1945,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 	// which may use a LocationFilter to govern which systems it can be performed in.
 	if(!blocked)
 		for(MissionAction &action : genericOnEnter)
-			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed()))
+			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed(), false))
 			{
 				const auto result = action.Do(player, &ui, this);
 				if(result & ActionResult::TRIGGERED)
@@ -1950,7 +1970,7 @@ bool Mission::Land(const Planet *planet, PlayerInfo &player, UI &ui)
 	{
 		for(const auto &action : lit->second)
 		{
-			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
+			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed(), true))
 			{
 				const auto result = action.Do(player, &ui, this);
 				if(result & ActionResult::TRIGGERED)
@@ -1967,7 +1987,7 @@ bool Mission::Land(const Planet *planet, PlayerInfo &player, UI &ui)
 	}
 	if(!blocked)
 		for(MissionAction &action : genericOnLand)
-			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
+			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed(), true))
 			{
 				action.Do(player, &ui, this);
 				didLand.insert(&action);

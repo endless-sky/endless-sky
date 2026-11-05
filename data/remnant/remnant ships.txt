@@ -17,6 +17,7 @@ ship "Albatross"
 	plural "Albatrosses"
 	sprite "ship/albatross"
 	thumbnail "thumbnail/albatross"
+	"administrative cost" 7
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -273,6 +274,7 @@ ship "Modified Dromedary"
 	plural "Modified Dromedaries"
 	sprite "ship/modified dromedary"
 	thumbnail "thumbnail/modified dromedary"
+	"administrative cost" 7
 	attributes
 		licenses
 			"Remnant Capital"
@@ -379,7 +381,6 @@ ship "Modified Dromedary" "Modified Dromedary Ghost"
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
@@ -419,7 +420,6 @@ ship "Modified Dromedary" "Modified Dromedary Specter"
 	outfits
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
@@ -449,13 +449,11 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		"scramble protection" 1
 		"slowing protection" 1
 	outfits
-		"Laser Turret" 2
-		"Quad Blaster Turret"
+		"Quad Blaster Turret" 3
 		"Anti-Missile Turret" 2
 		
 		"Fusion Reactor"
 		"LP144a Battery Pack"
-		"D94-YV Shield Generator"
 		"Large Radar Jammer"
 		"Ramscoop"
 		"NDR-114 Android" 100
@@ -464,10 +462,10 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 		"X4700 Ion Thruster"
 		"X5200 Ion Steering"
 		"Hyperdrive"
-	turret "Laser Turret"
+	turret "Quad Blaster Turret"
 	turret "Anti-Missile Turret"
 	turret "Quad Blaster Turret"
-	turret "Laser Turret"
+	turret "Quad Blaster Turret"
 	turret "Anti-Missile Turret"
 	description `The Tycho Crater Cooperative's Dromedary was one of the foremost colonization ships during the early era before piracy became rampant and triggered the necessity for city-ships to be more combat-oriented. These ships incorporate extensive hydroponics, large construction equipment installations, and hundreds of densely packed "dream cells" built to transport people in bulk.`
 	description "	This is a wreck. A ship that once might have held hundreds of people has no functional environmental system, the once verdant hydroponics domes are shattered, and much of the ship appears to be destroyed. Burns, strange scrapes, and twists to structural elements abound. Only a smattering of droids persistently continuing their work manage to maintain any degree of functionality."
@@ -477,6 +475,7 @@ ship "Modified Dromedary" "Modified Dromedary Wreck"
 ship "Gull"
 	sprite "ship/gull"
 	thumbnail "thumbnail/gull"
+	"administrative cost" 2
 	attributes
 		category "Light Freighter"
 		licenses
@@ -639,6 +638,7 @@ ship "Gull" "Gull (Bunks)"
 
 ship "Heron"
 	sprite "ship/heron"
+	"administrative cost" 30
 	attributes
 		category "Superheavy"
 		licenses
@@ -808,6 +808,7 @@ ship "Ibis"
 	plural "Ibises"
 	sprite "ship/ibis"
 	thumbnail "thumbnail/ibis"
+	"administrative cost" 4
 	attributes
 		category "Medium Warship"
 		licenses
@@ -892,6 +893,7 @@ ship "Ibis"
 ship "Merganser"
 	sprite "ship/merganser"
 	thumbnail "thumbnail/merganser"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		licenses
@@ -1002,6 +1004,7 @@ ship "Merganser" "Merganser (II)"
 ship "Pelican"
 	sprite "ship/pelican"
 	thumbnail "thumbnail/pelican"
+	"administrative cost" 4
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -1083,6 +1086,7 @@ ship "Penguin"
 	sprite "ship/penguin/penguin"
 		"frame rate" 3
 	thumbnail "thumbnail/penguin"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		licenses
@@ -1200,6 +1204,7 @@ ship "Peregrine"
 		"frame rate" 3
 		"rewind"
 	thumbnail "thumbnail/peregrine"
+	"administrative cost" 4
 	attributes
 		category "Medium Warship"
 		licenses
@@ -1315,6 +1320,7 @@ ship "Peregrine" "Peregrine (II)"
 ship "Petrel"
 	sprite "ship/petrel"
 	thumbnail "thumbnail/petrel"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		licenses
@@ -1374,6 +1380,7 @@ ship "Petrel"
 ship "Puffin"
 	sprite "ship/puffin"
 	thumbnail "thumbnail/puffin"
+	"administrative cost" 1
 	attributes
 		category Transport
 		licenses
@@ -1427,6 +1434,7 @@ ship "Puffin"
 ship "Smew"
 	sprite "ship/smew"
 	thumbnail "thumbnail/smew"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		licenses
@@ -1512,6 +1520,7 @@ ship "Smew" "Smew (Teciimach Ferry)"
 ship "Starling"
 	sprite "ship/starling"
 	thumbnail "thumbnail/starling"
+	"administrative cost" 3
 	attributes
 		category "Light Warship"
 		licenses
@@ -1674,6 +1683,7 @@ ship "Swan"
 		"frame rate" 3
 		"rewind"
 	thumbnail "thumbnail/swan"
+	"administrative cost" 7
 	attributes
 		category "Utility"
 		licenses
@@ -1750,13 +1760,14 @@ ship "Swan"
 	explode "huge explosion" 15
 	"final explode" "final explosion large" 1
 	description "With the advent of more powerful ramscoops, the need for extensive propellant logistics networks all but disappeared. The Swan had the misfortune of being born as a tanker; as such, it had to survive as nothing more than a set of detailed drawings inside some dusty folders. Eventually, decades after its conception, the need for such a vehicle became apparent and production could finally begin."
-	description "	On top of its fuel-storage capabilities, the Swan makes for an interesting warship in its own right. Four drone bays have been added below its fuel-bearing wings, each a fair bit larger than the Terns they tend to carry. On top of this, despite not being nearly as well-shielded, its weapons complement nears that of the Albatross: in essence, the largest support ship the Remnant have built."
+	description "	On top of its fuel-storage capabilities, the Swan makes for an interesting warship in its own right. Four drone bays have been added below its fuel-bearing wings, each a fair bit larger than the Terns they tend to carry. On top of this, despite not being nearly as well-shielded, its weapons complement nears that of the Albatross: in essence, it is the largest support ship the Remnant have built."
 
 
 
 ship "Tern"
 	sprite "ship/tern"
 	thumbnail "thumbnail/tern"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		licenses

@@ -181,7 +181,12 @@ mission "Incipias: The Derelict"
 			`Upon entering the system, you notice a lone alien spaceship that is disabled and badly damaged. Aside from it, there do not appear to be any other ships in the system, or sign of any help for that matter. Maybe there's some way you could assist the ship and its crew.`
 	npc assist
 		personality
-			confusion 50
+			confusion
+				"max confusion" 20.
+				period 270.
+				"focus multiplier" .5
+				"gain focus time" 600
+				"lose focus time" 120
 			derelict staying uninterested
 		government "Hicemus"
 		system "Hui'uc"

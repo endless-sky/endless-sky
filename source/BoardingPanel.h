@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "CaptureOdds.h"
 #include "ScrollBar.h"
+#include "Tooltip.h"
 
 #include <memory>
 #include <string>
@@ -67,7 +68,7 @@ private:
 	public:
 		// Plunder can be either outfits or commodities.
 		Plunder(const std::string &commodity, int count, int unitValue);
-		Plunder(const Outfit *outfit, int count);
+		Plunder(const Outfit *outfit, int count, bool inCargo);
 
 		// Sort by value per ton of mass.
 		bool operator<(const Plunder &other) const;
@@ -78,6 +79,8 @@ private:
 		// Get the value of each unit of this plunder item.
 		int64_t UnitValue() const;
 
+		// Whether this item is in the ship's cargo hold.
+		bool InCargo() const;
 		// Get the name of this item. If it is a commodity, this is its name.
 		const std::string &Name() const;
 		// Get the mass, in the format "<count> x <unit mass>". If this is a
@@ -100,6 +103,7 @@ private:
 		double UnitMass() const;
 
 	private:
+		bool inCargo = false;
 		std::string name;
 		const Outfit *outfit;
 		int count;
@@ -135,6 +139,7 @@ private:
 	int selected = 0;
 	ScrollVar<double> scroll;
 	ScrollBar scrollBar;
+	Tooltip tooltip;
 
 	bool playerDied = false;
 	bool isCapturing = false;

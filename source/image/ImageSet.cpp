@@ -152,24 +152,48 @@ void ImageSet::ValidateFrames() noexcept(false)
 			}
 		}
 
-	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier)
+	int normalFrames = paths[0].size();
+	auto DropPaths = [&](vector<filesystem::path> &toResize, const string &specifier, bool isMask)
 	{
-		if(toResize.size() > paths[0].size())
+		int size = toResize.size();
+		if(!size)
+			return;
+		// Neither 2x nor masks should have more frames than the 1x resolution.
+		// Truncate down to the number of normal frames if this occurs.
+		if(size > normalFrames)
 		{
-			if(paths[0].empty())
+			if(!normalFrames)
 				Logger::Log(prefix + "all frames for the " + specifier + " sprite will be ignored, "
 					"as it has no corresponding normal resolution frame(s).", Logger::Level::WARNING);
 			else
-				Logger::Log(prefix + to_string(toResize.size() - paths[0].size())
+				Logger::Log(prefix + to_string(size - normalFrames)
 					+ " extra frame(s) for the " + specifier + " sprite will be ignored.", Logger::Level::WARNING);
-			toResize.resize(paths[0].size());
+			toResize.resize(normalFrames);
+		}
+		// The number of 2x frames can't be less than the number of 1x frames.
+		// Discard all 2x frames if there aren't enough to cover each 1x frame.
+		else if(!isMask && size < normalFrames)
+		{
+			Logger::Log(prefix + "sprite has " + to_string(normalFrames - size) + " more normal resolution "
+				"frame(s) than " + specifier + " frames. All " + specifier + " frames will be dropped to prevent "
+				"sprite loading issues.", Logger::Level::WARNING);
+			toResize.clear();
+		}
+		// Masks should only have 1 frame or the same number of frames as the 1x resolution.
+		// If there are fewer frames of swizzle mask than base image, only use the
+		// first swizzle mask frame.
+		else if(isMask && size != 1 && size != normalFrames)
+		{
+			Logger::Log(prefix + "Discarding " + to_string(size - 1) + " frames of swizzle mask because there"
+				" are more frames of animation. Only the first swizzle mask frame will be used.", Logger::Level::WARNING);
+			toResize.resize(1);
 		}
 	};
 
 	// Drop any @2x and mask paths that will not be used.
-	DropPaths(paths[1], "@2x");
-	DropPaths(paths[2], "mask");
-	DropPaths(paths[3], "@2x mask");
+	DropPaths(paths[1], "@2x", false);
+	DropPaths(paths[2], "mask", true);
+	DropPaths(paths[3], "@2x mask", true);
 }
 
 
@@ -184,15 +208,7 @@ void ImageSet::Load() noexcept(false)
 	// not actually be allocated until the first image is loaded (at which point
 	// the sprite's dimensions will be known).
 	size_t frames = paths[0].size();
-	// If there are fewer frames of swizzle mask than base image, only use the
-	// first swizzle mask frame. Send a warning if any are discarded.
 	size_t swizzleMaskFrames = paths[2].size();
-	if(swizzleMaskFrames > 1 && swizzleMaskFrames < frames)
-	{
-		Logger::Log("Discarding " + to_string(swizzleMaskFrames - 1) + " frames of swizzle mask because there"
-			" are more frames of animation. Only the first swizzle mask frame will be used.", Logger::Level::WARNING);
-		swizzleMaskFrames = 1;
-	}
 
 	// Check whether we need to generate collision masks.
 	bool makeMasks = IsMasked(name);
@@ -279,6 +295,9 @@ void ImageSet::LoadDimensions(Sprite *sprite) noexcept(false)
 		Logger::Log("Failed to read image data for \"" + name + "\" frame #0.", Logger::Level::WARNING);
 		return;
 	}
+	// Only masked sprites need to know their area.
+	if(IsMasked(name) && !sprite->Area())
+		sprite->SetArea(buffer[0].CalculateArea());
 	sprite->LoadDimensions(buffer[0]);
 	// Clear the buffer since no image data was actually uploaded.
 	buffer[0].Clear();
@@ -296,6 +315,9 @@ void ImageSet::Upload(Sprite *sprite, bool enableUpload)
 		for(ImageBuffer &it : buffer)
 			it.Clear();
 
+	// Only masked sprites need to know their area.
+	if(IsMasked(name) && !sprite->Area())
+		sprite->SetArea(buffer[0].CalculateArea());
 	// Load the frames (this will clear the buffers).
 	sprite->AddFrames(buffer[0], buffer[1], noReduction);
 	sprite->AddSwizzleMaskFrames(buffer[2], buffer[3], noReduction);

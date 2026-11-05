@@ -48,6 +48,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	const double MINIMUM_DRAG_BOX_SIZE = 25.;
+}
+
 
 
 MainPanel::MainPanel(PlayerInfo &player)
@@ -96,6 +100,7 @@ void MainPanel::Step()
 	// will call this object's OnCallback() function;
 	if(isActive && player.GetPlanet() && !player.GetPlanet()->IsWormhole())
 	{
+		engine.DisengageAutopilot();
 		GetUI().Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		player.Land(GetUI());
 		isActive = false;
@@ -150,7 +155,8 @@ void MainPanel::Draw()
 	{
 		if(canDrag)
 		{
-			const Color &dragColor = *GameData::Colors().Get("drag select");
+			bool validDrag = dragPoint.DistanceSquared(dragSource) > MINIMUM_DRAG_BOX_SIZE;
+			const Color &dragColor = *GameData::Colors().Get(validDrag ? "drag select" : "drag select invalid");
 			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8f, dragColor);
 			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8f, dragColor);
 			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8f, dragColor);
@@ -242,7 +248,7 @@ bool MainPanel::Click(int x, int y, MouseButton button, int clicks)
 	{
 		case MouseButton::MIDDLE:
 		case MouseButton::RIGHT:
-			engine.RightOrMiddleClick(Point(x, y), button);
+			engine.RightOrMiddleClick(Point(x, y), button, clicks);
 			return true;
 		case MouseButton::LEFT:
 			break;
@@ -263,7 +269,7 @@ bool MainPanel::Click(int x, int y, MouseButton button, int clicks)
 	hasShift = (mod & KMOD_SHIFT);
 	hasControl = (mod & KMOD_CTRL);
 
-	engine.Click(dragSource, dragSource, hasShift, hasControl);
+	engine.LeftClick(dragSource, hasShift, hasControl, clicks);
 
 	return true;
 }
@@ -290,8 +296,8 @@ bool MainPanel::Release(int x, int y, MouseButton button)
 	if(isDragging)
 	{
 		dragPoint = Point(x, y);
-		if(dragPoint.Distance(dragSource) > 5.)
-			engine.Click(dragSource, dragPoint, hasShift, hasControl);
+		if(dragPoint.DistanceSquared(dragSource) > MINIMUM_DRAG_BOX_SIZE)
+			engine.ReleaseDrag(dragSource, dragPoint);
 
 		isDragging = false;
 	}
@@ -354,7 +360,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		if(first)
 			out << "This " + name + " is not carrying any cargo.\n";
 	}
-	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Attributes().Get("inscrutable"))
+	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Inscrutable())
 		out << "Your scanners cannot make any sense of the interior of the " + name + ".";
 	else if(event.Type() & ShipEvent::SCAN_OUTFITS)
 	{
@@ -438,7 +444,7 @@ bool MainPanel::ShowHailPanel()
 
 	if(flagship->IsEnteringHyperspace())
 		Messages::Add(*GameData::Messages().Get("cannot hail while jumping"));
-	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
+	else if(flagship->IsCloaked() && !flagship->CanCommunicateWhileCloaked())
 		Messages::Add(*GameData::Messages().Get("cannot hail while cloaked"));
 	else if(target)
 	{
@@ -548,9 +554,7 @@ bool MainPanel::ShowHelp(bool force)
 		else if(DoHelp("fleet harvest tutorial"))
 			return true;
 	}
-	if(flagship->IsTargetable() &&
-			flagship->Attributes().Get("asteroid scan power") &&
-			player.Ships().size() > 1)
+	if(flagship->IsTargetable() && flagship->AsteroidScanPower() && player.Ships().size() > 1)
 	{
 		// Different order of these messages is intentional,
 		// because we're displaying the forced messages in reverse order.

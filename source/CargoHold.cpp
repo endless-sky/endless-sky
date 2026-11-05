@@ -584,21 +584,6 @@ void CargoHold::RemoveMissionCargo(const Mission *mission)
 
 
 
-// Get the total value of all this cargo, in the given system.
-int64_t CargoHold::Value(const System *system) const
-{
-	int64_t value = 0;
-	for(const auto &it : commodities)
-		value += static_cast<int64_t>(system->Trade(it.first)) * it.second;
-	// For outfits, assume they're fully depreciated, since that will always be
-	// the case unless the player bought into cargo for some reason.
-	for(const auto &it : outfits)
-		value += it.first->Cost() * it.second * Depreciation::Full();
-	return value;
-}
-
-
-
 // If anything you are carrying is illegal, return the maximum fine you can
 // be charged for any illegal outfits plus the sum of the fines for all
 // missions. If the returned value is negative, you are carrying something so
