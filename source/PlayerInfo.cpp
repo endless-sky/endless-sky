@@ -5426,9 +5426,8 @@ void PlayerInfo::Fine(UI &ui)
 			else
 			{
 				message.second = "Before you can leave your ship, the " + gov->DisplayName()
-					+ " authorities show up and begin scanning it. They say, \"Captain "
-					+ LastName()
-					+ ", we detect highly illegal material on your ship.\""
+					+ " authorities of " + planet->DisplayName() + " show up and begin scanning it. "
+					"They say, \"Captain " + LastName() + ", we detect highly illegal material on your ship.\""
 					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
 				ui.Push(DialogPanel::Info(message.second));
