@@ -54,10 +54,11 @@ namespace {
 
 	// Special "dates" used for recording plundered or captured items when the value of such
 	// items is below the minimum value of fully depreciated items.
-	// A high enough max age and low enough starting date can cause outfits be dated with these values
+	// A high enough max age and low enough starting date can cause outfits to be dated with these values
 	// without having actually been captured or plundered. While this isn't the intended behavior, it's
 	// also not something that the vanilla starting scenarios can encounter, and would only occur on two
-	// days for a starting scenario with an early enough date for the max age to overlap with these two "dates".
+	// specific dates for a starting scenario with an early enough date for the max age to overlap with
+	// these two "dates".
 	const int CAPTURED = -1;
 	const int PLUNDERED = -2;
 
