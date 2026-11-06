@@ -130,7 +130,7 @@ DialogPanel::~DialogPanel()
 
 
 
-DialogPanel *DialogPanel::Info(std::string message, Truncate truncate, bool allowsFastForward)
+DialogPanel *DialogPanel::Info(string message, Truncate truncate, bool allowsFastForward)
 {
 	DialogInit init;
 	init.message = std::move(message);
@@ -142,7 +142,7 @@ DialogPanel *DialogPanel::Info(std::string message, Truncate truncate, bool allo
 
 
 
-DialogPanel *DialogPanel::CallFunctionIfOk(std::function<void()> okFunction, std::string message, int activeButton,
+DialogPanel *DialogPanel::CallFunctionIfOk(function<void()> okFunction, string message, int activeButton,
 	Truncate truncate, bool allowsFastForward)
 {
 	DialogInit init;
@@ -156,7 +156,7 @@ DialogPanel *DialogPanel::CallFunctionIfOk(std::function<void()> okFunction, std
 
 
 
-DialogPanel *DialogPanel::MissionOfferDialog(std::string message, PlayerInfo &player, const System *system,
+DialogPanel *DialogPanel::MissionOfferDialog(string message, PlayerInfo &player, const System *system,
 	Truncate truncate, bool allowsFastForward)
 {
 	DialogInit init;
@@ -166,6 +166,40 @@ DialogPanel *DialogPanel::MissionOfferDialog(std::string message, PlayerInfo &pl
 	init.player = &player;
 	init.canCancel = true;
 	init.isMission = true;
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+DialogPanel *DialogPanel::RequestIntegerWithValidation(function<void(int)> fun,
+	std::function<bool(int)> validate, string message, optional<int> initialValue,
+	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	if(initialValue.has_value())
+		init.initialValue = std::to_string(initialValue.value());
+	init.intFun = std::move(fun);
+	init.validateIntFun = std::move(validate);
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+DialogPanel *DialogPanel::RequestDoubleWithValidation(function<void(double)> fun,
+	function<bool(double)> validate, string message, optional<double> initialValue,
+	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	if(initialValue.has_value())
+		init.initialValue = Format::StripCommas(Format::Number(initialValue.value(), 5));
+	init.doubleFun = std::move(fun);
+	init.validateDoubleFun = std::move(validate);
 	init.truncate = truncate;
 	init.allowsFastForward = allowsFastForward;
 	return new DialogPanel(init);

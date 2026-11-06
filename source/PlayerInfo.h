@@ -205,7 +205,7 @@ public:
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
-	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system) const;
+	double RaidFleetAttraction(const RaidFleet &raid, const System *system) const;
 	// Get the player's fleet capacity and the current cost of their fleet.
 	int FleetCapacity() const;
 	int FleetCost() const;
@@ -234,7 +234,7 @@ public:
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
-	void AddPlayTime(std::chrono::nanoseconds timeVal);
+	void AddPlayTime(std::chrono::nanoseconds timeVal, bool isIdle);
 
 	// Get the player's logbook.
 	const std::map<Date, BookEntry> &Logbook() const;
@@ -503,6 +503,7 @@ private:
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;
+	double idleTime = 0.;
 
 	Account accounts;
 	// The licenses that the player owns.

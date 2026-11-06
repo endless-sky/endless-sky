@@ -309,6 +309,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ScrollVar.h
 	SDL.h
 	Set.h
+	Setting.cpp
+	Setting.h
 	Ship.cpp
 	Ship.h
 	Shop.h
@@ -334,6 +336,8 @@ target_sources(EndlessSkyLib PRIVATE
 	StartConditions.h
 	StartConditionsPanel.cpp
 	StartConditionsPanel.h
+	Statistics.cpp
+	Statistics.h
 	StellarObject.cpp
 	StellarObject.h
 	StellarObjectSpriteData.cpp
