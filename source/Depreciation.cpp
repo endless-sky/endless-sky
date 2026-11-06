@@ -59,8 +59,8 @@ namespace {
 	// also not something that the vanilla starting scenarios can encounter, and would only occur on two
 	// specific dates for a starting scenario with an early enough date for the max age to overlap with
 	// these two "dates".
-	const int CAPTURED = -1;
-	const int PLUNDERED = -2;
+	constexpr int CAPTURED = -1;
+	constexpr int PLUNDERED = -2;
 
 	// Cache the age on which an item would have the given value.
 	map<double, int> depreciationToAge;
@@ -419,7 +419,7 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 
 	// Depending on whether this is a planet's stock or a player's fleet, we
 	// should either start with the lowest value item, or the highest.
-	map<double, int>::const_iterator it = (isStock ? values.begin() : --values.end());
+	auto it = (isStock ? values.begin() : --values.end());
 
 	double sum = 0.;
 	while(true)
