@@ -189,7 +189,10 @@ Gamerules::Gamerules()
 		string message = "Set the minimum deprecation value. (Decimal value between 0 and 1.)";
 		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.depreciationMin = value; },
+			[this](double value) -> void {
+				storage.depreciationMin = value;
+				Depreciation::InvalidateCache();
+			},
 			validate, message, DepreciationMin()));
 	});
 	settings[DEPRECIATION_MIN].SetConditionFunc([this]() -> int {
@@ -261,7 +264,10 @@ Gamerules::Gamerules()
 		string message = "Set the daily deprecation value. (Decimal value between 0 and 1.)";
 		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.depreciationDaily = value; },
+			[this](double value) -> void {
+				storage.depreciationDaily = value;
+				Depreciation::InvalidateCache();
+			},
 			validate, message, DepreciationDaily()));
 	});
 	settings[DEPRECIATION_DAILY].SetConditionFunc([this]() -> int {
@@ -282,7 +288,10 @@ Gamerules::Gamerules()
 		string message = "Set the depreciation grace period. (Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.depreciationGracePeriod = value; },
+			[this](int value) -> void {
+				storage.depreciationGracePeriod = value;
+				Depreciation::InvalidateCache();
+			},
 			validate, message, DepreciationGracePeriod()));
 	});
 	settings[DEPRECIATION_GRACE_PERIOD].SetConditionFunc([this]() -> int {
@@ -303,7 +312,10 @@ Gamerules::Gamerules()
 		string message = "Set the depreciation maximum age. (Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.depreciationMaxAge = value; },
+			[this](int value) -> void {
+				storage.depreciationMaxAge = value;
+				Depreciation::InvalidateCache();
+			},
 			validate, message, DepreciationMaxAge()));
 	});
 	settings[DEPRECIATION_MAX_AGE].SetConditionFunc([this]() -> int {
