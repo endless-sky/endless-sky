@@ -1474,6 +1474,35 @@ interface "hud"
 	anchor top
 	point "mini-map"
 		center 0 100
+	
+	# Newtonian flight proof of concept readouts.
+	visible if "newtonian flight"
+	string "flight assist"
+		center 0 20
+		color "bright"
+	string "flight assist alert"
+		center 0 20
+		color "heat"
+	bar "flight speed"
+		from -100 38
+		dimensions 200 0
+		color "shields"
+		size 2
+	bar "flight over speed"
+		from -100 44
+		dimensions 200 0
+		color "heat"
+		size 2
+	string "flight speed"
+		center 0 58
+		color "medium"
+	string "flight drift"
+		center 0 76
+		color "medium"
+	string "flight spin"
+		center 0 94
+		color "medium"
+	visible
 
 
 

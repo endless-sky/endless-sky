@@ -288,6 +288,13 @@ private:
 	std::vector<PlanetLabel> labels;
 	std::vector<AlertLabel> missileLabels;
 	std::vector<TurretOverlay> turretOverlays;
+	// Newtonian flight proof of concept: velocity marker around the flagship,
+	// in screen coordinates (already multiplied by the zoom).
+	bool showFlightVector = false;
+	Point flightVectorCenter;
+	Point flightVectorVelocity;
+	Point flightVectorFacing;
+	double flightVectorRadius = 0.;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	// Flagship's hyperspace percentage converted to a [0, 1] double.
 	double hyperspacePercentage = 0.;

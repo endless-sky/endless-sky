@@ -3,6 +3,7 @@
 "Turn left" 1073741904
 "Turn right" 1073741903
 "Auto steer" 101
+"Toggle flight assist" 120
 "Reverse" 1073741905
 "Fire primary weapon" 9
 "Fire secondary weapon" 113

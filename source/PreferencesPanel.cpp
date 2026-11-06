@@ -603,6 +603,7 @@ void PreferencesPanel::DrawControls()
 		Command::BACK,
 		Command::AFTERBURNER,
 		Command::AUTOSTEER,
+		Command::FLIGHT_ASSIST,
 		Command::LAND,
 		Command::JUMP,
 		Command::NONE,

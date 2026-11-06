@@ -473,6 +473,33 @@ public:
 	// accounting for the effects of insufficient crew.
 	double CrewAcceleration() const;
 	double CrewTurnRate() const;
+
+	// Newtonian flight proof of concept (plans/flight-simulation-A.md).
+	// Only the player's flagship flies Newtonian, and only when the
+	// "newtonian flight" gamerule is on. Everything else uses drag physics.
+	enum class FlightAssistState {OFF, ON, LIMIT, BRAKING};
+	void SetNewtonian(bool value);
+	bool IsNewtonian() const;
+	// The flight assist toggle. Resets to on whenever the game is loaded.
+	void ToggleFlightAssist();
+	bool FlightAssist() const;
+	// While an autopilot (land, jump, board) is flying, use legacy drag
+	// physics so that the existing AI routines keep working.
+	void SetNewtonianAutopilot(bool value);
+	// True when this ship is currently flying with Newtonian physics.
+	bool UsesNewtonianPhysics() const;
+	FlightAssistState GetFlightAssistState() const;
+	// The speed the flight computer holds to: today's drag-based top speed,
+	// raised to the boosted speed while the afterburner is held.
+	double RatedSpeed() const;
+	// The soft cap multiplier above rated speed (from the gamerules).
+	double NewtonianSoftCap() const;
+	// Current angular velocity, in degrees per frame.
+	double AngularVelocity() const;
+	// Angular acceleration available, in degrees per frame per frame.
+	double AngularAcceleration() const;
+	// Retro thrust acceleration, including the built-in baseline thrusters.
+	double NewtonianRetroAcceleration() const;
 	// The ship's current speed right now
 	double CurrentSpeed() const;
 
@@ -697,6 +724,7 @@ private:
 	void DoInitializeMovement();
 	void StepPilot();
 	void DoMovement(bool &isUsingAfterburner);
+	void DoNewtonianMovement(bool &isUsingAfterburner);
 	void StepTargeting();
 	void DoEngineVisuals(std::vector<Visual> &visuals, bool isUsingAfterburner) const;
 
@@ -756,6 +784,13 @@ private:
 	bool isReversing = false;
 	bool isSteering = false;
 	double steeringDirection = 0.;
+	// Newtonian flight proof of concept state.
+	bool isNewtonian = false;
+	bool flightAssist = true;
+	bool newtonianAutopilot = false;
+	double angularVelocity = 0.;
+	double ratedSpeed = 0.;
+	FlightAssistState flightAssistState = FlightAssistState::ON;
 	bool isCapturable = true;
 	bool isInvisible = false;
 	const Swizzle *customSwizzle = nullptr;

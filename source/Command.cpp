@@ -93,6 +93,11 @@ const Command Command::AUTOSTEER(ONE << 38, "Auto steer");
 const Command Command::WAIT(ONE << 39, "");
 const Command Command::STOP(ONE << 40, "Stop your ship");
 const Command Command::SHIFT(ONE << 41, "");
+// Newtonian flight proof of concept. Strafing is produced by Shift+turn,
+// so it has no key of its own yet.
+const Command Command::STRAFE_LEFT(ONE << 42, "");
+const Command Command::STRAFE_RIGHT(ONE << 43, "");
+const Command Command::FLIGHT_ASSIST(ONE << 44, "Toggle flight assist");
 
 
 
@@ -310,7 +315,10 @@ void Command::Load(const DataNode &node)
 			{"nearest asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},
 			{"stop", Command::STOP},
-			{"shift", Command::SHIFT}
+			{"shift", Command::SHIFT},
+			{"strafe left", Command::STRAFE_LEFT},
+			{"strafe right", Command::STRAFE_RIGHT},
+			{"flight assist", Command::FLIGHT_ASSIST}
 		};
 
 		auto it = lookup.find(node.Token(i));

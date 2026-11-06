@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hazard.h"
 #include "Interface.h"
+#include "shader/LineShader.h"
 #include "Logger.h"
 #include "MapPanel.h"
 #include "image/Mask.h"
@@ -469,6 +470,13 @@ void Engine::Step(bool isActive)
 
 	// The calculation thread was paused by MainPanel before calling this function, so it is safe to access things.
 	const shared_ptr<Ship> flagship = player.FlagshipPtr();
+	// Newtonian flight proof of concept: with the "newtonian flight" gamerule on,
+	// only the flagship flies Newtonian. Escorts and NPCs keep drag physics.
+	{
+		const bool newtonian = GameData::GetGamerules().GetValue("newtonian flight");
+		for(const shared_ptr<Ship> &ship : player.Ships())
+			ship->SetNewtonian(newtonian && ship == flagship);
+	}
 	const StellarObject *object = player.GetStellarObject();
 	if(object)
 		camera.SnapTo(object->Position());
@@ -668,8 +676,20 @@ void Engine::Step(bool isActive)
 	statuses.clear();
 	missileLabels.clear();
 	turretOverlays.clear();
+	showFlightVector = false;
 	if(isActive)
 	{
+		// Newtonian flight velocity marker.
+		if(flagship && flagship->IsNewtonian() && flagship->Zoom() == 1. && !flagship->IsHyperspacing())
+		{
+			showFlightVector = true;
+			flightVectorCenter = (flagship->Position() - camera.Center()) * static_cast<double>(zoom);
+			// The line shows where the ship will be in half a second.
+			flightVectorVelocity = flagship->Velocity() * 30. * static_cast<double>(zoom);
+			flightVectorFacing = flagship->Facing().Unit();
+			flightVectorRadius = (flagship->Radius() + 20.) * static_cast<double>(zoom);
+		}
+
 		// Create the status overlays.
 		CreateStatusOverlays();
 		// Create missile overlays.
@@ -772,6 +792,35 @@ void Engine::Step(bool isActive)
 		info.SetBar("shields", flagship->ShieldFraction());
 		info.SetBar("hull", flagship->HullFraction(), 20.);
 		info.SetBar("disabled hull", min(flagship->HullFraction(), flagship->DisabledHullFraction()), 20.);
+
+		// Newtonian flight proof of concept readouts (A4 items 1-2, A5.11).
+		if(flagship->IsNewtonian())
+		{
+			info.SetCondition("newtonian flight");
+			using State = Ship::FlightAssistState;
+			State state = flagship->GetFlightAssistState();
+			string stateName = state == State::ON ? "ON" : state == State::OFF ? "OFF"
+				: state == State::LIMIT ? "LIMIT" : "BRAKING";
+			// Alert states are drawn in a warning color.
+			info.SetString(state == State::ON ? "flight assist" : "flight assist alert",
+				"Flight assist: " + stateName);
+			double speed = flagship->Velocity().Length();
+			double rated = flagship->RatedSpeed();
+			Point facing = flagship->Facing().Unit();
+			double drift = flagship->Velocity().Dot(Point(-facing.Y(), facing.X()));
+			info.SetString("flight speed", "Speed: " + to_string(lround(60. * speed))
+				+ " / " + to_string(lround(60. * rated)));
+			info.SetString("flight drift", "Drift: " + to_string(lround(60. * drift)));
+			info.SetString("flight spin", "Spin: " + to_string(lround(60. * fabs(flagship->AngularVelocity())))
+				+ " / " + to_string(lround(60. * flagship->TrueTurnRate())) + " deg/s");
+			if(rated > 0.)
+			{
+				info.SetBar("flight speed", min(1., speed / rated));
+				if(speed > rated)
+					info.SetBar("flight over speed",
+						min(1., (speed - rated) / ((flagship->NewtonianSoftCap() - 1.) * rated)));
+			}
+		}
 	}
 	info.SetString("credits",
 		Format::CreditString(player.Accounts().Credits()));
@@ -1245,6 +1294,57 @@ void Engine::Draw() const
 			PointerShader::Add(it.position, it.angle, 8 * it.scale, 24 * it.scale, 24 * it.scale,
 				it.isBlind ? blindspot : normal);
 		PointerShader::Unbind();
+	}
+
+	// Newtonian flight compass (inspired by Delta-V): a faint grey ring around the
+	// flagship with bearing ticks, a caret for where the ship is pointing, and
+	// prograde / retrograde markers on the ring with a faint line extending in the
+	// direction of travel (its length shows where the ship will be in half a second).
+	if(showFlightVector)
+	{
+		const Point &center = flightVectorCenter;
+		const float radius = static_cast<float>(flightVectorRadius);
+		const Color ringColor(.18f, .18f);
+		const Color tickColor(.28f, .28f);
+		const Color northColor(.45f, .45f);
+		const Color headingColor(.6f, .6f);
+		const Color prograde(.25f, .7f, .32f, .7f);
+		const Color retrograde(.6f, .22f, .16f, .6f);
+
+		RingShader::Draw(center, radius + .75f, radius - .75f, ringColor);
+
+		// Bearing ticks every 15 degrees: longer every 45, longest at the cardinals.
+		for(int i = 0; i < 24; ++i)
+		{
+			Point unit = Angle(i * 15.).Unit();
+			double length = (i % 6 == 0) ? 9. : (i % 3 == 0) ? 6. : 3.;
+			const Color &color = (i == 0) ? northColor : tickColor;
+			LineShader::Draw(center + unit * radius, center + unit * (radius + length), 1.f, color, false);
+		}
+
+		PointerShader::Bind();
+		// Heading caret just inside the ring, pointing out.
+		PointerShader::Add(center, flightVectorFacing, 8.f, 7.f, radius - 2.f, headingColor);
+
+		double length = flightVectorVelocity.Length();
+		if(length > .5)
+		{
+			Point unit = flightVectorVelocity / length;
+			// Markers sit just outside the ring, clear of the ticks.
+			PointerShader::Add(center, unit, 10.f, 9.f, radius + 13.f, prograde);
+			PointerShader::Add(center, -unit, 8.f, 7.f, radius + 11.f, retrograde);
+		}
+		PointerShader::Unbind();
+
+		if(length > .5)
+		{
+			Point unit = flightVectorVelocity / length;
+			const Color faint(.12f, .35f, .16f, .35f);
+			const Color clear(0.f, 0.f);
+			Point from = center + unit * (radius + 15.);
+			Point to = from + flightVectorVelocity;
+			LineShader::DrawGradient(from, to, 1.f, faint, clear);
+		}
 	}
 
 	if(flash)
@@ -2240,7 +2340,10 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
-	else if(keyHeld.Has(Command::BACK) && flagship->Commands().Has(Command::STOP))
+	// (With Newtonian flight assist on, BACK itself brakes using STOP, so it must
+	// not be latched into a STOP command here.)
+	else if(keyHeld.Has(Command::BACK) && flagship->Commands().Has(Command::STOP)
+			&& !(flagship->IsNewtonian() && flagship->FlightAssist()))
 	{
 		// If the player previously sent a STOP command and hits the BACK key,
 		// maintain the STOP command. Since STOP is shift+BACK, releasing the shift
@@ -2248,6 +2351,16 @@ void Engine::HandleKeyboardInputs()
 		// cancel it, which likely isn't what the player wants.
 		activeCommands |= Command::STOP;
 		activeCommands.Clear(Command::BACK);
+	}
+
+	// Newtonian flight proof of concept (A5.10): Shift+Left/Right strafe instead of turning.
+	if(flagship->IsNewtonian() && keyHeld.Has(Command::SHIFT) && keyHeld.Has(Command::LEFT | Command::RIGHT))
+	{
+		if(keyHeld.Has(Command::LEFT))
+			activeCommands |= Command::STRAFE_LEFT;
+		if(keyHeld.Has(Command::RIGHT))
+			activeCommands |= Command::STRAFE_RIGHT;
+		activeCommands.Clear(Command::LEFT | Command::RIGHT);
 	}
 
 	if(keyHeld.Has(Command::AUTOSTEER) && !activeCommands.Turn()

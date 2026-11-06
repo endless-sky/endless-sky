@@ -46,3 +46,88 @@
 	"permadeath mode" off
 	"single save file" false
 	"restricted save loading" false
+
+
+# Newtonian flight proof of concept (plans/flight-simulation-A.md).
+# Same as Default, plus Newtonian physics for the player's flagship.
+"gamerules preset" "Newtonian (Arcade)"
+	description "Proof of concept: your flagship flies with Newtonian physics and flight assist. Press X to toggle assist, Shift+Left/Right to strafe, Shift+Down to brake. Escorts and NPCs keep the old physics."
+	
+	"depreciation min" 0.25
+	"depreciation grace period" 7
+	"depreciation max age" 1000
+	"depreciation daily" 0.997
+	
+	"person spawn period" 72000
+	"no person spawn weight" 1000
+	
+	"npc max mining time" 3600
+	"universal frugal threshold" 0.75
+	
+	"universal ramscoop" true
+	"system arrival min" unset
+	"system departure min" 0.
+	"habitable based arrival distance" true
+	"habitable arrival min" 500
+	"habitable arrival max" 5000
+	"fleet multiplier" 1.
+	
+	"lock gamerules" true
+	"disabled fighters avoid projectiles" "all"
+	"universal ammo restocking" true
+	"spawn raid fleets" true
+	
+	"fleet size limitation" "none"
+	"default max escort count" 6
+	"default max escort crew" 1000
+	"default admin cap" 25
+	
+	"permadeath mode" off
+	"single save file" false
+	"restricted save loading" false
+	
+	"newtonian flight" true
+	"newtonian soft cap percent" 250
+	"newtonian spin up frames" 10
+	"newtonian baseline thrust percent" 15
+
+"gamerules preset" "Newtonian (Sim)"
+	description "Proof of concept: like Newtonian (Arcade), but with heavier spin, weaker manoeuvring thrusters and a lower soft cap."
+	
+	"depreciation min" 0.25
+	"depreciation grace period" 7
+	"depreciation max age" 1000
+	"depreciation daily" 0.997
+	
+	"person spawn period" 72000
+	"no person spawn weight" 1000
+	
+	"npc max mining time" 3600
+	"universal frugal threshold" 0.75
+	
+	"universal ramscoop" true
+	"system arrival min" unset
+	"system departure min" 0.
+	"habitable based arrival distance" true
+	"habitable arrival min" 500
+	"habitable arrival max" 5000
+	"fleet multiplier" 1.
+	
+	"lock gamerules" true
+	"disabled fighters avoid projectiles" "all"
+	"universal ammo restocking" true
+	"spawn raid fleets" true
+	
+	"fleet size limitation" "none"
+	"default max escort count" 6
+	"default max escort crew" 1000
+	"default admin cap" 25
+	
+	"permadeath mode" off
+	"single save file" false
+	"restricted save loading" false
+	
+	"newtonian flight" true
+	"newtonian soft cap percent" 200
+	"newtonian spin up frames" 30
+	"newtonian baseline thrust percent" 10
