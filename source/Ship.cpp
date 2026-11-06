@@ -124,6 +124,13 @@ namespace {
 		return 1. / (1. + excess * excess);
 	}
 
+	// Heavier ships take longer to spin up to their rated turn rate (A2): the spin up
+	// gamerule applies to a ship of this inertial mass, scaled by the square root of
+	// the mass ratio and clamped to this range.
+	constexpr double SPIN_UP_REFERENCE_MASS = 300.;
+	constexpr double SPIN_UP_MIN_SCALE = .5;
+	constexpr double SPIN_UP_MAX_SCALE = 3.;
+
 	// Disabled or powerless Newtonian ships slow to a stop over roughly 8 seconds
 	// ("emergency station-keeping") instead of using drag.
 	constexpr double STATION_KEEPING_DECAY = .99;
@@ -3905,7 +3912,15 @@ double Ship::AngularVelocity() const
 
 double Ship::AngularAcceleration() const
 {
-	return TurnRate() / GetNewtonianTuning().spinUpFrames;
+	return TurnRate() / SpinUpFrames();
+}
+
+
+
+double Ship::SpinUpFrames() const
+{
+	double scale = sqrt(max(0., InertialMass()) / SPIN_UP_REFERENCE_MASS);
+	return GetNewtonianTuning().spinUpFrames * clamp(scale, SPIN_UP_MIN_SCALE, SPIN_UP_MAX_SCALE);
 }
 
 
@@ -5870,7 +5885,7 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 
 	// Rotation (A2).
 	const double ratedTurn = TurnRate() * slowMultiplier;
-	const double angularAccel = ratedTurn / tuning.spinUpFrames;
+	const double angularAccel = ratedTurn / SpinUpFrames();
 	const double turnInput = clamp(commands.Turn(), -1., 1.);
 	double deltaOmega = 0.;
 	double spinCapFactor = 1.;

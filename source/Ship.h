@@ -498,6 +498,8 @@ public:
 	double AngularVelocity() const;
 	// Angular acceleration available, in degrees per frame per frame.
 	double AngularAcceleration() const;
+	// Frames this ship needs to spin up to its rated turn rate (gamerule, scaled by mass).
+	double SpinUpFrames() const;
 	// Retro thrust acceleration, including the built-in baseline thrusters.
 	double NewtonianRetroAcceleration() const;
 	// The ship's current speed right now
