@@ -83,8 +83,15 @@ target_include_directories(EndlessSkyTests PRIVATE unit/include)
 target_link_libraries(EndlessSkyTests PRIVATE Catch2::Catch2WithMain)
 target_link_libraries(EndlessSkyTests PRIVATE ExternalLibraries $<TARGET_OBJECTS:EndlessSkyLib>)
 
-target_compile_options(EndlessSkyTests PUBLIC ${SANITIZER_OPTS})
-target_link_options(EndlessSkyTests PUBLIC ${SANITIZER_OPTS})
+# AddressSanitizer deadlocks at startup with some toolchains (e.g. Apple clang 17
+# on macOS 26), so it can be turned off for the tests, keeping the other sanitizers.
+option(ES_TEST_ASAN "Build the unit tests with AddressSanitizer" ON)
+set(TEST_SANITIZER_OPTS ${SANITIZER_OPTS})
+if(NOT ES_TEST_ASAN)
+	list(TRANSFORM TEST_SANITIZER_OPTS REPLACE "address,|pointer-compare,|pointer-subtract," "")
+endif()
+target_compile_options(EndlessSkyTests PUBLIC ${TEST_SANITIZER_OPTS})
+target_link_options(EndlessSkyTests PUBLIC ${TEST_SANITIZER_OPTS})
 
 # CTest support for our unit tests.
 add_test(NAME unit COMMAND EndlessSkyTests)
