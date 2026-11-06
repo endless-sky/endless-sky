@@ -40,6 +40,7 @@ private:
 	void Thrust(const Outfit &attributes);
 	void Turn(const Outfit &attributes);
 	void ReverseThrust(const Outfit &attributes);
+	void LateralThrust(const Outfit &attributes);
 	void AfterburnerThrust(const Outfit &attributes);
 
 	void Cloaking(const Outfit &attributes);
@@ -107,6 +108,8 @@ private:
 	ResourceLevels turnCost;
 	double reverseThrust = 0.;
 	ResourceLevels reverseThrustCost;
+	double lateralThrust = 0.;
+	ResourceLevels lateralThrustCost;
 	double afterburnerThrust = 0.;
 	ResourceLevels afterburnerThrustCost;
 

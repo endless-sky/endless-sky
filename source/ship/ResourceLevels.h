@@ -80,6 +80,8 @@ public:
 	std::optional<MissingResource> CanFire(const Weapon &weapon, const ResourceLevels &capacities) const;
 
 	ResourceLevels operator*(double scalar) const;
+	// Add two sets of levels together, element by element, without clamping.
+	ResourceLevels operator+(const ResourceLevels &other) const;
 	friend ResourceLevels operator*(double scalar, const ResourceLevels &levels);
 
 

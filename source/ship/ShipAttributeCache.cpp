@@ -39,6 +39,7 @@ void ShipAttributeCache::Calibrate(const Ship &ship)
 	Thrust(attributes);
 	Turn(attributes);
 	ReverseThrust(attributes);
+	LateralThrust(attributes);
 	AfterburnerThrust(attributes);
 
 	// Miscellaneous actions and attributes:
@@ -229,6 +230,28 @@ void ShipAttributeCache::ReverseThrust(const Outfit &attributes)
 	reverseThrustCost.leakage = attributes.Get("reverse thrusting leakage");
 	reverseThrustCost.disruption = attributes.Get("reverse thrusting disruption");
 	reverseThrustCost.slowness = attributes.Get("reverse thrusting slowing");
+}
+
+
+
+void ShipAttributeCache::LateralThrust(const Outfit &attributes)
+{
+	lateralThrust = attributes.Get("lateral thrust");
+
+	lateralThrustCost.hull = attributes.Get("lateral thrusting hull");
+	lateralThrustCost.shields = attributes.Get("lateral thrusting shields");
+	lateralThrustCost.energy = attributes.Get("lateral thrusting energy");
+	lateralThrustCost.heat = attributes.Get("lateral thrusting heat");
+	lateralThrustCost.fuel = attributes.Get("lateral thrusting fuel");
+
+	lateralThrustCost.corrosion = attributes.Get("lateral thrusting corrosion");
+	lateralThrustCost.discharge = attributes.Get("lateral thrusting discharge");
+	lateralThrustCost.ionization = attributes.Get("lateral thrusting ion");
+	lateralThrustCost.scrambling = attributes.Get("lateral thrusting scramble");
+	lateralThrustCost.burning = attributes.Get("lateral thrusting burn");
+	lateralThrustCost.leakage = attributes.Get("lateral thrusting leakage");
+	lateralThrustCost.disruption = attributes.Get("lateral thrusting disruption");
+	lateralThrustCost.slowness = attributes.Get("lateral thrusting slowing");
 }
 
 

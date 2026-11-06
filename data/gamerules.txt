@@ -89,7 +89,7 @@
 	"newtonian flight" true
 	"newtonian soft cap percent" 250
 	"newtonian spin up frames" 10
-	"newtonian baseline thrust percent" 15
+	"newtonian baseline thrust percent" 19
 
 "gamerules preset" "Newtonian (Sim)"
 	description "Proof of concept: like Newtonian (Arcade), but with heavier spin, weaker manoeuvring thrusters and a lower soft cap."
@@ -130,4 +130,4 @@
 	"newtonian flight" true
 	"newtonian soft cap percent" 200
 	"newtonian spin up frames" 30
-	"newtonian baseline thrust percent" 10
+	"newtonian baseline thrust percent" 13

@@ -123,6 +123,10 @@ public:
 		RIGHT = 1,
 		FORWARD = 2,
 		REVERSE = 3,
+		// Manoeuvring thrusters pushing the ship sideways (Newtonian flight, A3).
+		// Until ships define lateral flare points, they use the steering flares.
+		LATERAL_LEFT = 4,
+		LATERAL_RIGHT = 5,
 	};
 
 	enum class CanFireResult {
@@ -851,7 +855,7 @@ private:
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
 	// The amount of time in frames that an engine has been on for.
-	std::array<uint8_t, 4> thrustHeldFrames = {};
+	std::array<uint8_t, 6> thrustHeldFrames = {};
 
 	std::optional<int> administrativeCost;
 	int crew = 0;

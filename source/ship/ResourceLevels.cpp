@@ -292,6 +292,29 @@ ResourceLevels ResourceLevels::operator*(double scalar) const
 
 
 
+ResourceLevels ResourceLevels::operator+(const ResourceLevels &other) const
+{
+	ResourceLevels levels;
+	levels.hull = hull + other.hull;
+	levels.shields = shields + other.shields;
+	levels.energy = energy + other.energy;
+	levels.heat = heat + other.heat;
+	levels.fuel = fuel + other.fuel;
+
+	levels.corrosion = corrosion + other.corrosion;
+	levels.discharge = discharge + other.discharge;
+	levels.ionization = ionization + other.ionization;
+	levels.burning = burning + other.burning;
+	levels.leakage = leakage + other.leakage;
+
+	levels.scrambling = scrambling + other.scrambling;
+	levels.disruption = disruption + other.disruption;
+	levels.slowness = slowness + other.slowness;
+	return levels;
+}
+
+
+
 ResourceLevels operator*(double scalar, const ResourceLevels &levels)
 {
 	ResourceLevels retVal;

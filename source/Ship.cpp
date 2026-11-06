@@ -76,7 +76,7 @@ namespace {
 		// Frames to spin up from rest to the rated turn rate.
 		double spinUpFrames = 10.;
 		// Built-in retro and lateral thrust, as a fraction of main thrust.
-		double baseline = .15;
+		double baseline = .19;
 		// Multipliers on the energy and heat cost of every thruster (main, retro,
 		// lateral, turning and afterburner).
 		double energyCost = 4.;
@@ -241,8 +241,14 @@ namespace {
 		const vector<pair<Drawable, int>> &flareSprites, uint8_t side, bool reverse)
 	{
 		Point thrustScale = ScaledFlareCurve(ship, reverse ? Ship::ThrustKind::REVERSE : Ship::ThrustKind::FORWARD);
-		Point leftTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::LEFT);
-		Point rightTurnScale = ScaledFlareCurve(ship, Ship::ThrustKind::RIGHT);
+		// Steering flares also show for the lateral thrusters (A3), whichever is stronger.
+		auto steeringScale = [&ship](Ship::ThrustKind turn, Ship::ThrustKind lateral)
+		{
+			return ScaledFlareCurve(ship,
+				ship.ThrustHeldFrames(turn) >= ship.ThrustHeldFrames(lateral) ? turn : lateral);
+		};
+		Point leftTurnScale = steeringScale(Ship::ThrustKind::LEFT, Ship::ThrustKind::LATERAL_LEFT);
+		Point rightTurnScale = steeringScale(Ship::ThrustKind::RIGHT, Ship::ThrustKind::LATERAL_RIGHT);
 
 		double gimbalDirection = (ship.Commands().Has(Command::FORWARD) || ship.Commands().Has(Command::BACK))
 			* -ship.Commands().Turn();
@@ -2288,7 +2294,9 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 		else if(ThrustHeldFrames(Ship::ThrustKind::REVERSE) && !ReverseEnginePoints().empty())
 			DrawFlareSprites(*this, draw, ReverseEnginePoints(),
 				Attributes().ReverseFlareSprites(), where, true);
-		if((ThrustHeldFrames(Ship::ThrustKind::LEFT) || ThrustHeldFrames(Ship::ThrustKind::RIGHT))
+		if((ThrustHeldFrames(Ship::ThrustKind::LEFT) || ThrustHeldFrames(Ship::ThrustKind::RIGHT)
+				|| ThrustHeldFrames(Ship::ThrustKind::LATERAL_LEFT)
+				|| ThrustHeldFrames(Ship::ThrustKind::LATERAL_RIGHT))
 			&& !SteeringEnginePoints().empty())
 			DrawFlareSprites(*this, draw, SteeringEnginePoints(),
 				Attributes().SteeringFlareSprites(), where, false);
@@ -3927,7 +3935,7 @@ double Ship::SpinUpFrames() const
 
 double Ship::NewtonianRetroAcceleration() const
 {
-	return max(ReverseAcceleration(), Acceleration() * GetNewtonianTuning().baseline);
+	return ReverseAcceleration() + Acceleration() * GetNewtonianTuning().baseline;
 }
 
 
@@ -5850,7 +5858,9 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	ResourceLevels turnCost = cache.turnCost;
 	ResourceLevels thrustCost = cache.thrustCost;
 	ResourceLevels afterburnerCost = cache.afterburnerThrustCost;
-	for(ResourceLevels *cost : {&turnCost, &thrustCost, &afterburnerCost})
+	ResourceLevels reverseCost = cache.reverseThrustCost;
+	ResourceLevels lateralCost = cache.lateralThrustCost;
+	for(ResourceLevels *cost : {&turnCost, &thrustCost, &afterburnerCost, &reverseCost, &lateralCost})
 	{
 		cost->energy *= tuning.energyCost;
 		cost->heat *= tuning.heatCost;
@@ -5931,10 +5941,13 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	const double forwardAccel = Acceleration() * slowMultiplier;
 	const double afterburnerAccel = afterburnerHeld
 		? cache.afterburnerThrust / mass * cache.accelerationMult * slowMultiplier : 0.;
+	// A3: manoeuvring thrust is the built-in baseline plus any reverse or lateral
+	// thruster outfits, which stack on top of it.
 	const double baselineAccel = forwardAccel * tuning.baseline;
-	const double retroAccel = max(ReverseAcceleration() * slowMultiplier, baselineAccel);
-	const double lateralAccel = baselineAccel
-		+ attributes.Get("lateral thrust") / mass * cache.accelerationMult * slowMultiplier;
+	const double reverseOutfitAccel = ReverseAcceleration() * slowMultiplier;
+	const double lateralOutfitAccel = cache.lateralThrust / mass * cache.accelerationMult * slowMultiplier;
+	const double retroAccel = baselineAccel + reverseOutfitAccel;
+	const double lateralAccel = baselineAccel + lateralOutfitAccel;
 
 	const double speed = velocity.Length();
 	const double thrustInput = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
@@ -6019,29 +6032,37 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	double afterburnerPart = max(0., dvForward - forwardAccel);
 	double mainPart = dvForward - afterburnerPart;
 
-	// A5.2: every manoeuvre pays the main engine's cost per unit of delta-v.
+	// A5.2 / A3 costs: the main engine and the built-in baseline thrusters pay the
+	// main engine's cost per unit of delta-v. Reverse and lateral thruster outfits
+	// pay their own cost sets for their share of each burn: a group at full
+	// throttle burns the baseline and every outfit in it at full power.
 	// A5.3: drift cancel (lateral) is paid for before speed hold.
-	if(forwardAccel > 0. && (mainPart || dvLateral))
+	auto groupCost = [&](const ResourceLevels &outfitCost) -> ResourceLevels
 	{
-		double lateralThrottle = fabs(dvLateral) / forwardAccel;
-		double forwardThrottle = fabs(mainPart) / forwardAccel;
-		double available = min(lateralThrottle + forwardThrottle,
-			AvailableResources().MultipleUsage(thrustCost));
-		if(lateralThrottle > available)
+		return outfitCost + thrustCost * tuning.baseline;
+	};
+	// Fire one thruster group: scale the requested delta-v down to what can be
+	// afforded, pay for it, and return the delta-v actually delivered.
+	auto burn = [&](double dv, double capacity, const ResourceLevels &fullCost) -> double
+	{
+		if(!dv || capacity <= 0.)
+			return 0.;
+		double throttle = fabs(dv) / capacity;
+		double available = AvailableResources().FractionalUsage(fullCost * throttle);
+		if(available < 1.)
 		{
-			dvLateral *= available / lateralThrottle;
-			lateralThrottle = available;
+			throttle *= available;
+			dv *= available;
 			saturated = true;
 		}
-		double remaining = available - lateralThrottle;
-		if(forwardThrottle > remaining)
-		{
-			mainPart *= remaining / forwardThrottle;
-			forwardThrottle = remaining;
-			saturated = true;
-		}
-		levels.Damage(thrustCost, lateralThrottle + forwardThrottle);
-	}
+		levels.Damage(fullCost, throttle);
+		return dv;
+	};
+	dvLateral = burn(dvLateral, lateralAccel, groupCost(lateralCost));
+	if(mainPart > 0.)
+		mainPart = burn(mainPart, forwardAccel, thrustCost);
+	else if(mainPart < 0.)
+		mainPart = burn(mainPart, retroAccel, groupCost(reverseCost));
 	if(afterburnerPart > 0. && afterburnerAccel > 0.)
 	{
 		levels.Damage(afterburnerCost, afterburnerPart / afterburnerAccel);
@@ -6064,6 +6085,12 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	{
 		isReversing = true;
 		IncrementThrusterHeld(ThrustKind::REVERSE);
+	}
+	// Lateral thrusters (A3) use the steering flares and sounds for now.
+	if(fabs(dvLateral) > flareThreshold)
+	{
+		isSteering = true;
+		IncrementThrusterHeld(dvLateral < 0. ? ThrustKind::LATERAL_LEFT : ThrustKind::LATERAL_RIGHT);
 	}
 
 	if(!flightAssist)

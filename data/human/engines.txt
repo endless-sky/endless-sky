@@ -715,3 +715,72 @@ outfit "AR120 Reverse Thruster"
 	"reverse flare sound" "atomic tiny"
 	description "For pilots who want to pull fancy tricks that most are not capable of duplicating, a reverse thruster allows a ship to accelerate backwards, without needing to turn around."
 	description "	Because a reverse thruster must be facing forwards, it must be installed in the weapon section of your ship instead of the engine section."
+
+
+
+# Newtonian flight (plans/flight-simulation-A.md, A3): manoeuvring thruster packs.
+# They stack on the built-in baseline lateral and retro thrust every hull has.
+outfit "Small RCS Pack"
+	category "Engines"
+	series "Engines"
+	index 01013
+	"cost" 9000
+	thumbnail "outfit/small rcs pack"
+	"mass" 8
+	"outfit space" -8
+	"engine capacity" -8
+	"lateral thrust" 6
+	"lateral thrusting energy" .3
+	"lateral thrusting heat" .45
+	"reverse thrust" 3
+	"reverse thrusting energy" .15
+	"reverse thrusting heat" .25
+	"reverse flare sprite" "effect/ion flare/tiny"
+		"frame rate" 1.2
+	"reverse flare sound" "ion tiny"
+	description "A ring of small reaction control nozzles around the hull. They push a ship sideways or backwards without turning it, so a pilot can strafe, cancel drift and brake while keeping their guns on target."
+	description "	Under Newtonian flight, a flight computer also fires them to cancel drift and to coast the ship to a stop."
+
+
+outfit "Medium RCS Pack"
+	category "Engines"
+	series "Engines"
+	index 01103
+	"cost" 24000
+	thumbnail "outfit/medium rcs pack"
+	"mass" 16
+	"outfit space" -16
+	"engine capacity" -16
+	"lateral thrust" 14
+	"lateral thrusting energy" .7
+	"lateral thrusting heat" 1.1
+	"reverse thrust" 7
+	"reverse thrusting energy" .35
+	"reverse thrusting heat" .55
+	"reverse flare sprite" "effect/plasma flare/tiny"
+		"frame rate" 5
+	"reverse flare sound" "plasma tiny"
+	description "Reaction control nozzles sized for medium warships and freighters. They push a ship sideways or backwards without turning it, so a pilot can strafe, cancel drift and brake while keeping their guns on target."
+	description "	Under Newtonian flight, a flight computer also fires them to cancel drift and to coast the ship to a stop."
+
+
+outfit "Large RCS Pack"
+	category "Engines"
+	series "Engines"
+	index 01203
+	"cost" 60000
+	thumbnail "outfit/large rcs pack"
+	"mass" 30
+	"outfit space" -30
+	"engine capacity" -30
+	"lateral thrust" 30
+	"lateral thrusting energy" 1.5
+	"lateral thrusting heat" 2.4
+	"reverse thrust" 15
+	"reverse thrusting energy" .75
+	"reverse thrusting heat" 1.2
+	"reverse flare sprite" "effect/atomic flare/tiny"
+		"frame rate" 14
+	"reverse flare sound" "atomic tiny"
+	description "Heavy reaction control thrusters for capital ships, whose bulk makes turning round to brake a slow and dangerous business. They push a ship sideways or backwards without turning it, so a pilot can strafe, cancel drift and brake while keeping their guns on target."
+	description "	Under Newtonian flight, a flight computer also fires them to cancel drift and to coast the ship to a stop."
