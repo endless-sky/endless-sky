@@ -970,19 +970,20 @@ void Gamerules::SetMiscValue(const string &rule, int value)
 
 int Gamerules::GetValue(const string &rule) const
 {
-	// "spawn raid fleets" has been replaced by "raid fleet roll chance".
-	// Keeping this in place for reverse compatibility.
-	if(rule == "spawn raid fleets")
-		return storage.raidFleetRollChance > 0.;
 
 	auto it = settings.find(rule);
 	if(it != settings.end())
 		return it->second.GetCondition();
 
 	auto sit = storage.miscRules.find(rule);
-	if(sit == storage.miscRules.end())
-		return 0;
-	return sit->second;
+	if(sit != storage.miscRules.end())
+		return sit->second;
+
+	// "spawn raid fleets" has been replaced by "raid fleet roll chance".
+	// Keeping this in place for reverse compatibility.
+	if(rule == "spawn raid fleets")
+		return storage.raidFleetRollChance > 0.;
+	return 0;
 }
 
 
