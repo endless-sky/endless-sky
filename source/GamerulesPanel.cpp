@@ -648,7 +648,7 @@ void GamerulesPanel::DrawTooltips()
 		return;
 
 	if(!tooltip.HasText())
-		tooltip.SetText(GameData::Tooltip(hoverItem));
+		tooltip.SetText(GameData::Tooltip(gamerules.DisplayName(hoverItem)));
 
 	tooltip.Draw();
 }

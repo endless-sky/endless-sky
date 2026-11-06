@@ -91,7 +91,10 @@ public:
 	static const std::string HABITABLE_ARRIVAL_MIN;
 	static const std::string HABITABLE_ARRIVAL_MAX;
 	static const std::string FLEET_MULTIPLIER;
-	static const std::string SPAWN_RAID_FLEETS;
+	static const std::string RAID_FLEET_ROLL_CHANCE;
+	static const std::string RAID_ATTRACTION_MULTIPLIER;
+	static const std::string RAID_DETERRENCE_MULTIPLIER;
+	static const std::string RAID_FLEET_SPAWN_ATTEMPTS;
 	static const std::string FLEET_SIZE_LIMITATION;
 	static const std::string DEFAULT_MAX_ESCORT_COUNT;
 	static const std::string DEFAULT_MAX_ESCORT_CREW;
