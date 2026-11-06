@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Set.h"
 #include "Shop.h"
 
+#include "CapacityList.h"
 #include "CategoryList.h"
 #include "Color.h"
 #include "Confusion.h"
@@ -152,6 +153,7 @@ private:
 	std::map<std::string, std::vector<std::string>> ratings;
 	std::map<const Sprite *, StellarObjectSpriteData> objectSpriteData;
 	std::map<CategoryType, CategoryList> categories;
+	CapacityList capacities;
 
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;
