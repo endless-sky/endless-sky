@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Depreciation.h"
 #include "DialogPanel.h"
 #include "text/Format.h"
 #include "OptionalInputDialogPanel.h"
@@ -35,7 +36,11 @@ const string Gamerules::PERSON_SPAWN_PERIOD = "person spawn period";
 const string Gamerules::NO_PERSON_SPAWN_WEIGHT = "no person spawn weight";
 const string Gamerules::NPC_MAX_MINING_TIME = "npc max mining time";
 const string Gamerules::UNIVERSAL_FRUGAL_THRESHOLD = "universal frugal threshold";
+const string Gamerules::DEPRECIATIVE_AGING = "depreciation aging active";
 const string Gamerules::DEPRECIATION_MIN = "depreciation min";
+const string Gamerules::DEPRECIATION_CAPTURED = "depreciation captured";
+const string Gamerules::DEPRECIATION_PLUNDERED = "depreciation plundered";
+const string Gamerules::DEPRECIATION_CARGO_IS_PLUNDER = "depreciation cargo is plunder";
 const string Gamerules::DEPRECIATION_DAILY = "depreciation daily";
 const string Gamerules::DEPRECIATION_GRACE_PERIOD = "depreciation grace period";
 const string Gamerules::DEPRECIATION_MAX_AGE = "depreciation max age";
@@ -63,7 +68,7 @@ const string Gamerules::UNIVERSAL_AMMO_RESTOCKING = "universal ammo restocking";
 
 Gamerules::Gamerules()
 {
-	settings[LOCK_GAMERULES] = Setting::TrueFalse("Lock gamerules", true);
+	settings[LOCK_GAMERULES] = Setting::TrueFalse("Lock gamerules");
 	settings[LOCK_GAMERULES].SetOnToggleFunc([this](UI *) -> void {
 		storage.lockGamerules = !storage.lockGamerules;
 	});
@@ -72,7 +77,7 @@ Gamerules::Gamerules()
 		return storage.lockGamerules;
 	});
 
-	settings[UNIVERSAL_RAMSCOOP] = Setting::TrueFalse("Universal ramscoop", true);
+	settings[UNIVERSAL_RAMSCOOP] = Setting::TrueFalse("Universal ramscoop");
 	settings[UNIVERSAL_RAMSCOOP].SetOnToggleFunc([this](UI *) -> void {
 		storage.universalRamscoop = !storage.universalRamscoop;
 	});
@@ -165,9 +170,18 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
+	settings[DEPRECIATIVE_AGING] = Setting::TrueFalse("Depreciative aging");
+	settings[DEPRECIATIVE_AGING].SetOnToggleFunc([this](UI *) -> void {
+		storage.depreciationAgingActive = !storage.depreciationAgingActive;
+	});
+	settings[DEPRECIATIVE_AGING].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.depreciationAgingActive = preset.storage.depreciationAgingActive;
+		return storage.depreciationAgingActive;
+	});
+
 	settings[DEPRECIATION_MIN] = Setting::Unique("Minimum value");
 	settings[DEPRECIATION_MIN].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(Format::Percentage(DepreciationMin(), 2), true);
+		return make_pair(Format::Percentage(DepreciationMin(), 2), DepreciationAgingActive());
 	});
 	settings[DEPRECIATION_MIN].SetOnToggleFunc([this](UI *ui) -> void {
 		if(!ui)
@@ -175,7 +189,10 @@ Gamerules::Gamerules()
 		string message = "Set the minimum deprecation value. (Decimal value between 0 and 1.)";
 		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.depreciationMin = value; },
+			[this](double value) -> void {
+				storage.depreciationMin = value;
+				Depreciation::InvalidateCache();
+			},
 			validate, message, DepreciationMin()));
 	});
 	settings[DEPRECIATION_MIN].SetConditionFunc([this]() -> int {
@@ -186,9 +203,60 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
+	settings[DEPRECIATION_CAPTURED] = Setting::Unique("Captured value");
+	settings[DEPRECIATION_CAPTURED].SetDisplayFunc([this]() -> pair<string, bool> {
+		return make_pair(Format::Percentage(DepreciationCaptured(), 2), true);
+	});
+	settings[DEPRECIATION_CAPTURED].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the captured deprecation value. (Decimal value between 0 and 1.)";
+		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.depreciationCaptured = value; },
+			validate, message, DepreciationCaptured()));
+	});
+	settings[DEPRECIATION_CAPTURED].SetConditionFunc([this]() -> int {
+		return DepreciationCaptured() * 1000;
+	});
+	settings[DEPRECIATION_CAPTURED].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.depreciationCaptured = preset.storage.depreciationCaptured;
+		return std::nullopt;
+	});
+
+	settings[DEPRECIATION_PLUNDERED] = Setting::Unique("Plundered value");
+	settings[DEPRECIATION_PLUNDERED].SetDisplayFunc([this]() -> pair<string, bool> {
+		return make_pair(Format::Percentage(DepreciationPlundered(), 2), true);
+	});
+	settings[DEPRECIATION_PLUNDERED].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the plundered deprecation value. (Decimal value between 0 and 1.)";
+		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.depreciationPlundered = value; },
+			validate, message, DepreciationPlundered()));
+	});
+	settings[DEPRECIATION_PLUNDERED].SetConditionFunc([this]() -> int {
+		return DepreciationPlundered() * 1000;
+	});
+	settings[DEPRECIATION_PLUNDERED].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.depreciationPlundered = preset.storage.depreciationPlundered;
+		return std::nullopt;
+	});
+
+	settings[DEPRECIATION_CARGO_IS_PLUNDER] = Setting::TrueFalse("Cargo is plunder");
+	settings[DEPRECIATION_CARGO_IS_PLUNDER].SetOnToggleFunc([this](UI *) -> void {
+		storage.depreciationCargoIsPlunder = !storage.depreciationCargoIsPlunder;
+	});
+	settings[DEPRECIATION_CARGO_IS_PLUNDER].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.depreciationCargoIsPlunder = preset.storage.depreciationCargoIsPlunder;
+		return storage.depreciationCargoIsPlunder;
+	});
+
 	settings[DEPRECIATION_DAILY] = Setting::Unique("Daily depreciation");
 	settings[DEPRECIATION_DAILY].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(Format::Percentage(DepreciationDaily(), 2), true);
+		return make_pair(Format::Percentage(DepreciationDaily(), 2), DepreciationAgingActive());
 	});
 	settings[DEPRECIATION_DAILY].SetOnToggleFunc([this](UI *ui) -> void {
 		if(!ui)
@@ -196,7 +264,10 @@ Gamerules::Gamerules()
 		string message = "Set the daily deprecation value. (Decimal value between 0 and 1.)";
 		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.depreciationDaily = value; },
+			[this](double value) -> void {
+				storage.depreciationDaily = value;
+				Depreciation::InvalidateCache();
+			},
 			validate, message, DepreciationDaily()));
 	});
 	settings[DEPRECIATION_DAILY].SetConditionFunc([this]() -> int {
@@ -209,7 +280,7 @@ Gamerules::Gamerules()
 
 	settings[DEPRECIATION_GRACE_PERIOD] = Setting::Unique("Grace period");
 	settings[DEPRECIATION_GRACE_PERIOD].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(Format::AbbreviatedNumber(DepreciationGracePeriod()), true);
+		return make_pair(Format::AbbreviatedNumber(DepreciationGracePeriod()), DepreciationAgingActive());
 	});
 	settings[DEPRECIATION_GRACE_PERIOD].SetOnToggleFunc([this](UI *ui) -> void {
 		if(!ui)
@@ -217,7 +288,10 @@ Gamerules::Gamerules()
 		string message = "Set the depreciation grace period. (Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.depreciationGracePeriod = value; },
+			[this](int value) -> void {
+				storage.depreciationGracePeriod = value;
+				Depreciation::InvalidateCache();
+			},
 			validate, message, DepreciationGracePeriod()));
 	});
 	settings[DEPRECIATION_GRACE_PERIOD].SetConditionFunc([this]() -> int {
@@ -230,7 +304,7 @@ Gamerules::Gamerules()
 
 	settings[DEPRECIATION_MAX_AGE] = Setting::Unique("Maximum age");
 	settings[DEPRECIATION_MAX_AGE].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(Format::AbbreviatedNumber(DepreciationMaxAge()), true);
+		return make_pair(Format::AbbreviatedNumber(DepreciationMaxAge()), DepreciationAgingActive());
 	});
 	settings[DEPRECIATION_MAX_AGE].SetOnToggleFunc([this](UI *ui) -> void {
 		if(!ui)
@@ -238,7 +312,10 @@ Gamerules::Gamerules()
 		string message = "Set the depreciation maximum age. (Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.depreciationMaxAge = value; },
+			[this](int value) -> void {
+				storage.depreciationMaxAge = value;
+				Depreciation::InvalidateCache();
+			},
 			validate, message, DepreciationMaxAge()));
 	});
 	settings[DEPRECIATION_MAX_AGE].SetConditionFunc([this]() -> int {
@@ -249,7 +326,7 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
-	settings[FIGHTER_DODGE_POLICY] = Setting::List("Fighter crossfire immunity", 2, {"none", "player", "all"});
+	settings[FIGHTER_DODGE_POLICY] = Setting::List("Fighter crossfire immunity", {"none", "player", "all"});
 	settings[FIGHTER_DODGE_POLICY].SetOnToggleFunc([this](UI *) -> void {
 		storage.fighterHitPolicy = static_cast<FighterDodgePolicy>(settings[FIGHTER_DODGE_POLICY].Index());
 	});
@@ -304,7 +381,7 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
-	settings[HABITABLE_BASED_ARRIVAL_DISTANCE] = Setting::TrueFalse("Habitable arrival distance", true);
+	settings[HABITABLE_BASED_ARRIVAL_DISTANCE] = Setting::TrueFalse("Habitable arrival distance");
 	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetOnToggleFunc([this](UI *) -> void {
 		storage.habitableBasedArrivalDistance = !storage.habitableBasedArrivalDistance;
 	});
@@ -472,7 +549,7 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
-	settings[FLEET_SIZE_LIMITATION] = Setting::List("Fleet size limitation", 0,
+	settings[FLEET_SIZE_LIMITATION] = Setting::List("Fleet size limitation",
 		{"none", "ship cap", "crew cap", "admin cap"});
 	settings[FLEET_SIZE_LIMITATION].SetOnToggleFunc([this](UI *) -> void {
 		storage.fleetSizeLimitation = static_cast<FleetSizeLimitation>(settings[FLEET_SIZE_LIMITATION].Index());
@@ -551,7 +628,7 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
-	settings[PERMADEATH_MODE] = Setting::List("Permadeath", 0,
+	settings[PERMADEATH_MODE] = Setting::List("Permadeath",
 		{"off", "lock on death", "delete on death", "lock on takeoff", "delete on takeoff"});
 	settings[PERMADEATH_MODE].SetOnToggleFunc([this](UI *) -> void {
 		storage.permadeathMode = static_cast<PermadeathMode>(settings[PERMADEATH_MODE].Index());
@@ -561,7 +638,7 @@ Gamerules::Gamerules()
 		return static_cast<int>(storage.permadeathMode );
 	});
 
-	settings[SINGLE_SAVE_FILE] = Setting::TrueFalse("Single save file", false);
+	settings[SINGLE_SAVE_FILE] = Setting::TrueFalse("Single save file");
 	settings[SINGLE_SAVE_FILE].SetToggleFunc([this](int, UI *ui) -> int {
 		if(!ui)
 			return storage.singleSaveFile;
@@ -577,7 +654,7 @@ Gamerules::Gamerules()
 		return storage.singleSaveFile;
 	});
 
-	settings[RESTRICTED_SAVE_LOADING] = Setting::TrueFalse("Restricted save loading", false);
+	settings[RESTRICTED_SAVE_LOADING] = Setting::TrueFalse("Restricted save loading");
 	settings[RESTRICTED_SAVE_LOADING].SetToggleFunc([this](int, UI *ui) -> int {
 		if(!ui)
 			return storage.restrictedSaveLoading;
@@ -595,7 +672,7 @@ Gamerules::Gamerules()
 		return storage.restrictedSaveLoading;
 	});
 
-	settings[UNIVERSAL_AMMO_RESTOCKING] = Setting::TrueFalse("Universal ammo stocking", true);
+	settings[UNIVERSAL_AMMO_RESTOCKING] = Setting::TrueFalse("Universal ammo stocking");
 	settings[UNIVERSAL_AMMO_RESTOCKING].SetOnToggleFunc([this](UI *) -> void {
 		SetMiscValue(UNIVERSAL_AMMO_RESTOCKING, !GetValue(UNIVERSAL_AMMO_RESTOCKING));
 	});
@@ -640,15 +717,23 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == NPC_MAX_MINING_TIME)
 			storage.npcMaxMiningTime = max<int>(0, child.Value(1));
 		else if(key == UNIVERSAL_FRUGAL_THRESHOLD)
-			storage.universalFrugalThreshold = min(1., max(0., child.Value(1)));
+			storage.universalFrugalThreshold = clamp(child.Value(1), 0., 1.);
+		else if(key == DEPRECIATIVE_AGING)
+			storage.depreciationAgingActive = child.BoolValue(1);
 		else if(key == DEPRECIATION_MIN)
-			storage.depreciationMin = min(1., max(0., child.Value(1)));
+			storage.depreciationMin = clamp(child.Value(1), 0., 1.);
+		else if(key == DEPRECIATION_PLUNDERED)
+			storage.depreciationPlundered = clamp(child.Value(1), 0., 1.);
+		else if(key == DEPRECIATION_CAPTURED)
+			storage.depreciationCaptured = clamp(child.Value(1), 0., 1.);
 		else if(key == DEPRECIATION_DAILY)
-			storage.depreciationDaily = min(1., max(0., child.Value(1)));
+			storage.depreciationDaily = clamp(child.Value(1), 0., 1.);
 		else if(key == DEPRECIATION_GRACE_PERIOD)
 			storage.depreciationGracePeriod = max<int>(0, child.Value(1));
 		else if(key == DEPRECIATION_MAX_AGE)
 			storage.depreciationMaxAge = max<int>(0, child.Value(1));
+		else if(key == DEPRECIATION_CARGO_IS_PLUNDER)
+			storage.depreciationCargoIsPlunder = child.BoolValue(1);
 		else if(key == FIGHTER_DODGE_POLICY)
 		{
 			const string &value = child.Token(1);
@@ -767,14 +852,22 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write(NPC_MAX_MINING_TIME, storage.npcMaxMiningTime);
 		if(storage.universalFrugalThreshold != preset.storage.universalFrugalThreshold)
 			out.Write(UNIVERSAL_FRUGAL_THRESHOLD, storage.universalFrugalThreshold);
+		if(storage.depreciationAgingActive != preset.storage.depreciationAgingActive)
+			out.Write(DEPRECIATIVE_AGING, storage.depreciationAgingActive);
 		if(storage.depreciationMin != preset.storage.depreciationMin)
 			out.Write(DEPRECIATION_MIN, storage.depreciationMin);
+		if(storage.depreciationPlundered != preset.storage.depreciationPlundered)
+			out.Write(DEPRECIATION_PLUNDERED, storage.depreciationPlundered);
+		if(storage.depreciationCaptured != preset.storage.depreciationCaptured)
+			out.Write(DEPRECIATION_CAPTURED, storage.depreciationCaptured);
 		if(storage.depreciationDaily != preset.storage.depreciationDaily)
 			out.Write(DEPRECIATION_DAILY, storage.depreciationDaily);
 		if(storage.depreciationGracePeriod != preset.storage.depreciationGracePeriod)
 			out.Write(DEPRECIATION_GRACE_PERIOD, storage.depreciationGracePeriod);
 		if(storage.depreciationMaxAge != preset.storage.depreciationMaxAge)
 			out.Write(DEPRECIATION_MAX_AGE, storage.depreciationMaxAge);
+		if(storage.depreciationCargoIsPlunder != preset.storage.depreciationCargoIsPlunder)
+			out.Write(DEPRECIATION_CARGO_IS_PLUNDER, storage.depreciationCargoIsPlunder ? 1 : 0);
 		if(storage.fighterHitPolicy != preset.storage.fighterHitPolicy)
 		{
 			if(storage.fighterHitPolicy == FighterDodgePolicy::ALL)
@@ -1030,9 +1123,30 @@ double Gamerules::UniversalFrugalThreshold() const
 
 
 
+bool Gamerules::DepreciationAgingActive() const
+{
+	return storage.depreciationAgingActive;
+}
+
+
+
 double Gamerules::DepreciationMin() const
 {
 	return storage.depreciationMin;
+}
+
+
+
+double Gamerules::DepreciationPlundered() const
+{
+	return storage.depreciationPlundered;
+}
+
+
+
+double Gamerules::DepreciationCaptured() const
+{
+	return storage.depreciationCaptured;
 }
 
 
@@ -1054,6 +1168,13 @@ int Gamerules::DepreciationGracePeriod() const
 int Gamerules::DepreciationMaxAge() const
 {
 	return storage.depreciationMaxAge;
+}
+
+
+
+bool Gamerules::DepreciationCargoIsPlunder() const
+{
+	return storage.depreciationCargoIsPlunder;
 }
 
 
@@ -1195,6 +1316,8 @@ bool Gamerules::operator==(const Gamerules &other) const
 void Gamerules::SyncSettings()
 {
 	settings[LOCK_GAMERULES].SetIndex(LockGamerules());
+	settings[DEPRECIATIVE_AGING].SetIndex(DepreciationAgingActive());
+	settings[DEPRECIATION_CARGO_IS_PLUNDER].SetIndex(DepreciationCargoIsPlunder());
 	settings[UNIVERSAL_RAMSCOOP].SetIndex(UniversalRamscoopActive());
 	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetIndex(HabitableBasedArrivalDistance());
 	settings[SINGLE_SAVE_FILE].SetIndex(SingleSaveFile());
