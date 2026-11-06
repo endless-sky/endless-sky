@@ -84,7 +84,6 @@ private:
 	const Rectangle pilotBox;
 	const Rectangle snapshotBox;
 
-	Point hoverPoint;
 	Tooltip tooltip;
 	bool hasHover = false;
 	bool sideHasFocus = false;

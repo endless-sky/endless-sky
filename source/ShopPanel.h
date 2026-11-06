@@ -93,6 +93,7 @@ protected:
 		const Swizzle *swizzle) const;
 	void DrawThumbnail(const Drawable &thumbnail, bool animate, const Point &center, float zoom = 1.f,
 		const Swizzle *swizzle = Swizzle::None()) const;
+	int DrawShipInfo(const Point &point, const Ship &ship, bool isSale);
 
 	void CheckForMissions(Mission::Location location) const;
 	void ValidateSelectedShips();
@@ -214,7 +215,6 @@ protected:
 	OutfitInfoDisplay outfitInfo;
 
 	bool delayedAutoScroll = false;
-	Point hoverPoint;
 
 	Tooltip shipsTooltip;
 	Tooltip creditsTooltip;

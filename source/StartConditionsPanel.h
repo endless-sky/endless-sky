@@ -78,7 +78,6 @@ private:
 	Information info;
 
 	bool hasHover = false;
-	Point hoverPoint;
 
 	double entriesScroll = 0.;
 

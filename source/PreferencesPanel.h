@@ -94,7 +94,6 @@ private:
 	// Which page of the preferences we're on.
 	char page = 'c';
 
-	Point hoverPoint;
 	Tooltip tooltip;
 	std::string selectedItem;
 	std::string hoverItem;

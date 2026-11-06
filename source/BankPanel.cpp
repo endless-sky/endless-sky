@@ -131,7 +131,7 @@ void BankPanel::Draw()
 	for(const Mortgage &mortgage : player.Accounts().Mortgages())
 	{
 		// Color this row depending on whether it is selected or not.
-		if(row == selectedRow)
+		if(row == selectedRow || row == hoverRow)
 		{
 			table.DrawHighlight(back);
 			table.SetColor(selected);
@@ -349,6 +349,26 @@ bool BankPanel::Click(int x, int y, MouseButton button, int clicks)
 		return false;
 
 	return true;
+}
+
+
+
+bool BankPanel::Hover(int x, int y)
+{
+	hoverRow = -1;
+
+	const Interface *bankUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "bank (small screen)" : "bank");
+	const Rectangle box = bankUi->GetBox("content");
+	const int MIN_X = box.Left();
+	const int FIRST_Y = box.Top();
+	const int MAX_X = box.Right();
+
+	// Check if the hover is on one of the rows of the table that represents a
+	// mortgage or other current debt you have.
+	int maxY = FIRST_Y + 25 + 20 * mortgageRows;
+	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
+		hoverRow = (y - FIRST_Y - 25) / 20;
+	return hoverRow != -1;
 }
 
 

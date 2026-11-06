@@ -36,12 +36,27 @@ using namespace std;
 
 
 
+ShipInfoDisplay::ShipInfoDisplay()
+{
+	isShip = true;
+}
+
+
+
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
-	bool descriptionCollapsed, bool scrollingPanel)
+	bool descriptionCollapsed, bool scrollingPanel, bool isDefinition)
 {
-	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
+	if(isDefinition)
+		UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
+	else
+	{
+		// If the given ship is not a ship definition, then it won't have a description.
+		// Locate the description it's supposed to have from its definition.
+		const Ship *definition = GameData::Ships().Get(ship.VariantName());
+		UpdateDescription(definition->Description(), ship.Attributes().Licenses(), true);
+	}
 	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
@@ -529,28 +544,35 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 		if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
 			listing[outfit->Category()][outfit->DisplayName()] += count;
 
-	for(const auto &cit : listing)
+	// Display outfit categories in the same order that they're listed in the outfitter.
+	bool isFirst = true;
+	for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
 	{
+		const string &name = category.Name();
+		auto it = listing.find(name);
+		if(it == listing.end())
+			continue;
+
 		// Pad by 10 pixels before each category.
-		if(&cit != &*listing.begin())
+		if(!isFirst)
 		{
 			outfitLabels.emplace_back();
 			outfitValues.emplace_back();
 			outfitsHeight += 10;
 		}
+		isFirst = false;
 
-		outfitLabels.emplace_back(cit.first + ':');
+		outfitLabels.emplace_back(name + ':');
 		outfitValues.emplace_back();
 		outfitsHeight += 20;
 
-		for(const auto &[name, count] : cit.second)
+		for(const auto &[outfit, count] : it->second)
 		{
-			outfitLabels.emplace_back(name);
+			outfitLabels.emplace_back(outfit);
 			outfitValues.emplace_back(to_string(count));
 			outfitsHeight += 20;
 		}
 	}
-
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
 	int64_t chassisCost = depreciation.Value(

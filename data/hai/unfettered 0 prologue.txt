@@ -138,15 +138,12 @@ mission "Unfettered Jump Drive 1"
 	landing
 	name "More Jump Drives"
 	description "The Unfettered Hai have promised you rich rewards if you bring them more jump drives."
+	source
+		attributes "unfettered"
 	to offer
 		has "First Contact: Unfettered: offered"
 		not "Wanderers: Jump Drive Source: active"
-	to fail
-		has "event: wanderers: unfettered invasion starts"
-	to complete
-		has "Unfettered Jump Drive 2: offered"
-	source
-		attributes "unfettered"
+		has "outfit (removable): Jump Drive"
 	on offer
 		conversation
 			`The Unfettered have clearly noticed that you have a jump drive; a large crowd of them has gathered around your ship. Do you want to talk with them, and perhaps arrange a sale of your jump drive?`
@@ -181,30 +178,40 @@ mission "Unfettered Jump Drive 1"
 			choice
 				`	"Okay, as long as you give me a hyperdrive to take its place, I'll give you my jump drive."`
 					to display
-						"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" == 1
+						not "outfit (cargo): Jump Drive"
+						"flagship attribute: jump drive" <= 1000
+						not "flagship attribute: hyperdrive"
 					goto end
 				`	"You can take the jump drive, but I don't need a hyperdrive in exchange."`
 					to display
-						"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
+						or
+							has "outfit (cargo): Jump Drive"
+							"flagship attribute: jump drive" > 1000
+							has "flagship attribute: hyperdrive"
 					goto spareJD
 				`	"Sorry, but if I give you this jump drive, I will lose my ability to capture more of them. Be patient, and I will bring you several of them when I am able."`
 					goto refuse
 			
 			label end
-			branch spareJD
-				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
 			action
+				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1
 			`	The Unfettered engineers quickly and carefully remove your jump drive and replace it with an ordinary hyperdrive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
 				accept
+			
 			label spareJD
+			action
+				outfit "Jump Drive" -1
 			`	The Unfettered engineers quickly retrieve the jump drive. You sincerely hope that you are not making a mistake by giving them this new technology. "Remember," one of them says as they hand you your payment, "when you acquire more jump drives, return here with them and we will give you further rewards. Until then, may fortune favor you, human friend."`
 				accept
 	
 	on accept
-		outfit "Jump Drive" -1
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 10
+	to fail
+		has "event: wanderers: unfettered invasion starts"
+	to complete
+		has "Unfettered Jump Drive 2: offered"
 
 
 
@@ -213,15 +220,12 @@ mission "Unfettered Jump Drive 2"
 	landing
 	name "More Jump Drives"
 	description "The Unfettered Hai have promised you rich rewards, and more information about their plans, if you bring them more jump drives."
+	source
+		attributes "unfettered"
 	to offer
 		has "Unfettered Jump Drive 1: offered"
 		not "Wanderers: Jump Drive Source: active"
-	to fail
-		has "event: wanderers: unfettered invasion starts"
-	to complete
-		has "Unfettered Jump Drive 3: offered"
-	source
-		attributes "unfettered"
+		has "outfit (removable): Jump Drive"
 	on offer
 		conversation
 			`As before, when you land on this Unfettered world with a jump drive, a large crowd gathers around your ship. Clearly they are hoping that once again you will arrange a sale. Do you want to bargain with them?`
@@ -236,11 +240,21 @@ mission "Unfettered Jump Drive 2"
 				`	"Yes, I will sell you my jump drive."`
 			
 			branch spareJD
-				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
+				or
+					has "outfit (cargo): Jump Drive"
+					"flagship attribute: jump drive" > 1000
+					has "flagship attribute: hyperdrive"
 			action
+				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1
+			`	Once again, they swap your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else.`
+				goto end
 			label spareJD
-			`	Once again, they swap your jump drive for a hyperdrive, and pay you far more than you could sell a jump drive for anywhere else. "We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
+			action
+				outfit "Jump Drive" -1
+			`	Once again, they take your jump drive pay you far more than you could sell it for anywhere else.`
+			label end
+			`	"We will tell the other true Hai to offer you jobs in our job boards," they tell you, "and remember that we need still more jump drives."`
 			choice
 				`	"Then I will find more, and bring them to you."`
 					accept
@@ -249,10 +263,13 @@ mission "Unfettered Jump Drive 2"
 				accept
 	
 	on accept
-		outfit "Jump Drive" -1
+		fail "Unfettered Jump Drive 1"
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 20
-		fail "Unfettered Jump Drive 1"
+	to fail
+		has "event: wanderers: unfettered invasion starts"
+	to complete
+		has "Unfettered Jump Drive 3: offered"
 
 
 
@@ -260,11 +277,12 @@ mission "Unfettered Jump Drive 3"
 	minor
 	landing
 	invisible
+	source
+		attributes "unfettered"
 	to offer
 		has "Unfettered Jump Drive 2: offered"
 		not "Wanderers: Jump Drive Source: active"
-	source
-		attributes "unfettered"
+		has "outfit (removable): Jump Drive"
 	on offer
 		conversation
 			`You have another jump drive, and the Unfettered will certainly be willing to pay you well for it. They also hinted that they might be willing to give you more information about what they plan to use the jump drives for. Do you want to sell them another drive?`
@@ -302,27 +320,36 @@ mission "Unfettered Jump Drive 3"
 			`	"Your help may indeed be beneficial to us," says the leader. "I will tell the others to contact you if they have any particular missions you can undertake."`
 			choice
 				`	"I look forward to hearing from them."`
-					goto job
+					goto trade
 				`	"What do you plan to do to the species that inhabits those worlds now?"`
 			
 			label wanderers
 			`	"Those worlds are now held by a species of scavengers, who feast on the ruin of proud civilizations. Our scouts tell us that these carrion-feeders have wiped away nearly every Hai artifact, melting down our cities to make metal for their ships and factories, and hiding the scars of our wars beneath newly planted forests. They are an old and strong species, but few in number, and those worlds are ours by right."`
 			`	You try to press them for more information, but they tell you nothing useful, aside from promising you that they will seek out your help when it is time to reclaim their territory.`
-			label job
+			
+			label trade
 			branch spareJD
-				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
+				or
+					has "outfit (cargo): Jump Drive"
+					"flagship attribute: jump drive" > 1000
+					has "flagship attribute: hyperdrive"
 			action
+				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1
+			`	Once again, the Unfettered engineers swap your jump drive for a hyperdrive.`
+				goto job
 			label spareJD
+			action
+				outfit "Jump Drive" -1
+			`	Once again, the Unfettered engineers take your jump drive.`
+			label job
 			`	"If you want to provide us with more jump drives, visit the job board from now on," says the leader. "We will have warriors ready to receive them from you for the usual pay."`
-				accept
+				decline
 	
-	on accept
-		outfit "Jump Drive" -1
+	on decline
 		payment 1000000
 		"reputation: Hai (Unfettered)" >?= 30
 		fail "Unfettered Jump Drive 2"
-		fail
 
 
 
@@ -355,6 +382,7 @@ mission "Unfettered Jump Drive Trading"
 		<leave> "She then leaves, her anger barely contained."
 			has "unfettered: blade rodeo"
 	to offer
+		has "outfit (removable): Jump Drive"
 		has "Unfettered Jump Drive 3: offered"
 		not "Wanderers: Jump Drive Source: active"
 		not "Wanderers: Jump Drive Source: done"
@@ -471,25 +499,35 @@ mission "Unfettered Jump Drive Trading"
 				payment 1000000
 				set "unfettered: money for drives"
 			`	"As you wish. Do remember that if you want to sell further jump drives to us for money you may go to the job board."`
-				goto end
-
+				goto "jump drive trade"
+			
 			label tripulse
 			action
 				set "choice: tripulse"
 			scene "outfit/tripulse shredder"
 			`	"The Tripulse Shredder may seem crude, but it packs a punch! Its specialty is how it combines a lot of firepower in one gun slot, and, due to its burst nature, it's perfect for pilots who already use hit and run tactics. Some captains even say that a Sea Scorpion can get the upper hand against a Shield Beetle when it uses four of them, if you know what you're doing, of course! As I said, I may offer you two of these in exchange for your jump drive."`
 				goto weapons
+			
 			label "buy tripulse"
 			action
 				outfit "Tripulse Shredder" 2
 			`	They order their crew to do the transfer and come to address you before leaving. "Do note that if you ever want more weapons, we will always be willing to trade them for jump drives in the job board. However, we can always offer money instead if that is of higher value to you. Of course, we can only do this exchange here on <origin>, given it is where these advanced weapons are produced and stocked."`
-			label end
+			
+			label "jump drive trade"
 			branch spareJD
-				"outfit (cargo): Jump Drive" + "outfit (flagship installed): Hyperdrive" + "outfit (flagship installed): Scram Drive" + "outfit (flagship installed): Jump Drive" > 1
+				or
+					has "outfit (cargo): Jump Drive"
+					"flagship attribute: jump drive" > 1000
+					has "flagship attribute: hyperdrive"
 			action
+				outfit "Jump Drive" -1
 				outfit "Hyperdrive" 1
+			`	The Unfettered engineer swaps your jump drive for a hyperdrive before leaving, and you return to your ship after being escorted out of the facility.`
+				accept
 			label spareJD
-			`	The engineer leaves and you return to your ship after being escorted out of the facility.`
+			action
+				outfit "Jump Drive" -1
+			`	The Unfettered engineer takes your jump drive before leaving, and you return to your ship after being escorted out of the facility.`
 				accept
 
 			label dodge
@@ -537,6 +575,5 @@ mission "Unfettered Jump Drive Trading"
 		clear "choice: turret"
 		clear "choice: tripulse"
 		clear "choice: blaster"
-		outfit "Jump Drive" -1
 		"reputation: Hai (Unfettered)" >?= 40
 		fail

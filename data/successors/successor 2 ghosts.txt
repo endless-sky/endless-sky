@@ -1774,7 +1774,7 @@ mission "Successors: Ghosts 18"
 
 			label trap
 			`	"Won't they think it could be a trap?"`
-			`	"Perhaps." Outside, a gust of wind throws up enough grit to leave tiny blue flashes against the shields of one of the cloaked Vuljeten. "We've become our own quarries, though, isolated from our allies, no longer fearsome in scale. Surprise," they say, "is only worth so much."`
+			`	"Perhaps." Outside, a gust of wind throws up enough grit to leave tiny blue flashes against the shields of one of the cloaked Vujleten. "We've become our own quarries, though, isolated from our allies, no longer fearsome in scale. Surprise," they say, "is only worth so much."`
 			`	Saajret excuses themself there, offering you a short bow and splay of the arms. With nothing left to do but wait, you and your crew work to prepare the <ship> for the forthcoming battle.`
 			choice
 				`	(Wait.)`

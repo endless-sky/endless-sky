@@ -66,6 +66,7 @@ public:
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
 	void Load(const DataNode &node);
 	bool IsLoaded() const;
+	bool IsDecorative() const;
 
 	// Get assets used by this weapon.
 	const Drawable &ProjectileSprite() const;
@@ -231,6 +232,7 @@ private:
 
 private:
 	bool isLoaded = false;
+	bool isDecorative = false;
 	bool safeRangeOverriden = false;
 	bool disabledDamageSet = false;
 	bool minableDamageSet = false;
@@ -393,6 +395,8 @@ private:
 
 
 // Inline the accessors because they get called so frequently.
+inline bool Weapon::IsDecorative() const { return isDecorative; }
+
 inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::RandomLifetime() const { return randomLifetime; }
 inline int Weapon::FadeOut() const { return fadeOut; }

@@ -96,6 +96,16 @@ const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 
 
 
+void MapOutfitterPanel::Hovering(int index)
+{
+	if(index < 0 || index >= static_cast<int>(list.size()))
+		hovering = nullptr;
+	else
+		hovering = list[index];
+}
+
+
+
 void MapOutfitterPanel::Select(int index)
 {
 	if(index < 0 || index >= static_cast<int>(list.size()))
@@ -267,7 +277,7 @@ void MapOutfitterPanel::DrawItems()
 				: storedInSystem == 1
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), Swizzle::None(), isForSale, outfit == selected,
+			Draw(corner, outfit->Thumbnail(), Swizzle::None(), isForSale, outfit == selected, outfit == hovering,
 				outfit->DisplayName(), "", price, info, storage_details);
 			list.push_back(outfit);
 		}
