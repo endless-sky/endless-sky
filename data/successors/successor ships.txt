@@ -198,8 +198,8 @@ ship "Ejniisde-Khora"
 			"Successor"
 		category "Medium Warship"
 		"cost" 4100000
-		"shields" 4240
-		"hull" 28650
+		"shields" 3390
+		"hull" 22920
 		"required crew" 29
 		"bunks" 44
 		"mass" 612
@@ -1251,8 +1251,8 @@ ship "Vujlet-Usaqri"
 			"High Houses"
 		category "Light Warship"
 		"cost" 10350000
-		"shields" 4200
-		"hull" 16300
+		"shields" 3400
+		"hull" 13100
 		"required crew" 4
 		"bunks" 6
 		"mass" 245
