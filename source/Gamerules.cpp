@@ -688,7 +688,7 @@ Gamerules::Gamerules()
 		return storage.miscRules[UNIVERSAL_AMMO_RESTOCKING];
 	});
 
-	settings[CAPTURE_PROFIT_SHARING] = Setting::List("Capture profit sharing",
+	settings[CAPTURE_PROFIT_SHARING] = Setting::List("Profit sharing",
 		{"off", "dead crew", "surviving crew", "all crew"});
 	settings[CAPTURE_PROFIT_SHARING].SetOnToggleFunc([this](UI *) -> void {
 		storage.captureProfitSharing = static_cast<CaptureProfitSharing>(settings[CAPTURE_PROFIT_SHARING].Index());

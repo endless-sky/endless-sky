@@ -1940,7 +1940,7 @@ tip "Single save file"
 tip "Restricted save loading"
 	`If true, this pilot will be unable to reload save files while not on the safety of a planet.`
 
-tip "Capture profit sharing"
+tip "Profit sharing"
 	`Controls whether and how the value of captured ships is shared among the crew members of your flagship.`
 	`- "off": You keep the full value of the captured ship.`
 	`- "dead crew": Death benefits must be paid to the families of crew members who died in the process of capturing a ship. A minimum payment per casualty may also be applied regardless of a successful capture.`
