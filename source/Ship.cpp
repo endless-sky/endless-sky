@@ -40,6 +40,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Preferences.h"
 #include "Projectile.h"
 #include "Random.h"
+#include "ship/NewtonianFlight.h"
 #include "ship/ResourceLevels.h"
 #include "ShipEvent.h"
 #include "audio/Sound.h"
@@ -115,30 +116,12 @@ namespace {
 		return tuning;
 	}
 
-	// How effective a push is that would take the speed further above the rated value.
-	// The falloff is asymptotic (A1.2): there is no hard ceiling, but at the soft cap
-	// (a multiple of the rated value) a push is only SOFT_CAP_RESIDUAL as effective.
-	constexpr double SOFT_CAP_RESIDUAL = .1;
-	double SoftCapFactor(double speed, double rated, double softCap)
-	{
-		if(speed <= rated || rated <= 0. || softCap <= 1.)
-			return 1.;
-		// Choose the width so that the factor equals SOFT_CAP_RESIDUAL at the soft cap.
-		static const double SCALE = sqrt(1. / SOFT_CAP_RESIDUAL - 1.);
-		double excess = (speed - rated) / ((softCap - 1.) * rated) * SCALE;
-		return 1. / (1. + excess * excess);
-	}
-
 	// Heavier ships take longer to spin up to their rated turn rate (A2): the spin up
 	// gamerule applies to a ship of this inertial mass, scaled by the square root of
 	// the mass ratio and clamped to this range.
 	constexpr double SPIN_UP_REFERENCE_MASS = 300.;
 	constexpr double SPIN_UP_MIN_SCALE = .5;
 	constexpr double SPIN_UP_MAX_SCALE = 3.;
-
-	// Disabled or powerless Newtonian ships slow to a stop over roughly 8 seconds
-	// ("emergency station-keeping") instead of using drag.
-	constexpr double STATION_KEEPING_DECAY = .99;
 
 	// Scanning takes up to 10 seconds (SCAN_TIME / MIN_SCAN_STEPS)
 	// dependent on the range from the ship (among other factors).
@@ -5886,7 +5869,6 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	const NewtonianTuning tuning = GetNewtonianTuning();
 	const double slowMultiplier = 1. / (1. + levels.slowness * .05);
 	const Point facing = angle.Unit();
-	const Point right(-facing.Y(), facing.X());
 	// Thrusters cost more energy and make more heat under Newtonian flight.
 	ResourceLevels turnCost = cache.turnCost;
 	ResourceLevels thrustCost = cache.thrustCost;
@@ -5909,8 +5891,8 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	// Emergency station-keeping for ships that can't act (A5.7).
 	if(isDisabled || NeedsEnergy())
 	{
-		velocity *= STATION_KEEPING_DECAY;
-		angularVelocity *= STATION_KEEPING_DECAY;
+		velocity *= NewtonianFlight::STATION_KEEPING_DECAY;
+		angularVelocity *= NewtonianFlight::STATION_KEEPING_DECAY;
 		if(angularVelocity)
 			Turn(angularVelocity);
 		flightAssistState = assist ? FlightAssistState::LIMIT
@@ -5930,20 +5912,9 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	// Rotation (A2).
 	const double ratedTurn = TurnRate() * slowMultiplier;
 	const double angularAccel = ratedTurn / SpinUpFrames();
-	const double turnInput = clamp(commands.Turn(), -1., 1.);
-	double deltaOmega = 0.;
-	double spinCapFactor = 1.;
-	if(assist)
-		// The input means "turn at this rate"; the computer supplies the torque.
-		deltaOmega = clamp(turnInput * ratedTurn - angularVelocity, -angularAccel, angularAccel);
-	else if(turnInput)
-	{
-		// The input is raw torque, with a soft cap above the rated turn rate. As with
-		// thrust, the full torque requested is paid for even when it is capped.
-		deltaOmega = turnInput * angularAccel;
-		if(deltaOmega * angularVelocity > 0.)
-			spinCapFactor = SoftCapFactor(fabs(angularVelocity), ratedTurn, tuning.softCap);
-	}
+	const NewtonianFlight::RotationPlan rotation = NewtonianFlight::PlanRotation(
+		assist, commands.Turn(), angularVelocity, ratedTurn, angularAccel, tuning.softCap);
+	double deltaOmega = rotation.deltaOmega;
 	if(deltaOmega && angularAccel > 0.)
 	{
 		// Costs follow torque, not rotation: coasting in a spin is free.
@@ -5956,7 +5927,7 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 			saturated = true;
 		}
 		levels.Damage(turnCost, throttle);
-		angularVelocity += deltaOmega * spinCapFactor;
+		angularVelocity += deltaOmega * rotation.capFactor;
 		isSteering = true;
 		steeringDirection = (deltaOmega < 0.) ? -1. : 1.;
 		IncrementThrusterHeld(deltaOmega < 0. ? ThrustKind::LEFT : ThrustKind::RIGHT);
@@ -5983,84 +5954,22 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	const double retroAccel = baselineAccel + reverseOutfitAccel;
 	const double lateralAccel = baselineAccel + lateralOutfitAccel;
 
-	const double speed = velocity.Length();
-	const double thrustInput = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
-	const double strafeInput = commands.Has(Command::STRAFE_RIGHT) - commands.Has(Command::STRAFE_LEFT);
-
-	double dvForward = 0.;
-	double dvLateral = 0.;
-	double softCapFactor = 1.;
-	bool braking = false;
-	if(assist)
-	{
-		// A5.1 (revised 2026-11-06): assist flies like the old drag model, but
-		// the "drag" is the ship's own weak manoeuvring thrusters. Thrust bends
-		// the velocity gradually (the ship slides when it turns), speed is
-		// capped at the rated speed, and with no thrust input the computer fires
-		// the manoeuvring thrusters against the motion until the ship stops.
-		Point target = velocity;
-		if(commands.Has(Command::STOP))
-		{
-			// STOP brakes the whole velocity to zero, keeping the facing.
-			target = Point();
-			braking = (speed > 0.);
-		}
-		else
-		{
-			bool hasInput = thrustInput || strafeInput || afterburnerHeld;
-			if(thrustInput > 0.)
-				target += facing * (forwardAccel + afterburnerAccel);
-			else if(thrustInput < 0.)
-				target -= facing * retroAccel;
-			else if(afterburnerHeld)
-				target += facing * afterburnerAccel;
-			target += right * (strafeInput * lateralAccel);
-			if(!hasInput && speed > 0.)
-			{
-				// Coast to a stop on the weak manoeuvring thrusters.
-				double brake = min(speed, min(retroAccel, lateralAccel));
-				target -= velocity * (brake / speed);
-			}
-			double targetSpeed = target.Length();
-			if(speed > ratedSpeed + .01)
-			{
-				// A5.5: above rated speed, brake back down to it.
-				braking = true;
-				if(targetSpeed > ratedSpeed)
-					target *= ratedSpeed / targetSpeed;
-			}
-			else if(targetSpeed > ratedSpeed)
-				// Thrust at the rated speed bends the velocity without adding speed.
-				target *= ratedSpeed / targetSpeed;
-		}
-		Point dv = target - velocity;
-		dvForward = dv.Dot(facing);
-		dvLateral = dv.Dot(right);
-	}
-	else
-	{
-		// Raw thrusters. STOP does nothing with assist off (A5.1).
-		if(thrustInput > 0.)
-			dvForward = forwardAccel + afterburnerAccel;
-		else if(thrustInput < 0.)
-			dvForward = -retroAccel;
-		else if(afterburnerHeld)
-			dvForward = afterburnerAccel;
-		dvLateral = strafeInput * lateralAccel;
-		// Soft cap (A1.2): pushes that add speed lose effect above rated speed. The
-		// thrusters still burn (and are paid for) at the full throttle requested.
-		Point push = facing * dvForward + right * dvLateral;
-		if(push && (velocity + push).Length() > speed)
-			softCapFactor = SoftCapFactor(speed, ratedSpeed, tuning.softCap);
-	}
-
-	// Limit each thruster group to what it can deliver.
-	double wantForward = dvForward;
-	double wantLateral = dvLateral;
-	dvForward = clamp(dvForward, -retroAccel, forwardAccel + afterburnerAccel);
-	dvLateral = clamp(dvLateral, -lateralAccel, lateralAccel);
-	if(fabs(wantForward - dvForward) > 1e-9 || fabs(wantLateral - dvLateral) > 1e-9)
-		saturated = true;
+	NewtonianFlight::Thrusters thrusters;
+	thrusters.forward = forwardAccel;
+	thrusters.afterburner = afterburnerAccel;
+	thrusters.retro = retroAccel;
+	thrusters.lateral = lateralAccel;
+	NewtonianFlight::Input input;
+	input.thrust = commands.Has(Command::FORWARD) - commands.Has(Command::BACK);
+	input.strafe = commands.Has(Command::STRAFE_RIGHT) - commands.Has(Command::STRAFE_LEFT);
+	input.afterburner = afterburnerHeld;
+	input.stop = commands.Has(Command::STOP);
+	const NewtonianFlight::TranslationPlan plan = NewtonianFlight::PlanTranslation(
+		assist, velocity, facing, ratedSpeed, thrusters, input, tuning.softCap);
+	double dvForward = plan.dvForward;
+	double dvLateral = plan.dvLateral;
+	const bool braking = plan.braking;
+	saturated |= plan.saturated;
 
 	// Split off the afterburner's share of forward thrust; it has its own cost.
 	double afterburnerPart = max(0., dvForward - forwardAccel);
@@ -6104,7 +6013,7 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	}
 	dvForward = mainPart + afterburnerPart;
 
-	velocity += (facing * dvForward + right * dvLateral) * softCapFactor;
+	velocity = NewtonianFlight::Apply(velocity, facing, dvForward, dvLateral, plan.softCapFactor);
 	if(assist && commands.Has(Command::STOP) && velocity.Length() < 1e-3)
 		velocity = Point();
 

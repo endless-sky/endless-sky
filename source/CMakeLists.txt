@@ -458,6 +458,8 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/SpriteShader.h
 	shader/StarField.cpp
 	shader/StarField.h
+	ship/NewtonianFlight.cpp
+	ship/NewtonianFlight.h
 	ship/ResourceLevels.cpp
 	ship/ResourceLevels.h
 	ship/ShipAICache.cpp

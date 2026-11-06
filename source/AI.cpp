@@ -43,6 +43,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RoutePlan.h"
 #include "ScanType.h"
 #include "Ship.h"
+#include "ship/NewtonianFlight.h"
 #include "ship/ShipAICache.h"
 #include "ShipEvent.h"
 #include "ShipJumpNavigation.h"
@@ -84,24 +85,12 @@ namespace {
 	{
 		double ratedTurn = ship.TrueTurnRate();
 		double angularAccel = ship.TurnRate() > 0. ? ship.AngularAcceleration() * ratedTurn / ship.TurnRate() : 0.;
-		if(ratedTurn <= 0. || angularAccel <= 0.)
-			return 0.;
-
 		// Degrees still to turn; positive means turning right.
 		double delta = -atan2(cross, dot) * TO_DEG;
-		double omega = ship.AngularVelocity();
 		bool close = precision < 1. && precision > 0. && dot > 0.
 			&& dot * dot >= precision * (cross * cross + dot * dot);
-		if(close && fabs(delta) < ratedTurn && fabs(omega) <= angularAccel)
-			return ship.FlightAssist() ? 0. : clamp(-omega / angularAccel, -1., 1.);
-
-		// The fastest spin rate from which the ship can still stop on the target.
-		double desired = copysign(min(ratedTurn, sqrt(2. * angularAccel * fabs(delta))), delta);
-		if(fabs(desired) > fabs(delta))
-			desired = delta;
-		if(ship.FlightAssist())
-			return desired / ratedTurn;
-		return clamp((desired - omega) / angularAccel, -1., 1.);
+		return NewtonianFlight::TurnToward(ship.FlightAssist(), delta, ship.AngularVelocity(),
+			ratedTurn, angularAccel, close);
 	}
 
 	bool NeedsFuel(const Ship &ship)
@@ -5151,20 +5140,10 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			command |= Command::STOP;
 			// Flip and burn when that is faster than braking on retro and lateral
 			// thrust while keeping the current facing.
-			const Point &velocity = ship.Velocity();
-			double speed = velocity.Length();
-			double mainAccel = ship.TrueAcceleration();
-			double retroAccel = ship.NewtonianRetroAcceleration();
-			double ratedTurn = ship.TrueTurnRate();
-			if(mainAccel > 0. && ratedTurn > 0. && speed > mainAccel)
-			{
-				double retroTime = retroAccel > 0. ? speed / retroAccel : 1e9;
-				double flipAngle = acos(clamp(-velocity.Unit().Dot(ship.Facing().Unit()), -1., 1.)) * TO_DEG;
-				double spinUpTime = ship.AngularAcceleration() > 0. ? ship.TurnRate() / ship.AngularAcceleration() : 0.;
-				double flipTime = flipAngle / ratedTurn + spinUpTime + speed / mainAccel;
-				if(flipTime < retroTime)
-					command.SetTurn(TurnToward(ship, -velocity));
-			}
+			double spinUpFrames = ship.AngularAcceleration() > 0. ? ship.TurnRate() / ship.AngularAcceleration() : 0.;
+			if(NewtonianFlight::ShouldFlipAndBurn(ship.Velocity(), ship.Facing().Unit(), ship.TrueAcceleration(),
+					ship.NewtonianRetroAcceleration(), ship.TrueTurnRate(), spinUpFrames))
+				command.SetTurn(TurnToward(ship, -ship.Velocity()));
 		}
 	}
 	else if(autoPilot.Has(Command::STOP))
