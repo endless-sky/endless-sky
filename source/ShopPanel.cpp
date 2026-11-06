@@ -132,7 +132,7 @@ void ShopPanel::Step()
 		{
 			// Nothing to do here, just don't want to execute the other branch.
 		}
-		else if(!Preferences::Has("help: shop with multiple ships"))
+		else if(!Preferences::HelpShown("help: shop with multiple ships"))
 		{
 			set<string> modelNames;
 			for(const auto &it : player.Ships())

@@ -321,6 +321,14 @@ void UI::AdjustTextDisplay() const
 
 
 
+void UI::TooltipUpdate() const
+{
+	for(auto &it : stack)
+		it->UpdateTooltipActivation();
+}
+
+
+
 // Get the current mouse position.
 Point UI::GetMouse()
 {
