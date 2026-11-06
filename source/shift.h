@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 
 // This array maps keys to the values they have when the Shift key is pressed.
-const char SHIFT[128] = {
+constexpr char SHIFT[128] = {
 	' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
 	' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',
 	' ', '1', '\'', '3', '4', '5', '7', '"', '9', '0', '8', '=', '<', '_', '>', '?',

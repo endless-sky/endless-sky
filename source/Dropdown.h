@@ -17,11 +17,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Edit.h"
 
-#include "Color.h"
 #include "Panel.h"
 #include "Rectangle.h"
 
-#include <functional>
 #include <string>
 #include <vector>
 
@@ -31,7 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Dropdown : public Edit {
 public:
 	Dropdown();
-	virtual ~Dropdown() = default;
+	virtual ~Dropdown() override = default;
 
 	void SetOptions(const std::vector<std::string> &options);
 	void SetText(const std::string &s) override;

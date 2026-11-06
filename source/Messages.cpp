@@ -19,11 +19,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 
 #include <mutex>
+#include <ranges>
 
 using namespace std;
 
 namespace {
-	const int MAX_LOG = 10000;
+	constexpr int MAX_LOG = 10000;
 
 	mutex incomingMutex;
 
@@ -88,18 +89,18 @@ const vector<Messages::Entry> &Messages::Get(int step, int animationDuration)
 				continue;
 		}
 
-		for(auto &it : recent)
+		for(auto &entry : recent)
 		{
 			// Each time a new message comes in, "age" all the existing ones,
 			// except for cases where it would interrupt an animation, to
 			// limit how many of them appear at once.
-			if(step - it.step > animationDuration)
-				it.step -= 60;
+			if(step - entry.step > animationDuration)
+				entry.step -= 60;
 			// For each incoming message, if it exactly matches an existing message,
 			// replace that one with this new one by scheduling the old one for removal.
 			if(category->MainDuplicatesStrategy() == Message::Category::DuplicatesStrategy::KEEP_NEW
-					&& it.message == message && it.deathStep < 0)
-				it.deathStep = step + animationDuration;
+					&& entry.message == message && entry.deathStep < 0)
+				entry.deathStep = step + animationDuration;
 		}
 		recent.emplace_back(step, message, category);
 	}
@@ -154,8 +155,8 @@ void Messages::SaveLog(DataWriter &out)
 	out.Write("message log");
 	out.BeginChild();
 	{
-		for(auto it = logged.rbegin(); it != logged.rend(); ++it)
-			out.Write(it->second->TrueName(), it->first);
+		for(auto &[message, category] : std::views::reverse(logged))
+			out.Write(category->TrueName(), message);
 	}
 	out.EndChild();
 }

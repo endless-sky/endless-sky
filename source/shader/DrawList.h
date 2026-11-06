@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Point.h"
 #include "SpriteShader.h"
 
-#include <cstdint>
 #include <vector>
 
 class Angle;

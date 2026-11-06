@@ -43,7 +43,7 @@ public:
 	bool IsAnimationDone() const;
 
 	// Shortcut mathematical operators for convenience.
-	Animate &operator=(const T &v);
+	virtual Animate &operator=(const T &v);
 	Animate &operator+=(const T &v);
 	Animate &operator-=(const T &v);
 

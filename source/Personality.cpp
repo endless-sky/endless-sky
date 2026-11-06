@@ -171,9 +171,9 @@ void Personality::Save(DataWriter &out) const
 	{
 		if(confusion)
 			confusion->Save(out);
-		for(const auto &it : TOKEN)
-			if(flags.test(it.second))
-				out.Write(it.first);
+		for(const auto &[name, flag] : TOKEN)
+			if(flags.test(flag))
+				out.Write(name);
 	}
 	out.EndChild();
 }

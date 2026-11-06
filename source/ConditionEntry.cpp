@@ -34,7 +34,7 @@ const string &ConditionEntry::Name() const
 
 
 
-const string ConditionEntry::NameWithoutPrefix() const
+string ConditionEntry::NameWithoutPrefix() const
 {
 	// If we have a provider, and that provider has a main-entry, then we have prefix.
 	if(providingEntry)
@@ -133,7 +133,7 @@ void ConditionEntry::ProvidePrefixed(function<int64_t(const ConditionEntry &)> g
 
 
 
-void ConditionEntry::ProvidePrefixed(function<int64_t(const ConditionEntry &)> getFunction,
+void ConditionEntry::ProvidePrefixed(const function<int64_t(const ConditionEntry &)> &getFunction,
 	function<void(ConditionEntry &, int64_t)> setFunction)
 {
 	ProvidePrefixed(getFunction);
@@ -150,7 +150,7 @@ void ConditionEntry::ProvideNamed(function<int64_t(const ConditionEntry &)> getF
 
 
 
-void ConditionEntry::ProvideNamed(function<int64_t(const ConditionEntry &)> getFunction,
+void ConditionEntry::ProvideNamed(const function<int64_t(const ConditionEntry &)> &getFunction,
 	function<void(ConditionEntry &, int64_t)> setFunction)
 {
 	ProvideNamed(getFunction);
@@ -162,5 +162,4 @@ void ConditionEntry::ProvideNamed(function<int64_t(const ConditionEntry &)> getF
 void ConditionEntry::NotifyUpdate(uint64_t value)
 {
 	// Subscribing is not implemented yet.
-	return;
 }

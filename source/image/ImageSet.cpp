@@ -138,16 +138,16 @@ void ImageSet::ValidateFrames() noexcept(false)
 	framePaths[3].clear();
 
 	// Ensure that image sequences aren't mixed with other images.
-	for(int i = 0; i < 4; ++i)
-		for(const auto &path : paths[i])
+	for(auto &i : paths)
+		for(const auto &path : i)
 		{
 			string ext = path.extension().string();
-			if(ImageBuffer::ImageSequenceExtensions().contains(Format::LowerCase(ext)) && paths[i].size() > 1)
+			if(ImageBuffer::ImageSequenceExtensions().contains(Format::LowerCase(ext)) && i.size() > 1)
 			{
 				Logger::Log("Image sequences must be exclusive; ignoring all but the image sequence data for \""
 					+ name + "\".", Logger::Level::WARNING);
-				paths[i][0] = path;
-				paths[i].resize(1);
+				i[0] = path;
+				i.resize(1);
 				break;
 			}
 		}

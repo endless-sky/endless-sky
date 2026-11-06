@@ -26,26 +26,27 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <ranges>
 #include <vector>
 
 using namespace std;
 
 namespace {
 	// Scale of the mask image:
-	const int GRID = 16;
+	constexpr int GRID = 16;
 	// Distance represented by one orthogonal or diagonal step:
-	const int ORTH = 5;
-	const int DIAG = 7;
+	constexpr int ORTH = 5;
+	constexpr int DIAG = 7;
 	// Limit distances to the size of an unsigned char.
-	const int LIMIT = 255;
+	constexpr int LIMIT = 255;
 	// Pad beyond the screen enough to include any system that might "cast light"
 	// on the on-screen view.
-	const int PAD = LIMIT / ORTH;
+	constexpr int PAD = LIMIT / ORTH;
 
 	// OpenGL objects:
 	const Shader *shader;
-	GLuint cornerI;
-	GLuint dimensionsI;
+	GLint cornerI;
+	GLint dimensionsI;
 	GLuint vao;
 	GLuint vbo;
 	GLuint texture = 0;
@@ -156,9 +157,8 @@ void FogShader::Draw(const Point &center, double zoom, const PlayerInfo &player)
 
 		// For each system the player knows about, its "distance" pixel in the
 		// buffer should be set to 0.
-		for(const auto &it : GameData::Systems())
+		for(const auto &system : GameData::Systems() | views::values)
 		{
-			const System &system = it.second;
 			if(!system.IsValid() || !player.CanView(system))
 				continue;
 			Point pos = zoom * (system.Position() + center);

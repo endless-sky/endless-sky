@@ -24,7 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const int MORTGAGE_TERM = 365;
+	constexpr int MORTGAGE_TERM = 365;
 }
 
 
@@ -37,7 +37,7 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, double current
 	if(revenue <= 0.)
 		return 0;
 
-	const double interest = (600 - creditScore / 2) * .00001;
+	const double interest = (600 - creditScore / 2.) * .00001;
 	const double power = pow(1. + interest, MORTGAGE_TERM);
 	const double multiplier = interest * MORTGAGE_TERM * power / (power - 1.);
 	return static_cast<int64_t>(max(0., revenue / multiplier));
@@ -49,7 +49,7 @@ int64_t Mortgage::Maximum(int64_t annualRevenue, int creditScore, double current
 Mortgage::Mortgage(string type, int64_t principal, int creditScore, int term)
 	: type(std::move(type)),
 	principal(principal),
-	interest((600 - creditScore / 2) * .00001),
+	interest((600 - creditScore / 2.) * .00001),
 	interestString("0." + to_string(600 - creditScore / 2) + "%"),
 	term(term)
 {

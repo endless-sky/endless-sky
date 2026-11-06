@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 
+#include <ranges>
+
 using namespace std;
 
 
@@ -162,19 +164,19 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 
 	// Display a warning if a label was not resolved.
 	if(!unresolved.empty())
-		for(const auto &it : unresolved)
-			node.PrintTrace("Conversation contains unrecognized label \"" + it.first + "\":");
+		for(const auto &label : unresolved | views::keys)
+			node.PrintTrace("Conversation contains unrecognized label \"" + label + "\":");
 
 	// Check for any loops in the conversation.
-	for(const auto &it : labels)
+	for(const auto &[label, index] : labels)
 	{
-		int nodeIndex = it.second;
+		int nodeIndex = index;
 		while(nodeIndex >= 0 && Choices(nodeIndex) <= 1)
 		{
 			nodeIndex = NextNodeForChoice(nodeIndex);
-			if(nodeIndex == it.second)
+			if(nodeIndex == index)
 			{
-				node.PrintTrace("Conversation contains infinite loop beginning with label \"" + it.first + "\":");
+				node.PrintTrace("Conversation contains infinite loop beginning with label \"" + label + "\":");
 				nodes.clear();
 				return;
 			}
@@ -294,7 +296,7 @@ bool Conversation::IsEmpty() const noexcept
 // Check if this conversation contains a name prompt, and thus can be used as an "intro" conversation.
 bool Conversation::IsValidIntro() const noexcept
 {
-	return any_of(nodes.begin(), nodes.end(), [](const Node &node) noexcept -> bool {
+	return ranges::any_of(nodes, [](const Node &node) noexcept -> bool {
 		return node.isChoice && node.elements.empty();
 	});
 }

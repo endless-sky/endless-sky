@@ -43,14 +43,14 @@ public:
 
 	// A tag type to denote a failing test that is not an error, such as a
 	// "known failure" test failing.
-	struct known_failure_tag {};
+	struct known_failure_tag : public std::exception {};
 
 
 public:
 	// Class representing a single step in a test
 	class TestStep {
 	public:
-		// The different types of teststeps.
+		// The different types of test steps.
 		enum class Type {
 			// Step that assigns a value to a condition. Does not cause the game to step.
 			APPLY,
@@ -84,7 +84,7 @@ public:
 	public:
 		Type stepType = Type::ASSERT;
 		std::string nameOrLabel;
-		// Variables for travelpan/navigate steps.
+		// Variables for travel pan/navigate steps.
 		std::vector<const System *> travelPlan;
 		const Planet *travelDestination = nullptr;
 		// For applying condition changes.
@@ -135,7 +135,7 @@ private:
 private:
 	std::string name;
 	Status status = Status::ACTIVE;
-	// Jump-table that specifies which labels map to which teststeps.
+	// Jump-table that specifies which labels map to which test steps.
 	std::map<std::string, unsigned int> jumpTable;
 	std::vector<TestStep> steps;
 };

@@ -48,7 +48,7 @@ namespace {
 	bool ReadJPG(const filesystem::path &path, ImageBuffer &buffer, int frame, bool onlyDimensions);
 	int ReadAVIF(const filesystem::path &path, ImageBuffer &buffer, int frame, bool alphaPreMultiplied,
 		bool onlyDimensions);
-	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode additive);
+	void Premultiply(ImageBuffer &buffer, int frame, BlendingMode blend);
 }
 
 
@@ -245,7 +245,8 @@ int ImageBuffer::Read(const ImageFileData &data, int frame, bool onlyDimensions)
 namespace {
 	void ReadPNGInput(png_structp pngStruct, png_bytep outBytes, png_size_t byteCountToRead)
 	{
-		static_cast<iostream *>(png_get_io_ptr(pngStruct))->read(reinterpret_cast<char *>(outBytes), byteCountToRead);
+		static_cast<iostream *>(png_get_io_ptr(pngStruct))->read(reinterpret_cast<char *>(outBytes),
+			static_cast<long>(byteCountToRead));
 	}
 
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame, bool onlyDimensions)
@@ -277,8 +278,8 @@ namespace {
 		png_set_sig_bytes(png, 0);
 
 		png_read_info(png, info);
-		int width = png_get_image_width(png, info);
-		int height = png_get_image_height(png, info);
+		int width = static_cast<int>(png_get_image_width(png, info));
+		int height = static_cast<int>(png_get_image_height(png, info));
 		// If the buffer is not yet allocated, allocate it.
 		try {
 			buffer.Allocate(width, height);
@@ -360,8 +361,8 @@ namespace {
 		if(data.empty())
 			return false;
 
-		jpeg_decompress_struct cinfo;
-		struct jpeg_error_mgr jerr;
+		jpeg_decompress_struct cinfo{};
+		jpeg_error_mgr jerr{};
 		cinfo.err = jpeg_std_error(&jerr);
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wold-style-cast"
@@ -375,8 +376,8 @@ namespace {
 		// MAYBE: Reading in lots of images in a 32-bit process gets really hairy using the standard approach due to
 		// contiguous memory layout requirements. Investigate using an iterative loading scheme for large images.
 		jpeg_start_decompress(&cinfo);
-		int width = cinfo.image_width;
-		int height = cinfo.image_height;
+		int width = static_cast<int>(cinfo.image_width);
+		int height = static_cast<int>(cinfo.image_height);
 		// If the buffer is not yet allocated, allocate it.
 		try {
 			buffer.Allocate(width, height);
@@ -413,7 +414,7 @@ namespace {
 			rows[y] = reinterpret_cast<JSAMPLE *>(buffer.Begin(y, frame));
 
 		while(height)
-			height -= jpeg_read_scanlines(&cinfo, &rows.front() + cinfo.output_scanline, height);
+			height -= static_cast<int>(jpeg_read_scanlines(&cinfo, &rows.front() + cinfo.output_scanline, height));
 
 		jpeg_finish_decompress(&cinfo);
 		jpeg_destroy_decompress(&cinfo);

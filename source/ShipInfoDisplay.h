@@ -43,7 +43,7 @@ public:
 	int OutfitsHeight() const;
 
 	virtual void DrawAttributes(const Point &topLeft) const override;
-	virtual void DrawAttributes(const Point &topLeft, const bool sale) const;
+	virtual void DrawAttributes(const Point &topLeft, bool sale) const;
 	void DrawOutfits(const Point &topLeft) const;
 
 

@@ -121,7 +121,7 @@ public:
 	// still alive.
 	static void ResetPersons();
 	// Mark all persons in the given list as dead.
-	static void DestroyPersons(std::vector<std::string> &names);
+	static void DestroyPersons(const std::vector<std::string> &names);
 	// Handle any events that may have been taken against a Person.
 	static void HandleEvent(const ShipEvent &event);
 
@@ -172,7 +172,7 @@ public:
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
 	// Collections for ship, bay type, outfit, and other categories.
-	static const CategoryList &GetCategory(const CategoryType type);
+	static const CategoryList &GetCategory(CategoryType type);
 
 	static const StarField &Background();
 	static void StepBackground(const Point &vel, double zoom = 1.);

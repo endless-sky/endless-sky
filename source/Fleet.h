@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Variant.h"
 #include "WeightedList.h"
 
+#include <cstdint>
 #include <list>
 #include <memory>
 #include <string>
@@ -48,7 +49,7 @@ class Fleet {
 public:
 	Fleet() = default;
 	// Construct and Load() at the same time.
-	Fleet(const DataNode &node);
+	explicit Fleet(const DataNode &node);
 
 	void Load(const DataNode &node);
 
@@ -78,7 +79,7 @@ public:
 private:
 	static std::pair<Point, double> ChooseCenter(const System &system);
 	std::vector<std::shared_ptr<Ship>> Instantiate(const std::vector<const Ship *> &ships) const;
-	bool PlaceFighter(const std::shared_ptr<Ship> &fighter, std::vector<std::shared_ptr<Ship>> &placed) const;
+	bool PlaceFighter(const std::shared_ptr<Ship> &fighter, const std::vector<std::shared_ptr<Ship>> &placed) const;
 
 
 private:

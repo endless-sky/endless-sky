@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
-#include <limits>
 
 using namespace std;
 
@@ -290,12 +289,12 @@ void Armament::Step(const Ship &ship)
 	for(Hardpoint &hardpoint : hardpoints)
 		hardpoint.Step();
 
-	for(auto &it : streamReload)
+	for(auto &[outfit, reload] : streamReload)
 	{
-		int count = ship.OutfitCount(it.first);
-		it.second -= count;
+		int count = ship.OutfitCount(outfit);
+		reload -= count;
 		// Always reload to the quickest firing interval.
-		it.second = max(it.second, 1 - count);
+		reload = max(reload, 1 - count);
 	}
 }
 

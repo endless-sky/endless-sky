@@ -24,7 +24,7 @@ using namespace std;
 
 
 
-const bool CategoryList::Category::SortHelper(const CategoryList::Category &a, const CategoryList::Category &b)
+bool CategoryList::Category::SortHelper(const Category &a, const Category &b)
 {
 	if(a.precedence == b.precedence)
 		return a.name < b.name;
@@ -44,7 +44,7 @@ void CategoryList::Load(const DataNode &node)
 		Category cat(child.Token(0), currentPrecedence++);
 
 		// If a given category name already exists, its precedence will be updated.
-		auto it = find_if(list.begin(), list.end(),
+		auto it = ranges::find_if(list,
 			[&cat](const Category &c) noexcept -> bool { return cat.name == c.name; });
 		if(it != list.end())
 			it->precedence = cat.precedence;
@@ -75,16 +75,16 @@ void CategoryList::Sort()
 // Determine if the CategoryList contains a Category with the given name.
 bool CategoryList::Contains(const string &name) const
 {
-	const auto it = find_if(list.begin(), list.end(),
+	const auto it = ranges::find_if(list,
 		[&name](const Category &c) noexcept -> bool { return name == c.name; });
 	return it != list.end();
 }
 
 
 
-const CategoryList::Category CategoryList::GetCategory(const string &name) const
+CategoryList::Category CategoryList::GetCategory(const string &name) const
 {
-	const auto it = find_if(list.begin(), list.end(),
+	const auto it = ranges::find_if(list,
 		[&name](const Category &c) noexcept -> bool { return name == c.name; });
 	if(it != list.end())
 		return *it;

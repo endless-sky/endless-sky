@@ -53,7 +53,7 @@ public:
 	virtual void Set(const T &current, int steps = 5) override;
 
 	// Shortcut mathematical operators for convenience.
-	ScrollVar &operator=(const T &v);
+	virtual ScrollVar &operator=(const T &v) override;
 
 
 private:

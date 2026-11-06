@@ -133,7 +133,7 @@ EsUuid EsUuid::FromString(const string &input)
 
 
 // Explicitly copy the value of the other UUID.
-void EsUuid::Clone(const EsUuid &other)
+void EsUuid::Clone(const EsUuid &other) const
 {
 	value = other.Value();
 }

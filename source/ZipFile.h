@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <minizip/unzip.h>
 
 #include <filesystem>
-#include <mutex>
 #include <vector>
 
 

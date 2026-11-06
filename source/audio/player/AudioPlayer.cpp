@@ -170,7 +170,7 @@ void AudioPlayer::Init()
 		if(!ClaimSource())
 			return;
 
-	int bufferCount = clamp(audioSupplier->MaxChunks(), static_cast<size_t>(1), MAX_INITIAL_BUFFERS);
+	int bufferCount = clamp<int>(audioSupplier->MaxChunks(), 1, MAX_INITIAL_BUFFERS);
 
 	vector<ALuint> buffers;
 	buffers.reserve(bufferCount);
@@ -194,7 +194,7 @@ void AudioPlayer::Stop(bool stop)
 
 
 
-AudioSupplier *AudioPlayer::Supplier()
+AudioSupplier *AudioPlayer::Supplier() const
 {
 	return audioSupplier.get();
 }

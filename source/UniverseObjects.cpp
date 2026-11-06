@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Logger.h"
 #include "PlayerInfo.h"
-#include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "TaskQueue.h"
 
@@ -86,9 +85,9 @@ double UniverseObjects::GetProgress() const
 
 void UniverseObjects::FinishLoading()
 {
-	for(auto &&it : planets)
-		if(it.second.IsValid())
-			it.second.FinishLoading(wormholes);
+	for(auto &planet : planets | views::values)
+		if(planet.IsValid())
+			planet.FinishLoading(wormholes);
 
 	// Now that all data is loaded, update the neighbor lists and other
 	// system information. Make sure that the default jump range is among the
@@ -97,44 +96,44 @@ void UniverseObjects::FinishLoading()
 	UpdateSystems();
 
 	// And, update the ships with the outfits we've now finished loading.
-	for(auto &&it : ships)
-		if(it.second.IsValid())
-			it.second.FinishLoading(true);
-	for(auto &&it : persons)
-		if(it.second.IsValid())
-			it.second.FinishLoading();
+	for(auto &ship : ships | views::values)
+		if(ship.IsValid())
+			ship.FinishLoading(true);
+	for(auto &person : persons | views::values)
+		if(person.IsValid())
+			person.FinishLoading();
 
 	// Calculate minable values.
-	for(auto &&it : minables)
-		it.second.FinishLoading();
+	for(auto &minable : minables | views::values)
+		minable.FinishLoading();
 
 	for(auto &&it : startConditions)
 		it.FinishLoading();
 	// Remove any invalid starting conditions, so the game does not use incomplete data.
-	startConditions.erase(remove_if(startConditions.begin(), startConditions.end(),
-			[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }),
+	startConditions.erase(ranges::remove_if(startConditions,
+		[](const StartConditions &it) noexcept -> bool { return !it.IsValid(); }).begin(),
 		startConditions.end()
 	);
 
 	// Process any disabled game objects.
-	for(const auto &category : disabled)
+	for(const auto &[category, names] : disabled)
 	{
-		if(category.first == "mission")
-			for(const string &name : category.second)
+		if(category == "mission")
+			for(const string &name : names)
 				missions.Get(name)->NeverOffer();
-		else if(category.first == "event")
-			for(const string &name : category.second)
+		else if(category == "event")
+			for(const string &name : names)
 				events.Get(name)->Disable();
-		else if(category.first == "person")
-			for(const string &name : category.second)
+		else if(category == "person")
+			for(const string &name : names)
 				persons.Get(name)->NeverSpawn();
 		else
-			Logger::Log("Unhandled \"disable\" keyword of type \"" + category.first + "\".", Logger::Level::WARNING);
+			Logger::Log(R"(Unhandled "disable" keyword of type ")" + category + "\".", Logger::Level::WARNING);
 	}
 
 	// Sort all category lists.
-	for(auto &list : categories)
-		list.second.Sort();
+	for(auto &list : categories | views::values)
+		list.Sort();
 }
 
 
@@ -189,16 +188,16 @@ void UniverseObjects::Change(const DataNode &node, PlayerInfo &player)
 // (This must be done any time a GameEvent creates or moves a system.)
 void UniverseObjects::UpdateSystems()
 {
-	for(auto &it : systems)
+	for(auto &[name, system] : systems)
 	{
 		// Skip systems that have no name.
-		if(it.first.empty() || it.second.TrueName().empty())
+		if(name.empty() || system.TrueName().empty())
 			continue;
-		it.second.UpdateSystem(systems, neighborDistances);
+		system.UpdateSystem(systems, neighborDistances);
 
 		// If there were changes to a system there might have been a change to a legacy
 		// wormhole which we must handle.
-		for(const auto &object : it.second.Objects())
+		for(const auto &object : system.Objects())
 			if(object.GetPlanet())
 				planets.Get(object.GetPlanet()->TrueName())->FinishLoading(wormholes);
 	}
@@ -255,48 +254,48 @@ void UniverseObjects::CheckReferences()
 		{
 			// Any already-named event (i.e. loaded) may alter the universe.
 			auto definitions = GameEvent::DeferredDefinitions(it.second.Changes());
-			for(auto &&type : definitions)
-				deferred[type.first].insert(type.second.begin(), type.second.end());
+			for(auto &[type, names] : definitions)
+				deferred[type].insert(names.begin(), names.end());
 		}
 	}
 
 	// Confusions are never serialized.
-	for(const auto &it : confusions)
-		if(it.second.Name().empty())
-			Warn("confusion", it.first);
+	for(const auto &[name, confusion] : confusions)
+		if(confusion.Name().empty())
+			Warn("confusion", name);
 	// Stock conversations are never serialized.
-	for(const auto &it : conversations)
-		if(it.second.IsEmpty())
-			Warn("conversation", it.first);
+	for(const auto &[name, conversation] : conversations)
+		if(conversation.IsEmpty())
+			Warn("conversation", name);
 	// The "default intro" conversation must invoke the prompt to set the player's name.
 	if(!conversations.Get("default intro")->IsValidIntro())
-		Logger::Log("The \"default intro\" conversation must contain a \"name\" node.", Logger::Level::WARNING);
+		Logger::Log(R"(The "default intro" conversation must contain a "name" node.)", Logger::Level::WARNING);
 	// Effects are serialized as a part of ships.
 	for(auto &&it : effects)
 		if(it.second.TrueName().empty())
 			NameAndWarn("effect", it);
 	// Fleets are not serialized. Any changes via events are written as DataNodes and thus self-define.
-	for(auto &&it : fleets)
+	for(auto &[name, fleet] : fleets)
 	{
 		// Plugins may alter stock fleets with new variants that exclusively use plugin ships.
 		// Rather than disable the whole fleet due to these non-instantiable variants, remove them.
-		it.second.RemoveInvalidVariants();
-		if(!it.second.IsValid() && !deferred["fleet"].contains(it.first))
-			Warn("fleet", it.first);
+		fleet.RemoveInvalidVariants();
+		if(!fleet.IsValid() && !deferred["fleet"].contains(name))
+			Warn("fleet", name);
 	}
 	// Government names are used in mission NPC blocks and LocationFilters.
 	for(auto &&it : governments)
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["government"], it))
 			NameAndWarn("government", it);
 	// Minables are not serialized.
-	for(const auto &it : minables)
-		if(it.second.TrueName().empty())
-			Warn("minable", it.first);
+	for(const auto &[name, minable] : minables)
+		if(minable.TrueName().empty())
+			Warn("minable", name);
 	// Stock missions are never serialized, and an accepted mission is
 	// always fully defined (though possibly not "valid").
-	for(const auto &it : missions)
-		if(it.second.DisplayName().empty())
-			Warn("mission", it.first);
+	for(const auto &[name, mission] : missions)
+		if(mission.DisplayName().empty())
+			Warn("mission", name);
 
 	// News are never serialized or named, except by events (which would then define them).
 
@@ -305,53 +304,53 @@ void UniverseObjects::CheckReferences()
 		if(it.second.TrueName().empty())
 			NameAndWarn("outfit", it);
 	// Phrases are never serialized.
-	for(const auto &it : phrases)
-		if(it.second.Name().empty())
-			Warn("phrase", it.first);
+	for(const auto &[name, phrase] : phrases)
+		if(phrase.Name().empty())
+			Warn("phrase", name);
 	// Planet names are used by a number of classes.
 	for(auto &&it : planets)
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["planet"], it))
 			NameAndWarn("planet", it);
 	// Ship model names are used by missions and depreciation.
-	for(auto &&it : ships)
-		if(it.second.TrueModelName().empty())
+	for(auto &[name, ship] : ships)
+		if(ship.TrueModelName().empty())
 		{
-			it.second.SetTrueModelName(it.first);
-			Warn("ship", it.first);
+			ship.SetTrueModelName(name);
+			Warn("ship", name);
 		}
 	// System names are used by a number of classes.
 	for(auto &&it : systems)
 		if(it.second.TrueName().empty() && !NameIfDeferred(deferred["system"], it))
 			NameAndWarn("system", it);
 	// Hazards are never serialized.
-	for(const auto &it : hazards)
-		if(!it.second.IsValid())
-			Warn("hazard", it.first);
+	for(const auto &[name, hazard] : hazards)
+		if(!hazard.IsValid())
+			Warn("hazard", name);
 	// Wormholes are never serialized.
-	for(const auto &it : wormholes)
-		if(it.second.DisplayName().empty())
-			Warn("wormhole", it.first);
+	for(const auto &[name, wormhole] : wormholes)
+		if(wormhole.DisplayName().empty())
+			Warn("wormhole", name);
 	// Formation patterns are not serialized, but their usage is.
 	for(auto &&it : formations)
 		if(it.second.TrueName().empty())
 			NameAndWarn("formation", it);
 	// Any stock colors should have been loaded from game data files.
-	for(const auto &it : colors)
-		if(!it.second.IsLoaded())
-			Warn("color", it.first);
+	for(const auto &[name, color] : colors)
+		if(!color.IsLoaded())
+			Warn("color", name);
 	for(auto &&it : swizzles)
 		if(!it.second.IsLoaded())
 			NameAndWarn("swizzle", it);
-	for(const auto &it : messageCategories)
-		if(!it.second.IsLoaded())
-			Warn("message category", it.first);
+	for(const auto &[name, messageCategory] : messageCategories)
+		if(!messageCategory.IsLoaded())
+			Warn("message category", name);
 	for(auto &it : messages)
 		if(!it.second.IsLoaded())
 			NameAndWarn("message", it);
 	// Persons can be referred to when marking them as destroyed, or contain invalid ships.
-	for(const auto &it : persons)
-		if(!it.second.IsValid())
-			Warn("person", it.first);
+	for(const auto &[name, person] : persons)
+		if(!person.IsValid())
+			Warn("person", name);
 }
 
 
@@ -561,7 +560,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			else
 			{
 				const string &identifier = node.Token(1);
-				auto existingStart = find_if(startConditions.begin(), startConditions.end(),
+				auto existingStart = ranges::find_if(startConditions,
 					[&identifier](const StartConditions &it) noexcept -> bool { return it.Identifier() == identifier; });
 				if(existingStart != startConditions.end())
 				{
@@ -731,7 +730,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 						disabled[category].emplace(node.Token(index));
 			}
 			else
-				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
+				node.PrintTrace(R"(Invalid use of keyword "disable" for class ")" + category + "\"");
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");

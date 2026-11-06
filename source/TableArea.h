@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Color.h"
 #include "text/Table.h"
 
+#include <cstdint>
 #include <vector>
 
 class Point;
@@ -33,7 +34,6 @@ class TableArea : public ScrollArea
 public:
 	TableArea();
 	explicit TableArea(const Rectangle &r);
-	virtual ~TableArea() override;
 
 	void AddColumn(int offset, Layout layout, const Color &color);
 	void AddRow(const std::vector<std::string> &row);

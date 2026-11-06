@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <map>
 #include <memory>
-#include <set>
 #include <string>
 #include <vector>
 
@@ -60,10 +59,10 @@ protected:
 private:
 	// Handle a change to what ship is shown.
 	void UpdateInfo();
-	void ClearZones();
+	void ClearInfoZones();
 
 	// Draw the ship tab (and its subsections).
-	void DrawShipStats(const Rectangle &bounds);
+	void DrawShipStats(const Rectangle &bounds) const;
 	void DrawOutfits(const Rectangle &bounds, Rectangle &cargoBounds);
 	void DrawWeapons(const Rectangle &bounds);
 	void DrawCargo(const Rectangle &bounds);

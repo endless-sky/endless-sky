@@ -35,10 +35,10 @@ ZipFile::ZipFile(const filesystem::path &zipPath)
 	filesystem::path topLevel;
 	for(const filesystem::path &path : ListFiles("", true, false))
 	{
-		filesystem::path zipPath = path.lexically_relative(basePath);
+		filesystem::path relativePath = path.lexically_relative(basePath);
 		if(topLevel.empty())
-			topLevel = *zipPath.begin();
-		else if(*zipPath.begin() != topLevel)
+			topLevel = *relativePath.begin();
+		else if(*relativePath.begin() != topLevel)
 			return;
 	}
 	topLevelDirectory = topLevel;
@@ -66,7 +66,7 @@ vector<filesystem::path> ZipFile::ListFiles(const filesystem::path &directory, b
 	do {
 		char filename[256];
 		unz_file_info fileInfo;
-		unzGetCurrentFileInfo(zipFile, &fileInfo, filename, sizeof(filename), NULL, 0, NULL, 0);
+		unzGetCurrentFileInfo(zipFile, &fileInfo, filename, sizeof(filename), nullptr, 0, nullptr, 0);
 
 		filesystem::path zipEntry = filename;
 		bool isDirectory = string(filename).back() == '/';

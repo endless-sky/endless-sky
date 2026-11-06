@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <cstdint>
 #include <functional>
 #include <future>
 #include <list>
@@ -73,7 +74,7 @@ public:
 	void ProcessSyncTasks();
 
 	// Waits for all of this queue's task to finish. Ignores any sync tasks to be processed.
-	void Wait();
+	void Wait() const;
 
 
 private:

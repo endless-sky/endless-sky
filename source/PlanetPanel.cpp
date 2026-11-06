@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Information.h"
 
-#include "text/Alignment.h"
 #include "audio/Audio.h"
 #include "BankPanel.h"
 #include "Command.h"
@@ -161,16 +160,16 @@ void PlanetPanel::Step()
 				// thumbnails are only visible in the outfitter.
 				SpriteLoadManager::LoadDeferred(queue, ship->Thumbnail());
 				if(hasOutfitter)
-					for(const auto &outfit : ship->Outfits())
-						SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+					for(const auto &outfit : ship->Outfits() | views::keys)
+						SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
 			}
 		}
 		if(hasOutfitter)
 		{
-			for(const auto &outfit : player.Storage().Outfits())
-				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
-			for(const auto &outfit : player.Cargo().Outfits())
-				SpriteLoadManager::LoadDeferred(queue, outfit.first->Thumbnail());
+			for(const auto &outfit : player.Storage().Outfits() | views::keys)
+				SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
+			for(const auto &outfit : player.Cargo().Outfits() | views::keys)
+				SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
 			for(const auto &[outfit, count] : player.GetStock())
 				if(count > 0)
 					SpriteLoadManager::LoadDeferred(queue, outfit->Thumbnail());
@@ -389,25 +388,25 @@ void PlanetPanel::TakeOffIfReady()
 	flightChecks = player.FlightCheck();
 	if(!flightChecks.empty())
 	{
-		for(const auto &result : flightChecks)
+		for(const auto &[ship, checks] : flightChecks)
 		{
 			// If there is a flight check error, it will be the first (and only) entry.
-			auto &check = result.second.front();
+			auto &check = checks.front();
 			if(check.back() == '!')
 			{
 				// If the ship with a flight check error is in another system, then the only thing the player
 				// can do is park it. But if the ship is with the player, then they may be able to make changes
 				// to rectify the error. As such, provide a conversation for any single present ship, but
 				// record and report all absent ships later.
-				if(result.first->GetSystem() != &system)
+				if(ship->GetSystem() != &system)
 				{
-					out << result.first->GivenName() << ", ";
-					absentCannotFly.push_back(result.first);
+					out << ship->GivenName() << ", ";
+					absentCannotFly.push_back(ship);
 				}
 				else
 				{
 					GetUI().Push(new ConversationPanel(player,
-						*GameData::Conversations().Get("flight check: " + check), nullptr, nullptr, result.first));
+						*GameData::Conversations().Get("flight check: " + check), nullptr, nullptr, ship));
 					return;
 				}
 			}
@@ -480,8 +479,8 @@ void PlanetPanel::CheckWarningsAndTakeOff()
 		const auto jumpWarnings = set<string>{
 			"no bays?", "no fuel?", "no hyperdrive?"
 		};
-		for(const auto &result : flightChecks)
-			for(const auto &warning : result.second)
+		for(const auto &checks : flightChecks | views::values)
+			for(const auto &warning : checks)
 				if(jumpWarnings.contains(warning))
 				{
 					++nonJumpCount;

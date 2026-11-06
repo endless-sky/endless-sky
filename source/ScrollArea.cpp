@@ -41,9 +41,34 @@ ScrollArea::ScrollArea(const Rectangle &r)
 
 
 
-// Stub destructor, so that unique_ptrs are destructed in the correct scope.
-ScrollArea::~ScrollArea()
+void ScrollArea::Draw()
 {
+	if(!buffer)
+		buffer = make_unique<RenderBuffer>(size);
+
+	Validate(scrollHeightIncludesTrailingBreak);
+	if(!bufferIsValid || !scroll.IsAnimationDone())
+	{
+		scroll.Step();
+
+		auto target = buffer->SetTarget();
+		Point topLeft(buffer->Left(), buffer->Top() - scroll.AnimatedValue());
+		DrawText(topLeft);
+		target.Deactivate();
+
+		buffer->SetFadePadding(
+			scroll.IsScrollAtMin() ? 0 : 20,
+			scroll.IsScrollAtMax() ? 0 : 20
+		);
+		bufferIsValid = true;
+	}
+	buffer->Draw(position);
+
+	if(scroll.Scrollable())
+	{
+		SyncScroll();
+		scrollBar.Draw();
+	}
 }
 
 
@@ -92,38 +117,6 @@ void ScrollArea::SnapToBottom()
 
 void ScrollArea::Validate(bool trailingBreak)
 {
-}
-
-
-
-void ScrollArea::Draw()
-{
-	if(!buffer)
-		buffer = make_unique<RenderBuffer>(size);
-
-	Validate(scrollHeightIncludesTrailingBreak);
-	if(!bufferIsValid || !scroll.IsAnimationDone())
-	{
-		scroll.Step();
-
-		auto target = buffer->SetTarget();
-		Point topLeft(buffer->Left(), buffer->Top() - scroll.AnimatedValue());
-		DrawText(topLeft);
-		target.Deactivate();
-
-		buffer->SetFadePadding(
-			scroll.IsScrollAtMin() ? 0 : 20,
-			scroll.IsScrollAtMax() ? 0 : 20
-		);
-		bufferIsValid = true;
-	}
-	buffer->Draw(position);
-
-	if(scroll.Scrollable())
-	{
-		SyncScroll();
-		scrollBar.Draw();
-	}
 }
 
 

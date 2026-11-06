@@ -178,14 +178,14 @@ vector<double> CaptureOdds::Power(const Ship &ship, bool isDefender)
 
 	// Each crew member can wield one weapon. They use the most powerful ones
 	// that can be wielded by the remaining crew.
-	for(const auto &it : ship.Outfits())
+	for(const auto &[outfit, count] : ship.Outfits())
 	{
-		double value = it.first->Get(attribute);
-		if(value > 0. && it.second > 0)
-			power.insert(power.end(), it.second, value);
+		double value = outfit->Get(attribute);
+		if(value > 0. && count > 0)
+			power.insert(power.end(), count, value);
 	}
 	// Use the best weapons first.
-	sort(power.begin(), power.end(), greater<double>());
+	ranges::sort(power, std::greater<>());
 
 	// Resize the vector to have exactly one entry per crew member.
 	power.resize(ship.Crew(), 0.);
