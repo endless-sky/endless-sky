@@ -111,11 +111,17 @@ namespace {
 	}
 
 	// How effective a push is that would take the speed further above the rated value.
+	// The falloff is asymptotic (A1.2): there is no hard ceiling, but at the soft cap
+	// (a multiple of the rated value) a push is only SOFT_CAP_RESIDUAL as effective.
+	constexpr double SOFT_CAP_RESIDUAL = .1;
 	double SoftCapFactor(double speed, double rated, double softCap)
 	{
-		if(speed <= rated || rated <= 0.)
+		if(speed <= rated || rated <= 0. || softCap <= 1.)
 			return 1.;
-		return max(0., 1. - (speed - rated) / ((softCap - 1.) * rated));
+		// Choose the width so that the factor equals SOFT_CAP_RESIDUAL at the soft cap.
+		static const double SCALE = sqrt(1. / SOFT_CAP_RESIDUAL - 1.);
+		double excess = (speed - rated) / ((softCap - 1.) * rated) * SCALE;
+		return 1. / (1. + excess * excess);
 	}
 
 	// Disabled or powerless Newtonian ships slow to a stop over roughly 8 seconds
@@ -5867,15 +5873,17 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	const double angularAccel = ratedTurn / tuning.spinUpFrames;
 	const double turnInput = clamp(commands.Turn(), -1., 1.);
 	double deltaOmega = 0.;
+	double spinCapFactor = 1.;
 	if(flightAssist)
 		// The input means "turn at this rate"; the computer supplies the torque.
 		deltaOmega = clamp(turnInput * ratedTurn - angularVelocity, -angularAccel, angularAccel);
 	else if(turnInput)
 	{
-		// The input is raw torque, with a soft cap above the rated turn rate.
+		// The input is raw torque, with a soft cap above the rated turn rate. As with
+		// thrust, the full torque requested is paid for even when it is capped.
 		deltaOmega = turnInput * angularAccel;
 		if(deltaOmega * angularVelocity > 0.)
-			deltaOmega *= SoftCapFactor(fabs(angularVelocity), ratedTurn, tuning.softCap);
+			spinCapFactor = SoftCapFactor(fabs(angularVelocity), ratedTurn, tuning.softCap);
 	}
 	if(deltaOmega && angularAccel > 0.)
 	{
@@ -5889,7 +5897,7 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 			saturated = true;
 		}
 		levels.Damage(turnCost, throttle);
-		angularVelocity += deltaOmega;
+		angularVelocity += deltaOmega * spinCapFactor;
 		isSteering = true;
 		steeringDirection = (deltaOmega < 0.) ? -1. : 1.;
 		IncrementThrusterHeld(deltaOmega < 0. ? ThrustKind::LEFT : ThrustKind::RIGHT);
@@ -5919,6 +5927,7 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 
 	double dvForward = 0.;
 	double dvLateral = 0.;
+	double softCapFactor = 1.;
 	bool braking = false;
 	if(flightAssist)
 	{
@@ -5976,14 +5985,11 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 		else if(afterburnerHeld)
 			dvForward = afterburnerAccel;
 		dvLateral = strafeInput * lateralAccel;
-		// Soft cap (A1.2): pushes that add speed lose effect above rated speed.
+		// Soft cap (A1.2): pushes that add speed lose effect above rated speed. The
+		// thrusters still burn (and are paid for) at the full throttle requested.
 		Point push = facing * dvForward + right * dvLateral;
 		if(push && (velocity + push).Length() > speed)
-		{
-			double factor = SoftCapFactor(speed, ratedSpeed, tuning.softCap);
-			dvForward *= factor;
-			dvLateral *= factor;
-		}
+			softCapFactor = SoftCapFactor(speed, ratedSpeed, tuning.softCap);
 	}
 
 	// Limit each thruster group to what it can deliver.
@@ -6028,7 +6034,7 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	}
 	dvForward = mainPart + afterburnerPart;
 
-	velocity += facing * dvForward + right * dvLateral;
+	velocity += (facing * dvForward + right * dvLateral) * softCapFactor;
 	if(flightAssist && commands.Has(Command::STOP) && velocity.Length() < 1e-3)
 		velocity = Point();
 
