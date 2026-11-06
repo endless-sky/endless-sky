@@ -59,6 +59,7 @@ jobs:
       matrix:
         os: [22.04, 24.04]
         opengl: [GL, GLES]
+        sdl: [SDL2, SDL3]
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -76,14 +77,14 @@ jobs:
     - name: Find cache keys
       run: |
         echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
-        git log --pretty=format:'${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+        git log --pretty=format:'${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-${{ matrix.sdl }}-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
         echo -e '\nEOF' >> restore_keys.txt
         cat restore_keys.txt >> "$GITHUB_ENV"
         echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
     - name: Setup ccache
       uses: hendrikmuhs/ccache-action@v1
       with:
-        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-ci-${{ env.CACHE_HASH }}
+        key: ${{ runner.os }}-${{ matrix.os }}-${{ matrix.opengl }}-${{ matrix.sdl }}-ci-${{ env.CACHE_HASH }}
         restore-keys: ${{ env.RESTORE_KEYS }}
         evict-old-files: '2d'
         append-timestamp: 'false'
@@ -94,13 +95,13 @@ jobs:
       id: vcpkg-cache
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: lukka/get-cmake@latest
+    - uses: lukka/get-cmake@v4.2.3
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
     - name: Run CMake
       run: |
-        cmake --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
+        cmake --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }} -DES_USE_SDL3=${{ matrix.sdl == 'SDL3' && 'ON' || 'OFF' }}
         cmake --build build --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
         ctest --preset ${{ matrix.opengl == 'GL' && 'linux-ci' || 'linux-gles-ci' }}
       env:
@@ -164,7 +165,7 @@ jobs:
       id: vcpkg-cache
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: lukka/get-cmake@latest
+    - uses: lukka/get-cmake@v4.2.3
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
@@ -194,6 +195,9 @@ jobs:
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
     runs-on: windows-2025
+    strategy:
+      matrix:
+        sdl: [SDL2, SDL3]
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -207,7 +211,7 @@ jobs:
     - name: Find cache keys
       run: |
         echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
-        git log --pretty=format:'${{ runner.os }}32-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+        git log --pretty=format:'${{ runner.os }}32-${{ matrix.sdl }}-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
         echo -e '\nEOF' >> restore_keys.txt
         cat restore_keys.txt >> "$GITHUB_ENV"
         echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
@@ -215,7 +219,7 @@ jobs:
     - name: Setup ccache
       uses: hendrikmuhs/ccache-action@v1
       with:
-        key: ${{ runner.os }}32-ci-${{ env.CACHE_HASH }}
+        key: ${{ runner.os }}32-${{ matrix.sdl }}-ci-${{ env.CACHE_HASH }}
         restore-keys: ${{ env.RESTORE_KEYS }}
         evict-old-files: '2d'
         append-timestamp: 'false'
@@ -226,13 +230,13 @@ jobs:
       id: vcpkg-cache
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: lukka/get-cmake@latest
+    - uses: lukka/get-cmake@v4.2.3
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
     - name: Run CMake
       run: |
-        cmake --preset mingw32-ci
+        cmake --preset mingw32-ci -DES_USE_SDL3=${{ matrix.sdl == 'SDL3' && 'ON' || 'OFF' }}
         cmake --build build --preset mingw32-ci
         ctest --preset mingw32-ci
       env:
@@ -275,7 +279,7 @@ jobs:
       id: vcpkg-cache
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: lukka/get-cmake@latest
+    - uses: lukka/get-cmake@v4.2.3
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
@@ -294,7 +298,10 @@ jobs:
     name: MacOS
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
-    runs-on: macos-14
+    runs-on: macos-15
+    strategy:
+      matrix:
+        sdl: [SDL2, SDL3]
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -307,14 +314,14 @@ jobs:
     - name: Find cache keys
       run: |
         echo 'RESTORE_KEYS<<EOF' > restore_keys.txt
-        git log --pretty=format:'${{ runner.os }}-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
+        git log --pretty=format:'${{ runner.os }}-${{ matrix.sdl }}-ci-%H' -n 10 | tail -n+2 >> restore_keys.txt
         echo -e '\nEOF' >> restore_keys.txt
         cat restore_keys.txt >> "$GITHUB_ENV"
         echo "CACHE_HASH=$(git log --no-merges --pretty=format:'%H' -n 1)" >> "$GITHUB_ENV"
     - name: Setup ccache
       uses: hendrikmuhs/ccache-action@v1
       with:
-        key: ${{ runner.os }}-ci-${{ env.CACHE_HASH }}
+        key: ${{ runner.os }}-${{ matrix.sdl }}-ci-${{ env.CACHE_HASH }}
         restore-keys: ${{ env.RESTORE_KEYS }}
         evict-old-files: '2d'
         append-timestamp: 'false'
@@ -325,13 +332,13 @@ jobs:
       id: vcpkg-cache
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: lukka/get-cmake@latest
+    - uses: lukka/get-cmake@v4.2.3
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'
     - name: Run CMake
       run: |
-        cmake --preset macos-ci
+        cmake --preset macos-ci -DES_USE_SDL3=${{ matrix.sdl == 'SDL3' && 'ON' || 'OFF' }}
         cmake --build build --preset macos-ci
         ctest --preset macos-ci
       env:
@@ -344,7 +351,7 @@ jobs:
     name: MacOS-ARM
     needs: changed
     if: ${{ needs.changed.outputs.game_code == 'true' || needs.changed.outputs.unit_tests == 'true' || needs.changed.outputs.cmake_files == 'true' || needs.changed.outputs.ci_config == 'true' }}
-    runs-on: macos-14
+    runs-on: macos-15
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       OUTPUT: "Endless Sky ARM CI Test"
@@ -376,7 +383,7 @@ jobs:
       id: vcpkg-cache
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-    - uses: lukka/get-cmake@latest
+    - uses: lukka/get-cmake@v4.2.3
     - uses: lukka/run-vcpkg@v11
       with:
         vcpkgGitCommitId: '89dc8be6dbcf18482a5a1bf86a2f4615c939b0fb'

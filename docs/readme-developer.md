@@ -37,14 +37,12 @@ We recommend using Visual Studio 2022 or newer. If you are unsure of which editi
 We recommend the [MinGW Winlibs](https://winlibs.com/#download-release) distribution, which also includes various tools you'll need to build the game as well. It is possible to use other MinGW distributions too (like Msys2 for example), but you'll need to make sure to install [CMake](https://cmake.org/) (3.21 or later) and [Ninja](https://ninja-build.org/).
 
 When installing MinGW, use the following settings:
-- Version: `8.1.0` (or greater; this document assumes 8.1.0)
-- Architecture: `x86_64`
+- GCC Version: `14.2.0` (or greater; this document assumes 14.2.0)
+- Architecture: `x86_64` (or `i686` when compiling for 32-bit systems)
 - Threads: `posix`
-- Exception: `seh`
+- Exception: `seh` (or `dwarf` for `i686`)
 
-You'll need the POSIX version of MinGW. If you want your builds to have the same runtime library requirements as the official releases of Endless Sky, choose a version that links to the UCRT. For the Winlibs distribution mentioned above, the latest version is currently gcc 14 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/14.2.0posix-18.1.8-12.0.0-ucrt-r1/winlibs-x86_64-posix-seh-gcc-14.2.0-mingw-w64ucrt-12.0.0-r1.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it to the list).
-
-Endless Sky requires precompiled libraries to compile and play: [Download link](https://endless-sky.github.io/win64-dev.zip)
+If you want your builds to have the same runtime library requirements as the official releases of Endless Sky, choose a version that links to the UCRT. For the Winlibs distribution mentioned above, the latest version is currently gcc 15.2 ([direct download link](https://github.com/brechtsanders/winlibs_mingw/releases/download/15.2.0posix-13.0.0-ucrt-r6/winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64ucrt-13.0.0-r6.zip)). Download and extract the zip file in a folder whose path doesn't contain a space (C:\ for example) and add the bin\ folder inside to your PATH (Press the Windows key and type "edit environment variables", then click on PATH and add it to the list).
 
 ### MacOS
 
@@ -53,6 +51,7 @@ Install [Homebrew](https://brew.sh). Once it is installed, use it to install the
 ```bash
 $ brew install cmake ninja mad libpng jpeg-turbo sdl2 minizip libavif catch2 flac
 ```
+If you're building with SDL3, replace `sdl2` with `sdl3`.
 
 **Note**: If you are on Apple Silicon (and want to compile for ARM), make sure that you are using ARM Homebrew!
 
@@ -80,7 +79,10 @@ Additionally, if you want to build unit tests:
 ```
 catch2
 ```
+If you're building with SDL3, replace `libsdl2-dev` with `libsdl3-dev`.
+
 While sufficient versions of other dependencies are available, Ubuntu 22.04 does not provide an up to date version of catch2 (3.0 or newer is required), so this will need to be built from source if unit tests are desired.
+libsdl3 will also need to be built from source on Ubuntu releases older than 25.10.
 
 
 </details>
@@ -99,6 +101,7 @@ Additionally, if you want to build unit tests:
 ```
 catch2-devel
 ```
+If you're building with SDL3, replace `SDL2-devel` with `SDL3-devel`.
 
 </details>
 
@@ -136,6 +139,8 @@ Replace `<preset>` with one of the following presets:
 - Linux: `linux` (builds with the default compiler), `linux-gles` (compiles with GLES instead of OpenGL support), `linux-armv7` (provides better support for 32-bit ARM systems)
 
 You can list all of available presets with `cmake --list-presets`.
+
+If you want to build the game with SDL3 instead of SDL2, add a special option to the configure command: `cmake --preset <preset> -DES_USE_SDL3=ON`. Your choice will be cached, so you don't need to change anything in the build command. To disable this feature, configure the project once again with `cmake --preset <preset> -DES_USE_SDL3=OFF`. If you're using your system-provided libraries, make sure to install the correct version of libsdl.
 
 <details>
 <summary>Alternative linkers</summary>

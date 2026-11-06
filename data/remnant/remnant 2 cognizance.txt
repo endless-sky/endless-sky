@@ -1625,8 +1625,30 @@ mission "Remnant: Cognizance 36"
 	to offer
 		has "Remnant: Cognizance 35: done"
 		has "remnant: ssil vida active"
+		not "remnant: tubfalet hunt"
+		not "Ka'het: Patir Mystery 14: offered"
 	on accept
 		event "remnant: ssil vida deactivation"
+		conversation
+			`With a shudder that is felt in every fiber of your being, you glimpse the ripple that makes reality look like the surface of a pond after a single rain drop. Almost before it begins, everything is still again. You look at your sensors, and it looks like Postverta has once again returned to its prior, barren, form.`
+	on enter Postverta
+		fail
+
+
+
+mission "Remnant: Cognizance 36 Patir 3"
+	job
+	repeat
+	name "De-activate Ssil Vida Power"
+	description "Accept this to signal everyone to cut the power."
+	source "Ssil Vida"
+	to offer
+		has "Remnant: Cognizance 35: done"
+		has "remnant: ssil vida active"
+		not "remnant: tubfalet hunt"
+		has "Ka'het: Patir Mystery 14: offered"
+	on accept
+		event "remnant: ssil vida deactivation patir 3"
 		conversation
 			`With a shudder that is felt in every fiber of your being, you glimpse the ripple that makes reality look like the surface of a pond after a single rain drop. Almost before it begins, everything is still again. You look at your sensors, and it looks like Postverta has once again returned to its prior, barren, form.`
 	on enter Postverta
@@ -1643,8 +1665,30 @@ mission "Remnant: Cognizance 37"
 	to offer
 		has "Remnant: Cognizance 35: done"
 		not "remnant: ssil vida active"
+		not "remnant: tubfalet hunt"
+		not "Ka'het: Patir Mystery 14: offered"
 	on accept
 		event "remnant: ssil vida activation"
+		conversation
+			`With a shudder that is felt in every fiber of your being, you glimpse the ripple that makes reality look like the surface of a pond after a single rain drop. Almost before it begins, everything is still again. You look at your sensors, and it looks like Postverta is once again overflowing with life.`
+	on enter Postverta
+		fail
+
+
+
+mission "Remnant: Cognizance 37 Patir 3"
+	job
+	repeat
+	name "Activate Ssil Vida Power"
+	description "Accept this to signal everyone to restore the power."
+	source "Ssil Vida"
+	to offer
+		has "Remnant: Cognizance 35: done"
+		not "remnant: ssil vida active"
+		not "remnant: tubfalet hunt"
+		has "Ka'het: Patir Mystery 14: offered"
+	on accept
+		event "remnant: ssil vida activation patir 3"
 		conversation
 			`With a shudder that is felt in every fiber of your being, you glimpse the ripple that makes reality look like the surface of a pond after a single rain drop. Almost before it begins, everything is still again. You look at your sensors, and it looks like Postverta is once again overflowing with life.`
 	on enter Postverta

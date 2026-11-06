@@ -34,10 +34,20 @@ public:
 
 	const std::string &Name() const;
 
+	// Record the height and width from the buffer, but don't upload the buffer into memory.
+	// Used for sprites that use deferred loading to allow them to at least know their
+	// size for certain panels that rely on knowing a sprite's size without needing the sprite
+	// to be fully loaded.
+	void LoadDimensions(const ImageBuffer &buffer);
+	// Whether this sprite has any dimensions, guaranteeing that it exists even if it needs to be loaded.
+	bool HasDimensions() const;
+
 	// Add the given frames, optionally uploading them. The given buffers will be cleared afterwards.
 	// Receive both the 1x and 2x buffers. If the 2x buffer is not empty, then it will be used.
 	void AddFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noReduction);
 	void AddSwizzleMaskFrames(ImageBuffer &buffer1x, ImageBuffer &buffer2x, bool noReduction);
+	// Whether the textures for this sprite have been uploaded yet.
+	bool IsLoaded() const;
 	// Free up all textures loaded for this sprite.
 	void Unload();
 
@@ -49,6 +59,11 @@ public:
 	int Frames() const;
 	// This will either be 0, 1, or the same as the number of normal frames.
 	int SwizzleMaskFrames() const;
+	// Set and get the number of pixels within the sprite averaged across all frames.
+	// This only gets set for sprites that also have a collision mask.
+	// The caller must account for whether the sprite is being scaled by the Drawable that uses it.
+	void SetArea(double area);
+	double Area() const;
 
 	// Get the offset of the center from the top left corner; this is for easy
 	// shifting of corner to center coordinates.
@@ -64,9 +79,11 @@ private:
 
 	uint32_t texture{};
 	uint32_t swizzleMask{};
+	bool isLoaded = false;
 
 	float width = 0.f;
 	float height = 0.f;
 	int frames = 0;
 	int swizzleMaskFrames = 0;
+	double area = 0.;
 };

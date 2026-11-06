@@ -28,7 +28,7 @@ Endless Sky has very minimal system requirements, meaning most systems should be
 |Operating System | Minimum Version |
 |---|---|
 |Linux | Any modern distribution (equivalent of Ubuntu 20.04) |
-|MacOS | 10.7 |
+|MacOS | 10.15 |
 |Windows | XP (5.1) |
 
 It may be possible to run Endless Sky on other operating systems, though it is not officially supported.

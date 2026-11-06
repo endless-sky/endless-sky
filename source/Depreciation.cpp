@@ -236,7 +236,7 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool
 
 	for(const shared_ptr<Ship> &ship : fleet)
 	{
-		const Ship *base = GameData::Ships().Get(ship->TrueModelName());
+		const Ship *base = GameData::Ships().Get(ship->VariantName());
 		++shipCount[base];
 
 		if(!chassisOnly)

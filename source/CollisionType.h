@@ -17,10 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Types of objects that projectiles are able to collide with.
 // Each CollisionSet has a CollisionType that it keeps track of.
+// Explosions are a special collision type that didn't result from
+// a direct impact.
 enum class CollisionType : int {
-	// The NONE type represents ship explosions and projectiles
-	// tripped by their trigger radius.
-	NONE,
+	EXPLOSION,
 	SHIP,
 	MINABLE,
 	ASTEROID,

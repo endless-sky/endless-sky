@@ -1,5 +1,5 @@
-/* MinableDamageDealt.h
-Copyright (c) 2025 by TomGoodIdea
+/* Caret.h
+Copyright (c) 2026 by thewierdnut
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,10 +15,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Color.h"
+#include "Rectangle.h"
+
+#include <cstdint>
 
 
-class MinableDamageDealt {
+
+// Draws a caret at the given position
+class Caret final {
 public:
-	double hullDamage = 0.;
-	double prospecting = 0.;
+	void Draw();
+	void BlinkOn();
+
+	void SetColor(const Color &c) { color = c; }
+
+	void SetHeight(int h) { height = h; }
+	void SetX(int x) { pos.X() = x; }
+	void SetY(int y) { pos.Y() = y; }
+
+
+private:
+	uint32_t blinkCounter = 0;
+	Color color{1.0, 1.0, 1.0, .75};
+
+	int height = 14;
+	Point pos{0, 0};
 };
