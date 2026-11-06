@@ -653,7 +653,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	if((cargo.CommoditiesSize() || cargo.HasOutfits() || cargo.MissionCargoSize()) && hasSpace)
 	{
 		table.Draw("Cargo", bright);
-		table.Advance();
+		table.Draw("tons", dim);
 		hasSpace = (table.GetRowBounds().Bottom() < endY);
 	}
 	if(cargo.CommoditiesSize() && hasSpace)
@@ -693,8 +693,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 			// For outfits, show how many of them you have and their total mass.
 			bool isSingular = (count == 1 || outfit->Get("installable") < 0.);
 			string name = (isSingular ? outfit->DisplayName() : outfit->PluralName());
-			if(!isSingular)
-				name += " (" + to_string(count) + "x)";
+			name += " (" + to_string(count) + "x)";
 			table.Draw(name, dim);
 
 			double mass = outfit->Mass() * count;

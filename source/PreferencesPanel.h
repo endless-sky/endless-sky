@@ -69,7 +69,7 @@ private:
 
 	void Exit() const;
 
-	void HandleSettingsString(const std::string &str, Point cursorPosition);
+	void HandleSettingsString(const std::string &str);
 
 	void HandleUp();
 	void HandleDown();

@@ -19,8 +19,38 @@ using namespace std;
 
 
 
+OptionalInputDialogPanel *OptionalInputDialogPanel::RequestDouble(function<void(optional<double>)> fun,
+	string message, optional<double> initialValue, Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	if(initialValue.has_value())
+		init.initialValue = Format::StripCommas(Format::Number(initialValue.value(), 5));
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new OptionalInputDialogPanel(init, nullptr, std::move(fun));
+}
+
+
+
+OptionalInputDialogPanel *OptionalInputDialogPanel::RequestDoubleWithValidation(
+	function<void(optional<double>)> fun, function<bool(double)> validate,
+	string message, optional<double> initialValue, Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.validateDoubleFun = std::move(validate);
+	init.message = std::move(message);
+	if(initialValue.has_value())
+		init.initialValue = Format::StripCommas(Format::Number(initialValue.value(), 5));
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new OptionalInputDialogPanel(init, nullptr, std::move(fun));
+}
+
+
+
 OptionalInputDialogPanel::OptionalInputDialogPanel(DialogInit &init,
-	function<void(std::optional<int>)> intFun, function<void(std::optional<double>)> doubleFun)
+	function<void(optional<int>)> intFun, function<void(optional<double>)> doubleFun)
 	: DialogPanel(init), optionalIntFun(std::move(intFun)), optionalDoubleFun(std::move(doubleFun))
 {
 	if(optionalIntFun)

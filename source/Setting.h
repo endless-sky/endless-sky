@@ -1,0 +1,99 @@
+/* Setting.h
+Copyright (c) 2026 by Amazinite
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+#pragma once
+
+#include <functional>
+#include <optional>
+#include <string>
+
+class DataNode;
+class DataWriter;
+class Gamerules;
+class UI;
+
+
+
+// Represents a setting, such as a preference or gamerule.
+// Handles the display and modification of the setting through the UI,
+// and is also capable of holding the setting's value.
+class Setting {
+public:
+	// A simple boolean setting with display values of "on"/"off" or "true"/"false".
+	static Setting OnOff(const std::string &name, bool defaultValue);
+	static Setting TrueFalse(const std::string &name, bool defaultValue);
+	// A setting where the player can cycle through a list of options.
+	static Setting List(const std::string &name, int defaultValue, const std::vector<std::string> &options,
+		bool alwaysOn = false);
+	// A setting whose value is handled by Preferences or Gamerules directly.
+	static Setting Unique(const std::string &name);
+
+
+public:
+	Setting() = default;
+	Setting(const std::string &displayName, const std::vector<std::string> &options, int defaultIndex, bool save,
+		bool alwaysOn);
+
+	void SetDisplayFunc(std::function<std::pair<std::string, bool>()> displayFunc);
+	void SetToggleFunc(std::function<int(int, UI *)> toggleFunc);
+	void SetOnToggleFunc(std::function<void(UI *)> onToggleFunc);
+	void SetScrollFunc(std::function<void(double)> scrollFunc);
+	void SetConditionFunc(std::function<int()> conditionFunc);
+	void SetResetRuleFunc(std::function<std::optional<int>(const Gamerules &)> resetRuleFunc);
+
+	const std::string &DisplayName() const;
+	// The value to display for this setting, and whether it is "on"/"off" (i.e. should be drawn bright/dim).
+	std::pair<std::string, bool> DisplayValue() const;
+
+	void SetIndex(int index);
+	bool SetValue(const std::string &value);
+	int Index() const;
+	int Toggle(UI *ui);
+	void Scroll(double dy) const;
+	int GetCondition() const;
+	void ResetRule(const Gamerules &preset);
+
+	// Update the index to the next option without running the toggle functions.
+	int CycleIndex();
+	// The string value in the options vector matching the current index.
+	const std::string &Option() const;
+
+	void Save(DataWriter &out, const std::string &identifier) const;
+
+
+private:
+	std::string displayName;
+	// Some settings have a list of options that they can cycle through.
+	std::vector<std::string> options;
+	int index = 0;
+	// Whether this setting should always display as on regardless of the index/value.
+	bool alwaysOn = false;
+	// Whether this setting's index should be directly saved to the preferences file.
+	// If false, Preferences handles saving the value.
+	bool save = true;
+
+	// Controls how the value is displayed.
+	std::function<std::pair<std::string, bool>()> displayFunc;
+	// Controls the toggling of this setting. Takes in the current value and returns the new value.
+	std::function<int(int, UI *)> toggleFunc;
+	// An additional call that occurs after toggling. Takes in the current value.
+	std::function<void(UI *)> onToggleFunc;
+	// Controls updating of the setting when scrolling.
+	std::function<void(double)> scrollFunc;
+	// Returns the value of this setting as a condition.
+	std::function<int()> conditionFunc;
+	// Reset this rule's value to its default.
+	std::function<std::optional<int>(const Gamerules &)> resetRuleFunc;
+};

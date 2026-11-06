@@ -751,13 +751,14 @@ void MapDetailPanel::DrawInfo()
 				price = to_string(value);
 			else
 			{
+				bool useParentheses = Preferences::Has(Preferences::MAP_PARENTHESIZE_PROFIT);
 				value -= localValue;
-				if(Preferences::Has("Parenthesize trade profits"))
+				if(useParentheses)
 					price += '(';
 				if(value > 0)
 					price += '+';
 				price += to_string(value);
-				if(Preferences::Has("Parenthesize trade profits"))
+				if(useParentheses)
 					price += ')';
 			}
 
