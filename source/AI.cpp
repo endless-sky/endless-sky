@@ -250,7 +250,7 @@ namespace {
 		// If any ships were not yet ordered to deploy, deploy them.
 		if(!toDeploy.empty())
 		{
-			bool canRetreat = Preferences::Has("Damaged fighters retreat");
+			bool canRetreat = Preferences::Has(Preferences::DAMAGED_FIGHTERS_RETREAT);
 			int badlyDamaged = 0;
 			for(Ship *ship : toDeploy)
 			{
@@ -556,8 +556,9 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	if(!flagship || flagship->IsDestroyed())
 		return;
 
-	escortsUseAmmo = Preferences::Has("Escorts expend ammo");
-	escortsAreFrugal = Preferences::Has("Escorts use ammo frugally");
+	Preferences::EscortAmmoUsage ammoUsage = Preferences::AmmoUsage();
+	escortsAreFrugal = ammoUsage == Preferences::EscortAmmoUsage::FRUGALLY;
+	escortsUseAmmo = escortsAreFrugal || ammoUsage == Preferences::EscortAmmoUsage::ALWAYS;
 
 	if(!autoPilot.Has(Command::STOP) && activeCommands.Has(Command::STOP)
 			&& flagship->Velocity().Length() > VELOCITY_ZERO)
@@ -776,8 +777,8 @@ void AI::Step(Command &activeCommands)
 	int scatterTurn = 0;
 	int minerCount = 0;
 	const int maxMinerCount = minables.empty() ? 0 : 9;
-	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
-	bool fightersRetreat = Preferences::Has("Damaged fighters retreat");
+	bool opportunisticEscorts = !Preferences::Has(Preferences::TURRETS_FOCUS_FIRE);
+	bool fightersRetreat = Preferences::Has(Preferences::DAMAGED_FIGHTERS_RETREAT);
 	const int npcMaxMiningTime = GameData::GetGamerules().NPCMaxMiningTime();
 	for(const auto &it : ships)
 	{
@@ -2505,7 +2506,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 	// If a carried ship has repair abilities, avoid having it get stuck oscillating between
 	// retreating and attacking when at exactly 50% health by adding hysteresis to the check.
 	double minHealth = RETREAT_HEALTH + .25 + .25 * !ship.Commands().Has(Command::DEPLOY);
-	if(ship.HealthFraction() < minHealth && (!ship.IsYours() || Preferences::Has("Damaged fighters retreat")))
+	if(ship.HealthFraction() < minHealth && (!ship.IsYours() || Preferences::Has(Preferences::DAMAGED_FIGHTERS_RETREAT)))
 		return true;
 
 	// If a fighter is armed with only ammo-using weapons, but no longer has the ammunition
@@ -2539,7 +2540,7 @@ bool AI::ShouldDock(const Ship &ship, const Ship &parent, const System *playerSy
 
 	// NPC ships should always transfer cargo. Player ships should only
 	// transfer cargo if the player has the AI preference set for it.
-	if(!ship.IsYours() || Preferences::Has("Fighters transfer cargo"))
+	if(!ship.IsYours() || Preferences::Has(Preferences::FIGHTERS_TRANSFER_CARGO))
 	{
 		// If an out-of-combat carried ship is carrying a significant cargo
 		// load and can transfer some of it to the parent, it should do so.
@@ -4090,6 +4091,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 
 	bool isPlayerEscort = ship.IsYours() && !isFlagship;
 	bool beFrugal = (isPlayerEscort && !escortsUseAmmo);
+	bool hasFuelGeneration = ship.HasFuelGeneration();
 	if(person.IsFrugal() || (isPlayerEscort && escortsAreFrugal && escortsUseAmmo))
 	{
 		// The frugal personality is only active when ships have more than a certain fraction of their total health,
@@ -4102,6 +4104,22 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
 				beFrugal = false;
 		}
+	}
+	// Frugal NPCs that lack any weapons that can be fired while frugal should ignore their frugal behavior.
+	if(beFrugal && !ship.IsYours())
+	{
+		bool hasUsableWeapon = false;
+		for(const Hardpoint &hardpoint : ship.Weapons())
+		{
+			const Weapon *weapon = hardpoint.GetWeapon();
+			if(weapon && !hardpoint.IsSpecial() && !weapon->Ammo() && (weapon->FiringFuel() <= 0. || hasFuelGeneration))
+			{
+				hasUsableWeapon = true;
+				break;
+			}
+		}
+		if(!hasUsableWeapon)
+			beFrugal = false;
 	}
 
 	// Special case: your target is not your enemy. Do not fire, because you do
@@ -4140,7 +4158,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 
 	auto CanUse = [&](const Hardpoint &hardpoint) -> bool {
 		const Weapon *weapon = hardpoint.GetWeapon();
-		if(!weapon)
+		if(!weapon || hardpoint.IsSpecial())
 			return false;
 		const Outfit *ammo = weapon->Ammo();
 		// Don't expend ammo for homing weapons that have no target selected.
@@ -4151,8 +4169,8 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		if(weapon->Icon() && (!secondary || (includeSecondaries
 				&& !includeSecondaries->contains(hardpoint.GetOutfit()))))
 			return false;
-		// Don't expend ammo if trying to be frugal.
-		if(beFrugal && ammo)
+		// Don't expend ammo or fuel if trying to be frugal.
+		if(beFrugal && (ammo || (weapon->FiringFuel() > 0. && !hasFuelGeneration)))
 			return false;
 		// No point in sending a firing command to weapons without ammo.
 		if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
@@ -4486,10 +4504,12 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			ship.SetTargetSystem(system);
 	}
 
-	if(ship.IsEnteringHyperspace() && !ship.IsHyperspacing())
+	// On the frame the player starts jumping or on the frame they take off from a planet.
+	if((ship.IsEnteringHyperspace() && !ship.IsHyperspacing()) || (ship.Zoom() == 0. && !ship.IsLanding()))
 	{
 		// Check if there's a particular planet there we want to visit.
-		const System *system = ship.GetTargetSystem();
+		bool isJumping = ship.IsEnteringHyperspace();
+		const System *system = isJumping ? ship.GetTargetSystem() : ship.GetSystem();
 		set<const Planet *> destinations;
 		Date deadline;
 		const Planet *bestDestination = nullptr;
@@ -4538,7 +4558,10 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 				{
 					return planet->DisplayName();
 				});
-			message += " in the system you are jumping to.";
+			if(isJumping)
+				message += " in the system you are jumping to.";
+			else
+				message += " in this system.";
 			Messages::Add({message, GameData::MessageCategories().Get("info")});
 
 			if(Preferences::GetNotificationSetting() == Preferences::NotificationSetting::BOTH)
@@ -4924,9 +4947,9 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 		PlayerTargetMinable(ship);
 
 	const shared_ptr<const Ship> target = ship.GetTargetShip();
-	auto targetOverride = Preferences::Has("Aim turrets with mouse") ^ activeCommands.Has(Command::AIM_TURRET_HOLD)
-		? optional(mousePosition) : std::nullopt;
-	AimTurrets(ship, firingCommands, !Preferences::Has("Turrets focus fire"), targetOverride);
+	auto targetOverride = Preferences::Has(Preferences::MOUSE_CONTROL_TURRETS)
+		^ activeCommands.Has(Command::AIM_TURRET_HOLD) ? optional(mousePosition) : std::nullopt;
+	AimTurrets(ship, firingCommands, !Preferences::Has(Preferences::TURRETS_FOCUS_FIRE), targetOverride);
 	if(Preferences::GetAutoFire() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
@@ -5103,7 +5126,7 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	if(ship.HasBays() && HasDeployments(ship))
 	{
 		command |= Command::DEPLOY;
-		Deploy(ship, !Preferences::Has("Damaged fighters retreat"));
+		Deploy(ship, !Preferences::Has(Preferences::DAMAGED_FIGHTERS_RETREAT));
 	}
 	if(player.IsCloaking())
 		command |= Command::CLOAK;
@@ -5114,9 +5137,10 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 
 
 
-void AI::DisengageAutopilot()
+void AI::DisengageAutopilot(bool sendMessage)
 {
-	Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
+	if(sendMessage)
+		Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
 	autoPilot.Clear();
 }
 

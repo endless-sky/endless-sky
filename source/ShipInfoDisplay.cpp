@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "CategoryList.h"
 #include "CategoryType.h"
-#include "Color.h"
 #include "Depreciation.h"
 #include "shader/FillShader.h"
 #include "text/Format.h"
@@ -37,12 +36,27 @@ using namespace std;
 
 
 
+ShipInfoDisplay::ShipInfoDisplay()
+{
+	isShip = true;
+}
+
+
+
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
-	bool descriptionCollapsed, bool scrollingPanel)
+	bool descriptionCollapsed, bool scrollingPanel, bool isDefinition)
 {
-	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
+	if(isDefinition)
+		UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
+	else
+	{
+		// If the given ship is not a ship definition, then it won't have a description.
+		// Locate the description it's supposed to have from its definition.
+		const Ship *definition = GameData::Ships().Get(ship.VariantName());
+		UpdateDescription(definition->Description(), ship.Attributes().Licenses(), true);
+	}
 	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
@@ -510,7 +524,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	{
 		attributesHeight += 20;
 		tableLabels.push_back("surge:");
-		energyTable.push_back(Format::Number(idleEnergyPerFrame));
+		energyTable.push_back(Format::Number(max(0., idleEnergyPerFrame)));
 		heatTable.push_back("N/A");
 	}
 	// Pad by 10 pixels on the top and bottom.
@@ -526,32 +540,39 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	outfitsHeight = 20;
 
 	map<string, map<string, int>> listing;
-	for(const auto &it : ship.Outfits())
-		if(it.first->IsDefined() && !it.first->Category().empty() && !it.first->DisplayName().empty())
-			listing[it.first->Category()][it.first->DisplayName()] += it.second;
+	for(const auto &[outfit, count] : ship.Outfits())
+		if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
+			listing[outfit->Category()][outfit->DisplayName()] += count;
 
-	for(const auto &cit : listing)
+	// Display outfit categories in the same order that they're listed in the outfitter.
+	bool isFirst = true;
+	for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
 	{
+		const string &name = category.Name();
+		auto it = listing.find(name);
+		if(it == listing.end())
+			continue;
+
 		// Pad by 10 pixels before each category.
-		if(&cit != &*listing.begin())
+		if(!isFirst)
 		{
 			outfitLabels.push_back(string());
 			outfitValues.push_back(string());
 			outfitsHeight += 10;
 		}
+		isFirst = false;
 
-		outfitLabels.push_back(cit.first + ':');
+		outfitLabels.push_back(name + ':');
 		outfitValues.push_back(string());
 		outfitsHeight += 20;
 
-		for(const auto &it : cit.second)
+		for(const auto &[outfit, count] : it->second)
 		{
-			outfitLabels.push_back(it.first);
-			outfitValues.push_back(to_string(it.second));
+			outfitLabels.push_back(outfit);
+			outfitValues.push_back(to_string(count));
 			outfitsHeight += 20;
 		}
 	}
-
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
 	int64_t chassisCost = depreciation.Value(

@@ -201,7 +201,7 @@ Engine::Engine(PlayerInfo &player)
 	ammoDisplay(player), minimap(player), shipCollisions(256u, 32u, CollisionType::SHIP)
 {
 	zoom.base = Preferences::ViewZoom();
-	zoom.modifier = Preferences::Has("Landing zoom") ? 2. : 1.;
+	zoom.modifier = Preferences::Has(Preferences::LANDING_ZOOM) ? 2. : 1.;
 
 	if(!player.IsLoaded() || !player.GetSystem())
 		return;
@@ -540,7 +540,7 @@ void Engine::Step(bool isActive)
 			if(!nextZoom.base)
 				nextZoom.base = zoom.base;
 			// Update the current zoom modifier if the flagship is landing or taking off.
-			nextZoom.modifier = Preferences::Has("Landing zoom") ? 1. + pow(1. - flagship->Zoom(), 2) : 1.;
+			nextZoom.modifier = Preferences::Has(Preferences::LANDING_ZOOM) ? 1. + pow(1. - flagship->Zoom(), 2) : 1.;
 		}
 
 		// Step the background to account for the current velocity and zoom.
@@ -565,7 +565,7 @@ void Engine::Step(bool isActive)
 	};
 
 	const Color &cloakColor = *GameData::Colors().Get("cloak highlight");
-	if(Preferences::Has("Cloaked ship outlines"))
+	if(Preferences::Has(Preferences::SHIP_OUTLINES_CLOAKED))
 		for(const auto &ship : player.Ships())
 		{
 			if(ship->IsParked() || ship->GetSystem() != player.GetSystem() || ship->Cloaking() == 0.)
@@ -673,7 +673,7 @@ void Engine::Step(bool isActive)
 		// Create the status overlays.
 		CreateStatusOverlays();
 		// Create missile overlays.
-		if(Preferences::Has("Show missile overlays"))
+		if(Preferences::Has(Preferences::HUD_MISSILE_OVERLAY))
 			for(const Projectile &projectile : projectiles)
 			{
 				Point pos = projectile.Position() - camera.Center();
@@ -720,7 +720,7 @@ void Engine::Step(bool isActive)
 	if(flagship && flagship->HullFraction())
 	{
 		Point shipFacingUnit(0., -1.);
-		if(Preferences::Has("Rotate flagship in HUD"))
+		if(Preferences::Has(Preferences::HUD_ROTATE_FLAGSHIP))
 			shipFacingUnit = flagship->Facing().Unit();
 
 		info.SetSprite("player sprite", flagship->GetSprite(), shipFacingUnit, flagship->GetFrame(step),
@@ -987,7 +987,7 @@ void Engine::Step(bool isActive)
 			}
 		}
 	}
-	if(!Preferences::Has("Ship outlines in HUD"))
+	if(!Preferences::Has(Preferences::SHIP_OUTLINES_HUD))
 		info.SetCondition("fast hud sprites");
 	if(target && target->IsTargetable() && target->GetSystem() == currentSystem)
 	{
@@ -1034,6 +1034,11 @@ void Engine::Step(bool isActive)
 			doClick = !ammoDisplay.Click(clickPoint, hasControl);
 		if(doClick && clickBox.Dimensions())
 			doClick = !player.SelectEscorts(clickBox, hasShift);
+		// If the click box has dimensions, then the click being handled now was the result of
+		// a mouse release after a drag selection was made. If the drag selection didn't handle
+		// anything, don't try to process the release as a normal left click.
+		if(uiClickBox.Dimensions())
+			doClick = false;
 		if(doClick)
 		{
 			const vector<weak_ptr<Ship>> &stack = escorts.Click(clickPoint);
@@ -1041,11 +1046,6 @@ void Engine::Step(bool isActive)
 			{
 				player.SelectShips(stack, hasShift);
 				doClick = false;
-			}
-			else
-			{
-				const Interface *hud = GameData::Interfaces().Get("hud");
-				clickPoint /= isRadarClick ? hud->GetValue("radar scale") : zoom;
 			}
 		}
 	}
@@ -1068,7 +1068,7 @@ void Engine::Step(bool isActive)
 	}
 
 	// Draw crosshairs on any minables in range of the flagship's scanners.
-	bool shouldShowAsteroidOverlay = Preferences::Has("Show asteroid scanner overlay");
+	bool shouldShowAsteroidOverlay = Preferences::Has(Preferences::HUD_ASTEROID_OVERLAY);
 	// Decide before looping whether or not to catalog asteroids. This
 	// results in cataloging in-range asteroids roughly 3 times a second.
 	bool shouldCatalogAsteroids = (!isAsteroidCatalogComplete && !Random::Int(20));
@@ -1163,7 +1163,7 @@ void Engine::Draw() const
 	++uiStep;
 
 	Point motionBlur = camera.Velocity();
-	double baseBlur = Preferences::Has("Render motion blur") ? 1. : 0.;
+	double baseBlur = Preferences::Has(Preferences::MOTION_BLUR) ? 1. : 0.;
 
 	Preferences::ExtendedJumpEffects jumpEffectState = Preferences::GetExtendedJumpEffects();
 	if(jumpEffectState != Preferences::ExtendedJumpEffects::OFF)
@@ -1179,7 +1179,7 @@ void Engine::Draw() const
 	const Interface *hud = GameData::Interfaces().Get("hud");
 
 	// Draw any active planet labels.
-	if(Preferences::Has("Show planet labels"))
+	if(Preferences::Has(Preferences::HUD_PLANET_LABELS))
 		for(const PlanetLabel &label : labels)
 			label.Draw();
 
@@ -1360,27 +1360,32 @@ void Engine::Draw() const
 
 
 // Select the object the player clicked on.
-void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasControl)
+void Engine::LeftClick(const Point &point, bool hasShift, bool hasControl, int clicks)
 {
-	// First, see if this is a click on an escort icon.
 	doClickNextStep = true;
 	this->hasShift = hasShift;
 	this->hasControl = hasControl;
 	mouseButton = MouseButton::LEFT;
+	numClicks = clicks;
 
-	// Determine if the left-click was within the radar display.
-	const Interface *hud = GameData::Interfaces().Get("hud");
-	Point radarCenter = hud->GetPoint("radar");
-	double radarRadius = hud->GetValue("radar radius");
-	if(Preferences::Has("Clickable radar display") && (from - radarCenter).Length() <= radarRadius)
-		isRadarClick = true;
-	else
-		isRadarClick = false;
+	LocateClick(point);
+	uiClickBox = Rectangle();
+	clickBox = Rectangle();
+}
 
-	clickPoint = isRadarClick ? from - radarCenter : from;
+
+
+void Engine::ReleaseDrag(const Point &from, const Point &to)
+{
+	doClickNextStep = true;
+	// Dragging can only occur with left mouse button, in which case Engine::LeftClick
+	// must have been called before this to set the other click details.
+
 	uiClickBox = Rectangle::WithCorners(from, to);
 	if(isRadarClick)
 	{
+		const Interface *hud = GameData::Interfaces().Get("hud");
+		Point radarCenter = hud->GetPoint("radar");
 		double radarScale = hud->GetValue("radar scale");
 		clickBox = Rectangle::WithCorners(
 			(from - radarCenter) / radarScale + camera.Center(),
@@ -1392,23 +1397,17 @@ void Engine::Click(const Point &from, const Point &to, bool hasShift, bool hasCo
 
 
 
-void Engine::RightOrMiddleClick(const Point &point, MouseButton button)
+void Engine::RightOrMiddleClick(const Point &point, MouseButton button, int clicks)
 {
 	doClickNextStep = true;
 	hasShift = false;
+	hasControl = false;
 	mouseButton = button;
+	numClicks = clicks;
 
-	// Determine if the right/middle-click was within the radar display, and if so, rescale.
-	const Interface *hud = GameData::Interfaces().Get("hud");
-	Point radarCenter = hud->GetPoint("radar");
-	double radarRadius = hud->GetValue("radar radius");
-	if(Preferences::Has("Clickable radar display") && (point - radarCenter).Length() <= radarRadius)
-	{
-		double radarScale = hud->GetValue("radar scale");
-		clickPoint = (point - radarCenter) / radarScale;
-	}
-	else
-		clickPoint = point / zoom;
+	LocateClick(point);
+	uiClickBox = Rectangle();
+	clickBox = Rectangle();
 }
 
 
@@ -1435,6 +1434,32 @@ void Engine::BreakTargeting(const Government *gov)
 		if((projectileGov == playerGov && targetGov == gov)
 			|| (projectileGov == gov && targetGov == playerGov))
 			projectile.BreakTarget();
+	}
+}
+
+
+
+void Engine::DisengageAutopilot()
+{
+	ai.DisengageAutopilot(false);
+}
+
+
+
+void Engine::LocateClick(const Point &point)
+{
+	isRadarClick = false;
+	clickPoint = point;
+	if(Preferences::Has(Preferences::HUD_CLICKABLE_RADAR))
+	{
+		const Interface *hud = GameData::Interfaces().Get("hud");
+		Point radarCenter = hud->GetPoint("radar");
+		double radarRadius = hud->GetValue("radar radius");
+		if((point - radarCenter).Length() <= radarRadius)
+		{
+			isRadarClick = true;
+			clickPoint -= radarCenter;
+		}
 	}
 }
 
@@ -1554,12 +1579,16 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
-	if(GameData::GetGamerules().SpawnRaidFleets())
+	const Gamerules &rules = GameData::GetGamerules();
+	double rollChance = rules.RaidFleetRollChance();
+	if(rollChance && Random::Real() < rollChance)
+	{
+		int spawnAttempts = rules.RaidFleetSpawnAttempts();
 		for(const auto &raidFleet : system->RaidFleets())
 		{
 			double attraction = player.RaidFleetAttraction(raidFleet, system);
 			if(attraction > 0.)
-				for(int i = 0; i < 10; ++i)
+				for(int i = 0; i < spawnAttempts; ++i)
 					if(Random::Real() < attraction)
 					{
 						raidFleet.GetFleet()->Place(*system, newShips);
@@ -1568,6 +1597,7 @@ void Engine::EnterSystem()
 							GameData::MessageCategories().Get("high")});
 					}
 		}
+	}
 
 	grudge.clear();
 
@@ -1810,7 +1840,7 @@ void Engine::CalculateUnpaused(const Ship *flagship, const System *playerSystem)
 		player.SetSystemEntry(wormholeEntry ? SystemEntry::WORMHOLE :
 			flagship->IsUsingJumpDrive() ? SystemEntry::JUMP :
 			SystemEntry::HYPERDRIVE);
-		doFlash = Preferences::Has("Show hyperspace flash");
+		doFlash = Preferences::Has(Preferences::SHOW_HYPERSPACE_FLASH);
 		playerSystem = flagship->GetSystem();
 		player.SetSystem(*playerSystem);
 		EnterSystem();
@@ -2262,6 +2292,9 @@ void Engine::HandleMouseClicks()
 	// If there is no click event sent while the engine was active, bail out.
 	if(!doClick)
 		return;
+	// Scale the click point to the world coordinates.
+	clickPoint /= isRadarClick ? GameData::Interfaces().Get("hud")->GetValue("radar scale") : zoom;
+	clickPoint += camera.Center();
 
 	// Check for clicks on stellar objects. Only left clicks apply, and the
 	// flagship must not be in the process of landing or taking off.
@@ -2273,9 +2306,8 @@ void Engine::HandleMouseClicks()
 			{
 				// If the player clicked to land on a planet,
 				// do so unless already landing elsewhere.
-				Point position = object.Position() - camera.Center();
 				const Planet *planet = object.GetPlanet();
-				if(planet->IsAccessible(flagship) && (clickPoint - position).Length() < object.Radius())
+				if(planet->IsAccessible(flagship) && (clickPoint - object.Position()).Length() < object.Radius())
 				{
 					if(&object == flagship->GetTargetStellar())
 					{
@@ -2303,9 +2335,8 @@ void Engine::HandleMouseClicks()
 	for(shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem && &*ship != flagship && ship->IsTargetable())
 		{
-			Point position = ship->Position() - camera.Center();
 			const Mask &mask = ship->GetMask(step);
-			double range = mask.Range(clickPoint - position, ship->Facing());
+			double range = mask.Range(clickPoint - ship->Position(), ship->Facing());
 			if(range <= clickRange)
 			{
 				clickRange = range;
@@ -2355,8 +2386,7 @@ void Engine::HandleMouseClicks()
 			if(!(player.CanScan(minable) & ScanType::ASTEROID))
 				continue;
 
-			Point position = minable->Position() - camera.Center();
-			double range = clickPoint.Distance(position) - minable->Radius();
+			double range = clickPoint.Distance(minable->Position()) - minable->Radius();
 			if(range <= clickRange)
 			{
 				clickedAsteroid = true;
@@ -2370,7 +2400,7 @@ void Engine::HandleMouseClicks()
 	if(!clickTarget && !clickedAsteroid && mouseButton == secondaryMouseButton)
 	{
 		UI::PlaySound(UI::UISound::TARGET);
-		ai.IssueMoveTarget(clickPoint + camera.Center(), playerSystem);
+		ai.IssueMoveTarget(clickPoint, playerSystem);
 	}
 
 	// Treat an "empty" click as a request to clear targets and selections.
@@ -2378,7 +2408,8 @@ void Engine::HandleMouseClicks()
 	{
 		// Setting the target ship also resets the target asteroid.
 		flagship->SetTargetShip(nullptr);
-		flagship->SetTargetStellar(nullptr);
+		if(numClicks > 1)
+			flagship->SetTargetStellar(nullptr);
 		player.ClearSelectedEscorts();
 	}
 }
@@ -2402,7 +2433,7 @@ void Engine::HandleMouseInput(Command &activeCommands)
 	// XOR mouse hold and mouse toggle. If mouse toggle is OFF, then mouse hold
 	// will temporarily turn ON mouse control. If mouse toggle is ON, then mouse
 	// hold will temporarily turn OFF mouse control.
-	isMouseTurningEnabled = isMouseHoldEnabled ^ Preferences::Has("Control ship with mouse");
+	isMouseTurningEnabled = isMouseHoldEnabled ^ Preferences::Has(Preferences::MOUSE_CONTROL_FLAGSHIP);
 	if(!isMouseTurningEnabled)
 		return;
 	activeCommands.Set(Command::MOUSE_TURNING_HOLD);
@@ -2729,13 +2760,13 @@ void Engine::DoCollection(Flotsam &flotsam)
 	}
 
 	// Transfer cargo from the flotsam to the collector ship.
-	int amount = flotsam.TransferTo(collector);
+	int amount = flotsam.TransferTo(collector, player);
 
 	// If the collector is not one of the player's ships, we can bail out now.
 	if(!collector->IsYours())
 		return;
 
-	if(!collectorIsFlagship && !Preferences::Has("Extra fleet status messages"))
+	if(!collectorIsFlagship && !Preferences::Has(Preferences::HUD_EXTRA_STATUS_MSGS))
 		return;
 
 	// One of your ships picked up this flotsam. Describe who it was.
@@ -2830,13 +2861,10 @@ void Engine::FillRadar()
 	}
 
 	// Add viewport brackets.
-	if(!Preferences::Has("Disable viewport on radar"))
-	{
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::TopLeft() / zoom);
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::TopRight() / zoom);
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomLeft() / zoom);
-		radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomRight() / zoom);
-	}
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::TopLeft() / zoom);
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::TopRight() / zoom);
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomLeft() / zoom);
+	radar[currentCalcBuffer].AddViewportBoundary(Screen::BottomRight() / zoom);
 
 	// Add ships. Also check if hostile ships have newly appeared.
 	bool hasHostiles = false;

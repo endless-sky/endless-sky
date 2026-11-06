@@ -1213,7 +1213,7 @@ mission "Deep Hovercraft Racer Transport"
 
 mission "Deep Hovercraft Large Racer Transport"
 	name "Transport team to <planet>"
-	description "Deliver this <passengers>-member racing team and their set of <cargo> to <destination> to attend a race by <date>."
+	description "Deliver this <bunks>-member racing team and their set of <cargo> to <destination> to attend a race by <date>."
 	passengers 50 100 .9
 	cargo "Deep hovercraft" 50
 	job

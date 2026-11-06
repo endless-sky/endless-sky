@@ -114,7 +114,6 @@ mission "Successors: Ghosts Myurej 1"
 
 mission "Successors: Ghosts Myurej 2"
 	landing
-	priority
 	name "Search <planet>"
 	description "Following information from Myurej's contact, look for Riiria at <destination>."
 	source Kasii-Tuur-Saqru
@@ -307,7 +306,6 @@ mission "Successors: Ghosts Myurej 4"
 			`	You exit the room with the screen and return to the landing pad with your ship.`
 
 mission "Successors: Ghosts Myurej 5"
-	priority
 	name "Locate hidden vault"
 	description "Enter House Myurej's hidden vault on <destination>, accompanied by Ijaset and two of House Myurej's soldiers."
 	source Raaqa-Kvelq-Ryuit
@@ -403,7 +401,6 @@ mission "Successors: Ghosts Myurej 5"
 
 mission "Successors: Ghosts Myurej 6"
 	landing
-	priority
 	name "Flee back to Successor space"
 	description "Escape the warships attacking you and regroup in Successor space."
 	source Kella-Uuoru-Sossa

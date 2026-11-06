@@ -379,7 +379,6 @@ public:
 	bool IsRestrictedFrom(const System &system) const;
 	// Get this ship's custom swizzle.
 	const Swizzle *CustomSwizzle() const;
-	const std::string &CustomSwizzleName() const;
 
 	// Check if the ship is thrusting. If so, the engine sound should be played.
 	bool IsThrusting() const;
@@ -513,8 +512,8 @@ public:
 	const CargoHold &Cargo() const;
 	// Display box effects from jettisoning cargo or installed outfits.
 	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
-	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
-	void JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing = false);
+	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false, PlayerInfo *player = nullptr);
+	void JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing = false, PlayerInfo *player = nullptr);
 
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
@@ -611,6 +610,8 @@ public:
 	bool CanRecoverShieldsWhileCloaked() const;
 
 	double TurretTurnMultiplier() const;
+
+	bool HasFuelGeneration() const;
 
 
 protected:
@@ -718,8 +719,8 @@ private:
 	void IncrementThrusterHeld(ThrustKind kind);
 
 	// Helper functions for jettisoning flotsam.
-	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false);
-	void Jettison(std::shared_ptr<Flotsam> toJettison);
+	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false, PlayerInfo *player = nullptr);
+	void Jettison(const std::shared_ptr<Flotsam> &toJettison);
 
 
 private:
@@ -758,7 +759,6 @@ private:
 	bool isCapturable = true;
 	bool isInvisible = false;
 	const Swizzle *customSwizzle = nullptr;
-	std::string customSwizzleName;
 	double cloak = 0.;
 	double cloakDisruption = 0.;
 	// Cached values for figuring out when anti-missiles or tractor beams are in range.

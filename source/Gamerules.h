@@ -15,6 +15,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "Setting.h"
+
+#include <cstdint>
 #include <map>
 #include <optional>
 #include <string>
@@ -22,65 +25,103 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class DataNode;
 class DataWriter;
 class Sprite;
+class UI;
 
 
 
 // Gamerules contains a list of constants and booleans that define game behavior,
-// for example, the spawnrate of person ships or whether universal ramscoops are active.
+// for example, the spawn rate of person ships or whether universal ramscoops are active.
 class Gamerules {
 public:
 	// Defines which disabled fighters can dodge stray projectiles.
-	enum class FighterDodgePolicy {
+	enum class FighterDodgePolicy : int_fast8_t {
 		NONE = 0,
-		ONLY_PLAYER = 1,
-		ALL = 2,
+		ONLY_PLAYER,
+		ALL,
 	};
 
 	// Defines how big the player's active fleet can get.
 	// If the player's fleet size is limited, the flagship does not count toward the limit.
-	enum class FleetSizeLimitation {
+	enum class FleetSizeLimitation : int_fast8_t {
 		// No limit on how many ships the player can own.
 		NONE = 0,
 		// The player can only have a set number of ships active at once.
 		// Carried ships do not contribute to this limit.
-		SHIP_CAP = 1,
+		SHIP_CAP,
 		// The player can only command up to this many crew at once.
 		// Only the base required crew of ships is taken into account.
 		// Crew equivalent is used where present, such as on automata.
-		CREW_CAP = 2,
+		CREW_CAP,
 		// The player has an "administration capacity" that limits how many ships
 		// they can have active, with bigger ships having a higher administrative cost.
-		ADMIN_CAP = 3,
+		ADMIN_CAP,
 	};
 
 	// Whether permadeath is active and how it should behave.
-	enum class PermadeathMode {
+	enum class PermadeathMode : int_fast8_t {
 		// Permadeath is off.
 		OFF = 0,
 		// Your pilot gets locked when you die. Locked pilots can't have their save files loaded.
-		LOCK_ON_DEATH = 1,
+		LOCK_ON_DEATH,
 		// Your pilot gets completely deleted when you die.
-		DELETE_ON_DEATH = 2,
+		DELETE_ON_DEATH,
 		// Your pilot gets locked the moment you take off from a planet.
-		LOCK_ON_TAKEOFF = 3,
+		LOCK_ON_TAKEOFF,
 		// Your pilot gets completely deleted the moment you take off from a planet.
-		DELETE_ON_TAKEOFF = 4,
+		DELETE_ON_TAKEOFF,
 	};
 
 	// Defines how the value from a captured ship is shared with the crew.
-	enum class CaptureProfitSharing {
+	enum class CaptureProfitSharing : int_fast8_t {
 		OFF = 0,
 		// Death benefits must be paid to the family of crew members who died when capturing a ship.
-		DEAD_CREW = 1,
+		DEAD_CREW,
 		// Living crew members get a share of the value of captured ships.
-		LIVING_CREW = 2,
+		LIVING_CREW,
 		// Both living crew members and the families of dead crew members get a share of captured ship value.
-		ALL_CREW = 3,
+		ALL_CREW,
 	};
 
 
 public:
-	Gamerules() = default;
+	// Identifiers for specific gamerules.
+	static const std::string LOCK_GAMERULES;
+	static const std::string UNIVERSAL_RAMSCOOP;
+	static const std::string PERSON_SPAWN_PERIOD;
+	static const std::string NO_PERSON_SPAWN_WEIGHT;
+	static const std::string NPC_MAX_MINING_TIME;
+	static const std::string UNIVERSAL_FRUGAL_THRESHOLD;
+	static const std::string DEPRECIATIVE_AGING;
+	static const std::string DEPRECIATION_MIN;
+	static const std::string DEPRECIATION_CAPTURED;
+	static const std::string DEPRECIATION_PLUNDERED;
+	static const std::string DEPRECIATION_CARGO_IS_PLUNDER;
+	static const std::string DEPRECIATION_DAILY;
+	static const std::string DEPRECIATION_GRACE_PERIOD;
+	static const std::string DEPRECIATION_MAX_AGE;
+	static const std::string FIGHTER_DODGE_POLICY;
+	static const std::string SYSTEM_DEPARTURE_MIN;
+	static const std::string SYSTEM_ARRIVAL_MIN;
+	static const std::string HABITABLE_BASED_ARRIVAL_DISTANCE;
+	static const std::string HABITABLE_ARRIVAL_MIN;
+	static const std::string HABITABLE_ARRIVAL_MAX;
+	static const std::string FLEET_MULTIPLIER;
+	static const std::string RAID_FLEET_ROLL_CHANCE;
+	static const std::string RAID_ATTRACTION_MULTIPLIER;
+	static const std::string RAID_DETERRENCE_MULTIPLIER;
+	static const std::string RAID_FLEET_SPAWN_ATTEMPTS;
+	static const std::string FLEET_SIZE_LIMITATION;
+	static const std::string DEFAULT_MAX_ESCORT_COUNT;
+	static const std::string DEFAULT_MAX_ESCORT_CREW;
+	static const std::string DEFAULT_ADMIN_CAP;
+	static const std::string PERMADEATH_MODE;
+	static const std::string SINGLE_SAVE_FILE;
+	static const std::string RESTRICTED_SAVE_LOADING;
+	static const std::string UNIVERSAL_AMMO_RESTOCKING;
+
+
+public:
+	Gamerules();
 
 	// Load a gamerules node.
 	void Load(const DataNode &node);
@@ -89,9 +130,15 @@ public:
 	// existing save files, but any customizations that a player made to their gamerules will remain.
 	void Save(DataWriter &out, const Gamerules &preset) const;
 
+	// Toggle a rule given its identifier.
+	void Toggle(const std::string &rule, UI *ui = nullptr);
+	// Given a rule's identifier, return its display name in the UI.
+	const std::string &DisplayName(const std::string &rule) const;
+	// Given a rule's identifier, return its current display value and whether it appears as on or off.
+	std::pair<std::string, bool> DisplayValue(const std::string &rule) const;
 	// Replace the name and all the rule values with those of the given gamerules.
 	void Replace(const Gamerules &rules);
-	// Reset a particular value to the value used by the preset.
+	// Reset a particular rule to the value used by the preset.
 	void Reset(const std::string &rule, const Gamerules &preset);
 
 	const std::string &Name() const;
@@ -99,38 +146,7 @@ public:
 	const Sprite *Thumbnail() const;
 
 	void SetLockGamerules(bool value);
-	void SetUniversalRamscoopActive(bool value);
-	void SetPersonSpawnPeriod(int value);
-	void SetNoPersonSpawnWeight(int value);
-	void SetNPCMaxMiningTime(int value);
-	void SetUniversalFrugalThreshold(double value);
-	void SetDepreciationMin(double value);
-	void SetDepreciationDaily(double value);
-	void SetDepreciationGracePeriod(int value);
-	void SetDepreciationMaxAge(int value);
-	void SetFighterDodgePolicy(FighterDodgePolicy value);
-	void SetSystemDepartureMin(double value);
-	void SetSystemArrivalMin(std::optional<double> value);
-	void SetHabitableBasedArrivalDistance(bool value);
-	void SetHabitableArrivalMin(std::optional<double> value);
-	void SetHabitableArrivalMax(std::optional<double> value);
-	void SetFleetMultiplier(double value);
-	void SetSpawnRaidFleets(bool value);
-	void SetFleetSizeLimitation(FleetSizeLimitation value);
-	void SetDefaultMaxEscortCount(int value);
-	void SetDefaultMaxEscortCrew(int value);
-	void SetDefaultAdminCap(int value);
-	void SetPermadeathMode(PermadeathMode permadeathMode);
-	void SetSingleSaveFile(bool value);
-	void SetRestrictedSaveLoading(bool value);
 	void SetMiscValue(const std::string &rule, int value);
-	void SetCaptureProfitSharing(CaptureProfitSharing value);
-	void SetCaptureCaptainShares(double value);
-	void SetCaptureDeadCrewShares(double value);
-	void SetCaptureLivingCrewShares(double value);
-	void SetCaptureMinimumDeathBenefit(int value);
-	void SetCaptureValueBasis(std::optional<double> value);
-
 	int GetValue(const std::string &rule) const;
 
 	bool LockGamerules() const;
@@ -139,10 +155,14 @@ public:
 	int NoPersonSpawnWeight() const;
 	int NPCMaxMiningTime() const;
 	double UniversalFrugalThreshold() const;
+	bool DepreciationAgingActive() const;
 	double DepreciationMin() const;
+	double DepreciationPlundered() const;
+	double DepreciationCaptured() const;
 	double DepreciationDaily() const;
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
+	bool DepreciationCargoIsPlunder() const;
 	FighterDodgePolicy FightersHitWhenDisabled() const;
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
@@ -150,7 +170,10 @@ public:
 	std::optional<double> HabitableArrivalMin() const;
 	std::optional<double> HabitableArrivalMax() const;
 	double FleetMultiplier() const;
-	bool SpawnRaidFleets() const;
+	double RaidFleetRollChance() const;
+	double RaidAttractionMultiplier() const;
+	double RaidDeterrenceMultiplier() const;
+	int RaidFleetSpawnAttempts() const;
 	FleetSizeLimitation GetFleetSizeLimitation() const;
 	int GetDefaultMaxEscortCount() const;
 	int GetDefaultMaxEscortCrew() const;
@@ -169,6 +192,11 @@ public:
 
 
 private:
+	// Sync the display settings with the underlying gamerule values.
+	void SyncSettings();
+
+
+private:
 	// Rule values are stored in this Storage class for easy replacement
 	// and comparison via the default equality operator.
 	class Storage {
@@ -182,8 +210,12 @@ private:
 		int noPersonSpawnWeight = 1000;
 		int npcMaxMiningTime = 3600;
 		double universalFrugalThreshold = .75;
+		bool depreciationAgingActive = true;
 		double depreciationMin = .25;
+		double depreciationPlundered = .25;
+		double depreciationCaptured = .25;
 		double depreciationDaily = .997;
+		bool depreciationCargoIsPlunder = false;
 		int depreciationGracePeriod = 7;
 		int depreciationMaxAge = 1000;
 		FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
@@ -193,7 +225,10 @@ private:
 		std::optional<double> habitableArrivalMin = 500.;
 		std::optional<double> habitableArrivalMax = 5000.;
 		double fleetMultiplier = 1.;
-		bool spawnRaidFleets = true;
+		double raidFleetRollChance = 1.;
+		double raidAttractionMultiplier = 1.;
+		double raidDeterrenceMultiplier = 1.;
+		int raidFleetSpawnAttempts = 10;
 		FleetSizeLimitation fleetSizeLimitation = FleetSizeLimitation::NONE;
 		// The player can only have up to this many escorts active at once. Carried ships are excluded.
 		// This value can be increased for a pilot through gameplay.
@@ -224,4 +259,5 @@ private:
 	std::string description;
 	const Sprite *thumbnail = nullptr;
 	Storage storage;
+	std::map<std::string, Setting> settings;
 };

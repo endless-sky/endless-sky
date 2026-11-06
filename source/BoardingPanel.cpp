@@ -395,9 +395,16 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			// Transfer as many as possible of these outfits to your cargo hold.
 			count += cargo.Add(outfit, available - count);
 			if(selectedPlunder.InCargo())
+			{
 				victim->Cargo().Remove(outfit, count);
+				if(GameData::GetGamerules().DepreciationCargoIsPlunder())
+					player.PlunderOutfit(outfit, count);
+			}
 			else
+			{
 				victim->AddOutfit(outfit, -count);
+				player.PlunderOutfit(outfit, count);
+			}
 		}
 		else
 			count = victim->Cargo().Transfer(selectedPlunder.Name(), count, cargo);
@@ -642,7 +649,6 @@ bool BoardingPanel::Click(int x, int y, MouseButton button, int clicks)
 
 bool BoardingPanel::Hover(int x, int y)
 {
-	hoverPoint = Point(x, y);
 	scrollBar.Hover(x, y);
 	return true;
 }
@@ -681,7 +687,8 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 // Constructor (outfit installed in the victim ship or transported as cargo).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count, bool inCargo)
 	: inCargo(inCargo), name(outfit->DisplayName()), outfit(outfit), count(count),
-	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1 : Depreciation::Full()))
+	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1. : !inCargo
+		|| GameData::GetGamerules().DepreciationCargoIsPlunder() ? Depreciation::Plundered() : Depreciation::Full()))
 {
 	UpdateStrings();
 }
