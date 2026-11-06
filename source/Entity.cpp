@@ -131,7 +131,7 @@ ResourceLevels Entity::AvailableResources() const
 	ResourceLevels available;
 	// An entity should not be able to disable itself through use of an outfit, so
 	// the available hull excludes the hull necessary to remain enabled.
-	available.hull = levels.hull - minimumHull;
+	available.hull = max(0., levels.hull - minimumHull);
 	// The availability of all other resources is just how much this entity currently has.
 	available.shields = levels.shields;
 	available.energy = levels.energy;
