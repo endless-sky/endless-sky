@@ -63,6 +63,12 @@ const string Gamerules::PERMADEATH_MODE = "permadeath mode";
 const string Gamerules::SINGLE_SAVE_FILE = "single save file";
 const string Gamerules::RESTRICTED_SAVE_LOADING = "restricted save loading";
 const string Gamerules::UNIVERSAL_AMMO_RESTOCKING = "universal ammo restocking";
+const string Gamerules::CAPTURE_PROFIT_SHARING = "capture profit sharing";
+const string Gamerules::CAPTURE_CAPTAIN_SHARES = "capture captain shares";
+const string Gamerules::CAPTURE_DEAD_CREW_SHARES = "capture dead crew shares";
+const string Gamerules::CAPTURE_SURVIVING_CREW_SHARES = "capture surviving crew shares";
+const string Gamerules::CAPTURE_MIN_DEATH_BENEFIT = "capture minimum death benefit";
+const string Gamerules::CAPTURE_VALUE_BASIS = "capture value basis";
 
 
 
@@ -635,7 +641,7 @@ Gamerules::Gamerules()
 	});
 	settings[PERMADEATH_MODE].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.permadeathMode = preset.storage.permadeathMode;
-		return static_cast<int>(storage.permadeathMode );
+		return static_cast<int>(storage.permadeathMode);
 	});
 
 	settings[SINGLE_SAVE_FILE] = Setting::TrueFalse("Single save file");
@@ -680,6 +686,144 @@ Gamerules::Gamerules()
 		auto it = preset.storage.miscRules.find(UNIVERSAL_AMMO_RESTOCKING);
 		storage.miscRules[UNIVERSAL_AMMO_RESTOCKING] = it != preset.storage.miscRules.end() ? it->second : 0;
 		return storage.miscRules[UNIVERSAL_AMMO_RESTOCKING];
+	});
+
+	settings[CAPTURE_PROFIT_SHARING] = Setting::List("Capture profit sharing",
+		{"off", "dead crew", "surviving crew", "all crew"});
+	settings[CAPTURE_PROFIT_SHARING].SetOnToggleFunc([this](UI *) -> void {
+		storage.captureProfitSharing = static_cast<CaptureProfitSharing>(settings[CAPTURE_PROFIT_SHARING].Index());
+	});
+	settings[CAPTURE_PROFIT_SHARING].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.captureProfitSharing = preset.storage.captureProfitSharing;
+		return static_cast<int>(storage.captureProfitSharing);
+	});
+
+	settings[CAPTURE_CAPTAIN_SHARES] = Setting::Unique("Captain shares");
+	settings[CAPTURE_CAPTAIN_SHARES].SetDisplayFunc([this]() -> pair<string, bool> {
+		string text = Format::Number(CaptureCaptainShares());
+		bool isOn = GetCaptureProfitSharing() != Gamerules::CaptureProfitSharing::OFF;
+		return make_pair(text, isOn);
+	});
+	settings[CAPTURE_CAPTAIN_SHARES].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the number of shares the captain gets when capturing a ship. "
+			"(Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.captureCaptainShares = value; },
+			validate, message, CaptureCaptainShares()));
+	});
+	settings[CAPTURE_CAPTAIN_SHARES].SetConditionFunc([this]() -> int {
+		return CaptureCaptainShares() * 1000;
+	});
+	settings[CAPTURE_CAPTAIN_SHARES].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.captureCaptainShares = preset.storage.captureCaptainShares;
+		return std::nullopt;
+	});
+
+	settings[CAPTURE_DEAD_CREW_SHARES] = Setting::Unique("Dead crew shares");
+	settings[CAPTURE_DEAD_CREW_SHARES].SetDisplayFunc([this]() -> pair<string, bool> {
+		string text = Format::Number(CaptureDeadCrewShares());
+		CaptureProfitSharing value = GetCaptureProfitSharing();
+		bool isOn = value == CaptureProfitSharing::DEAD_CREW || value == CaptureProfitSharing::ALL_CREW;
+		return make_pair(text, isOn);
+	});
+	settings[CAPTURE_DEAD_CREW_SHARES].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the number of shares that the families of dead crew members get when capturing a ship. "
+			"(Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.captureDeadCrewShares = value; },
+			validate, message, CaptureDeadCrewShares()));
+	});
+	settings[CAPTURE_DEAD_CREW_SHARES].SetConditionFunc([this]() -> int {
+		return CaptureDeadCrewShares() * 1000;
+	});
+	settings[CAPTURE_DEAD_CREW_SHARES].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.captureDeadCrewShares = preset.storage.captureDeadCrewShares;
+		return std::nullopt;
+	});
+
+	settings[CAPTURE_SURVIVING_CREW_SHARES] = Setting::Unique("Surviving crew shares");
+	settings[CAPTURE_SURVIVING_CREW_SHARES].SetDisplayFunc([this]() -> pair<string, bool> {
+		string text = Format::Number(CaptureSurvivingCrewShares());
+		CaptureProfitSharing value = GetCaptureProfitSharing();
+		bool isOn = value == CaptureProfitSharing::SURVIVING_CREW || value == CaptureProfitSharing::ALL_CREW;
+		return make_pair(text, isOn);
+	});
+	settings[CAPTURE_SURVIVING_CREW_SHARES].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the number of shares that surviving crew members get when capturing a ship. "
+			"(Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.captureSurvivingCrewShares = value; },
+			validate, message, CaptureSurvivingCrewShares()));
+	});
+	settings[CAPTURE_SURVIVING_CREW_SHARES].SetConditionFunc([this]() -> int {
+		return CaptureSurvivingCrewShares() * 1000;
+	});
+	settings[CAPTURE_SURVIVING_CREW_SHARES].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.captureSurvivingCrewShares = preset.storage.captureSurvivingCrewShares;
+		return std::nullopt;
+	});
+
+	settings[CAPTURE_MIN_DEATH_BENEFIT] = Setting::Unique("Minimum per casualty");
+	settings[CAPTURE_MIN_DEATH_BENEFIT].SetDisplayFunc([this]() -> pair<string, bool> {
+		string text = Format::AbbreviatedNumber(CaptureMinimumDeathBenefit());
+		CaptureProfitSharing value = GetCaptureProfitSharing();
+		bool isOn = value == CaptureProfitSharing::DEAD_CREW || value == CaptureProfitSharing::ALL_CREW;
+		return make_pair(text, isOn);
+	});
+	settings[CAPTURE_MIN_DEATH_BENEFIT].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the minimum death benefit payment per casualty when capturing a ship. "
+			"(Integer value greater than or equal to 0.)";
+		auto validate = [](int value) -> bool { return value >= 0; };
+		ui->Push(DialogPanel::RequestIntegerWithValidation(
+			[this](int value) -> void { storage.captureMinimumDeathBenefit = value; },
+			validate, message, CaptureMinimumDeathBenefit()));
+	});
+	settings[CAPTURE_MIN_DEATH_BENEFIT].SetConditionFunc([this]() -> int {
+		return CaptureMinimumDeathBenefit();
+	});
+	settings[CAPTURE_MIN_DEATH_BENEFIT].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.captureMinimumDeathBenefit = preset.storage.captureMinimumDeathBenefit;
+		return std::nullopt;
+	});
+
+	settings[CAPTURE_VALUE_BASIS] = Setting::Unique("Capture value basis");
+	settings[CAPTURE_VALUE_BASIS].SetDisplayFunc([this]() -> pair<string, bool> {
+		string text;
+		if(CaptureValueBasis().has_value())
+			text = Format::AbbreviatedNumber(*CaptureValueBasis(), std::nullopt);
+		else
+			text = "(unset)";
+		bool isOn = GetCaptureProfitSharing() != CaptureProfitSharing::OFF;
+		return make_pair(text, isOn);
+	});
+	settings[CAPTURE_VALUE_BASIS].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the percentage of the full value of a captured ship that is used to determine "
+			"share sizes. Leave unset to use the same percentage that captured ships start at due to depreciation. "
+			"(Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(OptionalInputDialogPanel::RequestDoubleWithValidation(
+			[this](optional<double> value) -> void { storage.captureValueBasis = value; },
+			validate, message, CaptureValueBasis()));
+	});
+	settings[CAPTURE_VALUE_BASIS].SetConditionFunc([this]() -> int {
+		return CaptureValueBasis().value_or(0.) * 1000;
+	});
+	settings[CAPTURE_VALUE_BASIS].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.captureValueBasis = preset.storage.captureValueBasis;
+		return std::nullopt;
 	});
 }
 
@@ -827,29 +971,29 @@ void Gamerules::Load(const DataNode &node)
 			storage.singleSaveFile = child.BoolValue(1);
 		else if(key == RESTRICTED_SAVE_LOADING)
 			storage.restrictedSaveLoading = child.BoolValue(1);
-		else if(key == "capture profit sharing")
+		else if(key == CAPTURE_PROFIT_SHARING)
 		{
 			const string &value = child.Token(1);
 			if(value == "off")
 				storage.captureProfitSharing = CaptureProfitSharing::OFF;
 			else if(value == "dead crew")
 				storage.captureProfitSharing = CaptureProfitSharing::DEAD_CREW;
-			else if(value == "living crew")
-				storage.captureProfitSharing = CaptureProfitSharing::LIVING_CREW;
+			else if(value == "surviving crew")
+				storage.captureProfitSharing = CaptureProfitSharing::SURVIVING_CREW;
 			else if(value == "all crew")
 				storage.captureProfitSharing = CaptureProfitSharing::ALL_CREW;
 			else
 				child.PrintTrace("Skipping unrecognized value for gamerule:");
 		}
-		else if(key == "capture captain shares")
+		else if(key == CAPTURE_CAPTAIN_SHARES)
 			storage.captureCaptainShares = max(0., child.Value(1));
-		else if(key == "capture dead crew shares")
+		else if(key == CAPTURE_DEAD_CREW_SHARES)
 			storage.captureDeadCrewShares = max(0., child.Value(1));
-		else if(key == "capture living crew shares")
-			storage.captureLivingCrewShares = max(0., child.Value(1));
-		else if(key == "capture minimum death benefit")
+		else if(key == CAPTURE_SURVIVING_CREW_SHARES)
+			storage.captureSurvivingCrewShares = max(0., child.Value(1));
+		else if(key == CAPTURE_MIN_DEATH_BENEFIT)
 			storage.captureMinimumDeathBenefit = max<int>(0, child.Value(1));
-		else if(key == "capture value basis")
+		else if(key == CAPTURE_VALUE_BASIS)
 		{
 			if(child.Token(1) == "unset")
 				storage.captureValueBasis.reset();
@@ -978,28 +1122,28 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		if(storage.captureProfitSharing != preset.storage.captureProfitSharing)
 		{
 			if(storage.captureProfitSharing == CaptureProfitSharing::OFF)
-				out.Write("capture profit sharing", "off");
+				out.Write(CAPTURE_PROFIT_SHARING, "off");
 			else if(storage.captureProfitSharing == CaptureProfitSharing::DEAD_CREW)
-				out.Write("capture profit sharing", "dead crew");
-			else if(storage.captureProfitSharing == CaptureProfitSharing::LIVING_CREW)
-				out.Write("capture profit sharing", "living crew");
+				out.Write(CAPTURE_PROFIT_SHARING, "dead crew");
+			else if(storage.captureProfitSharing == CaptureProfitSharing::SURVIVING_CREW)
+				out.Write(CAPTURE_PROFIT_SHARING, "surviving crew");
 			else
-				out.Write("capture profit sharing", "all crew");
+				out.Write(CAPTURE_PROFIT_SHARING, "all crew");
 		}
 		if(storage.captureCaptainShares != preset.storage.captureCaptainShares)
-			out.Write("capture captain shares", storage.captureCaptainShares);
+			out.Write(CAPTURE_CAPTAIN_SHARES, storage.captureCaptainShares);
 		if(storage.captureDeadCrewShares != preset.storage.captureDeadCrewShares)
-			out.Write("capture dead crew shares", storage.captureDeadCrewShares);
-		if(storage.captureLivingCrewShares != preset.storage.captureLivingCrewShares)
-			out.Write("capture living crew shares", storage.captureLivingCrewShares);
+			out.Write(CAPTURE_DEAD_CREW_SHARES, storage.captureDeadCrewShares);
+		if(storage.captureSurvivingCrewShares != preset.storage.captureSurvivingCrewShares)
+			out.Write(CAPTURE_SURVIVING_CREW_SHARES, storage.captureSurvivingCrewShares);
 		if(storage.captureMinimumDeathBenefit != preset.storage.captureMinimumDeathBenefit)
-			out.Write("capture minimum death benefit", storage.captureMinimumDeathBenefit);
+			out.Write(CAPTURE_MIN_DEATH_BENEFIT, storage.captureMinimumDeathBenefit);
 		if(storage.captureValueBasis != preset.storage.captureValueBasis)
 		{
 			if(storage.captureValueBasis.has_value())
-				out.Write("capture value basis", *storage.captureValueBasis);
+				out.Write(CAPTURE_VALUE_BASIS, *storage.captureValueBasis);
 			else
-				out.Write("capture value basis", "unset");
+				out.Write(CAPTURE_VALUE_BASIS, "unset");
 		}
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
@@ -1382,9 +1526,9 @@ double Gamerules::CaptureDeadCrewShares() const
 
 
 
-double Gamerules::CaptureLivingCrewShares() const
+double Gamerules::CaptureSurvivingCrewShares() const
 {
-	return storage.captureLivingCrewShares;
+	return storage.captureSurvivingCrewShares;
 }
 
 
@@ -1423,4 +1567,5 @@ void Gamerules::SyncSettings()
 	settings[FIGHTER_DODGE_POLICY].SetIndex(static_cast<int>(FightersHitWhenDisabled()));
 	settings[FLEET_SIZE_LIMITATION].SetIndex(static_cast<int>(GetFleetSizeLimitation()));
 	settings[PERMADEATH_MODE].SetIndex(static_cast<int>(GetPermadeathMode()));
+	settings[CAPTURE_PROFIT_SHARING].SetIndex(static_cast<int>(GetCaptureProfitSharing()));
 }

@@ -371,7 +371,7 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::CAPTURE_PROFIT_SHARING,
 		Gamerules::CAPTURE_CAPTAIN_SHARES,
 		Gamerules::CAPTURE_DEAD_CREW_SHARES,
-		Gamerules::CAPTURE_LIVING_CREW_SHARES,
+		Gamerules::CAPTURE_SURVIVING_CREW_SHARES,
 		Gamerules::CAPTURE_MIN_DEATH_BENEFIT,
 		Gamerules::CAPTURE_VALUE_BASIS,
 		"\n",

@@ -282,7 +282,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		else if(profitSharing != Gamerules::CaptureProfitSharing::OFF)
 		{
 			bool all = profitSharing == Gamerules::CaptureProfitSharing::ALL_CREW;
-			bool payCrewBonuses = profitSharing == Gamerules::CaptureProfitSharing::LIVING_CREW || all;
+			bool payCrewBonuses = profitSharing == Gamerules::CaptureProfitSharing::SURVIVING_CREW || all;
 			bool payDeathBenefits = profitSharing == Gamerules::CaptureProfitSharing::DEAD_CREW || all;
 			int minimumDeathBenefit = rules.CaptureMinimumDeathBenefit();
 
@@ -302,7 +302,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 			if(successfulCapture)
 			{
 				// Determine the value per share of this ship.
-				double crewShares = remainingCrew * rules.CaptureLivingCrewShares();
+				double crewShares = remainingCrew * rules.CaptureSurvivingCrewShares();
 				double familyShares = casualties * rules.CaptureDeadCrewShares();
 				double totalShares = rules.CaptureCaptainShares();
 				if(payCrewBonuses)
@@ -345,7 +345,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				if(deathBenefits)
 					player.Accounts().AddDeathBenefits(deathBenefits);
 				if(crewBonuses)
-					player.Accounts().AddCrewBonus(crewBonuses);
+					player.Accounts().AddCrewBonuses(crewBonuses);
 			}
 		}
 		GetUI().Pop(this);

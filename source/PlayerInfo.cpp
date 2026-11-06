@@ -261,6 +261,7 @@ void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile
 	// Clear any previously loaded data.
 	Clear();
 	this->pilot = pilot;
+	pilot->ApplyGamerules();
 
 	// Copy the core information from the full starting scenario.
 	startData = start;

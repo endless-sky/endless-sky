@@ -413,10 +413,10 @@ void Account::AddDeathBenefits(int64_t amount)
 
 
 
-void Account::AddCrewBonus(int64_t amount)
+void Account::AddCrewBonuses(int64_t amount)
 {
 	// Crew bonuses have zero interest.
-	mortgages.emplace_back("Crew Bonus", amount, 0., 365);
+	mortgages.emplace_back("Crew Bonuses", amount, 0., 365);
 }
 
 

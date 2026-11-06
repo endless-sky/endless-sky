@@ -32,6 +32,7 @@
 	"capture profit sharing" off
 	"capture captain shares" 2
 	"capture dead crew shares" 1
+	"capture surviving crew shares" 1
 	"capture minimum death benefit" 100000
 	"capture value basis" unset
 	
