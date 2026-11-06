@@ -44,12 +44,13 @@ protected:
 	virtual const ItemInfoDisplay &SelectedInfo() const override;
 	virtual const ItemInfoDisplay &CompareInfo() const override;
 
+	virtual void Hovering(int index) override;
 	virtual void Select(int index) override;
 	virtual void Compare(int index) override;
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
 
-	virtual void DrawKey(Information &info) const override;
+	virtual void DrawSalesKey(Information &info) const override;
 	virtual void DrawItems() override;
 
 
@@ -62,6 +63,7 @@ private:
 	std::vector<const Outfit *> list;
 
 	const Outfit *selected = nullptr;
+	const Outfit *hovering = nullptr;
 	const Outfit *compare = nullptr;
 
 	OutfitInfoDisplay selectedInfo;

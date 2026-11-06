@@ -493,8 +493,8 @@ outfit "Ember Tear"
 		"hull damage" 250
 		"slowing damage" 10
 		"fuel damage" 2.5
-	description "The Ember Wastes are an anomalous region subject to forces that defy conventional physics: Energy spontaneously pouring from the vacuum, material density far greater than one would expect to find in space - even around a nebula, a concentration of wormholes unheard of in the galaxy, and regions where the universe itself seems to be in flux. This region, more than any building or ship, is the Remnant laboratory where they study the deepest workings of the universe."
-	description "	When asked to clarify whether the name refers to either ripping or crying, the technician looks at you with a curious expression, and replies 'both.' They then go on to explain that a very simplistic explanation for this weapon is that it is making micro-tears in the fabric of space-time, then cauterizing them together again. Should not the Ember Wastes cry at the necessity of such weapons?"
+	description "The Ember Waste is an anomalous region subject to forces that defy conventional physics: Energy spontaneously pouring from the vacuum, material density far greater than one would expect to find in space - even around a nebula, a concentration of wormholes unheard of in the galaxy, and regions where the universe itself seems to be in flux. This region, more than any building or ship, is the Remnant laboratory where they study the deepest workings of the universe."
+	description "	When asked to clarify whether the name refers to either ripping or crying, the technician looks at you with a curious expression, and replies 'both.' They then go on to explain that a very simplistic explanation for this weapon is that it is making micro-tears in the fabric of space-time, then cauterizing them together again. Should not the Ember Waste cry at the necessity of such weapons?"
 	description "	These massive weapons require special hardpoints, and are built in such few number that the Remnant distribute them directly on an as-needed basis. Due to the prodigious energy and fuel requirements, only the most massive of Remnant ships can support regular use of these weapons."
 
 effect "ember tear spark"
@@ -918,6 +918,7 @@ outfit "Tuning Rifle"
 	"capture attack" 1.2
 	"capture defense" 1.8
 	"unplunderable" 1
+	"can jettison" 1
 	description "The Tuning Rifle uses sound waves to destabilize the weaker internal tissue of many races and liquefies them."
 
 
@@ -937,6 +938,7 @@ outfit "Void Rifle"
 	"energy consumption" 0.017
 	"unique" 1
 	"unplunderable" 1
+	"can jettison" 1
 	description "The Remnant made a significant number of these weapons during the early years of their research on the void sprites, but have not been able to make any new ones since the Archon stopped their harvests. Without a supply of new tentacles to use, the Remnant have been unable to manufacture more. While durable, they rarely last more than a decade, so even the best cared for of the old Void Rifles degraded into uselessness centuries ago. These highly effective weapons are credited with helping the Remnant safeguard their refuges from ground-based threats during their early years."
 	description "	When fired, the Void Rifle emits a beam that has a strong paralyzing effect on the nervous system. With an area of effect that penetrates walls and other solid objects, it is an incredibly effective weapon."
 

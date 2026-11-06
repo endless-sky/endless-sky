@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 #include "DataNode.h"
 #include "Effect.h"
+#include "text/Format.h"
 #include "GameData.h"
 #include "image/SpriteSet.h"
 #include "Weapon.h"
@@ -36,6 +37,8 @@ namespace {
 	// get used as closely as possible. Commonly used attribute values get cached anyway, so we care
 	// more about accuracy to what the content creator provided than speed of converting values.
 	constexpr int ATTRIBUTE_PRECISION = 10000;
+	// Attributes with a value greater than this magnitude will convert to an integer that will under/overflow.
+	constexpr double ATTRIBUTE_LIMIT = static_cast<double>(numeric_limits<int64_t>::max()) / ATTRIBUTE_PRECISION;
 
 	// A mapping of attribute names to specifically-allowed minimum values. Based on the
 	// specific usage of the attribute, the allowed minimum value is chosen to avoid
@@ -215,19 +218,22 @@ namespace {
 
 
 
-optional<double> Outfit::LowerLimit(const string &attribute)
+optional<double> Outfit::LowerLimit(const string &attribute, bool isAutomaton)
 {
-	optional<int64_t> precise = LowerLimitPrecise(attribute);
+	optional<int64_t> precise = LowerLimitPrecise(attribute, isAutomaton);
 	if(precise.has_value())
-		return precise.value() / ATTRIBUTE_PRECISION;
+		return static_cast<double>(precise.value()) / ATTRIBUTE_PRECISION;
 	// No minimum override means a minimum of 0.
 	return 0.;
 }
 
 
 
-optional<int64_t> Outfit::LowerLimitPrecise(const string &attribute)
+optional<int64_t> Outfit::LowerLimitPrecise(const string &attribute, bool isAutomaton)
 {
+	// Only automatons may have a "required crew" of 0. Otherwise, its limit is 1.
+	if(attribute == "required crew")
+		return isAutomaton ? 0 : ATTRIBUTE_PRECISION;
 	auto it = MINIMUM_OVERRIDES.find(attribute);
 	if(it != MINIMUM_OVERRIDES.end())
 		return it->second;
@@ -391,13 +397,17 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			for(const DataNode &grand : child)
 				AddLicense(grand.Token(0));
 		}
-		else if(key == "jump range" && hasValue)
-		{
-			// Jump range must be positive.
-			Set(key, max(0., child.Value(1)));
-		}
 		else if(hasValue)
-			Set(key, child.Value(1));
+		{
+			double value = child.Value(1);
+			if(value > ATTRIBUTE_LIMIT || value < -ATTRIBUTE_LIMIT)
+			{
+				child.PrintTrace("Ignoring attribute with value that exceeds the attribute limit of +/-"
+					+ Format::Number(ATTRIBUTE_LIMIT, 3));
+				continue;
+			}
+			Set(key, value);
+		}
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -443,10 +453,14 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	if(jumpFuel)
 		attributes.Erase("jump fuel");
 
+	// Jump range must be positive.
 	// Only outfits with the jump drive and jump range attributes can
 	// use the jump range, so only keep track of the jump range on
 	// viable outfits.
-	if(isJumpDrive && attributes.Get("jump range"))
+	int64_t jumpRange = attributes.Get("jump range");
+	if(jumpRange < 0)
+		attributes.Erase("jump range");
+	else if(isJumpDrive && jumpRange)
 		GameData::AddJumpRange(Get("jump range"));
 
 	// Legacy support for turrets that don't specify a turn rate:
@@ -647,26 +661,40 @@ const Dictionary<int64_t> &Outfit::Precise() const
 // not, return the maximum number that can be added.
 int Outfit::CanAdd(const Outfit &other, int count) const
 {
+	return CanAddWithReasons(other, count).first;
+}
+
+
+
+pair<int, vector<string>> Outfit::CanAddWithReasons(const Outfit &other, int count) const
+{
+	bool isAdding = count > 0;
+	vector<string> reasons;
 	for(const auto &[name, otherValue] : other.Precise())
 	{
 		// The minimum allowed value of most attributes is 0. Some attributes
 		// have special functionality when negative, though, and are therefore
 		// allowed to have values less than 0.
-		optional<int64_t> minOpt = LowerLimitPrecise(name);
+		optional<int64_t> minOpt = LowerLimitPrecise(name, GetPrecise("automaton") || other.GetPrecise("automaton"));
 		if(!minOpt.has_value())
 			continue;
 		int64_t minimum = minOpt.value();
 
-		// Only automatons may have a "required crew" of 0.
-		if(!strcmp(name, "required crew"))
-			minimum = !(GetPrecise("automaton") || other.GetPrecise("automaton"));
-
 		int64_t value = GetPrecise(name);
-		if(value + otherValue * count < minimum)
-			count = (value - minimum) / -otherValue;
+		if(count)
+		{
+			if(value + otherValue * count < minimum)
+				count = (value - minimum) / -otherValue;
+			if(!count)
+				reasons.push_back(name);
+		}
+		// Even if we know that this outfit can't be added/removed, we still check each
+		// attribute to determine if multiple attributes could be the reason why that is.
+		else if(value + otherValue * (isAdding ? 1 : -1) < minimum)
+			reasons.push_back(name);
 	}
 
-	return count;
+	return make_pair(count, reasons);
 }
 
 

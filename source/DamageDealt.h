@@ -29,7 +29,7 @@ class Weapon;
 class DamageDealt {
 public:
 	DamageDealt(const Weapon &weapon, double scaling)
-		: weapon(weapon), scaling(scaling) {}
+		: weapon(&weapon), scaling(scaling) {}
 
 	// The weapon that dealt damage.
 	const Weapon &GetWeapon() const noexcept;
@@ -41,21 +41,27 @@ public:
 	// Hit force applied as a point vector.
 	const Point &HitForce() const noexcept;
 
+	// The amount of prospecting to be applied.
+	double Prospecting() const noexcept;
+
 
 private:
 	// Friend of DamageProfile so that it can easily set all the damage
 	// values.
 	friend class DamageProfile;
 
-	const Weapon &weapon;
+	const Weapon *weapon;
 	double scaling;
 
 	ResourceLevels levels;
 	Point forcePoint;
+	double prospecting = 0.;
 };
 
-inline const Weapon &DamageDealt::GetWeapon() const noexcept { return weapon; }
+inline const Weapon &DamageDealt::GetWeapon() const noexcept { return *weapon; }
 inline double DamageDealt::Scaling() const noexcept { return scaling; }
 
 inline const ResourceLevels &DamageDealt::Levels() const noexcept { return levels; }
 inline const Point &DamageDealt::HitForce() const noexcept { return forcePoint; }
+
+inline double DamageDealt::Prospecting() const noexcept { return prospecting; }

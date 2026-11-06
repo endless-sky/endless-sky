@@ -59,6 +59,11 @@ public:
 	int Frames() const;
 	// This will either be 0, 1, or the same as the number of normal frames.
 	int SwizzleMaskFrames() const;
+	// Set and get the number of pixels within the sprite averaged across all frames.
+	// This only gets set for sprites that also have a collision mask.
+	// The caller must account for whether the sprite is being scaled by the Drawable that uses it.
+	void SetArea(double area);
+	double Area() const;
 
 	// Get the offset of the center from the top left corner; this is for easy
 	// shifting of corner to center coordinates.
@@ -80,4 +85,5 @@ private:
 	float height = 0.f;
 	int frames = 0;
 	int swizzleMaskFrames = 0;
+	double area = 0.;
 };

@@ -1,5 +1,5 @@
-/* MinableDamageDealt.h
-Copyright (c) 2025 by TomGoodIdea
+/* Statistics.h
+Copyright (c) 2026 by Amazinite
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -15,13 +15,33 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <chrono>
+#include <filesystem>
+
+class PilotProfile;
+class PlayerInfo;
 
 
-class MinableDamageDealt {
+
+// A class for tracking statistics about the player.
+class Statistics {
 public:
-	double hullDamage = 0.;
-	double prospecting = 0.;
-	double heat = 0.;
-	double corrosion = 0.;
-	double burn = 0.;
+	static std::filesystem::path FilePath();
+
+
+public:
+	explicit Statistics(PlayerInfo &player);
+
+	void Load();
+	void Save() const;
+
+	void AddPlayTime(std::chrono::nanoseconds timeVal, bool updatePlayer, bool isIdle);
+
+
+private:
+	PlayerInfo &player;
+
+	// The amount of in-game time played, in seconds.
+	double playTime = 0.;
+	double idleTime = 0.;
 };

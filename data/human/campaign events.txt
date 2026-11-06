@@ -1344,20 +1344,20 @@ event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Flamethrower"
 	fleet "Small Free Worlds"
-		variant 3
+		add variant 3
 			"Fury (Laser)"
 			"Fury (Flamethrower)"
-		variant 2
+		add variant 2
 			"Hawk"
 			"Fury (Flamethrower)"
-		variant 1
+		add variant 1
 			"Fury (Flamethrower)"
 			"Sparrow" 2
 	fleet "Large Free Worlds"
-		variant 2
+		add variant 2
 			"Osprey (Laser)"
 			"Fury (Flamethrower)"
-		variant 1
+		add variant 1
 			"Falcon (Heavy)"
 			"Fury (Flamethrower)" 2
 			"Sparrow" 4
@@ -2257,6 +2257,20 @@ event "stack core for sale"
 		outfitter "Stack Core"
 	planet "Wayfarer"
 		outfitter "Stack Core"
+	fleet "Large Free Worlds"
+		government "Free Worlds"
+		names "free worlds capital"
+		cargo 1
+		personality
+			heroic
+		add variant 4
+			"Dreadnought (Stack Core)"
+		add variant 2
+			"Dreadnought (Stack Core)"
+			"Falcon (Heavy)"
+		add variant 2
+			"Dreadnought (Stack Core)"
+			"Falcon (Laser)"
 
 
 

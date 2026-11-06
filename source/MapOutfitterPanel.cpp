@@ -96,6 +96,16 @@ const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 
 
 
+void MapOutfitterPanel::Hovering(int index)
+{
+	if(index < 0 || index >= static_cast<int>(list.size()))
+		hovering = nullptr;
+	else
+		hovering = list[index];
+}
+
+
+
 void MapOutfitterPanel::Select(int index)
 {
 	if(index < 0 || index >= static_cast<int>(list.size()))
@@ -176,14 +186,14 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 
 
-void MapOutfitterPanel::DrawKey(Information &info) const
+void MapOutfitterPanel::DrawSalesKey(Information &info) const
 {
 	const string condition = (selected && selected->Get("minable") > 0.)
 		? "is outfitters w/ minerals" : "is outfitters";
 
 	info.SetCondition(condition);
 
-	MapSalesPanel::DrawKey(info);
+	MapSalesPanel::DrawSalesKey(info);
 }
 
 
@@ -267,7 +277,7 @@ void MapOutfitterPanel::DrawItems()
 				: storedInSystem == 1
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), Swizzle::None(), isForSale, outfit == selected,
+			Draw(corner, outfit->Thumbnail(), Swizzle::None(), isForSale, outfit == selected, outfit == hovering,
 				outfit->DisplayName(), "", price, info, storage_details);
 			list.push_back(outfit);
 		}

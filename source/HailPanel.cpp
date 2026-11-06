@@ -236,10 +236,15 @@ void HailPanel::Draw()
 	const Interface *hailUi = GameData::Interfaces().Get("hail panel");
 	hailUi->Draw(info, this);
 
-	const Sprite *sprite = ship ? ship->GetSprite() : object->GetSprite();
+	// Get the height and width of the Drawable instead of the underlying Sprite
+	// so that scaling is accounted for.
+	float height = ship ? ship->Height() : object->Height();
+	float width = ship ? ship->Width() : object->Width();
 
 	// Draw the sprite, rotated, scaled, and swizzled as necessary.
-	float zoom = min(2.f, 400.f / max(sprite->Width(), sprite->Height()));
+	// The Height and Width functions on Drawable are for world-coordinates.
+	// Multiply by 2 to account for the half-scaling of objects drawn in the world.
+	float zoom = min(2.f, 400.f / max(width * 2.f, height * 2.f));
 	Point center(-170., -10.);
 
 	DrawList draw;
@@ -247,56 +252,7 @@ void HailPanel::Draw()
 	// If this is a ship, copy its swizzle, animation settings, etc.
 	// Also draw its fighters and weapon hardpoints.
 	if(ship)
-	{
-		bool hasFighters = ship->PositionFighters();
-		auto addHardpoint = [this, &draw, &center, zoom](const Hardpoint &hardpoint) -> void
-		{
-			const Weapon *weapon = hardpoint.GetWeapon();
-			if(!weapon)
-				return;
-			const Drawable &sprite = weapon->HardpointSprite();
-			if(!sprite.HasSprite())
-				return;
-			Body body(
-				sprite,
-				center + zoom * facing.Rotate(hardpoint.GetPoint()),
-				Point(),
-				facing + hardpoint.GetAngle(),
-				zoom);
-			if(body.InheritsParentSwizzle())
-				body.SetSwizzle(ship->GetSwizzle());
-			draw.Add(body);
-		};
-		auto addFighter = [this, &draw, &center, zoom](const Ship::Bay &bay) -> void
-		{
-			if(bay.ship)
-			{
-				Body body(
-					*bay.ship,
-					center + zoom * facing.Rotate(bay.point),
-					Point(),
-					facing + bay.facing,
-					zoom);
-				draw.Add(body);
-			}
-		};
-
-		if(hasFighters)
-			for(const Ship::Bay &bay : ship->Bays())
-				if(bay.side == Ship::Bay::UNDER)
-					addFighter(bay);
-		for(const Hardpoint &hardpoint : ship->Weapons())
-			if(hardpoint.GetSide() == Hardpoint::Side::UNDER)
-				addHardpoint(hardpoint);
-		draw.Add(Body(*ship, center, Point(), facing, zoom));
-		for(const Hardpoint &hardpoint : ship->Weapons())
-			if(hardpoint.GetSide() == Hardpoint::Side::OVER)
-				addHardpoint(hardpoint);
-		if(hasFighters)
-			for(const Ship::Bay &bay : ship->Bays())
-				if(bay.side == Ship::Bay::OVER)
-					addFighter(bay);
-	}
+		ship->Draw(draw, std::nullopt, center, facing, zoom);
 	else
 		draw.Add(Body(*object, center, Point(), facing, zoom));
 

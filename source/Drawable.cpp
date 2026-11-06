@@ -112,7 +112,7 @@ float Drawable::GetFrame(int step) const
 	if(step >= 0)
 		SetStep(step);
 
-	return frame;
+	return noFrameTweening ? floor(frame) : frame;
 }
 
 
@@ -127,6 +127,13 @@ void Drawable::PauseAnimation() const
 void Drawable::UnpauseAnimation() const
 {
 	pause = 0;
+}
+
+
+
+void Drawable::AddFrameOffset(int offset) const
+{
+	frameOffset += offset;
 }
 
 
@@ -190,6 +197,10 @@ void Drawable::LoadSprite(const DataNode &node)
 			center = Point(child.Value(1), child.Value(2));
 		else if(key == "inherits parent swizzle")
 			inheritsParentSwizzle = true;
+		else if(key == "no frame tweening")
+			noFrameTweening = true;
+		else if(key == "reverse")
+			reverse = true;
 		else
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
@@ -224,6 +235,10 @@ void Drawable::SaveSprite(DataWriter &out, const string &tag) const
 			out.Write("center", center.X(), center.Y());
 		if(inheritsParentSwizzle)
 			out.Write("inherits parent swizzle");
+		if(noFrameTweening)
+			out.Write("no frame tweening");
+		if(reverse)
+			out.Write("reverse");
 	}
 	out.EndChild();
 }
@@ -318,24 +333,36 @@ void Drawable::SetStep(int step) const
 	// If repeating, wrap the frame index by the total cycle time.
 	if(repeat)
 		frame = fmod(frame, cycle);
+	// If playing the animation in reverse, then we want the frame that's "frame"
+	// frames before the last frame. Allow the frame to go negative here so that
+	// reverse and rewind can be used together.
+	if(reverse)
+		frame = lastFrame - frame;
 
 	if(!rewind)
 	{
 		// If not repeating, frame should never go higher than the index of the
-		// final frame.
+		// final frame. If in reverse mode, don't go lower than 0.
 		if(!repeat)
-			frame = min(frame, lastFrame);
+			frame = reverse ? max(0.f, frame) : min(frame, lastFrame);
+		// If we're in the delay portion of the loop, set the frame back to the
+		// first frame of the animation, which is lastFrame in reverse mode and 0 in forward mode.
+		else if(reverse && frame <= 0.f)
+			frame = lastFrame;
 		else if(frame >= frames)
-		{
-			// If we're in the delay portion of the loop, set the frame to 0.
 			frame = 0.f;
-		}
 	}
-	else if(frame >= lastFrame)
+	else if(!reverse)
 	{
 		// In rewind mode, once you get to the last frame, count backwards.
 		// Regardless of whether we're repeating, if the frame count gets to
 		// be less than 0, clamp it to 0.
-		frame = max(0.f, lastFrame * 2.f - frame);
+		if(frame >= lastFrame)
+			frame = max(0.f, lastFrame * 2.f - frame);
+	}
+	else if(frame <= 0.f)
+	{
+		// Rewind mode combined with reverse counts back up to lastFrame from 0.
+		frame = min(-frame, lastFrame);
 	}
 }

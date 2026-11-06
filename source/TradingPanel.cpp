@@ -36,6 +36,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <cmath>
 #include <sstream>
 #include <string>
 
@@ -56,7 +57,8 @@ namespace {
 
 
 TradingPanel::TradingPanel(PlayerInfo &player)
-	: player(player), system(*player.GetSystem()), COMMODITY_COUNT(GameData::Commodities().size())
+	: player(player), planet(*player.GetPlanet()), system(*player.GetSystem()),
+	COMMODITY_COUNT(GameData::Commodities().size())
 {
 	SetTrapAllEvents(false);
 }
@@ -103,13 +105,17 @@ void TradingPanel::Draw()
 	int holdX = tradeUi->GetValue("column: in cargo hold");
 
 	const Color &back = *GameData::Colors().Get("faint");
-	int selectedRow = player.MapColoring();
-	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
-	{
-		const Point center(box.Center().X(), firstY + 20 * selectedRow + 33);
+	auto Highlight = [&](int row) -> void {
+		const Point center(box.Center().X(), firstY + 20 * row + 33);
 		const Point dimensions(box.Width() - 20., 20.);
 		FillShader::Fill(center, dimensions, back);
-	}
+	};
+
+	int selectedRow = player.MapColoring();
+	if(selectedRow >= 0 && selectedRow < COMMODITY_COUNT)
+		Highlight(selectedRow);
+	if(hoverRow != -1 && hoverRow != selectedRow)
+		Highlight(hoverRow);
 
 	const Font &font = FontSet::Get(14);
 	const Color &unselected = *GameData::Colors().Get("medium");
@@ -192,10 +198,13 @@ void TradingPanel::Draw()
 		}
 	}
 
-	canSellOutfits = outfitCargo &&
-		(player.GetPlanet()->HasOutfitter() || Preferences::Has("Sell outfits without outfitter"));
+	bool hasOutfitter = planet.HasOutfitter();
+	canSellOutfits = outfitCargo && (hasOutfitter || Preferences::Has(Preferences::TRADE_SELL_OUTFITS_WITHOUT_SHOP));
+	canStoreOutfits = outfitCargo && hasOutfitter;
 	if(canSellOutfits)
 		info.SetCondition("can sell outfits");
+	if(canStoreOutfits)
+		info.SetCondition("can store outfits");
 	if(minableCargo)
 		info.SetCondition("can sell minables");
 	if(canSell)
@@ -211,6 +220,7 @@ void TradingPanel::Draw()
 // Only override the ones you need; the default action is to return false.
 bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
+	bool shift = mod & KMOD_SHIFT;
 	if(command.Has(Command::HELP))
 		DoHelp("trading", true);
 	else if(key == SDLK_UP)
@@ -221,9 +231,9 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1);
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS || key == SDLK_BACKSPACE || key == SDLK_DELETE)
 		Buy(-1);
-	else if(key == 'u' || (key == 'b' && (mod & KMOD_SHIFT)))
+	else if(key == 'u' || (key == 'b' && shift))
 		Buy(1000000000);
-	else if(key == 'e' || (key == 's' && (mod & KMOD_SHIFT)))
+	else if(key == 'e' || (key == 's' && shift))
 	{
 		for(const auto &it : player.Cargo().Commodities())
 		{
@@ -243,22 +253,24 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 			player.Cargo().Remove(commodity, amount);
 		}
 	}
-	else if((key == 'n' || (key == 'm' && (mod & KMOD_SHIFT))) && player.Cargo().MinablesSizePrecise())
+	else if((key == 'n' || (key == 'm' && shift)) && player.Cargo().MinablesSizePrecise())
 	{
-		if(Preferences::Has("Confirm selling minables"))
+		if(Preferences::Has(Preferences::TRADE_CONFIRM_MINABLES))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(true); },
 				OutfitSalesMessage(true), 1, Truncate::NONE, true));
 		else
 			SellOutfitsOrMinables(true);
 	}
-	else if(key == 'f' && canSellOutfits)
+	else if((key == 'f' || (key == 'o' && shift)) && canSellOutfits)
 	{
-		if(Preferences::Has("Confirm selling outfits"))
+		if(Preferences::Has(Preferences::TRADE_CONFIRM_OUTFITS))
 			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() { SellOutfitsOrMinables(false); },
 				OutfitSalesMessage(false), 1, Truncate::NONE, true));
 		else
 			SellOutfitsOrMinables(false);
 	}
+	else if(key == 'r' && canStoreOutfits)
+		StoreOutfitsFromCargo();
 	else if(command.Has(Command::MAP))
 		GetUI().Push(new MapDetailPanel(player));
 	else
@@ -295,6 +307,26 @@ bool TradingPanel::Click(int x, int y, MouseButton button, int clicks)
 		return false;
 
 	return true;
+}
+
+
+
+bool TradingPanel::Hover(int x, int y)
+{
+	const Interface *tradeUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "trade (small screen)" : "trade");
+	Rectangle box = tradeUi->GetBox("content");
+	int minX = box.Left();
+	int firstY = box.Top();
+	int maxX = box.Right();
+	int maxY = firstY + 25 + 20 * COMMODITY_COUNT;
+
+	hoverRow = -1;
+	if(x >= minX && x <= maxX && y >= firstY + 25 && y < maxY)
+	{
+		hoverRow = (y - firstY - 25) / 20;
+		return true;
+	}
+	return false;
 }
 
 
@@ -336,19 +368,17 @@ void TradingPanel::Buy(int64_t amount)
 void TradingPanel::SellOutfitsOrMinables(bool sellMinables)
 {
 	int day = player.GetDate().DaysSinceEpoch();
-	for(const auto &it : player.Cargo().Outfits())
+	for(const auto &[outfit, count] : player.Cargo().Outfits())
 	{
-		if(sellMinables != static_cast<bool>(it.first->Get("minable")))
+		if(!count || sellMinables != static_cast<bool>(outfit->GetPrecise("minable")))
 			continue;
-		if(!it.second)
-			continue;
-		int64_t value = player.FleetDepreciation().Value(it.first, day, it.second);
+		int64_t value = player.FleetDepreciation().Value(outfit, day, count);
 		profit += value;
-		tonsSold += static_cast<int>(it.second * it.first->Mass());
+		tonsSold += static_cast<int>(count * outfit->Mass());
 
-		player.AddStock(it.first, it.second);
+		player.AddStock(outfit, count);
 		player.Accounts().AddCredits(value);
-		player.Cargo().Remove(it.first, it.second);
+		player.Cargo().Remove(outfit, count);
 	}
 }
 
@@ -408,4 +438,19 @@ string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 			out << "and " << Format::Number(count) << " more.";
 	}
 	return out.str();
+}
+
+
+
+void TradingPanel::StoreOutfitsFromCargo() const
+{
+	CargoHold &cargo = player.Cargo();
+	CargoHold &storage = player.Storage();
+	for(const auto &[outfit, count] : cargo.Outfits())
+	{
+		if(!count || outfit->GetPrecise("minable"))
+			continue;
+		storage.Add(outfit, count);
+		cargo.Remove(outfit, count);
+	}
 }

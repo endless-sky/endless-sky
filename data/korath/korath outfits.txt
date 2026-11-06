@@ -888,6 +888,7 @@ outfit "Thermal Repeater Rifle"
 	"capture attack" 1.6
 	"capture defense" 2.4
 	"unplunderable" 1
+	"can jettison" 1
 	description "This rifle is commonplace among the Korath, predating the creation of the ship-scale Thermal Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
 
 outfit "Microbot Defense Station"

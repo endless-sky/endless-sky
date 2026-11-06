@@ -534,9 +534,6 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 	if(reputationMin > reputationMax)
 		reputationMin = reputationMax;
 	SetReputation(Reputation());
-
-	if(!color)
-		color = ExclusiveItem<Color>(Color{});
 }
 
 
@@ -582,7 +579,8 @@ const Swizzle *Government::GetSwizzle() const
 // Get the color to use for displaying this government on the map.
 const Color &Government::GetColor() const
 {
-	return *color;
+	static const Color EMPTY;
+	return color ? *color : EMPTY;
 }
 
 

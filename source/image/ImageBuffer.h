@@ -55,6 +55,8 @@ public:
 	int Width() const;
 	int Height() const;
 	int Frames() const;
+	// Average the number of non-fully transparent pixels across all frames.
+	double CalculateArea() const;
 
 	const uint32_t *Pixels() const;
 	uint32_t *Pixels();

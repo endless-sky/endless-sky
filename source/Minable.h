@@ -25,10 +25,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class DamageDealt;
 class DataNode;
 class Effect;
 class Flotsam;
-class MinableDamageDealt;
+class Government;
 class Outfit;
 class Projectile;
 class Visual;
@@ -43,9 +44,12 @@ public:
 	public:
 		Payload(const DataNode &node);
 
+		// The outfit type that this payload will drop.
 		const Outfit *outfit;
 		// The maximum number of outfits that this payload can drop.
 		int maxDrops = 1;
+		// The minimum number of outfits that this payload can drop.
+		int minDrops = 0;
 		// The average percentage of the maximum number that drop.
 		double dropRate = 0.25;
 		// How resistant this payload is to having its drop rate increased by prospecting.
@@ -79,9 +83,6 @@ public:
 	// In that case it will return false, meaning it should be deleted.
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
-	// Damage this object (because a projectile collided with it).
-	void TakeDamage(const MinableDamageDealt &damage);
-
 	// Determine what flotsam this asteroid will create.
 	const std::vector<Payload> &GetPayload() const;
 
@@ -92,6 +93,11 @@ public:
 
 	double Mass() const override;
 	double MaxHeat() const override;
+
+
+protected:
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+		bool wasDestroyed) override;
 
 
 private:
