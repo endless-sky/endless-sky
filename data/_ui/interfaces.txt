@@ -1483,16 +1483,24 @@ interface "hud"
 	string "flight assist alert"
 		center 0 20
 		color "heat"
+	string "flight assist pulse"
+		center 0 20
+		color "shields"
 	bar "flight speed"
 		from -100 38
 		dimensions 200 0
 		color "shields"
 		size 2
+		reversed
+	box "flight speed bar"
+		from -100 38
+		dimensions 200 0
 	bar "flight over speed"
 		from -100 44
 		dimensions 200 0
 		color "heat"
 		size 2
+		reversed
 	string "flight speed"
 		center 0 58
 		color "medium"

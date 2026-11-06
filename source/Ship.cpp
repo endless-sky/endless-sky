@@ -71,7 +71,7 @@ namespace {
 	// Newtonian flight proof of concept tuning, read from the gamerules.
 	// Gamerule misc values are integers, so fractions are stored as percentages.
 	struct NewtonianTuning {
-		// Assist off: thrust effectiveness falls to zero at this multiple of rated speed.
+		// Assist off: thrust effectiveness is down to 10% at this multiple of rated speed.
 		double softCap = 2.5;
 		// Frames to spin up from rest to the rated turn rate.
 		double spinUpFrames = 10.;

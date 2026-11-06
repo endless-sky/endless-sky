@@ -295,6 +295,12 @@ private:
 	Point flightVectorVelocity;
 	Point flightVectorFacing;
 	double flightVectorRadius = 0.;
+	// Where the rated speed tick sits on the HUD speed bar (0 = not drawn).
+	double flightRatedTick = 0.;
+	// The flight assist state last frame (-1 = unknown), and frames left of the
+	// indicator's color pulse after a toggle.
+	int lastFlightAssist = -1;
+	int flightAssistPulse = 0;
 	std::vector<std::pair<const Outfit *, int>> ammo;
 	// Flagship's hyperspace percentage converted to a [0, 1] double.
 	double hyperspacePercentage = 0.;

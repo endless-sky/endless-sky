@@ -496,7 +496,7 @@ public:
 	// The speed the flight computer holds to: today's drag-based top speed,
 	// raised to the boosted speed while the afterburner is held.
 	double RatedSpeed() const;
-	// The soft cap multiplier above rated speed (from the gamerules).
+	// The soft cap above rated speed, as a multiple of it (from the gamerules).
 	double NewtonianSoftCap() const;
 	// Current angular velocity, in degrees per frame.
 	double AngularVelocity() const;

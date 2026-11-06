@@ -193,6 +193,11 @@ namespace {
 	}
 
 	const double MAX_FUEL_DISPLAY = 3000.;
+
+	// Newtonian flight: how long the assist indicator pulses after a toggle, and the
+	// length of each on/off phase of the pulse (three flashes in about 0.6 seconds).
+	const int FLIGHT_ASSIST_PULSE_FRAMES = 36;
+	const int FLIGHT_ASSIST_PULSE_BLINK = 6;
 }
 
 
@@ -677,6 +682,7 @@ void Engine::Step(bool isActive)
 	missileLabels.clear();
 	turretOverlays.clear();
 	showFlightVector = false;
+	flightRatedTick = 0.;
 	if(isActive)
 	{
 		// Newtonian flight velocity marker.
@@ -801,25 +807,45 @@ void Engine::Step(bool isActive)
 			State state = flagship->GetFlightAssistState();
 			string stateName = state == State::ON ? "ON" : state == State::OFF ? "OFF"
 				: state == State::LIMIT ? "LIMIT" : "BRAKING";
+			// Toggling assist pulses the indicator in a highlight color a few times.
+			int assistOn = flagship->FlightAssist();
+			if(lastFlightAssist >= 0 && assistOn != lastFlightAssist)
+				flightAssistPulse = FLIGHT_ASSIST_PULSE_FRAMES;
+			lastFlightAssist = assistOn;
+			if(flightAssistPulse > 0)
+				--flightAssistPulse;
+			int pulseFrame = FLIGHT_ASSIST_PULSE_FRAMES - 1 - flightAssistPulse;
+			bool pulseOn = flightAssistPulse > 0 && (pulseFrame / FLIGHT_ASSIST_PULSE_BLINK) % 2 == 0;
 			// Alert states are drawn in a warning color.
-			info.SetString(state == State::ON ? "flight assist" : "flight assist alert",
-				"Flight assist: " + stateName);
+			const char *assistString = pulseOn ? "flight assist pulse"
+				: state == State::ON ? "flight assist" : "flight assist alert";
+			info.SetString(assistString, "Flight assist: " + stateName);
 			double speed = flagship->Velocity().Length();
 			double rated = flagship->RatedSpeed();
 			Point facing = flagship->Facing().Unit();
 			double drift = flagship->Velocity().Dot(Point(-facing.Y(), facing.X()));
-			info.SetString("flight speed", "Speed: " + to_string(lround(60. * speed))
-				+ " / " + to_string(lround(60. * rated)));
+			string speedText = "Speed: " + to_string(lround(60. * speed)) + " / " + to_string(lround(60. * rated));
+			// Above rated speed, show the multiple of it: the soft cap has no ceiling,
+			// so the over-rated bar stops being informative past the soft cap.
+			if(rated > 0. && speed > rated * 1.005)
+				speedText += "  x" + Format::Number(speed / rated, 1, false);
+			info.SetString("flight speed", speedText);
 			info.SetString("flight drift", "Drift: " + to_string(lround(60. * drift)));
 			info.SetString("flight spin", "Spin: " + to_string(lround(60. * fabs(flagship->AngularVelocity())))
 				+ " / " + to_string(lround(60. * flagship->TrueTurnRate())) + " deg/s");
-			if(rated > 0.)
+			// The speed bar has a fixed scale (the afterburner's boosted rated speed,
+			// if there is one) with a tick at the current rated speed, so holding the
+			// afterburner moves the tick rather than rescaling the bar.
+			double scale = max(rated, flagship->MaxVelocity(true));
+			if(scale > 0.)
 			{
-				info.SetBar("flight speed", min(1., speed / rated));
-				if(speed > rated)
-					info.SetBar("flight over speed",
-						min(1., (speed - rated) / ((flagship->NewtonianSoftCap() - 1.) * rated)));
+				info.SetBar("flight speed", min(1., speed / scale));
+				if(rated < scale * .995)
+					flightRatedTick = rated / scale;
 			}
+			if(rated > 0. && speed > rated)
+				info.SetBar("flight over speed",
+					min(1., (speed - rated) / ((flagship->NewtonianSoftCap() - 1.) * rated)));
 		}
 	}
 	info.SetString("credits",
@@ -1417,6 +1443,13 @@ void Engine::Draw() const
 
 	// Draw the heads-up display.
 	hud->Draw(info);
+	// Newtonian flight: a tick on the speed bar at the current rated speed.
+	if(flightRatedTick > 0. && hud->HasPoint("flight speed bar"))
+	{
+		Rectangle bar = hud->GetBox("flight speed bar");
+		Point at = bar.TopLeft() + Point(bar.Width() * flightRatedTick, 0.);
+		LineShader::Draw(at + Point(0., -4.), at + Point(0., 4.), 1.5f, *GameData::Colors().Get("bright"), false);
+	}
 	if(hud->HasPoint("radar"))
 	{
 		radar[currentDrawBuffer].Draw(
