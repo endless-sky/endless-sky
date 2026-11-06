@@ -1311,8 +1311,7 @@ mission "Remnant: Cognizance 28"
 			names "korath"
 			cargo 0
 			variant
-				"Rano'erek" 1
-				"Rano'erek (Ground Assault)" 4
+				"Rano'erek" 5
 				"Palavret (Ember)" 6
 				"'olofez" 32
 		on kill
@@ -1353,8 +1352,7 @@ mission "Remnant: Cognizance 29"
 			names "korath"
 			cargo 0
 			variant
-				"Rano'erek" 1
-				"Rano'erek (Ground Assault)" 2
+				"Rano'erek" 3
 				"Palavret (Ember)" 6
 				"'olofez" 24
 	on complete
