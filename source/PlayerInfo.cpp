@@ -1340,16 +1340,6 @@ void PlayerInfo::PlunderOutfit(const Outfit *outfit, int count)
 
 
 
-void PlayerInfo::JettisonOutfit(const Outfit *outfit, int count)
-{
-	int day = date.DaysSinceEpoch();
-	Depreciation throwAway;
-	for(int i = 0; i < count; ++i)
-		throwAway.Buy(outfit, day, &depreciation);
-}
-
-
-
 // Adds a ship of the given model with the given name to the player's fleet.
 bool PlayerInfo::BuyShip(const Ship *model, const string &name)
 {

@@ -54,6 +54,10 @@ namespace {
 
 	// Special "dates" used for recording plundered or captured items when the value of such
 	// items is below the minimum value of fully depreciated items.
+	// A high enough max age and low enough starting date can cause outfits be dated with these values
+	// without having actually been captured or plundered. While this isn't the intended behavior, it's
+	// also not something that the vanilla starting scenarios can encounter, and would only occur on two
+	// days for a starting scenario with an early enough date for the max age to overlap with these two "dates".
 	const int CAPTURED = -1;
 	const int PLUNDERED = -2;
 
@@ -129,6 +133,7 @@ void Depreciation::Load(const DataNode &node)
 // Save depreciation records.
 void Depreciation::Save(DataWriter &out, int day) const
 {
+	int cutoff = day - MaxAge();
 	out.Write(NAME[isStock]);
 	out.BeginChild();
 	{
@@ -146,7 +151,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 					// anything not recorded is considered fully depreciated, so
 					// there is no reason to save records for those items.
 					for(const auto &[recordDay, count] : sit.second)
-						if(isStock || (count && (recordDay < 0 || recordDay > day - MaxAge())))
+						if(isStock || (count && (recordDay == PLUNDERED || recordDay == CAPTURED || recordDay > cutoff)))
 							out.Write(recordDay, count);
 				}
 				out.EndChild();
@@ -161,7 +166,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 				out.BeginChild();
 				{
 					for(const auto &[recordDay, count] : oit.second)
-						if(isStock || (count && (recordDay < 0 || recordDay > day - MaxAge())))
+						if(isStock || (count && (recordDay == PLUNDERED || recordDay == CAPTURED || recordDay > cutoff)))
 							out.Write(recordDay, count);
 				}
 				out.EndChild();

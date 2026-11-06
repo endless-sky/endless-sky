@@ -100,9 +100,11 @@ private:
 	bool isLoaded = false;
 
 	// The depreciation records of ships and outfits. Each record map uses the
-	// day as the key and the number of ships or outfits obtained on that day
-	// as the value. If an item isn't in the record, it uses the default deprecation.
-	// If an item's age is -1, that is equivalent to having been plundered.
+	// date of purchase (in days since the epoch) as the key and the number of
+	// ships or outfits obtained on that day as the value. If an item isn't in
+	// the record, it uses the default deprecation.
+	// If an item's date is -1 or -2, that is equivalent to having been captured
+	// or plundered respectively.
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
 };
