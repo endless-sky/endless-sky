@@ -233,31 +233,31 @@ void Preferences::Init()
 	unrecognized.clear();
 
 	// Define allowable and default values for all settings.
-	settings[ALERT_INDICATOR] = Setting::List("Alert indicator", 3, {"off", "audio", "visual", "both"});
-	settings[AMMO_REFILL] = Setting::List("Auto refill ammo", 1, {"never", "ask", "when free", "always"});
+	settings[ALERT_INDICATOR] = Setting::List("Alert indicator", {"off", "audio", "visual", "both"}, 3);
+	settings[AMMO_REFILL] = Setting::List("Auto refill ammo", {"never", "ask", "when free", "always"}, 1);
 	settings[ANIMATE_MENU_BACKGROUND] = Setting::OnOff("Animate main menu background", true);
-	settings[ASTEROID_TARGETING] = Setting::List("Asteroid targeting", 0,
-		{"proximity", "expected value", "quality"}, true);
-	settings[AUTO_AIM] = Setting::List("Automatic aiming", 2, {"off", "always on", "when firing"});
-	settings[AUTO_FIRE] = Setting::List("Automatic firing", 0, {"off", "on", "guns only", "turrets only"});
+	settings[ASTEROID_TARGETING] = Setting::List("Asteroid targeting", {"proximity", "expected value", "quality"}, 0,
+		true);
+	settings[AUTO_AIM] = Setting::List("Automatic aiming", {"off", "always on", "when firing"}, 2);
+	settings[AUTO_FIRE] = Setting::List("Automatic firing", {"off", "on", "guns only", "turrets only"}, 0);
 	settings[AUTO_UNPARK_FLAGSHIP] = Setting::OnOff("Automatically unpark flagship", false);
 
 	settings[BLOCK_SCREEN_SAVER] = Setting::OnOff("Block screen saver", false);
 	settings[BLOCK_SCREEN_SAVER].SetOnToggleFunc([](UI *) -> void { GameWindow::ToggleBlockScreenSaver(); });
 
-	settings[BOARDING_TARGET_PRIORITY] = Setting::List("Boarding target priority", 0,
-		{"proximity", "value", "mixed"}, true);
-	settings[CAMERA_ACCELERATION] = Setting::List("Camera acceleration", 0, {"off", "on", "reversed"});
+	settings[BOARDING_TARGET_PRIORITY] = Setting::List("Boarding target priority", {"proximity", "value", "mixed"}, 0,
+		true);
+	settings[CAMERA_ACCELERATION] = Setting::List("Camera acceleration", {"off", "on", "reversed"}, 0);
 	settings[DAMAGED_FIGHTERS_RETREAT] = Setting::OnOff("Damaged fighters retreat", true);
-	settings[DATE_FORMAT] = Setting::List("Date format", 0, {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"}, true);
+	settings[DATE_FORMAT] = Setting::List("Date format", {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"}, 0, true);
 	settings[DEFER_LOADING_IMAGES] = Setting::OnOff("Defer loading images", false);
-	settings[DESTINATION_NOTIFICATION] = Setting::List("Notify on destination", 1, {"off", "message", "both"});
+	settings[DESTINATION_NOTIFICATION] = Setting::List("Notify on destination", {"off", "message", "both"}, 1);
 	settings[DRAW_BACKGROUND_HAZE] = Setting::OnOff("Draw background haze", true);
 	settings[DRAW_STARFIELD] = Setting::OnOff("Draw starfield", true);
-	settings[ESCORT_AMMO_USAGE] = Setting::List("Escorts expend ammo", 1, {"never", "frugally", "always"});
+	settings[ESCORT_AMMO_USAGE] = Setting::List("Escorts expend ammo", {"never", "frugally", "always"}, 1);
 
-	settings[EXTENDED_JUMP_EFFECTS] = Setting::List("Extended jump effects", 0, {"off", "medium", "heavy"});
-	settings[FF_CAPSLOCK_SYNC] = Setting::List("Sync FF to CapsLock", 0, {"default", "never", "always"}, true);
+	settings[EXTENDED_JUMP_EFFECTS] = Setting::List("Extended jump effects", {"off", "medium", "heavy"}, 0);
+	settings[FF_CAPSLOCK_SYNC] = Setting::List("Sync FF to CapsLock", {"default", "never", "always"}, 0, true);
 	settings[FF_CAPSLOCK_SYNC].SetDisplayFunc([]() -> pair<string, bool> {
 		const FastForwardCapsLockSync sync = GetFastForwardCapsLockSync();
 		bool isOn = sync == FastForwardCapsLockSync::ALWAYS
@@ -265,18 +265,18 @@ void Preferences::Init()
 		return make_pair(settings[FF_CAPSLOCK_SYNC].Option(), isOn);
 	});
 
-	settings[FIGHTERS_REPAIR_IN] = Setting::List("Repair fighters in", 1, {"series", "parallel"}, true);
+	settings[FIGHTERS_REPAIR_IN] = Setting::List("Repair fighters in", {"series", "parallel"}, 1, true);
 	settings[FIGHTERS_TRANSFER_CARGO] = Setting::OnOff("Fighters transfer cargo", false);
 	settings[FIXED_STARFIELD_ZOOM] = Setting::OnOff("Fixed starfield zoom", false);
-	settings[FLAGSHIP_SPACE_PRIORITY] = Setting::List("Prioritize flagship use", 1,
-		{"none", "passengers", "cargo", "both"});
-	settings[FLOTSAM_COLLECTION] = Setting::List("Flotsam collection", 1,
-		{"off", "on", "flagship only", "escorts only"});
+	settings[FLAGSHIP_SPACE_PRIORITY] = Setting::List("Prioritize flagship use",
+		{"none", "passengers", "cargo", "both"}, 1);
+	settings[FLOTSAM_COLLECTION] = Setting::List("Flotsam collection", {"off", "on", "flagship only", "escorts only"},
+		1);
 
-	settings[FONT_SIZE] = Setting::List("UI font size", 0, {"14", "18"}, true);
+	settings[FONT_SIZE] = Setting::List("UI font size", {"14", "18"}, 0, true);
 	settings[FONT_SIZE].SetOnToggleFunc([](UI *) -> void { CustomEvents::SendAdjustText(); });
 
-	settings[FULLSCREEN] = Setting::List("Screen mode", 1, {"windowed", "fullscreen"}, true);
+	settings[FULLSCREEN] = Setting::List("Screen mode", {"windowed", "fullscreen"}, 1, true);
 	settings[FULLSCREEN].SetToggleFunc([](int, UI *) -> int {
 		GameWindow::ToggleFullscreen();
 		return GameWindow::IsFullscreen();
@@ -287,7 +287,7 @@ void Preferences::Init()
 	settings[HUD_EXTRA_STATUS_MSGS] = Setting::OnOff("Extra fleet status messages", true);
 	settings[HUD_MISSILE_OVERLAY] = Setting::OnOff("Show missile overlays", false);
 	settings[HUD_ROTATE_FLAGSHIP] = Setting::OnOff("Rotate flagship in HUD", false);
-	settings[HUD_TURRET_OVERLAY] = Setting::List("Turret overlays", 2, {"off", "always on", "blindspots only"});
+	settings[HUD_TURRET_OVERLAY] = Setting::List("Turret overlays", {"off", "always on", "blindspots only"}, 2);
 	settings[HUD_PLANET_LABELS] = Setting::OnOff("Show planet labels", true);
 	settings[INTERRUPT_FAST_FORWARD] = Setting::OnOff("Interrupt fast-forward", false);
 	settings[LANDING_ZOOM] = Setting::OnOff("Landing zoom", false);
@@ -296,11 +296,11 @@ void Preferences::Init()
 	settings[MAP_SHOW_ESCORTS] = Setting::OnOff("Show escort systems on map", true);
 	settings[MAP_SHOW_OUTFITS] = Setting::OnOff("Show stored outfits on map", true);
 	settings[MAP_PARENTHESIZE_PROFIT] = Setting::OnOff("Parenthesize trade profits", false);
-	settings[MINIMAP_DISPLAY] = Setting::List("Show mini-map", 1, {"off", "when jumping", "always on"});
+	settings[MINIMAP_DISPLAY] = Setting::List("Show mini-map", {"off", "when jumping", "always on"}, 1);
 	settings[MOTION_BLUR] = Setting::OnOff("Render motion blur", true);
 	settings[MOUSE_CONTROL_FLAGSHIP] = Setting::OnOff("Control ship with mouse", false);
 	settings[MOUSE_CONTROL_TURRETS] = Setting::OnOff("Aim turrets with mouse", false);
-	settings[PARALLAX] = Setting::List("Parallax background", 2, {"off", "fancy", "fast"});
+	settings[PARALLAX] = Setting::List("Parallax background", {"off", "fancy", "fast"}, 2);
 	// "Previous saves" is unique and not rendered in PreferencesPanel, and so it doesn't need a Setting.
 
 	settings[REACTIVATE_HELP] = Setting::Unique("Reactivate first-time help");
@@ -335,7 +335,7 @@ void Preferences::Init()
 			SetHelp("help: " + it.first, false);
 	});
 
-	settings[REDUCE_LARGE_GRAPHICS] = Setting::List("Reduce large graphics", 0, {"off", "largest only", "all"});
+	settings[REDUCE_LARGE_GRAPHICS] = Setting::List("Reduce large graphics", {"off", "largest only", "all"}, 0);
 	settings[REHIRE_LOST_CREW] = Setting::OnOff("Rehire extra crew when lost", false);
 	settings[SAVE_MSG_LOGS] = Setting::OnOff("Save message log", false);
 
@@ -360,10 +360,10 @@ void Preferences::Init()
 	});
 
 	settings[SCREEN_MAXIMIZED] = Setting::OnOff("Screen maximized", false);
-	settings[SHIP_HIGHLIGHTS] = Setting::List("Highlight ships", 0, {"off", "flagship", "owned ships", "all"});
-	settings[SHIP_OUTLINES_CLOAKED] = Setting::List("Cloaked ship outlines", 1, {"fast", "fancy"}, true);
-	settings[SHIP_OUTLINES_HUD] = Setting::List("Ship outlines in HUD", 1, {"fast", "fancy"}, true);
-	settings[SHIP_OUTLINES_SHOP] = Setting::List("Ship outlines in shops", 1, {"fast", "fancy"}, true);
+	settings[SHIP_HIGHLIGHTS] = Setting::List("Highlight ships", {"off", "flagship", "owned ships", "all"}, 0);
+	settings[SHIP_OUTLINES_CLOAKED] = Setting::List("Cloaked ship outlines", {"fast", "fancy"}, 1, true);
+	settings[SHIP_OUTLINES_HUD] = Setting::List("Ship outlines in HUD", {"fast", "fancy"}, 1, true);
+	settings[SHIP_OUTLINES_SHOP] = Setting::List("Ship outlines in shops", {"fast", "fancy"}, 1, true);
 	settings[SHOW_HYPERSPACE_FLASH] = Setting::OnOff("Show hyperspace flash", false);
 	settings[SHOW_PERFORMANCE_METRICS] = Setting::OnOff("Show CPU / GPU load", false);
 
@@ -417,10 +417,10 @@ void Preferences::Init()
 		Preferences::CycleStatusOverlays(Preferences::OverlayType::NEUTRAL);
 	});
 
-	settings[TEXT_ALIGNMENT] = Setting::List("Text alignment", 3, {"left", "center", "right", "justified"}, true);
+	settings[TEXT_ALIGNMENT] = Setting::List("Text alignment", {"left", "center", "right", "justified"}, 3, true);
 	settings[TEXT_ALIGNMENT].SetOnToggleFunc([](UI *) -> void { CustomEvents::SendAdjustText(); });
 
-	settings[TEXTURE_FILTERING] = Setting::List("Texture filtering", 1, {"nearest", "linear"}, true);
+	settings[TEXTURE_FILTERING] = Setting::List("Texture filtering", {"nearest", "linear"}, 1, true);
 
 	settings[TOOLTIP_ACTIVATION_TIME] = Setting::Unique("Tooltip activation time");
 	settings[TOOLTIP_ACTIVATION_TIME].SetDisplayFunc([]() -> pair<string, bool> {
@@ -443,14 +443,14 @@ void Preferences::Init()
 		CustomEvents::SendTooltipUpdate();
 	});
 
-	settings[TRIBUTE_CONFIRMATION] = Setting::List("Tribute confirmation", 1, {"off", "friendly only", "always"});
+	settings[TRIBUTE_CONFIRMATION] = Setting::List("Tribute confirmation", {"off", "friendly only", "always"}, 1);
 	settings[TRADE_SELL_OUTFITS_WITHOUT_SHOP] = Setting::OnOff("Sell outfits without outfitter", true);
 	settings[TRADE_CONFIRM_MINABLES] = Setting::OnOff("Confirm selling minables", true);
 	settings[TRADE_CONFIRM_OUTFITS] = Setting::OnOff("Confirm selling outfits", true);
-	settings[TURRETS_FOCUS_FIRE] = Setting::List("Turret tracking", 1, {"opportunistic", "focused"}, true);
+	settings[TURRETS_FOCUS_FIRE] = Setting::List("Turret tracking", {"opportunistic", "focused"}, 1, true);
 	settings[UNDERLINE_SHORTCUTS] = Setting::OnOff("Always underline shortcuts", false);
 
-	settings[VSYNC] = Setting::List("VSync", 1, {"off", "on", "adaptive"});
+	settings[VSYNC] = Setting::List("VSync", {"off", "on", "adaptive"}, 1);
 	settings[VSYNC].SetToggleFunc([](int originalIndex, UI *ui) -> int {
 		Setting &vsyncSetting = settings[VSYNC];
 		int targetIndex = vsyncSetting.CycleIndex();
@@ -538,14 +538,14 @@ void Preferences::Init()
 	});
 
 #ifdef _WIN32
-	settings[TITLE_BAR_THEME] = Setting::List("Title bar theme", 0, {"system default", "light", "dark"});
+	settings[TITLE_BAR_THEME] = Setting::List("Title bar theme", {"system default", "light", "dark"}, 0);
 	settings[TITLE_BAR_THEME].SetDisplayFunc([]() -> pair<string, bool> {
 		bool isOn = WinVersion::SupportsDarkTheme();
 		return make_pair(isOn ? settings[TITLE_BAR_THEME].Option() : "N/A", isOn);
 	});
 	settings[TITLE_BAR_THEME].SetOnToggleFunc([](UI *) -> void { GameWindow::UpdateTitleBarTheme(); });
 
-	settings[WINDOW_ROUNDING] = Setting::List("Window rounding", 0, {"system default", "off", "large", "small"});
+	settings[WINDOW_ROUNDING] = Setting::List("Window rounding", {"system default", "off", "large", "small"}, 0);
 	settings[WINDOW_ROUNDING].SetDisplayFunc([]() -> pair<string, bool> {
 		bool isOn = WinVersion::SupportsWindowRounding();
 		return make_pair(isOn ? settings[TITLE_BAR_THEME].Option() : "N/A", isOn);

@@ -80,7 +80,11 @@ public:
 	static const std::string NO_PERSON_SPAWN_WEIGHT;
 	static const std::string NPC_MAX_MINING_TIME;
 	static const std::string UNIVERSAL_FRUGAL_THRESHOLD;
+	static const std::string DEPRECIATIVE_AGING;
 	static const std::string DEPRECIATION_MIN;
+	static const std::string DEPRECIATION_CAPTURED;
+	static const std::string DEPRECIATION_PLUNDERED;
+	static const std::string DEPRECIATION_CARGO_IS_PLUNDER;
 	static const std::string DEPRECIATION_DAILY;
 	static const std::string DEPRECIATION_GRACE_PERIOD;
 	static const std::string DEPRECIATION_MAX_AGE;
