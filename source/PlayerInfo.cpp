@@ -142,19 +142,17 @@ namespace {
 			// Minor missions only get offered if no other missions (including other
 			// minor missions) are competing with them, except for "non-blocking" missions.
 			// This is to avoid having two or three missions pop up as soon as you enter the spaceport.
-			// Note that the manner in which excess minor missions are discarded means that the
-			// minor mission with the lowest precedence is the one that will be offered.
-			auto it = missions.begin();
-			while(it != missions.end())
+			// Remove minor missions in reverse order so that the mission with the highest precedence
+			// is the one that remains.
+			for(auto it = missions.end(); it != missions.begin(); )
 			{
+				--it;
 				if(it->IsMinor())
 				{
 					it = missions.erase(it);
 					if(missions.size() <= 1 + nonBlockingMissions)
 						break;
 				}
-				else
-					++it;
 			}
 		}
 	}
@@ -367,6 +365,8 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 			isCloaking = true;
 		else if(key == "playtime" && hasValue)
 			playTime = child.Value(1);
+		else if(key == "idle time" && hasValue)
+			idleTime = child.Value(1);
 		else if(key == "travel" && hasValue)
 			travelPlan.push_back(GameData::Systems().Get(child.Token(1)));
 		else if(key == "travel destination" && hasValue)
@@ -1854,7 +1854,7 @@ void PlayerInfo::Land(UI &ui)
 
 	// Hire extra crew back if any were lost in-flight (i.e. boarding) or
 	// some bunks were freed up upon landing (i.e. completed missions).
-	if(Preferences::Has("Rehire extra crew when lost")
+	if(Preferences::Has(Preferences::REHIRE_LOST_CREW)
 			&& (planet->GetPort().HasService(Port::ServicesType::HireCrew) && canUseServices) && flagship)
 	{
 		int added = desiredCrew - flagship->Crew();
@@ -2165,9 +2165,12 @@ double PlayerInfo::GetPlayTime() const noexcept
 
 
 
-void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal)
+void PlayerInfo::AddPlayTime(chrono::nanoseconds timeVal, bool isIdle)
 {
-	playTime += timeVal.count() * .000000001;
+	if(isIdle)
+		idleTime += timeVal.count() * .000000001;
+	else
+		playTime += timeVal.count() * .000000001;
 }
 
 
@@ -2278,7 +2281,7 @@ void PlayerInfo::CacheMissionInformation(Mission &mission, const DistanceMap &he
 	int daysLeft = mission.Deadline() - GetDate() + 1;
 	// If at any point a location can't be reached, it is ignored instead of treating
 	// it as if it has an infinite distance.
-	if(daysLeft > 0 && Preferences::Has("Deadline blink by distance")
+	if(daysLeft > 0 && Preferences::Has(Preferences::MAP_DEADLINE_BLINK_BY_DISTANCE)
 		&& here.HasRoute(*mission.Destination()->GetSystem()))
 	{
 		set<const System *> toVisit;
@@ -4020,8 +4023,6 @@ void PlayerInfo::RegisterDerivedConditions()
 
 	conditions["net worth"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, max(-limit, accounts.NetWorth())); });
-	conditions["credits"].ProvideNamed([this](const ConditionEntry &ce) {
-		return min(limit, accounts.Credits()); });
 	conditions["unpaid mortgages"].ProvideNamed([this](const ConditionEntry &ce) {
 		return min(limit, accounts.TotalDebt("Mortgage")); });
 	conditions["unpaid fines"].ProvideNamed([this](const ConditionEntry &ce) {
@@ -4036,6 +4037,11 @@ void PlayerInfo::RegisterDerivedConditions()
 		return accounts.CreditScore(); });
 
 	// Read/write assets and debts.
+	conditions["credits"].ProvideNamed([this](const ConditionEntry &ce) -> int64_t {
+		return min(limit, accounts.Credits());
+	}, [this](ConditionEntry &ce, int64_t value) -> void {
+		accounts.SetCredits(clamp<int64_t>(value, 0, limit));
+	});
 	conditions["salary: "].ProvidePrefixed([this](const ConditionEntry &ce) -> int64_t {
 		const map<string, int64_t> &si = accounts.SalariesIncome();
 		auto it = si.find(ce.NameWithoutPrefix());
@@ -5047,6 +5053,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	if(planet && planet->CanUseServices())
 		out.Write("clearance");
 	out.Write("playtime", playTime);
+	out.Write("idle time", idleTime);
 	// This flag is set if the player must leave the planet immediately upon
 	// entering their ship (i.e. because a mission forced them to take off).
 	if(shouldLaunch)
@@ -5382,7 +5389,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	}
 	out.EndChild();
 
-	if(Preferences::Has("Save message log"))
+	if(Preferences::Has(Preferences::SAVE_MSG_LOGS))
 	{
 		out.Write();
 		Messages::SaveLog(out);
@@ -5476,7 +5483,7 @@ void PlayerInfo::SetFlagship(Ship &other)
 
 void PlayerInfo::HandleFlagshipParking(Ship *oldFirstShip, Ship *newFirstShip)
 {
-	if(Preferences::Has("Automatically unpark flagship") && newFirstShip != oldFirstShip
+	if(Preferences::Has(Preferences::AUTO_UNPARK_FLAGSHIP) && newFirstShip != oldFirstShip
 		&& newFirstShip->CanBeFlagship() && newFirstShip->GetSystem() == system && newFirstShip->IsParked())
 	{
 		newFirstShip->SetIsParked(false);
@@ -5672,9 +5679,31 @@ void PlayerInfo::DoAccounting()
 
 	// For accounting, keep track of the player's net worth. This is for
 	// calculation of yearly income to determine maximum mortgage amounts.
-	int64_t assets = depreciation.Value(ships, date.DaysSinceEpoch());
+	int64_t assets = 0;
+	map<const Ship *, int> shipCount;
+	map<const Outfit *, int> outfitCount;
 	for(const shared_ptr<Ship> &ship : ships)
-		assets += ship->Cargo().Value(system);
+	{
+		const Ship *base = GameData::Ships().Get(ship->VariantName());
+		++shipCount[base];
+		for(const auto &[outfit, count] : ship->Outfits())
+			outfitCount[outfit] += count;
+
+		const CargoHold &cargo = ship->Cargo();
+		for(const auto &[commodity, count] : cargo.Commodities())
+			assets += static_cast<int64_t>(system->Trade(commodity)) * count;
+		for(const auto &[outfit, count] : cargo.Outfits())
+			outfitCount[outfit] += count;
+	}
+	for(const auto &storage : planetaryStorage | views::values)
+		for(const auto &[outfit, count] : storage.Outfits())
+			outfitCount[outfit] += count;
+
+	int day = date.DaysSinceEpoch();
+	for(const auto &[ship, count] : shipCount)
+		assets += depreciation.Value(ship, day, count);
+	for(const auto &[outfit, count] : outfitCount)
+		assets += depreciation.Value(outfit, day, count);
 
 	// Have the player pay salaries, mortgages, etc. and print a message that
 	// summarizes the payments that were made.

@@ -829,6 +829,7 @@ ship "Ursa Polaris"
 	plural "Ursa Polaris"
 	sprite "ship/localworldship"
 	"administrative cost" 10
+	"never disabled"
 	attributes
 		category "Unclassified"
 		cost 142857
@@ -1995,10 +1996,12 @@ person "Patrol Team"
 	ship "Waverider" "Proofreader's Pain"
 	ship "Waverider" "Art Critics' Regret"
 	ship "Waverider" "Code Herders' Curse"
+		"never disabled"
 		add attributes
 			"required crew" 2
 	ship "Waverider" "Choreographers' Tears"
 	ship "Waverider" "Adjuncators' Blood"
+		"never disabled"
 		outfits
 			"Particle Cannon" 4
 			"S-970 Regenerator"
@@ -2018,6 +2021,7 @@ person "Patrol Team"
 			"Emotional Baggage"
 			"Tear of Skade" 2
 	ship "Waverider" "Balancers' Madness"
+		"never disabled"
 		add attributes
 			"shields" 12000
 			"hull" 5000

@@ -31,7 +31,7 @@ namespace {
 
 void Swizzle::Load(const DataNode &node)
 {
-	name = node.Token(1);
+	trueName = node.Token(1);
 
 	for(const DataNode &child : node)
 	{
@@ -77,9 +77,16 @@ bool Swizzle::IsLoaded() const
 
 
 
-const string &Swizzle::Name() const
+const string &Swizzle::TrueName() const
 {
-	return name;
+	return trueName;
+}
+
+
+
+void Swizzle::SetTrueName(const string &name)
+{
+	trueName = name;
 }
 
 

@@ -42,7 +42,7 @@ namespace {
 	const int COLUMN[5] = {20, 130, 210, 280, 330};
 	const int EXTRA_X = 410;
 
-	// Maximum number of rows of mortages, etc. to draw.
+	// Maximum number of rows of mortgages, etc. to draw.
 	const int MAX_ROWS = 8;
 }
 
@@ -131,7 +131,7 @@ void BankPanel::Draw()
 	for(const Mortgage &mortgage : player.Accounts().Mortgages())
 	{
 		// Color this row depending on whether it is selected or not.
-		if(row == selectedRow)
+		if(row == selectedRow || row == hoverRow)
 		{
 			table.DrawHighlight(back);
 			table.SetColor(selected);
@@ -147,7 +147,7 @@ void BankPanel::Draw()
 			table.Draw("Other");
 			table.Draw(Format::AbbreviatedNumber(otherPrincipal));
 			// Skip the interest and term, because this entry represents the
-			// combination of several different mortages.
+			// combination of several different mortgages.
 			table.Advance(2);
 			table.Draw(Format::AbbreviatedNumber(otherPayment));
 		}
@@ -353,12 +353,32 @@ bool BankPanel::Click(int x, int y, MouseButton button, int clicks)
 
 
 
+bool BankPanel::Hover(int x, int y)
+{
+	hoverRow = -1;
+
+	const Interface *bankUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "bank (small screen)" : "bank");
+	const Rectangle box = bankUi->GetBox("content");
+	const int MIN_X = box.Left();
+	const int FIRST_Y = box.Top();
+	const int MAX_X = box.Right();
+
+	// Check if the hover is on one of the rows of the table that represents a
+	// mortgage or other current debt you have.
+	int maxY = FIRST_Y + 25 + 20 * mortgageRows;
+	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
+		hoverRow = (y - FIRST_Y - 25) / 20;
+	return hoverRow != -1;
+}
+
+
+
 // Apply an extra payment to a debt. (This is a dialog callback.)
 void BankPanel::PayExtra(const string &str)
 {
 	int64_t amount = static_cast<int64_t>(Format::Parse(str));
 	// Check if the selected row is the "Other" row, which is only the case if
-	// you have more mortages than can be displayed.
+	// you have more mortgages than can be displayed.
 	const vector<Mortgage> &mortgages = player.Accounts().Mortgages();
 	bool isOther = (selectedRow == mortgageRows - 1 && mergedMortgages);
 

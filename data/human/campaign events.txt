@@ -1344,20 +1344,20 @@ event "flamethrower available"
 	outfitter "Kraz Advanced"
 		"Flamethrower"
 	fleet "Small Free Worlds"
-		variant 3
+		add variant 3
 			"Fury (Laser)"
 			"Fury (Flamethrower)"
-		variant 2
+		add variant 2
 			"Hawk"
 			"Fury (Flamethrower)"
-		variant 1
+		add variant 1
 			"Fury (Flamethrower)"
 			"Sparrow" 2
 	fleet "Large Free Worlds"
-		variant 2
+		add variant 2
 			"Osprey (Laser)"
 			"Fury (Flamethrower)"
-		variant 1
+		add variant 1
 			"Falcon (Heavy)"
 			"Fury (Flamethrower)" 2
 			"Sparrow" 4
