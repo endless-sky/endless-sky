@@ -83,6 +83,8 @@ namespace {
 		double heatCost = 2.;
 		// Multiplier on energy regeneration (generation, solar and fuel energy).
 		double energyRegen = .75;
+		// Fraction of a Newtonian ship's velocity its projectiles inherit (A5.8).
+		double projectileInheritance = 1.;
 	};
 
 	NewtonianTuning GetNewtonianTuning()
@@ -107,6 +109,9 @@ namespace {
 		value = rules.GetValue("newtonian energy regen percent");
 		if(value > 0)
 			tuning.energyRegen = value * .01;
+		value = rules.GetValue("newtonian projectile inheritance percent");
+		if(value > 0)
+			tuning.projectileInheritance = value * .01;
 		return tuning;
 	}
 
@@ -603,6 +608,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			noun = child.Token(1);
 		else if(key == "swizzle" && hasValue)
 			customSwizzle = GameData::Swizzles().Get(child.Token(1));
+		else if(key == "flight assist off")
+			flightAssist = false;
 		else if(key == "uuid" && hasValue)
 			uuid = EsUuid::FromString(child.Token(1));
 		else if(key == "administrative cost" && hasValue)
@@ -1347,6 +1354,8 @@ void Ship::Save(DataWriter &out) const
 			out.Write("uncapturable");
 		if(customSwizzle)
 			out.Write("swizzle", customSwizzle->TrueName());
+		if(!flightAssist)
+			out.Write("flight assist off");
 		if(administrativeCost.has_value())
 			out.Write("administrative cost", administrativeCost.value());
 
@@ -3869,9 +3878,30 @@ void Ship::ToggleFlightAssist()
 
 
 
+void Ship::SetFlightAssist(bool value)
+{
+	flightAssist = value;
+}
+
+
+
 bool Ship::FlightAssist() const
 {
-	return flightAssist;
+	return flightAssist && HasFlightComputer();
+}
+
+
+
+bool Ship::HasFlightComputer() const
+{
+	return Attributes().Get("flight computer") > 0.;
+}
+
+
+
+double Ship::ProjectileVelocityInheritance() const
+{
+	return isNewtonian ? GetNewtonianTuning().projectileInheritance : 1.;
 }
 
 
@@ -5730,7 +5760,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 		// step so that handing control back is seamless.
 		angularVelocity = 0.;
 		ratedSpeed = MaxVelocity(commands.Has(Command::AFTERBURNER));
-		flightAssistState = flightAssist ? FlightAssistState::ON : FlightAssistState::OFF;
+		flightAssistState = FlightAssist() ? FlightAssistState::ON
+			: HasFlightComputer() ? FlightAssistState::OFF : FlightAssistState::NO_COMPUTER;
 	}
 
 	isUsingAfterburner = false;
@@ -5849,6 +5880,8 @@ void Ship::DoMovement(bool &isUsingAfterburner)
 // assist off, each input is raw thrust or torque, with a soft cap above rated speed.
 void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 {
+	// No flight computer means no assist (A5.4).
+	const bool assist = FlightAssist();
 	isUsingAfterburner = false;
 	const NewtonianTuning tuning = GetNewtonianTuning();
 	const double slowMultiplier = 1. / (1. + levels.slowness * .05);
@@ -5880,7 +5913,8 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 		angularVelocity *= STATION_KEEPING_DECAY;
 		if(angularVelocity)
 			Turn(angularVelocity);
-		flightAssistState = flightAssist ? FlightAssistState::LIMIT : FlightAssistState::OFF;
+		flightAssistState = assist ? FlightAssistState::LIMIT
+			: HasFlightComputer() ? FlightAssistState::OFF : FlightAssistState::NO_COMPUTER;
 		return;
 	}
 	// A pilot error means nobody is at the controls this frame: just coast.
@@ -5899,7 +5933,7 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	const double turnInput = clamp(commands.Turn(), -1., 1.);
 	double deltaOmega = 0.;
 	double spinCapFactor = 1.;
-	if(flightAssist)
+	if(assist)
 		// The input means "turn at this rate"; the computer supplies the torque.
 		deltaOmega = clamp(turnInput * ratedTurn - angularVelocity, -angularAccel, angularAccel);
 	else if(turnInput)
@@ -5957,7 +5991,7 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	double dvLateral = 0.;
 	double softCapFactor = 1.;
 	bool braking = false;
-	if(flightAssist)
+	if(assist)
 	{
 		// A5.1 (revised 2026-11-06): assist flies like the old drag model, but
 		// the "drag" is the ship's own weak manoeuvring thrusters. Thrust bends
@@ -6071,7 +6105,7 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 	dvForward = mainPart + afterburnerPart;
 
 	velocity += (facing * dvForward + right * dvLateral) * softCapFactor;
-	if(flightAssist && commands.Has(Command::STOP) && velocity.Length() < 1e-3)
+	if(assist && commands.Has(Command::STOP) && velocity.Length() < 1e-3)
 		velocity = Point();
 
 	// Engine flares. Ignore tiny corrections so that cruising doesn't flicker.
@@ -6093,8 +6127,8 @@ void Ship::DoNewtonianMovement(bool &isUsingAfterburner)
 		IncrementThrusterHeld(dvLateral < 0. ? ThrustKind::LATERAL_LEFT : ThrustKind::LATERAL_RIGHT);
 	}
 
-	if(!flightAssist)
-		flightAssistState = FlightAssistState::OFF;
+	if(!assist)
+		flightAssistState = HasFlightComputer() ? FlightAssistState::OFF : FlightAssistState::NO_COMPUTER;
 	else if(braking)
 		flightAssistState = FlightAssistState::BRAKING;
 	else if(saturated)

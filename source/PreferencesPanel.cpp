@@ -819,6 +819,7 @@ void PreferencesPanel::DrawSettings()
 		"Damaged fighters retreat",
 		"Fighters transfer cargo",
 		AMMO_REFILL,
+		"Remember flight assist state",
 		"\t",
 		"HUD",
 		STATUS_OVERLAYS_ALL,

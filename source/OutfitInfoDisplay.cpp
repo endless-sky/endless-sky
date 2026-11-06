@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Depreciation.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
 #include "Outfit.h"
 #include "PlayerInfo.h"
 #include "Weapon.h"
@@ -529,7 +530,9 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	}
 
 	double range = weapon->Range();
-	attributeLabels.emplace_back("range:");
+	// Under Newtonian flight, projectiles inherit the firing ship's velocity, so the
+	// listed range only holds for a ship at rest (A5.8).
+	attributeLabels.emplace_back(GameData::GetGamerules().GetValue("newtonian flight") ? "range at rest:" : "range:");
 	attributeValues.emplace_back(Format::Number(range));
 	attributesHeight += 20;
 

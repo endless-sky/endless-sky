@@ -62,7 +62,7 @@ namespace {
 
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
-	: Body(weapon->ProjectileSprite(), position, parent.Velocity(), angle),
+	: Body(weapon->ProjectileSprite(), position, parent.Velocity() * parent.ProjectileVelocityInheritance(), angle),
 	weapon(weapon), lifetime(weapon->Lifetime())
 {
 	shared_ptr<Ship> targetShip = parent.GetTargetShip();

@@ -5519,6 +5519,7 @@ void PlayerInfo::SelectEscort(const shared_ptr<Ship> &ship, bool *first)
 // Instantiate the given model and add it to the player's fleet.
 void PlayerInfo::AddStockShip(const Ship *model, const string &name)
 {
+	bool isFirstShip = ships.empty();
 	ships.push_back(make_shared<Ship>(*model));
 	ships.back()->SetGivenName(!name.empty() ? name : GameData::Phrases().Get("civilian")->Get());
 	ships.back()->SetSystem(system);
@@ -5526,6 +5527,16 @@ void PlayerInfo::AddStockShip(const Ship *model, const string &name)
 	ships.back()->SetIsSpecial();
 	ships.back()->SetIsYours();
 	ships.back()->SetGovernment(GameData::PlayerGovernment());
+
+	// Newtonian flight (A5.4): a new pilot's first ship comes with a basic flight
+	// computer fitted for free. Ships bought or given later come without one.
+	if(isFirstShip && GameData::GetGamerules().GetValue("newtonian flight"))
+	{
+		const Outfit *computer = GameData::Outfits().Get("Flight Computer (Basic)");
+		Ship &ship = *ships.back();
+		if(computer->IsDefined() && !ship.HasFlightComputer() && ship.Attributes().CanAdd(*computer, 1))
+			ship.AddOutfit(computer, 1);
+	}
 }
 
 

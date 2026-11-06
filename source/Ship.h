@@ -481,12 +481,21 @@ public:
 	// Newtonian flight proof of concept (plans/flight-simulation-A.md).
 	// Only the player's flagship flies Newtonian, and only when the
 	// "newtonian flight" gamerule is on. Everything else uses drag physics.
-	enum class FlightAssistState {OFF, ON, LIMIT, BRAKING};
+	enum class FlightAssistState {OFF, ON, LIMIT, BRAKING, NO_COMPUTER};
 	void SetNewtonian(bool value);
 	bool IsNewtonian() const;
-	// The flight assist toggle. Resets to on whenever the game is loaded.
+	// The flight assist toggle. Resets to on at every launch or load, unless the
+	// "Remember flight assist state" preference is set.
 	void ToggleFlightAssist();
+	void SetFlightAssist(bool value);
+	// Whether assist is actually on: toggled on, and a flight computer is installed.
 	bool FlightAssist() const;
+	// Whether a flight computer outfit is installed (A5.4). Without one, the ship
+	// can only fly with assist off.
+	bool HasFlightComputer() const;
+	// The fraction of this ship's velocity its projectiles inherit (A5.8):
+	// a gamerule for Newtonian ships, and all of it for everything else.
+	double ProjectileVelocityInheritance() const;
 	// While an autopilot (land, jump, board) is flying, use legacy drag
 	// physics so that the existing AI routines keep working.
 	void SetNewtonianAutopilot(bool value);

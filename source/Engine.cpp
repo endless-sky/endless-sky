@@ -282,6 +282,11 @@ void Engine::Place()
 		if(!ship->IsParked() && ship->GetSystem())
 			ships.push_back(ship);
 
+	// Newtonian flight (A5.9): flight assist resets to on at every launch or load.
+	if(!Preferences::Has("Remember flight assist state"))
+		for(const shared_ptr<Ship> &ship : player.Ships())
+			ship->SetFlightAssist(true);
+
 	// Add NPCs to the list of ships. Fighters have to be assigned to carriers,
 	// and all but "uninterested" ships should follow the player.
 	shared_ptr<Ship> flagship = player.FlagshipPtr();
@@ -806,7 +811,7 @@ void Engine::Step(bool isActive)
 			using State = Ship::FlightAssistState;
 			State state = flagship->GetFlightAssistState();
 			string stateName = state == State::ON ? "ON" : state == State::OFF ? "OFF"
-				: state == State::LIMIT ? "LIMIT" : "BRAKING";
+				: state == State::LIMIT ? "LIMIT" : state == State::BRAKING ? "BRAKING" : "N/A";
 			// Toggling assist pulses the indicator in a highlight color a few times.
 			int assistOn = flagship->FlightAssist();
 			if(lastFlightAssist >= 0 && assistOn != lastFlightAssist)

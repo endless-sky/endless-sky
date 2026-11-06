@@ -1,0 +1,182 @@
+# Newtonian flight (plans/flight-simulation-A.md, A5.4): the basic flight computer is sold
+# at every outfitter on a planet that also has a shipyard.
+
+outfitter "Ammo North"
+	"Flight Computer (Basic)"
+
+outfitter "Ammo South"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Atomics"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Dissonance Smuggling"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Electronics"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Engineering"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi General"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Militia Surplus"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Nanomaterials"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Propulsion"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Specialized"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Superconductors"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Torches"
+	"Flight Computer (Basic)"
+
+outfitter "Avgi Twilight Guard"
+	"Flight Computer (Basic)"
+
+outfitter "Basic Outfits"
+	"Flight Computer (Basic)"
+
+outfitter "Bunrodea Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Bunrodea Basic"
+	"Flight Computer (Basic)"
+
+outfitter "Bunrodea Capital"
+	"Flight Computer (Basic)"
+
+outfitter "Coalition Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Coalition Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Common Outfits"
+	"Flight Computer (Basic)"
+
+outfitter "Deep Sky Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Deep Sky Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Delta V Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Delta V Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Gegno Basic"
+	"Flight Computer (Basic)"
+
+outfitter "Gegno Intermediate"
+	"Flight Computer (Basic)"
+
+outfitter "Hai Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Hai Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Hai Intermediate"
+	"Flight Computer (Basic)"
+
+outfitter "Hai-home Only"
+	"Flight Computer (Basic)"
+
+outfitter "Hicemus"
+	"Flight Computer (Basic)"
+
+outfitter "High Houses Heavy"
+	"Flight Computer (Basic)"
+
+outfitter "High Houses Light"
+	"Flight Computer (Basic)"
+
+outfitter "Kraz Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Kraz Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Lovelace Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Lovelace Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Northern Explorers"
+	"Flight Computer (Basic)"
+
+outfitter "People's Houses"
+	"Flight Computer (Basic)"
+
+outfitter "Pirate Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Pirate Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Remnant"
+	"Flight Computer (Basic)"
+
+outfitter "Scin Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Scin Basic"
+	"Flight Computer (Basic)"
+
+outfitter "Scin Intermediate"
+	"Flight Computer (Basic)"
+
+outfitter "South Pirate Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Successor Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Successor Civilian"
+	"Flight Computer (Basic)"
+
+outfitter "Successor Heavy"
+	"Flight Computer (Basic)"
+
+outfitter "Successor High Tech"
+	"Flight Computer (Basic)"
+
+outfitter "Successor Weapons Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Successor Weapons Heavy"
+	"Flight Computer (Basic)"
+
+outfitter "Syndicate Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Syndicate Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Unfettered Basics"
+	"Flight Computer (Basic)"
+
+outfitter "Vi Basic"
+	"Flight Computer (Basic)"
+
+outfitter "Vi Intermediate"
+	"Flight Computer (Basic)"
+
+outfitter "Wanderer Advanced"
+	"Flight Computer (Basic)"
+
+outfitter "Wanderer Basics"
+	"Flight Computer (Basic)"

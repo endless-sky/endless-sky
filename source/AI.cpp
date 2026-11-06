@@ -590,9 +590,15 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	// Newtonian flight proof of concept: toggle flight assist (A5.9).
 	if(activeCommands.Has(Command::FLIGHT_ASSIST) && flagship->IsNewtonian())
 	{
-		player.Flagship()->ToggleFlightAssist();
-		Messages::Add({string("Flight assist ") + (flagship->FlightAssist() ? "on." : "off."),
-			GameData::MessageCategories().Get("normal")});
+		if(!flagship->HasFlightComputer())
+			Messages::Add({"No flight computer installed: flight assist is unavailable.",
+				GameData::MessageCategories().Get("normal")});
+		else
+		{
+			player.Flagship()->ToggleFlightAssist();
+			Messages::Add({string("Flight assist ") + (flagship->FlightAssist() ? "on." : "off."),
+				GameData::MessageCategories().Get("normal")});
+		}
 	}
 	bool newtonianStopIgnored = flagship->IsNewtonian() && !flagship->FlightAssist();
 
