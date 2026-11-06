@@ -742,6 +742,13 @@ const Set<Gamerules> &GameData::GamerulesPresets()
 
 
 
+const Set<ConditionAlias> &GameData::ConditionAliases()
+{
+	return objects.conditionAliases;
+}
+
+
+
 const std::set<std::string> &GameData::UniverseWormholeRequirements()
 {
 	return objects.universeWormholeRequirements;
