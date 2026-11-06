@@ -91,7 +91,10 @@ public:
 	static const std::string HABITABLE_ARRIVAL_MIN;
 	static const std::string HABITABLE_ARRIVAL_MAX;
 	static const std::string FLEET_MULTIPLIER;
-	static const std::string SPAWN_RAID_FLEETS;
+	static const std::string RAID_FLEET_ROLL_CHANCE;
+	static const std::string RAID_ATTRACTION_MULTIPLIER;
+	static const std::string RAID_DETERRENCE_MULTIPLIER;
+	static const std::string RAID_FLEET_SPAWN_ATTEMPTS;
 	static const std::string FLEET_SIZE_LIMITATION;
 	static const std::string DEFAULT_MAX_ESCORT_COUNT;
 	static const std::string DEFAULT_MAX_ESCORT_CREW;
@@ -148,7 +151,10 @@ public:
 	std::optional<double> HabitableArrivalMin() const;
 	std::optional<double> HabitableArrivalMax() const;
 	double FleetMultiplier() const;
-	bool SpawnRaidFleets() const;
+	double RaidFleetRollChance() const;
+	double RaidAttractionMultiplier() const;
+	double RaidDeterrenceMultiplier() const;
+	int RaidFleetSpawnAttempts() const;
 	FleetSizeLimitation GetFleetSizeLimitation() const;
 	int GetDefaultMaxEscortCount() const;
 	int GetDefaultMaxEscortCrew() const;
@@ -190,7 +196,10 @@ private:
 		std::optional<double> habitableArrivalMin = 500.;
 		std::optional<double> habitableArrivalMax = 5000.;
 		double fleetMultiplier = 1.;
-		bool spawnRaidFleets = true;
+		double raidFleetRollChance = 1.;
+		double raidAttractionMultiplier = 1.;
+		double raidDeterrenceMultiplier = 1.;
+		int raidFleetSpawnAttempts = 10;
 		FleetSizeLimitation fleetSizeLimitation = FleetSizeLimitation::NONE;
 		// The player can only have up to this many escorts active at once. Carried ships are excluded.
 		// This value can be increased for a pilot through gameplay.

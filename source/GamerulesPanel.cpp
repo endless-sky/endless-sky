@@ -45,7 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const int GAMERULES_PAGE_COUNT = 1;
+	constexpr int GAMERULES_PAGE_COUNT = 2;
 }
 
 
@@ -361,16 +361,21 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::HABITABLE_ARRIVAL_MAX,
 		Gamerules::FLEET_MULTIPLIER,
 		"",
+		"Raid Fleet Behavior",
+		Gamerules::RAID_FLEET_ROLL_CHANCE,
+		Gamerules::RAID_ATTRACTION_MULTIPLIER,
+		Gamerules::RAID_DETERRENCE_MULTIPLIER,
+		Gamerules::RAID_FLEET_SPAWN_ATTEMPTS,
+		"",
 		"Hardcore Settings",
 		Gamerules::PERMADEATH_MODE,
 		Gamerules::SINGLE_SAVE_FILE,
 		Gamerules::RESTRICTED_SAVE_LOADING,
-		"",
+		"\n",
 		"Miscellaneous",
 		Gamerules::LOCK_GAMERULES,
 		Gamerules::FIGHTER_DODGE_POLICY,
 		Gamerules::UNIVERSAL_AMMO_RESTOCKING,
-		Gamerules::SPAWN_RAID_FLEETS,
 	};
 
 	bool isCategory = true;
@@ -643,7 +648,7 @@ void GamerulesPanel::DrawTooltips()
 		return;
 
 	if(!tooltip.HasText())
-		tooltip.SetText(GameData::Tooltip(hoverItem));
+		tooltip.SetText(GameData::Tooltip(gamerules.DisplayName(hoverItem)));
 
 	tooltip.Draw();
 }

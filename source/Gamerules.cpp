@@ -46,7 +46,10 @@ const string Gamerules::HABITABLE_BASED_ARRIVAL_DISTANCE = "habitable based arri
 const string Gamerules::HABITABLE_ARRIVAL_MIN = "habitable arrival min";
 const string Gamerules::HABITABLE_ARRIVAL_MAX = "habitable arrival max";
 const string Gamerules::FLEET_MULTIPLIER = "fleet multiplier";
-const string Gamerules::SPAWN_RAID_FLEETS = "spawn raid fleets";
+const string Gamerules::RAID_FLEET_ROLL_CHANCE = "raid fleet roll chance";
+const string Gamerules::RAID_ATTRACTION_MULTIPLIER = "raid attraction multiplier";
+const string Gamerules::RAID_DETERRENCE_MULTIPLIER = "raid deterrence multiplier";
+const string Gamerules::RAID_FLEET_SPAWN_ATTEMPTS = "raid fleet spawn attempts";
 const string Gamerules::FLEET_SIZE_LIMITATION = "fleet size limitation";
 const string Gamerules::DEFAULT_MAX_ESCORT_COUNT = "default max escort count";
 const string Gamerules::DEFAULT_MAX_ESCORT_CREW = "default max escort crew";
@@ -88,7 +91,7 @@ Gamerules::Gamerules()
 		string message = "Set the person ship spawn attempt period. (Integer value greater than or equal to 1.)";
 		auto validate = [](int value) -> bool { return value >= 1; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.personSpawnPeriod = max(1, value); },
+			[this](int value) -> void { storage.personSpawnPeriod = value; },
 			validate, message, PersonSpawnPeriod()));
 	});
 	settings[PERSON_SPAWN_PERIOD].SetConditionFunc([this]() -> int {
@@ -109,7 +112,7 @@ Gamerules::Gamerules()
 		string message = "Set the no person ship spawn weight. (Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.noPersonSpawnWeight = max(0, value); },
+			[this](int value) -> void { storage.noPersonSpawnWeight = value; },
 			validate, message, NoPersonSpawnWeight()));
 	});
 	settings[NO_PERSON_SPAWN_WEIGHT].SetConditionFunc([this]() -> int {
@@ -130,7 +133,7 @@ Gamerules::Gamerules()
 		string message = "Set the NPC max mining time. (Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.npcMaxMiningTime = max(0, value); },
+			[this](int value) -> void { storage.npcMaxMiningTime = value; },
 			validate, message, NPCMaxMiningTime()));
 	});
 	settings[NPC_MAX_MINING_TIME].SetConditionFunc([this]() -> int {
@@ -149,9 +152,9 @@ Gamerules::Gamerules()
 		if(!ui)
 			return;
 		string message = "Set the universal frugal threshold. (Decimal value between 0 and 1.)";
-		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.universalFrugalThreshold = clamp(value, 0., 1.); },
+			[this](double value) -> void { storage.universalFrugalThreshold = value; },
 			validate, message, UniversalFrugalThreshold()));
 	});
 	settings[UNIVERSAL_FRUGAL_THRESHOLD].SetConditionFunc([this]() -> int {
@@ -170,9 +173,9 @@ Gamerules::Gamerules()
 		if(!ui)
 			return;
 		string message = "Set the minimum deprecation value. (Decimal value between 0 and 1.)";
-		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.depreciationMin = clamp(value, 0., 1.); },
+			[this](double value) -> void { storage.depreciationMin = value; },
 			validate, message, DepreciationMin()));
 	});
 	settings[DEPRECIATION_MIN].SetConditionFunc([this]() -> int {
@@ -191,9 +194,9 @@ Gamerules::Gamerules()
 		if(!ui)
 			return;
 		string message = "Set the daily deprecation value. (Decimal value between 0 and 1.)";
-		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.depreciationDaily = clamp(value, 0., 1.); },
+			[this](double value) -> void { storage.depreciationDaily = value; },
 			validate, message, DepreciationDaily()));
 	});
 	settings[DEPRECIATION_DAILY].SetConditionFunc([this]() -> int {
@@ -214,7 +217,7 @@ Gamerules::Gamerules()
 		string message = "Set the depreciation grace period. (Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.depreciationGracePeriod = max(0, value); },
+			[this](int value) -> void { storage.depreciationGracePeriod = value; },
 			validate, message, DepreciationGracePeriod()));
 	});
 	settings[DEPRECIATION_GRACE_PERIOD].SetConditionFunc([this]() -> int {
@@ -235,7 +238,7 @@ Gamerules::Gamerules()
 		string message = "Set the depreciation maximum age. (Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.depreciationMaxAge = max(0, value); },
+			[this](int value) -> void { storage.depreciationMaxAge = value; },
 			validate, message, DepreciationMaxAge()));
 	});
 	settings[DEPRECIATION_MAX_AGE].SetConditionFunc([this]() -> int {
@@ -263,9 +266,9 @@ Gamerules::Gamerules()
 		if(!ui)
 			return;
 		string message = "Set the minimum system departure distance. (Decimal value greater than or equal to 0.)";
-		auto validate = [](double value) -> bool { return value >= 0.0; };
+		auto validate = [](double value) -> bool { return value >= 0.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.systemDepartureMin = max(0., value); },
+			[this](double value) -> void { storage.systemDepartureMin = value; },
 			validate, message, SystemDepartureMin()));
 	});
 	settings[SYSTEM_DEPARTURE_MIN].SetConditionFunc([this]() -> int {
@@ -302,7 +305,7 @@ Gamerules::Gamerules()
 	});
 
 	settings[HABITABLE_BASED_ARRIVAL_DISTANCE] = Setting::TrueFalse("Habitable arrival distance", true);
-	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetOnToggleFunc([this](UI *ui) -> void {
+	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetOnToggleFunc([this](UI *) -> void {
 		storage.habitableBasedArrivalDistance = !storage.habitableBasedArrivalDistance;
 	});
 	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
@@ -324,7 +327,7 @@ Gamerules::Gamerules()
 			return;
 		string message = "Set the minimum system arrival distance when the arrival distance is based on the "
 			"habitable distance of the system. (Decimal value greater than or equal to 0.)";
-		auto validate = [](double value) -> bool { return value >= 0.0; };
+		auto validate = [](double value) -> bool { return value >= 0.; };
 		ui->Push(OptionalInputDialogPanel::RequestDoubleWithValidation(
 			[this](optional<double> value) -> void { storage.habitableArrivalMin = value; },
 			validate, message, HabitableArrivalMin()));
@@ -351,7 +354,7 @@ Gamerules::Gamerules()
 			return;
 		string message = "Set the maximum system arrival distance when the arrival distance is based on the "
 			"habitable distance of the system. (Decimal value greater than or equal to 0.)";
-		auto validate = [](double value) -> bool { return value >= 0.0; };
+		auto validate = [](double value) -> bool { return value >= 0.; };
 		ui->Push(OptionalInputDialogPanel::RequestDoubleWithValidation(
 			[this](optional<double> value) -> void { storage.habitableArrivalMax = value; },
 			validate, message, HabitableArrivalMax()));
@@ -372,9 +375,9 @@ Gamerules::Gamerules()
 		if(!ui)
 			return;
 		string message = "Set the fleet spawn multiplier. (Decimal value greater than or equal to 0.)";
-		auto validate = [](double value) -> bool { return value >= 0.0; };
+		auto validate = [](double value) -> bool { return value >= 0.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.fleetMultiplier = max(0., value); },
+			[this](double value) -> void { storage.fleetMultiplier = value; },
 			validate, message, FleetMultiplier()));
 	});
 	settings[FLEET_MULTIPLIER].SetConditionFunc([this]() -> int {
@@ -385,13 +388,88 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
-	settings[SPAWN_RAID_FLEETS] = Setting::TrueFalse("Spawn raid fleets", true);
-	settings[SPAWN_RAID_FLEETS].SetOnToggleFunc([this](UI *) -> void {
-		storage.spawnRaidFleets = !storage.spawnRaidFleets;
+	settings[RAID_FLEET_ROLL_CHANCE] = Setting::Unique("Roll chance");
+	settings[RAID_FLEET_ROLL_CHANCE].SetDisplayFunc([this]() -> pair<string, bool> {
+		return make_pair(Format::Percentage(RaidFleetRollChance(), 2), RaidFleetRollChance());
 	});
-	settings[SPAWN_RAID_FLEETS].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
-		storage.spawnRaidFleets = preset.storage.spawnRaidFleets;
-		return storage.spawnRaidFleets;
+	settings[RAID_FLEET_ROLL_CHANCE].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the raid fleet roll chance. (Decimal value between 0 and 1.)";
+		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.raidFleetRollChance = value; },
+			validate, message, RaidFleetRollChance()));
+	});
+	settings[RAID_FLEET_ROLL_CHANCE].SetConditionFunc([this]() -> int {
+		return RaidFleetRollChance() * 1000;
+	});
+	settings[RAID_FLEET_ROLL_CHANCE].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.raidFleetRollChance = preset.storage.raidFleetRollChance;
+		return std::nullopt;
+	});
+
+	settings[RAID_ATTRACTION_MULTIPLIER] = Setting::Unique("Attraction multiplier");
+	settings[RAID_ATTRACTION_MULTIPLIER].SetDisplayFunc([this]() -> pair<string, bool> {
+		return make_pair(Format::Percentage(RaidAttractionMultiplier(), 2), RaidFleetRollChance());
+	});
+	settings[RAID_ATTRACTION_MULTIPLIER].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the raid fleet attraction multiplier. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.raidAttractionMultiplier = value; },
+			validate, message, RaidAttractionMultiplier()));
+	});
+	settings[RAID_ATTRACTION_MULTIPLIER].SetConditionFunc([this]() -> int {
+		return RaidAttractionMultiplier() * 1000;
+	});
+	settings[RAID_ATTRACTION_MULTIPLIER].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.raidAttractionMultiplier = preset.storage.raidAttractionMultiplier;
+		return std::nullopt;
+	});
+
+	settings[RAID_DETERRENCE_MULTIPLIER] = Setting::Unique("Deterrence multiplier");
+	settings[RAID_DETERRENCE_MULTIPLIER].SetDisplayFunc([this]() -> pair<string, bool> {
+		return make_pair(Format::Percentage(RaidDeterrenceMultiplier(), 2), RaidFleetRollChance());
+	});
+	settings[RAID_DETERRENCE_MULTIPLIER].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the raid fleet deterrence multiplier. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.raidDeterrenceMultiplier = value; },
+			validate, message, RaidDeterrenceMultiplier()));
+	});
+	settings[RAID_DETERRENCE_MULTIPLIER].SetConditionFunc([this]() -> int {
+		return RaidDeterrenceMultiplier() * 1000;
+	});
+	settings[RAID_DETERRENCE_MULTIPLIER].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.raidDeterrenceMultiplier = preset.storage.raidDeterrenceMultiplier;
+		return std::nullopt;
+	});
+
+	settings[RAID_FLEET_SPAWN_ATTEMPTS] = Setting::Unique("Fleet spawn attempts");
+	settings[RAID_FLEET_SPAWN_ATTEMPTS].SetDisplayFunc([this]() -> pair<string, bool> {
+		return make_pair(Format::AbbreviatedNumber(RaidFleetSpawnAttempts()), RaidFleetRollChance());
+	});
+	settings[RAID_FLEET_SPAWN_ATTEMPTS].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the number of raid fleet spawn attempts. (Integer value greater than or equal to 1.)";
+		auto validate = [](int value) -> bool { return value >= 1; };
+		ui->Push(DialogPanel::RequestIntegerWithValidation(
+			[this](int value) -> void { storage.raidFleetSpawnAttempts = value; },
+			validate, message, RaidFleetSpawnAttempts()));
+	});
+	settings[RAID_FLEET_SPAWN_ATTEMPTS].SetConditionFunc([this]() -> int {
+		return RaidFleetSpawnAttempts();
+	});
+	settings[RAID_FLEET_SPAWN_ATTEMPTS].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.raidFleetSpawnAttempts = preset.storage.raidFleetSpawnAttempts;
+		return std::nullopt;
 	});
 
 	settings[FLEET_SIZE_LIMITATION] = Setting::List("Fleet size limitation", 0,
@@ -416,7 +494,7 @@ Gamerules::Gamerules()
 		string message = "Set the default max escort count. (Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.defaultMaxEscortCount = max(0, value); },
+			[this](int value) -> void { storage.defaultMaxEscortCount = value; },
 			validate, message, GetDefaultMaxEscortCount()));
 	});
 	settings[DEFAULT_MAX_ESCORT_COUNT].SetConditionFunc([this]() -> int {
@@ -439,7 +517,7 @@ Gamerules::Gamerules()
 		string message = "Set the default max escort crew. (Integer value greater than or equal to 0.)";
 		auto validate = [](int value) -> bool { return value >= 0; };
 		ui->Push(DialogPanel::RequestIntegerWithValidation(
-			[this](int value) -> void { storage.defaultMaxEscortCrew = max(0, value); },
+			[this](int value) -> void { storage.defaultMaxEscortCrew = value; },
 			validate, message, GetDefaultMaxEscortCrew()));
 	});
 	settings[DEFAULT_MAX_ESCORT_CREW].SetConditionFunc([this]() -> int {
@@ -610,8 +688,20 @@ void Gamerules::Load(const DataNode &node)
 		}
 		else if(key == FLEET_MULTIPLIER)
 			storage.fleetMultiplier = max(0., child.Value(1));
-		else if(key == SPAWN_RAID_FLEETS)
-			storage.spawnRaidFleets = child.BoolValue(1);
+		else if(key == "spawn raid fleets")
+		{
+			child.PrintTrace("The \"spawn raid fleets\" gamerule has been deprecated. "
+					"Use \"raid fleet roll chance\" instead.");
+			storage.raidFleetRollChance = child.BoolValue(1);
+		}
+		else if(key == RAID_FLEET_ROLL_CHANCE)
+			storage.raidFleetRollChance = clamp(child.Value(1), 0., 1.);
+		else if(key == RAID_ATTRACTION_MULTIPLIER)
+			storage.raidAttractionMultiplier = max(0., child.Value(1));
+		else if(key == RAID_DETERRENCE_MULTIPLIER)
+			storage.raidDeterrenceMultiplier = max(0., child.Value(1));
+		else if(key == RAID_FLEET_SPAWN_ATTEMPTS)
+			storage.raidFleetSpawnAttempts = max<int>(1, child.Value(1));
 		else if(key == FLEET_SIZE_LIMITATION)
 		{
 			const string &value = child.Token(1);
@@ -721,8 +811,14 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 		}
 		if(storage.fleetMultiplier != preset.storage.fleetMultiplier)
 			out.Write(FLEET_MULTIPLIER, storage.fleetMultiplier);
-		if(storage.spawnRaidFleets != preset.storage.spawnRaidFleets)
-			out.Write(SPAWN_RAID_FLEETS, storage.spawnRaidFleets ? 1 : 0);
+		if(storage.raidFleetRollChance != preset.storage.raidFleetRollChance)
+			out.Write(RAID_FLEET_ROLL_CHANCE, storage.raidFleetRollChance);
+		if(storage.raidAttractionMultiplier != preset.storage.raidAttractionMultiplier)
+			out.Write(RAID_ATTRACTION_MULTIPLIER, storage.raidAttractionMultiplier);
+		if(storage.raidDeterrenceMultiplier != preset.storage.raidDeterrenceMultiplier)
+			out.Write(RAID_DETERRENCE_MULTIPLIER, storage.raidDeterrenceMultiplier);
+		if(storage.raidFleetSpawnAttempts != preset.storage.raidFleetSpawnAttempts)
+			out.Write(RAID_FLEET_SPAWN_ATTEMPTS, storage.raidFleetSpawnAttempts);
 		if(storage.fleetSizeLimitation != preset.storage.fleetSizeLimitation)
 		{
 			if(storage.fleetSizeLimitation == FleetSizeLimitation::NONE)
@@ -874,14 +970,20 @@ void Gamerules::SetMiscValue(const string &rule, int value)
 
 int Gamerules::GetValue(const string &rule) const
 {
+
 	auto it = settings.find(rule);
 	if(it != settings.end())
 		return it->second.GetCondition();
 
 	auto sit = storage.miscRules.find(rule);
-	if(sit == storage.miscRules.end())
-		return 0;
-	return sit->second;
+	if(sit != storage.miscRules.end())
+		return sit->second;
+
+	// "spawn raid fleets" has been replaced by "raid fleet roll chance".
+	// Keeping this in place for reverse compatibility.
+	if(rule == "spawn raid fleets")
+		return storage.raidFleetRollChance > 0.;
+	return 0;
 }
 
 
@@ -1005,9 +1107,30 @@ double Gamerules::FleetMultiplier() const
 
 
 
-bool Gamerules::SpawnRaidFleets() const
+double Gamerules::RaidFleetRollChance() const
 {
-	return storage.spawnRaidFleets;
+	return storage.raidFleetRollChance;
+}
+
+
+
+double Gamerules::RaidAttractionMultiplier() const
+{
+	return storage.raidAttractionMultiplier;
+}
+
+
+
+double Gamerules::RaidDeterrenceMultiplier() const
+{
+	return storage.raidDeterrenceMultiplier;
+}
+
+
+
+int Gamerules::RaidFleetSpawnAttempts() const
+{
+	return storage.raidFleetSpawnAttempts;
 }
 
 
@@ -1074,7 +1197,6 @@ void Gamerules::SyncSettings()
 	settings[LOCK_GAMERULES].SetIndex(LockGamerules());
 	settings[UNIVERSAL_RAMSCOOP].SetIndex(UniversalRamscoopActive());
 	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetIndex(HabitableBasedArrivalDistance());
-	settings[SPAWN_RAID_FLEETS].SetIndex(SpawnRaidFleets());
 	settings[SINGLE_SAVE_FILE].SetIndex(SingleSaveFile());
 	settings[RESTRICTED_SAVE_LOADING].SetIndex(RestrictedSaveLoading());
 	settings[UNIVERSAL_AMMO_RESTOCKING].SetIndex(storage.miscRules[UNIVERSAL_AMMO_RESTOCKING]);
