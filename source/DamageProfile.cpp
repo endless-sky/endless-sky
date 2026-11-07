@@ -45,6 +45,13 @@ DamageProfile::DamageProfile(const Entity &entity, const Weather::ImpactInfo &in
 
 
 
+DamageProfile::DamageProfile(const Entity &entity, const Weapon &weapon, double scaling)
+	: entity(&entity), weapon(&weapon), position(Point()), isBlast(false), scaling(scaling)
+{
+}
+
+
+
 const Weapon &DamageProfile::GetWeapon() const
 {
 	return *weapon;

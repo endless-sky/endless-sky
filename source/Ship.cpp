@@ -859,6 +859,10 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			levels.hull = child.Value(1);
 		else if(key == "position" && child.Size() >= 3)
 			position = Point(child.Value(1), child.Value(2));
+		else if(key == "placed")
+			isPlaced = true;
+		else if(key == "skip recharging")
+			isSkipRecharging = true;
 		else if(key == "system" && hasValue)
 			currentSystem = GameData::Systems().Get(child.Token(1));
 		else if(key == "planet" && hasValue)
@@ -1361,6 +1365,10 @@ void Ship::Save(DataWriter &out) const
 		out.Write("shields", levels.shields);
 		out.Write("hull", levels.hull);
 		out.Write("position", position.X(), position.Y());
+		if(isPlaced)
+			out.Write("placed");
+		if(isSkipRecharging)
+			out.Write("skip recharging");
 
 		for(const EnginePoint &point : enginePoints)
 		{
@@ -1748,6 +1756,14 @@ void Ship::SetVelocity(Point velocity)
 
 
 
+void Ship::SetFacing(Angle angle)
+{
+	this->angle = Angle();
+	Turn(angle);
+}
+
+
+
 // Instantiate a newly-created ship in-flight.
 void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
@@ -1858,6 +1874,34 @@ void Ship::SetIsSpecial(bool special)
 bool Ship::IsSpecial() const
 {
 	return isSpecial;
+}
+
+
+
+void Ship::SetIsPlaced(bool placed)
+{
+	isPlaced = placed;
+}
+
+
+
+bool Ship::IsPlaced() const
+{
+	return isPlaced;
+}
+
+
+
+void Ship::SetSkipRecharging(bool skipRecharging)
+{
+	isSkipRecharging = skipRecharging;
+}
+
+
+
+bool Ship::IsSkipRecharging() const
+{
+	return isSkipRecharging;
 }
 
 
