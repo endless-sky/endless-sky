@@ -11864,7 +11864,7 @@ mission "Silver Talon 1"
 					goto legal
 
 			label greenrock
-			`	"Well, that's the thing, isn't it? We need to get to <destination>, then we'll do our work, and then we'll need a ride out of there afterwards, which might be pretty hot. Truth is, I figured an experienced-looking captain like you with a pockmarked but well-maintained ship was just the ticket. Was I right?"`
+			`	"Well, there's the catch. We need to get to <destination>, then we'll do our work and need a ride out of there when we're done - which might be pretty hot. I figured an experienced-looking captain like you with a pockmarked but well-maintained ship was just the ticket. Was I right?"`
 			choice
 				`	"I'm in! Sounds like an adventure."`
 					goto in
