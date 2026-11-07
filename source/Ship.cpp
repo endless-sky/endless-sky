@@ -4403,7 +4403,7 @@ void Ship::DoGeneration()
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
 			double energyRemaining = levels.energy - MaxEnergy();
-			double fuelRemaining = levels.fuel - MaxFuel() + cache.dockedFuelGeneration;
+			double fuelRemaining = max(0., levels.fuel - MaxFuel()) + cache.dockedFuelGeneration;
 			double dockedEnergyRemaining = cache.dockedEnergyGeneration;
 			ResourceLevels dockedEnergyCost;
 			if(dockedEnergyRemaining)
