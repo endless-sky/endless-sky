@@ -76,9 +76,9 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	auto AddPlunder = [this](const map<const Outfit *, int> &outfits, bool inCargo) -> void {
 		for(auto &[outfit, count] : outfits)
 		{
-			// Don't include outfits that are installed and unplunderable. But,
-			// "unplunderable" outfits can still be stolen from cargo.
-			if(!count || (!inCargo && outfit->GetPrecise("unplunderable")))
+			// Don't include outfits that are installed and unplunderable or unremovable,
+			// but such outfits can still be stolen from cargo.
+			if(!count || (!inCargo && (outfit->GetPrecise("unplunderable") || outfit->GetPrecise("unremovable"))))
 				continue;
 			plunder.emplace_back(outfit, count, inCargo);
 		}
