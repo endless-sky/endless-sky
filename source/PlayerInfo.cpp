@@ -261,6 +261,7 @@ void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile
 	// Clear any previously loaded data.
 	Clear();
 	this->pilot = pilot;
+	pilot->ApplyGamerules();
 
 	// Copy the core information from the full starting scenario.
 	startData = start;
@@ -1883,6 +1884,7 @@ void PlayerInfo::Land(UI &ui)
 
 	freshlyLoaded = false;
 	flagship.reset();
+	boardingCasualties.clear();
 }
 
 
@@ -5021,6 +5023,21 @@ bool PlayerInfo::RecacheJumpRoutes()
 	bool recache = recacheJumpRoutes;
 	recacheJumpRoutes = false;
 	return recache;
+}
+
+
+
+void PlayerInfo::AddBoardingCasualties(const weak_ptr<Ship> &ship, int casualties)
+{
+	boardingCasualties[ship] += casualties;
+}
+
+
+
+int PlayerInfo::GetBoardingCasualties(const weak_ptr<Ship> &ship) const
+{
+	auto it = boardingCasualties.find(ship);
+	return it == boardingCasualties.end() ? 0 : it->second;
 }
 
 
