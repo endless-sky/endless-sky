@@ -5027,14 +5027,14 @@ bool PlayerInfo::RecacheJumpRoutes()
 
 
 
-void PlayerInfo::AddBoardingCasualties(const shared_ptr<Ship> &ship, int casualties)
+void PlayerInfo::AddBoardingCasualties(const weak_ptr<Ship> &ship, int casualties)
 {
 	boardingCasualties[ship] += casualties;
 }
 
 
 
-int PlayerInfo::GetBoardingCasualties(const shared_ptr<Ship> &ship) const
+int PlayerInfo::GetBoardingCasualties(const weak_ptr<Ship> &ship) const
 {
 	auto it = boardingCasualties.find(ship);
 	return it == boardingCasualties.end() ? 0 : it->second;

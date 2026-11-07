@@ -416,8 +416,8 @@ public:
 	// Checks and resets recacheJumpRoutes. Returns the value that was present upon entry.
 	bool RecacheJumpRoutes();
 
-	void AddBoardingCasualties(const std::shared_ptr<Ship> &ship, int casualties);
-	int GetBoardingCasualties(const std::shared_ptr<Ship> &ship) const;
+	void AddBoardingCasualties(const std::weak_ptr<Ship> &ship, int casualties);
+	int GetBoardingCasualties(const std::weak_ptr<Ship> &ship) const;
 
 
 private:

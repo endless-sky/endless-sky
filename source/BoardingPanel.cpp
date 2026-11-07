@@ -273,7 +273,6 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 	if((key == 'd' || key == 'x' || key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)))) && CanExit())
 	{
 		const Gamerules &rules = GameData::GetGamerules();
-		int casualties = player.GetBoardingCasualties(victim);
 		Gamerules::CaptureProfitSharing profitSharing = rules.GetCaptureProfitSharing();
 		// When closing the panel, mark the player dead if their ship was captured.
 		if(playerDied)
@@ -288,6 +287,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 
 			int64_t deathBenefits = 0;
 			int64_t crewBonuses = 0;
+			int casualties = player.GetBoardingCasualties(victim);
 
 			// Even if boarding wasn't successful, you may need to pay a minimum amount
 			// per dead crew member.
@@ -297,8 +297,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				deathBenefits = (casualties - pastCasualties) * minimumDeathBenefit;
 			}
 			// If capture of the ship was successful, then death benefits may be paid
-			// based off of the value of the ship. You as the captain are able to have
-			// more shares than your crew members, who each only get one.
+			// based off of the value of the ship.
 			if(successfulCapture)
 			{
 				// Determine the value per share of this ship.
@@ -309,20 +308,23 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					totalShares += crewShares;
 				if(payDeathBenefits)
 					totalShares += familyShares;
-				double valueFraction = rules.CaptureValueBasis().value_or(Depreciation::Full());
-				int64_t valuePerShare = victim->Cost() * valueFraction / totalShares;
-
-				if(payCrewBonuses)
-					crewBonuses = crewShares * valuePerShare;
-				if(payDeathBenefits)
+				if(totalShares)
 				{
-					// Benefits only need to be paid on a per-share basis if the
-					// share size per crew is greater than the minimum per casualty.
-					int64_t benefitsByShares = familyShares * valuePerShare;
-					if(benefitsByShares > casualties * minimumDeathBenefit)
+					double valueFraction = rules.CaptureValueBasis().value_or(Depreciation::Full());
+					int64_t valuePerShare = victim->Cost() * valueFraction / totalShares;
+
+					if(payCrewBonuses)
+						crewBonuses = crewShares * valuePerShare;
+					if(payDeathBenefits)
 					{
-						// Account for any payments that were scheduled during past boarding attempts.
-						deathBenefits = benefitsByShares - pastCasualties * minimumDeathBenefit;
+						// Benefits only need to be paid on a per-share basis if the
+						// share size per crew is greater than the minimum per casualty.
+						int64_t benefitsByShares = familyShares * valuePerShare;
+						if(benefitsByShares > casualties * minimumDeathBenefit)
+						{
+							// Account for any payments that were scheduled during past boarding attempts.
+							deathBenefits = benefitsByShares - pastCasualties * minimumDeathBenefit;
+						}
 					}
 				}
 			}
