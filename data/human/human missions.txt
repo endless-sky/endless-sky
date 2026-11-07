@@ -11830,6 +11830,7 @@ mission "Silver Talon 1"
 				`	(See what she wants.)`
 				`	(Ignore her.)`
 					decline
+
 			`	As you approach, she stands up, a maneuver that results in the bazooka slamming into the metal frame of the box. You wince as sparks fly from the weapon's barrel, narrowly missing one of the openings between the crate's slats. Simultaneously, the box lets loose with a long string of invectives.`
 			`	"Sorry about him," the woman says, pointing at the box. "He's just in one of his moods, that's all. Short-fused guy unless you stuff him with garlic or sit him behind the wheel, and even then he's pretty toxic. Knows his work, though."`
 			choice
@@ -11920,8 +11921,10 @@ mission "Silver Talon 1"
 				`	"Sounds good."`
 					goto good
 				`	"You don't want me to wait?"`
+
 			`	"No, I don't. You've done right by us, and we owe you for it. If we're not back in four hours, we'll probably all be dead and there'll be a price on your head too."`
 			`	Cerridwyn exhales, a long, slow breath.`
+
 			label good
 			`	"Anyways, good luck, Captain <last>. Stick with your ship, make sure she's ready to lift on a moment's notice, and we'll see you in a few hours."`
 			`	With that, Cerridwyn tosses her bazooka through the hatch and jumps down beside it. Louis gives you a jaunty salute and follows more cautiously. As the landing pad cools and the bounty hunters scramble toward a dilapidated ATV, you are left to mull over Cerridwyn's foreboding words.`
@@ -11954,11 +11957,14 @@ mission "Silver Talon 2"
 					goto louis
 				`	"Did you succeed?"`
 					goto failure
+
 			`	Cerridwyn nods sharply and takes her seat.`
 				goto lift
+
 			label louis
 			`	Cerridwyn merely shakes her head.`
 				goto lift
+
 			label failure
 			`	Cerridwyn laughs bitterly. "Does it look like we succeeded? We blew it, and we're going to have Sam Hill to pay if you don't get us off the ground pronto."`
 			label lift
@@ -11969,13 +11975,16 @@ mission "Silver Talon 2"
 					to display
 						has "armament deterrence"
 				`	(Get out of here.)`
+
 			`	Cranking your engines, you blast off, soon escaping the range of the small arms in the hovercraft. As your heartbeat slows, you approach the Karman line and enter space.`
 				goto escape
+
 			label strafe
 			`	Rather than flee, you turn your guns on the hovercraft. For a brief moment, you see the terrified face and upraised arms of a pirate, before a rain of fire sweeps the vehicle and transforms it into a lump of smoldering charcoal.`
 			`	The cockpit is silent as you turn for space, save for the hum of your ship's air conditioner.`
 			action
 				set "strafed miyano's hovercraft"
+
 			label escape
 			`	Suddenly, red flashing dots appear on your radar. Klaus swears loudly into your left ear as the red dots solidify and are joined by a number of smaller specks.`
 			`	"Well, shoot," Cerridwyn mutters. "We should have known that he wouldn't take kindly to us escaping. Better get out of here fast. We've got friends on <destination>, so that's probably the best target."`
@@ -12014,6 +12023,7 @@ mission "Silver Talon 2"
 				`	"Thank you."`
 					goto thanks
 				`	"I can't take this."`
+
 			`	Cerridwyn becomes much firmer. "You can, and will, <first> <last>. If you hadn't flown us out of there like that - or, if you had left an hour earlier - we'd all be dead. It's the least we can do."`
 			label thanks
 			`	The payment made, Cerridwyn suddenly seems to collapse in front of your eyes. Picking up her bazooka, she slings it silently over her shoulder and wanders off aimlessly into the spaceport. Klaus and Pict follow close behind, carrying the rest of the bounty hunters' gear.`
@@ -12089,8 +12099,10 @@ mission "Silver Talon 3"
 			label drink
 			`	The bar is mostly empty, so it doesn't take long for your drink to be prepared. While you're sipping it, Cerridwyn finally speaks.`
 				goto speaks
+
 			label wait
 			`	You wait at the bar for one minute, then two, until the bartender starts giving you irritated glances. Finally, Cerridwyn speaks.`
+
 			label speaks
 			`	"I killed him, you know," she says, still staring off into the distance. "I was the one who signed off on the job. The one who let him come along with us. If I hadn't..."`
 			choice
@@ -12371,7 +12383,6 @@ mission "Pict's Legacy 1"
 			label second
 			`	"Now, second question: what were you doing at 45 Impala Street?"`
 			`	Outside the interrogation room, a door slams and someone shouts something about protocols.`
-
 			choice
 				`	"I was just going for a walk."`
 					goto walk
@@ -12468,7 +12479,6 @@ mission "Pict's Legacy 2"
 			`	Her finger moves to the second photo. "Daniel 'Dagger' Dresden: retired Republic Navy marine undergoing treatment for alcohol-induced hepatitis. Died of sudden multiple organ failure in hospital on Starcross fifteen minutes after the doctors decided he was stable and fit for surgery."`
 			`	Indicating the third photo, she goes on. "Hadija Jumanne: senior Republic defense staffer who organized a bounty program on pirates with suspected connections to the Alphas. Fatally shot in her hotel room on Glory last month.`
 			`	"Then, of course, there's Pict. Framing you for her murder was clever on the surface, but even the regular cops would have found enough evidence to clear you eventually. A skilled assassin would never have taken that kind of risk, even for revenge."`
-
 			choice
 				`	"Revenge? Is that why you think he went after Klaus, Dagger, and Pict?"`
 				`	"Do you think their deaths had anything to do with Vlad Blaire?"`
@@ -12538,7 +12548,6 @@ mission "Pict's Legacy 2"
 		conversation
 			`Your ship settles down amidst a cloud of dust. The two marines are out of their seats immediately and racing for the door.`
 			`	"He's in the mountain," Raven says. "The map is showing some sort of underground complex."`
-			
 			choice
 				`	"Well, then, let's go get him."`
 				`	"Are you sure this is a good idea?"`
@@ -12625,7 +12634,6 @@ mission "Pict's Quest 1"
 
 			`	It's Raven, rather than Pict, who answers. "We're looking for a ride to <destination>. I'm afraid we'll only able to pay <payment> for this leg of the journey, but it's important work: a small group of Alphas was sighted there not too long ago and we think they might have been involved in a murder case.`
 			`	"If everything goes well, we should be able to get you approved for better remuneration for later jobs."`
-
 			choice
 				`	"That sounds like a worthy cause. I'll take you there."`
 				`	"Sorry, but I can't afford to take on a job for so little."`
@@ -12693,6 +12701,7 @@ mission "Pict's Quest 2"
 				`	"At least no one's been killed yet."`
 			
 			`	"Well, apart from Jumanne, you mean," Pict counters. "But you do have a point."`
+
 			label father
 			`	The shopkeeper suddenly interrupts. "Wait, you knew Blaire?"`
 			`	Pict eyes him quizzically. "Son, I killed Vlad Blaire. Took a gene sample, too, so I know it was him. Why?"`
@@ -12713,6 +12722,7 @@ mission "Pict's Quest 2"
 			label surveillance
 			branch "non-fw surveillance"
 				not "event: joined the free worlds"
+
 			`	"Well, perhaps," Pict replies, "but it's not quite so simple. I thought a Free World bigwig like you would know about that, though, seeing as how one of the South's big objections to pilot's licenses was always the invasion of privacy."`
 			`	"I thought -" you manage to get out before Raven cuts you off.`
 				goto interrupt
