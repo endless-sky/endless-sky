@@ -715,6 +715,7 @@ outfit "Point Drive"
 	"outfit space" -20
 	"jump speed" .6
 	"jump fuel" 180
+	"jump time" 100
 	"jump drive" 1
 	"jump effect" "point drive void small"
 	"jump effect" "point drive void 1"

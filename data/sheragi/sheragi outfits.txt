@@ -115,6 +115,7 @@ outfit "Fusion Drive"
 	"engine capacity" -230
 	"unique" 1
 	"jump fuel" 100
+	"jump time" 100
 	"jump speed" 0.2
 	"hyperdrive" 1
 	"energy generation" 54
