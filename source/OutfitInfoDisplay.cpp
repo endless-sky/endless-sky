@@ -245,6 +245,7 @@ namespace {
 		{"cloaked scanning", "You may scan other ships while cloaked."},
 		{"can jettison", "Can be jettisoned while installed."},
 		{"unremovable", "Can't be removed once installed."},
+		{"nondepreciable", "Doesn't lose value with age."},
 	};
 
 	bool IsNotRequirement(const string &label)
