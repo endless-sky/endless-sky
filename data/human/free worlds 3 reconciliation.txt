@@ -1399,11 +1399,74 @@ mission "FW Pug 2C: Jump Drive"
 
 
 
+mission "FW Pug 2C: Unknown Drive"
+	landing
+	name "Investigate the Pug"
+	description "Travel to the Deneb system to investigate the Pug; if possible, make contact with them and determine what their goals and desires are."
+	source "Hephaestus"
+	destination "Pugglemug"
+	clearance
+	passengers 1
+	to offer
+		has "FW Pug 2B: done"
+		not "fw given jump drive"
+		not "outfit (flagship installed): Hyperdrive"
+		not "outfit (flagship installed): Scram Drive"
+		not "outfit (flagship installed): Jump Drive"
+	on fail
+		dialog phrase "free worlds failed"
+	
+	on offer
+		conversation
+			`You are directed to land in a hangar some distance away from the spaceport, in a cluster of buildings owned by Syndicated Systems. A team of engineers meets you and asks if they can look over your ship; a few minutes later, one of them asks in confusion, "Where is your hyperdrive installed? We can't seem to find it."`
+			branch "has drive"
+				or
+					has "flagship attribute: hyperdrive"
+					has "flagship attribute: jump drive"
+			`	You admit to them that your ship doesn't have any hyperdrive installed, and therefore cannot travel between systems. The engineers question what sort of black magic allowed you to reach this system without a hyperdrive, but you withhold your esoteric means of travel granted to you by the plugins you have installed. The engineers give a puzzled look at one another before shrugging and moving on.`
+				goto "check installation"
+			
+			label "has drive"
+			branch "is jump capable"
+				has "flagship attribute: jump drive"
+			`	You assure them that your ship is capable of jumping between systems through esoteric means unknown to someone who only plays the game without plugins... but you'll still need the jump drive in order to reach the Pug.`
+			
+			label "check installation"
+			branch "installed"
+				"flagship attribute: outfit space" >= 20 * 1000
+			`	They bring out a strange, alien-looking device that you assume must be a jump drive, but the engineers are having trouble finding a place to install it. "You don't have space for us to install the jump drive. We'll place it in your cargo hold, then you can go to the outfitter to make room for it yourself."`
+				goto end
+			
+			label installed
+			`	They install a strange, alien-looking device that you assume must be a jump drive onto your ship.`
+			
+			label end
+			action
+				outfit "Jump Drive" 1
+			`	"Now, be careful with your fuel gauge," one of them tells you. "This thing guzzles twice as much fuel per jump as an ordinary hyperdrive, and you don't want to become stranded while outside human space."`
+				accept
+			
+			label "is jump capable"
+			action
+				set "already had jump drive"
+			`	You assure them that your ship is already capable of jumping between systems through esoteric means unknown to someone who only plays the game without plugins. The engineers give a puzzled look at one another before shrugging. Since you don't need their equipment, they urge you to head directly for Pug space and continue your mission.`
+				accept
+	
+	on accept
+		set "fw given jump drive"
+	on visit
+		dialog `You land on <planet>, but realize that your escort carrying Alondo hasn't entered the system yet. Better depart and wait for it to arrive.`
+	on complete
+		set "FW Pug 2C: done"
+
+
+
 mission "FW Pug Jump Drive Check"
 	landing
 	to offer
 		has "fw given jump drive"
 		not "outfit (all): Jump Drive"
+		not "flagship attribute: jump drive"
 		not "event: reconnected delta capricorni"
 	on offer
 		conversation
