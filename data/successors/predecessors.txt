@@ -22,8 +22,8 @@ ship "Resja, of the Nine Eyes"
 	attributes
 		category "Medium Warship"
 		"cost" 55000000
-		"shields" 4000
-		"hull" 62500
+		"shields" 3000
+		"hull" 46800
 		"automaton" 1
 		"bunks" 18
 		"mass" 440
@@ -128,8 +128,8 @@ ship "Hasur, Vowsworn"
 	attributes
 		category "Light Warship"
 		"cost" 55000000
-		"shields" 2500
-		"hull" 39200
+		"shields" 1900
+		"hull" 29400
 		"automaton" 1
 		"bunks" 10
 		"mass" 280
@@ -225,8 +225,8 @@ ship "Queru, Luminous Gaze"
 	attributes
 		category "Light Warship"
 		"cost" 55000000
-		"shields" 4200
-		"hull" 32500
+		"shields" 3200
+		"hull" 24400
 		"automaton" 1
 		"bunks" 14
 		"mass" 260
@@ -486,8 +486,8 @@ ship "Valkkyiara-Khorasaqra"
 	attributes
 		category "Medium Warship"
 		"cost" 400000000
-		"shields" 12500
-		"hull" 95000
+		"shields" 9500
+		"hull" 71500
 		"hull repair rate" 4.75
 		"hull energy" 4.75
 		"hull heat" 4.75
