@@ -261,6 +261,7 @@ void PlayerInfo::New(const StartConditions &start, const shared_ptr<PilotProfile
 	// Clear any previously loaded data.
 	Clear();
 	this->pilot = pilot;
+	pilot->ApplyGamerules();
 
 	// Copy the core information from the full starting scenario.
 	startData = start;
@@ -1322,7 +1323,20 @@ void PlayerInfo::CaptureShip(const shared_ptr<Ship> &ship)
 	ship->SetIsYours();
 	if(ship->HasBays())
 		displayCarrierHelp = true;
+	int day = date.DaysSinceEpoch();
+	depreciation.Capture(*ship, day);
+	if(GameData::GetGamerules().DepreciationCargoIsPlunder())
+		for(const auto &[outfit, count] : ship->Cargo().Outfits())
+			depreciation.Plunder(outfit, day, count);
 	CalculateScanners(ship);
+}
+
+
+
+void PlayerInfo::PlunderOutfit(const Outfit *outfit, int count)
+{
+	int day = date.DaysSinceEpoch();
+	depreciation.Plunder(outfit, day, count);
 }
 
 
@@ -1870,6 +1884,7 @@ void PlayerInfo::Land(UI &ui)
 
 	freshlyLoaded = false;
 	flagship.reset();
+	boardingCasualties.clear();
 }
 
 
@@ -3638,7 +3653,13 @@ void PlayerInfo::AddStock(const Outfit *outfit, int count)
 
 
 
-// Get depreciation information.
+Depreciation &PlayerInfo::FleetDepreciation()
+{
+	return depreciation;
+}
+
+
+
 const Depreciation &PlayerInfo::FleetDepreciation() const
 {
 	return depreciation;
@@ -5002,6 +5023,21 @@ bool PlayerInfo::RecacheJumpRoutes()
 	bool recache = recacheJumpRoutes;
 	recacheJumpRoutes = false;
 	return recache;
+}
+
+
+
+void PlayerInfo::AddBoardingCasualties(const weak_ptr<Ship> &ship, int casualties)
+{
+	boardingCasualties[ship] += casualties;
+}
+
+
+
+int PlayerInfo::GetBoardingCasualties(const weak_ptr<Ship> &ship) const
+{
+	auto it = boardingCasualties.find(ship);
+	return it == boardingCasualties.end() ? 0 : it->second;
 }
 
 

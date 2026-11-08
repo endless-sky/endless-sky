@@ -824,31 +824,31 @@ void ShipInfoPanel::Dump()
 	else if(plunderAmount > 0)
 	{
 		loss += plunderAmount * selectedPlunder->Cost();
-		(*shipIt)->Jettison(selectedPlunder, plunderAmount);
+		(*shipIt)->Jettison(selectedPlunder, plunderAmount, false, &player);
 	}
 	else if(outfitAmount > 0)
 	{
-		(*shipIt)->JettisonInstalled(selectedOutfit, outfitAmount);
+		(*shipIt)->JettisonInstalled(selectedOutfit, outfitAmount, false, &player);
 		Messages::Add({"You jettisoned " + to_string(outfitAmount) + " "
 				+ (outfitAmount == 1 ? selectedOutfit->DisplayName() : selectedOutfit->PluralName()),
 			GameData::MessageCategories().Get("normal")});
 	}
 	else if(commodities)
 	{
-		for(const auto &it : cargo.Commodities())
+		for(const auto &[commodity, count] : cargo.Commodities())
 		{
-			int64_t basis = player.GetBasis(it.first, it.second);
+			int64_t basis = player.GetBasis(commodity, count);
 			loss += basis;
-			player.AdjustBasis(it.first, -basis);
-			(*shipIt)->Jettison(it.first, it.second);
+			player.AdjustBasis(commodity, -basis);
+			(*shipIt)->Jettison(commodity, count);
 		}
 	}
 	else
 	{
-		for(const auto &it : cargo.Outfits())
+		for(const auto &[outfit, count] : cargo.Outfits())
 		{
-			loss += it.first->Cost() * max(0, it.second);
-			(*shipIt)->Jettison(it.first, it.second);
+			loss += outfit->Cost() * max(0, count);
+			(*shipIt)->Jettison(outfit, count, false, &player);
 		}
 	}
 	selectedCommodity.clear();
@@ -870,7 +870,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	if(count > 0)
 	{
 		loss += count * selectedPlunder->Cost();
-		(*shipIt)->Jettison(selectedPlunder, count);
+		(*shipIt)->Jettison(selectedPlunder, count, false, &player);
 		UpdateInfo();
 
 		if(loss)

@@ -963,7 +963,7 @@ mission "Successors: Ghosts 9"
 				`	"How did you keep yourself hidden from them for so long?"`
 
 			label hiding
-			`	"Hiding indeed does not come naturally to us," the Quarg says. "With no other have we had need to conceal ourselves. One of their Houses, when it knew what they had done, agreed to work with us to preserve their species. They were most skilled in matters of illusion, and shared their cloaks with us to obscure our presence."`
+			`	"Hiding indeed does not come naturally to us," the Quarg says. "With no others have we had need to conceal ourselves. One of their Houses, when it knew what they had done, agreed to work with us to preserve their species. They were most skilled in matters of illusion, and shared their cloaks with us to obscure our presence."`
 				goto end
 
 			label end

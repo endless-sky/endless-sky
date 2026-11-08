@@ -32,10 +32,10 @@ class UI;
 class Setting {
 public:
 	// A simple boolean setting with display values of "on"/"off" or "true"/"false".
-	static Setting OnOff(const std::string &name, bool defaultValue);
-	static Setting TrueFalse(const std::string &name, bool defaultValue);
+	static Setting OnOff(const std::string &name, bool defaultValue = true);
+	static Setting TrueFalse(const std::string &name, bool defaultValue = true);
 	// A setting where the player can cycle through a list of options.
-	static Setting List(const std::string &name, int defaultValue, const std::vector<std::string> &options,
+	static Setting List(const std::string &name, const std::vector<std::string> &options, int defaultValue = 0,
 		bool alwaysOn = false);
 	// A setting whose value is handled by Preferences or Gamerules directly.
 	static Setting Unique(const std::string &name);
