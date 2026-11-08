@@ -1429,7 +1429,7 @@ mission "FW Pug 2C: Unknown Drive"
 			label "has drive"
 			branch "is jump capable"
 				has "flagship attribute: jump drive"
-			`	You assure them that your ship is capable of jumping between systems through esoteric means unknown to someone who only plays the game without plugins... but you'll still need the jump drive in order to reach the Pug.`
+			`	You assure them that your ship is capable of jumping between systems through esoteric means unknown to someone who plays the game without plugins... but you'll still need the jump drive in order to reach the Pug.`
 			
 			label "check installation"
 			branch "installed"
@@ -1449,7 +1449,7 @@ mission "FW Pug 2C: Unknown Drive"
 			label "is jump capable"
 			action
 				set "already had jump drive"
-			`	You assure them that your ship is already capable of jumping between systems through esoteric means unknown to someone who only plays the game without plugins. The engineers give a puzzled look at one another before shrugging. Since you don't need their equipment, they urge you to head directly for Pug space and continue your mission.`
+			`	You assure them that your ship is already capable of jumping between systems through esoteric means unknown to someone who plays the game without plugins. The engineers give a puzzled look at one another before shrugging. Since you don't need their equipment, they urge you to head directly for Pug space and continue your mission.`
 				accept
 	
 	on accept
