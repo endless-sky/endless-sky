@@ -71,6 +71,17 @@ public:
 		DELETE_ON_TAKEOFF,
 	};
 
+	// Defines how the value from a captured ship is shared with the crew.
+	enum class CaptureProfitSharing : int_fast8_t {
+		OFF = 0,
+		// Death benefits must be paid to the family of crew members who died when capturing a ship.
+		DEAD_CREW,
+		// Surviving crew members get a share of the value of captured ships.
+		SURVIVING_CREW,
+		// Both surviving crew members and the families of dead crew members get a share of captured ship value.
+		ALL_CREW,
+	};
+
 
 public:
 	// Identifiers for specific gamerules.
@@ -80,7 +91,11 @@ public:
 	static const std::string NO_PERSON_SPAWN_WEIGHT;
 	static const std::string NPC_MAX_MINING_TIME;
 	static const std::string UNIVERSAL_FRUGAL_THRESHOLD;
+	static const std::string DEPRECIATIVE_AGING;
 	static const std::string DEPRECIATION_MIN;
+	static const std::string DEPRECIATION_CAPTURED;
+	static const std::string DEPRECIATION_PLUNDERED;
+	static const std::string DEPRECIATION_CARGO_IS_PLUNDER;
 	static const std::string DEPRECIATION_DAILY;
 	static const std::string DEPRECIATION_GRACE_PERIOD;
 	static const std::string DEPRECIATION_MAX_AGE;
@@ -103,6 +118,12 @@ public:
 	static const std::string SINGLE_SAVE_FILE;
 	static const std::string RESTRICTED_SAVE_LOADING;
 	static const std::string UNIVERSAL_AMMO_RESTOCKING;
+	static const std::string CAPTURE_PROFIT_SHARING;
+	static const std::string CAPTURE_CAPTAIN_SHARES;
+	static const std::string CAPTURE_DEAD_CREW_SHARES;
+	static const std::string CAPTURE_SURVIVING_CREW_SHARES;
+	static const std::string CAPTURE_MIN_DEATH_BENEFIT;
+	static const std::string CAPTURE_VALUE_BASIS;
 
 
 public:
@@ -140,10 +161,14 @@ public:
 	int NoPersonSpawnWeight() const;
 	int NPCMaxMiningTime() const;
 	double UniversalFrugalThreshold() const;
+	bool DepreciationAgingActive() const;
 	double DepreciationMin() const;
+	double DepreciationPlundered() const;
+	double DepreciationCaptured() const;
 	double DepreciationDaily() const;
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
+	bool DepreciationCargoIsPlunder() const;
 	FighterDodgePolicy FightersHitWhenDisabled() const;
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
@@ -162,6 +187,12 @@ public:
 	PermadeathMode GetPermadeathMode() const;
 	bool SingleSaveFile() const;
 	bool RestrictedSaveLoading() const;
+	CaptureProfitSharing GetCaptureProfitSharing() const;
+	double CaptureCaptainShares() const;
+	double CaptureDeadCrewShares() const;
+	double CaptureSurvivingCrewShares() const;
+	int CaptureMinimumDeathBenefit() const;
+	std::optional<double> CaptureValueBasis() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -185,8 +216,12 @@ private:
 		int noPersonSpawnWeight = 1000;
 		int npcMaxMiningTime = 3600;
 		double universalFrugalThreshold = .75;
+		bool depreciationAgingActive = true;
 		double depreciationMin = .25;
+		double depreciationPlundered = .25;
+		double depreciationCaptured = .25;
 		double depreciationDaily = .997;
+		bool depreciationCargoIsPlunder = false;
 		int depreciationGracePeriod = 7;
 		int depreciationMaxAge = 1000;
 		FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
@@ -213,6 +248,12 @@ private:
 		PermadeathMode permadeathMode = PermadeathMode::OFF;
 		bool singleSaveFile = false;
 		bool restrictedSaveLoading = false;
+		CaptureProfitSharing captureProfitSharing = CaptureProfitSharing::OFF;
+		double captureCaptainShares = 2.;
+		double captureDeadCrewShares = 1.;
+		double captureSurvivingCrewShares = 1.;
+		int captureMinimumDeathBenefit = 100000;
+		std::optional<double> captureValueBasis;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

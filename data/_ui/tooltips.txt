@@ -440,6 +440,12 @@ tip "energy consumption:"
 tip "energy generation:"
 	`Energy generated per second. If your ship has weapons other than beam weapons, you will probably also need batteries to store energy in.`
 
+tip "docked energy generation:"
+	`Energy generated per second for charging the batteries of docked fighters.`
+
+tip "docked energy heat:"
+	`Heat generated per second while charging the batteries of docked fighters.`
+
 tip "engine capacity needed:"
 	`Tons of engine space this outfit takes up.`
 
@@ -463,7 +469,10 @@ tip "fuel energy:"
 	
 tip "fuel generation:"
 	`Fuel generated per second.`
-	
+
+tip "docked fuel generation:"
+	`Fuel generated per second for refueling docked fighters.`
+
 tip "fuel heat:"
 	`Heat produced per second when consuming fuel.`
 
@@ -478,6 +487,9 @@ tip "heat dissipation:"
 
 tip "heat generation:"
 	`Heat generated per second. Heat generation can be offset by "cooling" outfits. If your ship exceeds its maximum heat, it must temporarily shut down to cool itself off.`
+
+tip "docked heat generation:"
+	`Heat generated per second while any fighters are docked.`
 
 tip "heat protection:"
 	`Protection provided against heat damage. Increases by the given factor how much heat damage a ship can withstand before its heat rises as much as an unprotected ship.`
@@ -494,6 +506,9 @@ tip "hull:"
 tip "hull energy:"
 	`Energy consumed per second when repairing the hull.`
 
+tip "docked hull energy:"
+	`Energy consumed per second when repairing the hull of docked fighters.`
+
 tip "delayed hull energy:"
 	`Additional energy consumed per second when repairing the hull after the repair delay period.`
 
@@ -503,6 +518,9 @@ tip "hull energy multiplier:"
 tip "hull fuel:"
 	`Fuel consumed per second when repairing the hull.`
 
+tip "docked hull fuel:"
+	`Fuel consumed per second when repairing the hull of docked fighters.`
+
 tip "delayed hull fuel:"
 	`Additional fuel consumed per second when repairing the hull after the repair delay period.`
 
@@ -511,6 +529,9 @@ tip "hull fuel multiplier:"
 
 tip "hull heat:"
 	`Heat produced per second when repairing the hull.`
+
+tip "docked hull heat:"
+	`Heat produced per second when repairing the hull of docked fighters.`
 
 tip "delayed hull heat:"
 	`Additional heat produced per second when repairing the hull after the repair delay period.`
@@ -523,6 +544,9 @@ tip "hull multiplier:"
 
 tip "hull repair rate:"
 	`Amount of hull strength that can be repaired per second. Repairs usually consume energy and may generate heat as well.`
+
+tip "docked hull repair rate:"
+	`Amount of hull strength that can be repaired per second, applied only to docked fighters. Repairs usually consume energy and may generate heat as well.`
 
 tip "delayed hull repair rate:"
 	`Additional hull strength that can be repaired per second after the repair delay period.`
@@ -786,6 +810,9 @@ tip "self destruct:"
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
 
+tip "docked shield energy:"
+	`Energy consumed per second when recharging shields of docked fighters.`
+
 tip "delayed shield energy:"
 	`Additional energy consumed per second when recharging shields after the shield delay period.`
 
@@ -794,6 +821,9 @@ tip "shield energy multiplier:"
 
 tip "shield fuel:"
 	`Fuel consumed per second when recharging shields.`
+
+tip "docked shield fuel:"
+	`Fuel consumed per second when recharging shields of docked fighters.`
 
 tip "delayed shield fuel:"
 	`Additional fuel consumed per second when recharging shields after the shield delay period.`
@@ -804,6 +834,9 @@ tip "shield fuel multiplier:"
 tip "shield heat:"
 	`Heat produced per second when recharging shields.`
 
+tip "docked shield heat:"
+	`Heat produced per second when recharging shields of docked fighters.`
+
 tip "delayed shield heat:"
 	`Additional heat produced per second when recharging shields after the shield delay period.`
 
@@ -812,6 +845,9 @@ tip "shield heat multiplier:"
 
 tip "shield generation:"
 	`Shield points recharged per second. Recharging shields usually consumes energy, and may also produce heat.`
+
+tip "docked shield generation:"
+	`Shield points recharged per second, applied only to docked fighters. Recharging shields usually consumes energy, and may also produce heat.`
 
 tip "delayed shield generation:"
 	`Additional shield points recharged per second after the shield delay period.`
@@ -1823,8 +1859,25 @@ tip "Tribute confirmation"
 
 
 # Gamerules
+tip "Depreciative aging"
+	`Controls whether age-based depreciation is active. Even if depreciative aging is disabled, captured and plundered goods can still be given separate depreciation values.`
+
 tip "Minimum value"
-	`The lowest value that an outfit or ship can depreciate to relative to its full price. All plundered, captured, or gifted items start at this value, and all purchased items start at 100% value and then depreciate toward this value according to the other depreciation gamerules.`
+	`The lowest value that an outfit or ship can depreciate to relative to its full price. All purchased items start at 100% value and then depreciate toward this value according to the other depreciation gamerules.`
+
+tip "Captured value"
+	`The value that captured outfits and ships will have. An outfit is considered captured if it is installed on a ship that is captured. Installed outfits taken from the ship before it is captured are instead considered plundered.`
+	`If this value is above the "Minimum value", then captured outfits will continue to depreciate toward the minimum value. This value is allowed to be below the minimum value, in which case the items will be locked to that value.`
+	`Note that modifying this value in an existing save file will not cause previously captured items to begin aging if this value is moved to above "Minimum value".`
+
+tip "Plundered value"
+	`The value that plundered outfits will have. An outfit is considered plundered if it is installed on a ship and removed from that ship during a boarding action.`
+	`If this value is above the "Minimum value", then plundered outfits will continue to depreciate toward the minimum value. This value is allowed to be below the minimum value, in which case the outfits will be locked to that value.`
+	`Note that modifying this value in an existing save file will not cause previously plundered items to begin aging if this value is moved to above "Minimum value".`
+
+tip "Cargo is plunder"
+	`If false, outfits taken from a ship's cargo hold or which are still in the ship's cargo hold at the moment it is captured will not be considered plundered and will use the "Minimum value" to determine their worth.`
+	`If true, such outfits will use "Plundered value" instead.`
 
 tip "Grace period"
 	`The number of days that must pass before a newly purchased outfit or ship will begin to depreciate. This allows you to have a short amount of time to test out an item and then sell it back at full value if you decide that you do not like it.`
@@ -1923,7 +1976,27 @@ tip "Single save file"
 tip "Restricted save loading"
 	`If true, this pilot will be unable to reload save files while not on the safety of a planet.`
 
+tip "Profit sharing"
+	`Controls whether and how the value of captured ships is shared among the crew members of your flagship.`
+	`- "off": You keep the full value of the captured ship.`
+	`- "dead crew": Death benefits must be paid to the families of crew members who died in the process of capturing a ship. A minimum payment per casualty may also be applied regardless of a successful capture.`
+	`- "surviving crew": Surviving crew members must be paid a bonus based on the value of the captured ship.`
+	`- "all crew": Both dead and surviving crew must be paid according to the rules stated above.`
 
+tip "Captain shares"
+	`If capture profit sharing is active and you successfully capture a ship, this is the number of shares in the value of the captured ship that you as the captain receive.`
+
+tip "Dead crew shares"
+	`If capture profit sharing is set to "dead crew" or "all crew", this is the number of shares in the value of the captured ship that each family of the dead crew members receives.`
+
+tip "Surviving crew shares"
+	`If capture profit sharing is set to "surviving crew" or "all crew", this is the number of shares in the value of the captured ship that each surviving crew member receives.`
+
+tip "Minimum per casualty"
+	`If death benefits are active and you lose crew during a boarding action, this is the minimum number of credits that must be paid to the families of the crew members who died. This amount must be paid even if you didn't successfully capture a ship.`
+
+tip "Capture value basis"
+	`Controls what percentage of the value of a captured ship is used to determine the size of a share. If unset, then a ship is valued at its sale price as it is captured.`
 
 # Boarding panel:
 tip `boarding: in cargo`

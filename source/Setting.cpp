@@ -41,7 +41,7 @@ Setting Setting::TrueFalse(const string &name, bool defaultValue)
 
 
 
-Setting Setting::List(const string &name, int defaultValue, const vector<string> &options, bool alwaysOn)
+Setting Setting::List(const string &name, const vector<string> &options, int defaultValue, bool alwaysOn)
 {
 	return Setting(name, options, defaultValue, true, alwaysOn);
 }

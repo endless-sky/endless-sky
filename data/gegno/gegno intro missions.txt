@@ -11,6 +11,15 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Gegno Space"
+	entering
+	invisible
+	non-blocking
+	source
+		near "Aleit" 0 100
+	on offer
+		set "discovered gegno space"
+		fail
 
 mission "First Contact: Gegno Vi"
 	landing

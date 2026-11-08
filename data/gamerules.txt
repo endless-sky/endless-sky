@@ -14,16 +14,27 @@
 "gamerules preset" "Default"
 	description "The default set of gamerules around which the game is developed."
 	
+	"depreciation aging active" true
 	"depreciation min" 0.25
+	"depreciation plundered" 0.25
+	"depreciation captured" 0.25
 	"depreciation grace period" 7
 	"depreciation max age" 1000
 	"depreciation daily" 0.997
+	"depreciation cargo is plunder" false
 	
 	"person spawn period" 72000
 	"no person spawn weight" 1000
 	
 	"npc max mining time" 3600
 	"universal frugal threshold" 0.75
+	
+	"capture profit sharing" off
+	"capture captain shares" 2
+	"capture dead crew shares" 1
+	"capture surviving crew shares" 1
+	"capture minimum death benefit" 100000
+	"capture value basis" unset
 	
 	"universal ramscoop" true
 	"system arrival min" unset
