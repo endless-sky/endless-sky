@@ -340,8 +340,8 @@ outfit `"Iasa," Lethal Word`
 		"reload" 9
 		"firing energy" 15
 		"firing heat" 21
-		"shield damage" 36.6
-		"hull damage" 53.4
+		"shield damage" 40.2
+		"hull damage" 58.7
 		"hit force" 18
 		"piercing" 0.33
 		"firing shields" 11
@@ -404,8 +404,8 @@ outfit "kis long range"
 		"velocity" 10
 		"lifetime" 100
 		"random lifetime" 30
-		"shield damage" 43
-		"hull damage" 58
+		"shield damage" 47
+		"hull damage" 63
 
 effect "kis impact"
 	sprite "effect/kis impact"
@@ -440,8 +440,8 @@ outfit `"Torji," Lethal Sight`
 		"firing heat" 1360
 		"firing shields" 310
 		"firing force" 400
-		"shield damage" 520
-		"hull damage" 720
+		"shield damage" 570
+		"hull damage" 790
 		"hit force" 400
 	description `Resja designed a complex loading system to enable this weapon to fire as quickly as it does. The drone ship Queru was built around it, a paired ship and weapon to surpass at range all prior designs of the Myiara.`
 
