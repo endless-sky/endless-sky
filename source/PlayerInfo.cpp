@@ -1882,16 +1882,12 @@ void PlayerInfo::Land(UI &ui)
 		}
 	}
 
-	flagship.reset();
-	boardingCasualties.clear();
-
 	// Save the game to preserve unlocked state for hardcore pilots.
 	if(!freshlyLoaded)
-	{
-		flagship = FlagshipPtr();
 		Save();
-	}
 
+	flagship.reset();
+	boardingCasualties.clear();
 	freshlyLoaded = false;
 }
 
