@@ -70,7 +70,7 @@ private:
 
 	void Exit();
 
-	void HandleSettingsString(const std::string &str, Point cursorPosition);
+	void HandleSettingsString(const std::string &str);
 
 	void HandleUp();
 	void HandleDown();
@@ -95,7 +95,6 @@ private:
 	// Which page of the preferences we're on.
 	char page = 'c';
 
-	Point hoverPoint;
 	Tooltip tooltip;
 	std::string selectedItem;
 	std::string hoverItem;

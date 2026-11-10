@@ -945,7 +945,7 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// If this ship has a base class, copy any attributes not defined here.
 	// Exception: uncapturable and "never disabled" flags don't carry over.
-	if(base && base != this)
+	if(base && base != this && isNewInstance)
 	{
 		if(!GetSprite())
 			static_cast<Body &>(*this) = *base;
@@ -1261,7 +1261,10 @@ bool Ship::IsValid() const
 // Save a full description of this ship, as currently configured.
 void Ship::Save(DataWriter &out) const
 {
-	out.Write("ship", trueModelName);
+	if(variantName.empty())
+		out.Write("ship", trueModelName);
+	else
+		out.Write("ship", trueModelName, variantName);
 	out.BeginChild();
 	{
 		out.Write("name", givenName);
@@ -2174,7 +2177,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	bool isDocked = parentCloakState.has_value();
 	double cloak = isDocked ? *parentCloakState : Cloaking();
 	bool drawCloaked = !isUi && IsYours() && cloak;
-	bool fancyCloak = Preferences::Has("Cloaked ship outlines");
+	bool fancyCloak = Preferences::Has(Preferences::SHIP_OUTLINES_CLOAKED);
 	const Swizzle *cloakSwizzle = GameData::Swizzles().Get(fancyCloak ? "cloak fancy base" : "cloak fast");
 
 	auto drawFighter = [&](const Ship::Bay &bay) -> void
@@ -2199,14 +2202,18 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 			if(effect.side != side || !(effect.activity & state) || effect.tick)
 				continue;
 
+			vector<Visual> &visualsRef = visuals->get();
 			for(int i = 0; i < effect.amount; ++i)
-				visuals->get().emplace_back(*effect.effect,
+			{
+				visualsRef.emplace_back(*effect.effect,
 					pos + zoom * facing.Rotate(effect.position),
 					isUi ? Point(0., 0.) : Velocity(),
 					facing + effect.angle,
 					Point(),
 					1.,
 					zoom);
+				visualsRef.back().AddFrameOffset(effect.delay);
+			}
 		}
 	};
 	auto drawSparks = [&, this](Ship::PlacementSide side) -> void
@@ -2217,7 +2224,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 		{
 			if(spark.side != side || !(spark.activity & state) || spark.tick)
 				continue;
-			CreateSparks(*visuals, spark.effect, spark.amount);
+			CreateSparks(*visuals, spark.effect, spark.amount, spark.delay);
 		}
 	};
 	auto drawEngineFlares = [&, this](uint8_t where)
@@ -2262,6 +2269,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 			isUi ? Point(0., 0.) : Velocity(),
 			facing + decor.angle,
 			zoom);
+		body.AddFrameOffset(decor.delay);
 		if(body.InheritsParentSwizzle())
 			body.SetSwizzle(GetSwizzle());
 		drawObject(body);
@@ -2270,12 +2278,13 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 	{
 		if(isUi || isDocked)
 			return;
+		vector<Visual> &visualsRef = visuals->get();
 		for(const Ship::Leak &leak : activeLeaks)
 		{
 			// Leaks always "flicker" every other frame.
 			if(!Random::Int(2))
 				return;
-			visuals->get().emplace_back(*leak.effect,
+			visualsRef.emplace_back(*leak.effect,
 				pos + zoom * facing.Rotate(leak.location),
 				isUi ? Point(0., 0.) : Velocity(),
 				facing + leak.angle,
@@ -2835,7 +2844,7 @@ Point Ship::FireTractorBeam(const Flotsam &flotsam, vector<Visual> &visuals)
 
 	double jamChance = CalculateJamChance(levels.scrambling);
 
-	bool opportunisticEscorts = !Preferences::Has("Turrets focus fire");
+	bool opportunisticEscorts = !Preferences::Has(Preferences::TURRETS_FOCUS_FIRE);
 	const vector<Hardpoint> &hardpoints = armament.Get();
 	for(unsigned i = 0; i < hardpoints.size(); ++i)
 	{
@@ -3996,7 +4005,7 @@ bool Ship::Carry(const shared_ptr<Ship> &ship)
 
 	// NPC ships should always transfer cargo. Player ships should only
 	// transfer cargo if they set the AI preference.
-	const bool shouldTransferCargo = !IsYours() || Preferences::Has("Fighters transfer cargo");
+	const bool shouldTransferCargo = !IsYours() || Preferences::Has(Preferences::FIGHTERS_TRANSFER_CARGO);
 
 	for(Bay &bay : bays)
 		if((bay.category == category) && !bay.ship)
@@ -4111,6 +4120,9 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 	// jettisoning cargo would increase the ship's temperature.
 	levels.heat -= tons * MAXIMUM_TEMPERATURE * HeatFraction();
 
+	// If this outfit was jettisoned for the sake of appeasing an aggressor, don't
+	// allow other ships of the same government to pick it up so that it can succeed
+	// in distracting the aggressor.
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
 	for( ; tons > 0; tons -= Flotsam::TONS_PER_BOX)
@@ -4120,7 +4132,7 @@ void Ship::Jettison(const string &commodity, int tons, bool wasAppeasing)
 
 
 
-void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
+void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing, PlayerInfo *player)
 {
 	if(count < 0)
 		return;
@@ -4133,18 +4145,18 @@ void Ship::Jettison(const Outfit *outfit, int count, bool wasAppeasing)
 	if(isYours)
 		navigation.Recalibrate(*this);
 
-	JettisonOutfit(outfit, count, wasAppeasing);
+	JettisonOutfit(outfit, count, wasAppeasing, player);
 }
 
 
 
-void Ship::JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing)
+void Ship::JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing, PlayerInfo *player)
 {
 	if(count < 0 || !outfit->Get("can jettison"))
 		return;
 
 	AddOutfit(outfit, -count);
-	JettisonOutfit(outfit, count, wasAppeasing);
+	JettisonOutfit(outfit, count, wasAppeasing, player);
 }
 
 
@@ -5048,37 +5060,39 @@ void Ship::DoGeneration()
 		// 4. Shields of carried fighters
 		// 5. Transfer of excess energy and fuel to carried fighters.
 
-		ResourceLevels repairLevels = hullDelay ? cache.hullRepairWithDelayCost : cache.hullRepairCost;
+		// Convert a repair/regen cost into resource per unit of repair
+		// for simpler repair math.
+		auto CostPerRepairUnit = [](ResourceLevels &cost, double repair) -> void {
+			cost.energy /= repair;
+			cost.fuel /= repair;
+			cost.hull /= repair;
+		};
+
+		ResourceLevels repairCost = hullDelay ? cache.hullRepairWithDelayCost : cache.hullRepairCost;
 		double hullRemaining = (hullDelay ? cache.hullRepairRateWithDelay : cache.hullRepairRate)
 			* (1. + cache.cloakedRepairMult * Cloaking());
 		if(hullRemaining)
 		{
-			// Save hull repair costs as per unit of hull repaired.
-			repairLevels.energy /= hullRemaining;
-			repairLevels.fuel /= hullRemaining;
-			repairLevels.hull /= hullRemaining;
-			levels.DoRepair(levels.hull, hullRemaining, MaxHull(), repairLevels);
+			CostPerRepairUnit(repairCost, hullRemaining);
+			levels.DoRepair(levels.hull, hullRemaining, MaxHull(), repairCost);
 		}
 
-		ResourceLevels regenLevels = shieldDelay ? cache.shieldRegenWithDelayCost : cache.shieldRegenCost;
+		ResourceLevels regenCost = shieldDelay ? cache.shieldRegenWithDelayCost : cache.shieldRegenCost;
 		double shieldsRemaining = (shieldDelay ? cache.shieldRegenRateWithDelay : cache.shieldRegenRate)
 			* (1. + cache.cloakedRegenMult * Cloaking());
 		if(shieldsRemaining)
 		{
-			// Save shield regen costs as per unit of shield regenerated.
-			regenLevels.energy /= shieldsRemaining;
-			regenLevels.fuel /= shieldsRemaining;
-			regenLevels.hull /= shieldsRemaining;
-			levels.DoRepair(levels.shields, shieldsRemaining, MaxShields(), regenLevels);
+			CostPerRepairUnit(regenCost, shieldsRemaining);
+			levels.DoRepair(levels.shields, shieldsRemaining, MaxShields(), regenCost);
 		}
 
-		if(!bays.empty())
+		// If this ship is carrying fighters, determine their repair priority.
+		vector<pair<double, Ship *>> carried;
+		for(const Bay &bay : bays)
+			if(bay.ship)
+				carried.emplace_back(1. - bay.ship->HealthFraction(), bay.ship.get());
+		if(!carried.empty())
 		{
-			// If this ship is carrying fighters, determine their repair priority.
-			vector<pair<double, Ship *>> carried;
-			for(const Bay &bay : bays)
-				if(bay.ship)
-					carried.emplace_back(1. - bay.ship->HealthFraction(), bay.ship.get());
 			sort(carried.begin(), carried.end(), (isYours && Preferences::Has(FIGHTER_REPAIR))
 				// Players may use a parallel strategy, to launch fighters in waves.
 				? [] (const pair<double, Ship *> &lhs, const pair<double, Ship *> &rhs)
@@ -5090,24 +5104,48 @@ void Ship::DoGeneration()
 			);
 
 			// Apply shield and hull repair to carried fighters.
+			ResourceLevels dockedRepairCost = cache.dockedHullRepairCost;
+			double dockedHullRemaining = cache.dockedHullRepairRate;
+			if(dockedHullRemaining)
+				CostPerRepairUnit(dockedRepairCost, dockedHullRemaining);
+			ResourceLevels dockedRegenCost = cache.dockedShieldRegenCost;
+			double dockedShieldsRemaining = cache.dockedShieldRegenRate;
+			if(dockedShieldsRemaining)
+				CostPerRepairUnit(dockedRegenCost, dockedShieldsRemaining);
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
+				// Use docked repair attributes before using the overflow of the
+				// main repair attributes, as docked repair is expected to be
+				// more resource efficient.
+				if(dockedHullRemaining)
+					levels.DoRepair(ship.levels.hull, dockedHullRemaining, ship.MaxHull(), dockedRepairCost);
+				if(dockedShieldsRemaining)
+					levels.DoRepair(ship.levels.shields, dockedShieldsRemaining, ship.MaxShields(), dockedRegenCost);
 				if(!hullDelay && hullRemaining)
-					levels.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(), repairLevels);
+					levels.DoRepair(ship.levels.hull, hullRemaining, ship.MaxHull(), repairCost);
 				if(!shieldDelay && shieldsRemaining)
-					levels.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(), regenLevels);
+					levels.DoRepair(ship.levels.shields, shieldsRemaining, ship.MaxShields(), regenCost);
 			}
+			levels.heat += cache.dockedHeatGeneration;
 
 			// Now that there is no more need to use energy for hull and shield
 			// repair, if there is still excess energy, transfer it.
 			double energyRemaining = levels.energy - MaxEnergy();
-			double fuelRemaining = levels.fuel - MaxFuel();
+			double fuelRemaining = max(0., levels.fuel - MaxFuel()) + cache.dockedFuelGeneration;
+			double dockedEnergyRemaining = cache.dockedEnergyGeneration;
+			ResourceLevels dockedEnergyCost;
+			if(dockedEnergyRemaining)
+				dockedEnergyCost.heat = cache.dockedEnergyHeat / dockedEnergyRemaining;
 			for(const pair<double, Ship *> &it : carried)
 			{
 				Ship &ship = *it.second;
+				// Use excess energy before generating more from docked energy generation, since
+				// the excess energy is guaranteed to be free.
 				if(energyRemaining > 0.)
 					Transfer(ship.levels.energy, energyRemaining, ship.MaxEnergy());
+				if(dockedEnergyRemaining)
+					levels.DoRepair(ship.levels.energy, dockedEnergyRemaining, ship.MaxEnergy(), dockedEnergyCost);
 				if(fuelRemaining > 0.)
 					Transfer(ship.levels.fuel, fuelRemaining, ship.MaxFuel());
 			}
@@ -5611,7 +5649,7 @@ void Ship::StepPilot()
 		{
 			if(!parent.lock())
 				Messages::Add(*GameData::Messages().Get("undercrewed flagship"));
-			else if(Preferences::Has("Extra fleet status messages"))
+			else if(Preferences::Has(Preferences::HUD_EXTRA_STATUS_MSGS))
 				Messages::Add({"The " + givenName + " is moving erratically because there are not enough crew to pilot it.",
 					GameData::MessageCategories().Get("low")});
 		}
@@ -6063,28 +6101,30 @@ void Ship::IncrementThrusterHeld(Ship::ThrustKind kind)
 
 
 
-void Ship::JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing)
+void Ship::JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing, PlayerInfo *player)
 {
 	// Jettisoned cargo must carry some of the ship's heat with it. Otherwise
 	// jettisoning cargo would increase the ship's temperature.
 	double mass = outfit->Mass();
 	levels.heat -= count * mass * MAXIMUM_TEMPERATURE * HeatFraction();
 
+	// If this outfit was jettisoned for the sake of appeasing an aggressor, don't
+	// allow other ships of the same government to pick it up so that it can succeed
+	// in distracting the aggressor.
 	const Government *notForGov = wasAppeasing ? GetGovernment() : nullptr;
 
 	const int perBox = (mass <= 0.) ? count : (mass > Flotsam::TONS_PER_BOX)
 		? 1 : static_cast<int>(Flotsam::TONS_PER_BOX / mass);
 	while(count > 0)
 	{
-		Jettison(make_shared<Flotsam>(outfit, (perBox < count)
-			? perBox : count, notForGov));
+		Jettison(make_shared<Flotsam>(outfit, (perBox < count) ? perBox : count, notForGov, player));
 		count -= perBox;
 	}
 }
 
 
 
-void Ship::Jettison(shared_ptr<Flotsam> toJettison)
+void Ship::Jettison(const shared_ptr<Flotsam> &toJettison)
 {
 	if(currentSystem)
 	{

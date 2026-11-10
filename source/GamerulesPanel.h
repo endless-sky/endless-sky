@@ -96,7 +96,6 @@ private:
 	// Which page we're on. g = gamerules, p = presets.
 	char page = 'g';
 
-	Point hoverPoint;
 	Tooltip tooltip;
 	std::string selectedItem;
 	std::string hoverItem;

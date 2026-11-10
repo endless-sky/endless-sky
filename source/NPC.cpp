@@ -193,9 +193,12 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 			else
 				child.PrintTrace("Skipping unrecognized attribute:");
 		}
-		else if(key == "ship")
+		else if(key == "ship" && hasValue)
 		{
-			if(child.HasChildren() && child.Size() == 2)
+			// While ShipFactory can load ship nodes with children, in the case of NPC,
+			// a ship node having children means it's a ship that was already instantiated,
+			// and so it should go in the list of instantiated ships.
+			if(child.HasChildren())
 			{
 				// Loading an NPC from a save file, or an entire ship specification.
 				// The latter may result in references to non-instantiated outfits.
@@ -204,19 +207,10 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 					if(grand.Token(0) == "actions" && grand.Size() >= 2)
 						shipEvents[ships.back().get()] = grand.Value(1);
 			}
-			else if(hasValue)
+			else
 			{
 				// Loading a ship managed by GameData, i.e. "base models" and variants.
 				factory.Load(child, playerConditions);
-			}
-			else
-			{
-				string message = "Skipping unsupported use of a ship token and child nodes: ";
-				if(child.Size() >= 3)
-					message += "to both name and customize a ship, create a variant and then reference it here.";
-				else
-					message += "the \'ship\' token must be followed by the name of a ship, e.g. ship \"Bulk Freighter\"";
-				child.PrintTrace(message);
 			}
 		}
 		else if(key == "fleet")
