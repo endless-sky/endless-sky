@@ -128,6 +128,12 @@ public:
 
 public:
 	Gamerules();
+	// Don't allow copying this class.
+	Gamerules(const Gamerules &) = delete;
+	Gamerules &operator=(const Gamerules &) = delete;
+	Gamerules(Gamerules &&) = delete;
+	Gamerules &operator=(Gamerules &&) = default;
+	~Gamerules() noexcept = default;
 
 	// Load a gamerules node.
 	void Load(const DataNode &node);
