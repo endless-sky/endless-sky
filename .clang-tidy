@@ -9,9 +9,8 @@
 #  are the same. Such duplicate bodies are typically simple anyway, such as a single function call.
 # -*-use-anyofallof: While some for loops could technically be replaced with any_of or all_of, for loops are often
 #  easier to read.
-# -*-default-arguments: Animate::Set has a default value in one of its parameters. Clang-tidy says that default values
-#  in virtual functions are prohibited, but it clearly works given all the calls to Animate::Set without a second
-#  parameter, plus the fact that the game fails to compile it the default parameter is removed.
+# -*-default-arguments: This is warning about the use of default parameters in virtual functions, which we intentionally
+#  use in Animate::Set.
 # -*-flp30-c: AsteroidField::Asteroid::Draw has a loop that uses doubles.
 # -*-use-override: Many of our panels provide both virtual and override keywords to their functions. While the virtual
 #  keyword is technically redundant in this case, it's not hurting anything to keep.
