@@ -2245,12 +2245,13 @@ void Engine::HandleKeyboardInputs()
 		else if(keyHeld.Has(Command::JUMP))
 			activeCommands |= Command::FLEET_JUMP;
 	}
-	else if(keyHeld.Has(Command::BACK) && flagship->Commands().Has(Command::STOP))
+	else if(keyHeld.Has(Command::BACK) && flagship->Commands().Has(Command::STOP)
+		&& flagship->Velocity().LengthSquared() > 1.)
 	{
-		// If the player previously sent a STOP command and hits the BACK key,
-		// maintain the STOP command. Since STOP is shift+BACK, releasing the shift
-		// key before releasing the BACK key after having sent a STOP command can
-		// cancel it, which likely isn't what the player wants.
+		// If the player previously sent a STOP command and hits the BACK key before the
+		// flagship has come to a stop, maintain the STOP command. Since STOP is shift+BACK,
+		// releasing the shift key before releasing the BACK key after having sent a STOP
+		// command can cancel it, which likely isn't what the player wants.
 		activeCommands |= Command::STOP;
 		activeCommands.Clear(Command::BACK);
 	}
