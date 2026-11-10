@@ -702,14 +702,14 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		salary.emplace_back(name, value);
 	sort(salary.begin(), salary.end(), std::greater<>());
 	DrawList(salary, salaryArea, start, columnWidth, "salary:", player.Accounts().SalariesIncomeTotal(),
-		min<int>(salary.size(), 4) * 20);
+		min<int>(salary.size(), 3) * 20);
 
 	vector<pair<string, int64_t>> tribute;
 	for(const auto &[planet, value] : player.GetTribute())
 		tribute.emplace_back(planet->TrueName(), value);
 	sort(tribute.begin(), tribute.end(), std::greater<>());
 	DrawList(tribute, tributeArea, start, columnWidth, "tribute:", player.GetTributeTotal(),
-		min<int>(tribute.size(), 4) * 20);
+		min<int>(tribute.size(), 3) * 20);
 
 	vector<pair<string, int64_t>> licenses;
 	for(const string &it : player.Licenses())
