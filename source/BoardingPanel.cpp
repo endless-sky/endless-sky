@@ -76,9 +76,9 @@ BoardingPanel::BoardingPanel(PlayerInfo &player, const shared_ptr<Ship> &victim)
 	auto AddPlunder = [this](const map<const Outfit *, int> &outfits, bool inCargo) -> void {
 		for(auto &[outfit, count] : outfits)
 		{
-			// Don't include outfits that are installed and unplunderable. But,
-			// "unplunderable" outfits can still be stolen from cargo.
-			if(!count || (!inCargo && outfit->GetPrecise("unplunderable")))
+			// Don't include outfits that are installed and unplunderable or unremovable,
+			// but such outfits can still be stolen from cargo.
+			if(!count || (!inCargo && (outfit->GetPrecise("unplunderable") || outfit->GetPrecise("unremovable"))))
 				continue;
 			plunder.emplace_back(outfit, count, inCargo);
 		}
@@ -689,8 +689,9 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 // Constructor (outfit installed in the victim ship or transported as cargo).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count, bool inCargo)
 	: inCargo(inCargo), name(outfit->DisplayName()), outfit(outfit), count(count),
-	unitValue(outfit->Cost() * (outfit->Get("installable") < 0. ? 1. : !inCargo
-		|| GameData::GetGamerules().DepreciationCargoIsPlunder() ? Depreciation::Plundered() : Depreciation::Full()))
+	unitValue(outfit->Cost() * ((outfit->GetPrecise("installable") < 0 || outfit->GetPrecise("nondepreciable")) ? 1.
+		: !inCargo || GameData::GetGamerules().DepreciationCargoIsPlunder() ? Depreciation::Plundered()
+		: Depreciation::Full()))
 {
 	UpdateStrings();
 }
