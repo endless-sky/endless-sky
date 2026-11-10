@@ -810,6 +810,8 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		IncrementZoom();
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
 		DecrementZoom();
+	else if(key == SDLK_SPACE || key == SDLK_HOME)
+		CenterOnSystem(&playerSystem);
 	else
 		return false;
 

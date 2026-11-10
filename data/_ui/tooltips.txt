@@ -2014,6 +2014,9 @@ tip `player info: player:`
 tip `player info: net worth:`
 	`The total credit worth of the credits available in your account and the value of all your assets, minus any outstanding debts.`
 
+tip `player info: fleet cargo:`
+	`The cargo usage and capacity of your entire fleet. Excludes parked ships.`
+
 tip `player info: time played:`
 	`The total amount of time you have played on this save file. Reloading a prior save file loses any recorded time played after that checkpoint.`
 

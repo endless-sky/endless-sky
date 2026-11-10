@@ -410,6 +410,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 		{
 			if(!playerShip)
 				return "No ship selected.";
+			if(selectedOutfit->GetPrecise("unremovable"))
+				return "This outfit can't be removed after it has been installed.";
 
 			vector<pair<string, vector<string>>> dependentOutfitErrors;
 			bool foundOutfit = false;

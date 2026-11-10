@@ -609,12 +609,26 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	table.SetUnderline(0, columnWidth);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 
+	double usedCargo = player.Cargo().UsedPrecise();
+	int totalCargo = 0;
+	for(const auto &ship : player.Ships())
+	{
+		if(ship->IsDestroyed() || ship->IsParked())
+			continue;
+		const CargoHold &cargo = ship->Cargo();
+		usedCargo += cargo.UsedPrecise();
+		totalCargo += cargo.Size();
+	}
+
 	CheckHover(table.GetRowBounds(), "player:");
 	table.DrawTruncatedPair("player:", dim, player.FirstName() + " " + player.LastName(),
 		bright, Truncate::MIDDLE, true);
 	CheckHover(table.GetRowBounds(), "net worth:");
 	table.DrawTruncatedPair("net worth:", dim, Format::CreditString(player.Accounts().NetWorth()),
 		bright, Truncate::MIDDLE, true);
+	CheckHover(table.GetRowBounds(), "fleet cargo:");
+	table.DrawTruncatedPair("fleet cargo:", dim, Format::AbbreviatedNumber(usedCargo, std::nullopt) + "/"
+		+ Format::AbbreviatedNumber(totalCargo) + " tons", bright, Truncate::MIDDLE, true);
 	CheckHover(table.GetRowBounds(), "time played:");
 	table.DrawTruncatedPair("time played:", dim, Format::PlayTime(player.GetPlayTime()),
 		bright, Truncate::MIDDLE, true);
@@ -688,14 +702,14 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		salary.emplace_back(name, value);
 	ranges::sort(salary, std::greater<>());
 	DrawList(salary, salaryArea, start, columnWidth, "salary:", player.Accounts().SalariesIncomeTotal(),
-		min<int>(salary.size(), 4) * 20);
+		min<int>(salary.size(), 3) * 20);
 
 	vector<pair<string, int64_t>> tribute;
 	for(const auto &[planet, value] : player.GetTribute())
 		tribute.emplace_back(planet->TrueName(), value);
 	ranges::sort(tribute, std::greater<>());
 	DrawList(tribute, tributeArea, start, columnWidth, "tribute:", player.GetTributeTotal(),
-		min<int>(tribute.size(), 4) * 20);
+		min<int>(tribute.size(), 3) * 20);
 
 	vector<pair<string, int64_t>> licenses;
 	for(const string &it : player.Licenses())
