@@ -1886,9 +1886,9 @@ void PlayerInfo::Land(UI &ui)
 	if(!freshlyLoaded)
 		Save();
 
+	freshlyLoaded = false;
 	flagship.reset();
 	boardingCasualties.clear();
-	freshlyLoaded = false;
 }
 
 
