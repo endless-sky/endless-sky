@@ -132,9 +132,10 @@ void UniverseObjects::FinishLoading()
 			Logger::Log("Unhandled \"disable\" keyword of type \"" + category.first + "\".", Logger::Level::WARNING);
 	}
 
-	// Sort all category lists.
+	// Sort all category and capacity lists.
 	for(auto &list : categories)
 		list.second.Sort();
+	capacities.Sort();
 
 	// Guard against infinite loops in condition aliases.
 	for(auto &alias : conditionAliases | views::values)
@@ -659,6 +660,12 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 					list.Clear();
 				list.Load(node);
 			}
+		}
+		else if(key == "display capacities")
+		{
+			if(overwrite)
+				capacities.Clear();
+			capacities.Load(node);
 		}
 		else if((key == "tip" || key == "help") && hasValue)
 		{

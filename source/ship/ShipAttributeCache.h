@@ -51,9 +51,7 @@ private:
 	// A ship can freely access its own attribute cache.
 	friend class Ship;
 
-	double outfitCapacity = 0.;
-	double weaponCapacity = 0.;
-	double engineCapacity = 0.;
+	double baseOutfitCapacity = 0.;
 	double cargoSpace = 0.;
 	bool automaton = false;
 	int requiredCrew = 0;

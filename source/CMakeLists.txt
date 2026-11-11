@@ -39,6 +39,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Body.h
 	Camera.cpp
 	Camera.h
+	CapacityList.cpp
+	CapacityList.h
 	CaptureOdds.cpp
 	CaptureOdds.h
 	Caret.cpp
