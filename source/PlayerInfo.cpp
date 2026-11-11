@@ -3989,7 +3989,7 @@ void PlayerInfo::RegisterDerivedConditions()
 	// a reserved condition name, then this provider will be overwritten.
 	for(const auto &name : GameData::ConditionAliases() | views::keys)
 		conditions[name].ProvideNamed([](const ConditionEntry &ce) -> int64_t {
-			return GameData::ConditionAliases().Get(ce.Name())->Test();
+			return GameData::ConditionAliases().Get(ce.Name())->Evaluate();
 		});
 
 	// Read-only date functions.

@@ -36,7 +36,7 @@ public:
 	// Invalidate aliases that contain other aliases.
 	void FinishLoading();
 
-	bool Test() const;
+	int64_t Evaluate() const;
 
 
 private:

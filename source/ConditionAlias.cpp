@@ -41,9 +41,9 @@ void ConditionAlias::FinishLoading()
 
 
 
-bool ConditionAlias::Test() const
+int64_t ConditionAlias::Evaluate() const
 {
-	return isValid ? conditions.Test() : false;
+	return isValid ? conditions.Evaluate() : 0;
 }
 
 
