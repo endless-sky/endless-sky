@@ -239,8 +239,7 @@ optional<double> Outfit::LowerLimit(const string &attribute, bool isAutomaton)
 	optional<int64_t> precise = LowerLimitPrecise(attribute, isAutomaton);
 	if(precise.has_value())
 		return static_cast<double>(precise.value()) / ATTRIBUTE_PRECISION;
-	// No minimum override means a minimum of 0.
-	return 0.;
+	return std::nullopt;
 }
 
 
