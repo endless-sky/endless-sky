@@ -192,7 +192,6 @@ void PilotProfile::DeleteProfile(const std::shared_ptr<PilotProfile> &pilot, UI 
 void PilotProfile::New(const Gamerules &gamerules)
 {
 	this->gamerules.Replace(gamerules);
-	ApplyGamerules();
 }
 
 

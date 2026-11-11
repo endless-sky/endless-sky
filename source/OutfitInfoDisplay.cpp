@@ -69,11 +69,15 @@ namespace {
 		{"disruption resistance heat", 0},
 		{"energy consumption", 0},
 		{"energy generation", 0},
+		{"docked energy generation", 0},
+		{"docked energy heat", 0},
 		{"fuel consumption", 0},
 		{"fuel energy", 0},
 		{"fuel generation", 0},
+		{"docked fuel generation", 0},
 		{"fuel heat", 0},
 		{"heat generation", 0},
+		{"docked heat generation", 0},
 		{"heat dissipation", 0},
 		{"hull repair rate", 0},
 		{"hull energy", 0},
@@ -83,6 +87,10 @@ namespace {
 		{"delayed hull energy", 0},
 		{"delayed hull fuel", 0},
 		{"delayed hull heat", 0},
+		{"docked hull repair rate", 0},
+		{"docked hull energy", 0},
+		{"docked hull fuel", 0},
+		{"docked hull heat", 0},
 		{"ion resistance energy", 0},
 		{"ion resistance fuel", 0},
 		{"ion resistance heat", 0},
@@ -108,6 +116,10 @@ namespace {
 		{"delayed shield energy", 0},
 		{"delayed shield fuel", 0},
 		{"delayed shield heat", 0},
+		{"docked shield generation", 0},
+		{"docked shield energy", 0},
+		{"docked shield fuel", 0},
+		{"docked shield heat", 0},
 		{"slowing resistance energy", 0},
 		{"slowing resistance fuel", 0},
 		{"slowing resistance heat", 0},
@@ -244,6 +256,8 @@ namespace {
 		{"cloaked pickup", "You may pick up flotsam while cloaked."},
 		{"cloaked scanning", "You may scan other ships while cloaked."},
 		{"can jettison", "Can be jettisoned while installed."},
+		{"unremovable", "Can't be removed once installed."},
+		{"nondepreciable", "Doesn't lose value with age."},
 	};
 
 	bool IsNotRequirement(const string &label)
@@ -263,14 +277,6 @@ std::string OutfitInfoDisplay::FormatAttribute(const std::string &attribute, dou
 	string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
 
 	return Format::Number(value * scale) + units;
-}
-
-
-
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
-		bool canSell, bool descriptionCollapsed)
-{
-	Update(outfit, player, canSell, descriptionCollapsed);
 }
 
 
@@ -497,7 +503,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	}
 
 	const Weapon *weapon = outfit.GetWeapon().get();
-	if(!weapon)
+	if(!weapon || weapon->IsDecorative())
 		return;
 
 	// Insert padding if any normal attributes were listed above.

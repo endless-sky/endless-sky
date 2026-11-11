@@ -51,9 +51,7 @@ private:
 	// A ship can freely access its own attribute cache.
 	friend class Ship;
 
-	double outfitCapacity = 0.;
-	double weaponCapacity = 0.;
-	double engineCapacity = 0.;
+	double baseOutfitCapacity = 0.;
 	double cargoSpace = 0.;
 	bool automaton = false;
 	int requiredCrew = 0;
@@ -64,8 +62,11 @@ private:
 
 	double energyGeneration = 0.;
 	double energyConsumption = 0.;
+	double dockedEnergyGeneration = 0.;
+	double dockedEnergyHeat = 0.;
 
 	double fuelGeneration = 0.;
+	double dockedFuelGeneration = 0.;
 	double fuelConsumption = 0.;
 	double fuelEnergy = 0.;
 	double fuelHeat = 0.;
@@ -75,6 +76,7 @@ private:
 	double solarHeat = 0.;
 
 	double heatGeneration = 0.;
+	double dockedHeatGeneration = 0.;
 	double heatCapacity = 0.;
 	double overheatDamageThreshold = 1.;
 	double overheatDamageRate = 0.;
@@ -90,6 +92,8 @@ private:
 	ResourceLevels hullRepairCost;
 	double hullRepairRateWithDelay = 0.;
 	ResourceLevels hullRepairWithDelayCost;
+	double dockedHullRepairRate = 0.;
+	ResourceLevels dockedHullRepairCost;
 
 	int shieldDelay = 0;
 	int depletedShieldDelay = 0;
@@ -97,6 +101,8 @@ private:
 	ResourceLevels shieldRegenCost;
 	double shieldRegenRateWithDelay = 0.;
 	ResourceLevels shieldRegenWithDelayCost;
+	double dockedShieldRegenRate = 0.;
+	ResourceLevels dockedShieldRegenCost;
 
 	int recoveryTime = 0;
 	ResourceLevels recoveryCost;

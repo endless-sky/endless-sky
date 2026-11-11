@@ -29,8 +29,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class CapacityList;
 class CategoryList;
 class Color;
+class ConditionAlias;
 class ConditionsStore;
 class Confusion;
 class Conversation;
@@ -155,6 +157,7 @@ public:
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
 	static const Set<Gamerules> &GamerulesPresets();
+	static const Set<ConditionAlias> &ConditionAliases();
 
 	static const std::set<std::string> &UniverseWormholeRequirements();
 
@@ -172,7 +175,9 @@ public:
 	// Strings for combat rating levels, etc.
 	static const std::string &Rating(const std::string &type, int level);
 	// Collections for ship, bay type, outfit, and other categories.
-	static const CategoryList &GetCategory(const CategoryType type);
+	static const CategoryList &GetCategory(CategoryType type);
+	// List of capacities to display in ShipInfoDisplay.
+	static const CapacityList &GetCapacities();
 
 	static const StarField &Background();
 	static void StepBackground(const Point &vel, double zoom = 1.);

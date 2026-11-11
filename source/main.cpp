@@ -168,6 +168,7 @@ int main(int argc, char *argv[])
 
 	try {
 		// Load plugin settings and preferences before game data.
+		Preferences::Init();
 		Preferences::Load();
 		PluginManager::LoadSettings();
 
@@ -277,8 +278,8 @@ int main(int argc, char *argv[])
 	}
 
 	// Remember the window state and preferences if quitting normally.
-	Preferences::Set("maximized", GameWindow::IsMaximized());
-	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
+	Preferences::Set(Preferences::SCREEN_MAXIMIZED, GameWindow::IsMaximized());
+	Preferences::Set(Preferences::FULLSCREEN, GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height(), true);
 	Preferences::Save();
 	PluginManager::Save();
@@ -344,7 +345,15 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
+			{
 				cursorTime = 0;
+				// We only need to update the hover point after mouse movement has occurred.
+				// Panels need to receive this update before anything else, since event handling
+				// and the step/draw calls that happen later this frame rely on the hoverPoint being
+				// set.
+				menuPanels.SetHoverPoint();
+				gamePanels.SetHoverPoint();
+			}
 
 #ifdef ES_USE_SDL3
 			SDL_Keycode eventKeyCode = event.key.key;
@@ -389,15 +398,20 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				menuPanels.AdjustTextDisplay();
 				gamePanels.AdjustTextDisplay();
 			}
+			else if(event.type == CustomEvents::GetTooltipUpdate())
+			{
+				menuPanels.TooltipUpdate();
+				gamePanels.TooltipUpdate();
+			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
 					&& (Command(eventKeyCode).Has(Command::FULLSCREEN)
 					|| (eventKeyCode == SDLK_RETURN && (eventKeyMod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
-				Preferences::ToggleScreenMode();
+				Preferences::Toggle(Preferences::FULLSCREEN);
 			}
 			else if(event.type == SDL_KEYDOWN && Command(eventKeyCode).Has(Command::PERFORMANCE_DISPLAY))
-				Preferences::Set("Show CPU / GPU load", !Preferences::Has("Show CPU / GPU load"));
+				Preferences::Toggle(Preferences::SHOW_PERFORMANCE_METRICS);
 			else if(activeUI.Handle(event))
 			{
 				// The UI handled the event.
@@ -465,7 +479,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			// (for example when the boarding dialog shows up or when the player lands). The player
 			// can switch fast-forward on again when flight is resumed.
 			bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowsFastForward();
-			if(Preferences::Has("Interrupt fast-forward") && !inFlight && isFastForward && !allowFastForward)
+			if(Preferences::Has(Preferences::INTERRUPT_FAST_FORWARD) && !inFlight && isFastForward && !allowFastForward)
 				isFastForward = false;
 
 			// Tell all the panels to step forward, then draw them.
@@ -514,7 +528,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			gpuLoadSum += chrono::steady_clock::now() - drawStart;
 
-			if(Preferences::Has("Show CPU / GPU load"))
+			if(Preferences::Has(Preferences::SHOW_PERFORMANCE_METRICS))
 			{
 				Information performanceInfo;
 				performanceInfo.SetString("cpu", cpuLoadString);
@@ -715,7 +729,7 @@ Conversation LoadConversation(const PlayerInfo &player)
 		{"<original first>", "[Original First]"},
 		{"<original last>", "[Original Last]"},
 		{"<origin>", "[Origin Planet]"},
-		{"<passengers>", "[your passengers]"},
+		{"<passengers>", "[passengers]"},
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
 		{"<model>", "[Ship Model]"},

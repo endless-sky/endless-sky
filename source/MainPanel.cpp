@@ -137,7 +137,16 @@ void MainPanel::Step()
 	StepEvents(isActive);
 
 	if(isActive)
+	{
+		// Now that all updates have been made to the player that could alter condition
+		// reads, check if any missions can spawn NPCs right now.
+		if(checkSpawns && !engine.IsPaused())
+		{
+			engine.CheckNpcSpawns();
+			checkSpawns = false;
+		}
 		engine.Go();
+	}
 	else
 		canDrag = false;
 	canClick = isActive;
@@ -216,17 +225,20 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		show = command;
 	else if(command.Has(Command::TURRET_TRACKING))
 	{
-		bool newValue = !Preferences::Has("Turrets focus fire");
-		Preferences::Set("Turrets focus fire", newValue);
+		bool newValue = Preferences::Toggle(Preferences::TURRETS_FOCUS_FIRE);
 		Messages::Add(*GameData::Messages().Get(newValue ?
 			"turret tracking focused" : "turret tracking opportunistic"));
 	}
 	else if(command.Has(Command::AMMO))
 	{
-		Preferences::ToggleAmmoUsage();
-		Messages::Add(*GameData::Messages().Get(
-			Preferences::Has("Escorts expend ammo") ? (Preferences::Has("Escorts use ammo frugally") ?
-			"expend ammo frugally" : "expend ammo always") : "expend ammo never"));
+		Preferences::Toggle(Preferences::ESCORT_AMMO_USAGE);
+		Preferences::EscortAmmoUsage ammoUsage = Preferences::AmmoUsage();
+		string message = "expend ammo never";
+		if(ammoUsage == Preferences::EscortAmmoUsage::ALWAYS)
+			message = "expend ammo always";
+		else if(ammoUsage == Preferences::EscortAmmoUsage::FRUGALLY)
+			message = "expend ammo frugally";
+		Messages::Add(*GameData::Messages().Get(message));
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
@@ -496,7 +508,7 @@ bool MainPanel::ShowHelp(bool force)
 
 	vector<string> forced;
 	// Check if any help messages should be shown.
-	if(Preferences::Has("Control ship with mouse"))
+	if(Preferences::Has(Preferences::MOUSE_CONTROL_FLAGSHIP))
 	{
 		if(force)
 			forced.push_back("control ship with mouse");
@@ -573,7 +585,7 @@ bool MainPanel::ShowHelp(bool force)
 		else if(DoHelp("try out fighters transfer cargo"))
 			return true;
 	}
-	if(Preferences::Has("Fighters transfer cargo"))
+	if(Preferences::Has(Preferences::FIGHTERS_TRANSFER_CARGO))
 	{
 		if(force)
 			forced.push_back("fighters transfer cargo");
@@ -697,7 +709,10 @@ void MainPanel::StepEvents(bool &isActive)
 		// Handle jump events from the player's flagship. This means we should check
 		// for entering missions that can be offered.
 		if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
+		{
 			player.CreateEnteringMissions();
+			checkSpawns = true;
+		}
 
 		// Remove the fully-handled event.
 		eventQueue.pop_front();

@@ -16,9 +16,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ShipInfoDisplay.h"
 
 #include "text/Alignment.h"
+#include "CapacityList.h"
 #include "CategoryList.h"
 #include "CategoryType.h"
-#include "Color.h"
 #include "Depreciation.h"
 #include "shader/FillShader.h"
 #include "text/Format.h"
@@ -37,12 +37,27 @@ using namespace std;
 
 
 
+ShipInfoDisplay::ShipInfoDisplay()
+{
+	isShip = true;
+}
+
+
+
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
-	bool descriptionCollapsed, bool scrollingPanel)
+	bool descriptionCollapsed, bool scrollingPanel, bool isDefinition)
 {
-	UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
+	if(isDefinition)
+		UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
+	else
+	{
+		// If the given ship is not a ship definition, then it won't have a description.
+		// Locate the description it's supposed to have from its definition.
+		const Ship *definition = GameData::Ships().Get(ship.VariantName());
+		UpdateDescription(definition->Description(), ship.Attributes().Licenses(), true);
+	}
 	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
@@ -327,29 +342,33 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double baseTurn = 60. * attributes.Get("turn") * (1. + attributes.Get("turn multiplier"));
 	MassInfluencedMovementDisplay(baseTurn);
 
-	// Find out how much outfit, engine, and weapon space the chassis has.
-	map<string, double> chassis;
-	static const vector<string> NAMES = {
-		"outfit space free:", "outfit space",
-		"    weapon capacity:", "weapon capacity",
-		"    engine capacity:", "engine capacity",
-		"gun ports free:", "gun ports",
-		"turret mounts free:", "turret mounts"
-	};
-	for(unsigned i = 1; i < NAMES.size(); i += 2)
-		chassis[NAMES[i]] = attributes.Get(NAMES[i]);
-	for(const auto &it : ship.Outfits())
-		for(auto &cit : chassis)
-			cit.second -= min(0., it.second * it.first->Get(cit.first));
+	// Find out how much of each displayed capacity the chassis has, like outfit, engine, and weapon space.
+	const CapacityList &capacities = GameData::GetCapacities();
+	map<string, pair<double, double>> chassisCapacities;
+	for(const CapacityList::Capacity &capacity : capacities)
+	{
+		bool required = capacity.Required();
+		if(!required && !scrollingPanel)
+			continue;
+		double remaining = attributes.Get(capacity.Attribute());
+		double total = remaining;
+		for(const auto &[outfit, count] : ship.Outfits())
+			total -= min(0., count * outfit->Get(capacity.Attribute()));
+		if(!required && !total)
+			continue;
+		chassisCapacities[capacity.Name()] = make_pair(remaining, total);
+	}
 
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
 	attributesHeight += 10;
-	for(unsigned i = 0; i < NAMES.size(); i += 2)
+	for(const CapacityList::Capacity &capacity : capacities)
 	{
-		attributeLabels.push_back(NAMES[i]);
-		attributeValues.push_back(Format::Number(attributes.Get(NAMES[i + 1]))
-			+ " / " + Format::Number(chassis[NAMES[i + 1]]));
+		auto it = chassisCapacities.find(capacity.Name());
+		if(it == chassisCapacities.end())
+			continue;
+		attributeLabels.push_back(it->first);
+		attributeValues.push_back(Format::Number(it->second.first) + " / " + Format::Number(it->second.second));
 		attributesHeight += 20;
 	}
 
@@ -526,32 +545,39 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	outfitsHeight = 20;
 
 	map<string, map<string, int>> listing;
-	for(const auto &it : ship.Outfits())
-		if(it.first->IsDefined() && !it.first->Category().empty() && !it.first->DisplayName().empty())
-			listing[it.first->Category()][it.first->DisplayName()] += it.second;
+	for(const auto &[outfit, count] : ship.Outfits())
+		if(outfit->IsDefined() && !outfit->Category().empty() && !outfit->DisplayName().empty())
+			listing[outfit->Category()][outfit->DisplayName()] += count;
 
-	for(const auto &cit : listing)
+	// Display outfit categories in the same order that they're listed in the outfitter.
+	bool isFirst = true;
+	for(const auto &category : GameData::GetCategory(CategoryType::OUTFIT))
 	{
+		const string &name = category.Name();
+		auto it = listing.find(name);
+		if(it == listing.end())
+			continue;
+
 		// Pad by 10 pixels before each category.
-		if(&cit != &*listing.begin())
+		if(!isFirst)
 		{
 			outfitLabels.push_back(string());
 			outfitValues.push_back(string());
 			outfitsHeight += 10;
 		}
+		isFirst = false;
 
-		outfitLabels.push_back(cit.first + ':');
+		outfitLabels.push_back(name + ':');
 		outfitValues.push_back(string());
 		outfitsHeight += 20;
 
-		for(const auto &it : cit.second)
+		for(const auto &[outfit, count] : it->second)
 		{
-			outfitLabels.push_back(it.first);
-			outfitValues.push_back(to_string(it.second));
+			outfitLabels.push_back(outfit);
+			outfitValues.push_back(to_string(count));
 			outfitsHeight += 20;
 		}
 	}
-
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
 	int64_t chassisCost = depreciation.Value(

@@ -124,7 +124,7 @@ public:
 	void DoStatusSparks(std::vector<Visual> &visuals) const;
 	// Place a "spark" effect, like ionization or disruption.
 	void CreateSparks(std::vector<Visual> &visuals, const std::string &name, double amount) const;
-	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount) const;
+	void CreateSparks(std::vector<Visual> &visuals, const Effect *effect, double amount, int frameOffset = 0) const;
 
 	// Damage this entity, creating any damage visuals in the process.
 	// For ship entities, the return value is a ShipEvent type, which may be a combination of PROVOKED, DISABLED,
