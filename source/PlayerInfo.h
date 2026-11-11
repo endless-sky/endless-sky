@@ -184,6 +184,8 @@ public:
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
 	void CaptureShip(const std::shared_ptr<Ship> &ship);
+	// Add a plundered outfit to the depreciation record.
+	void PlunderOutfit(const Outfit *outfit, int count);
 	// Buy, receive or sell a ship.
 	// In the case of buying, return whether the ship could be purchased.
 	// In the case of a gift, return a pointer to the newly instantiated ship.
@@ -201,7 +203,7 @@ public:
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
-	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system) const;
+	double RaidFleetAttraction(const RaidFleet &raid, const System *system) const;
 	// Get the player's fleet capacity and the current cost of their fleet.
 	int FleetCapacity() const;
 	int FleetCost() const;
@@ -376,6 +378,7 @@ public:
 	int Stock(const Outfit *outfit) const;
 	void AddStock(const Outfit *outfit, int count);
 	// Get depreciation information.
+	Depreciation &FleetDepreciation();
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
 
@@ -412,6 +415,9 @@ public:
 	void StepMissionTimers(UI &ui);
 	// Checks and resets recacheJumpRoutes. Returns the value that was present upon entry.
 	bool RecacheJumpRoutes();
+
+	void AddBoardingCasualties(const std::weak_ptr<Ship> &ship, int casualties);
+	int GetBoardingCasualties(const std::weak_ptr<Ship> &ship) const;
 
 
 private:
@@ -613,4 +619,8 @@ private:
 	std::unique_ptr<DataWriter> transactionSnapshot;
 
 	bool recacheJumpRoutes = false;
+	// The number of casualties experienced during a boarding action.
+	// Death benefits may need to be paid on a per-ship basis.
+	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
+	std::map<std::weak_ptr<Ship>, int, Comp> boardingCasualties;
 };

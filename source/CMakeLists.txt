@@ -60,6 +60,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Color.h
 	Command.cpp
 	Command.h
+	ConditionAlias.cpp
+	ConditionAlias.h
 	ConditionAssignments.cpp
 	ConditionAssignments.h
 	ConditionEntry.cpp
@@ -311,6 +313,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ScrollVar.h
 	SDL.h
 	Set.h
+	Setting.cpp
+	Setting.h
 	Ship.cpp
 	Ship.h
 	Shop.h

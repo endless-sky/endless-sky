@@ -32,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class CapacityList;
 class CategoryList;
 class Color;
+class ConditionAlias;
 class ConditionsStore;
 class Confusion;
 class Conversation;
@@ -156,6 +157,7 @@ public:
 	static const Set<TestData> &TestDataSets();
 	static const Set<Wormhole> &Wormholes();
 	static const Set<Gamerules> &GamerulesPresets();
+	static const Set<ConditionAlias> &ConditionAliases();
 
 	static const std::set<std::string> &UniverseWormholeRequirements();
 

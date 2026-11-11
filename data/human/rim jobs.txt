@@ -258,7 +258,7 @@ mission "Delta V Hovercraft Racer Transport"
 
 mission "Delta V Hovercraft Large Racer Transport"
 	name "Transport team to <planet>"
-	description "Deliver this <passengers>-member racing team and their set of <cargo> to <destination> to attend a race by <date>."
+	description "Deliver this <bunks>-member racing team and their set of <cargo> to <destination> to attend a race by <date>."
 	passengers 50 100 .9
 	cargo "Delta V hovercraft" 50
 	job

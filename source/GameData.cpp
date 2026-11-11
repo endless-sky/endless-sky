@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Depreciation.h"
 #include "Effect.h"
 #include "Files.h"
 #include "shader/FillShader.h"
@@ -742,6 +743,13 @@ const Set<Gamerules> &GameData::GamerulesPresets()
 
 
 
+const Set<ConditionAlias> &GameData::ConditionAliases()
+{
+	return objects.conditionAliases;
+}
+
+
+
 const std::set<std::string> &GameData::UniverseWormholeRequirements()
 {
 	return objects.universeWormholeRequirements;
@@ -865,6 +873,8 @@ const string &GameData::Tooltip(const string &label)
 	// the full price, so they will not match exactly.
 	if(it == objects.tooltips.end() && label.starts_with("cost"))
 		it = objects.tooltips.find("cost:");
+	if(it == objects.tooltips.end() && label.starts_with("ship: cost"))
+		it = objects.tooltips.find("ship: cost:");
 	if(it == objects.tooltips.end() && label.starts_with("sells for"))
 		it = objects.tooltips.find("sells for:");
 	return (it == objects.tooltips.end() ? EMPTY : it->second);
@@ -915,6 +925,9 @@ const Gamerules &GameData::GetGamerules()
 void GameData::SetGamerules(const Gamerules *gamerules)
 {
 	activeGamerules = gamerules;
+	// This pilot may have different depreciation gamerules than whatever was loaded before,
+	// so clear the cache to allow calculations with these gamerules to be accurate.
+	Depreciation::InvalidateCache();
 }
 
 

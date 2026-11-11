@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CapacityList.h"
 #include "CategoryList.h"
 #include "Color.h"
+#include "ConditionAlias.h"
 #include "Confusion.h"
 #include "Conversation.h"
 #include "Effect.h"
@@ -142,6 +143,7 @@ private:
 	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
 	Set<Gamerules> gamerulesPresets;
+	Set<ConditionAlias> conditionAliases;
 
 	// This is used for speeding up the route calculations.
 	std::set<std::string> universeWormholeRequirements;

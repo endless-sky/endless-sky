@@ -334,16 +334,15 @@ bool ShipInfoPanel::Click(int x, int y, MouseButton button, int /* clicks */)
 
 bool ShipInfoPanel::Hover(int x, int y)
 {
-	Point point(x, y);
-	info.Hover(point);
-	return Hover(point);
+	info.Hover();
+	return Hover();
 }
 
 
 
 bool ShipInfoPanel::Drag(double dx, double dy)
 {
-	return Hover(hoverPoint + Point(dx, dy));
+	return Hover();
 }
 
 
@@ -654,7 +653,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 	if((cargo.CommoditiesSize() || cargo.HasOutfits() || cargo.MissionCargoSize()) && hasSpace)
 	{
 		table.Draw("Cargo", bright);
-		table.Advance();
+		table.Draw("tons", dim);
 		hasSpace = (table.GetRowBounds().Bottom() < endY);
 	}
 	if(cargo.CommoditiesSize() && hasSpace)
@@ -694,8 +693,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 			// For outfits, show how many of them you have and their total mass.
 			bool isSingular = (it.second == 1 || it.first->Get("installable") < 0.);
 			string name = (isSingular ? it.first->DisplayName() : it.first->PluralName());
-			if(!isSingular)
-				name += " (" + to_string(it.second) + "x)";
+			name += " (" + to_string(it.second) + "x)";
 			table.Draw(name, dim);
 
 			double mass = it.first->Mass() * it.second;
@@ -747,12 +745,10 @@ void ShipInfoPanel::DrawLine(const Point &from, const Point &to, const Color &co
 
 
 
-bool ShipInfoPanel::Hover(const Point &point)
+bool ShipInfoPanel::Hover()
 {
 	if(shipIt == panelState.Ships().end())
 		return true;
-
-	hoverPoint = point;
 
 	hoverIndex = -1;
 	hoverCommodity = "";
@@ -828,31 +824,31 @@ void ShipInfoPanel::Dump()
 	else if(plunderAmount > 0)
 	{
 		loss += plunderAmount * selectedPlunder->Cost();
-		(*shipIt)->Jettison(selectedPlunder, plunderAmount);
+		(*shipIt)->Jettison(selectedPlunder, plunderAmount, false, &player);
 	}
 	else if(outfitAmount > 0)
 	{
-		(*shipIt)->JettisonInstalled(selectedOutfit, outfitAmount);
+		(*shipIt)->JettisonInstalled(selectedOutfit, outfitAmount, false, &player);
 		Messages::Add({"You jettisoned " + to_string(outfitAmount) + " "
 				+ (outfitAmount == 1 ? selectedOutfit->DisplayName() : selectedOutfit->PluralName()),
 			GameData::MessageCategories().Get("normal")});
 	}
 	else if(commodities)
 	{
-		for(const auto &it : cargo.Commodities())
+		for(const auto &[commodity, count] : cargo.Commodities())
 		{
-			int64_t basis = player.GetBasis(it.first, it.second);
+			int64_t basis = player.GetBasis(commodity, count);
 			loss += basis;
-			player.AdjustBasis(it.first, -basis);
-			(*shipIt)->Jettison(it.first, it.second);
+			player.AdjustBasis(commodity, -basis);
+			(*shipIt)->Jettison(commodity, count);
 		}
 	}
 	else
 	{
-		for(const auto &it : cargo.Outfits())
+		for(const auto &[outfit, count] : cargo.Outfits())
 		{
-			loss += it.first->Cost() * max(0, it.second);
-			(*shipIt)->Jettison(it.first, it.second);
+			loss += outfit->Cost() * max(0, count);
+			(*shipIt)->Jettison(outfit, count, false, &player);
 		}
 	}
 	selectedCommodity.clear();
@@ -874,7 +870,7 @@ void ShipInfoPanel::DumpPlunder(int count)
 	if(count > 0)
 	{
 		loss += count * selectedPlunder->Cost();
-		(*shipIt)->Jettison(selectedPlunder, count);
+		(*shipIt)->Jettison(selectedPlunder, count, false, &player);
 		UpdateInfo();
 
 		if(loss)

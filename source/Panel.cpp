@@ -408,15 +408,15 @@ bool Panel::DoKey(SDL_Keycode key, Uint16 mod)
 
 bool Panel::DoHelp(const string &name, bool force) const
 {
-	string preference = "help: " + name;
-	if(!force && Preferences::Has(preference))
+	string help = "help: " + name;
+	if(!force && Preferences::HelpShown(help))
 		return false;
 
 	const string &message = GameData::HelpMessage(name);
 	if(message.empty())
 		return false;
 
-	Preferences::Set(preference);
+	Preferences::SetHelp(help);
 	ui->Push(DialogPanel::Info(Format::Capitalize(name) + ":\n\n" + message));
 
 	return true;
@@ -589,6 +589,15 @@ void Panel::DoUpdateTextDisplay()
 	UpdateTextDisplay();
 	for(auto &child : children)
 		child->DoUpdateTextDisplay();
+}
+
+
+
+void Panel::SetHoverPoint(const Point &hoverPoint)
+{
+	this->hoverPoint = hoverPoint;
+	for(auto &child : children)
+		child->SetHoverPoint(hoverPoint);
 }
 
 

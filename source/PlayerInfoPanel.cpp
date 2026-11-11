@@ -566,7 +566,7 @@ bool PlayerInfoPanel::Click(int x, int y, MouseButton button, int clicks)
 bool PlayerInfoPanel::Drag(double dx, double dy)
 {
 	isDragging = true;
-	return Hover(hoverPoint + Point(dx, dy));
+	return Hover();
 }
 
 
@@ -609,12 +609,26 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	table.SetUnderline(0, columnWidth);
 	table.DrawAt(bounds.TopLeft() + Point(10., 8.));
 
+	double usedCargo = player.Cargo().UsedPrecise();
+	int totalCargo = 0;
+	for(const auto &ship : player.Ships())
+	{
+		if(ship->IsDestroyed() || ship->IsParked())
+			continue;
+		const CargoHold &cargo = ship->Cargo();
+		usedCargo += cargo.UsedPrecise();
+		totalCargo += cargo.Size();
+	}
+
 	CheckHover(table.GetRowBounds(), "player:");
 	table.DrawTruncatedPair("player:", dim, player.FirstName() + " " + player.LastName(),
 		bright, Truncate::MIDDLE, true);
 	CheckHover(table.GetRowBounds(), "net worth:");
 	table.DrawTruncatedPair("net worth:", dim, Format::CreditString(player.Accounts().NetWorth()),
 		bright, Truncate::MIDDLE, true);
+	CheckHover(table.GetRowBounds(), "fleet cargo:");
+	table.DrawTruncatedPair("fleet cargo:", dim, Format::AbbreviatedNumber(usedCargo, std::nullopt) + "/"
+		+ Format::AbbreviatedNumber(totalCargo) + " tons", bright, Truncate::MIDDLE, true);
 	CheckHover(table.GetRowBounds(), "time played:");
 	table.DrawTruncatedPair("time played:", dim, Format::PlayTime(player.GetPlayTime()),
 		bright, Truncate::MIDDLE, true);
@@ -647,17 +661,20 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 	}
 
 	// Display the factors affecting piracy targeting the player.
-	if(GameData::GetGamerules().SpawnRaidFleets())
+	const Gamerules &rules = GameData::GetGamerules();
+	double rollChance = rules.RaidFleetRollChance();
+	if(rollChance)
 	{
-		auto factors = player.RaidFleetFactors();
-		double attractionLevel = max(0., log2(max(factors.first, 0.)));
-		double deterrenceLevel = max(0., log2(max(factors.second, 0.)));
+		auto [fleetAttraction, fleetDeterrence] = player.RaidFleetFactors();
+		double attractionLevel = max(0., log2(max(fleetAttraction, 0.)));
+		double deterrenceLevel = max(0., log2(max(fleetDeterrence, 0.)));
 		string attractionRating = GameData::Rating("cargo attractiveness", attractionLevel);
 		string deterrenceRating = GameData::Rating("armament deterrence", deterrenceLevel);
 		if(!attractionRating.empty() && !deterrenceRating.empty())
 		{
-			double attraction = max(0., min(1., .005 * (factors.first - factors.second - 2.)));
-			double prob = 1. - pow(1. - attraction, 10.);
+			int spawnAttempts = rules.RaidFleetSpawnAttempts();
+			double attraction = max(0., min(1., .005 * (fleetAttraction - fleetDeterrence - 2.)));
+			double prob = (1. - pow(1. - attraction, spawnAttempts)) * rollChance;
 
 			table.DrawGap(10);
 			table.DrawUnderline(dim);
@@ -685,14 +702,14 @@ void PlayerInfoPanel::DrawPlayer(const Rectangle &bounds)
 		salary.emplace_back(name, value);
 	sort(salary.begin(), salary.end(), std::greater<>());
 	DrawList(salary, salaryArea, start, columnWidth, "salary:", player.Accounts().SalariesIncomeTotal(),
-		min<int>(salary.size(), 4) * 20);
+		min<int>(salary.size(), 3) * 20);
 
 	vector<pair<string, int64_t>> tribute;
 	for(const auto &[planet, value] : player.GetTribute())
 		tribute.emplace_back(planet->TrueName(), value);
 	sort(tribute.begin(), tribute.end(), std::greater<>());
 	DrawList(tribute, tributeArea, start, columnWidth, "tribute:", player.GetTributeTotal(),
-		min<int>(tribute.size(), 4) * 20);
+		min<int>(tribute.size(), 3) * 20);
 
 	vector<pair<string, int64_t>> licenses;
 	for(const string &it : player.Licenses())
@@ -927,14 +944,13 @@ void PlayerInfoPanel::SortShips(InfoPanelState::ShipComparator *shipComparator)
 
 bool PlayerInfoPanel::Hover(int x, int y)
 {
-	return Hover(Point(x, y));
+	return Hover();
 }
 
 
 
-bool PlayerInfoPanel::Hover(const Point &point)
+bool PlayerInfoPanel::Hover()
 {
-	hoverPoint = point;
 	hoverIndex = -1;
 
 	return true;
