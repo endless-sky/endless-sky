@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "AI.h"
 #include "audio/Audio.h"
+#include "ConditionAlias.h"
 #include "Conversation.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
@@ -2538,11 +2539,15 @@ const Mission *PlayerInfo::ActiveInFlightMission() const
 
 
 
-// Update mission NPCs with the player's current conditions.
-void PlayerInfo::UpdateMissionNPCs()
+vector<const NPC *> PlayerInfo::UpdateMissionNPCs()
 {
+	vector<const NPC *> spawn;
 	for(Mission &mission : missions)
-		mission.UpdateNPCs(*this);
+	{
+		vector<const NPC *> npcs = mission.UpdateNPCs();
+		spawn.insert(spawn.end(), npcs.begin(), npcs.end());
+	}
+	return spawn;
 }
 
 
@@ -4010,6 +4015,13 @@ void PlayerInfo::ValidateLoad()
 // Helper to register derived conditions.
 void PlayerInfo::RegisterDerivedConditions()
 {
+	// Read-only custom defined aliases. Add these first so that if a condition alias matches
+	// a reserved condition name, then this provider will be overwritten.
+	for(const auto &name : GameData::ConditionAliases() | views::keys)
+		conditions[name].ProvideNamed([](const ConditionEntry &ce) -> int64_t {
+			return GameData::ConditionAliases().Get(ce.Name())->Evaluate();
+		});
+
 	// Read-only date functions.
 	conditions["day"].ProvideNamed([this](const ConditionEntry &ce) { return date.Day(); });
 	conditions["month"].ProvideNamed([this](const ConditionEntry &ce) { return date.Month(); });

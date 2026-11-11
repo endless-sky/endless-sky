@@ -131,9 +131,14 @@ void UniverseObjects::FinishLoading()
 			Logger::Log(R"(Unhandled "disable" keyword of type ")" + category + "\".", Logger::Level::WARNING);
 	}
 
-	// Sort all category lists.
+	// Sort all category and capacity lists.
 	for(auto &list : categories | views::values)
 		list.Sort();
+	capacities.Sort();
+
+	// Guard against infinite loops in condition aliases.
+	for(auto &alias : conditionAliases | views::values)
+		alias.FinishLoading();
 }
 
 
@@ -655,6 +660,12 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 				list.Load(node);
 			}
 		}
+		else if(key == "display capacities")
+		{
+			if(overwrite)
+				capacities.Clear();
+			capacities.Load(node);
+		}
 		else if((key == "tip" || key == "help") && hasValue)
 		{
 			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
@@ -731,6 +742,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 			else
 				node.PrintTrace(R"(Invalid use of keyword "disable" for class ")" + category + "\"");
+		}
+		else if(key == "condition" && hasValue)
+		{
+			ConditionAlias *alias = conditionAliases.Get(node.Token(1));
+			if(overwrite)
+				*alias = ConditionAlias();
+			alias->Load(node, playerConditions);
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");

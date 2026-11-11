@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <limits>
+#include <ranges>
 
 using namespace std;
 
@@ -44,8 +45,9 @@ void CategoryList::Load(const DataNode &node)
 		Category cat(child.Token(0), currentPrecedence++);
 
 		// If a given category name already exists, its precedence will be updated.
-		auto it = ranges::find_if(list,
-			[&cat](const Category &c) noexcept -> bool { return cat.name == c.name; });
+		auto it = ranges::find_if(list, [&cat](const Category &c) noexcept -> bool {
+			return cat.name == c.name;
+		});
 		if(it != list.end())
 			it->precedence = cat.precedence;
 		else
@@ -63,8 +65,6 @@ void CategoryList::Clear()
 
 
 
-// Sort the CategoryList. Categories are sorted by precedence. If multiple categories
-// share the same precedence then they are sorted alphabetically.
 void CategoryList::Sort()
 {
 	sort(list.begin(), list.end());
@@ -72,11 +72,11 @@ void CategoryList::Sort()
 
 
 
-// Determine if the CategoryList contains a Category with the given name.
 bool CategoryList::Contains(const string &name) const
 {
-	const auto it = ranges::find_if(list,
-		[&name](const Category &c) noexcept -> bool { return name == c.name; });
+	const auto it = ranges::find_if(list, [&name](const Category &c) noexcept -> bool {
+		return name == c.name;
+	});
 	return it != list.end();
 }
 
@@ -84,8 +84,9 @@ bool CategoryList::Contains(const string &name) const
 
 CategoryList::Category CategoryList::GetCategory(const string &name) const
 {
-	const auto it = ranges::find_if(list,
-		[&name](const Category &c) noexcept -> bool { return name == c.name; });
+	const auto it = ranges::find_if(list, [&name](const Category &c) noexcept -> bool {
+		return name == c.name;
+	});
 	if(it != list.end())
 		return *it;
 	return Category("", numeric_limits<int>::max());
