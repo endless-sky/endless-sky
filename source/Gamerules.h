@@ -124,6 +124,7 @@ public:
 	static const std::string CAPTURE_SURVIVING_CREW_SHARES;
 	static const std::string CAPTURE_MIN_DEATH_BENEFIT;
 	static const std::string CAPTURE_VALUE_BASIS;
+	static const std::string BASE_COMBAT_WIDTH;
 
 
 public:
