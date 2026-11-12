@@ -959,31 +959,32 @@ void Engine::Step(bool isActive)
 				info.SetString("target gun", to_string(gunRange) + " ");
 			}
 			const bool mobilityScan = hasManeuver || hasVelocity || hasAcceleration;
+			double slownessModifier = target->SlownessModifier();
 			if((hasCrew && hasManeuver && scrutable)
 				|| (hasAcceleration && scrutable)
 				|| (mobilityScan && hasCrew && target->IsYours()))
 			{
 				info.SetCondition("turn while combined");
-				int turnRate = round(60 * target->TrueTurnRate());
+				int turnRate = round(60 * target->TurnRate() * slownessModifier);
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
 			else if((hasCrew && hasManeuver && scrutable)
 				|| (hasManeuver && target->IsYours() && !hasTactical && !hasCrew))
 			{
 				info.SetCondition("turn while not combined");
-				int turnRate = round(60 * target->TrueTurnRate());
+				int turnRate = round(60 * target->TurnRate() * slownessModifier);
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
 			if(hasAcceleration && (scrutable || target->IsYours()))
 			{
 				info.SetCondition("target velocity display");
-				int presentSpeed = round(60 * target->CurrentSpeed());
+				int presentSpeed = round(60 * target->Velocity().Length());
 				info.SetString("target velocity", to_string(presentSpeed) + " ");
 			}
 			if(hasVelocity && (scrutable || target->IsYours()))
 			{
 				info.SetCondition("target acceleration display");
-				int presentAcceleration = 3600 * target->TrueAcceleration();
+				int presentAcceleration = 3600 * target->Acceleration() * slownessModifier;
 				info.SetString("target acceleration", to_string(presentAcceleration) + " ");
 			}
 		}

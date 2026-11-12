@@ -462,26 +462,20 @@ public:
 	double Mass() const override;
 	double InertialMass() const;
 	double TurnRate() const;
-	double Acceleration() const;
 	double MaxVelocity(bool withAfterburner = false) const;
-	double ReverseThrust() const;
-	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
-	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
-	double TrueAcceleration() const;
-	double TrueTurnRate() const;
-	// These two values are the ship's effective maximum acceleration and turn rate,
-	// accounting for the effects of insufficient crew.
-	double CrewAcceleration() const;
-	double CrewReverseAcceleration() const;
-	double CrewTurnRate() const;
-	// The ship's current speed right now
-	double CurrentSpeed() const;
+	double Acceleration() const;
+	double ReverseAcceleration() const;
+	double ReverseThrust() const;
+	// The rate at which low crew will cause piloting errors.
+	// Used for estimating movement under the influence of low crew.
+	double CrewErrorRate() const;
+	// The reduction in this ship's acceleration and turn rate caused by accrued slowing.
+	double SlownessModifier() const;
 	// Inertialess flight characteristics:
 	bool InertialessMovement() const;
 	double InertialessThrottle() const;
-	double InertialessAcceleratingStep() const;
-	double InertialessBrakingStep() const;
+	double InertialessThrottleStep(bool isBraking) const;
 
 	double ThrustHeldFraction(ThrustKind kind) const;
 	uint8_t ThrustHeldFrames(ThrustKind kind) const;

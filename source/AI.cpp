@@ -3705,14 +3705,16 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	}
 
 	double stopDistance = 0.;
+	// Account for piloting errors caused by low crew and slowing.
+	// Note that slowing degrades with time and this is using the amount of slowing right now, so this over-estimates
+	// the stopping distance at this moment.
+	double movementModifier = ship.CrewErrorRate() * ship.SlownessModifier();
 	if(ship.InertialessMovement())
 	{
 		// Inertialess ships just need to throttle their thrust down until reaching the target velocity.
 		double throttle = ship.InertialessThrottle();
 		double targetThrottle = targetVelocity.Length() / maxVelocity;
-		// Account for piloting errors caused by low crew. Assume no slowness stacks.
-		double crewError = min(1., static_cast<double>(ship.Crew()) / ship.RequiredCrew());
-		double brakingStep = ship.InertialessBrakingStep() * crewError;
+		double brakingStep = ship.InertialessThrottleStep(true) * movementModifier;
 		if(throttle > targetThrottle)
 		{
 			shouldReverse = true;
@@ -3729,8 +3731,8 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 	else
 	{
 		// Note that the acceleration and turn rate used here assume no slowness stacks on the given ship.
-		double acceleration = ship.CrewAcceleration();
-		double turnRate = ship.CrewTurnRate();
+		double acceleration = ship.Acceleration() * movementModifier;
+		double turnRate = ship.TurnRate() * movementModifier;
 		Angle angle = ship.Facing();
 
 		// Ships with normal thrusters need to either turn opposite their direction of travel
@@ -3748,7 +3750,7 @@ Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &sho
 		{
 			// Figure out your reverse thruster stopping distance:
 			double reverseDistance = v * (180. - degreesToTurn) / turnRate;
-			reverseDistance += .5 * v * v / ship.ReverseAcceleration();
+			reverseDistance += .5 * v * v / (ship.ReverseAcceleration() * movementModifier);
 
 			if(reverseDistance < stopDistance)
 			{
