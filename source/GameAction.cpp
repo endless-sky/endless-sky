@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "PlayerInfo.h"
 #include "Random.h"
 #include "Ship.h"
+#include "image/SpriteLoadManager.h"
 #include "System.h"
 #include "UI.h"
 
@@ -87,13 +88,10 @@ namespace {
 		while(count)
 		{
 			int moved = (count > 0) ? 1 : -1;
-			if(flagship->Attributes().CanAdd(*outfit, moved))
-			{
-				flagship->AddOutfit(outfit, moved);
-				didShip = true;
-			}
-			else
+			if((moved < 0 && !flagship->OutfitCount(outfit)) || !flagship->Attributes().CanAdd(*outfit, moved))
 				break;
+			flagship->AddOutfit(outfit, moved);
+			didShip = true;
 			count -= moved;
 		}
 		if(count > 0)
@@ -110,7 +108,7 @@ namespace {
 				special += " put in your cargo hold because there is not enough space to install ";
 				special += (isSingle ? "it" : "them");
 				special += " in your ship.";
-				ui->Push(new DialogPanel(special));
+				ui->Push(DialogPanel::Info(special));
 			}
 		}
 		if(didCargo && didShip)
@@ -434,12 +432,21 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	for(auto &&it : giftOutfits)
 		if(it.second < 0)
 			DoGift(player, it.first, it.second, ui);
+	bool giftedItem = false;
 	for(auto &&it : giftOutfits)
 		if(it.second > 0)
+		{
 			DoGift(player, it.first, it.second, ui);
+			giftedItem = true;
+		}
 	for(auto &&it : giftShips)
 		if(it.Giving())
+		{
 			it.Do(player);
+			giftedItem = true;
+		}
+	if(giftedItem && player.GetPlanet())
+		SpriteLoadManager::SetRecheckThumbnails();
 
 	if(payment)
 	{

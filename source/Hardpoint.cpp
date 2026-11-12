@@ -141,7 +141,7 @@ double Hardpoint::TurnRate(const Ship &ship) const
 	if(!outfit)
 		return 0.;
 	return outfit->GetWeapon()->TurretTurn()
-		* (1. + ship.Attributes().Get("turret turn multiplier") + baseAttributes.turnMultiplier);
+		* (ship.TurretTurnMultiplier() + baseAttributes.turnMultiplier);
 }
 
 
@@ -190,7 +190,7 @@ bool Hardpoint::IsSpecial() const
 	if(!outfit)
 		return false;
 	const Weapon *weapon = outfit->GetWeapon().get();
-	return weapon->AntiMissile() || weapon->TractorBeam();
+	return weapon->AntiMissile() || weapon->TractorBeam() || weapon->IsDecorative();
 }
 
 

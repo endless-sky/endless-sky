@@ -88,7 +88,7 @@ void Screen::SetZoom(int percent, bool noEvent)
 	if(!noEvent)
 		CustomEvents::SendResize();
 
-	USER_ZOOM = max(100, min(200, percent));
+	USER_ZOOM = max(100, percent);
 
 	// Make sure the zoom factor is not set too high for the full UI to fit.
 	static const int MIN_WIDTH = 1000; // Width of main menu

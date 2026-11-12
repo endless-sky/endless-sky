@@ -73,6 +73,7 @@ public:
 	static const Command HOLD_POSITION;
 	static const Command AMMO;
 	static const Command HARVEST;
+	static const Command SCAN_ORDER;
 	// This command is given in combination with JUMP or LAND and tells a ship
 	// not to jump or land yet even if it is in position to do so. It can be
 	// given from the AI when a ship is waiting for its parent. It can also be
@@ -97,7 +98,11 @@ public:
 	Command() = default;
 	// Create a command representing whatever command is mapped to the given
 	// keycode (if any).
+#ifdef ES_USE_SDL3
+	explicit Command(uint32_t keycode);
+#else
 	explicit Command(int keycode);
+#endif
 
 	// Read the current keyboard state and set this object to reflect it.
 	void ReadKeyboard();

@@ -28,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MapDetailPanel.h"
 #include "PlayerInfo.h"
 #include "Point.h"
+#include "Preferences.h"
 #include "Screen.h"
 #include "shift.h"
 #include "image/Sprite.h"
@@ -122,41 +123,86 @@ namespace {
 
 
 
-DialogPanel::DialogPanel(function<void()> okFunction, const string &message, Truncate truncate, bool canCancel,
-	int activeButton)
-	: voidFun(std::move(okFunction))
-{
-	Init(message, truncate, canCancel, false);
-	this->activeButton = activeButton;
-}
-
-
-
-// Dialog that has no callback (information only). In this form, there is
-// only an "ok" button, not a "cancel" button.
-DialogPanel::DialogPanel(const string &text, Truncate truncate, bool allowsFastForward)
-	: allowsFastForward(allowsFastForward)
-{
-	Init(text, truncate, false);
-}
-
-
-
-// Mission accept / decline dialog.
-DialogPanel::DialogPanel(const string &text, PlayerInfo &player, const System *system, Truncate truncate,
-	bool allowsFastForward)
-	: intFun(bind(&PlayerInfo::MissionCallback, &player, placeholders::_1)),
-	allowsFastForward(allowsFastForward),
-	system(system), player(&player)
-{
-	Init(text, truncate, true, true);
-}
-
-
-
 DialogPanel::~DialogPanel()
 {
 	Audio::Resume();
+}
+
+
+
+DialogPanel *DialogPanel::Info(string message, Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	init.canCancel = false;
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+DialogPanel *DialogPanel::CallFunctionIfOk(function<void()> okFunction, string message, int activeButton,
+	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.voidFun = std::move(okFunction);
+	init.message = std::move(message);
+	init.activeButton = activeButton;
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+DialogPanel *DialogPanel::MissionOfferDialog(string message, PlayerInfo &player, const System *system,
+	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	init.intFun = bind(&PlayerInfo::MissionCallback, &player, placeholders::_1);
+	init.system = system;
+	init.player = &player;
+	init.canCancel = true;
+	init.isMission = true;
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+DialogPanel *DialogPanel::RequestIntegerWithValidation(function<void(int)> fun,
+	std::function<bool(int)> validate, string message, optional<int> initialValue,
+	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	if(initialValue.has_value())
+		init.initialValue = std::to_string(initialValue.value());
+	init.intFun = std::move(fun);
+	init.validateIntFun = std::move(validate);
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
+}
+
+
+
+DialogPanel *DialogPanel::RequestDoubleWithValidation(function<void(double)> fun,
+	function<bool(double)> validate, string message, optional<double> initialValue,
+	Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.message = std::move(message);
+	if(initialValue.has_value())
+		init.initialValue = Format::StripCommas(Format::Number(initialValue.value(), 5));
+	init.doubleFun = std::move(fun);
+	init.validateDoubleFun = std::move(validate);
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new DialogPanel(init);
 }
 
 
@@ -190,7 +236,7 @@ void DialogPanel::Draw()
 	}
 
 	// Draw the bottom section.
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	pos.Y() += bottom->Height() * .5;
 	SpriteShader::Draw(bottom, pos);
 	pos.Y() += (bottom->Height() - cancel->Height()) * .5;
@@ -230,7 +276,9 @@ void DialogPanel::Draw()
 	// Draw the input, if any.
 	if(AcceptsInput())
 	{
-		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), back);
+		FillShader::Fill(inputPos, Point(Width() - HORIZONTAL_PADDING, INPUT_HEIGHT), (flickerTime % 6 > 3) ? dim : back);
+		if(flickerTime)
+			--flickerTime;
 
 		Point stringPos(
 			inputPos.X() - (Width() - HORIZONTAL_PADDING) * .5 + INPUT_LEFT_PADDING,
@@ -253,144 +301,58 @@ bool DialogPanel::AllowsFastForward() const noexcept
 
 
 
-bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
+void DialogPanel::UpdateTextDisplay()
 {
-	auto it = KEY_MAP.find(key);
-	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
-	if(stringFun && Clipboard::KeyDown(input, key, mod))
-	{
-		// Input handled by Clipboard.
-	}
-	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && AcceptsInput() && !isCloseRequest)
-	{
-		int ascii = (it != KEY_MAP.end()) ? it->second : key;
-		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
-		// Caps lock should shift letters, but not any other keys.
-		if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
-			c += 'A' - 'a';
-
-		if(stringFun)
-			input += c;
-		// Integer and double inputs only allow certain characters.
-		else if((intFun || doubleFun) && c >= '0' && c <= '9')
-			input += c;
-		// Both integer and double input can start with a minus sign.
-		else if((intFun || doubleFun) && c == '-' && input.empty())
-			input += c;
-		// Double input should only allow a single decimal point.
-		else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))
-			input += c;
-
-		isOkDisabled = !ValidateInput();
-	}
-	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !input.empty())
-	{
-		input.erase(input.length() - 1);
-		isOkDisabled = !ValidateInput();
-	}
-	else if(key == SDLK_TAB)
-		// Round-robin to the right, 3->2->1->3
-		activeButton = activeButton == 1 ? numButtons : activeButton - 1;
-	else if(key == SDLK_LEFT)
-	{
-		// To the left, 1->2->3->3
-		if(activeButton < numButtons)
-			activeButton++;
-	}
-	else if(key == SDLK_RIGHT)
-	{
-		// To the right, 3->2->1->1
-		if(activeButton > 1)
-			activeButton--;
-	}
-	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || key == SDLK_SPACE || isCloseRequest
-			|| (isMission && (key == 'a' || key == 'd'))
-			|| (numButtons == 3 && key == buttonThree.buttonKey))
-	{
-		// Note: The key shortcuts only work when there is no stringFun defined, else they are being typed out.
-		if(key == 'a' || (!canCancel && isCloseRequest))
-			activeButton = 1;
-		if(key == 'd' || (canCancel && isCloseRequest))
-			activeButton = 2;
-		if(key == buttonThree.buttonKey && numButtons == 3)
-			activeButton = 3;
-
-		// Now that we know what button was selected, process the button press
-		if(boolFun)
-		{
-			DoCallback(activeButton == 1);
-			GetUI().Pop(this);
-		}
-		else if(activeButton == 1 || isMission)
-		{
-			// If the OK button is disabled (because the input failed the validation),
-			// don't execute the callback.
-			if(!isOkDisabled)
-			{
-				DoCallback();
-				GetUI().Pop(this);
-			}
-		}
-		else if(activeButton == 3)
-		{
-			// Do third button callback. If this returns true, also close the dialog.
-			if(buttonThree.buttonAction && buttonThree.buttonAction(input))
-				GetUI().Pop(this);
-		}
-		else
-			GetUI().Pop(this);
-	}
-	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
-		GetUI().Push(new MapDetailPanel(*player, system, true));
-	else
-		return false;
-
-	return true;
+	text->SetAlignment(Preferences::GetTextAlignment());
+	text->SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 
 
-bool DialogPanel::Click(int x, int y, MouseButton button, int clicks)
+DialogPanel::DialogPanel(DialogInit &init)
+	: voidFun(std::move(init.voidFun)),
+	boolFun(std::move(init.boolFun)),
+	intFun(std::move(init.intFun)),
+	doubleFun(std::move(init.doubleFun)),
+	stringFun(std::move(init.stringFun)),
+	validateIntFun(std::move(init.validateIntFun)),
+	validateDoubleFun(std::move(init.validateDoubleFun)),
+	validateStringFun(std::move(init.validateStringFun)),
+	filterCharFun(std::move(init.filterCharFun)),
+	canCancel(init.canCancel),
+	activeButton(init.activeButton),
+	isMission(init.isMission),
+	allowsFastForward(init.allowsFastForward),
+	input(std::move(init.initialValue)),
+	buttonOne(init.buttonOne),
+	buttonThree(init.buttonThree),
+	system(init.system),
+	player(init.player)
 {
-	if(button != MouseButton::LEFT)
-		return false;
-	Point clickPos(x, y);
+	Audio::Pause();
+	SetInterruptible(isMission);
 
-	const Sprite *sprite = SpriteSet::Get("ui/dialog cancel");
-	double toleranceX = (sprite->Width() - BUTTON_HORIZONTAL_MARGIN) / 2.;
-	double toleranceY = (sprite->Height() - BUTTON_VERTICAL_MARGIN) / 2.;
+	isWide = false;
+	numButtons = canCancel ? (!buttonThree.buttonLabel.empty() ? 3 : 2) : 1;
 
-	Point ok = clickPos - okPos;
-	if(fabs(ok.X()) < toleranceX && fabs(ok.Y()) < toleranceY)
+	if(buttonOne.buttonLabel.empty())
+		okText = isMission ? "Accept" : "OK";
+	else
 	{
-		activeButton = 1;
-		return DoKey(SDLK_RETURN);
+		okText = buttonOne.buttonLabel;
+		stringFun = buttonOne.buttonAction;
 	}
+	cancelText = isMission ? "Decline" : "Cancel";
 
-	if(canCancel)
-	{
-		Point cancel = clickPos - cancelPos;
-		if(fabs(cancel.X()) < toleranceX && fabs(cancel.Y()) < toleranceY)
-		{
-			activeButton = 2;
-			return DoKey(SDLK_RETURN);
-		}
-	}
+	text = make_shared<TextArea>();
+	text->SetAlignment(Preferences::GetTextAlignment());
+	text->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	text->SetTruncate(init.truncate);
+	text->SetText(init.message);
+	extensionCount = 0;
+	AddChild(text);
 
-	if(numButtons == 3)
-	{
-		Point cancel = clickPos - thirdPos;
-		const Sprite *sprite3 = SpriteSet::Get("ui/wide button");
-		toleranceX = (sprite3->Width() - BUTTON_HORIZONTAL_MARGIN) / 2.;
-		toleranceY = (sprite3->Height() - BUTTON_VERTICAL_MARGIN) / 2.;
-		if(fabs(cancel.X()) < toleranceX && fabs(cancel.Y()) < toleranceY)
-		{
-			activeButton = 3;
-			return DoKey(SDLK_RETURN);
-		}
-	}
-
-	return true;
+	isOkDisabled = !ValidateInput();
 }
 
 
@@ -456,36 +418,157 @@ void DialogPanel::Resize()
 
 
 
-// Common code from all three constructors:
-void DialogPanel::Init(const string &message, Truncate truncate, bool canCancel, bool isMission)
+bool DialogPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
-	Audio::Pause();
-	SetInterruptible(isMission);
+	auto Invalid = [this]() {
+		flickerTime = 18;
+	};
 
-	this->isMission = isMission;
-	this->canCancel = canCancel;
-	activeButton = 1;
-	isWide = false;
-	numButtons = canCancel ? (!buttonThree.buttonLabel.empty() ? 3 : 2) : 1;
-
-	if(buttonOne.buttonLabel.empty())
-		okText = isMission ? "Accept" : "OK";
-	else
+	auto it = KEY_MAP.find(key);
+	bool isCloseRequest = key == SDLK_ESCAPE || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI)));
+	if(stringFun && Clipboard::KeyDown(input, key, mod))
 	{
-		okText = buttonOne.buttonLabel;
-		stringFun = buttonOne.buttonAction;
+		// Input handled by Clipboard.
 	}
-	cancelText = isMission ? "Decline" : "Cancel";
+	else if((it != KEY_MAP.end() || (key >= ' ' && key <= '~')) && AcceptsInput() && !isCloseRequest)
+	{
+		int ascii = (it != KEY_MAP.end()) ? it->second : key;
+		char c = ((mod & KMOD_SHIFT) ? SHIFT[ascii] : ascii);
+		// Caps lock should shift letters, but not any other keys.
+		if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
+			c += 'A' - 'a';
 
-	text = make_shared<TextArea>();
-	text->SetAlignment(Alignment::JUSTIFIED);
-	text->SetFont(FontSet::Get(14));
-	text->SetTruncate(truncate);
-	text->SetText(message);
-	Resize();
-	AddChild(text);
+		if(stringFun)
+		{
+			if(!filterCharFun || filterCharFun(input, c))
+				input += c;
+			else
+				Invalid();
+		}
+		else if(intFun || doubleFun)
+		{
+			// Numbers can start with a minus sign as their first character.
+			if((input.empty() && c == '-') || (c >= '0' && c <= '9'))
+				input += c;
+			// Doubles can contain a single decimal point.
+			else if(doubleFun && c == '.' && !std::count(input.begin(), input.end(), '.'))
+				input += c;
+			else
+				Invalid();
+		}
 
-	isOkDisabled = !ValidateInput();
+		isOkDisabled = !ValidateInput();
+	}
+	else if((key == SDLK_DELETE || key == SDLK_BACKSPACE) && !input.empty())
+	{
+		input.erase(input.length() - 1);
+		isOkDisabled = !ValidateInput();
+	}
+	else if(key == SDLK_TAB)
+		// Round-robin to the right, 3->2->1->3
+		activeButton = activeButton == 1 ? numButtons : activeButton - 1;
+	else if(key == SDLK_LEFT)
+	{
+		// To the left, 1->2->3->3
+		if(activeButton < numButtons)
+			activeButton++;
+	}
+	else if(key == SDLK_RIGHT)
+	{
+		// To the right, 3->2->1->1
+		if(activeButton > 1)
+			activeButton--;
+	}
+	else if(key == SDLK_RETURN || key == SDLK_KP_ENTER || key == SDLK_SPACE || isCloseRequest
+			|| (isMission && (key == 'a' || key == 'd'))
+			|| (numButtons == 3 && key == buttonThree.buttonKey))
+	{
+		// Note: The key shortcuts only work when there is no stringFun defined, else they are being typed out.
+		if(key == 'a' || (!canCancel && isCloseRequest))
+			activeButton = 1;
+		if(key == 'd' || (canCancel && isCloseRequest))
+			activeButton = 2;
+		if(key == buttonThree.buttonKey && numButtons == 3)
+			activeButton = 3;
+
+		// Now that we know what button was selected, process the button press
+		if(boolFun)
+		{
+			DoCallback(activeButton == 1);
+			GetUI().Pop(this);
+		}
+		else if(activeButton == 1 || isMission)
+		{
+			// If the OK button is disabled (because the input failed the validation),
+			// don't execute the callback.
+			if(!isOkDisabled)
+			{
+				DoCallback();
+				GetUI().Pop(this);
+			}
+			else
+				Invalid();
+		}
+		else if(activeButton == 3)
+		{
+			// Do third button callback. If this returns true, also close the dialog.
+			if(buttonThree.buttonAction && buttonThree.buttonAction(input))
+				GetUI().Pop(this);
+		}
+		else
+			GetUI().Pop(this);
+	}
+	else if((key == 'm' || command.Has(Command::MAP)) && system && player)
+		GetUI().Push(new MapDetailPanel(*player, system, true));
+	else
+		return false;
+
+	return true;
+}
+
+
+
+bool DialogPanel::Click(int x, int y, MouseButton button, int clicks)
+{
+	if(button != MouseButton::LEFT)
+		return false;
+	Point clickPos(x, y);
+
+	const Sprite *sprite = SpriteSet::Get("ui/dialog cancel");
+	double toleranceX = (sprite->Width() - BUTTON_HORIZONTAL_MARGIN) / 2.;
+	double toleranceY = (sprite->Height() - BUTTON_VERTICAL_MARGIN) / 2.;
+
+	Point ok = clickPos - okPos;
+	if(fabs(ok.X()) < toleranceX && fabs(ok.Y()) < toleranceY)
+	{
+		activeButton = 1;
+		return DoKey(SDLK_RETURN);
+	}
+
+	if(canCancel)
+	{
+		Point cancel = clickPos - cancelPos;
+		if(fabs(cancel.X()) < toleranceX && fabs(cancel.Y()) < toleranceY)
+		{
+			activeButton = 2;
+			return DoKey(SDLK_RETURN);
+		}
+	}
+
+	if(numButtons == 3)
+	{
+		Point cancel = clickPos - thirdPos;
+		const Sprite *sprite3 = SpriteSet::Get("ui/wide button");
+		toleranceX = (sprite3->Width() - BUTTON_HORIZONTAL_MARGIN) / 2.;
+		toleranceY = (sprite3->Height() - BUTTON_VERTICAL_MARGIN) / 2.;
+		if(fabs(cancel.X()) < toleranceX && fabs(cancel.Y()) < toleranceY)
+		{
+			activeButton = 3;
+			return DoKey(SDLK_RETURN);
+		}
+	}
+
+	return true;
 }
 
 

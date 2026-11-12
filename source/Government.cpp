@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Government.h"
 
+#include "Confusion.h"
 #include "Conversation.h"
 #include "DataNode.h"
 #include "Fleet.h"
@@ -152,6 +153,7 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		if(displayName.empty())
 			displayName = trueName;
 	}
+	isDefined = true;
 
 	// For the following keys, if this data node defines a new value for that
 	// key, the old values should be cleared (unless using the "add" keyword).
@@ -218,6 +220,15 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				planetBribeAcceptanceHail = nullptr;
 			else if(key == "planet bribe rejection hail")
 				planetBribeRejectionHail = nullptr;
+			else if(key == "tribute hails")
+			{
+				tributeAlreadyPaying = nullptr;
+				tributeUndefined = nullptr;
+				tributeUnworthy = nullptr;
+				tributeFleetLaunching = nullptr;
+				tributeFleetUndefeated = nullptr;
+				tributeSurrendered = nullptr;
+			}
 			else if(key == "language")
 				language.clear();
 			else if(key == "send untranslated hails")
@@ -257,6 +268,13 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 		// Handle the attributes which cannot have a value removed.
 		else if(remove)
 			child.PrintTrace("Cannot \"remove\" a specific value from the given key:");
+		else if(key == "confusion")
+		{
+			if(child.HasChildren() || (child.Size() >= 1 + valueIndex && child.IsNumber(valueIndex)))
+				confusion = ExclusiveItem<Confusion>(Confusion(child));
+			else if(child.Size() >= 1 + valueIndex)
+				confusion = ExclusiveItem<Confusion>(GameData::Confusions().Get(child.Token(valueIndex)));
+		}
 		else if(key == "attitude toward")
 		{
 			for(const DataNode &grand : child)
@@ -339,13 +357,12 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			}
 			for(const DataNode &grand : child)
 			{
-				if(grand.Size() < 2)
-				{
-					grand.PrintTrace("Skipping unrecognized attribute:");
-					continue;
-				}
 				const string &grandKey = grand.Token(0);
-				if(grandKey == "remove")
+				if(grandKey == "ignore universal")
+					ignoreUniversalIllegals = true;
+				else if(grand.Size() < 2)
+					grand.PrintTrace("Skipping unrecognized attribute:");
+				else if(grandKey == "remove")
 				{
 					if(grand.Token(1) == "ignore universal")
 						ignoreUniversalIllegals = false;
@@ -357,8 +374,6 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 					else if(!illegalOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
 						grand.PrintTrace("Invalid remove, outfit not found in existing illegals:");
 				}
-				else if(grandKey == "ignore universal")
-					ignoreUniversalIllegals = true;
 				else if(grandKey == "ignore")
 				{
 					if(grand.Token(1) == "ship" && grand.Size() >= 3)
@@ -385,8 +400,8 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				if(grand.Size() == 1)
-					atrocityOutfits[GameData::Outfits().Get(grandKey)] = {true, deathSentenceForBlock};
+				if(grandKey == "ignore universal")
+					ignoreUniversalAtrocities = true;
 				else if(grandKey == "remove")
 				{
 					if(grand.Token(1) == "ignore universal")
@@ -399,8 +414,6 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 					else if(!atrocityOutfits.erase(GameData::Outfits().Get(grand.Token(1))))
 						grand.PrintTrace("Invalid remove, outfit not found in existing atrocities:");
 				}
-				else if(grandKey == "ignore universal")
-						ignoreUniversalAtrocities = true;
 				else if(grandKey == "ignore")
 				{
 					if(grand.Token(1) == "ship" && grand.Size() >= 3)
@@ -410,6 +423,8 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				}
 				else if(grandKey == "ship")
 					atrocityShips[grand.Token(1)] = {true, deathSentenceForBlock};
+				else
+					atrocityOutfits[GameData::Outfits().Get(grandKey)] = {true, deathSentenceForBlock};
 			}
 		}
 		else if(key == "enforces" && child.HasChildren())
@@ -422,6 +437,33 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 				travelRestrictions.Load(child, visitedSystems, visitedPlanets);
 			else
 				travelRestrictions = LocationFilter(child, visitedSystems, visitedPlanets);
+		}
+		else if(key == "tribute hails" && child.HasChildren())
+		{
+			for(const DataNode &grand : child)
+			{
+				if(grand.Size() != 2)
+				{
+					grand.PrintTrace("Skipping unrecognized attribute:");
+					continue;
+				}
+				bool removeTributePhrase = grand.Token(0) == "remove";
+				const string &grandKey = grand.Token(remove);
+				if(grandKey == "already paying")
+					tributeAlreadyPaying = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "undefined")
+					tributeUndefined = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "unworthy")
+					tributeUnworthy = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet launching")
+					tributeFleetLaunching = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "fleet undefeated")
+					tributeFleetUndefeated = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else if(grandKey == "surrendered")
+					tributeSurrendered = removeTributePhrase ? nullptr : GameData::Phrases().Get(grand.Token(1));
+				else
+					grand.PrintTrace("Skipping unrecognized attribute:");
+			}
 		}
 		else if(key == "foreign penalties for")
 			for(const DataNode &grand : child)
@@ -496,6 +538,13 @@ void Government::Load(const DataNode &node, const set<const System *> *visitedSy
 
 
 
+bool Government::IsDefined() const
+{
+	return isDefined;
+}
+
+
+
 // Get the display name of this government.
 const string &Government::DisplayName() const
 {
@@ -530,7 +579,8 @@ const Swizzle *Government::GetSwizzle() const
 // Get the color to use for displaying this government on the map.
 const Color &Government::GetColor() const
 {
-	return *color;
+	static const Color EMPTY;
+	return color ? *color : EMPTY;
 }
 
 
@@ -694,6 +744,48 @@ string Government::GetPlanetBribeRejectionHail() const
 
 
 
+const Phrase *Government::TributeAlreadyPaying() const
+{
+	return tributeAlreadyPaying;
+}
+
+
+
+const Phrase *Government::TributeUndefined() const
+{
+	return tributeUndefined;
+}
+
+
+
+const Phrase *Government::TributeUnworthy() const
+{
+	return tributeUnworthy;
+}
+
+
+
+const Phrase *Government::TributeFleetLaunching() const
+{
+	return tributeFleetLaunching;
+}
+
+
+
+const Phrase *Government::TributeFleetUndefeated() const
+{
+	return tributeFleetUndefeated;
+}
+
+
+
+const Phrase *Government::TributeSurrendered() const
+{
+	return tributeSurrendered;
+}
+
+
+
 // Find out if this government speaks a different language.
 const string &Government::Language() const
 {
@@ -706,6 +798,13 @@ const string &Government::Language() const
 bool Government::SendUntranslatedHails() const
 {
 	return sendUntranslatedHails;
+}
+
+
+
+const Confusion *Government::GetConfusion() const
+{
+	return confusion.Ptr();
 }
 
 

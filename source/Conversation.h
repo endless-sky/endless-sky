@@ -54,6 +54,9 @@ public:
 	// substitutions and instantiating any actions.
 	Conversation Instantiate(std::map<std::string, std::string> &subs, int jumps = 0, int payload = 0) const;
 
+	// Scenes that could be diplsayed by this conversation.
+	const std::set<const Sprite *> &Scenes() const;
+
 	// The beginning of the conversation is node 0. Some nodes have choices for
 	// the user to select; others just automatically continue to another node.
 	// Nodes may also display images or include conditional branches.
@@ -176,4 +179,6 @@ private:
 	std::multimap<std::string, std::pair<int, int>> unresolved;
 	// The actual conversation data:
 	std::vector<Node> nodes;
+	// Scenes that could potentially be shown by this conversation.
+	std::set<const Sprite *> scenes;
 };

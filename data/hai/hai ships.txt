@@ -15,6 +15,7 @@ ship "Anomalocaris"
 	plural "Anomalocarises"
 	sprite "ship/hai anomalocaris"
 	thumbnail "thumbnail/hai anomalocaris"
+	"administrative cost" 5
 	attributes
 		category "Medium Warship"
 		"cost" 7400000
@@ -100,6 +101,7 @@ ship "Anomalocaris" "Anomalocaris (Venerable)"
 ship "Aphid"
 	sprite "ship/hai aphid"
 	thumbnail "thumbnail/hai aphid"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		"cost" 570000
@@ -183,6 +185,7 @@ ship "Aphid" "Aphid (Unfettered)"
 ship "Centipede"
 	sprite "ship/hai centipede"
 	thumbnail "thumbnail/hai centipede"
+	"administrative cost" 3
 	attributes
 		category "Space Liner"
 		"cost" 6300000
@@ -271,48 +274,12 @@ ship "Centipede" "Centipede (Pulse)"
 		`"Biroo" Atomic Steering`
 		Hyperdrive
 
-ship "Centipede" "Centipede (Durable)"
-	outfits
-		Hyperdrive
-		"Outfits Expansion"
-		"Quantum Keystone"
-		`"Basrem" Atomic Steering`
-		"Bullfrog Anti-Missile" 3
-		"Tracker Storage Pod" 2
-		"Hai Tracker Pod" 2
-		`"Biroo" Atomic Steering`
-		"Hai Gorge Batteries"
-		"Hai Williwaw Cooling" 3
-		"Hai Tracker" 168
-		`"Biroo" Atomic Thruster`
-		"Boulder Reactor"
-		"Hai Diamond Regenerator"
-
-ship "Centipede" "Centipede (Refugees)"
-	add attributes
-		"required crew" 91
-	outfits
-		Hyperdrive
-		"Outfits Expansion"
-		"Quantum Keystone"
-		`"Basrem" Atomic Steering`
-		"Bullfrog Anti-Missile" 3
-		"Tracker Storage Pod" 2
-		"Hai Tracker Pod" 2
-		`"Biroo" Atomic Steering`
-		"Hai Gorge Batteries"
-		"Hai Williwaw Cooling" 3
-		"Hai Tracker" 168
-		`"Biroo" Atomic Thruster`
-		"Boulder Reactor"
-		"Hai Diamond Regenerator"
-		"Pulse Rifle" 35
-
 
 
 ship "Cicada"
 	sprite "ship/hai cicada"
 	thumbnail "thumbnail/hai cicada"
+	"administrative cost" 2
 	attributes
 		category "Transport"
 		"cost" 3850000
@@ -369,6 +336,7 @@ ship "Cicada"
 ship "Flea"
 	sprite "ship/hai flea"
 	thumbnail "thumbnail/hai flea"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		"cost" 142400
@@ -413,6 +381,7 @@ ship "Geocoris"
 	plural "Geocoris"
 	sprite "ship/hai geocoris"
 	thumbnail "thumbnail/hai geocoris"
+	"administrative cost" 5
 	attributes
 		category "Heavy Freighter"
 		"cost" 12540000
@@ -496,6 +465,7 @@ ship "Geocoris" "Geocoris (Tracker)"
 ship "Grasshopper"
 	sprite "ship/hai grasshopper"
 	thumbnail "thumbnail/hai grasshopper"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		"cost" 684000
@@ -585,6 +555,7 @@ ship "Grasshopper" "Grasshopper (Ion)"
 ship "Lightning Bug"
 	sprite "ship/hai lightning bug"
 	thumbnail "thumbnail/hai lightning bug"
+	"administrative cost" 2
 	attributes
 		category "Light Warship"
 		"cost" 3200000
@@ -700,6 +671,7 @@ ship "Lightning Bug" "Lightning Bug (Unfettered Shipyards)"
 ship "Ladybug"
 	sprite "ship/hai ladybug"
 	thumbnail "thumbnail/hai ladybug"
+	"administrative cost" 3
 	attributes
 		category "Medium Warship"
 		"cost" 8950000
@@ -838,6 +810,7 @@ ship "Ladybug" "Ladybug (Tracker)"
 ship "Pond Strider"
 	sprite "ship/hai pond strider"
 	thumbnail "thumbnail/hai pond strider"
+	"administrative cost" 3
 	attributes
 		category "Medium Warship"
 		"cost" 5250000
@@ -849,7 +822,7 @@ ship "Pond Strider"
 		"drag" 5.33
 		"hull repair rate" 1
 		"heat dissipation" .34
-		"fuel capacity" 300
+		"fuel capacity" 600
 		"cargo space" 71
 		"outfit space" 354
 		"weapon capacity" 144
@@ -985,6 +958,7 @@ ship "Pond Strider" "Pond Strider (Railgun)"
 ship "Sea Scorpion"
 	sprite "ship/hai sea scorpion"
 	thumbnail "thumbnail/hai sea scorpion"
+	"administrative cost" 4
 	attributes
 		category "Medium Warship"
 		"cost" 5450000
@@ -1125,6 +1099,7 @@ ship "Sea Scorpion" "Sea Scorpion (Shredder)"
 ship "Scarab"
 	sprite "ship/hai scarab"
 	thumbnail "thumbnail/hai scarab"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		"cost" 1620000
@@ -1176,6 +1151,7 @@ ship "Scarab"
 ship "Shield Beetle"
 	sprite "ship/hai shield beetle"
 	thumbnail "thumbnail/hai shield beetle"
+	"administrative cost" 7
 	attributes
 		category "Heavy Warship"
 		"cost" 17900000
@@ -1315,38 +1291,6 @@ ship "Shield Beetle" "Shield Beetle (Unfettered Shipyards)"
 		`"Bufaer" Atomic Steering`
 		"Hyperdrive"
 
-# Custom anti-pirate build; insufficient battery for fighting Hai:
-ship "Shield Beetle" "Shield Beetle (Pulse Tracker)"
-	outfits
-		"Hai Tracker Pod" 8
-		"Tracker Storage Pod" 7
-		"Hai Tracker" 644
-		"Chameleon Anti-Missile" 2
-		"Pulse Turret" 2
-		
-		"Outfits Expansion" 4
-		"Boulder Reactor" 2
-		"Hai Gorge Batteries"
-		"Quantum Keystone"
-		"Hai Diamond Regenerator" 2
-		"Hai Williwaw Cooling" 7
-		"Pulse Rifle" 55
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	turret "Pulse Turret"
-	turret "Pulse Turret"
-	turret "Chameleon Anti-Missile"
-	turret "Chameleon Anti-Missile"
-
 ship "Shield Beetle" "Shield Beetle (Jump)"
 	outfits
 		"Ion Cannon" 4
@@ -1377,102 +1321,6 @@ ship "Shield Beetle" "Shield Beetle (Jump)"
 	turret
 	turret "Chameleon Anti-Missile"
 	turret "Chameleon Anti-Missile"
-
-# Custom anti-pirate build; insufficient battery for fighting Hai:
-ship "Shield Beetle" "Shield Beetle (Six Ion)"
-	outfits
-		"Ion Cannon" 6
-		"Chameleon Anti-Missile" 2
-		"Boulder Reactor" 2
-		"Hai Fissure Batteries"
-		"Outfits Expansion" 3
-		"Hai Diamond Regenerator" 2
-		"Hai Williwaw Cooling" 6
-		"Pulse Rifle" 55
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun
-	gun
-	turret
-	turret
-	turret "Chameleon Anti-Missile"
-	turret "Chameleon Anti-Missile"
-
-# Shield beetle with extra fuel so they don't get stuck between systems.
-# They don't get their ramscoops until after the mission.
-ship "Shield Beetle" "Shield Beetle (Fuel Jump)"
-	outfits
-		"Ion Cannon" 4
-		"Hai Tracker Pod" 4
-		"Hai Tracker" 280
-		"Jump Drive"
-		"Quantum Keystone"
-		"Outfits Expansion" 4
-		"Hai Ravine Batteries"
-		"Boulder Reactor"
-		"Geode Reactor"
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Tracker Storage Pod" 2
-		"Chameleon Anti-Missile" 2
-		"Hai Diamond Regenerator"
-		"Hai Williwaw Cooling" 4
-		"Hai Chasm Batteries"
-		Supercapacitor 2
-		"Fuel Pod" 9
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	gun "Ion Cannon"
-	gun "Ion Cannon"
-	gun "Hai Tracker Pod"
-	gun "Hai Tracker Pod"
-	turret
-	turret
-	turret "Chameleon Anti-Missile"
-	turret "Chameleon Anti-Missile"
-
-ship "Shield Beetle" "Shield Beetle (Particle Jump)"
-	outfits
-		"LP036a Battery Pack"
-		"Liquid Helium Cooler"
-		"Catalytic Ramscoop"
-		"Jump Drive"
-		"Quantum Keystone"
-		"Outfits Expansion" 2
-		"Boulder Reactor" 2
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Bullfrog Anti-Missile" 4
-		"Hai Diamond Regenerator" 2
-		"Fuel Pod" 3
-		"Liquid Nitrogen Cooler"
-		"Particle Cannon" 8
-
-ship "Shield Beetle" "Shield Beetle (Plasma Blaster Jump)"
-	outfits
-		"Liquid Helium Cooler" 2
-		"Catalytic Ramscoop"
-		"Jump Drive"
-		"Quantum Keystone"
-		"Outfits Expansion" 3
-		"Boulder Reactor" 2
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Chameleon Anti-Missile" 2
-		"Hai Diamond Regenerator" 2
-		"Hai Chasm Batteries"
-		"Fuel Pod" 3
-		"Plasma Cannon" 8
-		"Modified Blaster Turret" 2
 
 ship "Shield Beetle" "Shield Beetle (Jump, Tracker)"
 	outfits
@@ -1512,33 +1360,6 @@ ship "Shield Beetle" "Shield Beetle (Pulse)"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
 	gun "Pulse Cannon"
-
-# Custom anti-pirate build; insufficient battery for fighting Hai:
-ship "Shield Beetle" "Shield Beetle (Durable Pulse)"
-	outfits
-		"Pulse Cannon" 8
-		"Pulse Turret" 2
-		"Chameleon Anti-Missile" 2
-		"Boulder Reactor" 2
-		"Hai Gorge Batteries"
-		"Hai Diamond Regenerator" 3
-		"Hai Williwaw Cooling" 8
-		"Pulse Rifle" 55
-		`"Bondir" Atomic Thruster`
-		`"Bufaer" Atomic Steering`
-		"Hyperdrive"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	gun "Pulse Cannon"
-	turret "Pulse Turret"
-	turret "Pulse Turret"
-	turret "Chameleon Anti-Missile"
-	turret "Chameleon Anti-Missile"
 
 ship "Shield Beetle" "Shield Beetle (Tracker)"
 	outfits
@@ -1588,6 +1409,7 @@ ship "Shield Beetle" "Shield Beetle (Tripulse Ionic Turret)"
 ship "Emperor Beetle"
 	sprite "ship/hai emperor beetle"
 	thumbnail "thumbnail/hai emperor beetle"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		"cost" 35100000
@@ -1699,6 +1521,7 @@ ship "Emperor Beetle"
 ship "Solifuge"
 	sprite "ship/hai solifuge"
 	thumbnail "thumbnail/hai solifuge"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -1879,6 +1702,7 @@ ship "Solifuge" "Solifuge (Tracker)"
 ship "Violin Spider"
 	sprite "ship/hai violin spider"
 	thumbnail "thumbnail/hai violin spider"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		"cost" 139000
@@ -1933,6 +1757,7 @@ ship "Violin Spider" "Violin Spider (Pulse)"
 ship "Water Bug"
 	sprite "ship/hai water bug"
 	thumbnail "thumbnail/hai water bug"
+	"administrative cost" 3
 	attributes
 		category "Light Freighter"
 		"cost" 6500000

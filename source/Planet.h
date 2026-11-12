@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Sale.h"
 #include "Shop.h"
+#include "WeightedList.h"
 
 #include <list>
 #include <memory>
@@ -31,6 +32,7 @@ class DataNode;
 class Fleet;
 class Government;
 class Outfit;
+class Phrase;
 class PlayerInfo;
 class Ship;
 class Sprite;
@@ -73,7 +75,7 @@ public:
 	// Return the description text for the planet, but not the spaceport:
 	const Paragraphs &Description() const;
 	// Get the landscape sprite.
-	const Sprite *Landscape() const;
+	const Sprite *Landscape(bool refresh = false) const;
 	// Get the name of the ambient audio to play on this planet.
 	const std::string &MusicName() const;
 
@@ -178,7 +180,8 @@ private:
 	std::string displayName;
 	Paragraphs description;
 	Port port;
-	const Sprite *landscape = nullptr;
+	mutable const Sprite *landscape = nullptr;
+	WeightedList<const Sprite *> landscapes;
 	std::string music;
 
 	std::set<std::string> attributes;
@@ -219,6 +222,13 @@ private:
 	mutable size_t defenseDeployed = 0;
 	// Ships that have been created by instantiating its defense fleets.
 	mutable std::list<std::shared_ptr<Ship>> defenders;
+
+	const Phrase *tributeAlreadyPaying = nullptr;
+	const Phrase *tributeUndefined = nullptr;
+	const Phrase *tributeUnworthy = nullptr;
+	const Phrase *tributeFleetLaunching = nullptr;
+	const Phrase *tributeFleetUndefeated = nullptr;
+	const Phrase *tributeSurrendered = nullptr;
 
 	Wormhole *wormhole = nullptr;
 	std::vector<const System *> systems;

@@ -17,13 +17,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Color.h"
-#include "shader/FillShader.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Preferences.h"
 #include "Rectangle.h"
 #include "Screen.h"
 #include "text/Table.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <cmath>
@@ -33,12 +34,12 @@ using namespace std;
 
 
 ItemInfoDisplay::ItemInfoDisplay()
-	: tooltip(WIDTH, Alignment::JUSTIFIED, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
+	: tooltip(WIDTH, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
-	description.SetAlignment(Alignment::JUSTIFIED);
+	description.SetAlignment(Preferences::GetTextAlignment());
 	description.SetWrapWidth(WIDTH - 20);
-	description.SetFont(FontSet::Get(14));
+	description.SetFont(FontSet::Get(Preferences::GetFontSize()));
 }
 
 
@@ -77,7 +78,7 @@ int ItemInfoDisplay::AttributesHeight() const
 void ItemInfoDisplay::DrawDescription(const Point &topLeft) const
 {
 	Rectangle hoverTarget = Rectangle::FromCorner(topLeft, Point(PanelWidth(), DescriptionHeight()));
-	Color color = hoverTarget.Contains(hoverPoint) ? *GameData::Colors().Get("bright") : *GameData::Colors().Get("medium");
+	Color color = *GameData::Colors().Get(hasHover && hoverTarget.Contains(UI::GetMouse()) ? "bright" : "medium");
 	description.Draw(topLeft + Point(10., 12.), color);
 }
 
@@ -92,16 +93,16 @@ void ItemInfoDisplay::DrawAttributes(const Point &topLeft) const
 
 void ItemInfoDisplay::DrawTooltips() const
 {
-	tooltip.Draw();
+	if(hoveringTooltip)
+		tooltip.Draw();
+	hoveringTooltip = false;
 	tooltip.DecrementCount();
 }
 
 
 
-// Update the location where the mouse is hovering.
-void ItemInfoDisplay::Hover(const Point &point)
+void ItemInfoDisplay::Hover()
 {
-	hoverPoint = point;
 	hasHover = true;
 }
 
@@ -185,7 +186,7 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 		return;
 
 	Rectangle zone = table.GetRowBounds();
-	if(!zone.Contains(hoverPoint))
+	if(!zone.Contains(UI::GetMouse()))
 		return;
 
 	if(label == hover)
@@ -199,6 +200,8 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 	if(tooltip.ShouldDraw())
 	{
 		tooltip.SetZone(zone);
-		tooltip.SetText(GameData::Tooltip(hover));
+		tooltip.SetText(GameData::Tooltip(isShip ? "ship: " + hover : hover));
 	}
+
+	hoveringTooltip |= true;
 }

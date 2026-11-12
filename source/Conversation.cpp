@@ -54,6 +54,7 @@ void Conversation::Load(const DataNode &node, const ConditionsStore *playerCondi
 			// A scene always starts a new text node.
 			AddNode();
 			nodes.back().scene = SpriteSet::Get(child.Token(1));
+			scenes.insert(nodes.back().scene);
 		}
 		else if(key == "label" && hasValue)
 		{
@@ -329,8 +330,16 @@ Conversation Conversation::Instantiate(map<string, string> &subs, int jumps, int
 		if(!node.actions.IsEmpty())
 			node.actions = node.actions.Instantiate(subs, jumps, payload);
 	}
+	result.scenes = scenes;
 
 	return result;
+}
+
+
+
+const std::set<const Sprite *> &Conversation::Scenes() const
+{
+	return scenes;
 }
 
 

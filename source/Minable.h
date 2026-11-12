@@ -15,7 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Body.h"
+#include "Entity.h"
 
 #include "Angle.h"
 
@@ -25,10 +25,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+class DamageDealt;
 class DataNode;
 class Effect;
 class Flotsam;
-class MinableDamageDealt;
+class Government;
 class Outfit;
 class Projectile;
 class Visual;
@@ -37,15 +38,18 @@ class Visual;
 
 // Class representing an asteroid or other minable object that orbits in an
 // ellipse around the system center.
-class Minable : public Body {
+class Minable : public Entity {
 public:
 	class Payload {
 	public:
 		Payload(const DataNode &node);
 
+		// The outfit type that this payload will drop.
 		const Outfit *outfit;
 		// The maximum number of outfits that this payload can drop.
 		int maxDrops = 1;
+		// The minimum number of outfits that this payload can drop.
+		int minDrops = 0;
 		// The average percentage of the maximum number that drop.
 		double dropRate = 0.25;
 		// How resistant this payload is to having its drop rate increased by prospecting.
@@ -63,7 +67,7 @@ public:
 	// Point Unit() const;
 
 	// Load a definition of a minable object.
-	void Load(const DataNode &node);
+	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Calculate the expected payload value of this Minable after all outfits have been fully loaded.
 	void FinishLoading();
 	const std::string &TrueName() const;
@@ -79,19 +83,21 @@ public:
 	// In that case it will return false, meaning it should be deleted.
 	bool Move(std::vector<Visual> &visuals, std::list<std::shared_ptr<Flotsam>> &flotsam);
 
-	// Damage this object (because a projectile collided with it).
-	void TakeDamage(const MinableDamageDealt &damage);
-
 	// Determine what flotsam this asteroid will create.
 	const std::vector<Payload> &GetPayload() const;
 
 	// Get the expected value of the flotsams this minable will create when destroyed.
-	const int64_t &GetValue() const;
+	int64_t GetExpectedValue() const;
+	// Get the value of the highest quality item that could drop from this minable when destroyed.
+	int64_t GetHighestQualityValue() const;
 
-	// Get hull remaining of this asteroid, as a fraction between 0 and 1.
-	double Hull() const;
-	// Get the maximum hull value of this asteroid.
-	double MaxHull() const;
+	double Mass() const override;
+	double MaxHeat() const override;
+
+
+protected:
+	virtual int DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool wasDisabled,
+		bool wasDestroyed) override;
 
 
 private:
@@ -132,10 +138,6 @@ private:
 	// parameters above, but this avoids having to calculate every radius twice.
 	double radius;
 
-	// Remaining "hull" strength of the object, before it is destroyed.
-	double hull = 1000.;
-	// The hull value that this object starts at.
-	double maxHull = 1000.;
 	// A random amount of hull that gets added to the object.
 	double randomHull = 0.;
 	// How much prospecting has been done on this object. Used to increase the
@@ -147,6 +149,8 @@ private:
 	// Explosion effects created when this object is destroyed.
 	std::map<const Effect *, int> explosions;
 	// The expected value of the payload of this minable.
-	int64_t value = 0.;
+	int64_t expectedValue = 0.;
+	// The value of the highest quality drop from this minable.
+	int64_t highestQuality = 0.;
 	bool useRandomFrameRate = true;
 };

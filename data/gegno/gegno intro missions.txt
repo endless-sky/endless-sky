@@ -11,6 +11,15 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Gegno Space"
+	entering
+	invisible
+	non-blocking
+	source
+		near "Aleit" 0 100
+	on offer
+		set "discovered gegno space"
+		fail
 
 mission "First Contact: Gegno Vi"
 	landing
@@ -242,6 +251,7 @@ mission "Visit Quarg in Gegno Space"
 				"Gneiss" 2
 	npc
 		government "Gegno Scin (Neutral)"
+			confusion "militia"
 		personality entering staying
 		system "Heutesl"
 		fleet
@@ -258,6 +268,7 @@ mission "Visit Quarg in Gegno Space"
 		fleet "Vi Warfleet"
 	npc
 		government "Gegno Scin (Neutral)"
+			confusion "militia"
 		personality staying
 		system "Heutesl"
 		fleet "Scin Warfleet"
@@ -265,6 +276,7 @@ mission "Visit Quarg in Gegno Space"
 
 mission "Discover Hostile Quarg"
 	invisible
+	non-blocking
 	landing
 	source "Dueyu Eitch"
 	to offer
@@ -679,6 +691,7 @@ mission "First Contact: Gegno Scin"
 			not "scin: provocative"
 		government "Gegno Scin"
 		personality launching uninterested
+			confusion "militia"
 		system "Ilirco"
 		fleet
 			names "gegno scin"
@@ -740,8 +753,13 @@ mission "Gegno Exploration Nudge Remover"
 
 mission "Vi Augen"
 	invisible
-	landing
+	non-blocking
+	transition
+	source
+		system "Kiluit"
+	destination "Earth"
 	on offer
+		# Fail the old version of this mission from prior to v0.10.1.
 		fail "Stationed Augen"
 	npc save
 		on kill
@@ -850,6 +868,7 @@ mission "Gegno Unwelcoming"
 mission "Gegno Hunter Fleets"
 	landing
 	invisible
+	non-blocking
 	repeat
 	to offer
 		has "Gegno Genocide Defense: offered"

@@ -5,10 +5,6 @@ Endless Sky is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later version.
 
-Endless Sky is free software: you can redistribute it and/or modify it under the
-terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later version.
-
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU General Public License for more details.
@@ -27,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 class ConditionsStore;
 class DataNode;
+class Sprite;
 
 
 
@@ -75,6 +72,7 @@ public:
 
 	const std::string &DisplayName() const;
 	const Paragraphs &Description() const;
+	const Sprite *Landscape() const;
 
 	// Whether the player is required to bribe before landing due to their conditions.
 	bool RequiresBribe() const;
@@ -101,9 +99,10 @@ private:
 	// The name of this port.
 	std::string displayName;
 
-	// The description of this port. Shown when clicking on the
-	// port button on the planet panel.
+	// The description and graphic for this port. Shown when
+	// clicking on the Spaceport button on the planet panel.
 	Paragraphs description;
+	const Sprite *landscape = nullptr;
 
 	// What is recharged when landing on this port.
 	int recharge = RechargeType::None;
