@@ -246,7 +246,7 @@ namespace {
 	void ReadPNGInput(png_structp pngStruct, png_bytep outBytes, png_size_t byteCountToRead)
 	{
 		static_cast<iostream *>(png_get_io_ptr(pngStruct))->read(reinterpret_cast<char *>(outBytes),
-			static_cast<long>(byteCountToRead));
+			static_cast<streamsize>(byteCountToRead));
 	}
 
 	bool ReadPNG(const filesystem::path &path, ImageBuffer &buffer, int frame, bool onlyDimensions)
