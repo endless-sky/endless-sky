@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "Conversation.h"
 #include "text/DisplayText.h"
+#include "Endpoint.h"
+#include "Files.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
@@ -37,23 +39,18 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shift.h"
 #include "Ship.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
 #include "UI.h"
 
-#if defined _WIN32
-#include "Files.h"
-#endif
-
 #include <array>
 #include <iterator>
+#include <ranges>
 
 using namespace std;
 
 namespace {
-#if defined _WIN32
-	size_t PATH_LENGTH;
-#endif
 	// Width of the conversation text.
 	const int WIDTH = 540;
 	// Margin on either side of the text.
@@ -68,9 +65,6 @@ ConversationPanel::ConversationPanel(PlayerInfo &player, const Conversation &con
 	: player(player), caller(caller), useTransactions(useTransactions), conversation(conversation),
 	scroll(0.), system(system), ship(ship)
 {
-#if defined _WIN32
-	PATH_LENGTH = Files::Saves().string().size();
-#endif
 	Audio::Pause();
 	// These substitutions need to be applied on the fly as each paragraph of
 	// text is prepared for display. Some substitutions already in the map
@@ -118,6 +112,21 @@ void ConversationPanel::SetCallback(function<void(int)> fun)
 
 
 
+void ConversationPanel::Step()
+{
+	// Load any and deferred scenes that may appear in the conversation.
+	// This is done here instead of in the constructor because the constructor
+	// does not have access to the UI stack.
+	if(!hasLoadedScenes)
+	{
+		hasLoadedScenes = true;
+		for(const Sprite *scene : conversation.Scenes())
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), scene);
+	}
+}
+
+
+
 // Draw this panel.
 void ConversationPanel::Draw()
 {
@@ -137,7 +146,7 @@ void ConversationPanel::Draw()
 	Panel::DrawEdgeSprite(SpriteSet::Get("ui/right edge"), Screen::Left() + boxWidth);
 
 	// Get the font and colors we'll need for drawing everything.
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	const Color &selectionColor = *GameData::Colors().Get("faint");
 	const Color &dim = *GameData::Colors().Get("dim");
 	const Color &gray = *GameData::Colors().Get("medium");
@@ -229,10 +238,11 @@ void ConversationPanel::Draw()
 			if(index == choice)
 				FillShader::Fill(center + Point(-5, 0), size + Point(30, 0), selectionColor);
 			AddZone(zone, [this, index](){ this->ClickChoice(index); });
-			++index;
 
 			font.Draw(label, point + Point(-15, 0), dim);
-			point = paragraph.Draw(point, bright);
+			point = paragraph.Draw(point, conversation.ChoiceIsActive(node, MapChoice(index)) ? bright : dim);
+
+			++index;
 		}
 	}
 	// Store the total height of the text.
@@ -240,6 +250,16 @@ void ConversationPanel::Draw()
 
 	// Reset the hover flag. If the mouse is still moving than the flag will be set in the next frame.
 	isHovering = false;
+}
+
+
+
+void ConversationPanel::UpdateTextDisplay()
+{
+	for(auto &paragraph : text)
+		paragraph.UpdateTextDisplay();
+	for(auto &paragraph : choices | views::keys)
+		paragraph.UpdateTextDisplay();
 }
 
 
@@ -254,7 +274,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	if(command.Has(Command::MAP) && (!choices.empty() || node < 0))
 	{
 		sound = UI::UISound::NONE;
-		GetUI()->Push(new MapDetailPanel(player, system, true));
+		GetUI().Push(new MapDetailPanel(player, system, true));
 	}
 	if(node < 0)
 	{
@@ -268,21 +288,16 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	}
 	if(choices.empty())
 	{
-		// Don't allow characters that can't be used in a file name.
-		static const string FORBIDDEN = "/\\?*:|\"<>~";
-		// Prevent the name from being so large that it cannot be saved.
-		// Most path components can be at most 255 bytes.
-		size_t MAX_NAME_LENGTH = 250;
-#if defined _WIN32
-		MAX_NAME_LENGTH -= PATH_LENGTH;
-#endif
-
 		// Right now we're asking the player to enter their name.
 		string &name = (choice ? lastName : firstName);
 		string &otherName = (choice ? firstName : lastName);
 		// Allow editing the text. The tab key toggles to the other entry field,
 		// as does the return key if the other field is still empty.
-		if(Clipboard::KeyDown(name, key, mod, MAX_NAME_LENGTH, FORBIDDEN))
+		// Names must contain characters valid for use in file names. They also can't include '~', as that is
+		// reserved by the game for differentiating between main saves and snapshot saves.
+		size_t maxSaveLength = Files::MaxFilenameLength(Files::Saves());
+		auto NameCharFilter = [](char32_t ch) -> bool { return Files::IsValidCharacter(ch) && ch != '~'; };
+		if(Clipboard::KeyDown(name, key, mod, maxSaveLength, NameCharFilter))
 		{
 			// Input handled by Clipboard.
 		}
@@ -293,7 +308,7 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 			// Caps lock should shift letters, but not any other keys.
 			if((mod & KMOD_CAPS) && c >= 'a' && c <= 'z')
 				c += 'A' - 'a';
-			if(FORBIDDEN.find(c) == string::npos && (name.size() + otherName.size()) < MAX_NAME_LENGTH)
+			if(NameCharFilter(c) && (name.size() + otherName.size()) < maxSaveLength)
 				name += c;
 			else
 				flickerTime = 18;
@@ -329,11 +344,26 @@ bool ConversationPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &comm
 	else if(key == SDLK_DOWN && choice + 1 < static_cast<int>(choices.size()))
 		++choice;
 	else if((key == SDLK_RETURN || key == SDLK_KP_ENTER) && isNewPress && choice < static_cast<int>(choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(choice)))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(choice)), choice);
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else if(key >= '1' && key < static_cast<SDL_Keycode>('1' + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(key - '1')))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(key - '1')), key - '1');
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else if(key >= SDLK_KP_1 && key < static_cast<SDL_Keycode>(SDLK_KP_1 + choices.size()))
-		Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
+	{
+		if(conversation.ChoiceIsActive(node, MapChoice(key - SDLK_KP_1)))
+			Goto(conversation.NextNodeForChoice(node, MapChoice(key - SDLK_KP_1)), key - SDLK_KP_1);
+		else
+			sound = UI::UISound::FAILURE;
+	}
 	else
 		return false;
 
@@ -364,7 +394,6 @@ bool ConversationPanel::Scroll(double dx, double dy)
 // Handle selecting choices by hovering with the mouse.
 bool ConversationPanel::Hover(int x, int y)
 {
-	hoverPoint = Point(x, y);
 	isHovering = true;
 	return true;
 }
@@ -375,7 +404,7 @@ bool ConversationPanel::Hover(int x, int y)
 void ConversationPanel::Goto(int index, int selectedChoice)
 {
 	const ConditionsStore &conditions = player.Conditions();
-	Format::ConditionGetter getter = [&conditions](const std::string &str, size_t start, size_t length) -> int64_t
+	Format::ConditionGetter getter = [&conditions](const string &str, size_t start, size_t length) -> int64_t
 	{
 		return conditions.Get(str.substr(start, length));
 	};
@@ -450,7 +479,7 @@ void ConversationPanel::Goto(int index, int selectedChoice)
 	// This is a safeguard in case of logic errors, to ensure we don't set the player name.
 	if(choices.empty() && conversation.Choices(node) != 0)
 	{
-		node = Conversation::DECLINE;
+		node = Endpoint::DECLINE;
 	}
 	this->choice = 0;
 }
@@ -464,24 +493,24 @@ void ConversationPanel::Exit()
 	if(useTransactions)
 		player.FinishTransaction();
 
-	GetUI()->Pop(this);
+	GetUI().Pop(this);
 	// Some conversations may be offered from an NPC, e.g. an assisting or
 	// boarding mission's `on offer`, or from completing a mission's NPC
 	// block (e.g. scanning or boarding or killing all required targets).
-	if(node == Conversation::DIE || node == Conversation::EXPLODE)
+	if(node == Endpoint::DIE || node == Endpoint::EXPLODE)
 		player.Die(node, ship);
 	else if(ship)
 	{
 		// A forced-launch ending (LAUNCH, FLEE, or DEPART) destroys any NPC.
-		if(Conversation::RequiresLaunch(node))
+		if(Endpoint::RequiresLaunch(node))
 			ship->Destroy();
 		// Only show the BoardingPanel for a hostile NPC that is being boarded.
 		// (NPC completion conversations can result from non-boarding events.)
 		// TODO: Is there a better / more robust boarding check than relative position?
-		else if((node != Conversation::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
+		else if((node != Endpoint::ACCEPT || player.CaptureOverriden(ship)) && ship->GetGovernment()->IsEnemy()
 				&& !ship->IsDestroyed() && ship->IsDisabled()
 				&& ship->Position().Distance(player.Flagship()->Position()) <= 1.)
-			GetUI()->Push(new BoardingPanel(player, ship));
+			GetUI().Push(new BoardingPanel(player, ship));
 	}
 	// Call the exit response handler to manage the conversation's effect
 	// on the player's missions, or force takeoff from a planet.
@@ -502,7 +531,10 @@ void ConversationPanel::ClickName(int side)
 // The player just clicked on a conversation choice.
 void ConversationPanel::ClickChoice(int index)
 {
-	Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
+	if(conversation.ChoiceIsActive(node, MapChoice(index)))
+		Goto(conversation.NextNodeForChoice(node, MapChoice(index)), index);
+	else
+		UI::PlaySound(UI::UISound::FAILURE);
 }
 
 
@@ -523,9 +555,9 @@ int ConversationPanel::MapChoice(int n) const
 ConversationPanel::Paragraph::Paragraph(const string &text, const Sprite *scene, bool isFirst)
 	: scene(scene), isFirst(isFirst)
 {
-	wrap.SetAlignment(Alignment::JUSTIFIED);
+	wrap.SetAlignment(Preferences::GetTextAlignment());
 	wrap.SetWrapWidth(WIDTH);
-	wrap.SetFont(FontSet::Get(14));
+	wrap.SetFont(FontSet::Get(Preferences::GetFontSize()));
 
 	wrap.Wrap(text);
 }
@@ -564,4 +596,13 @@ Point ConversationPanel::Paragraph::Draw(Point point, const Color &color) const
 	wrap.Draw(point, color);
 	point.Y() += wrap.Height();
 	return point;
+}
+
+
+
+void ConversationPanel::Paragraph::UpdateTextDisplay()
+{
+	wrap.SetAlignment(Preferences::GetTextAlignment());
+	wrap.SetFont(FontSet::Get(Preferences::GetFontSize()));
+	wrap.Rewrap();
 }

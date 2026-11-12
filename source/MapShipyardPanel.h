@@ -38,19 +38,22 @@ public:
 
 
 protected:
-	virtual const Sprite *SelectedSprite() const override;
-	virtual const Sprite *CompareSprite() const override;
+	virtual void LoadCatalogThumbnails() const override;
+
+	virtual const Drawable &SelectedSprite() const override;
+	virtual const Drawable &CompareSprite() const override;
 	virtual const Swizzle *SelectedSpriteSwizzle() const override;
 	virtual const Swizzle *CompareSpriteSwizzle() const override;
 	virtual const ItemInfoDisplay &SelectedInfo() const override;
 	virtual const ItemInfoDisplay &CompareInfo() const override;
-	virtual const std::string &KeyLabel(int index) const override;
 
+	virtual void Hovering(int index) override;
 	virtual void Select(int index) override;
 	virtual void Compare(int index) override;
 	virtual double SystemValue(const System *system) const override;
 	virtual int FindItem(const std::string &text) const override;
 
+	virtual void DrawSalesKey(Information &info) const override;
 	virtual void DrawItems() override;
 
 
@@ -59,10 +62,13 @@ private:
 
 
 private:
+	bool hasFleetCapacity;
+
 	std::vector<const Ship *> list;
 	std::map<const System *, std::map<const Ship *, int>> parkedShips;
 
 	const Ship *selected = nullptr;
+	const Ship *hovering = nullptr;
 	const Ship *compare = nullptr;
 
 	ShipInfoDisplay selectedInfo;

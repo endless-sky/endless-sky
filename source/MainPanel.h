@@ -74,13 +74,11 @@ private:
 	// These are the pending ShipEvents that have yet to be processed.
 	std::list<ShipEvent> eventQueue;
 	bool handledFront = false;
+	// If a ShipEvent::JUMP was sent by the player's flagship,
+	// check if new mission NPCs should spawn.
+	bool checkSpawns = false;
 
 	Command show;
-
-	// For displaying the GPU load.
-	double load = 0.;
-	double loadSum = 0.;
-	int loadCount = 0;
 
 	// Keep track of how long a starting player has spent drifting in deep space.
 	int lostness = 0;

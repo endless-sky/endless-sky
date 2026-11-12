@@ -60,14 +60,14 @@ private:
 	// CenterOnSystem will either pan to the system or immediately jump to it.
 	void SetSelectedScrollAndCenter(bool immediate = false);
 	// Display and explain the various pointers that may appear on the map.
-	void DrawKey() const;
+	void DrawKey() const override;
 	// Draw rings around systems that need to be visited for the given mission.
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
 	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
 	Point DrawPanel(Point pos, const std::string &label, int entries, bool sorter = false) const;
 	// Draw the display names of the given missions, using the reference point.
-	Point DrawList(const std::list<Mission> &list, Point pos, const std::list<Mission>::const_iterator &selectIt,
-		bool separateDeadlineOrPossible = false) const;
+	Point DrawList(const std::list<Mission> &missionList, Point pos, const std::list<Mission>::const_iterator &selectIt,
+		const std::list<Mission>::const_iterator &hoverIt, bool separateDeadlineOrPossible = false) const;
 	void DrawMissionInfo();
 	void DrawTooltips();
 
@@ -95,7 +95,9 @@ private:
 	const std::list<Mission> &accepted;
 	int cycleInvolvedIndex = 0;
 	std::list<Mission>::const_iterator availableIt;
+	std::list<Mission>::const_iterator hoverAvailableIt;
 	std::list<Mission>::const_iterator acceptedIt;
+	std::list<Mission>::const_iterator hoverAcceptedIt;
 	double availableScroll = 0.;
 	double acceptedScroll = 0.;
 

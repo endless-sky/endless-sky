@@ -408,9 +408,9 @@ bool LocationFilter::Matches(const Ship &ship) const
 	{
 		// Create a set from the positive-valued attributes of this ship.
 		set<string> shipAttributes;
-		for(const auto &attr : ship.Attributes().Attributes())
-			if(attr.second > 0.)
-				shipAttributes.insert(shipAttributes.end(), attr.first);
+		for(const auto &[name, value] : ship.Attributes().Precise())
+			if(value > 0)
+				shipAttributes.insert(shipAttributes.end(), name);
 		for(const set<string> &attr : attributes)
 			if(!SetsIntersect(attr, shipAttributes))
 				return false;
@@ -534,7 +534,7 @@ void LocationFilter::LoadChild(const DataNode &child, const set<const System *> 
 	int valueIndex = 1 + isNot;
 	const string &key = child.Token(valueIndex - 1);
 	if(key == "not" || key == "neighbor")
-		child.PrintTrace("Error: Skipping unsupported use of 'not' and 'neighbor'."
+		child.PrintTrace("Skipping unsupported use of 'not' and 'neighbor'."
 			" These keywords must be nested if used together.");
 	else if(key == "planet")
 	{

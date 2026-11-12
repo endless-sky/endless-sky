@@ -1,0 +1,79 @@
+/* BookEntry.h
+Copyright (c) 2025 by xobes
+
+Endless Sky is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+
+Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+#pragma once
+
+#include <map>
+#include <optional>
+#include <set>
+#include <string>
+#include <variant>
+#include <vector>
+
+class Color;
+class DataNode;
+class DataWriter;
+class Point;
+class Sprite;
+class System;
+class WrappedText;
+
+
+
+// Implement a collection of text and image nodes which form a singular Logbook entry.
+class BookEntry {
+public:
+	typedef std::variant<std::monostate, const Sprite *, std::string> Item;
+
+
+public:
+	bool IsEmpty() const;
+	void Load(const DataNode &node, std::optional<int> startAt = std::nullopt);
+	void Add(const BookEntry &other);
+
+	// When a GameAction is instantiated, substitutions are performed.
+	BookEntry Instantiate(const std::map<std::string, std::string> &subs) const;
+
+	void Save(DataWriter &out) const;
+
+	const std::set<const Sprite *> &GetScenes() const;
+
+	// Returns height.
+	int Draw(const Point &topLeft, WrappedText &wrap, const Color &color) const;
+
+	const System *SourceSystem() const;
+	void SetSourceSystem(const System *system);
+	const std::set<const System *> &MarkSystems() const;
+	const std::set<const System *> &CircleSystems() const;
+	bool HasSystems() const;
+
+
+private:
+	void LoadContents(const DataNode &node, int startAt = 0);
+
+
+private:
+	// The contents of the entry.
+	std::vector<Item> items;
+	// A set of the scenes from the contents. For use in easily ensuring that all scenes are loaded.
+	std::set<const Sprite *> scenes;
+
+	// The source of a book entry is the system it was written in.
+	// Only applies to dated entries.
+	const System *source = nullptr;
+	// Any entry can mark or circle systems on the map.
+	std::set<const System *> markSystems;
+	std::set<const System *> circleSystems;
+};

@@ -37,6 +37,7 @@ public:
 
 
 protected:
+	void StartAudioThread();
 	/// This is the entry point for the decoding thread.
 	virtual void Decode() = 0;
 
@@ -67,7 +68,7 @@ private:
 	std::vector<sample_t> buffer;
 
 	// Sync management
-	std::thread thread;
+	std::thread audioThread;
 	std::mutex bufferMutex;
 	std::condition_variable bufferCondition;
 };

@@ -87,7 +87,7 @@ Point FormationPositioner::Position(const Ship *ship)
 		shipPositions[ship] = make_pair(relPos, tickTock);
 
 		// Add the ship to the ring.
-		shipsInFormation.push_back(ship->shared_from_this());
+		shipsInFormation.push_back(ship->weak_from_this());
 
 		// Trigger immediate re-generation of the formation positions (to
 		// ensure that this new ship also gets a valid position).

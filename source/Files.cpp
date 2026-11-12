@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "ZipFile.h"
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 #include <algorithm>
 #include <fstream>
@@ -38,6 +38,7 @@ namespace {
 	filesystem::path imagePath;
 	filesystem::path soundPath;
 	filesystem::path savePath;
+	filesystem::path pilotPath;
 	filesystem::path userPluginPath;
 	filesystem::path globalPluginPath;
 	filesystem::path testPath;
@@ -50,15 +51,15 @@ namespace {
 		// TODO: Remove SDL version check after Ubuntu 20.04 reaches end of life
 #if SDL_VERSION_ATLEAST(2, 0, 14)
 		if(SDL_OpenURL(("file://" + path.string()).c_str()))
-			Logger::LogError("Warning: SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"");
+			Logger::Log("SDL_OpenURL failed with \"" + string(SDL_GetError()) + "\"", Logger::Level::WARNING);
 #elif defined(__linux__)
 		// Some supported distributions do not have an up-to-date SDL.
 		cout.flush();
 		if(int result = WEXITSTATUS(system(("xdg-open file://" + path.string()).c_str())))
-			Logger::LogError("Warning: xdg-open failed with error code " + to_string(result) + ".");
+			Logger::Log("xdg-open failed with error code " + to_string(result) + ".", Logger::Level::WARNING);
 #else
 #warning SDL 2.0.14 or higher is needed for opening folders!
-		Logger::LogError("Warning: No handler found to open \"" + path + "\" in a new window.");
+		Logger::Log("No handler found to open \"" + path + "\" in a new window.", Logger::Level::WARNING);
 #endif
 	}
 
@@ -94,11 +95,11 @@ namespace {
 
 
 
-void Files::Init(const char * const *argv)
+void Files::Init(const char *const *argv)
 {
 	// Parse the command line arguments to see if the user has specified
 	// different directories to use.
-	for(const char * const *it = argv + 1; *it; ++it)
+	for(const char *const *it = argv + 1; *it; ++it)
 	{
 		string arg = *it;
 		if((arg == "-r" || arg == "--resources") && *++it)
@@ -112,11 +113,18 @@ void Files::Init(const char * const *argv)
 	{
 		// Find the path to the resource directory. This will depend on the
 		// operating system, and can be overridden by a command line argument.
+#ifdef ES_USE_SDL3
+		// This path is cached in SDL3, but not in SDL2.
+		const char *basePath = SDL_GetBasePath();
+#else
 		char *basePath = SDL_GetBasePath();
+#endif
 		if(!basePath)
 			throw runtime_error("Unable to get path to resource directory!");
 		resources = basePath;
+#ifndef ES_USE_SDL3
 		SDL_free(basePath);
+#endif
 
 		if(Exists(resources))
 			resources = filesystem::canonical(resources);
@@ -167,6 +175,8 @@ void Files::Init(const char * const *argv)
 
 	savePath = config / "saves";
 	CreateFolder(savePath);
+	pilotPath = config / "pilots";
+	CreateFolder(pilotPath);
 
 	// Create the "plugins" directory if it does not yet exist, so that it is
 	// clear to the user where plugins should go.
@@ -177,7 +187,9 @@ void Files::Init(const char * const *argv)
 	if(!Exists(dataPath) || !Exists(imagePath) || !Exists(soundPath))
 		throw runtime_error("Unable to find the resource directories!");
 	if(!Exists(savePath))
-		throw runtime_error("Unable to create save directory!");
+		throw runtime_error("Unable to create saves directory!");
+	if(!Exists(pilotPath))
+		throw runtime_error("Unable to create pilots directory!");
 	if(!Exists(userPluginPath))
 		throw runtime_error("Unable to create plugins directory!");
 }
@@ -222,6 +234,13 @@ const filesystem::path &Files::Sounds()
 const filesystem::path &Files::Saves()
 {
 	return savePath;
+}
+
+
+
+const filesystem::path &Files::Pilots()
+{
+	return pilotPath;
 }
 
 
@@ -385,6 +404,47 @@ void Files::Delete(const filesystem::path &filePath)
 string Files::Name(const filesystem::path &path)
 {
 	return path.filename().string();
+}
+
+
+
+std::string Files::NameNoExtension(const std::filesystem::path &path)
+{
+	string name = path.filename().string();
+	return name.substr(0, name.length() - path.extension().string().length());
+}
+
+
+
+// Validate that a filename doesn't contain any illegal characters.
+bool Files::IsValidCharacter(char32_t ch)
+{
+	// Don't allow characters that can't be used in a file name.
+	static const string FORBIDDEN = "/\\?*:|\"<>";
+
+	return FORBIDDEN.find(ch) == FORBIDDEN.npos;
+}
+
+
+
+// Check if a filename is valid.
+bool Files::IsValid(const string &filename)
+{
+	return !filename.empty() && all_of(filename.begin(), filename.end(), IsValidCharacter);
+}
+
+
+
+size_t Files::MaxFilenameLength(const filesystem::path &base)
+{
+#if defined(_WIN32)
+	if(base.string().size() >= 250)
+		return 0;
+	else
+		return 250 - base.string().size();
+#else
+	return 250;
+#endif
 }
 
 

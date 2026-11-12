@@ -28,23 +28,27 @@ using namespace std;
 
 
 
-// Load from a "weapon" node, either in an outfit or in a ship (explosion).
-void Weapon::LoadWeapon(const DataNode &node)
+Weapon::Weapon(const DataNode &node)
 {
-	isWeapon = true;
-	bool isClustered = false;
+	Load(node);
+}
+
+
+
+// Load from a "weapon" node, either in an outfit or in a ship (explosion).
+void Weapon::Load(const DataNode &node)
+{
+	bool isClustered = isLoaded ? !isStreamed : false;
+	isLoaded = true;
 	calculatedDamage = false;
 	doesDamage = false;
-	bool safeRangeOverriden = false;
-	bool disabledDamageSet = false;
-	bool minableDamageSet = false;
-	bool relativeDisabledDamageSet = false;
-	bool relativeMinableDamageSet = false;
 
 	for(const DataNode &child : node)
 	{
 		const string &key = child.Token(0);
-		if(key == "stream")
+		if(key == "decorative")
+			isDecorative = true;
+		else if(key == "stream")
 			isStreamed = true;
 		else if(key == "cluster")
 			isClustered = true;
@@ -79,7 +83,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 			// compatibility.
 			if(child.Size() == 2)
 			{
-				child.PrintTrace("Warning: Deprecated use of \"homing\" followed by a value."
+				child.PrintTrace("Deprecated use of \"homing\" followed by a value."
 					" Define individual homing attributes instead:");
 				int value = child.Value(1);
 				if(value >= 3)
@@ -107,10 +111,14 @@ void Weapon::LoadWeapon(const DataNode &node)
 					grand.PrintTrace("Skipping unknown homing attribute:");
 			}
 		}
+		else if(key == "triggers nuke alert")
+			triggersNukeAlert = true;
+		else if(key == "exclude submunition damage")
+			includeSubmunitionDamage = false;
 		else if(child.Size() < 2)
 			child.PrintTrace("Skipping weapon attribute with no value specified:");
 		else if(key == "sprite")
-			sprite.LoadSprite(child);
+			projectileSprite.LoadSprite(child);
 		else if(key == "hardpoint sprite")
 			hardpointSprite.LoadSprite(child);
 		else if(key == "sound")
@@ -152,7 +160,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 		else if(key == "submunition")
 		{
 			submunitions.emplace_back(
-				GameData::Outfits().Get(child.Token(1)),
+				GameData::Outfits().Get(child.Token(1))->GetWeapon(),
 				(child.Size() >= 3) ? child.Value(2) : 1);
 			for(const DataNode &grand : child)
 			{
@@ -164,13 +172,18 @@ void Weapon::LoadWeapon(const DataNode &node)
 					submunitions.back().offset = Point(grand.Value(1), grand.Value(2));
 				else if(grandKey == "spawn on" && grandHasValue)
 				{
-					submunitions.back().spawnOnNaturalDeath = false;
+					submunitions.back().spawnOn = Projectile::DeathType::NONE;
 					for(int j = 1; j < grand.Size(); ++j)
 					{
-						if(grand.Token(j) == "natural")
-							submunitions.back().spawnOnNaturalDeath = true;
-						else if(grand.Token(j) == "anti-missile")
-							submunitions.back().spawnOnAntiMissileDeath = true;
+						const string &grandValue = grand.Token(j);
+						if(grandValue == "natural")
+							submunitions.back().spawnOn |= Projectile::DeathType::NATURAL;
+						else if(grandValue == "collision")
+							submunitions.back().spawnOn |= Projectile::DeathType::COLLISION;
+						else if(grandValue == "explosion")
+							submunitions.back().spawnOn |= Projectile::DeathType::EXPLOSION;
+						else if(grandValue == "anti-missile")
+							submunitions.back().spawnOn |= Projectile::DeathType::ANTI_MISSILE;
 					}
 				}
 				else
@@ -415,7 +428,7 @@ void Weapon::LoadWeapon(const DataNode &node)
 	if(homing && !tracking && !opticalTracking && !infraredTracking && !radarTracking)
 	{
 		tracking = 1.;
-		node.PrintTrace("Warning: Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
+		node.PrintTrace("Deprecated use of \"homing\" without use of \"[optical|infrared|radar] tracking.\"");
 	}
 
 	// Convert the "live effect" counts from occurrences per projectile lifetime
@@ -441,22 +454,22 @@ void Weapon::LoadWeapon(const DataNode &node)
 
 
 
-bool Weapon::IsWeapon() const
+bool Weapon::IsLoaded() const
 {
-	return isWeapon;
+	return isLoaded;
 }
 
 
 
 // Get assets used by this weapon.
-const Body &Weapon::WeaponSprite() const
+const Drawable &Weapon::ProjectileSprite() const
 {
-	return sprite;
+	return projectileSprite;
 }
 
 
 
-const Body &Weapon::HardpointSprite() const
+const Drawable &Weapon::HardpointSprite() const
 {
 	return hardpointSprite;
 }
@@ -556,7 +569,7 @@ double Weapon::TotalLifetime() const
 	{
 		totalLifetime = 0.;
 		for(const auto &it : submunitions)
-			totalLifetime = max(totalLifetime, it.weapon->TotalLifetime());
+			totalLifetime = max(totalLifetime, it.weapon ? it.weapon->TotalLifetime() : 0.);
 		totalLifetime += lifetime;
 	}
 	return totalLifetime;
@@ -605,15 +618,6 @@ const pair<double, double> &Weapon::DropoffRanges() const
 
 
 
-// Legacy support: allow turret outfits with no turn rate to specify a
-// default turnrate.
-void Weapon::SetTurretTurn(double rate)
-{
-	turretTurn = rate;
-}
-
-
-
 double Weapon::TotalDamage(int index) const
 {
 	if(!calculatedDamage)
@@ -621,8 +625,9 @@ double Weapon::TotalDamage(int index) const
 		calculatedDamage = true;
 		for(int i = 0; i < DAMAGE_TYPES; ++i)
 		{
-			for(const auto &it : submunitions)
-				damage[i] += it.weapon->TotalDamage(i) * it.count;
+			if(includeSubmunitionDamage)
+				for(const auto &it : submunitions)
+					damage[i] += it.weapon ? it.weapon->TotalDamage(i) * it.count : 0.;
 			doesDamage |= (damage[i] > 0.);
 		}
 	}

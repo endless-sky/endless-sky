@@ -37,8 +37,16 @@ namespace {
 	GLint dashI;
 	GLint colorI;
 
+	GLint vertI;
+
 	GLuint vao;
 	GLuint vbo;
+
+	void EnableAttribArrays()
+	{
+		glEnableVertexAttribArray(vertI);
+		glVertexAttribPointer(vertI, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	}
 }
 
 
@@ -47,7 +55,7 @@ void RingShader::Init()
 {
 	shader = GameData::Shaders().Get("ring");
 	if(!shader->Object())
-		throw std::runtime_error("Could not find ring shader!");
+		throw runtime_error("Could not find ring shader!");
 	scaleI = shader->Uniform("scale");
 	positionI = shader->Uniform("position");
 	radiusI = shader->Uniform("radius");
@@ -56,10 +64,14 @@ void RingShader::Init()
 	startAngleI = shader->Uniform("startAngle");
 	dashI = shader->Uniform("dash");
 	colorI = shader->Uniform("color");
+	vertI = shader->Attrib("vert");
 
 	// Generate the vertex data for drawing sprites.
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+	{
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+	}
 
 	glGenBuffers(1, &vbo);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -72,12 +84,13 @@ void RingShader::Init()
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexData), vertexData, GL_STATIC_DRAW);
 
-	glEnableVertexAttribArray(shader->Attrib("vert"));
-	glVertexAttribPointer(shader->Attrib("vert"), 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), nullptr);
+	if(OpenGL::HasVaoSupport())
+		EnableAttribArrays();
 
 	// unbind the VBO and VAO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
 }
 
 
@@ -108,7 +121,13 @@ void RingShader::Bind()
 		throw runtime_error("RingShader: Bind() called before Init().");
 
 	glUseProgram(shader->Object());
-	glBindVertexArray(vao);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(vao);
+	else
+	{
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+		EnableAttribArrays();
+	}
 
 	GLfloat scale[2] = {2.f / Screen::Width(), -2.f / Screen::Height()};
 	glUniform2fv(scaleI, 1, scale);
@@ -145,6 +164,12 @@ void RingShader::Add(const Point &pos, float radius, float width, float fraction
 
 void RingShader::Unbind()
 {
-	glBindVertexArray(0);
+	if(OpenGL::HasVaoSupport())
+		glBindVertexArray(0);
+	else
+	{
+		glDisableVertexAttribArray(vertI);
+		glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	}
 	glUseProgram(0);
 }

@@ -45,6 +45,8 @@ public:
 		MUL, ///< Multiplies ( * ) all sub-expressions with each-other.
 		DIV, ///< (Integer) Divides ( / ) the first sub-expression by all later ones.
 		MOD, ///< Modulo ( % ) by the second and later sub-expressions on the first one.
+		MIN, ///< 'min' operator, returns the minimum value over all children.
+		MAX, ///< 'max' operator, returns the maximum value over all children.
 
 		// Boolean equality operators, return 0 or 1
 		EQ, ///< Tests for equality ( == ).
@@ -57,10 +59,6 @@ public:
 		// Boolean combination operators, return 0 or 1
 		AND, ///< Boolean 'and' operator; returns 0 on first 0 subcondition, value of first sub-condition otherwise.
 		OR, ///< Boolean 'or' operator; returns value of first non-zero sub-condition, or zero if all are zero.
-
-		// Single boolean operators
-		NOT, ///< Single boolean 'not' operator.
-		HAS ///< Single boolean 'has' operator.
 	};
 
 
@@ -82,10 +80,15 @@ public:
 	// Load a set of conditions from the children of this node. Prints a
 	// warning if the conditions cannot be parsed from the node.
 	void Load(const DataNode &node, const ConditionsStore *conditions);
-	// Save a set of conditions.
+
+	/// Save toplevel set of conditions as a tree of children under a dataNode.
 	void Save(DataWriter &out) const;
-	void SaveChild(int childNr, DataWriter &out) const;
-	void SaveSubset(DataWriter &out) const;
+
+	/// Save a set of conditions as a tree of children under a dataNode.
+	void SaveAsTree(DataWriter &out) const;
+
+	/// Save the condition inline. Can be part of a bigger conditionSet.
+	void SaveInline(DataWriter &out) const;
 
 	// Change this condition to always be false.
 	void MakeNever();
@@ -102,23 +105,23 @@ public:
 	// Evaluate this expression into a numerical value. (The value can also be used as boolean.)
 	int64_t Evaluate() const;
 
-	/// Parse the remainder of a node into this expression.
+	/// Parse the remainder of a node into this ConditionSet.
 	bool ParseNode(const DataNode &node, int &tokenNr);
 
 	/// Optimize this node, this optimization also removes intermediate sections that were used for tracking brackets.
 	bool Optimize(const DataNode &node);
 
-	// Get the names of the conditions that are modified by this ConditionSet.
+	/// Get the names of the conditions that are queried by this ConditionSet.
 	std::set<std::string> RelevantConditions() const;
 
 
 private:
 	/// Parse a node completely into this expression; all tokens on the line and all children if there are any.
-	bool ParseNode(const DataNode &node);
+	bool ParseFromStart(const DataNode &node);
 
 	/// Parse the children under 'and'-nodes, 'or'-nodes, or the toplevel-node (which acts as and-node). The
 	/// expression-operator should already have been set before calling this function.
-	bool ParseBooleanChildren(const DataNode &node);
+	bool ParseChildren(const DataNode &node);
 
 	/// Parse a minimal complete expression from the tokens into the (empty) expression.
 	///
@@ -126,12 +129,24 @@ private:
 	/// @param lineTokens Tokens to use (and pop from) for parsing.
 	bool ParseMini(const DataNode &node, int &tokenNr);
 
+	/// Parse as many tokens as possible.
+	///
+	/// @param node The node to report parse-errors on, if any occur.
+	/// @param lineTokens Tokens to use (and pop from) for parsing.
+	bool ParseGreedy(const DataNode &node, int &tokenNr);
+
+	/// Parse a function (after a max or min keyword).
+	///
+	/// @param node The node to report parse-errors on, if any occur.
+	/// @param lineTokens Tokens to use (and pop from) for parsing.
+	bool ParseFunctionBody(const DataNode &node, int &tokenNr);
+
 	/// Helper function to parse an infix operator and the subexpression after it.
 	/// Should be called on ConditionSets that already have at least 1 sub-expression in them.
 	///
 	/// @param node The node to report parse-errors on, if any occur.
 	/// @param lineTokens Tokens to use (and pop from) for parsing.
-	bool ParseFromInfix(const DataNode &node, int &tokenNr, ExpressionOp parentOp);
+	bool ParseFromInfix(const DataNode &node, int &tokenNr, int parentPrecedence);
 
 	/// Push sub-expressions and the operator from the current expression one level down into a new single
 	/// sub-expression.

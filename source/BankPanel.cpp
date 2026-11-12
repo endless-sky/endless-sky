@@ -18,7 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Alignment.h"
 #include "Color.h"
 #include "Command.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -42,7 +42,7 @@ namespace {
 	const int COLUMN[5] = {20, 130, 210, 280, 330};
 	const int EXTRA_X = 410;
 
-	// Maximum number of rows of mortages, etc. to draw.
+	// Maximum number of rows of mortgages, etc. to draw.
 	const int MAX_ROWS = 8;
 }
 
@@ -131,7 +131,7 @@ void BankPanel::Draw()
 	for(const Mortgage &mortgage : player.Accounts().Mortgages())
 	{
 		// Color this row depending on whether it is selected or not.
-		if(row == selectedRow)
+		if(row == selectedRow || row == hoverRow)
 		{
 			table.DrawHighlight(back);
 			table.SetColor(selected);
@@ -145,19 +145,19 @@ void BankPanel::Draw()
 		if(isLastRow && mergedMortgages)
 		{
 			table.Draw("Other");
-			table.Draw(Format::Credits(otherPrincipal));
+			table.Draw(Format::AbbreviatedNumber(otherPrincipal));
 			// Skip the interest and term, because this entry represents the
-			// combination of several different mortages.
+			// combination of several different mortgages.
 			table.Advance(2);
-			table.Draw(Format::Credits(otherPayment));
+			table.Draw(Format::AbbreviatedNumber(otherPayment));
 		}
 		else
 		{
 			table.Draw(mortgage.Type());
-			table.Draw(Format::Credits(mortgage.Principal()));
+			table.Draw(Format::AbbreviatedNumber(mortgage.Principal()));
 			table.Draw(mortgage.Interest());
 			table.Draw(mortgage.Term());
-			table.Draw(Format::Credits(mortgage.Payment()));
+			table.Draw(Format::AbbreviatedNumber(mortgage.Payment()));
 
 			// Keep track of how much out of the total principal and payment has
 			// not yet been included in one of the rows of the table.
@@ -182,13 +182,13 @@ void BankPanel::Draw()
 		// Check whether the player owes back salaries.
 		if(crewSalariesOwed)
 		{
-			table.Draw(Format::Credits(crewSalariesOwed));
+			table.Draw(Format::AbbreviatedNumber(crewSalariesOwed));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
 		else
 			table.Advance(3);
-		table.Draw(Format::Credits(salaries));
+		table.Draw(Format::AbbreviatedNumber(salaries));
 		table.Advance();
 	}
 	// Draw the maintenance costs, if necessary.
@@ -199,13 +199,13 @@ void BankPanel::Draw()
 		table.Draw("Maintenance");
 		if(maintenanceDue)
 		{
-			table.Draw(Format::Credits(maintenanceDue));
+			table.Draw(Format::AbbreviatedNumber(maintenanceDue));
 			table.Draw("(overdue)");
 			table.Advance(1);
 		}
 		else
 			table.Advance(3);
-		table.Draw(Format::Credits(b.maintenanceCosts));
+		table.Draw(Format::AbbreviatedNumber(b.maintenanceCosts));
 		table.Advance();
 	}
 	if(salariesIncome || tributeIncome || b.assetsReturns)
@@ -221,14 +221,14 @@ void BankPanel::Draw()
 			incomeLayout});
 		// For crew salaries, only the "payment" field needs to be shown.
 		table.Advance(3);
-		table.Draw(Format::Credits(-(salariesIncome + tributeIncome + b.assetsReturns)));
+		table.Draw(Format::AbbreviatedNumber(-(salariesIncome + tributeIncome + b.assetsReturns)));
 		table.Advance();
 	}
 
 	// Draw the total daily payment.
 	table.Advance(3);
 	table.Draw("total:", selected);
-	table.Draw(Format::Credits(totalPayment), unselected);
+	table.Draw(Format::AbbreviatedNumber(totalPayment), unselected);
 	table.Advance();
 
 	// Draw the credit score.
@@ -280,14 +280,14 @@ bool BankPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		++selectedRow;
 	else if(key == SDLK_RETURN && selectedRow < mortgageRows)
 	{
-		GetUI()->Push(new Dialog(this, &BankPanel::PayExtra,
+		GetUI().Push(DialogPanel::RequestString(this, &BankPanel::PayExtra,
 			"Paying off part of this debt will reduce your daily payments and the "
 			"interest that it costs you. How many extra credits will you pay?"));
 		DoHelp("bank advanced");
 	}
 	else if(key == SDLK_RETURN && qualify)
 	{
-		GetUI()->Push(new Dialog(this, &BankPanel::NewMortgage,
+		GetUI().Push(DialogPanel::RequestString(this, &BankPanel::NewMortgage,
 			"Borrow how many credits?"));
 		DoHelp("bank advanced");
 	}
@@ -353,12 +353,32 @@ bool BankPanel::Click(int x, int y, MouseButton button, int clicks)
 
 
 
+bool BankPanel::Hover(int x, int y)
+{
+	hoverRow = -1;
+
+	const Interface *bankUi = GameData::Interfaces().Get(Screen::Width() < 1280 ? "bank (small screen)" : "bank");
+	const Rectangle box = bankUi->GetBox("content");
+	const int MIN_X = box.Left();
+	const int FIRST_Y = box.Top();
+	const int MAX_X = box.Right();
+
+	// Check if the hover is on one of the rows of the table that represents a
+	// mortgage or other current debt you have.
+	int maxY = FIRST_Y + 25 + 20 * mortgageRows;
+	if(x >= MIN_X && x <= MAX_X && y >= FIRST_Y + 25 && y < maxY)
+		hoverRow = (y - FIRST_Y - 25) / 20;
+	return hoverRow != -1;
+}
+
+
+
 // Apply an extra payment to a debt. (This is a dialog callback.)
 void BankPanel::PayExtra(const string &str)
 {
 	int64_t amount = static_cast<int64_t>(Format::Parse(str));
 	// Check if the selected row is the "Other" row, which is only the case if
-	// you have more mortages than can be displayed.
+	// you have more mortgages than can be displayed.
 	const vector<Mortgage> &mortgages = player.Accounts().Mortgages();
 	bool isOther = (selectedRow == mortgageRows - 1 && mergedMortgages);
 

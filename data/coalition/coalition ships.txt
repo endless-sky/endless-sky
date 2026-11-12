@@ -14,6 +14,7 @@
 ship "Arach Courier"
 	sprite "ship/arach courier"
 	thumbnail "thumbnail/arach courier"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		licenses
@@ -73,6 +74,7 @@ ship "Arach Courier" "Arach Courier (Miner)"
 ship "Arach Freighter"
 	sprite "ship/arach freighter"
 	thumbnail "thumbnail/arach freighter"
+	"administrative cost" 3
 	attributes
 		category "Light Freighter"
 		licenses
@@ -143,6 +145,7 @@ ship "Arach Freighter" "Arach Freighter (Miner)"
 ship "Arach Hulk"
 	sprite "ship/arach hulk"
 	thumbnail "thumbnail/arach hulk"
+	"administrative cost" 4
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -219,6 +222,7 @@ ship "Arach Hulk" "Arach Hulk (Miner)"
 ship "Arach Spindle"
 	sprite "ship/arach spindle"
 	thumbnail "thumbnail/arach spindle"
+	"administrative cost" 3
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -330,6 +334,7 @@ ship "Arach Spindle" "Arach Spindle (Jump Drive)"
 ship "Arach Transport"
 	sprite "ship/arach transport"
 	thumbnail "thumbnail/arach transport"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		licenses
@@ -397,6 +402,7 @@ ship "Arach Transport" "Arach Transport (Miner)"
 ship "Heliarch Breacher"
 	sprite "ship/heliarch breacher"
 	thumbnail "thumbnail/heliarch breacher"
+	"administrative cost" 5
 	attributes
 		category "Light Warship"
 		licenses
@@ -435,6 +441,7 @@ ship "Heliarch Breacher"
 		"Scanning Module"
 		"Enforcer Riot Staff" 8
 		"Enforcer Confrontation Gear" 6
+		"Guardian Turret"
 		
 		"Large Thrust Module" 2
 		"Small Steering Module"
@@ -486,6 +493,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Missile)"
 		"Scanning Module" 2
 		"Enforcer Riot Staff" 9
 		"Enforcer Confrontation Gear" 7
+		"Guardian Turret"
 		
 		"Large Thrust Module" 2
 		"Large Steering Module"
@@ -505,6 +513,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 		"Scanning Module"
 		"Enforcer Riot Staff" 8
 		"Enforcer Confrontation Gear" 8
+		"Guardian Turret"
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
@@ -515,6 +524,7 @@ ship "Heliarch Breacher" "Heliarch Breacher (Scrappy)"
 ship "Heliarch Hunter"
 	sprite "ship/heliarch hunter"
 	thumbnail "thumbnail/heliarch hunter"
+	"administrative cost" 8
 	attributes
 		category "Medium Warship"
 		licenses
@@ -553,6 +563,7 @@ ship "Heliarch Hunter"
 		"Scanning Module" 2
 		"Enforcer Riot Staff" 25
 		"Enforcer Confrontation Gear" 13
+		"Guardian Turret"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -591,6 +602,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Burst Fire)"
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 12
 		"Enforcer Confrontation Gear" 35
+		"Guardian Turret"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
@@ -619,6 +631,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Interdicting)"
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 26
 		"Enforcer Confrontation Gear" 14
+		"Guardian Turret" 4
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -647,6 +660,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Ions)"
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 28
 		"Enforcer Confrontation Gear" 16
+		"Guardian Turret"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -690,6 +704,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 26
 		"Enforcer Confrontation Gear" 18
+		"Guardian Turret"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -701,6 +716,7 @@ ship "Heliarch Hunter" "Heliarch Hunter (Scrappy)"
 ship "Heliarch Interdictor"
 	sprite "ship/heliarch interdictor"
 	thumbnail "thumbnail/heliarch interdictor"
+	"administrative cost" 8
 	attributes
 		category "Medium Warship"
 		licenses
@@ -740,6 +756,7 @@ ship "Heliarch Interdictor"
 		"Scanning Module" 3
 		"Enforcer Riot Staff" 28
 		"Enforcer Confrontation Gear" 30
+		"Guardian Turret" 2
 		
 		"Large Thrust Module" 2
 		"Large Steering Module" 2
@@ -776,6 +793,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Bombardment)"
 		"Scanning Module" 3
 		"Enforcer Riot Staff" 31
 		"Enforcer Confrontation Gear" 27
+		"Guardian Turret"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -840,6 +858,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Missile)"
 		"Outfits Expansion" 3
 		"Enforcer Riot Staff" 25
 		"Enforcer Confrontation Gear" 28
+		"Guardian Turret"
 
 		"Large Thrust Module" 3
 		"Small Thrust Module"
@@ -863,6 +882,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
 		"Outfits Expansion" 2
 		"Enforcer Riot Staff" 29
 		"Enforcer Confrontation Gear" 29
+		"Guardian Turret"
 
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -874,6 +894,7 @@ ship "Heliarch Interdictor" "Heliarch Interdictor (Scrappy)"
 ship "Heliarch Judicator"
 	sprite "ship/heliarch judicator"
 	thumbnail "thumbnail/heliarch judicator"
+	"administrative cost" 7
 	attributes
 		category "Medium Warship"
 		licenses
@@ -912,6 +933,7 @@ ship "Heliarch Judicator"
 		"Scanning Module" 4
 		"Enforcer Riot Staff" 83
 		"Enforcer Confrontation Gear" 49
+		"Guardian Turret"
 		
 		"Small Thrust Module" 2
 		"Small Steering Module"
@@ -1003,6 +1025,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Missile)"
 		"Outfits Expansion" 6
 		"Enforcer Riot Staff" 81
 		"Enforcer Confrontation Gear" 36
+		"Guardian Turret"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 3
@@ -1025,6 +1048,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Repulsor)"
 		"Outfits Expansion" 3
 		"Enforcer Riot Staff" 87
 		"Enforcer Confrontation Gear" 42
+		"Guardian Turret" 2
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 3
@@ -1047,6 +1071,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 		"Outfits Expansion"
 		"Enforcer Riot Staff" 83
 		"Enforcer Confrontation Gear" 33
+		"Guardian Turret"
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -1058,6 +1083,7 @@ ship "Heliarch Judicator" "Heliarch Judicator (Scrappy)"
 ship "Heliarch Neutralizer"
 	sprite "ship/heliarch neutralizer"
 	thumbnail "thumbnail/heliarch neutralizer"
+	"administrative cost" 6
 	attributes
 		category "Light Warship"
 		licenses
@@ -1093,6 +1119,7 @@ ship "Heliarch Neutralizer"
 		"Scanning Module" 2
 		"Enforcer Riot Staff" 9
 		"Enforcer Confrontation Gear" 11
+		"Guardian Turret"
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -1150,6 +1177,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Nimble)"
 		"Scanning Module" 2
 		"Enforcer Riot Staff" 10
 		"Enforcer Confrontation Gear" 10
+		"Guardian Turret" 2
 		
 		"Large Thrust Module"
 		"Small Thrust Module"
@@ -1169,6 +1197,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 		"Scanning Module" 2
 		"Enforcer Riot Staff" 11
 		"Enforcer Confrontation Gear" 9
+		"Guardian Turret"
 		
 		"Large Thrust Module"
 		"Small Thrust Module" 2
@@ -1179,6 +1208,7 @@ ship "Heliarch Neutralizer" "Heliarch Neutralizer (Scrappy)"
 ship "Heliarch Punisher"
 	sprite "ship/heliarch punisher"
 	thumbnail "thumbnail/heliarch punisher"
+	"administrative cost" 11
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -1217,6 +1247,7 @@ ship "Heliarch Punisher"
 		"Scanning Module" 4
 		"Enforcer Riot Staff" 78
 		"Enforcer Confrontation Gear" 44
+		"Guardian Turret" 2
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
@@ -1289,6 +1320,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Fuel)"
 		"Fuel Module" 4
 		"Enforcer Riot Staff" 160
 		"Enforcer Confrontation Gear" 150
+		"Guardian Turret"
 	
 		"Large Thrust Module" 2
 		"Small Thrust Module" 2
@@ -1313,6 +1345,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Interdicting)"
 		"Scanning Module" 4
 		"Enforcer Riot Staff" 80
 		"Enforcer Confrontation Gear" 42
+		"Guardian Turret"
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module" 3
@@ -1346,6 +1379,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Ions)"
 		"Outfits Expansion" 2
 		"Enforcer Riot Staff" 96
 		"Enforcer Confrontation Gear" 48
+		"Guardian Turret"
 
 		"Large Thrust Module" 3
 		"Large Steering Module" 2
@@ -1367,6 +1401,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Missile)"
 		"Outfits Expansion" 2
 		"Enforcer Riot Staff" 85
 		"Enforcer Confrontation Gear" 40
+		"Guardian Turret" 2
 		
 		"Large Thrust Module" 4
 		"Large Steering Module" 2
@@ -1392,6 +1427,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Pure Finishers)"
 		"Outfits Expansion" 4
 		"Enforcer Riot Staff" 71
 		"Enforcer Confrontation Gear" 40
+		"Guardian Turret"
 
 		"Large Thrust Module" 4
 		"Small Thrust Module"
@@ -1413,6 +1449,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 		"Outfits Expansion" 3
 		"Enforcer Riot Staff" 77
 		"Enforcer Confrontation Gear" 45
+		"Guardian Turret" 2
 		
 		"Large Thrust Module" 2
 		"Small Thrust Module"
@@ -1424,6 +1461,7 @@ ship "Heliarch Punisher" "Heliarch Punisher (Scrappy)"
 ship "Heliarch Pursuer"
 	sprite "ship/heliarch pursuer"
 	thumbnail "thumbnail/heliarch pursuer"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		licenses
@@ -1483,6 +1521,7 @@ ship "Heliarch Pursuer" "Heliarch Pursuer (Scrappy)"
 ship "Heliarch Rover"
 	sprite "ship/heliarch rover"
 	thumbnail "thumbnail/heliarch rover"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		licenses
@@ -1541,6 +1580,7 @@ ship "Heliarch Rover" "Heliarch Rover (Ions)"
 ship "Heliarch Stalker"
 	sprite "ship/heliarch stalker"
 	thumbnail "thumbnail/heliarch stalker"
+	"administrative cost" 0
 	attributes
 		category "Fighter"
 		licenses
@@ -1597,6 +1637,7 @@ ship "Heliarch Stalker" "Heliarch Stalker (Scrappy)"
 ship "Kimek Briar"
 	sprite "ship/kimek briar"
 	thumbnail "thumbnail/kimek briar"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		licenses
@@ -1658,6 +1699,7 @@ ship "Kimek Briar" "Kimek Briar (Miner)"
 ship "Kimek Spire"
 	sprite "ship/kimek spire"
 	thumbnail "thumbnail/kimek spire"
+	"administrative cost" 5
 	attributes
 		category "Space Liner"
 		licenses
@@ -1730,6 +1772,7 @@ ship "Kimek Spire" "Kimek Spire (Miner)"
 ship "Kimek Thistle"
 	sprite "ship/kimek thistle"
 	thumbnail "thumbnail/kimek thistle"
+	"administrative cost" 3
 	attributes
 		category "Transport"
 		licenses
@@ -1815,6 +1858,7 @@ ship "Kimek Thistle" "Kimek Thistle (Torpedoes)"
 ship "Kimek Thorn"
 	sprite "ship/kimek thorn"
 	thumbnail "thumbnail/kimek thorn"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		licenses
@@ -1874,6 +1918,7 @@ ship "Kimek Thorn" "Kimek Thorn (Miner)"
 ship "Saryd Runabout"
 	sprite "ship/saryd runabout"
 	thumbnail "thumbnail/saryd runabout"
+	"administrative cost" 1
 	attributes
 		category "Transport"
 		licenses
@@ -1931,6 +1976,7 @@ ship "Saryd Runabout" "Saryd Runabout (Miner)"
 ship "Saryd Sojourner"
 	sprite "ship/saryd sojourner"
 	thumbnail "thumbnail/saryd sojourner"
+	"administrative cost" 5
 	attributes
 		category "Utility"
 		licenses
@@ -2025,6 +2071,7 @@ ship "Saryd Sojourner" "Saryd Sojourner (Bombardments)"
 ship "Saryd Traveler"
 	sprite "ship/saryd traveler"
 	thumbnail "thumbnail/saryd traveler"
+	"administrative cost" 3
 	attributes
 		category "Utility"
 		licenses
@@ -2100,6 +2147,7 @@ ship "Saryd Traveler" "Saryd Traveler (Miner)"
 ship "Saryd Visitor"
 	sprite "ship/saryd visitor"
 	thumbnail "thumbnail/saryd visitor"
+	"administrative cost" 2
 	attributes
 		category "Transport"
 		licenses

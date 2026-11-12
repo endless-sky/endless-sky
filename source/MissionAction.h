@@ -16,21 +16,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "ConditionSet.h"
-#include "Conversation.h"
+#include "DialogSettings.h"
 #include "ExclusiveItem.h"
 #include "GameAction.h"
 #include "LocationFilter.h"
-#include "Phrase.h"
 
 #include <map>
 #include <string>
-#include <vector>
 
 class ConditionsStore;
+class Conversation;
 class DataNode;
 class DataWriter;
 class Mission;
 class Outfit;
+class Phrase;
 class Planet;
 class PlayerInfo;
 class System;
@@ -60,13 +60,14 @@ public:
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
 
-	const std::string &DialogText() const;
+	std::string DialogText() const;
 
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should
 	// take place in a system that does not match the specified LocationFilter.
 	// It can also not be done if the mission is failed, and the trigger doesn't support it.
-	bool CanBeDone(const PlayerInfo &player, bool isFailed, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
+	bool CanBeDone(const PlayerInfo &player, bool isFailed, bool executeWhenLanded,
+		const std::shared_ptr<Ship> &boardingShip = nullptr) const;
 	// Check if this action requires this ship to exist in order to ever be completed.
 	bool RequiresGiftedShip(const std::string &shipId) const;
 	// Perform this action. If a conversation is shown, the given destination
@@ -84,37 +85,15 @@ public:
 
 
 private:
-	class MissionDialog {
-	public:
-		explicit MissionDialog(const ExclusiveItem<Phrase> &);
-		explicit MissionDialog(const std::string &);
-		MissionDialog(const DataNode &, const ConditionsStore *);
-
-
-		std::string dialogText;
-		ExclusiveItem<Phrase> dialogPhrase;
-		ConditionSet condition;
-	};
-
-
-private:
-	std::string CollapseDialog(const std::map<std::string, std::string> *subs) const;
-
-
-private:
 	// Whether this action can be triggered after the mission has failed.
 	bool runsWhenFailed = false;
 
 	std::string trigger;
-	std::string system;
+	std::string location;
 	LocationFilter systemFilter;
+	LocationFilter planetFilter;
 
-	// Dialog text of instantiated missions, or missions with pure-text dialog (no conditions or phrase blocks)
-	std::string dialogText;
-
-	// Logic for creating dialog text. Only valid for missions read in from game data files.
-	std::vector<MissionDialog> dialog;
-
+	DialogSettings dialog;
 	ExclusiveItem<Conversation> conversation;
 
 	// Outfits that are required to be owned (or not) for this action to be performable.

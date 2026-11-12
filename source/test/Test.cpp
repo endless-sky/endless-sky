@@ -26,8 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "TestContext.h"
 #include "TestData.h"
 
-#include <SDL2/SDL.h>
-
 #include <algorithm>
 #include <iostream>
 #include <map>
@@ -84,12 +82,21 @@ namespace {
 		// Construct the event to send (from keyboard code and modifiers)
 		SDL_Event event;
 		event.type = SDL_KEYDOWN;
+#ifdef ES_USE_SDL3
+		event.key.down = true;
+		event.key.repeat = false;
+		event.key.key = SDL_GetKeyFromName(keyName);
+		if(event.key.key == SDLK_UNKNOWN)
+			return false;
+		event.key.mod = modKeys;
+#else
 		event.key.state = SDL_PRESSED;
 		event.key.repeat = 0;
 		event.key.keysym.sym = SDL_GetKeyFromName(keyName);
 		if(event.key.keysym.sym == SDLK_UNKNOWN)
 			return false;
 		event.key.keysym.mod = modKeys;
+#endif
 		return SDL_PushEvent(&event);
 	}
 
@@ -107,11 +114,11 @@ namespace {
 		const Planet *planet = ship.GetPlanet();
 		description += ", system: " + (system ? system->TrueName() : "<not set>");
 		description += ", planet: " + (planet ? planet->TrueName() : "<not set>");
-		description += ", hull: " + Format::Number(ship.Hull());
-		description += ", shields: " + Format::Number(ship.Shields());
-		description += ", energy: " + Format::Number(ship.Energy());
-		description += ", fuel: " + Format::Number(ship.Fuel());
-		description += ", heat: " + Format::Number(ship.Heat());
+		description += ", hull: " + Format::Number(ship.HullFraction());
+		description += ", shields: " + Format::Number(ship.ShieldFraction());
+		description += ", energy: " + Format::Number(ship.EnergyFraction());
+		description += ", fuel: " + Format::Number(ship.FuelFraction());
+		description += ", heat: " + Format::Number(ship.HeatFraction());
 		return description;
 	}
 }
@@ -153,7 +160,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 			for(const DataNode &grand : child)
 			{
 				const string &grandKey = grand.Token(0);
-				static const string BAD_AXIS_INPUT = "Error: Pointer axis input without coordinate:";
+				static const string BAD_AXIS_INPUT = "Pointer axis input without coordinate:";
 				if(grandKey == "X")
 				{
 					if(grand.Size() < 2)
@@ -178,7 +185,7 @@ void Test::TestStep::LoadInput(const DataNode &node)
 						else if(grand.Token(i) == "middle")
 							clickMiddle = true;
 						else
-							grand.PrintTrace("Warning: Unknown click/button \"" + grand.Token(i) + "\":");
+							grand.PrintTrace("Unknown click/button \"" + grand.Token(i) + "\":");
 					}
 				else
 					grand.PrintTrace("Skipping unrecognized attribute:");
@@ -198,7 +205,7 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 	if(!steps.empty())
 	{
 		status = Status::BROKEN;
-		node.PrintTrace("Error: duplicate sequence keyword");
+		node.PrintTrace("Duplicate sequence keyword");
 		return;
 	}
 
@@ -206,13 +213,13 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 	{
 		const string &typeName = child.Token(0);
 		auto it = find_if(STEPTYPE_TO_TEXT.begin(), STEPTYPE_TO_TEXT.end(),
-			[&typeName](const std::pair<TestStep::Type, const string> &e) {
+			[&typeName](const pair<TestStep::Type, const string> &e) {
 				return e.second == typeName;
 			});
 		if(it == STEPTYPE_TO_TEXT.end())
 		{
 			status = Status::BROKEN;
-			child.PrintTrace("Error: Unsupported step type (" + ExpectedOptions(STEPTYPE_TO_TEXT) + "):");
+			child.PrintTrace("Unsupported step type (" + ExpectedOptions(STEPTYPE_TO_TEXT) + "):");
 			// Don't bother loading more steps once broken.
 			return;
 		}
@@ -231,7 +238,7 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
-					child.PrintTrace("Error: Invalid use of \"branch\" without target label:");
+					child.PrintTrace("Invalid use of \"branch\" without target label:");
 					return;
 				}
 				step.jumpOnTrueTarget = child.Token(1);
@@ -243,7 +250,7 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
-					child.PrintTrace("Error: Invalid use of \"call\" without name of called (sub)test:");
+					child.PrintTrace("Invalid use of \"call\" without name of called (sub)test:");
 					return;
 				}
 				else
@@ -253,7 +260,7 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
-					child.PrintTrace("Error: Invalid use of \"debug\" without an actual message to print:");
+					child.PrintTrace("Invalid use of \"debug\" without an actual message to print:");
 					return;
 				}
 				else
@@ -263,7 +270,7 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 				if(child.Size() < 2)
 				{
 					status = Status::BROKEN;
-					child.PrintTrace("Error: Invalid use of \"inject\" without data identifier:");
+					child.PrintTrace("Invalid use of \"inject\" without data identifier:");
 					return;
 				}
 				else
@@ -280,7 +287,7 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 					step.nameOrLabel = child.Token(1);
 					if(jumpTable.find(step.nameOrLabel) != jumpTable.end())
 					{
-						child.PrintTrace("Error: duplicate label");
+						child.PrintTrace("Duplicate label");
 						status = Status::BROKEN;
 						return;
 					}
@@ -299,13 +306,13 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 						step.travelDestination = GameData::Planets().Get(grand.Token(1));
 					else
 					{
-						grand.PrintTrace("Error: Invalid or incomplete keywords for navigation");
+						grand.PrintTrace("Invalid or incomplete keywords for navigation");
 						status = Status::BROKEN;
 					}
 				}
 				break;
 			default:
-				child.PrintTrace("Error: unknown step type in test");
+				child.PrintTrace("Unknown step type in test");
 				status = Status::BROKEN;
 				return;
 		}
@@ -316,13 +323,13 @@ void Test::LoadSequence(const DataNode &node, const ConditionsStore *playerCondi
 	{
 		if(!step.jumpOnTrueTarget.empty() && jumpTable.find(step.jumpOnTrueTarget) == jumpTable.end())
 		{
-			node.PrintTrace("Error: missing label " + step.jumpOnTrueTarget);
+			node.PrintTrace("Missing label " + step.jumpOnTrueTarget);
 			status = Status::BROKEN;
 			return;
 		}
 		if(!step.jumpOnFalseTarget.empty() && jumpTable.find(step.jumpOnFalseTarget) == jumpTable.end())
 		{
-			node.PrintTrace("Error: missing label " + step.jumpOnFalseTarget);
+			node.PrintTrace("Missing label " + step.jumpOnFalseTarget);
 			status = Status::BROKEN;
 			return;
 		}
@@ -335,7 +342,7 @@ void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	if(node.Size() < 2)
 	{
-		node.PrintTrace("Error: Unnamed test:");
+		node.PrintTrace("Unnamed test:");
 		return;
 	}
 	// If a test object is "loaded" twice, that is most likely an error (e.g.
@@ -343,14 +350,14 @@ void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	// or another plugin). Tests should be globally unique.
 	if(!name.empty())
 	{
-		node.PrintTrace("Error: Duplicate test definition:");
+		node.PrintTrace("Duplicate test definition:");
 		return;
 	}
 	// Validate if the testname contains valid characters.
 	if(node.Token(1).find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 _-")
-		!= std::string::npos)
+		!= string::npos)
 	{
-		node.PrintTrace("Error: Unsupported character(s) in test name:");
+		node.PrintTrace("Unsupported character(s) in test name:");
 		return;
 	}
 	name = node.Token(1);
@@ -362,7 +369,7 @@ void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		{
 			const string &statusText = child.Token(1);
 			auto it = find_if(STATUS_TO_TEXT.begin(), STATUS_TO_TEXT.end(),
-				[&statusText](const std::pair<Status, const string> &e) {
+				[&statusText](const pair<Status, const string> &e) {
 					return e.second == statusText;
 				});
 			if(it != STATUS_TO_TEXT.end())
@@ -376,7 +383,7 @@ void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			else
 			{
 				status = Status::BROKEN;
-				child.PrintTrace("Error: Unsupported status (" + ExpectedOptions(STATUS_TO_TEXT) + "):");
+				child.PrintTrace("Unsupported status (" + ExpectedOptions(STATUS_TO_TEXT) + "):");
 			}
 		}
 		else if(key == "sequence")
@@ -386,7 +393,7 @@ void Test::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			// Provides a human friendly description of the test, but it is not used internally.
 		}
 		else
-			child.PrintTrace("Error: Skipping unrecognized attribute:");
+			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 }
 
@@ -549,7 +556,7 @@ const string &Test::StatusText() const
 
 
 // Get the names of the conditions relevant for this test.
-std::set<std::string> Test::RelevantConditions() const
+set<string> Test::RelevantConditions() const
 {
 	set<string> conditionNames;
 	for(const auto &step : steps)
@@ -595,7 +602,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		message += ": " + testFailReason;
 	message += "\n";
 
-	Logger::LogError(message);
+	Logger::Log(message, Logger::Level::ERROR);
 
 	// Print the callstack if we have any.
 	string stackMessage = "Call-stack:\n";
@@ -609,12 +616,12 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 			stackMessage += " (" + STEPTYPE_TO_TEXT.at(((i->test->steps)[i->step]).stepType) + ")";
 		stackMessage += "\n";
 	}
-	Logger::LogError(stackMessage);
+	Logger::Log(stackMessage, Logger::Level::ERROR);
 
 	// Print some debug information about the flagship and the first 5 escorts.
 	const Ship *flagship = player.Flagship();
 	if(!flagship)
-		Logger::LogError("No flagship at the moment of failure.");
+		Logger::Log("No flagship at the moment of failure.", Logger::Level::INFO);
 	else
 	{
 		string shipsOverview = "flagship " + ShipToString(*flagship) + "\n";
@@ -632,7 +639,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 		}
 		if(escortsNotPrinted > 0)
 			shipsOverview += "(plus " + to_string(escortsNotPrinted) + " additional escorts)\n";
-		Logger::LogError(shipsOverview);
+		Logger::Log(shipsOverview, Logger::Level::INFO);
 	}
 
 	// Print all conditions that are used in the test.
@@ -644,9 +651,9 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	}
 
 	if(!conditions.empty())
-		Logger::LogError(conditions);
+		Logger::Log(conditions, Logger::Level::INFO);
 	else
-		Logger::LogError("No conditions to display at the moment of failure.");
+		Logger::Log("No conditions to display at the moment of failure.", Logger::Level::INFO);
 
 	// If this test was expected to fail, then return a success exitcode from the program
 	// because the test did what it was expected to do.

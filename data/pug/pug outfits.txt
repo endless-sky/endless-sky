@@ -366,6 +366,7 @@ outfit "Pug Biodefenses"
 	thumbnail "outfit/pug biodefenses"
 	"capture defense" 100
 	"unplunderable" 1
+	"can jettison" 1
 	description "This semi-organic defense system is designed to release a highly lethal bioengineered virus capable of rapidly infecting any foreign entities present on the ship that it is installed on while leaving the crew of the ship unharmed. The virus, when combined with the defense system itself, is highly accurate at automatically determining friend from foe."
 
 outfit "Pug Peacekeeping Staff"
@@ -378,4 +379,5 @@ outfit "Pug Peacekeeping Staff"
 	"capture attack" 2.3
 	"capture defense" 2.3
 	"unplunderable" 1
+	"can jettison" 1
 	description "Though designed for planetary population control, the peacekeeping staff also works exceptionally well for ship defense. The staff emits a short-ranged beam that incapacitates anyone it touches by causing them to enter a euphoric and hallucinogenic state, wandering off to somewhere where they won't cause any trouble. Coming down from the state of euphoria is never pleasant."

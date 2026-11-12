@@ -108,8 +108,8 @@ namespace {
 	// The number of Pause vs Resume requests received.
 	int pauseChangeCount = 0;
 	// If we paused the audio multiple times, only resume it after the same number of Resume() calls.
-	// We start with -1, so when MenuPanel opens up the first time, it doesn't pause the loading sounds.
-	int pauseCount = -1;
+	// We start with -2, so when MenuPanel and PlanetPanel opens up the first time, it doesn't pause the loading sounds.
+	int pauseCount = -2;
 }
 
 
@@ -177,13 +177,13 @@ void Audio::CheckReferences(bool parseOnly)
 {
 	if(!isInitialized && !parseOnly)
 	{
-		Logger::LogError("Warning: audio could not be initialized. No audio will play.");
+		Logger::Log("Audio could not be initialized. No audio will play.", Logger::Level::WARNING);
 		return;
 	}
 
 	for(auto &&it : sounds)
 		if(it.second.Name().empty())
-			Logger::LogError("Warning: sound \"" + it.first + "\" is referred to, but does not exist.");
+			Logger::Log("Sound \"" + it.first + "\" is referred to, but does not exist.", Logger::Level::WARNING);
 }
 
 
@@ -513,7 +513,8 @@ namespace {
 
 			// Unlock the mutex for the time-intensive part of the loop.
 			if(!sound->Load(path, name))
-				Logger::LogError("Unable to load sound \"" + name + "\" from path: " + path.string());
+				Logger::Log("Unable to load sound \"" + name + "\" from path: " + path.string(),
+					Logger::Level::WARNING);
 		}
 	}
 }

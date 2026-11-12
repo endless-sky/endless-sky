@@ -28,21 +28,22 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class PlayerInfo;
+class Plugin;
 class RenderBuffer;
-struct Plugin;
 
 
 
 // UI panel for editing preferences, especially the key mappings.
 class PreferencesPanel : public Panel {
 public:
-	PreferencesPanel(PlayerInfo &player);
+	explicit PreferencesPanel(PlayerInfo &player);
 	virtual ~PreferencesPanel();
 
 	// Draw this panel.
 	virtual void Draw() override;
 
 	virtual void UpdateTooltipActivation() override;
+	virtual void UpdateTextDisplay() override;
 
 
 protected:
@@ -69,7 +70,7 @@ private:
 
 	void Exit();
 
-	void HandleSettingsString(const std::string &str, Point cursorPosition);
+	void HandleSettingsString(const std::string &str);
 
 	void HandleUp();
 	void HandleDown();
@@ -85,16 +86,15 @@ private:
 	// this panel is closed due to the deadline blink preference changing.
 	bool recacheDeadlines = false;
 
-	int editing;
-	int selected;
-	int hover;
+	int editing = -1;
+	int selected = 0;
+	int hover = -1;
 	int oldSelected;
 	int oldHover;
 	int latest;
 	// Which page of the preferences we're on.
 	char page = 'c';
 
-	Point hoverPoint;
 	Tooltip tooltip;
 	std::string selectedItem;
 	std::string hoverItem;
@@ -112,5 +112,4 @@ private:
 	std::unique_ptr<RenderBuffer> pluginDescriptionBuffer;
 	ScrollVar<double> pluginListScroll;
 	ScrollVar<double> pluginDescriptionScroll;
-	int pluginListHeight = 0;
 };

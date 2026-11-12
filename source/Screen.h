@@ -43,18 +43,13 @@ public:
 
 
 public:
-	static void SetRaw(int width, int height);
+	static void SetRaw(int width, int height, bool noResizeEvent = false);
 
 	// Zoom level as specified by the user.
 	static int UserZoom();
 	// Effective zoom level, as restricted by the current resolution / window size.
 	static int Zoom();
-	static void SetZoom(int percent);
-
-	// Specify that this is a high-DPI window.
-	static void SetHighDPI(bool isHighDPI = true);
-	// This is true if the screen is high DPI, or if the zoom is above 100%.
-	static bool IsHighResolution();
+	static void SetZoom(int percent, bool noEvent = false);
 
 	static Point Dimensions();
 	static int Width();

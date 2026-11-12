@@ -20,7 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataWriter.h"
 #include "text/Format.h"
 
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 #include <algorithm>
 #include <cmath>
@@ -77,20 +77,22 @@ const Command Command::FULLSCREEN(ONE << 26, "Toggle fullscreen");
 const Command Command::FASTFORWARD(ONE << 27, "Toggle fast-forward");
 const Command Command::HELP(ONE << 28, "Show help");
 const Command Command::PAUSE(ONE << 29, "Pause");
-const Command Command::FIGHT(ONE << 30, "Fleet: Fight my target");
-const Command Command::HOLD_FIRE(ONE << 31, "Fleet: Toggle hold fire");
-const Command Command::GATHER(ONE << 32, "Fleet: Gather around me");
-const Command Command::HOLD_POSITION(ONE << 33, "Fleet: Hold position");
-const Command Command::HARVEST(ONE << 34, "Fleet: Harvest flotsam");
-const Command Command::AMMO(ONE << 35, "Fleet: Toggle ammo usage");
-const Command Command::AUTOSTEER(ONE << 36, "Auto steer");
+const Command Command::PERFORMANCE_DISPLAY(ONE << 30, "Toggle performance info");
+const Command Command::FIGHT(ONE << 31, "Fleet: Fight my target");
+const Command Command::HOLD_FIRE(ONE << 32, "Fleet: Toggle hold fire");
+const Command Command::GATHER(ONE << 33, "Fleet: Gather around me");
+const Command Command::HOLD_POSITION(ONE << 34, "Fleet: Hold position");
+const Command Command::HARVEST(ONE << 35, "Fleet: Harvest flotsam");
+const Command Command::SCAN_ORDER(ONE << 36, "Fleet: Scan my target");
+const Command Command::AMMO(ONE << 37, "Fleet: Toggle ammo usage");
+const Command Command::AUTOSTEER(ONE << 38, "Auto steer");
 
 // These commands are not in the preferences panel, and do not have keys
 // assigned to them, but may have descriptions as needed to facilitate
 // assignments in downstream ports like endless-mobile.
-const Command Command::WAIT(ONE << 37, "");
-const Command Command::STOP(ONE << 38, "Stop your ship");
-const Command Command::SHIFT(ONE << 39, "");
+const Command Command::WAIT(ONE << 39, "");
+const Command Command::STOP(ONE << 40, "Stop your ship");
+const Command Command::SHIFT(ONE << 41, "");
 
 
 
@@ -108,7 +110,7 @@ string Command::ReplaceNamesWithKeys(const string &text)
 
 
 // Create a command representing whatever is mapped to the given key code.
-Command::Command(int keycode)
+Command::Command(SDL_Keycode keycode)
 {
 	auto it = commandForKeycode.find(keycode);
 	if(it != commandForKeycode.end())
@@ -121,13 +123,22 @@ Command::Command(int keycode)
 void Command::ReadKeyboard()
 {
 	Clear();
+#ifdef ES_USE_SDL3
+	const bool *keyDown = SDL_GetKeyboardState(nullptr);
+#else
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
+#endif
 
 	// Each command can only have one keycode, but misconfigured settings can
 	// temporarily cause one keycode to be used for two commands. Also, more
 	// than one key can be held down at once.
 	for(const auto &it : keycodeForCommand)
+#ifdef ES_USE_SDL3
+		// Use no modifiers for the scancode.
+		if(keyDown[SDL_GetScancodeFromKey(it.second, 0)])
+#else
 		if(keyDown[SDL_GetScancodeFromKey(it.second)])
+#endif
 			*this |= it.first;
 
 	// Check whether the `Shift` modifier key was pressed for this step.
@@ -294,6 +305,7 @@ void Command::Load(const DataNode &node)
 			{"hold fire", Command::HOLD_FIRE},
 			{"gather", Command::GATHER},
 			{"hold", Command::HOLD_POSITION},
+			{"scan order", Command::SCAN_ORDER},
 			{"ammo", Command::AMMO},
 			{"nearest asteroid", Command::NEAREST_ASTEROID},
 			{"wait", Command::WAIT},
@@ -305,7 +317,7 @@ void Command::Load(const DataNode &node)
 		if(it != lookup.end())
 			Set(it->second);
 		else
-			node.PrintTrace("Warning: Skipping unrecognized command \"" + node.Token(i) + "\":");
+			node.PrintTrace("Skipping unrecognized command \"" + node.Token(i) + "\":");
 	}
 }
 

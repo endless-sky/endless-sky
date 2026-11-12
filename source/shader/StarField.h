@@ -48,6 +48,7 @@ public:
 
 
 private:
+	void EnableAttribArrays() const;
 	void SetUpGraphics();
 	void MakeStars(int stars, int width);
 

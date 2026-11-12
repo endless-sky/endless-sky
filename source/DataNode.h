@@ -45,8 +45,8 @@ public:
 	const std::vector<std::string> &Tokens() const noexcept;
 	// Add tokens to the node.
 	void AddToken(const std::string &token);
-	// Get the token at the given index. No bounds checking is done internally.
-	// DataFile loading guarantees index 0 always exists.
+	// Get the token at the given index. DataFile loading guarantees index 0 always exists.
+	// If the index is out of range, then this returns an empty string and prints an error.
 	const std::string &Token(int index) const;
 	// Convert the token at the given index to a number. This returns 0 and prints an
 	// error if the index is out of range or the token cannot be interpreted as a number.

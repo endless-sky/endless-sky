@@ -20,17 +20,20 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConversationPanel.h"
 #include "DataFile.h"
-#include "Dialog.h"
+#include "DialogPanel.h"
 #include "text/DisplayText.h"
 #include "Files.h"
 #include "shader/FillShader.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
+#include "text/Format.h"
 #include "GameData.h"
+#include "GamerulesPanel.h"
 #include "Information.h"
 #include "Interface.h"
 #include "MainPanel.h"
 #include "image/MaskManager.h"
+#include "PilotProfile.h"
 #include "PlayerInfo.h"
 #include "Preferences.h"
 #include "Rectangle.h"
@@ -43,50 +46,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cstdlib>
-#include <stdexcept>
-#include <utility>
+#include <ranges>
 
 using namespace std;
 
 namespace {
-	// Return a pair containing settings to use for time formatting.
-	pair<const char*, const char*> TimestampFormatString(Preferences::DateFormat format)
-	{
-		// pair<string, string>: Linux (1st) and Windows (2nd) format strings.
-		switch(format)
-		{
-			case Preferences::DateFormat::YMD:
-				return make_pair("%F %T", "%F %T");
-			case Preferences::DateFormat::MDY:
-				return make_pair("%-I:%M %p on %b %-d, %Y", "%#I:%M %p on %b %#d, %Y");
-			case Preferences::DateFormat::DMY:
-			default:
-				return make_pair("%-I:%M %p on %-d %b %Y", "%#I:%M %p on %#d %b %Y");
-		}
-	}
-
-	// Convert a file_time_type to a human-readable time and date.
-	string TimestampString(filesystem::file_time_type time)
-	{
-		// TODO: Replace with chrono formatting when it is properly supported.
-		auto sctp = time_point_cast<chrono::system_clock::duration>(time - filesystem::file_time_type::clock::now()
-				+ chrono::system_clock::now());
-		time_t timestamp = chrono::system_clock::to_time_t(sctp);
-
-		pair<const char*, const char*> format = TimestampFormatString(Preferences::GetDateFormat());
-		static const size_t BUF_SIZE = 25;
-		char str[BUF_SIZE];
-
-#ifdef _WIN32
-		tm date;
-		localtime_s(&date, &timestamp);
-		return string(str, std::strftime(str, BUF_SIZE, format.second, &date));
-#else
-		const tm *date = localtime(&timestamp);
-		return string(str, std::strftime(str, BUF_SIZE, format.first, date));
-#endif
-	}
-
 	// Extract the date from this pilot's most recent save.
 	string FileDate(const filesystem::path &filename)
 	{
@@ -115,11 +79,11 @@ namespace {
 
 
 LoadPanel::LoadPanel(PlayerInfo &player, UI &gamePanels)
-	: player(player), gamePanels(gamePanels), selectedPilot(player.Identifier()),
+	: player(player), gamePanels(gamePanels), selectedPilot(player.Pilot()),
 	pilotBox(GameData::Interfaces().Get("load menu")->GetBox("pilots")),
 	snapshotBox(GameData::Interfaces().Get("load menu")->GetBox("snapshots")),
 	tooltip(200, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
-		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
+		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"), true)
 {
 	// If you have a player loaded, and the player is on a planet, make sure
 	// the player is saved so that any snapshot you create will be of the
@@ -141,33 +105,30 @@ void LoadPanel::Draw()
 	const Font &font = FontSet::Get(14);
 
 	Information info;
-	if(loadedInfo.IsLoaded())
-	{
-		info.SetString("pilot", loadedInfo.Name());
-		if(loadedInfo.ShipSprite())
-		{
-			info.SetSprite("ship sprite", loadedInfo.ShipSprite());
-			info.SetString("ship", loadedInfo.ShipName());
-		}
-		if(!loadedInfo.GetSystem().empty())
-			info.SetString("system", loadedInfo.GetSystem());
-		if(!loadedInfo.GetPlanet().empty())
-			info.SetString("planet", loadedInfo.GetPlanet());
-		info.SetString("credits", loadedInfo.Credits());
-		info.SetString("date", loadedInfo.GetDate());
-		info.SetString("playtime", loadedInfo.GetPlayTime());
-	}
+	if(!loadedInfo.IsEmpty())
+		loadedInfo.PopulateInfo(info);
+	// The selected pilot can have no files if it's permadeathed,
+	// but it will still have info about the player before they died.
+	else if(selectedPilot && selectedPilot->Files().empty())
+		selectedPilot->MomentOfDeath().PopulateInfo(info);
 	else
 		info.SetString("pilot", "No Pilot Loaded");
 
-	if(!selectedPilot.empty())
+	if(selectedPilot)
+	{
 		info.SetCondition("pilot selected");
-	if(!player.IsDead() && player.IsLoaded() && !selectedPilot.empty())
-		info.SetCondition("pilot alive");
-	if(selectedFile.find('~') != string::npos)
-		info.SetCondition("snapshot selected");
-	if(loadedInfo.IsLoaded())
-		info.SetCondition("pilot loaded");
+		if(!selectedPilot->IsLocked())
+		{
+			if(!selectedPilot->GetGamerules().LockGamerules())
+				info.SetCondition("gamerules unlocked");
+			if(!player.IsDead() && player.IsLoaded() && !selectedPilot->GetGamerules().SingleSaveFile())
+				info.SetCondition("can add snapshot");
+			if(selectedFile.find('~') != string::npos)
+				info.SetCondition("can remove snapshot");
+			if(!loadedInfo.IsEmpty())
+				info.SetCondition("can load");
+		}
+	}
 
 	const Interface *loadPanel = GameData::Interfaces().Get("load menu");
 
@@ -185,8 +146,9 @@ void LoadPanel::Draw()
 		const double bottom = top + pilotBox.Height();
 		const double hTextPad = loadPanel->GetValue("pilot horizontal text pad");
 		const double fadeOut = loadPanel->GetValue("pilot fade out");
-		for(const auto &it : files)
+		for(const shared_ptr<PilotProfile> &pilot : pilots)
 		{
+			const string &identifier = pilot->Identifier();
 			const Point drawPoint = currentTopLeft;
 			currentTopLeft += Point(0., 20.);
 
@@ -198,23 +160,24 @@ void LoadPanel::Draw()
 			const double width = pilotBox.Width();
 			Rectangle zone(drawPoint + Point(width / 2., 10.), Point(width, 20.));
 			const Point textPoint(drawPoint.X() + hTextPad, zone.Center().Y() - font.Height() / 2);
-			bool isHighlighted = (it.first == selectedPilot || (hasHover && zone.Contains(hoverPoint)));
+			bool isHighlighted = (pilot == selectedPilot || (hasHover && zone.Contains(hoverPoint)));
 
 			double alpha = min((drawPoint.Y() - (top - fadeOut)) * .1,
 					(bottom - fadeOut - drawPoint.Y()) * .1);
 			alpha = max(alpha, 0.);
 			alpha = min(alpha, 1.);
 
-			if(it.first == selectedPilot)
+			if(pilot == selectedPilot)
 				FillShader::Fill(zone, Color(.1 * alpha, 0.));
 			const int textWidth = pilotBox.Width() - 2. * hTextPad;
-			font.Draw({it.first, {textWidth, Truncate::BACK}}, textPoint, Color((isHighlighted ? .7 : .5) * alpha, 0.));
+			double textColor = .2 + .3 * !pilot->IsLocked() + .2 * isHighlighted;
+			font.Draw({identifier, {textWidth, Truncate::BACK}}, textPoint, Color(textColor * alpha, 0.));
 		}
 	}
 
 	// Draw the list of snapshots for the selected pilot.
 	bool hasHoverZone = false;
-	if(!selectedPilot.empty() && files.contains(selectedPilot))
+	if(selectedPilot)
 	{
 		const Point topLeft = snapshotBox.TopLeft();
 		Point currentTopLeft = topLeft + Point(0, -centerScroll);
@@ -222,7 +185,7 @@ void LoadPanel::Draw()
 		const double bottom = top + snapshotBox.Height();
 		const double hTextPad = loadPanel->GetValue("snapshot horizontal text pad");
 		const double fadeOut = loadPanel->GetValue("snapshot fade out");
-		for(const auto &it : files.find(selectedPilot)->second)
+		for(const auto &[file, time] : selectedPilot->Files())
 		{
 			const Point drawPoint = currentTopLeft;
 			currentTopLeft += Point(0., 20.);
@@ -232,8 +195,7 @@ void LoadPanel::Draw()
 			if(drawPoint.Y() > bottom - fadeOut)
 				continue;
 
-			const string &file = it.first;
-			Rectangle zone(drawPoint + Point(snapshotBox.Width() / 2., 10.), Point(snapshotBox.Width(), 20.));
+			Rectangle zone(drawPoint + Point(snapshotBox.Width() / 2., 10.), Point(snapshotBox.Width(), 19.9));
 			const Point textPoint(drawPoint.X() + hTextPad, zone.Center().Y() - font.Height() / 2);
 			bool isHovering = (hasHover && zone.Contains(hoverPoint));
 			bool isHighlighted = (file == selectedFile || isHovering);
@@ -243,7 +205,12 @@ void LoadPanel::Draw()
 				tooltip.IncrementCount();
 				if(tooltip.ShouldDraw())
 				{
-					tooltip.SetText(TimestampString(it.second), true);
+					if(hoverFile != file)
+					{
+						hoverFile = file;
+						hoverFileTimestamp = Format::TimestampString(time);
+					}
+					tooltip.SetText(hoverFileTimestamp);
 					tooltip.SetZone(zone);
 				}
 			}
@@ -277,6 +244,13 @@ void LoadPanel::UpdateTooltipActivation()
 
 
 
+void LoadPanel::UpdateTextDisplay()
+{
+	tooltip.UpdateFontSize();
+}
+
+
+
 bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress)
 {
 	UI::UISound sound = UI::UISound::NORMAL;
@@ -286,67 +260,78 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		// If no player is loaded, the "Enter Ship" button becomes "New Pilot."
 		// Request that the player chooses a start scenario.
 		// StartConditionsPanel also handles the case where there's no scenarios.
-		GetUI()->Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), this));
+		GetUI().Push(new StartConditionsPanel(player, gamePanels, GameData::StartOptions(), this));
 	}
-	else if(key == 'd' && !selectedPilot.empty())
+	else if(key == 'd' && selectedPilot)
 	{
 		sound = UI::UISound::NONE;
-		GetUI()->Push(new Dialog(this, &LoadPanel::DeletePilot,
+		GetUI().Push(DialogPanel::RequestStringWithValidation(this, &LoadPanel::DeletePilot,
+			[this](const string &pilot) { return pilot == loadedInfo.Name(); },
 			"Are you sure you want to delete the selected pilot, \"" + loadedInfo.Name()
 				+ "\", and all their saved games?\n\n(This will permanently delete the pilot data.)\n"
-				+ "Confirm the name of the pilot you want to delete.",
-				[this](const string &pilot) { return pilot == loadedInfo.Name(); }));
+				+ "Confirm the name of the pilot you want to delete."));
 	}
 	else if(key == 'a' && !player.IsDead() && player.IsLoaded())
 	{
-		auto it = files.find(selectedPilot);
-		if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
+		if(!selectedPilot || selectedPilot->IsLocked() || selectedPilot->GetGamerules().SingleSaveFile()
+				|| selectedPilot->Files().empty() || selectedPilot->Files().front().first.size() < 4)
 			return false;
 
 		sound = UI::UISound::NONE;
 		nameToConfirm.clear();
-		filesystem::path lastSave = Files::Saves() / it->second.front().first;
-		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback,
+		filesystem::path lastSave = Files::Saves() / selectedPilot->Files().front().first;
+		GetUI().Push(DialogPanel::RequestStringWithCharFilter(this, &LoadPanel::SnapshotCallback,
+			[this](const string &input, char ch) { return LoadPanel::SnapshotNameFilter(input, ch); },
 			"Enter a name for this snapshot, or use the most recent save's date:",
 			FileDate(lastSave)));
 	}
-	else if(key == 'R' && !selectedFile.empty())
+	else if(key == 'R' && !selectedFile.empty() && !selectedPilot->IsLocked())
 	{
 		sound = UI::UISound::NONE;
 		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
-		if(!(fileName == selectedPilot + ".txt"))
-			GetUI()->Push(new Dialog(this, &LoadPanel::DeleteSave,
+		if(fileName != selectedPilot->Identifier() + ".txt")
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &LoadPanel::DeleteSave,
 				"Are you sure you want to delete the selected saved game file, \""
 					+ selectedFile + "\"?"));
 	}
-	else if((key == 'l' || key == 'e') && !selectedPilot.empty())
+	else if((key == 'l' || key == 'e') && selectedPilot && !selectedPilot->IsLocked())
 	{
-		// Is the selected file a snapshot or the pilot's main file?
-		string fileName = selectedFile.substr(selectedFile.rfind('/') + 1);
-		if(fileName == selectedPilot + ".txt")
+		if(!player.IsDead() && player.IsLoaded() && !player.GetPlanet()
+			&& GameData::GetGamerules().RestrictedSaveLoading())
+		{
+			sound = UI::UISound::NONE;
+			GetUI().Push(DialogPanel::Info("The pilot you currently have loaded is playing with restricted save "
+				"loading. You cannot load another save unless you are landed."));
+		}
+		else if(selectedFile.substr(selectedFile.rfind('/') + 1) == selectedPilot->Identifier() + ".txt")
 			LoadCallback();
 		else
 		{
 			sound = UI::UISound::NONE;
-			GetUI()->Push(new Dialog(this, &LoadPanel::LoadCallback,
+			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &LoadPanel::LoadCallback,
 				"If you load this snapshot, it will overwrite your current game. "
 				"Any progress will be lost, unless you have saved other snapshots. "
 				"Are you sure you want to do that?"));
 		}
 	}
+	else if(key == 'g' && selectedPilot && !selectedPilot->GetGamerules().LockGamerules())
+	{
+		GamerulesPanel *panel = new GamerulesPanel(selectedPilot->GetGamerules(), true);
+		panel->SetCallback(selectedPilot.get(), &PilotProfile::Save);
+		GetUI().Push(panel);
+	}
 	else if(key == 'o')
 		Files::OpenUserSavesFolder();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI()->Pop(this);
-	else if((key == SDLK_DOWN || key == SDLK_UP) && !files.empty())
+		GetUI().Pop(this);
+	else if((key == SDLK_DOWN || key == SDLK_UP) && !pilots.empty())
 	{
-		auto pit = files.find(selectedPilot);
 		if(sideHasFocus)
 		{
-			auto it = files.begin();
+			auto it = pilots.begin();
 			int index = 0;
-			for( ; it != files.end(); ++it, ++index)
-				if(it->first == selectedPilot)
+			for( ; it != pilots.end(); ++it, ++index)
+				if(*it == selectedPilot)
 					break;
 
 			if(key == SDLK_DOWN)
@@ -355,9 +340,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				if(index >= lastVisibleIndex)
 					sideScroll += 20.;
 				++it;
-				if(it == files.end())
+				if(it == pilots.end())
 				{
-					it = files.begin();
+					it = pilots.begin();
 					sideScroll = 0.;
 				}
 			}
@@ -366,22 +351,23 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				const int firstVisibleIndex = sideScroll / 20.;
 				if(index <= firstVisibleIndex)
 					sideScroll -= 20.;
-				if(it == files.begin())
+				if(it == pilots.begin())
 				{
-					it = files.end();
-					sideScroll = max(0., 20. * files.size() - 280.);
+					it = pilots.end();
+					sideScroll = max(0., 20. * pilots.size() - 280.);
 				}
 				--it;
 			}
-			selectedPilot = it->first;
-			selectedFile = it->second.front().first;
+			selectedPilot = *it;
+			selectedFile = !selectedPilot->Files().empty() ? selectedPilot->Files().front().first : "";
 			centerScroll = 0.;
 		}
-		else if(pit != files.end())
+		else if(selectedPilot && !selectedPilot->Files().empty())
 		{
-			auto it = pit->second.begin();
+			auto &saveFiles = selectedPilot->Files();
+			auto it = saveFiles.begin();
 			int index = 0;
-			for( ; it != pit->second.end(); ++it, ++index)
+			for( ; it != saveFiles.end(); ++it, ++index)
 				if(it->first == selectedFile)
 					break;
 
@@ -391,9 +377,9 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				const int lastVisibleIndex = (centerScroll / 20.) + 13.;
 				if(index >= lastVisibleIndex)
 					centerScroll += 20.;
-				if(it == pit->second.end())
+				if(it == saveFiles.end())
 				{
-					it = pit->second.begin();
+					it = saveFiles.begin();
 					centerScroll = 0.;
 				}
 			}
@@ -402,16 +388,22 @@ bool LoadPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				const int firstVisibleIndex = centerScroll / 20.;
 				if(index <= firstVisibleIndex)
 					centerScroll -= 20.;
-				if(it == pit->second.begin())
+				if(it == saveFiles.begin())
 				{
-					it = pit->second.end();
-					centerScroll = max(0., 20. * pit->second.size() - 280.);
+					it = saveFiles.end();
+					centerScroll = max(0., 20. * saveFiles.size() - 280.);
 				}
 				--it;
 			}
-			selectedFile = it->first;
+			selectedFile = it != saveFiles.end() ? it->first : "";
 		}
-		loadedInfo.Load(Files::Saves() / selectedFile);
+		if(selectedFile.empty())
+		{
+			sound = UI::UISound::NONE;
+			loadedInfo.Clear();
+		}
+		else
+			loadedInfo.Load(Files::Saves() / selectedFile);
 	}
 	else if(key == SDLK_LEFT)
 		sideHasFocus = true;
@@ -439,11 +431,11 @@ bool LoadPanel::Click(int x, int y, MouseButton button, int clicks)
 	{
 		int selected = (y + sideScroll - pilotBox.Top()) / 20;
 		int i = 0;
-		for(const auto &it : files)
-			if(i++ == selected && selectedPilot != it.first)
+		for(const shared_ptr<PilotProfile> &pilot : pilots)
+			if(i++ == selected && selectedPilot != pilot)
 			{
-				selectedPilot = it.first;
-				selectedFile = it.second.front().first;
+				selectedPilot = pilot;
+				selectedFile = !pilot->Files().empty() ? pilot->Files().front().first : "";
 				centerScroll = 0;
 				UI::PlaySound(UI::UISound::NORMAL);
 			}
@@ -452,14 +444,13 @@ bool LoadPanel::Click(int x, int y, MouseButton button, int clicks)
 	{
 		int selected = (y + centerScroll - snapshotBox.Top()) / 20;
 		int i = 0;
-		auto filesIt = files.find(selectedPilot);
-		if(filesIt == files.end())
+		if(!selectedPilot)
 			return true;
-		for(const auto &it : filesIt->second)
+		for(const auto &file : selectedPilot->Files() | views::keys)
 			if(i++ == selected)
 			{
-				const bool sameSelected = selectedFile == it.first;
-				selectedFile = it.first;
+				const bool sameSelected = selectedFile == file;
+				selectedFile = file;
 				if(sameSelected && clicks > 1)
 					KeyDown('l', 0, Command(), true);
 				break;
@@ -468,7 +459,9 @@ bool LoadPanel::Click(int x, int y, MouseButton button, int clicks)
 	else
 		return false;
 
-	if(!selectedFile.empty())
+	if(selectedFile.empty())
+		loadedInfo.Clear();
+	else
 		loadedInfo.Load(Files::Saves() / selectedFile);
 
 	return true;
@@ -484,7 +477,6 @@ bool LoadPanel::Hover(int x, int y)
 		sideHasFocus = false;
 
 	hasHover = true;
-	hoverPoint = Point(x, y);
 	// Tooltips should not pop up unless the mouse stays in one place for the
 	// full hover time. Otherwise, every time the user scrubs the mouse over the
 	// list, tooltips will appear after one second.
@@ -498,11 +490,10 @@ bool LoadPanel::Hover(int x, int y)
 
 bool LoadPanel::Drag(double dx, double dy)
 {
-	auto it = files.find(selectedPilot);
 	if(sideHasFocus)
-		sideScroll = max(0., min(20. * files.size() - 280., sideScroll - dy));
-	else if(!selectedPilot.empty() && it != files.end())
-		centerScroll = max(0., min(20. * it->second.size() - 280., centerScroll - dy));
+		sideScroll = max(0., min(20. * pilots.size() - 280., sideScroll - dy));
+	else if(selectedPilot)
+		centerScroll = max(0., min(20. * selectedPilot->Files().size() - 280., centerScroll - dy));
 	return true;
 }
 
@@ -517,58 +508,58 @@ bool LoadPanel::Scroll(double dx, double dy)
 
 void LoadPanel::UpdateLists()
 {
-	files.clear();
+	PilotProfile::LoadProfiles();
+	pilots = PilotProfile::GetProfiles();
+	// Sort the pilots so that locked pilots go below unlocked ones, then sort alphabetically.
+	ranges::stable_sort(pilots, [](const shared_ptr<PilotProfile> &a, const shared_ptr<PilotProfile> &b) -> bool {
+		if(a->IsLocked() == b->IsLocked())
+			return Format::LowerCase(a->Identifier()) < Format::LowerCase(b->Identifier());
+		return b->IsLocked();
+	});
 
-	vector<filesystem::path> fileList = Files::List(Files::Saves());
-	for(const auto &path : fileList)
+	if(pilots.empty())
 	{
-		// Skip any files that aren't text files.
-		if(path.extension() != ".txt")
-			continue;
-
-		string fileName = Files::Name(path);
-		// The file name is either "Pilot Name.txt" or "Pilot Name~SnapshotTitle.txt".
-		size_t pos = fileName.find('~');
-		const bool isSnapshot = (pos != string::npos);
-		if(!isSnapshot)
-			pos = fileName.size() - 4;
-
-		string pilotName = fileName.substr(0, pos);
-		auto &savesList = files[pilotName];
-		savesList.emplace_back(fileName, Files::Timestamp(path));
-		// Ensure that the main save for this pilot, not a snapshot, is first in the list.
-		if(!isSnapshot)
-			swap(savesList.front(), savesList.back());
+		selectedPilot.reset();
+		selectedFile.clear();
+		loadedInfo.Clear();
+		return;
 	}
 
-	for(auto &it : files)
+	if(selectedPilot && ranges::find(pilots, selectedPilot) == pilots.end())
+		selectedPilot.reset();
+	if(!selectedPilot)
+		selectedPilot = *pilots.begin();
+	const auto &files = selectedPilot->Files();
+	if(!selectedFile.empty() && !selectedPilot->HasFile(selectedFile))
+		selectedFile.clear();
+	if(selectedFile.empty() && !files.empty())
 	{
-		// Don't include the first item in the sort if this pilot has a non-snapshot save.
-		auto start = it.second.begin();
-		if(start->first.find('~') == string::npos)
-			++start;
-		sort(start, it.second.end(),
-			[](const pair<string, filesystem::file_time_type> &a, const pair<string, filesystem::file_time_type> &b) -> bool
-			{
-				return a.second > b.second || (a.second == b.second && a.first < b.first);
-			}
-		);
+		selectedFile = files.front().first;
+		loadedInfo.Load(Files::Saves() / selectedFile);
 	}
+	else
+		loadedInfo.Clear();
+}
 
-	if(!files.empty())
-	{
-		if(selectedPilot.empty())
-			selectedPilot = files.begin()->first;
-		if(selectedFile.empty())
-		{
-			auto it = files.find(selectedPilot);
-			if(it != files.end())
-			{
-				selectedFile = it->second.front().first;
-				loadedInfo.Load(Files::Saves() / selectedFile);
-			}
-		}
-	}
+
+
+optional<filesystem::path> LoadPanel::SnapshotPathBase() const
+{
+	if(!selectedPilot || selectedPilot->Files().empty() || selectedPilot->Files().front().first.size() < 4)
+		return nullopt;
+
+	return Files::Saves() / selectedPilot->Files().front().first;
+}
+
+
+
+bool LoadPanel::SnapshotNameFilter(const string &input, char ch)
+{
+	optional<filesystem::path> base = SnapshotPathBase();
+	if(!base.has_value())
+		return false;
+
+	return Files::IsValidCharacter(ch) && Files::MaxFilenameLength(*base) > input.size() + 6;
 }
 
 
@@ -576,11 +567,11 @@ void LoadPanel::UpdateLists()
 // Snapshot name callback.
 void LoadPanel::SnapshotCallback(const string &name)
 {
-	auto it = files.find(selectedPilot);
-	if(it == files.end() || it->second.empty() || it->second.front().first.size() < 4)
+	optional<filesystem::path> fromOpt = SnapshotPathBase();
+	if(!fromOpt.has_value())
 		return;
+	filesystem::path from = *fromOpt;
 
-	filesystem::path from = Files::Saves() / it->second.front().first;
 	string suffix = name.empty() ? FileDate(from) : name;
 	string extension = "~" + suffix + ".txt";
 
@@ -590,7 +581,7 @@ void LoadPanel::SnapshotCallback(const string &name)
 	if(Files::Exists(to) && suffix != nameToConfirm)
 	{
 		nameToConfirm = suffix;
-		GetUI()->Push(new Dialog(this, &LoadPanel::SnapshotCallback, "Warning: \"" + suffix
+		GetUI().Push(DialogPanel::RequestString(this, &LoadPanel::SnapshotCallback, "Warning: \"" + suffix
 			+ "\" is being used for an existing snapshot.\nOverwrite it?", suffix));
 	}
 	else
@@ -610,7 +601,7 @@ void LoadPanel::WriteSnapshot(const filesystem::path &sourceFile, const filesyst
 		loadedInfo.Load(Files::Saves() / selectedFile);
 	}
 	else
-		GetUI()->Push(new Dialog("Error: unable to create the file \"" + snapshotName.string() + "\"."));
+		GetUI().Push(DialogPanel::Info("Error: unable to create the file \"" + snapshotName.string() + "\"."));
 }
 
 
@@ -623,16 +614,15 @@ void LoadPanel::LoadCallback()
 	gamePanels.Reset();
 	gamePanels.CanSave(true);
 
-	player.Load(loadedInfo.Path());
+	player.Load(loadedInfo.Path(), selectedPilot);
 
 	// Scale any new masks that might have been added by the newly loaded save file.
 	GameData::GetMaskManager().ScaleMasks();
 
-	GetUI()->PopThrough(GetUI()->Root().get());
+	GetUI().PopThrough(GetUI().Root().get());
 	gamePanels.Push(new MainPanel(player));
-	// It takes one step to figure out the planet panel should be created, and
-	// another step to actually place it. So, take two steps to avoid a flicker.
-	gamePanels.StepAll();
+	// It takes one step to figure out the planet panel should be created,
+	// to avoid a flicker.
 	gamePanels.StepAll();
 }
 
@@ -641,24 +631,14 @@ void LoadPanel::LoadCallback()
 void LoadPanel::DeletePilot(const string &)
 {
 	loadedInfo.Clear();
-	if(selectedPilot == player.Identifier())
+	if(selectedPilot == player.Pilot())
 		player.Clear();
-	auto it = files.find(selectedPilot);
-	if(it == files.end())
+	if(!selectedPilot)
 		return;
 
-	bool failed = false;
-	for(const auto &fit : it->second)
-	{
-		filesystem::path path = Files::Saves() / fit.first;
-		Files::Delete(path);
-		failed |= Files::Exists(path);
-	}
-	if(failed)
-		GetUI()->Push(new Dialog("Deleting pilot files failed."));
-
 	sideHasFocus = true;
-	selectedPilot.clear();
+	PilotProfile::DeleteProfile(selectedPilot, &GetUI());
+	selectedPilot.reset();
 	selectedFile.clear();
 	UpdateLists();
 }
@@ -668,22 +648,12 @@ void LoadPanel::DeletePilot(const string &)
 void LoadPanel::DeleteSave()
 {
 	loadedInfo.Clear();
-	string pilot = selectedPilot;
 	filesystem::path path = Files::Saves() / selectedFile;
 	Files::Delete(path);
 	if(Files::Exists(path))
-		GetUI()->Push(new Dialog("Deleting snapshot file failed."));
+		GetUI().Push(DialogPanel::Info("Deleting snapshot file failed."));
 
-	sideHasFocus = true;
-	selectedPilot.clear();
+	selectedFile.clear();
 	UpdateLists();
-
-	auto it = files.find(pilot);
-	if(it != files.end() && !it->second.empty())
-	{
-		selectedFile = it->second.front().first;
-		selectedPilot = pilot;
-		loadedInfo.Load(Files::Saves() / selectedFile);
-		sideHasFocus = false;
-	}
+	sideHasFocus = !selectedPilot;
 }

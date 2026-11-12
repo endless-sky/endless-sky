@@ -202,6 +202,7 @@ outfit "Hyperdrive"
 	"outfit space" -20
 	"jump speed" .2
 	"jump fuel" 100
+	"jump duration" 100
 	"hyperdrive" 1
 	description "This mysterious box sits quietly at the heart of your ship, thinking its own inscrutable thoughts. When it comes time to travel between the stars it sets off a nuclear fusion reaction powerful enough to level an entire city, and then somehow tucks the resulting explosion in between the folds of regular space-time like a wasp stinging an oak leaf to lay her eggs inside. Your ship rides the resulting ripple in the fabric of space."
 	description "	They say that fewer than a dozen human beings alive today understand the inner workings of the hyperdrive."
@@ -216,6 +217,7 @@ outfit "Scram Drive"
 	"outfit space" -30
 	"scram drive" .2
 	"jump fuel" 150
+	"jump duration" 100
 	"hyperdrive" 1
 	description "A scram drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
 
@@ -229,6 +231,7 @@ outfit "Jump Drive"
 	"outfit space" -20
 	"jump speed" .3
 	"jump fuel" 200
+	"jump duration" 100
 	"jump drive" 1
 	description "The workings of the jump drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
 
@@ -431,6 +434,7 @@ outfit "Laser Rifle"
 	"capture attack" .6
 	"capture defense" .8
 	"unplunderable" 1
+	"can jettison" 1
 	description "A laser rifle is a step up from the sidearms that crew members typically carry for defense against pirates: more powerful, and more accurate as well. For each of these rifles that one of your crew is wielding, your odds of capturing another ship or defending your own ship from boarders are increased substantially."
 
 outfit "Fragmentation Grenades"
@@ -443,6 +447,7 @@ outfit "Fragmentation Grenades"
 	"capture attack" 1.3
 	"capture defense" .3
 	"unplunderable" 1
+	"can jettison" 1
 	description "Fragmentation grenades are an only marginally legal weapon for hand-to-hand combat when boarding a ship, useful for flushing out defenders who are hunkered down in defensible choke points inside their own ship. They are much less useful as a defensive weapon, but still better than nothing."
 
 outfit "Security Station"
@@ -469,6 +474,7 @@ outfit "Nerve Gas"
 	"scan brightness" 1
 	"illegal" 1000000
 	"unplunderable" 1
+	"can jettison" 1
 	description "This is a highly illegal weapon for hand-to-hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
 
 outfit "Mug"
@@ -480,6 +486,7 @@ outfit "Mug"
 	"capture attack" .1
 	"unique" 1
 	"unplunderable" 1
+	"can jettison" 1
 	description "You can throw it in a pinch, you guess."
 
 outfit "Antigrav Glass"
@@ -492,6 +499,7 @@ outfit "Antigrav Glass"
 	"capture attack" .2
 	"unique" 1
 	"unplunderable" 1
+	"can jettison" 1
 	description "This glass has had a miniature repulsor attached to it, similar to those found on drones, anti-grav trolleys, and spaceships. When it is activated it allows you to drink your beverage without holding it by way of levitation."
 	description "	The miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you suspect this one will be marginally more effective than anything else you've got."
 
@@ -505,6 +513,7 @@ outfit "Old Man's Sword"
 	"capture defense" 1
 	"unplunderable" 1
 	"unique" 1
+	"can jettison" 1
 	description "While swords are seen today as being old curios and commemorative objects, rendered useless when gunpowder became dominant on the battlefield thousands of years ago, this sword is unlike any you have seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade itself that don't appear to be in any human language."
 
 outfit "Puny"
@@ -514,6 +523,7 @@ outfit "Puny"
 	"display name" `"Puny"`
 	thumbnail "outfit/collar"
 	"unique" 1
+	"can jettison" 1
 	description `A poodle you rescued from a dubious racing complex on Freedom. She appears to have formed a strong bond with you, willing to stick by your side.`
 	description `	Her history matches with Pookie's, but Pookie's owner claimed that Puny was not hers. Puny is also vastly less urine-prone; you suspect that the race organizers may have toilet-trained her.`
 
@@ -524,6 +534,7 @@ outfit "Tear of Skade"
 	thumbnail "outfit/skadetear"
 	"cooling" 4
 	"unique" 1
+	"can jettison" 1
 	description "A strange glowing stone gifted to you by the Skadenga. It lacks any power source, yet is quite cold."
 
 outfit "Blood of Surtr"
@@ -534,6 +545,7 @@ outfit "Blood of Surtr"
 	"energy generation" 2
 	"heat generation" 4
 	"unique" 1
+	"can jettison" 1
 	description "A strange glowing stone gifted to you by Ildico Drifa. It hums with energy and heat."
 
 
@@ -550,7 +562,7 @@ outfit "Pilot's License"
 	category "Licenses"
 	series "Licenses"
 	index 01010
-	cost 50000
+	cost 120000
 	thumbnail "outfit/license"
 	description "For much of the Republic's nearly three century long history, being able to pilot your own starship was limited only by your ability to purchase one. But at the turn of the millennium in an attempt to increase tax revenue, the Republic Parliament passed a law requiring that all ship captains purchase a pilot's license, and for no small fee at that. Needless to say, this policy is not terribly popular with freelance merchant captains."
 

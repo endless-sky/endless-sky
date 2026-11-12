@@ -141,6 +141,6 @@ filesystem::path ZipFile::GetGlobalPath(const filesystem::path &path) const
 
 	// If this zip has a top-level directory, remove it from the path.
 	if(!topLevelDirectory.empty())
-		return basePath / accumulate(std::next(path.begin()), path.end(), filesystem::path{}, std::divides{});
+		return basePath / accumulate(next(path.begin()), path.end(), filesystem::path{}, std::divides{});
 	return basePath / path;
 }

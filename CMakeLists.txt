@@ -7,9 +7,12 @@ else()
 	option(ES_USE_VCPKG "Use vcpkg to get dependencies." ON)
 endif()
 cmake_dependent_option(ES_GLES "Build the game with OpenGL ES" OFF UNIX OFF)
+option(ES_USE_SDL3 "Use the newer SDL3 libraries instead of SDL2" OFF)
 cmake_dependent_option(ES_STEAM "Build the game for the Steam Linux runtime" OFF UNIX OFF)
 cmake_dependent_option(ES_USE_SYSTEM_LIBRARIES "Use system libraries instead of the vcpkg ones." ON "APPLE OR ES_STEAM" OFF)
 cmake_dependent_option(ES_CREATE_BUNDLE "Create a Bundle instead of an executable. Not suitable for development purposes." OFF APPLE OFF)
+# This is normally set by CTest, but we predefine it here so that it's recognized during vcpkg configuration.
+option(BUILD_TESTING "" ON)
 
 # Support Debug and Release configurations.
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release" CACHE STRING "" FORCE)
@@ -45,8 +48,12 @@ endif()
 if(NOT ES_USE_SYSTEM_LIBRARIES)
 	# Tell vcpkg to use the required system libraries.
 	list(APPEND VCPKG_MANIFEST_FEATURES "system-libs")
-	# Add the testing libraries
-	if(NOT APPLE OR CMAKE_OSX_DEPLOYMENT_TARGET VERSION_GREATER_EQUAL 10.12)
+	if(ES_USE_SDL3)
+		list(APPEND VCPKG_MANIFEST_FEATURES "sdl3")
+	else()
+		list(APPEND VCPKG_MANIFEST_FEATURES "sdl2")
+	endif()
+	if(BUILD_TESTING)
 		list(APPEND VCPKG_MANIFEST_FEATURES "test-libs")
 	endif()
 endif()
@@ -61,13 +68,19 @@ set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT EndlessSky)
 set(CMAKE_VS_JUST_MY_CODE_DEBUGGING ON)
 
-project("Endless Sky" VERSION 0.10.17
+project("Endless Sky" VERSION 0.11.5
 	DESCRIPTION "Space exploration, trading, and combat game."
 	HOMEPAGE_URL https://endless-sky.github.io/
 	LANGUAGES CXX)
 
 # Find the needed library dependencies.
-find_package(SDL2 CONFIG REQUIRED)
+if(ES_USE_SDL3)
+	find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3)
+	set(SDL_LIBRARIES ${SDL3_LIBRARIES})
+else()
+	find_package(SDL2 CONFIG REQUIRED)
+	set(SDL_LIBRARIES SDL2::SDL2)
+endif()
 find_package(PNG REQUIRED)
 find_package(JPEG REQUIRED)
 find_package(libavif REQUIRED)
@@ -91,11 +104,11 @@ find_library(LIBMAD_LIB_RELEASE NAMES mad libmad NAMES_PER_DIR PATHS "${_VCPKG_I
 
 # FLAC's config is missing find_dependency(Threads), so include it here.
 find_package(Threads REQUIRED)
-if(UNIX AND NOT APPLE AND NOT ES_USE_VCPKG)
+if((UNIX AND NOT ES_USE_VCPKG) OR (APPLE AND ES_USE_SYSTEM_LIBRARIES))
 	find_package(FLAC CONFIG QUIET)
 	if(NOT FLAC_FOUND)
-		# Many linux distros use the autotools build of flac, which does not
-		# package the flac-config.cmake. Use PkgConfig instead.
+		# Many linux distros and Homebrew on MacOS use the autotools build of flac,
+		# which does not package the flac-config.cmake. Use PkgConfig instead.
 		find_package(PkgConfig REQUIRED)
 		pkg_check_modules(flac++ REQUIRED IMPORTED_TARGET flac++)
 		add_library(FLAC::FLAC++ ALIAS PkgConfig::flac++)
@@ -107,8 +120,14 @@ endif()
 # Find the zip-reading component of zlib.
 find_package(ZLIB REQUIRED)
 
-# Minizip has a different target name in vcpkg.
-if(ES_USE_VCPKG)
+if(APPLE AND ES_USE_SYSTEM_LIBRARIES)
+	# Use pkg-config for minizip from Homebrew on macOS because it doesn't provide CMake configuration files.
+	find_package(PkgConfig REQUIRED)
+	pkg_check_modules(minizip REQUIRED IMPORTED_TARGET minizip)
+	add_library(Minizip::Minizip ALIAS PkgConfig::minizip)
+	set(MINIZIP_LIBRARIES "Minizip::Minizip")
+elseif(ES_USE_VCPKG)
+	# Minizip has a different target name in vcpkg.
 	find_package(unofficial-minizip CONFIG REQUIRED)
 	set(MINIZIP_LIBRARIES "unofficial::minizip::minizip")
 else()
@@ -149,7 +168,7 @@ add_library(ExternalLibraries INTERFACE)
 target_link_libraries(EndlessSkyLib PUBLIC ExternalLibraries)
 
 # Enable sanitizers on debug builds, depending on platform support.
-if(NOT WIN32)
+if(NOT WIN32 AND NOT CYGWIN)
 	set(SANITIZER_OPTS "-g" "-fsanitize=address,undefined,pointer-compare,pointer-subtract,unreachable,builtin,integer-divide-by-zero,vla-bound,null,return,signed-integer-overflow,bounds,alignment,bool,enum,pointer-overflow")
 	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		list(APPEND SANITIZER_OPTS "-fno-omit-frame-pointer" "-fsanitize=leak,vptr")
@@ -158,18 +177,22 @@ endif()
 target_compile_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
 target_link_options(EndlessSkyLib PUBLIC $<$<CONFIG:Debug>:${SANITIZER_OPTS}>)
 
+if(ES_USE_SDL3)
+	target_compile_definitions(EndlessSkyLib PUBLIC ES_USE_SDL3)
+endif()
+
 # The 'mingw32' lib needs to be linked first.
 if(MINGW)
 	target_link_libraries(ExternalLibraries INTERFACE mingw32)
 endif()
 
 # Link with the general libraries.
-target_link_libraries(ExternalLibraries INTERFACE SDL2::SDL2 PNG::PNG JPEG::JPEG avif
+target_link_libraries(ExternalLibraries INTERFACE ${SDL_LIBRARIES} PNG::PNG JPEG::JPEG avif
 	OpenAL::OpenAL ${MINIZIP_LIBRARIES} FLAC::FLAC++ "$<IF:$<CONFIG:Debug>,${LIBMAD_LIB_DEBUG},${LIBMAD_LIB_RELEASE}>")
 
 # Link the needed OS-specific dependencies, if any.
 if(WIN32)
-	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 Winmm)
+	target_link_libraries(ExternalLibraries INTERFACE rpcrt4 winmm ntdll psapi)
 elseif(ES_LINK_LIBATOMIC)
 	target_link_libraries(ExternalLibraries INTERFACE pthread atomic)
 else()
@@ -211,7 +234,12 @@ else()
 		target_compile_definitions(EndlessSkyLib PUBLIC GL_SILENCE_DEPRECATION)
 	else()
 		# GLEW is only needed on Linux and Windows.
-		target_link_libraries(ExternalLibraries INTERFACE GLEW::glew)
+		if(TARGET GLEW::GLEW)
+			set(GLEW_TARGET_NAME GLEW::GLEW)
+		else()
+			set(GLEW_TARGET_NAME GLEW::glew)
+		endif()
+		target_link_libraries(ExternalLibraries INTERFACE ${GLEW_TARGET_NAME})
 	endif()
 endif()
 

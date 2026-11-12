@@ -19,14 +19,17 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+enum class Alignment;
+class UI;
+
 
 
 class Preferences {
 public:
 	enum class VSync : int_fast8_t {
-		off = 0,
-		on,
-		adaptive,
+		OFF = 0,
+		ON,
+		ADAPTIVE,
 	};
 
 	enum class CameraAccel : int_fast8_t {
@@ -38,13 +41,13 @@ public:
 	enum class DateFormat : int_fast8_t {
 		DMY = 0, ///< Day-first format. (Sat, 4 Oct 1941)
 		MDY,     ///< Month-first format. (Sat, Oct 4, 1941)
-		YMD      ///< All-numeric ISO 8601. (1941-10-04)
+		YMD,      ///< All-numeric ISO 8601. (1941-10-04)
 	};
 
 	enum class NotificationSetting : int_fast8_t {
 		OFF = 0,
 		MESSAGE,
-		BOTH
+		BOTH,
 	};
 
 	enum class OverlayState : int_fast8_t {
@@ -60,109 +63,156 @@ public:
 		FLAGSHIP,
 		ESCORT,
 		ENEMY,
-		NEUTRAL
+		NEUTRAL,
 	};
 
 	enum class TurretOverlays : int_fast8_t {
 		OFF = 0,
 		ALWAYS_ON,
-		BLINDSPOTS_ONLY
+		BLINDSPOTS_ONLY,
 	};
 
 	enum class AutoAim : int_fast8_t {
 		OFF = 0,
 		ALWAYS_ON,
-		WHEN_FIRING
+		WHEN_FIRING,
 	};
 
 	enum class AutoFire : int_fast8_t {
 		OFF = 0,
 		ON,
 		GUNS_ONLY,
-		TURRETS_ONLY
+		TURRETS_ONLY,
 	};
 
 	enum class BoardingPriority : int_fast8_t {
 		PROXIMITY = 0,
 		VALUE,
-		MIXED
+		MIXED,
 	};
 
 	enum class FlotsamCollection : int_fast8_t {
 		OFF = 0,
 		ON,
 		FLAGSHIP,
-		ESCORT
+		ESCORT,
 	};
 
-	enum class BackgroundParallax : int {
+	enum class BackgroundParallax : int_fast8_t {
 		OFF = 0,
 		FANCY,
-		FAST
+		FAST,
 	};
 
-	enum class ExtendedJumpEffects : int {
+	enum class ExtendedJumpEffects : int_fast8_t {
 		OFF = 0,
 		MEDIUM,
-		HEAVY
+		HEAVY,
 	};
 
 	enum class AlertIndicator : int_fast8_t {
 		NONE = 0,
 		AUDIO,
 		VISUAL,
-		BOTH
+		BOTH,
 	};
 
 	enum class MinimapDisplay : int_fast8_t {
 		OFF = 0,
 		WHEN_JUMPING,
-		ALWAYS_ON
+		ALWAYS_ON,
 	};
 
 	enum class FlagshipSpacePriority : int_fast8_t {
 		NONE = 0,
 		PASSENGERS,
 		CARGO,
-		BOTH
+		BOTH,
+	};
+
+	enum class LargeGraphicsReduction : int_fast8_t {
+		OFF = 0,
+		LARGEST_ONLY,
+		ALL,
+	};
+
+	enum class HighlightShips : int_fast8_t {
+		OFF = 0,
+		FLAGSHIP,
+		OWNED_SHIPS,
+		ALL,
+	};
+
+	enum class TributeConfirmation : int_fast8_t {
+		OFF = 0,
+		FRIENDLY_ONLY,
+		ALWAYS,
+	};
+
+	enum class AmmoRefill : int_fast8_t {
+		NEVER = 0,
+		ASK,
+		WHEN_FREE,
+		ALWAYS,
+	};
+
+	enum class FastForwardCapsLockSync : int_fast8_t {
+		DEFAULT = 0,
+		NEVER,
+		ALWAYS,
+	};
+
+	enum class TargetAsteroidStrategy : int_fast8_t {
+		PROXIMITY = 0,
+		EXPECTED_VALUE,
+		QUALITY,
+	};
+
+	enum class EscortAmmoUsage : int_fast8_t {
+		NEVER = 0,
+		FRUGALLY,
+		ALWAYS,
 	};
 
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
-		DEFAULT,
+		DEFAULT = 0,
 		LIGHT,
-		DARK
+		DARK,
 	};
 
 	enum class WindowRounding : int_fast8_t {
-		DEFAULT,
+		DEFAULT = 0,
 		OFF,
 		LARGE,
-		SMALL
+		SMALL,
 	};
 #endif
 
 
 public:
+	static void Init();
 	static void Load();
 	static void Save();
 
 	static bool Has(const std::string &name);
 	static void Set(const std::string &name, bool on = true);
+	static int Toggle(const std::string &name, UI *ui = nullptr);
+	static void Scroll(const std::string &name, double dy);
 
-	/// Toggle the ammo usage preferences, cycling between "never," "frugally," and "always."
-	static void ToggleAmmoUsage();
-	static std::string AmmoUsage();
+	static const std::string &DisplayName(const std::string &name);
+	static std::pair<std::string, bool> DisplayValue(const std::string &name);
+
+	static bool HelpShown(const std::string &name);
+	static void SetHelp(const std::string &name, bool shown = true);
+
+	static EscortAmmoUsage AmmoUsage();
 
 	/// Date format preferences.
-	static void ToggleDateFormat();
 	static DateFormat GetDateFormat();
-	static const std::string &DateFormatSetting();
 
 	// Notification preferences.
-	static void ToggleNotificationSetting();
 	static NotificationSetting GetNotificationSetting();
-	static const std::string &NotificationSettingString();
 
 	// Scroll speed preference.
 	static int ScrollSpeed();
@@ -178,84 +228,162 @@ public:
 	static double MaxViewZoom();
 	static const std::vector<double> &Zooms();
 
-	static void ToggleScreenMode();
-	static const std::string &ScreenModeSetting();
-
 	/// VSync setting, either "on", "off", or "adaptive".
-	static bool ToggleVSync();
+	static void ToggleVSync();
 	static VSync VSyncState();
-	static const std::string &VSyncSetting();
 
-	static void ToggleCameraAcceleration();
 	static CameraAccel CameraAcceleration();
-	static const std::string &CameraAccelerationSetting();
 
 	static void CycleStatusOverlays(OverlayType type);
 	static OverlayState StatusOverlaysState(OverlayType type);
 	static const std::string &StatusOverlaysSetting(OverlayType type);
 
 	/// Turret overlays setting, either "off", "always on", or "blindspots only".
-	static void ToggleTurretOverlays();
 	static TurretOverlays GetTurretOverlays();
-	static const std::string &TurretOverlaysSetting();
+
+	/// Highlight ships setting, either "off", "flagship", "owned ships", or "all".
+	static HighlightShips GetHighlightShips();
 
 	/// Auto aim setting, either "off", "always on", or "when firing".
-	static void ToggleAutoAim();
 	static AutoAim GetAutoAim();
-	static const std::string &AutoAimSetting();
 
 	/// Auto fire setting, either "off", "on", "guns only", or "turrets only".
-	static void ToggleAutoFire();
 	static AutoFire GetAutoFire();
-	static const std::string &AutoFireSetting();
 
 	/// Background parallax setting, either "fast", "fancy", or "off".
-	static void ToggleParallax();
 	static BackgroundParallax GetBackgroundParallax();
-	static const std::string &ParallaxSetting();
 
 	/// Extended jump effects setting, either "off", "medium", or "heavy".
-	static void ToggleExtendedJumpEffects();
 	static ExtendedJumpEffects GetExtendedJumpEffects();
-	static const std::string &ExtendedJumpEffectsSetting();
 
 	/// Boarding target setting, either "proximity", "value" or "mixed".
-	static void ToggleBoarding();
 	static BoardingPriority GetBoardingPriority();
-	static const std::string &BoardingSetting();
 
 	/// Flotsam setting, either "off", "on", "flagship only", or "escorts only".
-	static void ToggleFlotsam();
 	static FlotsamCollection GetFlotsamCollection();
-	static const std::string &FlotsamSetting();
 
 	/// Red alert siren and symbol.
-	static void ToggleAlert();
 	static AlertIndicator GetAlertIndicator();
-	static const std::string &AlertSetting();
 	static bool PlayAudioAlert();
 	static bool DisplayVisualAlert();
-	static bool DoAlertHelper(AlertIndicator toDo);
+	static bool DoAlertHelper(AlertIndicator alert);
 
 	/// Minimap display settings.
-	static void ToggleMinimapDisplay();
 	static MinimapDisplay GetMinimapDisplay();
-	static const std::string &MinimapSetting();
 
 	/// Flagship space priority setting.
-	static void ToggleFlagshipSpacePriority();
 	static FlagshipSpacePriority GetFlagshipSpacePriority();
-	static const std::string &FlagshipSpacePrioritySetting();
+
+	/// Large graphics reduction setting.
+	static LargeGraphicsReduction GetLargeGraphicsReduction();
+
+	/// Tribute confirmation dialog setting.
+	static TributeConfirmation GetTributeConfirmation();
+
+	/// Outfitter ammo refill confirmation setting.
+	static AmmoRefill GetAmmoRefill();
+
+	/// Fast-forward CapsLock sync setting
+	static FastForwardCapsLockSync GetFastForwardCapsLockSync();
+
+	/// Text alignment setting.
+	static Alignment GetTextAlignment();
+
+	/// Target asteroid strategy setting.
+	static TargetAsteroidStrategy GetTargetAsteroidStrategy();
+
+	/// Font size setting.
+	static int GetFontSize();
 
 	static int GetPreviousSaveCount();
 
 #ifdef _WIN32
-	static void ToggleTitleBarTheme();
 	static TitleBarTheme GetTitleBarTheme();
-	static const std::string &TitleBarThemeSetting();
 
-	static void ToggleWindowRounding();
 	static WindowRounding GetWindowRounding();
-	static const std::string &WindowRoundingSetting();
+#endif
+
+
+public:
+	// Identifiers for specific preferences.
+	static const std::string ALERT_INDICATOR;
+	static const std::string AMMO_REFILL;
+	static const std::string ANIMATE_MENU_BACKGROUND;
+	static const std::string ASTEROID_TARGETING;
+	static const std::string AUTO_AIM;
+	static const std::string AUTO_FIRE;
+	static const std::string AUTO_UNPARK_FLAGSHIP;
+	static const std::string BLOCK_SCREEN_SAVER;
+	static const std::string BOARDING_TARGET_PRIORITY;
+	static const std::string CAMERA_ACCELERATION;
+	static const std::string DAMAGED_FIGHTERS_RETREAT;
+	static const std::string DATE_FORMAT;
+	static const std::string DEFER_LOADING_IMAGES;
+	static const std::string DESTINATION_NOTIFICATION;
+	static const std::string DRAW_BACKGROUND_HAZE;
+	static const std::string DRAW_STARFIELD;
+	static const std::string ESCORT_AMMO_USAGE;
+	static const std::string EXTENDED_JUMP_EFFECTS;
+	static const std::string FF_CAPSLOCK_SYNC;
+	static const std::string FIGHTERS_REPAIR_IN;
+	static const std::string FIGHTERS_TRANSFER_CARGO;
+	static const std::string FIXED_STARFIELD_ZOOM;
+	static const std::string FLAGSHIP_SPACE_PRIORITY;
+	static const std::string FLOTSAM_COLLECTION;
+	static const std::string FONT_SIZE;
+	static const std::string FULLSCREEN;
+	static const std::string HUD_ASTEROID_OVERLAY;
+	static const std::string HUD_CLICKABLE_RADAR;
+	static const std::string HUD_EXTRA_STATUS_MSGS;
+	static const std::string HUD_MISSILE_OVERLAY;
+	static const std::string HUD_ROTATE_FLAGSHIP;
+	static const std::string HUD_TURRET_OVERLAY;
+	static const std::string HUD_PLANET_LABELS;
+	static const std::string INTERRUPT_FAST_FORWARD;
+	static const std::string LANDING_ZOOM;
+	static const std::string MAP_DEADLINE_BLINK_BY_DISTANCE;
+	static const std::string MAP_HIDE_UNEXPLORED;
+	static const std::string MAP_SHOW_ESCORTS;
+	static const std::string MAP_SHOW_OUTFITS;
+	static const std::string MAP_PARENTHESIZE_PROFIT;
+	static const std::string MINIMAP_DISPLAY;
+	static const std::string MOTION_BLUR;
+	static const std::string MOUSE_CONTROL_FLAGSHIP;
+	static const std::string MOUSE_CONTROL_TURRETS;
+	static const std::string PARALLAX;
+	static const std::string PREVIOUS_SAVES;
+	static const std::string REACTIVATE_HELP;
+	static const std::string REDUCE_LARGE_GRAPHICS;
+	static const std::string REHIRE_LOST_CREW;
+	static const std::string SAVE_MSG_LOGS;
+	static const std::string SCREEN_MAXIMIZED;
+	static const std::string SCROLL_SPEED;
+	static const std::string SHIP_HIGHLIGHTS;
+	static const std::string SHIP_OUTLINES_CLOAKED;
+	static const std::string SHIP_OUTLINES_HUD;
+	static const std::string SHIP_OUTLINES_SHOP;
+	static const std::string SHOW_HYPERSPACE_FLASH;
+	static const std::string SHOW_PERFORMANCE_METRICS;
+	static const std::string STATUS_OVERLAYS_ALL;
+	static const std::string STATUS_OVERLAYS_FLAGSHIP;
+	static const std::string STATUS_OVERLAYS_ESCORT;
+	static const std::string STATUS_OVERLAYS_ENEMY;
+	static const std::string STATUS_OVERLAYS_NEUTRAL;
+	static const std::string TEXT_ALIGNMENT;
+	static const std::string TEXTURE_FILTERING;
+	static const std::string TOOLTIP_ACTIVATION_TIME;
+	static const std::string TRADE_SELL_OUTFITS_WITHOUT_SHOP;
+	static const std::string TRADE_CONFIRM_MINABLES;
+	static const std::string TRADE_CONFIRM_OUTFITS;
+	static const std::string TRIBUTE_CONFIRMATION;
+	static const std::string TURRETS_FOCUS_FIRE;
+	static const std::string UNDERLINE_SHORTCUTS;
+	static const std::string VSYNC;
+	static const std::string WINDOW_SIZE;
+	static const std::string ZOOM_FACTOR_MAIN;
+	static const std::string ZOOM_FACTOR_VIEW;
+#ifdef _WIN32
+	static const std::string TITLE_BAR_THEME;
+	static const std::string WINDOW_ROUNDING;
 #endif
 };

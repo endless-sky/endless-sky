@@ -20,12 +20,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CoreStartData.h"
 #include "text/Format.h"
 #include "GameData.h"
+#include "Gamerules.h"
+#include "Information.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
 #include "Point.h"
 #include "Screen.h"
 #include "Ship.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -39,7 +42,8 @@ using namespace std;
 
 
 MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
-	: MapSalesPanel(player, false)
+	: MapSalesPanel(player, false),
+	hasFleetCapacity(GameData::GetGamerules().GetFleetSizeLimitation() != Gamerules::FleetSizeLimitation::NONE)
 {
 	Init();
 }
@@ -47,7 +51,8 @@ MapShipyardPanel::MapShipyardPanel(PlayerInfo &player)
 
 
 MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
-	: MapSalesPanel(panel, false)
+	: MapSalesPanel(panel, false),
+	hasFleetCapacity(GameData::GetGamerules().GetFleetSizeLimitation() != Gamerules::FleetSizeLimitation::NONE)
 {
 	Init();
 	onlyShowSoldHere = onlyHere;
@@ -56,16 +61,25 @@ MapShipyardPanel::MapShipyardPanel(const MapPanel &panel, bool onlyHere)
 
 
 
-const Sprite *MapShipyardPanel::SelectedSprite() const
+void MapShipyardPanel::LoadCatalogThumbnails() const
 {
-	return selected ? selected->Thumbnail() ? selected->Thumbnail() : selected->GetSprite() : nullptr;
+	for(const auto &category : catalog)
+		for(const string &entry : category.second)
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), GameData::Ships().Get(entry)->Thumbnail());
 }
 
 
 
-const Sprite *MapShipyardPanel::CompareSprite() const
+const Drawable &MapShipyardPanel::SelectedSprite() const
 {
-	return compare ? compare->Thumbnail() ? compare->Thumbnail() : compare->GetSprite() : nullptr;
+	return selected->Thumbnail();
+}
+
+
+
+const Drawable &MapShipyardPanel::CompareSprite() const
+{
+	return compare->Thumbnail();
 }
 
 
@@ -98,15 +112,12 @@ const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 
 
 
-const string &MapShipyardPanel::KeyLabel(int index) const
+void MapShipyardPanel::Hovering(int index)
 {
-	static const string LABEL[4] = {
-		"Has no shipyard",
-		"Has shipyard",
-		"Sells this ship",
-		"Ship parked here"
-	};
-	return LABEL[index];
+	if(index < 0 || index >= static_cast<int>(list.size()))
+		hovering = nullptr;
+	else
+		hovering = list[index];
 }
 
 
@@ -118,7 +129,7 @@ void MapShipyardPanel::Select(int index)
 	else
 	{
 		selected = list[index];
-		selectedInfo.Update(*selected, player);
+		selectedInfo.Update(*selected, player, hasFleetCapacity);
 	}
 	UpdateCache();
 }
@@ -132,7 +143,7 @@ void MapShipyardPanel::Compare(int index)
 	else
 	{
 		compare = list[index];
-		compareInfo.Update(*compare, player);
+		compareInfo.Update(*compare, player, hasFleetCapacity);
 	}
 }
 
@@ -192,9 +203,18 @@ int MapShipyardPanel::FindItem(const string &text) const
 
 
 
+void MapShipyardPanel::DrawSalesKey(Information &info) const
+{
+	info.SetCondition("is shipyards");
+
+	MapSalesPanel::DrawSalesKey(info);
+}
+
+
+
 void MapShipyardPanel::DrawItems()
 {
-	if(GetUI()->IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
+	if(GetUI().IsTop(this) && player.GetPlanet() && player.GetDate() >= player.StartData().GetDate() + 12)
 		DoHelp("map advanced shops");
 	list.clear();
 	Point corner = Screen::TopLeft() + Point(0, scroll);
@@ -243,17 +263,13 @@ void MapShipyardPanel::DrawItems()
 			if(!parkedInSystem && onlyShowStorageHere)
 				continue;
 
-			const Sprite *sprite = ship->Thumbnail();
-			if(!sprite)
-				sprite = ship->GetSprite();
-
 			const string parking_details =
 				onlyShowSoldHere || parkedInSystem == 0
 				? ""
 				: parkedInSystem == 1
 				? "1 ship parked"
 				: Format::Number(parkedInSystem) + " ships parked";
-			Draw(corner, sprite, ship->CustomSwizzle(), isForSale, ship == selected,
+			Draw(corner, ship->Thumbnail(), ship->CustomSwizzle(), isForSale, ship == selected, ship == hovering,
 					ship->DisplayModelName(), ship->VariantMapShopName(), price, info, parking_details);
 			list.push_back(ship);
 		}

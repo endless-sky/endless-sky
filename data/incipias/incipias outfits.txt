@@ -183,6 +183,7 @@ outfit "Star Tail Storage"
 	"mass" 10
 	"outfit space" -10
 	"star tail capacity" 20
+	ammo "Star Tail Cell"
 	licenses
 		"Hicemus Conflict"
 	description "Because Star Tail Cells are highly volatile, they need a robust storage system. This radial design is able to withstand minor explosions by using a variant of a shield that can be deployed temporarily."
@@ -215,7 +216,7 @@ outfit "Horizon Grappler"
 		"hardpoint offset" 0.
 		sound "tractor beam"
 		"hit effect" "horizon grappler"
-		"tractor beam" 9
+		"tractor beam" 1.8
 		"velocity" 400
 		"lifetime" 1
 		"reload" 1
@@ -376,6 +377,7 @@ outfit "Cloud Piercer"
 	"capture attack" .55
 	"capture defense" 1.5
 	"unplunderable" 1
+	"can jettison" 1
 	description "When it comes to close combat, the Incipias are formidable opponents. This brutal weapon may not be the best to invade another ship with, but when it comes to defending, it quite literally shreds enemies."
 
 # Special

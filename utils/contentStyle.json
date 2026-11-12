@@ -29,7 +29,9 @@
 		],
 		"regexChecks": [
 			{
-				"excludedNodes": [],
+				"excludedNodes": [
+					"^\"display capacities\"$"
+				],
 				"checks": [
 					{
 						"description": "multiple consecutive space characters",
@@ -101,14 +103,14 @@
 					},
 					{
 						"description": "non-ASCII apostrophe",
-						"regex": "[’‘]",
+						"regex": "[\\u2018\\u2019]",
 						"correction": {
 							"replaceWith": "'"
 						}
 					},
 					{
 						"description": "non-ASCII quotation mark",
-						"regex": "[“”]",
+						"regex": "[\\u201c\\u201d]",
 						"correction": {
 							"replaceWith": "\""
 						}
@@ -141,7 +143,12 @@
 				]
 			},
 			{
-				"excludedNodes": ["^word$", "^replace$", "^substitutions$"],
+				"excludedNodes": [
+					"^word$",
+					"^replace$",
+					"^substitutions$",
+					"^\"display capacities\"$"
+				],
 				"checks": [
 					{
 						"description": "whitespace before end of text",

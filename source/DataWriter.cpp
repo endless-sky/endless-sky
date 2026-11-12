@@ -148,7 +148,7 @@ void DataWriter::WriteToken(const string &a)
 
 
 
-string DataWriter::Quote(const std::string &a)
+string DataWriter::Quote(const string &a)
 {
 	// Figure out what kind of quotation marks need to be used for this string.
 	bool hasSpace = any_of(a.begin(), a.end(), [](unsigned char c) { return isspace(c); });

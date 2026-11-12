@@ -15,10 +15,12 @@ find_package(Catch2 CONFIG REQUIRED)
 target_sources(EndlessSkyTests PRIVATE
 	unit/include/datanode-factory.h
 	unit/include/es-test.hpp
+	unit/include/logger-output.h
 	unit/include/output-capture.hpp
 	unit/src/comparators/test_byGivenOrder.cpp
 	unit/src/comparators/test_byName.cpp
 	unit/src/helpers/datanode-factory.cpp
+	unit/src/helpers/logger-output.cpp
 	unit/src/test_account.cpp
 	unit/src/test_angle.cpp
 	unit/src/test_bitset.cpp
@@ -36,6 +38,7 @@ target_sources(EndlessSkyTests PRIVATE
 	unit/src/test_firecommand.cpp
 	unit/src/test_formationPattern.cpp
 	unit/src/test_main.cpp
+	unit/src/test_orderedMap.cpp
 	unit/src/test_point.cpp
 	unit/src/test_random.cpp
 	unit/src/test_scrollVar.cpp
@@ -66,6 +69,7 @@ list(APPEND INTEGRATION_TESTS
 	integration/config/plugins/integration-tests/data/tests/tests_job_board_missions.txt
 	integration/config/plugins/integration-tests/data/tests/tests_landing.txt
 	integration/config/plugins/integration-tests/data/tests/tests_take_ships.txt
+	integration/config/plugins/integration-tests/data/tests/tests_timers.txt
 	integration/config/plugins/integration-tests/data/tests/tests_save_load.txt
 	integration/config/plugins/integration-tests/data/tests/tests_ship_sale.txt
 	integration/config/plugins/integration-tests/data/tests/tests_shipyard_outfitter_missions.txt

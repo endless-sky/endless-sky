@@ -39,8 +39,12 @@ target_sources(EndlessSkyLib PRIVATE
 	Body.h
 	Camera.cpp
 	Camera.h
+	CapacityList.cpp
+	CapacityList.h
 	CaptureOdds.cpp
 	CaptureOdds.h
+	Caret.cpp
+	Caret.h
 	CargoHold.cpp
 	CargoHold.h
 	CategoryList.cpp
@@ -56,6 +60,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Color.h
 	Command.cpp
 	Command.h
+	ConditionAlias.cpp
+	ConditionAlias.h
 	ConditionAssignments.cpp
 	ConditionAssignments.h
 	ConditionEntry.cpp
@@ -64,12 +70,16 @@ target_sources(EndlessSkyLib PRIVATE
 	ConditionSet.h
 	ConditionsStore.cpp
 	ConditionsStore.h
+	Confusion.cpp
+	Confusion.h
 	Conversation.cpp
 	Conversation.h
 	ConversationPanel.cpp
 	ConversationPanel.h
 	CoreStartData.cpp
 	CoreStartData.h
+	CustomEvents.cpp
+	CustomEvents.h
 	DamageDealt.h
 	DamageProfile.cpp
 	DamageProfile.h
@@ -83,8 +93,10 @@ target_sources(EndlessSkyLib PRIVATE
 	Date.h
 	Depreciation.cpp
 	Depreciation.h
-	Dialog.cpp
-	Dialog.h
+	DialogPanel.cpp
+	DialogPanel.h
+	DialogSettings.cpp
+	DialogSettings.h
 	Dictionary.cpp
 	Dictionary.h
 	DistanceCalculationSettings.h
@@ -93,10 +105,20 @@ target_sources(EndlessSkyLib PRIVATE
 	DistanceMap.h
 	Distribution.cpp
 	Distribution.h
+	Drawable.cpp
+	Drawable.h
+	Dropdown.cpp
+	Dropdown.h
+	Edit.cpp
+	Edit.h
+	Endpoint.cpp
+	Endpoint.h
 	Effect.cpp
 	Effect.h
 	Engine.cpp
 	Engine.h
+	Entity.cpp
+	Entity.h
 	EsUuid.cpp
 	EsUuid.h
 	EscortDisplay.cpp
@@ -111,6 +133,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Fleet.h
 	FleetCargo.cpp
 	FleetCargo.h
+	FleetPlacement.cpp
+	FleetPlacement.h
 	Flotsam.cpp
 	Flotsam.h
 	FormationPattern.cpp
@@ -131,6 +155,10 @@ target_sources(EndlessSkyLib PRIVATE
 	GameLoadingPanel.h
 	Gamerules.cpp
 	Gamerules.h
+	GamerulesPanel.cpp
+	GamerulesPanel.h
+	GameVersion.cpp
+	GameVersion.h
 	GameWindow.cpp
 	GameWindow.h
 	Government.cpp
@@ -139,6 +167,7 @@ target_sources(EndlessSkyLib PRIVATE
 	HailPanel.h
 	Hardpoint.cpp
 	Hardpoint.h
+	Hasher.h
 	Hazard.cpp
 	Hazard.h
 	HiringPanel.cpp
@@ -154,6 +183,8 @@ target_sources(EndlessSkyLib PRIVATE
 	JumpType.h
 	Logger.cpp
 	Logger.h
+	LoadingCircle.cpp
+	LoadingCircle.h
 	LoadPanel.cpp
 	LoadPanel.h
 	LocationFilter.cpp
@@ -174,23 +205,28 @@ target_sources(EndlessSkyLib PRIVATE
 	MapSalesPanel.h
 	MapShipyardPanel.cpp
 	MapShipyardPanel.h
+	BookEntry.cpp
+	BookEntry.h
 	MenuAnimationPanel.cpp
 	MenuAnimationPanel.h
 	MenuPanel.cpp
 	MenuPanel.h
+	Message.cpp
+	Message.h
 	MessageLogPanel.cpp
 	MessageLogPanel.h
 	Messages.cpp
 	Messages.h
 	Minable.cpp
 	Minable.h
-	MinableDamageDealt.h
 	MiniMap.cpp
 	MiniMap.h
 	Mission.cpp
 	Mission.h
 	MissionAction.cpp
 	MissionAction.h
+	MissionTimer.cpp
+	MissionTimer.h
 	MissionPanel.cpp
 	MissionPanel.h
 	Mortgage.cpp
@@ -202,6 +238,11 @@ target_sources(EndlessSkyLib PRIVATE
 	NPCAction.h
 	News.cpp
 	News.h
+	OptionalInputDialogPanel.cpp
+	OptionalInputDialogPanel.h
+	Orbit.cpp
+	Orbit.h
+	OrderedMap.h
 	Outfit.cpp
 	Outfit.h
 	OutfitInfoDisplay.cpp
@@ -218,6 +259,8 @@ target_sources(EndlessSkyLib PRIVATE
 	Personality.h
 	Phrase.cpp
 	Phrase.h
+	PilotProfile.cpp
+	PilotProfile.h
 	Planet.cpp
 	Planet.h
 	PlanetLabel.cpp
@@ -228,8 +271,10 @@ target_sources(EndlessSkyLib PRIVATE
 	PlayerInfo.h
 	PlayerInfoPanel.cpp
 	PlayerInfoPanel.h
-	Plugins.cpp
-	Plugins.h
+	Plugin.cpp
+	Plugin.h
+	PluginManager.cpp
+	PluginManager.h
 	Point.cpp
 	Point.h
 	Politics.cpp
@@ -262,12 +307,18 @@ target_sources(EndlessSkyLib PRIVATE
 	Sale.h
 	SavedGame.cpp
 	SavedGame.h
+	ScanType.h
 	Screen.cpp
 	Screen.h
 	ScrollBar.cpp
 	ScrollBar.h
+	ScrollArea.cpp
+	ScrollArea.h
 	ScrollVar.h
+	SDL.h
 	Set.h
+	Setting.cpp
+	Setting.h
 	Ship.cpp
 	Ship.h
 	Shop.h
@@ -281,8 +332,8 @@ target_sources(EndlessSkyLib PRIVATE
 	ShipJumpNavigation.h
 	ShipManager.cpp
 	ShipManager.h
-	ShipNameDialog.cpp
-	ShipNameDialog.h
+	ShipNameDialogPanel.cpp
+	ShipNameDialogPanel.h
 	ShipyardPanel.cpp
 	ShipyardPanel.h
 	ShopPanel.cpp
@@ -293,8 +344,12 @@ target_sources(EndlessSkyLib PRIVATE
 	StartConditions.h
 	StartConditionsPanel.cpp
 	StartConditionsPanel.h
+	Statistics.cpp
+	Statistics.h
 	StellarObject.cpp
 	StellarObject.h
+	StellarObjectSpriteData.cpp
+	StellarObjectSpriteData.h
 	StringInterner.cpp
 	StringInterner.h
 	Swizzle.cpp
@@ -302,6 +357,8 @@ target_sources(EndlessSkyLib PRIVATE
 	System.cpp
 	System.h
 	SystemEntry.h
+	TableArea.cpp
+	TableArea.h
 	TaskQueue.cpp
 	TaskQueue.h
 	TextArea.cpp
@@ -383,6 +440,8 @@ target_sources(EndlessSkyLib PRIVATE
 	image/MaskManager.h
 	image/Sprite.cpp
 	image/Sprite.h
+	image/SpriteLoadManager.cpp
+	image/SpriteLoadManager.h
 	image/SpriteSet.cpp
 	image/SpriteSet.h
 	shader/BatchDrawList.cpp
@@ -409,8 +468,14 @@ target_sources(EndlessSkyLib PRIVATE
 	shader/SpriteShader.h
 	shader/StarField.cpp
 	shader/StarField.h
+	ship/ResourceLevels.cpp
+	ship/ResourceLevels.h
 	ship/ShipAICache.cpp
 	ship/ShipAICache.h
+	ship/ShipAttributeCache.cpp
+	ship/ShipAttributeCache.h
+	ship/ShipFactory.cpp
+	ship/ShipFactory.h
 	test/Test.cpp
 	test/Test.h
 	test/TestContext.cpp
@@ -442,7 +507,11 @@ if(WIN32)
 	target_sources(EndlessSkyLib PRIVATE
 		windows/TimerResolutionGuard.cpp
 		windows/TimerResolutionGuard.h
+		windows/WinConsole.cpp
+		windows/WinConsole.h
 		windows/WinVersion.cpp
 		windows/WinVersion.h
+		windows/WinWindow.cpp
+		windows/WinWindow.h
 	)
 endif()

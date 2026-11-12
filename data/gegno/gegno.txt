@@ -11,6 +11,9 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+
+# Names
+
 phrase "gegno vi"
 	word
 		"" 4
@@ -176,7 +179,7 @@ phrase "gegno united"
 		"Ootyff"
 
 
-# Untranslated Hails.
+# Untranslated Hails
 
 phrase "gegno untranslated"
 	word
@@ -192,7 +195,7 @@ phrase "gegno untranslated"
 		"Scienn ayyr eisktici uf tii."
 
 
-# Mining job dialog.
+# Job Dialog
 
 phrase "gegno mining payment dialog"
 	word

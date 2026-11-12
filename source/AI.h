@@ -20,6 +20,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "FormationPositioner.h"
 #include "orders/OrderSet.h"
 #include "Point.h"
+#include "RoutePlan.h"
 
 #include <cstdint>
 #include <list>
@@ -27,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <memory>
 #include <optional>
 #include <set>
+#include <unordered_map>
 #include <vector>
 
 class Angle;
@@ -36,6 +38,7 @@ class ConditionsStore;
 class Flotsam;
 class Government;
 class Minable;
+class Outfit;
 class PlayerInfo;
 class Ship;
 class ShipEvent;
@@ -78,7 +81,7 @@ public:
 	void Step(Command &activeCommands);
 	// Process commands for the player only, called by Step in non-paused mode.
 	void MovePlayer(Ship &ship, Command &activeCommands);
-	void DisengageAutopilot();
+	void DisengageAutopilot(bool sendMessage = true);
 
 	// Set the mouse position for turning the player's flagship.
 	void SetMousePosition(Point position);
@@ -89,6 +92,40 @@ public:
 
 	// Find nearest landing location.
 	static const StellarObject *FindLandingLocation(const Ship &ship, const bool refuel = true);
+
+
+private:
+	class RouteCacheKey {
+	public:
+		/// The route cache key is generated from all information that can influence pathfinding.
+		/// @param jumpHash A hash generated from the ShipJumpNavigation class, containing information about the
+		/// system that the ship is currently in and all of its jump capabilities.
+		/// @param personalityHash A hash generated from the ship's government and personality, which can influence the
+		/// systems that the ship is allowed to enter. (See Ship::IsRestrictedFrom.)
+		/// @param to A pointer to the target system.
+		/// @param isPlayer Whether this key is for the player's flagship. There is special handling for the player
+		/// to avoid dangerous systems.
+		/// @param wormholeKeys A vector of attributes required to enter wormholes that this ship is capable of
+		/// entering. (See Planet::IsAccessible.)
+		RouteCacheKey(std::size_t jumpHash, std::size_t personalityHash, const System *to, bool isPlayer,
+			const std::vector<std::string> &wormholeKeys);
+
+		// To support use as a map key:
+		bool operator==(const RouteCacheKey &other) const;
+		bool operator!=(const RouteCacheKey &other) const;
+
+		class HashFunction {
+		public:
+			size_t operator()(const RouteCacheKey &key) const;
+		};
+
+	public:
+		size_t jumpHash;
+		size_t personalityHash;
+		const System *to;
+		bool isPlayer;
+		std::vector<std::string> wormholeKeys;
+	};
 
 
 private:
@@ -106,7 +143,7 @@ private:
 
 	bool FollowOrders(Ship &ship, Command &command);
 	void MoveInFormation(Ship &ship, Command &command);
-	void MoveIndependent(Ship &ship, Command &command) const;
+	void MoveIndependent(Ship &ship, Command &command);
 	void MoveWithParent(Ship &ship, Command &command, const Ship &parent);
 	void MoveEscort(Ship &ship, Command &command);
 	static void Refuel(Ship &ship, Command &command);
@@ -114,7 +151,7 @@ private:
 	// Set the ship's target system or planet in order to reach the
 	// next desired system. Will target a landable planet to refuel.
 	// If the ship is an escort it will only use routes known to the player.
-	void SelectRoute(Ship &ship, const System *targetSystem) const;
+	void SelectRoute(Ship &ship, const System *targetSystem);
 	bool ShouldDock(const Ship &ship, const Ship &parent, const System *playerSystem) const;
 
 	// Methods of moving from the current position to a desired position / orientation.
@@ -131,22 +168,20 @@ private:
 	static void CircleAround(const Ship &ship, Command &command, const Body &target);
 	static void Swarm(const Ship &ship, Command &command, const Body &target);
 	static void KeepStation(const Ship &ship, Command &command, const Body &target);
-	static void Attack(const Ship &ship, Command &command, const Ship &target);
-	static void AimToAttack(const Ship &ship, Command &command, const Body &target);
-	static void MoveToAttack(const Ship &ship, Command &command, const Body &target);
+	static void Attack(const Ship &ship, Command &command, const Ship &target, FireCommand &targeting);
+	static void AimToAttack(const Ship &ship, Command &command, const Body &target, FireCommand &targeting);
+	static void MoveToAttack(const Ship &ship, Command &command, const Body &target, FireCommand &targeting);
 	static void PickUp(const Ship &ship, Command &command, const Body &target);
-	// Special decisions a ship might make.
-	static bool ShouldUseAfterburner(const Ship &ship);
 	// Special personality behaviors.
 	void DoAppeasing(const std::shared_ptr<Ship> &ship, double *threshold) const;
 	void DoSwarming(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
-	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target) const;
+	void DoSurveillance(Ship &ship, Command &command, std::shared_ptr<Ship> &target);
 	void DoMining(Ship &ship, Command &command);
 	bool DoHarvesting(Ship &ship, Command &command) const;
 	bool DoCloak(const Ship &ship, Command &command) const;
 	void DoPatrol(Ship &ship, Command &command) const;
 	// Prevent ships from stacking on each other when many are moving in sync.
-	void DoScatter(const Ship &ship, Command &command) const;
+	void DoScatter(const Ship &ship, Command &command, bool recheckCloseShips);
 	bool DoSecretive(Ship &ship, Command &command) const;
 
 	static Point StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse);
@@ -154,14 +189,19 @@ private:
 	// maximum damage to a target at the given position with its non-turret,
 	// non-homing weapons. If the ship has no non-homing weapons, this just
 	// returns the direction to the target.
-	static Point TargetAim(const Ship &ship);
-	static Point TargetAim(const Ship &ship, const Body &target);
+	// For only the player's flagship, which secondary weapons are currently selected should be provided
+	// so that the flagship doesn't try to aim with weapons that the player isn't even using.
+	static Point TargetAim(const Ship &ship, FireCommand &targeting,
+		const std::set<const Outfit *> *includeSecondaries = nullptr);
+	static Point TargetAim(const Ship &ship, const Body &target, FireCommand &targeting,
+		const std::set<const Outfit *> *includeSecondaries = nullptr);
 	// Aim the given ship's turrets.
 	void AimTurrets(const Ship &ship, FireCommand &command, bool opportunistic = false,
 			const std::optional<Point> &targetOverride = std::nullopt) const;
 	// Fire whichever of the given ship's weapons can hit a hostile target.
 	// Return a bitmask giving the weapons to fire.
-	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true, bool isFlagship = false) const;
+	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true,
+		bool isFlagship = false, const std::set<const Outfit *> *includeSecondaries = nullptr) const;
 	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
@@ -169,8 +209,12 @@ private:
 	// projectile. If it cannot hit the target, this returns NaN.
 	static double RendezvousTime(const Point &p, const Point &v, double vp);
 
-	// True if found asteroid.
-	bool TargetMinable(Ship &ship) const;
+	// Only used by the player. Searches every asteroid within the player's
+	// asteroid scanning capabilities and sets the flagship's target to whichever
+	// asteroid is the best based on the player's preferences.
+	// Returns true if an asteroid was found.
+	bool PlayerTargetMinable(Ship &flagship) const;
+
 	// True if the ship performed the indicated event to the other ship.
 	bool Has(const Ship &ship, const std::weak_ptr<const Ship> &other, int type) const;
 	// True if the government performed the indicated event to the other ship.
@@ -187,11 +231,10 @@ private:
 	/// but that shouldn't really matter.
 	void RegisterDerivedConditions(ConditionsStore &conditions);
 
-
-private:
 	void IssueOrder(const OrderSingle &newOrder, const std::string &description);
 	// Convert order types based on fulfillment status.
 	void UpdateOrders(const Ship &ship);
+	RoutePlan GetRoutePlan(const Ship &ship, const System *targetSystem);
 
 
 private:
@@ -202,8 +245,8 @@ private:
 	const List<Minable> &minables;
 	const List<Flotsam> &flotsam;
 
-	// The current step count for the AI, ranging from 0 to 30. Its value
-	// helps limit how often certain actions occur (such as changing targets).
+	// The current step count for the AI, incremented once per frame.
+	// Its value helps limit how often certain actions occur (such as changing targets).
 	int step = 0;
 
 	// Command applied by the player's "autopilot."
@@ -214,8 +257,6 @@ private:
 	// thrashing the heap, since we can reuse the storage for
 	// each ship.
 	FireCommand firingCommands;
-
-	bool isCloaking = false;
 
 	bool escortsAreFrugal = true;
 	bool escortsUseAmmo = true;
@@ -245,6 +286,8 @@ private:
 	std::map<const Ship *, double> miningRadius;
 	std::map<const Ship *, int> miningTime;
 	std::map<const Ship *, double> appeasementThreshold;
+	std::map<const Ship *, const Ship *> boarders;
+	std::map<const Ship *, std::set<std::weak_ptr<const Ship>, std::owner_less<std::weak_ptr<const Ship>>>> closeBy;
 
 	// Records for formations flying around leadships and other objects.
 	std::map<const Body *, std::map<const FormationPattern *, FormationPositioner>> formations;
@@ -256,4 +299,7 @@ private:
 	std::map<const Government *, std::vector<Ship *>> governmentRosters;
 	std::map<const Government *, std::vector<Ship *>> enemyLists;
 	std::map<const Government *, std::vector<Ship *>> allyLists;
+
+	// Route planning cache:
+	std::unordered_map<RouteCacheKey, RoutePlan, RouteCacheKey::HashFunction> routeCache;
 };

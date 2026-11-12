@@ -30,7 +30,7 @@ public:
 	static void Step();
 
 	// Handle resize events of the main window.
-	static void AdjustViewport();
+	static void AdjustViewport(bool noResizeEvent = false);
 
 	// Attempt to set the game's VSync setting.
 	static bool SetVSync(Preferences::VSync state);
@@ -43,9 +43,11 @@ public:
 	static int DrawWidth();
 	static int DrawHeight();
 
+	static bool IsInFocus();
 	static bool IsMaximized();
 	static bool IsFullscreen();
 	static void ToggleFullscreen();
+	static void ToggleBlockScreenSaver();
 
 	// Print the error message in the terminal, error file, and message box.
 	// Checks for video system errors and records those as well.

@@ -13,6 +13,7 @@
 
 mission "Lunarium Initial Log"
 	invisible
+	non-blocking
 	landing
 	to offer
 		has "Lunarium introduced"
@@ -647,7 +648,7 @@ mission "House Bebliss 2-FW"
 					goto human
 				`	(Ask for one of the Arach drinks.)`
 					goto arach
-				`	(Just wait for your hosts to come back.)`
+				`	(Just wait for my hosts to come back.)`
 			`	You politely decline the drinks, and the maid gives you a brief nod, silently going back to her post to stand still like the other. You go over to the table to look at the blueprints, seeing many charts drawn and symbols resembling calculations on one corner, but you can't understand what's written. You sit as best as you can on what you guess is an Arach equivalent to an armchair, looking around the room for a few minutes.`
 				goto accept
 			label human
@@ -689,7 +690,7 @@ mission "House Bebliss 3-FW"
 	blocked `You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free.`
 	on offer
 		conversation
-			`You look around for Freya, asking the local dock workers to point you in the direction of the people researching the Pug tech. They direct you to a quieter, less crowded place, where some warehouse complexes have been set up. Some are painted in the usual Syndicate colors, some are guarded by a few Navy troops, and a Free Worlds flag flies by the entrance of the one you enter. Inside, you see groups of people surrounding the various artifacts that the Pug left behind. Some of them are running complicated looking tests, but it seems that they are mostly discussing what to do with the artifacts next. One of the graviton transmitters sits opposite to the entrance, half intact, half dismantled, with an array of scientists poking and prodding the machinery inside.`
+			`You look around for Freya, asking the local dock workers to point you in the direction of the people researching the Pug tech. They direct you to a quieter, less crowded place, where some warehouse complexes have been set up. Some are painted in the usual Syndicate colors, some are guarded by a few Navy troops, and a Free Worlds flag flies by the entrance of the one you enter. Inside, you see groups of people surrounding the various artifacts that the Pug left behind. Some of them are running complicated-looking tests, but it seems that they are mostly discussing what to do with the artifacts next. One of the graviton transmitters sits opposite to the entrance, half intact, half dismantled, with an array of scientists poking and prodding the machinery inside.`
 			`	Freya is atop a ladder near the transmitter when she sees you. She quickly hops down from her perch and runs toward you. "<first>! It's nice to see you again. What brings you here?" You tell her you have some important matters to discuss, and she has you follow her to an office-like room packed with tools and components.`
 			branch lunarium
 				has "joined the lunarium"

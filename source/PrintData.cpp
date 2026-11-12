@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataFile.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Files.h"
 #include "GameData.h"
 #include "GameEvent.h"
 #include "LocationFilter.h"
@@ -27,7 +28,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Ship.h"
 #include "Shop.h"
+#include "image/Sprite.h"
 #include "System.h"
+#include "Weapon.h"
 
 #include <iostream>
 #include <map>
@@ -261,19 +264,22 @@ namespace {
 					+ attributes.Get("cloaking heat");
 
 				for(const auto &oit : ship.Outfits())
-					if(oit.first->IsWeapon() && oit.first->Reload())
+				{
+					const Weapon *weapon = oit.first->GetWeapon().get();
+					if(weapon && weapon->Reload())
 					{
-						double reload = oit.first->Reload();
-						energyConsumed += oit.second * oit.first->FiringEnergy() / reload;
-						heatProduced += oit.second * oit.first->FiringHeat() / reload;
+						double reload = weapon->Reload();
+						energyConsumed += oit.second * weapon->FiringEnergy() / reload;
+						heatProduced += oit.second * weapon->FiringHeat() / reload;
 					}
+				}
 				cout << 60. * (attributes.Get("energy generation") + attributes.Get("solar collection")) << ',';
 				cout << 60. * energyConsumed << ',';
 				cout << attributes.Get("energy capacity") << ',';
-				cout << ship.IdleHeat() / max(1., ship.MaximumHeat()) << ',';
+				cout << ship.IdleHeat() / max(1., ship.MaxHeat()) << ',';
 				cout << 60. * heatProduced << ',';
 				// Maximum heat is 100 degrees per ton. Bleed off rate is 1/1000 per 60th of a second, so:
-				cout << 60. * ship.HeatDissipation() * ship.MaximumHeat() << ',';
+				cout << 60. * ship.HeatDissipation() * ship.MaxHeat() << ',';
 
 				int numTurrets = 0;
 				int numGuns = 0;
@@ -292,9 +298,10 @@ namespace {
 
 				double deterrence = 0.;
 				for(const Hardpoint &hardpoint : ship.Weapons())
-					if(hardpoint.GetOutfit())
+				{
+					const Weapon *weapon = hardpoint.GetWeapon();
+					if(weapon)
 					{
-						const Outfit *weapon = hardpoint.GetOutfit();
 						if(weapon->Ammo() && !ship.OutfitCount(weapon->Ammo()))
 							continue;
 						double damage = weapon->ShieldDamage() + weapon->HullDamage()
@@ -302,6 +309,7 @@ namespace {
 							+ (weapon->RelativeHullDamage() * ship.MaxHull());
 						deterrence += .12 * damage / weapon->Reload();
 					}
+				}
 				cout << deterrence << '\n';
 			}
 		};
@@ -364,32 +372,33 @@ namespace {
 			for(auto &it : GameData::Outfits())
 			{
 				// Skip non-weapons and submunitions.
-				if(!it.second.IsWeapon() || it.second.Category().empty())
+				const Outfit &outfit = it.second;
+				const Weapon *weapon = outfit.GetWeapon().get();
+				if(!weapon || outfit.Category().empty())
 					continue;
 
-				const Outfit &outfit = it.second;
 				cout << DataWriter::Quote(it.first)<< ',';
 				cout << DataWriter::Quote(outfit.Category()) << ',';
 				cout << outfit.Cost() << ',';
 				cout << -outfit.Get("weapon capacity") << ',';
 
-				cout << outfit.Range() << ',';
+				cout << weapon->Range() << ',';
 
-				double reload = outfit.Reload();
+				double reload = weapon->Reload();
 				cout << reload << ',';
-				cout << outfit.BurstCount() << ',';
-				cout << outfit.BurstReload() << ',';
-				cout << outfit.TotalLifetime() << ',';
+				cout << weapon->BurstCount() << ',';
+				cout << weapon->BurstReload() << ',';
+				cout << weapon->TotalLifetime() << ',';
 				double fireRate = 60. / reload;
 				cout << fireRate << ',';
 
-				double firingEnergy = outfit.FiringEnergy();
+				double firingEnergy = weapon->FiringEnergy();
 				cout << firingEnergy << ',';
 				firingEnergy *= fireRate;
-				double firingHeat = outfit.FiringHeat();
+				double firingHeat = weapon->FiringHeat();
 				cout << firingHeat << ',';
 				firingHeat *= fireRate;
-				double firingForce = outfit.FiringForce();
+				double firingForce = weapon->FiringForce();
 				cout << firingForce << ',';
 				firingForce *= fireRate;
 
@@ -397,41 +406,41 @@ namespace {
 				cout << firingHeat << ',';
 				cout << firingForce << ',';
 
-				double shieldDmg = outfit.ShieldDamage() * fireRate;
+				double shieldDmg = weapon->ShieldDamage() * fireRate;
 				cout << shieldDmg << ',';
-				double dischargeDmg = outfit.DischargeDamage() * 100. * fireRate;
+				double dischargeDmg = weapon->DischargeDamage() * 100. * fireRate;
 				cout << dischargeDmg << ',';
-				double hullDmg = outfit.HullDamage() * fireRate;
+				double hullDmg = weapon->HullDamage() * fireRate;
 				cout << hullDmg << ',';
-				double corrosionDmg = outfit.CorrosionDamage() * 100. * fireRate;
+				double corrosionDmg = weapon->CorrosionDamage() * 100. * fireRate;
 				cout << corrosionDmg << ',';
-				double heatDmg = outfit.HeatDamage() * fireRate;
+				double heatDmg = weapon->HeatDamage() * fireRate;
 				cout << heatDmg << ',';
-				double burnDmg = outfit.BurnDamage() * 100. * fireRate;
+				double burnDmg = weapon->BurnDamage() * 100. * fireRate;
 				cout << burnDmg << ',';
-				double energyDmg = outfit.EnergyDamage() * fireRate;
+				double energyDmg = weapon->EnergyDamage() * fireRate;
 				cout << energyDmg << ',';
-				double ionDmg = outfit.IonDamage() * 100. * fireRate;
+				double ionDmg = weapon->IonDamage() * 100. * fireRate;
 				cout << ionDmg << ',';
-				double scramblingDmg = outfit.ScramblingDamage() * 100. * fireRate;
+				double scramblingDmg = weapon->ScramblingDamage() * 100. * fireRate;
 				cout << scramblingDmg << ',';
-				double slowDmg = outfit.SlowingDamage() * fireRate;
+				double slowDmg = weapon->SlowingDamage() * fireRate;
 				cout << slowDmg << ',';
-				double disruptDmg = outfit.DisruptionDamage() * fireRate;
+				double disruptDmg = weapon->DisruptionDamage() * fireRate;
 				cout << disruptDmg << ',';
-				cout << outfit.Piercing() << ',';
-				double fuelDmg = outfit.FuelDamage() * fireRate;
+				cout << weapon->Piercing() << ',';
+				double fuelDmg = weapon->FuelDamage() * fireRate;
 				cout << fuelDmg << ',';
-				double leakDmg = outfit.LeakDamage() * 100. * fireRate;
+				double leakDmg = weapon->LeakDamage() * 100. * fireRate;
 				cout << leakDmg << ',';
-				double hitforce = outfit.HitForce() * fireRate;
+				double hitforce = weapon->HitForce() * fireRate;
 				cout << hitforce << ',';
 
-				double strength = outfit.MissileStrength() + outfit.AntiMissile();
+				double strength = weapon->MissileStrength() + weapon->AntiMissile();
 				cout << strength << ',';
 
-				double damage = outfit.ShieldDamage() + outfit.HullDamage();
-				double deterrence = .12 * damage / outfit.Reload();
+				double damage = weapon->ShieldDamage() + weapon->HullDamage();
+				double deterrence = .12 * damage / weapon->Reload();
 				cout << deterrence << '\n';
 			}
 
@@ -509,8 +518,8 @@ namespace {
 			for(auto &it : GameData::Outfits())
 			{
 				const Outfit &outfit = it.second;
-				for(const auto &attribute : outfit.Attributes())
-					attributes.insert(attribute.first);
+				for(const auto &[name, value] : outfit)
+					attributes.insert(name);
 			}
 
 			cout << "name" << ',' << "category" << ',' << "cost" << ',' << "mass";
@@ -526,7 +535,7 @@ namespace {
 				cout << outfit.Cost() << ',';
 				cout << outfit.Mass();
 				for(const auto &attribute : attributes)
-					cout << ',' << outfit.Attributes().Get(attribute);
+					cout << ',' << outfit.Get(attribute);
 				cout << '\n';
 			}
 		};
@@ -591,6 +600,72 @@ namespace {
 			PrintSales(GameData::Outfitters(), "outfitters", "outfits");
 	}
 
+	void Orbits(const char *const *argv)
+	{
+		StellarObject::UsingMatchesCommand();
+
+		auto PrintOrbits = [](const System &system) -> void {
+			cout << "system " << DataWriter::Quote(system.TrueName()) << "\n";
+			if(system.ExtraHyperArrivalDistance() || system.ExtraJumpArrivalDistance())
+			{
+				if(system.ExtraHyperArrivalDistance() == system.ExtraJumpArrivalDistance())
+					cout << "\tarrival " << system.ExtraHyperArrivalDistance() << "\n";
+				else
+				{
+					cout << "\tarrival\n";
+					cout << "\t\tlink " << system.ExtraHyperArrivalDistance() << "\n";
+					cout << "\t\tjump " << system.ExtraJumpArrivalDistance() << "\n";
+				}
+			}
+			cout << "\thabitable " << system.HabitableZone() << "\n";
+			map<int, int> indentation;
+			for(const StellarObject &object : system.Objects())
+			{
+				string indent = "\t";
+				indentation[object.Index()] = object.Parent() >= 0 ? indentation[object.Parent()] + 1 : 0;
+				for(int i = 0; i < indentation[object.Index()] ; ++i)
+					indent += "\t";
+				if(object.GetPlanet())
+					cout << indent << "object " << DataWriter::Quote(object.GetPlanet()->TrueName()) << "\n";
+				else
+					cout << indent << "object\n";
+				indent += "\t";
+				if(object.HasSprite())
+					cout << indent << "sprite " << DataWriter::Quote(object.GetSprite()->Name()) << "\n";
+				cout << indent << "distance " << object.Distance() << "\n";
+				cout << indent << "period " << object.Period() << "\n";
+				if(object.Offset())
+					cout << indent << "offset " << object.Offset() << "\n";
+			}
+			cout << "\n";
+		};
+
+		for(const char *const *it = argv + 2; *it; ++it)
+		{
+			string name = *it;
+			if(name == "-a" || name == "--all")
+			{
+				for(const auto &system : GameData::Systems())
+					PrintOrbits(system.second);
+				break;
+			}
+			if(name == "-s" || name == "--systems")
+			{
+				for(const char *const *sit = it + 1; *sit; ++sit)
+				{
+					name = *sit;
+					const System *system = GameData::Systems().Find(name);
+					if(!system)
+					{
+						cout << "No system with the name \"" << name << "\" found.\n\n";
+						return;
+					}
+					PrintOrbits(*system);
+				}
+				break;
+			}
+		}
+	}
 
 	void Planets(const char *const *argv)
 	{
@@ -655,7 +730,7 @@ namespace {
 			PrintObjectList(GameData::Systems(), "system");
 	}
 
-	void LocationFilterMatches(const char *const *argv, const PlayerInfo &player)
+	void LocationFilterMatches(const char *const *argv, PlayerInfo &player)
 	{
 		StellarObject::UsingMatchesCommand();
 		DataFile file(cin);
@@ -692,6 +767,48 @@ namespace {
 	}
 
 
+	void Changes()
+	{
+		string recentPath = Files::Read(Files::Config() / "recent.txt");
+		// Trim trailing whitespace (including newlines) from the path.
+		while(!recentPath.empty() && recentPath.back() <= ' ')
+			recentPath.pop_back();
+
+		if(recentPath.empty() || !Files::Exists(recentPath))
+			return;
+
+		DataFile file(recentPath);
+
+		DataWriter out;
+		out.Write("changes");
+		out.BeginChild();
+		for(const DataNode &node : file)
+		{
+			if(node.Token(0) != "changes")
+				continue;
+			for(const DataNode &change : node)
+			{
+				const string &key = change.Token(0);
+				bool hasValue = change.Size() > 1;
+				if(key == "event" && hasValue)
+				{
+					const GameEvent *event = GameData::Events().Get(change.Token(1));
+					out.Write("event", change.Token(1));
+					out.BeginChild();
+					for(const DataNode &eventChange : event->Changes())
+						out.Write(eventChange);
+					out.EndChild();
+				}
+				else
+					out.Write(change);
+			}
+		}
+		out.EndChild();
+
+		cout << out.SaveToString() << '\n';
+	}
+
+
 	const set<string> OUTFIT_ARGS = {
 		"-w",
 		"--weapons",
@@ -699,16 +816,18 @@ namespace {
 		"--engines",
 		"--power",
 		"-o",
-		"--outfits"
+		"--outfits",
 	};
 
 	const set<string> OTHER_VALID_ARGS = {
 		"-s",
 		"--ships",
 		"--sales",
+		"--orbits",
 		"--planets",
 		"--systems",
-		"--matches"
+		"--matches",
+		"--changes",
 	};
 }
 
@@ -727,7 +846,7 @@ bool PrintData::IsPrintDataArgument(const char *const *argv)
 
 
 
-void PrintData::Print(const char *const *argv, const PlayerInfo &player)
+void PrintData::Print(const char *const *argv, PlayerInfo &player)
 {
 	for(const char *const *it = argv + 1; *it; ++it)
 	{
@@ -747,12 +866,19 @@ void PrintData::Print(const char *const *argv, const PlayerInfo &player)
 			Sales(argv);
 			break;
 		}
+		else if(arg == "--orbits")
+		{
+			Orbits(argv);
+			break;
+		}
 		else if(arg == "--planets")
 			Planets(argv);
 		else if(arg == "--systems")
 			Systems(argv);
 		else if(arg == "--matches")
 			LocationFilterMatches(argv, player);
+		else if(arg == "--changes")
+			Changes();
 	}
 	cout.flush();
 }
@@ -778,6 +904,9 @@ void PrintData::Help()
 			<< endl;
 	cerr << "        -s, --ships: prints a list of shipyards and the ships they each contain." << endl;
 	cerr << "        -o, --outfits: prints a list of outfitters and the outfits they each contain." << endl;
+	cerr << "	 --orbits: print the orbital data of objects in the given systems." << endl;
+	cerr << "        -a, --all: print every system in the game." << endl;
+	cerr << "        -s, --systems <system>...: print the listed systems." << endl;
 	cerr << "    --planets: prints a list of all planets." << endl;
 	cerr << "        --descriptions: prints a table of all planets and their descriptions." << endl;
 	cerr << "        --attributes: prints a table of all planets and their attributes." << endl;
@@ -785,9 +914,11 @@ void PrintData::Help()
 			<< endl;
 	cerr << "    --systems: prints a list of all systems." << endl;
 	cerr << "        --attributes: prints a list of all systems and their attributes." << endl;
-	cerr << "            --reverse: prints a list of all system attributes and which systems have them."
-			<< endl;
+	cerr << "            --reverse: prints a list of all system attributes and which systems have them." << endl;
 	cerr << "    --matches: prints a list of all planets and systems matching a location filter passed in STDIN."
 			<< endl;
 	cerr << "        The first node of the location filter should be `location`." << endl;
+	cerr << "    --changes: prints a list of changes from the \"recent\" save file." << endl;
+	cerr << "        Includes data changes from events referred to only by name as children of the \"event\" node."
+			<< endl;
 }

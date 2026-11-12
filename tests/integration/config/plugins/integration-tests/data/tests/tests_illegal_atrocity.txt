@@ -148,7 +148,7 @@ test-data "quarg scanning save"
 			score 400
 			history
 
-		event "illegal stuff"
+		changes
 			government "Quarg"
 				illegals
 					ignore "Nerve Gas"
@@ -249,7 +249,7 @@ test-data "quarg atrocity save"
 			score 400
 			history
 
-		event "atrocity stuff"
+		changes
 			government "Quarg"
 				atrocities
 					Hyperdrive

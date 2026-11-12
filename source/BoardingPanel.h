@@ -18,6 +18,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Panel.h"
 
 #include "CaptureOdds.h"
+#include "ScrollBar.h"
+#include "Tooltip.h"
 
 #include <memory>
 #include <string>
@@ -26,6 +28,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Outfit;
 class PlayerInfo;
 class Ship;
+class TextArea;
 
 
 
@@ -38,6 +41,7 @@ public:
 	BoardingPanel(PlayerInfo &player, const std::shared_ptr<Ship> &victim);
 	virtual ~BoardingPanel() override;
 
+	virtual void Step() override;
 	virtual void Draw() override;
 
 
@@ -45,6 +49,7 @@ protected:
 	// Overrides from Panel.
 	virtual bool KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isNewPress) override;
 	virtual bool Click(int x, int y, MouseButton button, int clicks) override;
+	virtual bool Hover(int x, int y) override;
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
@@ -63,7 +68,7 @@ private:
 	public:
 		// Plunder can be either outfits or commodities.
 		Plunder(const std::string &commodity, int count, int unitValue);
-		Plunder(const Outfit *outfit, int count);
+		Plunder(const Outfit *outfit, int count, bool inCargo);
 
 		// Sort by value per ton of mass.
 		bool operator<(const Plunder &other) const;
@@ -74,6 +79,8 @@ private:
 		// Get the value of each unit of this plunder item.
 		int64_t UnitValue() const;
 
+		// Whether this item is in the ship's cargo hold.
+		bool InCargo() const;
 		// Get the name of this item. If it is a commodity, this is its name.
 		const std::string &Name() const;
 		// Get the mass, in the format "<count> x <unit mass>". If this is a
@@ -96,6 +103,7 @@ private:
 		double UnitMass() const;
 
 	private:
+		bool inCargo = false;
 		std::string name;
 		const Outfit *outfit;
 		int count;
@@ -118,6 +126,8 @@ private:
 	// Handle the keyboard scrolling and selection in the panel list.
 	void DoKeyboardNavigation(const SDL_Keycode key);
 
+	void AddMessage(const std::string &message);
+
 
 private:
 	PlayerInfo &player;
@@ -127,18 +137,27 @@ private:
 	// List of items you can plunder.
 	std::vector<Plunder> plunder;
 	int selected = 0;
-	double scroll = 0.;
+	ScrollVar<double> scroll;
+	ScrollBar scrollBar;
+	Tooltip tooltip;
 
 	bool playerDied = false;
 	bool isCapturing = false;
 	bool isFirstCaptureAction = true;
+	bool successfulCapture = false;
 	// Calculating the odds of combat success, and the expected casualties, is
 	// non-trivial. So, cache the results for all crew amounts up to full.
 	CaptureOdds attackOdds;
 	CaptureOdds defenseOdds;
 	// These messages are shown to report the results of hand to hand combat.
-	std::vector<std::string> messages;
+	std::string messages;
+	std::shared_ptr<TextArea> messageDisplay;
 
 	// Whether or not the ship can be captured.
 	bool canCapture = false;
+
+	// If the player boarded this ship multiple times, remember how many casualties
+	// occurred on previous boardings.
+	int pastCasualties = 0;
+	int remainingCrew = 0;
 };

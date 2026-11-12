@@ -165,7 +165,7 @@ void MiniMap::Draw(int step) const
 
 	set<const System *> drawnSystems;
 
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Color lineColor(alpha, 0.f);
 	Color brightColor(.4f * alpha, 0.f);
 
@@ -252,6 +252,13 @@ void MiniMap::Draw(int step) const
 					MapPanel::DrawPointer(from, missionCounter, waypointColor, false);
 			}
 			for(const System *mark : mission.MarkedSystems())
+			{
+				if(missionCounter >= MapPanel::MAX_MISSION_POINTERS_DRAWN)
+					break;
+				if(mark == &system)
+					MapPanel::DrawPointer(from, missionCounter, waypointColor, false);
+			}
+			for(const System *mark : mission.TrackedSystems())
 			{
 				if(missionCounter >= MapPanel::MAX_MISSION_POINTERS_DRAWN)
 					break;

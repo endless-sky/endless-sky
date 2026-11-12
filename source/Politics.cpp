@@ -50,8 +50,7 @@ namespace {
 	// Check if the ship evades being outfit scanned.
 	bool EvadesOutfitScan(const Ship &ship)
 	{
-		return ship.Attributes().Get("inscrutable") > 0. ||
-				Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
+		return ship.Inscrutable() || Random::Real() > 1. / (1. + ship.Attributes().Get("scan interference"));
 	}
 }
 
@@ -121,10 +120,11 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 	{
 		const Government *other = &it.second;
 		double weight = other->AttitudeToward(gov);
+		Government::PenaltyEffect penalty = other->PenaltyFor(eventType, gov);
 
 		// You can provoke a government even by attacking an empty ship, such as
 		// a drone (count = 0, because count = crew).
-		if(eventType & ShipEvent::PROVOKE)
+		if(penalty.specialPenalty == Government::SpecialPenalty::PROVOKE)
 		{
 			if(weight > 0.)
 			{
@@ -140,11 +140,11 @@ void Politics::Offend(const Government *gov, int eventType, int count)
 			// changes. This is to allow two governments to be hostile or
 			// friendly without the player's behavior toward one of them
 			// influencing their reputation with the other.
-			double penalty = (count * weight) * other->PenaltyFor(eventType, gov);
-			if(eventType & ShipEvent::ATROCITY && weight > 0)
+			double reputationChange = (count * weight) * penalty.reputationChange;
+			if(penalty.specialPenalty == Government::SpecialPenalty::ATROCITY && weight > 0)
 				Politics::SetReputation(other, min(0., reputationWith[other]));
 
-			Politics::AddReputation(other, -penalty);
+			Politics::AddReputation(other, -reputationChange);
 		}
 	}
 }
@@ -244,13 +244,15 @@ bool Politics::HasDominated(const Planet *planet) const
 
 
 // Check to see if the player has done anything they should be fined for.
-string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const Ship *target, double security)
+pair<const Conversation *, string> Politics::Fine(PlayerInfo &player,
+	const Government *gov, int scan, const Ship *target, double security)
 {
 	// Do nothing if you have already been fined today, or if you evade
 	// detection.
-	if(fined.contains(gov) || Random::Real() > security || !gov->GetFineFraction())
-		return "";
+	if(fined.contains(gov) || Random::Real() > security)
+		return {};
 
+	const Conversation *deathSentence = nullptr;
 	string reason;
 	int64_t maxFine = 0;
 	for(const shared_ptr<Ship> &ship : player.Ships())
@@ -275,7 +277,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 			if((fine > maxFine && maxFine >= 0) || fine < 0)
 			{
 				maxFine = fine;
-				reason = " for carrying illegal passengers.";
+				reason = " for carrying illegal passengers on the " + ship->GivenName() + ".";
 
 				for(const Mission &mission : player.Missions())
 				{
@@ -299,11 +301,13 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		}
 		if((!scan || (scan & ShipEvent::SCAN_CARGO)) && !EvadesCargoScan(*ship))
 		{
-			int64_t fine = ship->Cargo().IllegalCargoFine(gov);
-			if((fine > maxFine && maxFine >= 0) || fine < 0)
+			pair<int, const Conversation *> fine = ship->Cargo().IllegalCargoFine(gov);
+			if(fine.second)
+				deathSentence = fine.second;
+			if((fine.first > maxFine && maxFine >= 0) || fine.first < 0)
 			{
-				maxFine = fine;
-				reason = " for carrying illegal cargo.";
+				maxFine = fine.first;
+				reason = " for carrying illegal cargo on the " + ship->GivenName() + ".";
 
 				for(const Mission &mission : player.Missions())
 				{
@@ -328,26 +332,41 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		}
 		if((!scan || (scan & ShipEvent::SCAN_OUTFITS)) && !EvadesOutfitScan(*ship))
 		{
-			for(const auto &it : ship->Outfits())
-				if(it.second)
+			vector<const Outfit *> illegalOutfits;
+			for(const auto &[outfit, count] : ship->Outfits())
+				if(count)
 				{
-					int fine = gov->Fines(it.first);
-					if(gov->Condemns(it.first))
-						fine = -1;
-					if((fine > maxFine && maxFine >= 0) || fine < 0)
+					int fine = gov->Fines(outfit);
+					Government::Atrocity atrocity = gov->Condemns(outfit);
+					if(atrocity.isAtrocity)
 					{
-						maxFine = fine;
-						reason = " for having illegal outfits installed on your ship.";
+						deathSentence = atrocity.customDeathSentence;
+						fine = -1;
+					}
+					if(fine)
+					{
+						reason = " for having illegal outfits installed on the " + ship->GivenName() + ":";
+						illegalOutfits.push_back(outfit);
+						if((fine > maxFine && maxFine >= 0) || fine < 0)
+							maxFine = fine;
 					}
 				}
 
+			if(!illegalOutfits.empty())
+				reason += "\n" + Format::IndentedList(illegalOutfits,
+					[](const Outfit *outfit) -> string { return outfit->DisplayName(); }, 5);
+
 			int shipFine = gov->Fines(ship.get());
-			if(gov->Condemns(ship.get()))
+			Government::Atrocity atrocity = gov->Condemns(ship.get());
+			if(atrocity.isAtrocity)
+			{
+				deathSentence = atrocity.customDeathSentence;
 				shipFine = -1;
+			}
 			if((shipFine > maxFine && maxFine >= 0) || shipFine < 0)
 			{
 				maxFine = shipFine;
-				reason = " for flying an illegal ship.";
+				reason = " for flying an illegal ship, the " + ship->GivenName() + ".";
 			}
 		}
 		if(failedMissions && maxFine > 0)
@@ -362,7 +381,11 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 	{
 		gov->Offend(ShipEvent::ATROCITY);
 		if(!scan)
+		{
 			reason = "atrocity";
+			if(!deathSentence)
+				deathSentence = gov->DeathSentence();
+		}
 		else
 			reason = "After scanning your ship, the " + gov->DisplayName()
 				+ " captain hails you with a grim expression on his face. He says, "
@@ -377,7 +400,7 @@ string Politics::Fine(PlayerInfo &player, const Government *gov, int scan, const
 		player.Accounts().AddFine(maxFine);
 		fined.insert(gov);
 	}
-	return reason;
+	return {deathSentence, reason};
 }
 
 

@@ -18,21 +18,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Logger.h"
 #include "Screen.h"
 
+#ifdef _WIN32
+#include "windows/WinWindow.h"
+#endif
+
 #include "opengl.h"
-#include <SDL2/SDL.h>
+#include "SDL.h"
 
 #include <cstring>
 #include <sstream>
 #include <string>
-
-#ifdef _WIN32
-#include "windows/WinVersion.h"
-
-#include <windows.h>
-
-#include <dwmapi.h>
-#include <SDL2/SDL_syswm.h>
-#endif
 
 using namespace std;
 
@@ -55,19 +50,50 @@ namespace {
 		string message = SDL_GetError();
 		if(!message.empty())
 		{
-			Logger::LogError("(SDL message: \"" + message + "\")");
+			Logger::Log("(SDL message: \"" + message + "\")", Logger::Level::ERROR);
 			SDL_ClearError();
 			return true;
 		}
 
 		return false;
 	}
+
+	// Checks if the SDL call succeeded. Wrapper for SDL2/3 compatibility for non-C APIs.
+	// Returns true on success.
+#ifdef ES_USE_SDL3
+	bool checkSDL(bool result)
+	{
+		if(!result)
+			checkSDLerror();
+		return result;
+	}
+#else
+	bool checkSDL(int result)
+	{
+		if(result != 0)
+		{
+			checkSDLerror();
+			return false;
+		}
+		return true;
+	}
+#endif
 }
 
 
 
 string GameWindow::SDLVersions()
 {
+#ifdef ES_USE_SDL3
+	int built = SDL_VERSION;
+	int linked = SDL_GetVersion();
+
+	auto toString = [](int v) -> string
+	{
+		return to_string(SDL_VERSIONNUM_MAJOR(v)) + "." + to_string(SDL_VERSIONNUM_MINOR(v)) + "." +
+			to_string(SDL_VERSIONNUM_MICRO(v));
+	};
+#else
 	SDL_version built;
 	SDL_version linked;
 	SDL_VERSION(&built);
@@ -77,6 +103,7 @@ string GameWindow::SDLVersions()
 	{
 		return to_string(v.major) + "." + to_string(v.minor) + "." + to_string(v.patch);
 	};
+#endif
 	return "Compiled against SDL v" + toString(built) + "\nUsing SDL v" + toString(linked);
 }
 
@@ -85,8 +112,10 @@ string GameWindow::SDLVersions()
 bool GameWindow::Init(bool headless)
 {
 #ifdef _WIN32
+#ifndef ES_USE_SDL3
 	// Tell Windows this process is high dpi aware and doesn't need to get scaled.
 	SDL_SetHint(SDL_HINT_WINDOWS_DPI_AWARENESS, "permonitorv2");
+#endif
 #elif defined(__linux__)
 	// Set the class name for the window on Linux. Used to set the application icon.
 	// This sets it for both X11 and Wayland.
@@ -95,37 +124,54 @@ bool GameWindow::Init(bool headless)
 
 	// When running the integration tests, don't create a window nor an OpenGL context.
 	if(headless)
-#if defined(__linux__) && !SDL_VERSION_ATLEAST(2, 0, 22)
-		setenv("SDL_VIDEODRIVER", "dummy", true);
-#else
-		SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
-#endif
-
-	// This needs to be called before any other SDL commands.
-	if(SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
-		checkSDLerror();
-		return false;
+#if defined(__linux__)
+		setenv("SDL_VIDEODRIVER", "dummy", true);
+#endif
+		SDL_SetHint(SDL_HINT_VIDEODRIVER, "dummy");
 	}
 
+	// This needs to be called before any other SDL commands.
+	if(!checkSDL(SDL_Init(SDL_INIT_VIDEO)))
+		return false;
+
 	// Get details about the current display.
+#ifdef ES_USE_SDL3
+	SDL_DisplayID primaryDisplay = SDL_GetPrimaryDisplay();
+	if(primaryDisplay == 0)
+	{
+		checkSDLerror();
+		ExitWithError("Unable to query primary display!");
+		return false;
+	}
+	const SDL_DisplayMode *modePtr = SDL_GetCurrentDisplayMode(primaryDisplay);
+	if(!modePtr)
+	{
+		checkSDLerror();
+		ExitWithError("Unable to query monitor resolution!");
+		return false;
+	}
+	const SDL_DisplayMode &mode = *modePtr;
+#else
 	SDL_DisplayMode mode;
 	if(SDL_GetCurrentDisplayMode(0, &mode))
 	{
 		ExitWithError("Unable to query monitor resolution!");
 		return false;
 	}
+#endif
 	if(mode.refresh_rate && mode.refresh_rate < 60)
-		Logger::LogError("Warning: low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
-			" The game will run more slowly.");
+		Logger::Log("Low monitor frame rate detected (" + to_string(mode.refresh_rate) + ")."
+			" The game will run more slowly.", Logger::Level::WARNING);
 
 	// Make the window just slightly smaller than the monitor resolution.
 	int maxWidth = mode.w;
 	int maxHeight = mode.h;
 	if(maxWidth < minWidth || maxHeight < minHeight)
-		Logger::LogError("Monitor resolution is too small! Minimal requirement is "
+		Logger::Log("Monitor resolution is too small! Minimal requirement is "
 			+ to_string(minWidth) + 'x' + to_string(minHeight)
-			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.');
+			+ ", while your resolution is " + to_string(maxWidth) + 'x' + to_string(maxHeight) + '.',
+			Logger::Level::WARNING);
 
 	int windowWidth = maxWidth - 100;
 	int windowHeight = maxHeight - 100;
@@ -138,17 +184,24 @@ bool GameWindow::Init(bool headless)
 		windowHeight = min(windowHeight, Screen::RawHeight());
 	}
 
+	if(!Preferences::Has(Preferences::BLOCK_SCREEN_SAVER))
+		SDL_EnableScreenSaver();
+
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
 
-	if(Preferences::ScreenModeSetting() == "fullscreen")
+	if(Preferences::Has(Preferences::FULLSCREEN))
 		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-	else if(Preferences::Has("maximized"))
+	else if(Preferences::Has(Preferences::SCREEN_MAXIMIZED))
 		flags |= SDL_WINDOW_MAXIMIZED;
 
 	// The main window spawns visibly at this point.
+#ifdef ES_USE_SDL3
+	mainWindow = SDL_CreateWindow("Endless Sky", windowWidth, windowHeight, headless ? 0 : flags);
+#else
 	mainWindow = SDL_CreateWindow("Endless Sky", SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED, windowWidth, windowHeight, headless ? 0 : flags);
+#endif
 
 	if(!mainWindow)
 	{
@@ -161,7 +214,7 @@ bool GameWindow::Init(bool headless)
 	{
 		width = windowWidth;
 		height = windowHeight;
-		Screen::SetRaw(width, height);
+		Screen::SetRaw(width, height, true);
 		return true;
 	}
 
@@ -181,13 +234,26 @@ bool GameWindow::Init(bool headless)
 	SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
 
 	context = SDL_GL_CreateContext(mainWindow);
+#ifndef ES_GLES
+	if(!context)
+	{
+		Logger::Log("OpenGL context creation failed. Retrying with experimental OpenGL 2 support.",
+			Logger::Level::WARNING);
+		SDL_ClearError();
+#ifdef _WIN32
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+#endif
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, 0);
+		context = SDL_GL_CreateContext(mainWindow);
+	}
+#endif
 	if(!context)
 	{
 		ExitWithError("Unable to create OpenGL context! Check if your system supports OpenGL 3.0.");
 		return false;
 	}
 
-	if(SDL_GL_MakeCurrent(mainWindow, context))
+	if(!checkSDL(SDL_GL_MakeCurrent(mainWindow, context)))
 	{
 		ExitWithError("Unable to set the current OpenGL context!");
 		return false;
@@ -216,6 +282,16 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 
+	if(*glVersion < '2')
+	{
+		ostringstream out;
+		out << "Endless Sky requires OpenGL version 2.0 or higher, and 3.0 is recommended." << endl;
+		out << "Your OpenGL version is " << glVersion << "." << endl;
+		out << "Please update your graphics drivers.";
+		ExitWithError(out.str());
+		return false;
+	}
+
 	const char *glslVersion = reinterpret_cast<const char *>(glGetString(GL_SHADING_LANGUAGE_VERSION));
 	if(!glslVersion || !*glslVersion)
 	{
@@ -225,15 +301,13 @@ bool GameWindow::Init(bool headless)
 		return false;
 	}
 
-	if(*glVersion < '3')
+#ifndef ES_GLES
+	if(*glVersion == '2')
 	{
-		ostringstream out;
-		out << "Endless Sky requires OpenGL version 3.0 or higher." << endl;
-		out << "Your OpenGL version is " << glVersion << ", GLSL version " << glslVersion << "." << endl;
-		out << "Please update your graphics drivers.";
-		ExitWithError(out.str());
-		return false;
+		OpenGL::DisableOpenGL3();
+		Logger::Log("Experimental OpenGL 2 support has been enabled.", Logger::Level::INFO);
 	}
+#endif
 
 	// OpenGL settings
 	glClearColor(0.f, 0.f, 0.0f, 1.f);
@@ -250,7 +324,7 @@ bool GameWindow::Init(bool headless)
 		Preferences::ToggleVSync();
 
 	// Make sure the screen size and view-port are set correctly.
-	AdjustViewport();
+	AdjustViewport(true);
 
 #ifdef _WIN32
 	UpdateTitleBarTheme();
@@ -266,7 +340,11 @@ bool GameWindow::Init(bool headless)
 void GameWindow::Quit()
 {
 	// Make sure the cursor is visible.
+#ifdef ES_USE_SDL3
+	SDL_ShowCursor();
+#else
 	SDL_ShowCursor(true);
+#endif
 
 	// Clean up in the reverse order that everything is launched.
 	if(context)
@@ -286,7 +364,7 @@ void GameWindow::Step()
 
 
 
-void GameWindow::AdjustViewport()
+void GameWindow::AdjustViewport(bool noResizeEvent)
 {
 	if(!mainWindow)
 		return;
@@ -306,12 +384,14 @@ void GameWindow::AdjustViewport()
 	// means one pixel of the display will be clipped.
 	int roundWidth = (windowWidth + 1) & ~1;
 	int roundHeight = (windowHeight + 1) & ~1;
-	Screen::SetRaw(roundWidth, roundHeight);
+	Screen::SetRaw(roundWidth, roundHeight, noResizeEvent);
 
-	// Find out the drawable dimensions. If this is a high- DPI display, this
+	if(!context)
+		return;
+
+	// Find out the drawable dimensions. If this is a high-DPI display, this
 	// may be larger than the window.
 	SDL_GL_GetDrawableSize(mainWindow, &drawWidth, &drawHeight);
-	Screen::SetHighDPI(drawWidth > windowWidth || drawHeight > windowHeight);
 
 	// Set the viewport to go off the edge of the window, if necessary, to get
 	// everything pixel-aligned.
@@ -329,17 +409,26 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 	if(!context)
 		return false;
 
+#ifdef ES_USE_SDL3
+	int originalState = 1;
+	if(!SDL_GL_GetSwapInterval(&originalState))
+	{
+		checkSDLerror();
+		return false;
+	}
+#else
 	const int originalState = SDL_GL_GetSwapInterval();
+#endif
 	int interval = 1;
 	switch(state)
 	{
-		case Preferences::VSync::adaptive:
+		case Preferences::VSync::ADAPTIVE:
 			interval = -1;
 			break;
-		case Preferences::VSync::off:
+		case Preferences::VSync::OFF:
 			interval = 0;
 			break;
-		case Preferences::VSync::on:
+		case Preferences::VSync::ON:
 			interval = 1;
 			break;
 		default:
@@ -350,13 +439,17 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 	if(interval == -1 && !supportsAdaptiveVSync)
 		return false;
 
-	if(SDL_GL_SetSwapInterval(interval) == -1)
+	if(!checkSDL(SDL_GL_SetSwapInterval(interval)))
 	{
-		checkSDLerror();
 		SDL_GL_SetSwapInterval(originalState);
 		return false;
 	}
+#ifdef ES_USE_SDL3
+	SDL_GL_GetSwapInterval(&originalState);
+	return originalState == interval;
+#else
 	return SDL_GL_GetSwapInterval() == interval;
+#endif
 }
 
 
@@ -391,6 +484,13 @@ int GameWindow::DrawHeight()
 
 
 
+bool GameWindow::IsInFocus()
+{
+	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_INPUT_FOCUS);
+}
+
+
+
 bool GameWindow::IsMaximized()
 {
 	return (SDL_GetWindowFlags(mainWindow) & SDL_WINDOW_MAXIMIZED);
@@ -420,10 +520,20 @@ void GameWindow::ToggleFullscreen()
 
 
 
+void GameWindow::ToggleBlockScreenSaver()
+{
+	if(SDL_IsScreenSaverEnabled())
+		SDL_DisableScreenSaver();
+	else
+		SDL_EnableScreenSaver();
+}
+
+
+
 void GameWindow::ExitWithError(const string &message, bool doPopUp)
 {
 	// Print the error message in the terminal and the error file.
-	Logger::LogError(message);
+	Logger::Log(message, Logger::Level::ERROR);
 	checkSDLerror();
 
 	// Show the error message in a message box.
@@ -438,7 +548,11 @@ void GameWindow::ExitWithError(const string &message, bool doPopUp)
 
 		SDL_MessageBoxButtonData button;
 		button.flags = SDL_MESSAGEBOX_BUTTON_RETURNKEY_DEFAULT;
+#ifdef ES_USE_SDL3
+		button.buttonID = 0;
+#else
 		button.buttonid = 0;
+#endif
 		button.text = "OK";
 		box.numbuttons = 1;
 		box.buttons = &button;
@@ -455,61 +569,13 @@ void GameWindow::ExitWithError(const string &message, bool doPopUp)
 #ifdef _WIN32
 void GameWindow::UpdateTitleBarTheme()
 {
-	if(!WinVersion::SupportsDarkTheme())
-		return;
-
-	SDL_SysWMinfo windowInfo;
-	SDL_VERSION(&windowInfo.version);
-	SDL_GetWindowWMInfo(mainWindow, &windowInfo);
-
-	BOOL value;
-	Preferences::TitleBarTheme themePreference = Preferences::GetTitleBarTheme();
-	// If the default option is selected, check the system-wide preference.
-	if(themePreference == Preferences::TitleBarTheme::DEFAULT)
-	{
-		HKEY systemPreference;
-		if(RegOpenKeyExW(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
-			0, KEY_READ, &systemPreference) == ERROR_SUCCESS)
-		{
-			DWORD size = sizeof(value);
-			if(RegQueryValueExW(systemPreference, L"AppsUseLightTheme", 0, nullptr,
-					reinterpret_cast<LPBYTE>(&value), &size) == ERROR_SUCCESS)
-				// The key says about light theme, while DWM expects information about dark theme.
-				value = !value;
-			else
-				value = 1;
-			RegCloseKey(systemPreference);
-		}
-		else
-			value = 1;
-	}
-	else
-		value = themePreference == Preferences::TitleBarTheme::DARK;
-
-	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
-	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
-		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
-	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_USE_IMMERSIVE_DARK_MODE, &value, sizeof(value));
-	FreeLibrary(dwmapi);
+	WinWindow::UpdateTitleBarTheme(mainWindow);
 }
 
 
 
 void GameWindow::UpdateWindowRounding()
 {
-	if(!WinVersion::SupportsWindowRounding())
-		return;
-
-	SDL_SysWMinfo windowInfo;
-	SDL_VERSION(&windowInfo.version);
-	SDL_GetWindowWMInfo(mainWindow, &windowInfo);
-
-	auto value = static_cast<DWM_WINDOW_CORNER_PREFERENCE>(Preferences::GetWindowRounding());
-
-	HMODULE dwmapi = LoadLibraryW(L"dwmapi.dll");
-	auto dwmSetWindowAttribute = reinterpret_cast<HRESULT (*)(HWND, DWORD, LPCVOID, DWORD)>(
-		GetProcAddress(dwmapi, "DwmSetWindowAttribute"));
-	dwmSetWindowAttribute(windowInfo.info.win.window, DWMWA_WINDOW_CORNER_PREFERENCE, &value, sizeof(value));
-	FreeLibrary(dwmapi);
+	WinWindow::UpdateWindowRounding(mainWindow);
 }
 #endif

@@ -120,6 +120,8 @@ void GameEvent::Load(const DataNode &node, const ConditionsStore *playerConditio
 			planetsToUnvisit.push_back(GameData::Planets().Get(child.Token(1)));
 		else if(key == "visit planet" && hasValue)
 			planetsToVisit.push_back(GameData::Planets().Get(child.Token(1)));
+		else if(key == "save raw changes")
+			saveRawChanges = true;
 		else if(allowedChanges.contains(key))
 			changes.push_back(child);
 		else
@@ -137,8 +139,7 @@ void GameEvent::Save(DataWriter &out) const
 	out.Write("event");
 	out.BeginChild();
 	{
-		if(date)
-			out.Write("date", date.Day(), date.Month(), date.Year());
+		out.Write("date", date.Day(), date.Month(), date.Year());
 		conditionsToApply.Save(out);
 
 		for(auto &&system : systemsToUnvisit)
@@ -224,25 +225,28 @@ void GameEvent::SetDate(const Date &date)
 
 // Apply this event's changes to the player. Returns a list of data changes that need to
 // be applied in a batch with other events that are applied at the same time.
-list<DataNode> GameEvent::Apply(PlayerInfo &player)
+list<DataNode> GameEvent::Apply(PlayerInfo &player, bool onlyDataChanges)
 {
 	if(isDisabled)
 		return {};
 
-	// Apply this event's ConditionSet to the player's conditions.
-	conditionsToApply.Apply();
+	if(!onlyDataChanges)
+	{
+		// Apply this event's ConditionSet to the player's conditions.
+		conditionsToApply.Apply();
 
-	for(const System *system : systemsToUnvisit)
-		player.Unvisit(*system);
-	for(const Planet *planet : planetsToUnvisit)
-		player.Unvisit(*planet);
+		for(const System *system : systemsToUnvisit)
+			player.Unvisit(*system);
+		for(const Planet *planet : planetsToUnvisit)
+			player.Unvisit(*planet);
 
-	// Perform visits after unvisits, as "unvisit <system>"
-	// will unvisit any planets in that system.
-	for(const System *system : systemsToVisit)
-		player.Visit(*system);
-	for(const Planet *planet : planetsToVisit)
-		player.Visit(*planet);
+		// Perform visits after unvisits, as "unvisit <system>"
+		// will unvisit any planets in that system.
+		for(const System *system : systemsToVisit)
+			player.Visit(*system);
+		for(const Planet *planet : planetsToVisit)
+			player.Visit(*planet);
+	}
 
 	// Return this event's data changes so that they can be batch applied
 	// with the changes from other events.
@@ -251,9 +255,23 @@ list<DataNode> GameEvent::Apply(PlayerInfo &player)
 
 
 
+const ConditionAssignments &GameEvent::Conditions() const
+{
+	return conditionsToApply;
+}
+
+
+
 const list<DataNode> &GameEvent::Changes() const
 {
 	return changes;
+}
+
+
+
+bool GameEvent::SaveRawChanges() const
+{
+	return saveRawChanges;
 }
 
 
