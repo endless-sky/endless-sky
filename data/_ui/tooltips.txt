@@ -454,8 +454,8 @@ tip "scramble resistance heat:"
 tip "jump speed:"
 	`The maximum velocity the ship can be moving at in order for a jump to be initiated.`
 
-tip "jump time:"
-	`After a jump into another system has been initiated, this is the amount of time it takes for the jump to occur.`
+tip "jump duration:"
+	`After a jump has been initiated, this is the amount of time it takes for the ship to enter the destination system.`
 
 tip "hyperdrive fuel:"
 	`Fuel consumed when jumping between systems using this hyperdrive.`

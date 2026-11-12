@@ -30,7 +30,7 @@ class System;
 class ShipJumpNavigation {
 public:
 	// The default number of frames it takes to jump to a system for jump outfits
-	// that don't specify a "jump time".
+	// that don't specify a "jump duration".
 	static const int DEFAULT_JUMP_FRAMES;
 
 
@@ -40,7 +40,7 @@ public:
 		// The cost of making the jump.
 		double fuelCost = 0;
 		// The number of frames it takes to make the jump.
-		int travelTime = 100;
+		int jumpFrames = 100;
 	};
 
 

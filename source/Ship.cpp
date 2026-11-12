@@ -3028,7 +3028,7 @@ bool Ship::IsHyperspacing() const
 
 double Ship::GetHyperspaceFraction() const
 {
-	return static_cast<double>(hyperspaceCount) / hyperspaceTravelTime;
+	return static_cast<double>(hyperspaceCount) / hyperspaceTravelFrames;
 }
 
 
@@ -3045,7 +3045,7 @@ double Ship::FuelUsedForHyperspacing() const
 {
 	if(!IsEnteringHyperspace())
 		return 0.;
-	return hyperspaceFuelCost * hyperspaceCount / hyperspaceTravelTime;
+	return hyperspaceFuelCost * hyperspaceCount / hyperspaceTravelFrames;
 }
 
 
@@ -5227,11 +5227,11 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 	// acceleration = 2 * travel distance / time^2
 	// The exact exit distance comes from the default travel time of 100 frames and default acceleration of 2.
 	static const double HYPER_EXIT_DISTANCE = 10000.;
-	const double HYPER_A = 2. * HYPER_EXIT_DISTANCE / (hyperspaceTravelTime * hyperspaceTravelTime);
+	const double HYPER_A = 2. * HYPER_EXIT_DISTANCE / (hyperspaceTravelFrames * hyperspaceTravelFrames);
 	// The desired stopping distance from the target point.
 	const double HYPER_D = 1000.;
 	if(hyperspaceSystem)
-		levels.fuel -= hyperspaceFuelCost / hyperspaceTravelTime;
+		levels.fuel -= hyperspaceFuelCost / hyperspaceTravelFrames;
 
 	// Create the particle effects for the jump drive. This may create 100
 	// or more particles per ship per turn at the peak of the jump.
@@ -5250,7 +5250,7 @@ bool Ship::DoHyperspaceLogic(vector<Visual> &visuals)
 		}
 	}
 
-	if(hyperspaceCount == hyperspaceTravelTime)
+	if(hyperspaceCount == hyperspaceTravelFrames)
 	{
 		// Track the movements of mission NPCs.
 		if(isSpecial && !isYours)
@@ -5464,10 +5464,10 @@ void Ship::DoInitializeMovement()
 	else if(commands.Has(Command::JUMP) && IsReadyToJump())
 	{
 		hyperspaceSystem = GetTargetSystem();
-		auto [jumpType, fuelCost, travelTime] = navigation.GetCheapestJump(hyperspaceSystem);
+		auto [jumpType, fuelCost, travelFrames] = navigation.GetCheapestJump(hyperspaceSystem);
 		isUsingJumpDrive = (jumpType == JumpType::JUMP_DRIVE);
 		hyperspaceFuelCost = fuelCost;
-		hyperspaceTravelTime = travelTime;
+		hyperspaceTravelFrames = travelFrames;
 	}
 }
 

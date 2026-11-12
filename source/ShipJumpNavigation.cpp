@@ -46,7 +46,7 @@ void ShipJumpNavigation::Calibrate(const Ship &ship)
 
 	hyperDriveDetails.type = JumpType::HYPERDRIVE;
 	hyperDriveDetails.fuelCost = 0.;
-	hyperDriveDetails.travelTime = DEFAULT_JUMP_FRAMES;
+	hyperDriveDetails.jumpFrames = DEFAULT_JUMP_FRAMES;
 	jumpDriveDetails.clear();
 	maxJumpRange = 0.;
 
@@ -280,8 +280,8 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 		if(!hyperDriveDetails.fuelCost || cost < hyperDriveDetails.fuelCost)
 		{
 			hyperDriveDetails.fuelCost = cost;
-			int frames = outfit.Get("jump time");
-			hyperDriveDetails.travelTime = frames > 0 ? frames : DEFAULT_JUMP_FRAMES;
+			int frames = outfit.Get("jump duration");
+			hyperDriveDetails.jumpFrames = frames > 0 ? frames : DEFAULT_JUMP_FRAMES;
 		}
 	}
 	if(outfit.Get("jump drive"))
@@ -290,7 +290,7 @@ void ShipJumpNavigation::ParseOutfit(const Outfit &outfit)
 		if(distance <= 0.)
 			distance = System::DEFAULT_NEIGHBOR_DISTANCE;
 		double cost = CalculateFuelCost(true);
-		int frames = outfit.Get("jump time");
+		int frames = outfit.Get("jump duration");
 
 		UpdateJumpDriveCosts(distance, {JumpType::JUMP_DRIVE, cost, frames > 0 ? frames : DEFAULT_JUMP_FRAMES});
 	}
@@ -311,7 +311,7 @@ void ShipJumpNavigation::UpdateJumpDriveCosts(double distance, const TravelDetai
 			return true;
 		// If the fuel cost is the same, pick the quicker travel time.
 		if(current.fuelCost == other.fuelCost)
-			return current.travelTime > other.travelTime;
+			return current.jumpFrames > other.jumpFrames;
 		return false;
 	};
 

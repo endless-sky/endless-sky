@@ -831,7 +831,7 @@ private:
 	const System *hyperspaceSystem = nullptr;
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
-	int hyperspaceTravelTime = 100;
+	int hyperspaceTravelFrames = 100;
 	Point hyperspaceOffset;
 
 	std::vector<Leak> leaks;
