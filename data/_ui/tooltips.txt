@@ -452,7 +452,7 @@ tip "scramble resistance heat:"
 	`Heat generated per second when resisting scrambling damage.`
 
 tip "jump speed:"
-	`The maximum velocity the ship can jump at.`
+	`The maximum velocity the ship can be moving at in order for a jump to be initiated.`
 
 tip "jump time:"
 	`After a jump into another system has been initiated, this is the amount of time it takes for the jump to occur.`
