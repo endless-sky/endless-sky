@@ -76,7 +76,8 @@ private:
 	// Class that supports a single assignment
 	class Assignment {
 	public:
-		Assignment(std::string conditionToAssignTo, AssignOp assignOperator, ConditionSet expressionToEvaluate);
+		Assignment(const std::string &conditionToAssignTo, AssignOp assignOperator,
+			const ConditionSet &expressionToEvaluate);
 
 
 	public:
@@ -88,7 +89,7 @@ private:
 
 private:
 	// A pointer to the ConditionsStore that this assignment is applied to.
-	const ConditionsStore *conditions;
+	const ConditionsStore *conditions = nullptr;
 
 	std::vector<Assignment> assignments;
 };

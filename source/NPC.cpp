@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "UI.h"
 
 #include <algorithm>
+#include <ranges>
 #include <vector>
 
 using namespace std;
@@ -219,7 +220,7 @@ void NPC::Load(const DataNode &node, const ConditionsStore *playerConditions,
 		{
 			if(child.HasChildren())
 			{
-				fleets.emplace_back(ExclusiveItem<Fleet>(Fleet(child)));
+				fleets.emplace_back(Fleet(child));
 				if(hasValue)
 				{
 					// Copy the custom fleet in lieu of reparsing the same DataNode.
@@ -307,8 +308,8 @@ void NPC::Save(DataWriter &out) const
 			out.EndChild();
 		}
 
-		for(auto &it : npcActions)
-			it.second.Save(out);
+		for(const auto &action : npcActions | views::values)
+			action.Save(out);
 
 		if(government)
 			out.Write("government", government->TrueName());
@@ -607,14 +608,14 @@ bool NPC::HasFailed() const
 	if(!passedSpawnConditions || passedDespawnConditions)
 		return false;
 
-	for(const auto &it : shipEvents)
+	for(const auto &event : shipEvents | views::values)
 	{
-		if(it.second & failIf)
+		if(event & failIf)
 			return true;
 
 		// If we still need to perform an action on this NPC, then that ship
 		// being destroyed should cause the mission to fail.
-		if((~it.second & succeedIf) && (it.second & ShipEvent::DESTROY))
+		if((~event & succeedIf) && (event & ShipEvent::DESTROY))
 			return true;
 	}
 
@@ -718,8 +719,8 @@ NPC NPC::Instantiate(const PlayerInfo &player, map<string, string> &subs, const 
 		result.conversation = ExclusiveItem<Conversation>(conversation->Instantiate(subs));
 
 	// Instantiate the actions.
-	for(const auto &it : npcActions)
-		result.npcActions[it.first] = it.second.Instantiate(subs, origin, jumps, payload);
+	for(const auto &[trigger, action] : npcActions)
+		result.npcActions[trigger] = action.Instantiate(subs, origin, jumps, payload);
 
 	return result;
 }
@@ -752,9 +753,9 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 
 	// Get the actions for the Triggers that could potentially run.
 	set<Trigger> triggers;
-	for(const auto &it : eventTriggers)
-		if(type & it.first)
-			triggers.insert(it.second.begin(), it.second.end());
+	for(const auto &[eventType, triggerActions] : eventTriggers)
+		if(type & eventType)
+			triggers.insert(triggerActions.begin(), triggerActions.end());
 
 	for(Trigger trigger : triggers)
 	{
@@ -789,7 +790,7 @@ void NPC::DoActions(const ShipEvent &event, bool newEvent, PlayerInfo &player, U
 		// The PROVOKE and ENCOUNTER Triggers only requires a single ship to receive the
 		// event in order to run. All other Triggers require that all ships
 		// be affected.
-		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || all_of(ships.begin(), ships.end(),
+		if(trigger == Trigger::ENCOUNTER || trigger == Trigger::PROVOKE || ranges::all_of(ships,
 				[&](const shared_ptr<Ship> &ship) -> bool
 				{
 					auto sit = shipEvents.find(ship.get());

@@ -43,7 +43,7 @@ public:
 	ConditionEntry &operator=(ConditionEntry &&) = delete;
 
 	const std::string &Name() const;
-	const std::string NameWithoutPrefix() const;
+	std::string NameWithoutPrefix() const;
 
 	// int64_t proxy helper functions. Those functions allow access to the conditions
 	// using `operator[]` on ConditionsStores or on ConditionsProviders.
@@ -58,13 +58,13 @@ public:
 	/// Configure entry for prefixed derived providing, with only a get function.
 	void ProvidePrefixed(std::function<int64_t(const ConditionEntry &)> getFunction);
 	/// Configure entry for prefixed derived providing, with a get and a set function.
-	void ProvidePrefixed(std::function<int64_t(const ConditionEntry &)> getFunction,
+	void ProvidePrefixed(const std::function<int64_t(const ConditionEntry &)> &getFunction,
 		std::function<void(ConditionEntry &, int64_t)> setFunction);
 
 	/// Configure entry for named derived providing, with only a get function.
 	void ProvideNamed(std::function<int64_t(const ConditionEntry &)> getFunction);
 	/// Configure entry for named derived providing, with a get and a set function.
-	void ProvideNamed(std::function<int64_t(const ConditionEntry &)> getFunction,
+	void ProvideNamed(const std::function<int64_t(const ConditionEntry &)> &getFunction,
 		std::function<void(ConditionEntry &, int64_t)> setFunction);
 
 	/// Notify all subscribed listeners that the value of the condition changed.

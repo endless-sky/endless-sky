@@ -39,7 +39,7 @@ void RaidFleet::Load(vector<RaidFleet> &raidFleets, const DataNode &node, bool r
 		auto fleetMatcher = [fleet](const RaidFleet &raidFleet) noexcept -> bool {
 			return raidFleet.GetFleet() == fleet;
 		};
-		raidFleets.erase(remove_if(raidFleets.begin(), raidFleets.end(), fleetMatcher), raidFleets.end());
+		raidFleets.erase(ranges::remove_if(raidFleets, fleetMatcher).begin(), raidFleets.end());
 	}
 	else
 		raidFleets.emplace_back(fleet,

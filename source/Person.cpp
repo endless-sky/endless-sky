@@ -154,7 +154,7 @@ bool Person::IsDestroyed() const
 
 
 // Mark this person as destroyed.
-void Person::Destroy()
+void Person::Destroy() const
 {
 	for(const shared_ptr<Ship> &ship : ships)
 		ship->Destroy();
@@ -163,7 +163,7 @@ void Person::Destroy()
 
 
 // Mark this person as no longer destroyed.
-void Person::Restore()
+void Person::Restore() const
 {
 	for(const shared_ptr<Ship> &ship : ships)
 	{
@@ -188,7 +188,7 @@ bool Person::IsPlaced() const
 
 
 // Mark this person as being no longer "placed" somewhere.
-void Person::ClearPlacement()
+void Person::ClearPlacement() const
 {
 	if(!IsDestroyed())
 		Restore();

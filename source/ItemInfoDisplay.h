@@ -58,7 +58,7 @@ protected:
 
 
 protected:
-	static const int WIDTH = 250;
+	static constexpr int WIDTH = 250;
 
 	WrappedText description;
 	int descriptionHeight = 0;

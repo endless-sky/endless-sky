@@ -30,12 +30,27 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	Point AlignText(Dropdown::ALIGN alignment, const Font &font, const Rectangle &pos, const string &s)
+	{
+		switch(alignment)
+		{
+			case Dropdown::LEFT:
+				return Point(pos.Left(), pos.Center().Y() - font.Height() / 2.0);
+			case Dropdown::RIGHT:
+				return Point(pos.Right() - font.Width(s), pos.Center().Y() - font.Height() / 2.0);
+			default:
+				return pos.Center() - Point(font.Width(s) / 2.0, font.Height() / 2.0);
+		}
+	}
+}
+
 
 
 Dropdown::Dropdown()
 {
 	SetTypeable(false);
-	SetRightPadding(Edit::RightPadding());
+	Dropdown::SetRightPadding(Edit::RightPadding());
 }
 
 
@@ -82,21 +97,6 @@ void Dropdown::SetOptions(const vector<string> &options)
 	else if(!options.empty())
 	{
 		SetSelectedIndex(0);
-	}
-}
-
-
-
-Point AlignText(Dropdown::ALIGN alignment, const Font &font, const Rectangle &pos, const string &s)
-{
-	switch(alignment)
-	{
-	case Dropdown::LEFT:
-		return Point(pos.Left(), pos.Center().Y() - font.Height() / 2.0);
-	case Dropdown::RIGHT:
-		return Point(pos.Right() - font.Width(s), pos.Center().Y() - font.Height() / 2.0);
-	default:
-		return pos.Center() - Point(font.Width(s) / 2.0, font.Height() / 2.0);
 	}
 }
 
@@ -178,7 +178,7 @@ void Dropdown::SetTypeable(bool t)
 
 void Dropdown::SetEnabled(bool e)
 {
-	// This defintion is intentionally masking the definition in the base class.
+	// This definition is intentionally masking the definition in the base class.
 	enabled = e;
 }
 

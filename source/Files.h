@@ -62,7 +62,7 @@ public:
 	static std::string Name(const std::filesystem::path &path);
 	static std::string NameNoExtension(const std::filesystem::path &path);
 	// Validate that a character is allowed in a filename.
-	static bool IsValidCharacter(char32_t ch);
+	static bool IsValidCharacter(char ch);
 	// Check if a filename is valid.
 	static bool IsValid(const std::string &filename);
 	static size_t MaxFilenameLength(const std::filesystem::path &base);
@@ -73,9 +73,9 @@ public:
 	// File IO.
 	static std::shared_ptr<std::iostream> Open(const std::filesystem::path &path, bool write = false);
 	static std::string Read(const std::filesystem::path &path);
-	static std::string Read(std::shared_ptr<std::iostream> file);
+	static std::string Read(const std::shared_ptr<std::iostream> &file);
 	static void Write(const std::filesystem::path &path, const std::string &data);
-	static void Write(std::shared_ptr<std::iostream> file, const std::string &data);
+	static void Write(const std::shared_ptr<std::iostream> &file, const std::string &data);
 	static void CreateFolder(const std::filesystem::path &path);
 
 	// Open this user's plugins directory in their native file explorer.

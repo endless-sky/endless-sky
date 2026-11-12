@@ -56,7 +56,7 @@ public:
 	bool ReorderShipsTo(int toIndex);
 
 	ShipComparator *CurrentSort() const;
-	void SetCurrentSort(ShipComparator *s);
+	void SetCurrentSort(ShipComparator *newSort);
 
 
 private:

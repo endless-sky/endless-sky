@@ -55,8 +55,8 @@ public:
 
 
 public:
-	void SetTargetShip(std::shared_ptr<Ship> ship);
-	void SetTargetAsteroid(std::shared_ptr<Minable> asteroid);
+	void SetTargetShip(const std::shared_ptr<Ship> &ship);
+	void SetTargetAsteroid(const std::shared_ptr<Minable> &asteroid);
 	void SetTargetPoint(const Point &point);
 	void SetTargetSystem(const System *system);
 	std::shared_ptr<Ship> GetTargetShip() const;

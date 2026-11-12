@@ -44,7 +44,7 @@ void Swizzle::Load(const DataNode &node)
 			{"blue", 2},
 			{"alpha", 3}
 		}};
-		auto channel = find_if(channels.cbegin(), channels.cend(), [key](const auto &kv)
+		auto channel = ranges::find_if(channels, [key](const auto &kv)
 		{
 			return kv.first == key;
 		});
@@ -141,7 +141,7 @@ const Swizzle *Swizzle::None()
 
 
 
-Swizzle::Swizzle(bool identity, bool loaded, bool overrideMask, array<float, 16> matrix)
+Swizzle::Swizzle(bool identity, bool loaded, bool overrideMask, const array<float, 16> &matrix)
 	: identity(identity), loaded(loaded), overrideMask(overrideMask), matrix(matrix)
 {
 }

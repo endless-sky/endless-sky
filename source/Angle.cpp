@@ -18,9 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "pi.h"
 #include "Random.h"
 
-#include <algorithm>
 #include <cmath>
-#include <cstdlib>
 #include <vector>
 
 using namespace std;
@@ -33,7 +31,7 @@ namespace {
 	constexpr int32_t STEPS = 0x10000;
 	constexpr int32_t MASK = STEPS - 1;
 	constexpr double DEG_TO_STEP = STEPS / 360.;
-	constexpr double STEP_TO_RAD = PI / (STEPS / 2);
+	constexpr double STEP_TO_RAD = PI / (STEPS / 2.);
 
 	vector<Point> InitUnitCache()
 	{
@@ -76,11 +74,11 @@ Angle Angle::Random(const double range)
 
 
 // Construct an Angle from the given angle in degrees.
-Angle::Angle(const double degrees) noexcept
-	: angle(llround(degrees * DEG_TO_STEP) & MASK)
+Angle::Angle(double degrees) noexcept
+	: angle(static_cast<int32_t>(llround(degrees * DEG_TO_STEP) & MASK))
 {
 	// Make sure llround does not overflow with the values of System::SetDate.
-	// "now" has 32 bit integer precision. "speed" and "offset" have floating
+	// "now" has 32-bit integer precision. "speed" and "offset" have floating
 	// point precision and should be in the range from -360 to 360.
 	static_assert(sizeof(long long) >= 8, "llround can overflow");
 }

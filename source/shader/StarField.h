@@ -54,8 +54,8 @@ private:
 
 
 private:
-	int widthMod;
-	int tileCols;
+	int widthMod = 0;
+	int tileCols = 0;
 	std::vector<int> tileIndex;
 
 	// Constants from an Interface that modify the starfield's behavior.
@@ -65,26 +65,26 @@ private:
 	Point pos;
 	double baseZoom = 1.;
 
-	double minZoom;
-	double zoomClamp;
-	double clampSlope;
+	double minZoom = 0.;
+	double zoomClamp = 0.;
+	double clampSlope = 0.;
 
 	// Track the haze sprite, so we can animate the transition between different hazes.
-	const Sprite *lastSprite;
+	const Sprite *lastSprite = nullptr;
 	mutable double transparency = 0.;
 	std::vector<Body> haze[2];
 
-	const Shader *shader;
-	GLuint vao;
-	GLuint vbo;
+	const Shader *shader = nullptr;
+	GLuint vao = 0;
+	GLuint vbo = 0;
 
-	GLuint offsetI;
-	GLuint sizeI;
-	GLuint cornerI;
+	GLuint offsetI = 0;
+	GLuint sizeI = 0;
+	GLuint cornerI = 0;
 
-	GLuint scaleI;
-	GLuint rotateI;
-	GLuint elongationI;
-	GLuint translateI;
-	GLuint brightnessI;
+	GLint scaleI = 0;
+	GLint rotateI = 0;
+	GLint elongationI = 0;
+	GLint translateI = 0;
+	GLint brightnessI = 0;
 };

@@ -208,7 +208,7 @@ void FormationPattern::Load(const DataNode &node)
 				else if(grandKey == "angle" && grandHasValue && line.isArc)
 					line.angle = grand.Value(1);
 				else if(grandKey == "positions" && grandHasValue)
-					line.positions = static_cast<int>(grand.Value(1) + 0.5);
+					line.positions = grand.Value(1);
 				else if(grandKey == "skip")
 				{
 					for(int i = 1; i < grand.Size(); ++i)
@@ -237,7 +237,7 @@ void FormationPattern::Load(const DataNode &node)
 						else if(greatKey == "angle" && greatHasValue && line.isArc)
 							repeat.repeatAngle = great.Value(1);
 						else if(greatKey == "positions" && greatHasValue)
-							repeat.repeatPositions = static_cast<int>(great.Value(1) + 0.5);
+							repeat.repeatPositions = great.Value(1);
 						else
 							great.PrintTrace("Skipping unrecognized attribute:");
 					}
@@ -330,7 +330,7 @@ unsigned int FormationPattern::Positions(unsigned int ring, unsigned int lineNr,
 
 // Get a formation position based on ring, line (or arc)-number and position on the line.
 Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigned int repeatNr,
-	unsigned int linePosition) const
+	unsigned int lineRepeatPosition) const
 {
 	// First check if the inputs result in a valid line or arc position.
 	if(lineNr >= lines.size())
@@ -357,7 +357,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 	}
 
 	if(line.skipFirst)
-		++linePosition;
+		++lineRepeatPosition;
 
 	// Switch to arc-specific calculations if this line is an arc.
 	if(line.isArc)
@@ -374,7 +374,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		// Apply positions to get the correct position-angle.
 		if(positions > 1)
 			endAngle /= positions - 1;
-		double positionAngle = startAngle + endAngle * linePosition;
+		double positionAngle = startAngle + endAngle * lineRepeatPosition;
 
 		// Get into the range of 0 to 360 for conversion to angle.
 		if(positionAngle < 0)
@@ -396,7 +396,7 @@ Point FormationPattern::Position(unsigned int ring, unsigned int lineNr, unsigne
 		positionPx /= positions - 1;
 
 	// Calculate position in the formation based on the position in the line.
-	return startPx + positionPx * linePosition;
+	return startPx + positionPx * lineRepeatPosition;
 }
 
 

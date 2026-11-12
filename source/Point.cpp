@@ -360,7 +360,7 @@ double Point::DistanceSquared(const Point &point) const
 
 
 
-Point Point::Lerp(const Point &to, const double c) const
+Point Point::Lerp(const Point &to, double c) const
 {
 	return *this + (to - *this) * c;
 }

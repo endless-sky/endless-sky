@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "WeightedList.h"
 
-#include <functional>
 #include <string>
 #include <utility>
 #include <vector>
@@ -48,7 +47,7 @@ public:
 
 
 private:
-	bool ReferencesPhrase(const Phrase *phrase) const;
+	bool ReferencesPhrase(const Phrase *other) const;
 
 
 private:

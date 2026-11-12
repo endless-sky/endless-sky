@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "ScrollBar.h"
 #include "Tooltip.h"
 
+#include <cstdint>
 #include <memory>
 #include <string>
 #include <vector>
@@ -124,7 +125,7 @@ private:
 	bool CanAttack() const;
 
 	// Handle the keyboard scrolling and selection in the panel list.
-	void DoKeyboardNavigation(const SDL_Keycode key);
+	void DoKeyboardNavigation(SDL_Keycode key);
 
 	void AddMessage(const std::string &message);
 

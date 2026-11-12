@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <array>
 #include <cctype>
 #include <cmath>
-#include <cstring>
 #include <functional>
 #include <sstream>
 #include <unordered_set>
@@ -32,7 +31,7 @@ namespace {
 	// The greatest number displayed without switching to scientific notation.
 	constexpr int64_t SCIENTIFIC_THRESHOLD = 1e15;
 	constexpr int64_t K = 1000;
-	static const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
+	const vector<pair<const char *, int64_t>> WORD_NUMBERS = {
 		{ "quintillion", K * K * K * K * K * K },
 		{ "quadrillion", K * K * K * K * K },
 		{ "trillion", K * K * K * K },
@@ -40,13 +39,13 @@ namespace {
 		{ "million", K * K },
 		{ "thousand", K }
 	};
-	static const vector<const char *> ONES_NAMES = {
+	const vector<const char *> ONES_NAMES = {
 		"zero ", "one ", "two ", "three ", "four ", "five ",
 		"six ", "seven ", "eight ", "nine ", "ten ", "eleven ",
 		"twelve ", "thirteen ", "fourteen ", "fifteen ",
 		"sixteen ", "seventeen ", "eighteen ", "nineteen "
 	};
-	static const vector<const char *> TENS_NAMES = {
+	const vector<const char *> TENS_NAMES = {
 		"error", "error", "twenty", "thirty", "forty",
 		"fifty", "sixty", "seventy", "eighty", "ninety"
 	};
@@ -67,12 +66,12 @@ namespace {
 		Wrapped remaining { num };
 
 		if(remaining.value >= 1000)
-			for(auto &nameValue : WORD_NUMBERS)
-				if(remaining.value >= nameValue.second)
+			for(const auto &[name, value] : WORD_NUMBERS)
+				if(remaining.value >= value)
 				{
-					Wrapped above { remaining.value / nameValue.second };
-					remaining.value %= nameValue.second;
-					o << above << nameValue.first;
+					Wrapped above { remaining.value / value };
+					remaining.value %= value;
+					o << above << name;
 					if(!remaining.value)
 						return o;
 					o << ' ';
@@ -111,8 +110,8 @@ namespace {
 				break;
 			if(below)
 				continue;
-			const size_t BUFLEN = 100;
-			char buf[BUFLEN] = { 0 };
+			constexpr size_t BUFLEN = 100;
+			char buf[BUFLEN] = {};
 			snprintf(buf, BUFLEN, "%s%.3f %s",
 				negative ? "negative " : "", above / 1000.0, WORD_NUMBERS[magnitude].first);
 			buf[BUFLEN - 1] = '\0';
@@ -138,7 +137,7 @@ namespace {
 		if(isNegative)
 			result += '-';
 
-		reverse(result.begin(), result.end());
+		ranges::reverse(result);
 	}
 
 	// Format the decimal places of a double value, up to a given number of decimal places, and with
@@ -180,22 +179,21 @@ namespace {
 			digits[i] = digit;
 		}
 		// Append the digits to the result.
-		result += ".";
+		result += '.';
 		for(int i = 0; i < places; ++i)
 			result += to_string(digits[i]);
 		// Trim trailing zeros if desired.
 		if(trimTrailingZeros)
 		{
-			while(result.ends_with("0"))
+			while(result.ends_with('0'))
 				result.pop_back();
 			// Pop the decimal separator if that's all that's left.
-			if(result.ends_with("."))
+			if(result.ends_with('.'))
 				result.pop_back();
 		}
 	}
 
-	string StringSubstituter(const string &source,
-			function<const string *(const string &)> SubstitutionFor)
+	string StringSubstituter(const string &source, const function<const string *(const string &)> &SubstitutionFor)
 	{
 		string target;
 		target.reserve(source.length());
@@ -255,7 +253,7 @@ namespace {
 			if(hasResult != result.end())
 				return &hasResult->second;
 			// Refuse to traverse a cycle in the graph.
-			if(keysBeingExpanded.find(request) != keysBeingExpanded.end())
+			if(keysBeingExpanded.contains(request))
 				return nullptr;
 			auto hasSource = source.find(request);
 			// Undefined key.
@@ -463,8 +461,8 @@ string Format::PlayTime(double timeVal)
 {
 	string result;
 	int timeValFormat = 0;
-	static const array<char, 5> SUFFIX = {'s', 'm', 'h', 'd', 'y'};
-	static const array<int, 4> PERIOD = {60, 60, 24, 365};
+	static constexpr array<char, 5> SUFFIX = {'s', 'm', 'h', 'd', 'y'};
+	static constexpr array<int, 4> PERIOD = {60, 60, 24, 365};
 
 	timeValFormat = max(0., timeVal);
 	// Break time into larger and larger units until the largest one, or the value is empty
@@ -481,7 +479,7 @@ string Format::PlayTime(double timeVal)
 		i++;
 	} while (timeValFormat && i < SUFFIX.size());
 
-	reverse(result.begin(), result.end());
+	ranges::reverse(result);
 	return result;
 }
 
@@ -493,7 +491,7 @@ string Format::TimestampString(chrono::time_point<chrono::system_clock> time, bo
 	time_t timestamp = chrono::system_clock::to_time_t(time);
 
 	const char *format = ignorePreferences ? DEFAULT_TIMESTAMP_FORMAT : TimestampFormatString();
-	static const size_t BUF_SIZE = 28;
+	static constexpr size_t BUF_SIZE = 28;
 	char str[BUF_SIZE];
 
 #ifdef _MSC_VER
@@ -556,7 +554,7 @@ string Format::AmmoCount(int64_t value)
 				result += '0' + head % 10;
 				head /= 10;
 			} while(head > 0);
-			reverse(result.begin(), result.end());
+			ranges::reverse(result);
 			switch(result.length())
 			{
 				case 1:
@@ -682,7 +680,7 @@ string Format::WordForm(int64_t value, bool startOfSentence)
 	ostringstream o;
 	o << Wrapped { value };
 	string result = o.str();
-	if(result.size() > 0 && result[result.size() - 1] == ' ')
+	if(!result.empty() && result[result.size() - 1] == ' ')
 		result.resize(result.size() - 1);
 	if(!result.empty() && startOfSentence && result[0] >= 'a' && result[0] <= 'z')
 		result[0] -= 32;
@@ -817,7 +815,7 @@ void Format::Expand(map<string, string> &keys)
 	map<string, string> newKeys;
 	unordered_set<string> keysBeingExpanded;
 	for(auto it = keys.begin(); it != keys.end(); ++it)
-		if(newKeys.find(it->first) == newKeys.end())
+		if(!newKeys.contains(it->first))
 			ExpandInto(it->first, it->second, keys, newKeys, keysBeingExpanded);
 	keys.swap(newKeys);
 }
@@ -929,12 +927,12 @@ string Format::ExpandConditions(const string &source, const ConditionGetter &get
 
 	// Anything inside a &[...] is sent to AppendCondition
 
-	static const char OUTER = '_';
-	static const char PREFIX = '&';
-	static const char LPAREN = '[';
-	static const char RPAREN = ']';
-	static const char DIVIDER = '@';
-	static const char NESTED = 'N';
+	static constexpr char OUTER = '_';
+	static constexpr char PREFIX = '&';
+	static constexpr char LPAREN = '[';
+	static constexpr char RPAREN = ']';
+	static constexpr char DIVIDER = '@';
+	static constexpr char NESTED = 'N';
 
 	char state = OUTER;
 	// Depth of nested [] within the &[...]
@@ -1018,7 +1016,7 @@ string Format::ExpandConditions(const string &source, const ConditionGetter &get
 
 int Format::Search(const string &str, const string &sub)
 {
-	auto it = search(str.begin(), str.end(), sub.begin(), sub.end(),
-		[](unsigned char a, unsigned char b) { return toupper(a) == toupper(b); });
-	return (it == str.end() ? -1 : it - str.begin());
+	auto it = ranges::search(str, sub,
+		[](unsigned char a, unsigned char b) { return toupper(a) == toupper(b); }).begin();
+	return (it == str.end() ? -1 : static_cast<int>(it - str.begin()));
 }

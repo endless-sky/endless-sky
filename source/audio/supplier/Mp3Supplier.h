@@ -25,7 +25,7 @@ public:
 	explicit Mp3Supplier(std::shared_ptr<std::iostream> data, bool looping = false);
 
 
-private:
+protected:
 	/// This is the entry point for the decoding thread.
 	void Decode() override;
 };

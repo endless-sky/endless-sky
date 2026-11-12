@@ -52,7 +52,7 @@ namespace {
 	}
 
 	// These values are paired with Distribution::Types; any change in one should be made in the other.
-	const double SMOOTHNESS_TABLE[] = {.13, .234, .314};
+	constexpr double SMOOTHNESS_TABLE[] = {.13, .234, .314};
 }
 
 

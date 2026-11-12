@@ -72,7 +72,7 @@ bool Bitset::Test(size_t index) const noexcept
 {
 	const auto blockIndex = index / BITS_PER_BLOCK;
 	const auto pos = index % BITS_PER_BLOCK;
-	return bits[blockIndex] & (uint64_t(1) << pos);
+	return bits[blockIndex] & (static_cast<uint64_t>(1) << pos);
 }
 
 
@@ -82,7 +82,7 @@ void Bitset::Set(size_t index) noexcept
 {
 	const auto blockIndex = index / BITS_PER_BLOCK;
 	const auto pos = index % BITS_PER_BLOCK;
-	bits[blockIndex] |= (uint64_t(1) << pos);
+	bits[blockIndex] |= (static_cast<uint64_t>(1) << pos);
 }
 
 
@@ -91,7 +91,7 @@ void Bitset::Set(size_t index) noexcept
 void Bitset::Reset() noexcept
 {
 	for(auto &it : bits)
-		it = uint64_t(0);
+		it = static_cast<uint64_t>(0);
 }
 
 

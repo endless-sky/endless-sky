@@ -54,7 +54,7 @@ void Variant::Load(const DataNode &node)
 bool Variant::IsValid() const
 {
 	// At least one valid ship is enough to make the variant valid.
-	if(any_of(ships.begin(), ships.end(),
+	if(ranges::any_of(ships,
 			[](const Ship *const s) noexcept -> bool { return s->IsValid(); }))
 		return true;
 

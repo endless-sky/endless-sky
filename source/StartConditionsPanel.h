@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Information.h"
 #include "Point.h"
 #include "Rectangle.h"
-#include "text/WrappedText.h"
 
 #include <vector>
 

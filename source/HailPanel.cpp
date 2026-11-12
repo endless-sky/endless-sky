@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Politics.h"
 #include "Preferences.h"
 #include "Ship.h"
-#include "image/Sprite.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "TextArea.h"

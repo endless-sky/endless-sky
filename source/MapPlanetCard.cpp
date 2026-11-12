@@ -169,9 +169,9 @@ pair<MapPlanetCard::ClickAction, optional<unsigned>> MapPlanetCard::Hover(const 
 		else
 			hoverAction = ClickAction::SELECTED;
 
-		static const int SHOW[5] = {MapPanel::SHOW_GOVERNMENT, MapPanel::SHOW_REPUTATION,
-									MapPanel::SHOW_SHIPYARD, MapPanel::SHOW_OUTFITTER,
-									MapPanel::SHOW_VISITED};
+		static constexpr int SHOW[5] = {MapPanel::SHOW_GOVERNMENT, MapPanel::SHOW_REPUTATION,
+			MapPanel::SHOW_SHIPYARD, MapPanel::SHOW_OUTFITTER,
+			MapPanel::SHOW_VISITED};
 		if(hoverCategory.has_value())
 			// If there are no governments shown, the first category is the reputation.
 			hoverAction = static_cast<ClickAction>(SHOW[*hoverCategory + !hasGovernments]);

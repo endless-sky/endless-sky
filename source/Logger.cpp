@@ -47,7 +47,7 @@ Logger::Session::Session(bool quiet)
 #ifdef _WIN32
 	message += WinVersion::ToString() + '.';
 #else
-	utsname uName;
+	utsname uName{};
 	uname(&uName);
 	message += string(uName.sysname) + ' ' + uName.release + ' ' + uName.version + '.';
 #endif
