@@ -3679,51 +3679,84 @@ bool AI::DoSecretive(Ship &ship, Command &command) const
 
 
 
-// Instead of coming to a full stop, adjust to a target velocity vector
+// Instead of coming to a full stop, adjust to a target velocity vector.
 Point AI::StoppingPoint(const Ship &ship, const Point &targetVelocity, bool &shouldReverse)
 {
 	Point position = ship.Position();
 	Point velocity = ship.Velocity() - targetVelocity;
-	Angle angle = ship.Facing();
-	double acceleration = ship.CrewAcceleration();
-	double turnRate = ship.CrewTurnRate();
+	double maxVelocity = ship.MaxVelocity();
 	shouldReverse = false;
 
 	// If I were to turn around and stop now the relative movement, where would that put me?
 	double v = velocity.Length();
 	if(!v)
 		return position;
-	// It makes no sense to calculate a stopping point for a ship entering hyperspace.
 	if(ship.IsHyperspacing())
 	{
+		// It makes no sense to calculate a stopping point for a ship entering hyperspace.
 		if(ship.IsUsingJumpDrive() || ship.IsEnteringHyperspace())
 			return position;
 
-		double maxVelocity = ship.MaxVelocity();
-		double jumpTime = (v - maxVelocity) / 2.;
-		position += velocity.Unit() * (jumpTime * (v + maxVelocity) * .5);
-		v = maxVelocity;
+		// Calculate where the ship will be after it finishes exiting hyperspace.
+		double exitVelocity = ship.InertialessMovement() ? 2. : maxVelocity;
+		double jumpTime = (v - exitVelocity) / 2.;
+		position += velocity.Unit() * (jumpTime * (v + exitVelocity) * .5);
+		v = exitVelocity;
 	}
 
-	// This assumes you're facing exactly the wrong way.
-	double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
-	double stopDistance = v * (degreesToTurn / turnRate);
-	// Sum of: v + (v - a) + (v - 2a) + ... + 0.
-	// The number of terms will be v / a.
-	// The average term's value will be v / 2. So:
-	stopDistance += .5 * v * v / acceleration;
-
-	if(ship.ReverseThrust())
+	double stopDistance = 0.;
+	// Account for piloting errors caused by low crew and slowing.
+	// Note that slowing degrades with time and this is using the amount of slowing right now, so this over-estimates
+	// the stopping distance at this moment.
+	double movementModifier = ship.CrewErrorRate() * ship.SlownessModifier();
+	if(ship.InertialessMovement())
 	{
-		// Figure out your reverse thruster stopping distance:
-		double reverseAcceleration = ship.ReverseThrust() / ship.InertialMass();
-		double reverseDistance = v * (180. - degreesToTurn) / turnRate;
-		reverseDistance += .5 * v * v / reverseAcceleration;
-
-		if(reverseDistance < stopDistance)
+		// Inertialess ships just need to throttle their thrust down until reaching the target velocity.
+		double throttle = ship.InertialessThrottle();
+		double targetThrottle = targetVelocity.Length() / maxVelocity;
+		double brakingStep = ship.InertialessThrottleStep(true) * movementModifier;
+		if(throttle > targetThrottle)
 		{
 			shouldReverse = true;
-			stopDistance = reverseDistance;
+			// Determine the number of frames that must be spent braking and the average distance
+			// traveled during each of those frames
+			int brakeFrames = ceil((throttle - targetThrottle) / -brakingStep);
+			// Frame 1 of braking the throttle will be `throttle - brakingStep`.
+			// Frame <brakeFrames> of breaking the throttle will be `throttle - brakingStep * brakeFrames`.
+			// Average = `(Frame 1 + frame <brakeFrames>) / 2`, which simplifies to this after expanding out the terms:
+			double averageThrottle = throttle - (brakeFrames + 1) * .5 * -brakingStep;
+			stopDistance = maxVelocity * averageThrottle * brakeFrames;
+		}
+	}
+	else
+	{
+		// Note that the acceleration and turn rate used here assume no slowness stacks on the given ship.
+		double acceleration = ship.Acceleration() * movementModifier;
+		double turnRate = ship.TurnRate() * movementModifier;
+		Angle angle = ship.Facing();
+
+		// Ships with normal thrusters need to either turn opposite their direction of travel
+		// to slow down with their main thrusters, or turn toward their direction of travel
+		// to use reverse thrusters.
+		// This assumes you're facing exactly the wrong way.
+		double degreesToTurn = TO_DEG * acos(min(1., max(-1., -velocity.Unit().Dot(angle.Unit()))));
+		stopDistance = v * (degreesToTurn / turnRate);
+		// Sum of: v + (v - a) + (v - 2a) + ... + 0.
+		// The number of terms will be v / a.
+		// The average term's value will be v / 2. So:
+		stopDistance += .5 * v * v / acceleration;
+
+		if(ship.ReverseThrust())
+		{
+			// Figure out your reverse thruster stopping distance:
+			double reverseDistance = v * (180. - degreesToTurn) / turnRate;
+			reverseDistance += .5 * v * v / (ship.ReverseAcceleration() * movementModifier);
+
+			if(reverseDistance < stopDistance)
+			{
+				shouldReverse = true;
+				stopDistance = reverseDistance;
+			}
 		}
 	}
 

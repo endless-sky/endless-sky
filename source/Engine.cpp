@@ -77,6 +77,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <ranges>
 #include <string>
 
 using namespace std;
@@ -982,31 +983,32 @@ void Engine::Step(bool isActive)
 				info.SetString("target gun", to_string(gunRange) + " ");
 			}
 			const bool mobilityScan = hasManeuver || hasVelocity || hasAcceleration;
+			double slownessModifier = target->SlownessModifier();
 			if((hasCrew && hasManeuver && scrutable)
 				|| (hasAcceleration && scrutable)
 				|| (mobilityScan && hasCrew && target->IsYours()))
 			{
 				info.SetCondition("turn while combined");
-				int turnRate = round(60 * target->TrueTurnRate());
+				int turnRate = round(60 * target->TurnRate() * slownessModifier);
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
 			else if((hasCrew && hasManeuver && scrutable)
 				|| (hasManeuver && target->IsYours() && !hasTactical && !hasCrew))
 			{
 				info.SetCondition("turn while not combined");
-				int turnRate = round(60 * target->TrueTurnRate());
+				int turnRate = round(60 * target->TurnRate() * slownessModifier);
 				info.SetString("target turnrate", to_string(turnRate) + " ");
 			}
 			if(hasAcceleration && (scrutable || target->IsYours()))
 			{
 				info.SetCondition("target velocity display");
-				int presentSpeed = round(60 * target->CurrentSpeed());
+				int presentSpeed = round(60 * target->Velocity().Length());
 				info.SetString("target velocity", to_string(presentSpeed) + " ");
 			}
 			if(hasVelocity && (scrutable || target->IsYours()))
 			{
 				info.SetCondition("target acceleration display");
-				int presentAcceleration = 3600 * target->TrueAcceleration();
+				int presentAcceleration = 3600 * target->Acceleration() * slownessModifier;
 				info.SetString("target acceleration", to_string(presentAcceleration) + " ");
 			}
 		}
@@ -1723,29 +1725,49 @@ void Engine::CalculateStep()
 		draw[currentCalcBuffer].Add(*it);
 	// Draw the ships. Skip the flagship, then draw it on top of all the others.
 	bool showFlagship = false;
+	auto PlayThrustSounds = [](const Ship *ship, bool usePosition) -> void {
+		// TODO: It'd be nice if the throttle changed the volume of the engine sound, but
+		//  sound volume is currently only tied to the sound category.
+		if((ship->IsThrusting() || ship->InertialessThrottle()) && !ship->EnginePoints().empty())
+		{
+			for(const auto &sound : ship->Attributes().FlareSounds() | views::keys)
+			{
+				if(usePosition)
+					Audio::Play(sound, ship->Position(), SoundCategory::ENGINE);
+				else
+					Audio::Play(sound, SoundCategory::ENGINE);
+			}
+		}
+		else if(ship->IsReversing() && !ship->ReverseEnginePoints().empty())
+		{
+			for(const auto &sound : ship->Attributes().ReverseFlareSounds() | views::keys)
+			{
+				if(usePosition)
+					Audio::Play(sound, ship->Position(), SoundCategory::ENGINE);
+				else
+					Audio::Play(sound, SoundCategory::ENGINE);
+			}
+		}
+		if(ship->IsSteering() && !ship->SteeringEnginePoints().empty())
+		{
+			for(const auto &sound : ship->Attributes().SteeringFlareSounds() | views::keys)
+			{
+				if(usePosition)
+					Audio::Play(sound, ship->Position(), SoundCategory::ENGINE);
+				else
+					Audio::Play(sound, SoundCategory::ENGINE);
+			}
+		}
+	};
+
 	for(const shared_ptr<Ship> &ship : ships)
 		if(ship->GetSystem() == playerSystem && ship->HasSprite())
 		{
 			if(ship.get() != flagship)
 			{
 				ship->Draw(draw[currentCalcBuffer], visuals);
-				if(timePaused)
-					continue;
-				if(ship->IsThrusting() && !ship->EnginePoints().empty())
-				{
-					for(const auto &it : ship->Attributes().FlareSounds())
-						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
-				}
-				else if(ship->IsReversing() && !ship->ReverseEnginePoints().empty())
-				{
-					for(const auto &it : ship->Attributes().ReverseFlareSounds())
-						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
-				}
-				if(ship->IsSteering() && !ship->SteeringEnginePoints().empty())
-				{
-					for(const auto &it : ship->Attributes().SteeringFlareSounds())
-						Audio::Play(it.first, ship->Position(), SoundCategory::ENGINE);
-				}
+				if(!timePaused)
+					PlayThrustSounds(ship.get(), true);
 			}
 			else
 				showFlagship = true;
@@ -1754,23 +1776,7 @@ void Engine::CalculateStep()
 	if(flagship && showFlagship)
 		flagship->Draw(draw[currentCalcBuffer], visuals);
 	if(!timePaused && flagship && showFlagship)
-	{
-		if(flagship->IsThrusting() && !flagship->EnginePoints().empty())
-		{
-			for(const auto &it : flagship->Attributes().FlareSounds())
-				Audio::Play(it.first, SoundCategory::ENGINE);
-		}
-		else if(flagship->IsReversing() && !flagship->ReverseEnginePoints().empty())
-		{
-			for(const auto &it : flagship->Attributes().ReverseFlareSounds())
-				Audio::Play(it.first, SoundCategory::ENGINE);
-		}
-		if(flagship->IsSteering() && !flagship->SteeringEnginePoints().empty())
-		{
-			for(const auto &it : flagship->Attributes().SteeringFlareSounds())
-				Audio::Play(it.first, SoundCategory::ENGINE);
-		}
-	}
+		PlayThrustSounds(flagship, false);
 	// Draw the projectiles.
 	for(const Projectile &projectile : projectiles)
 		batchDraw[currentCalcBuffer].Add(projectile, projectile.Clip());

@@ -136,10 +136,17 @@ namespace {
 		{"turning energy", 0},
 		{"turning fuel", 0},
 		{"turning heat", 0},
+		{"inertialess flight shields", 0},
+		{"inertialess flight hull", 0},
+		{"inertialess flight energy", 0},
+		{"inertialess flight fuel", 0},
+		{"inertialess flight heat", 0},
 
 		{"thrust", 1},
 		{"reverse thrust", 1},
 		{"afterburner thrust", 1},
+		{"inertialess thrust", 1},
+		{"inertialess braking", 1},
 
 		{"afterburner discharge", 2},
 		{"afterburner corrosion", 2},
@@ -176,6 +183,15 @@ namespace {
 		{"turning burn", 2},
 		{"turning slowing", 2},
 		{"turning disruption", 2},
+
+		{"inertialess flight discharge", 2},
+		{"inertialess flight corrosion", 2},
+		{"inertialess flight ion", 2},
+		{"inertialess flight scramble", 2},
+		{"inertialess flight leakage", 2},
+		{"inertialess flight burn", 2},
+		{"inertialess flight slowing", 2},
+		{"inertialess flight disruption", 2},
 
 		{"ion resistance", 2},
 		{"scramble resistance", 2},
@@ -258,6 +274,8 @@ namespace {
 		{"can jettison", "Can be jettisoned while installed."},
 		{"unremovable", "Can't be removed once installed."},
 		{"nondepreciable", "Doesn't lose value with age."},
+		{"instant braking", "Allows you to stop instantaneously."},
+		{"immovable", "Prevents being moved by external forces."},
 	};
 
 	bool IsNotRequirement(const string &label)

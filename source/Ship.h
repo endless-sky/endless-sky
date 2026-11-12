@@ -467,19 +467,20 @@ public:
 	double Mass() const override;
 	double InertialMass() const;
 	double TurnRate() const;
-	double Acceleration() const;
 	double MaxVelocity(bool withAfterburner = false) const;
-	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
-	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
-	double TrueAcceleration() const;
-	double TrueTurnRate() const;
-	// These two values are the ship's effective maximum acceleration and turn rate,
-	// accounting for the effects of insufficient crew.
-	double CrewAcceleration() const;
-	double CrewTurnRate() const;
-	// The ship's current speed right now
-	double CurrentSpeed() const;
+	double Acceleration() const;
+	double ReverseAcceleration() const;
+	double ReverseThrust() const;
+	// The rate at which low crew will cause piloting errors.
+	// Used for estimating movement under the influence of low crew.
+	double CrewErrorRate() const;
+	// The reduction in this ship's acceleration and turn rate caused by accrued slowing.
+	double SlownessModifier() const;
+	// Inertialess flight characteristics:
+	bool InertialessMovement() const;
+	double InertialessThrottle() const;
+	double InertialessThrottleStep(bool isBraking) const;
 
 	double ThrustHeldFraction(ThrustKind kind) const;
 	uint8_t ThrustHeldFrames(ThrustKind kind) const;
@@ -601,7 +602,6 @@ public:
 	bool Inscrutable() const;
 	bool CanCommunicateWhileCloaked() const;
 
-	double ReverseThrust() const;
 	// Whether this ship has an afterburner installed and it can be used. Does not consider
 	// the resource cost of using the afterburner.
 	bool CanUseAfterburner() const;
@@ -824,6 +824,15 @@ private:
 	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
+	// If the ship uses inertialess thrust, this is how much throttle is currently applied.
+	// A value from 0 to 1 measuring how much of the maximum velocity should be applied
+	// to the ship in its facing direction.
+	double inertialessThrottle = 0.;
+	// Each frame that inertialess thrust is provided, the influence of inertialess thrust
+	// from the prior frame is removed before re-adding it with the latest facing angle.
+	// This step is skipped if there was no inertialess thrust added in the previous frame,
+	// such as when taking off from a planet or exiting hyperspace.
+	bool negateThrottle = false;
 	// The amount of time in frames that an engine has been on for.
 	std::array<uint8_t, 4> thrustHeldFrames = {};
 
