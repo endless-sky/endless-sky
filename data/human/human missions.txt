@@ -11825,7 +11825,7 @@ mission "Silver Talon 1"
 		"combat rating" >= 80
 	on offer
 		conversation
-			`Walking through the spaceport, you are flagged down by a very short woman holding the largest bazooka you've ever seen, who is sitting on a box labeled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and wearing a pin displaying a small silver eagle talon.`
+			`Walking through the spaceport, you are flagged down by a very short woman holding the largest bazooka you've ever seen, who is sitting on a box labeled "Explosive! Corrosive! Flammable! Extremely Toxic! Handle With Car!" and wearing a silver pin in the shape of a small eagle talon.`
 			choice
 				`	(See what she wants.)`
 				`	(Ignore her.)`
@@ -11883,7 +11883,7 @@ mission "Silver Talon 1"
 					goto killers
 			
 			label payment
-			`	"Always the businessperson, I see. Payment is <payment> credits set aside in a numbered transfer account effective immediately upon your acceptance of the job, and automatically delivered to you upon our arrival on <planet>. If our job is successful, you will receive a 15% share in the bounty, or approximately four hundred thousand credits. If the job fails, naturally you won't receive that amount but you will earn <payment> for getting us off planet as quickly as possible. Sounds good?"`
+			`	"Always the businessperson, I see. Payment is <payment> set aside in a numbered transfer account effective immediately upon your acceptance of the job, and automatically delivered to you upon our arrival on <planet>. If our job is successful, you will receive a 15% share in the bounty, or approximately four hundred thousand credits. If the job fails, naturally you won't receive that amount, but you will earn <payment> for getting us off planet as quickly as possible. Sounds good?"`
 			choice
 				`	"Sure! I'm in."`
 					goto in
@@ -12024,7 +12024,7 @@ mission "Silver Talon 2"
 					goto thanks
 				`	"I can't take this."`
 
-			`	Cerridwyn becomes much firmer. "You can, and will, <first> <last>. If you hadn't flown us out of there like that - or, if you had left an hour earlier - we'd all be dead. It's the least we can do."`
+			`	Cerridwyn becomes much firmer. "You can, and will, <first> <last>. If you hadn't flown us out of there like that - or if you had left an hour earlier - we'd all be dead. It's the least we can do."`
 			label thanks
 			`	The payment made, Cerridwyn suddenly seems to collapse in front of your eyes. Picking up her bazooka, she slings it silently over her shoulder and wanders off aimlessly into the spaceport. Klaus and Pict follow close behind, carrying the rest of the bounty hunters' gear.`
 			`	Dagger, a crutch under his arm, stumbles after his companions but stops when he sees you watching. "Y'know, cap'n," he mutters, obviously very drunk and speaking slowly, "This ain't over. We'll see Vlad Blaire ded yet for 'is crimes. And I tell yuh, we cud shure use yur 'elp. Whaddayuh say yuh join us a'the spacepurt bahr in an hour?"`
@@ -12183,7 +12183,7 @@ mission "Silver Talon 3"
 		fleet "Small Southern Pirates" 6
 	npc
 		government "Pirate"
-		personality hunting vindictive opportunistic coward launching target
+		personality hunting vindictive opportunistic launching target
 			confusion 10
 		ship "Hawk" "Charon's Watchman"
 	
@@ -12231,14 +12231,7 @@ mission "Silver Talon 4"
 	
 	npc board
 		government "Pirate"
-		personality
-			"hunting"
-			"vindictive"
-			"opportunistic"
-			"entering"
-			"staying"
-			"target"
-			"marked"
+		personality hunting vindictive opportunistic entering staying target
 			confusion 5
 		ship "Leviathan" "Baron's Cave"
 		conversation
@@ -12305,7 +12298,7 @@ mission "Pict's Legacy 1"
 		has "strafed miyano's hovercraft"
 	on offer
 		conversation
-			`You're sitting at the spaceport bar watching some hovercraft racing, when all of a sudden you receive a voice message.`
+			`You're sitting at the spaceport bar watching a hovercraft race when you receive a voice message.`
 			`	"Captain <last>, I can't tell you how glad I am that you're here on Hermes. I need you to meet me at 45 Impala Street, as fast as you can. Please, captain, my life depends on it."`
 			`	The voice is unfamiliar at first, but it doesn't take long to recognize: it belongs to Pict, the enigmatic soldier who helped Cerridwyn Morgan hunt down and kill Vlad Blaire.`
 			choice
@@ -12402,7 +12395,7 @@ mission "Pict's Legacy 1"
 			`	"You mean Pict?" you reply.`
 
 			label knock
-			`	Suddenly, someone knocks loudly on the door. Your interrogator gestures to the second cop in the room, who stands up and opens it.`
+			`	Suddenly, someone knocks loudly on the door. Your interrogator gestures to the other cop, who stands up and opens it.`
 			`	On the other side of the door stands Raven from Navy Intelligence, flanked by two surly marines and trailed by a vehemently protesting police clerk.`
 			`	"Sorry to interrupt, but I'm here to take custody of Captain <last>." She grins sardonically. "Matters of national security, you understand."`
 			`	Behind her, the clerk continues complaining, but the officer in the room just waves her over to a chair and signs for the transfer. In return, Raven hands over a thin file and a couple of memory chips.`
@@ -12437,6 +12430,7 @@ mission "Pict's Legacy 1"
 		conversation
 			`As soon as you land on <planet>, Raven's marines spring to their feet.`
 			`	"It looks like we've got him," she tells you. "We'll know for sure in half an hour, though, so meet us back in the spaceport then."`
+
 
 
 mission "Pict's Legacy 2"
@@ -12654,7 +12648,7 @@ mission "Pict's Quest 1"
 	on complete
 		payment 8000
 		conversation
-			`Over the course of the trip to <planet>, Raven and Pict filled you in on the details of the mission. It appears that around a month ago a senior defense staffer named Hadija Jumanne was found dead in her hotel room during a counter-Alpha summit on Glory. Several years ago, Jumanne was responsible for organizing a program of bounties on pirate warlords with ties to the Alphas, including a bounty on the head of Vlad Blaire. Although civil authorities were unable to find a suspect, Navy Intelligence believed that a band of Alphas was behind the attack, and Raven was tasked with organizing a formal search - culminating in the sighting of the group on <planet>.`
+			`Over the course of the trip to <planet>, Raven and Pict filled you in on the details of the mission. It appears that around a month ago a senior defense staffer named Hadija Jumanne was found dead in her hotel room during a counter-Alpha summit on Glory. Several years ago, Jumanne was responsible for organizing a program of bounties on pirate warlords with ties to the Alphas, including a bounty on the head of Vlad Blaire. Although civil authorities were unable to find a suspect, Navy Intelligence believed that a band of Alphas was behind the attack, and Raven was tasked with organizing a formal search - a search that culminated in the sighting of the group on <planet>.`
 			`	Finally, your ship touches down in the center of one of the largest spaceport domes. Raven presses a credit chip worth <payment> into your hand and turns to leave. Suddenly, she pauses. "Say, Captain <last>, we've got a couple things to handle, but if you'd like to meet us back here in the spaceport in twenty minutes or so, we could sure use your help."`
 
 
@@ -12669,7 +12663,7 @@ mission "Pict's Quest 2"
 	
 	on offer
 		conversation
-			`You join the four soldiers near what appears to be a conveyor belt moving into the spaceport city's "downtown" district. Getting on behind Isaksen, you soon pass through first one large glass dome, then another, before finally getting off in what appears to be a business district.`
+			`You join the four soldiers near what appears to be a conveyor belt moving into the spaceport city's "downtown" district. Getting on behind Isaksen, you pass through first one large glass dome, then another, before finally getting off in what appears to be a business district.`
 			`	Your unusual party attracts some notice, but not much until you end up in front of a tiny shop selling "desert survival gear" - a rather strange sort of store to find on a planet that is essentially an enormous snowball.`
 			`	Stepping into the store behind Raven, you're greeted by the proprietor, a short young man whose face is vaguely familiar but who you certainly haven't seen before.`
 			`	"Hello, there. I suppose you're here about the Alphas?"`
@@ -12861,7 +12855,7 @@ mission "Pict's Quest 2"
 				`	"Wait, the Alphas built a fortress underneath a mountain?"`
 					goto mountain
 			
-			`	Pict laughs. "Oh, I was part of Navy Intelligence all along." She grins at the look of surprise on your face. "It was all part of Jumanne's Operation Payback. Little cells of us were sent off to aid the bounty hunters wherever possible. Dagger and I ended up getting 'recruited' by Cerridwyn, and the rest is history. But I reckon I've been part of the Navy since before you were born."`
+			`	Pict laughs. "Oh, I was part of Navy Intelligence all along." She grins at the look of surprise on your face. "It was all part of Jumanne's Operation Payback. Little cells of us were sent off to aid the bounty hunters wherever possible. Dagger and I ended up getting 'recruited' by Cerridwyn, and the rest is history. I reckon I've been part of the Navy since before you were born."`
 				goto calling
 
 			label raven
