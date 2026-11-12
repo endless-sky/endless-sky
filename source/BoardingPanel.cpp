@@ -310,7 +310,15 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					totalShares += familyShares;
 				if(totalShares)
 				{
-					double valueFraction = rules.CaptureValueBasis().value_or(Depreciation::Full());
+					double valueFraction;
+					if(rules.CaptureValueBasis().has_value())
+						valueFraction = *rules.CaptureValueBasis();
+					else
+					{
+						valueFraction = Depreciation::Captured();
+						if(rules.LockOnCapture())
+							valueFraction *= rules.LockedHullValueMultiplier();
+					}
 					int64_t valuePerShare = victim->Cost() * valueFraction / totalShares;
 
 					if(payCrewBonuses)

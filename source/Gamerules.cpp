@@ -69,6 +69,9 @@ const string Gamerules::CAPTURE_DEAD_CREW_SHARES = "capture dead crew shares";
 const string Gamerules::CAPTURE_SURVIVING_CREW_SHARES = "capture surviving crew shares";
 const string Gamerules::CAPTURE_MIN_DEATH_BENEFIT = "capture minimum death benefit";
 const string Gamerules::CAPTURE_VALUE_BASIS = "capture value basis";
+const string Gamerules::LOCK_ON_CAPTURE = "lock on capture";
+const string Gamerules::REWIRING_COST_MULTIPLIER = "rewiring cost multiplier";
+const string Gamerules::LOCKED_HULL_VALUE_MULTIPLIER = "locked hull value multiplier";
 
 
 
@@ -825,6 +828,57 @@ Gamerules::Gamerules()
 		storage.captureValueBasis = preset.storage.captureValueBasis;
 		return std::nullopt;
 	});
+
+	settings[LOCK_ON_CAPTURE] = Setting::TrueFalse("Ships lock when captured");
+	settings[LOCK_ON_CAPTURE].SetOnToggleFunc([this](UI *) -> void {
+		storage.lockOnCapture = !storage.lockOnCapture;
+	});
+	settings[LOCK_ON_CAPTURE].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.lockOnCapture = preset.storage.lockOnCapture;
+		return storage.lockOnCapture;
+	});
+
+	settings[REWIRING_COST_MULTIPLIER] = Setting::Unique("Rewiring cost multiplier");
+	settings[REWIRING_COST_MULTIPLIER].SetDisplayFunc([this]() -> pair<string, bool> {
+		return make_pair(Format::Percentage(RewiringCostMultiplier(), 2), LockOnCapture());
+	});
+	settings[REWIRING_COST_MULTIPLIER].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the rewiring cost multiplier. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.rewiringCostMultiplier = value; },
+			validate, message, RewiringCostMultiplier()));
+	});
+	settings[REWIRING_COST_MULTIPLIER].SetConditionFunc([this]() -> int {
+		return RewiringCostMultiplier() * 1000;
+	});
+	settings[REWIRING_COST_MULTIPLIER].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.rewiringCostMultiplier = preset.storage.rewiringCostMultiplier;
+		return std::nullopt;
+	});
+
+	settings[LOCKED_HULL_VALUE_MULTIPLIER] = Setting::Unique("Locked hull value multiplier");
+	settings[LOCKED_HULL_VALUE_MULTIPLIER].SetDisplayFunc([this]() -> pair<string, bool> {
+		return make_pair(Format::Percentage(LockedHullValueMultiplier(), 2), LockOnCapture());
+	});
+	settings[LOCKED_HULL_VALUE_MULTIPLIER].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the locked hull value multiplier. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.lockedHullValueMultiplier = value; },
+			validate, message, LockedHullValueMultiplier()));
+	});
+	settings[LOCKED_HULL_VALUE_MULTIPLIER].SetConditionFunc([this]() -> int {
+		return LockedHullValueMultiplier() * 1000;
+	});
+	settings[LOCKED_HULL_VALUE_MULTIPLIER].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.lockedHullValueMultiplier = preset.storage.lockedHullValueMultiplier;
+		return std::nullopt;
+	});
 }
 
 
@@ -1000,11 +1054,11 @@ void Gamerules::Load(const DataNode &node)
 			else
 				storage.captureValueBasis = max(0., child.Value(1));
 		}
-		else if(key == "lock on capture")
+		else if(key == LOCK_ON_CAPTURE)
 			storage.lockOnCapture = child.BoolValue(1);
-		else if(key == "rewiring cost multiplier")
+		else if(key == REWIRING_COST_MULTIPLIER)
 			storage.rewiringCostMultiplier = max(0., child.Value(1));
-		else if(key == "locked hull value multiplier")
+		else if(key == LOCKED_HULL_VALUE_MULTIPLIER)
 			storage.lockedHullValueMultiplier = max(0., child.Value(1));
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
@@ -1152,11 +1206,11 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 				out.Write(CAPTURE_VALUE_BASIS, "unset");
 		}
 		if(storage.lockOnCapture != preset.storage.lockOnCapture)
-			out.Write("lock on capture", storage.lockOnCapture);
+			out.Write(LOCK_ON_CAPTURE, storage.lockOnCapture);
 		if(storage.rewiringCostMultiplier != preset.storage.rewiringCostMultiplier)
-			out.Write("rewiring cost multiplier", storage.rewiringCostMultiplier);
+			out.Write(REWIRING_COST_MULTIPLIER, storage.rewiringCostMultiplier);
 		if(storage.lockedHullValueMultiplier != preset.storage.lockedHullValueMultiplier)
-			out.Write("locked hull value multiplier", storage.lockedHullValueMultiplier);
+			out.Write(LOCKED_HULL_VALUE_MULTIPLIER, storage.lockedHullValueMultiplier);
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
@@ -1596,6 +1650,7 @@ void Gamerules::SyncSettings()
 	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetIndex(HabitableBasedArrivalDistance());
 	settings[SINGLE_SAVE_FILE].SetIndex(SingleSaveFile());
 	settings[RESTRICTED_SAVE_LOADING].SetIndex(RestrictedSaveLoading());
+	settings[LOCKED_HULL_VALUE_MULTIPLIER].SetIndex(LockOnCapture());
 	settings[UNIVERSAL_AMMO_RESTOCKING].SetIndex(storage.miscRules[UNIVERSAL_AMMO_RESTOCKING]);
 	settings[FIGHTER_DODGE_POLICY].SetIndex(static_cast<int>(FightersHitWhenDisabled()));
 	settings[FLEET_SIZE_LIMITATION].SetIndex(static_cast<int>(GetFleetSizeLimitation()));

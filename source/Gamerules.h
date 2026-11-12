@@ -124,6 +124,9 @@ public:
 	static const std::string CAPTURE_SURVIVING_CREW_SHARES;
 	static const std::string CAPTURE_MIN_DEATH_BENEFIT;
 	static const std::string CAPTURE_VALUE_BASIS;
+	static const std::string LOCK_ON_CAPTURE;
+	static const std::string REWIRING_COST_MULTIPLIER;
+	static const std::string LOCKED_HULL_VALUE_MULTIPLIER;
 
 
 public:
