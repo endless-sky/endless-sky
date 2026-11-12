@@ -45,56 +45,13 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	// Gamerule display names.
-	const string DEPRECIATION_MIN = "Minimum value";
-	const string DEPRECIATION_GRACE_PERIOD = "Grace period";
-	const string DEPRECIATION_MAX_AGE = "Maximum age";
-	const string DEPRECIATION_DAILY = "Daily depreciation";
-	const string PERSON_SPAWN_PERIOD = "Spawn attempt period";
-	const string NO_PERSON_SPAWN_WEIGHT = "No spawn weight";
-	const string NPC_MAX_MINING_TIME = "NPC max mining time";
-	const string UNIVERSAL_FRUGAL_THRESHOLD = "Universal frugal threshold";
-	const string LOCK_ON_CAPTURE = "Ships lock when captured";
-	const string REWIRING_COST_MULTIPLIER = "Rewiring cost multiplier";
-	const string LOCKED_HULL_VALUE_MULTIPLIER = "Locked hull value multiplier";
-	const string UNIVERSAL_RAMSCOOP = "Universal ramscoop";
-	const string SYSTEM_DEPARTURE_MIN = "Minimum departure distance";
-	const string SYSTEM_ARRIVAL_MIN = "Minimum arrival distance";
-	const string FLEET_MULTIPLIER = "Fleet multiplier";
-	const string LOCK_GAMERULES = "Lock gamerules";
-	const string FIGHTERS_HIT_WHEN_DISABLED = "Fighters hit when disabled";
-	const string UNIVERSAL_AMMO_STOCKING = "Universal ammo stocking";
-
-	const string AMMO_RESTOCKING_NAME = "universal ammo restocking";
-
-	const auto DISPLAY_NAME_TO_RULE_NAME = map<string, string>{
-		{DEPRECIATION_MIN, "depreciation min"},
-		{DEPRECIATION_GRACE_PERIOD, "depreciation grace period"},
-		{DEPRECIATION_MAX_AGE, "depreciation max age"},
-		{DEPRECIATION_DAILY, "depreciation daily"},
-		{PERSON_SPAWN_PERIOD, "person spawn period"},
-		{NO_PERSON_SPAWN_WEIGHT, "no person spawn weight"},
-		{NPC_MAX_MINING_TIME, "npc max mining time"},
-		{UNIVERSAL_FRUGAL_THRESHOLD, "universal frugal threshold"},
-		{LOCK_ON_CAPTURE, "lock on capture"},
-		{REWIRING_COST_MULTIPLIER, "rewiring cost multiplier"},
-		{LOCKED_HULL_VALUE_MULTIPLIER, "locked hull value multiplier"},
-		{UNIVERSAL_RAMSCOOP, "universal ramscoop"},
-		{SYSTEM_DEPARTURE_MIN, "system departure min"},
-		{SYSTEM_ARRIVAL_MIN, "system arrival min"},
-		{FLEET_MULTIPLIER, "fleet multiplier"},
-		{LOCK_GAMERULES, "lock gamerules"},
-		{FIGHTERS_HIT_WHEN_DISABLED, "disabled fighters avoid projectiles"},
-		{UNIVERSAL_AMMO_STOCKING, AMMO_RESTOCKING_NAME},
-	};
-
-	const int GAMERULES_PAGE_COUNT = 1;
+	constexpr int GAMERULES_PAGE_COUNT = 2;
 }
 
 
 
-GamerulesPanel::GamerulesPanel(Gamerules &gamerules)
-	: gamerules(gamerules),
+GamerulesPanel::GamerulesPanel(Gamerules &gamerules, bool existingPilot)
+	: gamerules(gamerules), existingPilot(existingPilot),
 	gamerulesUi(GameData::Interfaces().Get("gamerules")),
 	presetUi(GameData::Interfaces().Get("gamerules presets")),
 	tooltip(270, Alignment::LEFT, Tooltip::Direction::DOWN_LEFT, Tooltip::Corner::TOP_LEFT,
@@ -112,6 +69,8 @@ GamerulesPanel::GamerulesPanel(Gamerules &gamerules)
 
 GamerulesPanel::~GamerulesPanel()
 {
+	if(callback)
+		callback();
 }
 
 
@@ -163,7 +122,14 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	else if(key == SDLK_RETURN)
 		HandleConfirm();
 	else if(key == 'b' || command.Has(Command::MENU) || (key == 'w' && (mod & (KMOD_CTRL | KMOD_GUI))))
-		GetUI().Pop(this);
+	{
+		if(existingPilot && gamerules.LockGamerules())
+			GetUI().Push(DialogPanel::CallFunctionIfOk([this]() -> void { GetUI().Pop(this); },
+				"You have set \"Lock Gamerules\" to true, which means that you will not be able "
+				"to return to this panel to make further edits after leaving. Continue anyway?", false));
+		else
+			GetUI().Pop(this);
+	}
 	else if(key == 'g' || key == 'p')
 	{
 		page = key;
@@ -186,7 +152,7 @@ bool GamerulesPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command
 	}
 	else if((key == 'x' || key == SDLK_DELETE) && (page == 'g') && latestIndex >= 0)
 	{
-		const string &rule = DISPLAY_NAME_TO_RULE_NAME.at(gameruleZones[latestIndex].Value());
+		const string &rule = gameruleZones[latestIndex].Value();
 		gamerules.Reset(rule, *GameData::GamerulesPresets().Get(gamerules.Name()));
 	}
 	else
@@ -239,8 +205,6 @@ bool GamerulesPanel::Click(int x, int y, MouseButton button, int clicks)
 
 bool GamerulesPanel::Hover(int x, int y)
 {
-	hoverPoint = Point(x, y);
-
 	hoverItem.clear();
 	tooltip.Clear();
 
@@ -368,43 +332,73 @@ void GamerulesPanel::DrawGamerules()
 	// * The namespace variable GAMERULES_PAGE_COUNT should be updated to the max
 	//   page count (count of '\n' characters plus one).
 	static const string GAMERULES[] = {
-		"Depreciation",
-		DEPRECIATION_MIN,
-		DEPRECIATION_GRACE_PERIOD,
-		DEPRECIATION_MAX_AGE,
-		DEPRECIATION_DAILY,
+		"Depreciation Settings",
+		Gamerules::DEPRECIATIVE_AGING,
+		Gamerules::DEPRECIATION_MIN,
+		Gamerules::DEPRECIATION_CAPTURED,
+		Gamerules::DEPRECIATION_PLUNDERED,
+		Gamerules::DEPRECIATION_CARGO_IS_PLUNDER,
+		Gamerules::DEPRECIATION_GRACE_PERIOD,
+		Gamerules::DEPRECIATION_MAX_AGE,
+		Gamerules::DEPRECIATION_DAILY,
 		"",
-		"Person Ships",
-		PERSON_SPAWN_PERIOD,
-		NO_PERSON_SPAWN_WEIGHT,
-		"",
-		"NPC Behavior",
-		NPC_MAX_MINING_TIME,
-		UNIVERSAL_FRUGAL_THRESHOLD,
-		"",
-		"Ship Locking",
-		LOCK_ON_CAPTURE,
-		REWIRING_COST_MULTIPLIER,
-		LOCKED_HULL_VALUE_MULTIPLIER,
+		"Capture Settings",
+		Gamerules::CAPTURE_PROFIT_SHARING,
+		Gamerules::CAPTURE_CAPTAIN_SHARES,
+		Gamerules::CAPTURE_DEAD_CREW_SHARES,
+		Gamerules::CAPTURE_SURVIVING_CREW_SHARES,
+		Gamerules::CAPTURE_MIN_DEATH_BENEFIT,
+		Gamerules::CAPTURE_VALUE_BASIS,
+		Gamerules::LOCK_ON_CAPTURE,
+		Gamerules::REWIRING_COST_MULTIPLIER,
+		Gamerules::LOCKED_HULL_VALUE_MULTIPLIER,
 		"\t",
 		"System Behavior",
-		UNIVERSAL_RAMSCOOP,
-		SYSTEM_ARRIVAL_MIN,
-		SYSTEM_DEPARTURE_MIN,
-		FLEET_MULTIPLIER,
+		Gamerules::UNIVERSAL_RAMSCOOP,
+		Gamerules::SYSTEM_ARRIVAL_MIN,
+		Gamerules::SYSTEM_DEPARTURE_MIN,
+		Gamerules::HABITABLE_BASED_ARRIVAL_DISTANCE,
+		Gamerules::HABITABLE_ARRIVAL_MIN,
+		Gamerules::HABITABLE_ARRIVAL_MAX,
+		Gamerules::FLEET_MULTIPLIER,
+		"",
+		"Raid Fleet Behavior",
+		Gamerules::RAID_FLEET_ROLL_CHANCE,
+		Gamerules::RAID_ATTRACTION_MULTIPLIER,
+		Gamerules::RAID_DETERRENCE_MULTIPLIER,
+		Gamerules::RAID_FLEET_SPAWN_ATTEMPTS,
+		"",
+		"Player Fleet Size Limit",
+		Gamerules::FLEET_SIZE_LIMITATION,
+		Gamerules::DEFAULT_MAX_ESCORT_COUNT,
+		Gamerules::DEFAULT_MAX_ESCORT_CREW,
+		Gamerules::DEFAULT_ADMIN_CAP,
+		"\n",
+		"NPC Behavior",
+		Gamerules::NPC_MAX_MINING_TIME,
+		Gamerules::UNIVERSAL_FRUGAL_THRESHOLD,
+		"",
+		"Person Ships",
+		Gamerules::PERSON_SPAWN_PERIOD,
+		Gamerules::NO_PERSON_SPAWN_WEIGHT,
+		"",
+		"Hardcore Settings",
+		Gamerules::PERMADEATH_MODE,
+		Gamerules::SINGLE_SAVE_FILE,
+		Gamerules::RESTRICTED_SAVE_LOADING,
 		"",
 		"Miscellaneous",
-		LOCK_GAMERULES,
-		FIGHTERS_HIT_WHEN_DISABLED,
-		UNIVERSAL_AMMO_STOCKING
+		Gamerules::LOCK_GAMERULES,
+		Gamerules::FIGHTER_DODGE_POLICY,
+		Gamerules::UNIVERSAL_AMMO_RESTOCKING,
 	};
 
 	bool isCategory = true;
 	int page = 0;
-	for(const string &gamerule : GAMERULES)
+	for(const string &rule : GAMERULES)
 	{
 		// Check if this is a page break.
-		if(gamerule == "\n")
+		if(rule == "\n")
 		{
 			++page;
 			continue;
@@ -419,10 +413,10 @@ void GamerulesPanel::DrawGamerules()
 		else if(page > currentGamerulesPage)
 			break;
 		// Check if this is a category break or column break.
-		if(gamerule.empty() || gamerule == "\t")
+		if(rule.empty() || rule == "\t")
 		{
 			isCategory = true;
-			if(!gamerule.empty())
+			if(!rule.empty())
 				table.DrawAt(Point(130, firstY));
 			continue;
 		}
@@ -432,7 +426,7 @@ void GamerulesPanel::DrawGamerules()
 			isCategory = false;
 			table.DrawGap(10);
 			table.DrawUnderline(medium);
-			table.Draw(gamerule, bright);
+			table.Draw(rule, bright);
 			table.Advance();
 			table.DrawGap(5);
 			continue;
@@ -441,79 +435,23 @@ void GamerulesPanel::DrawGamerules()
 		// Record where this gamerule is displayed, so the user can click on it.
 		// Temporarily reset the row's size so the click zone can cover the entire gamerule.
 		table.SetHighlight(-120, 120);
-		gameruleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), gamerule);
+		gameruleZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), rule);
 
-		// Setting "isOn" draws the gamerule "bright" (i.e. the gamerule is active).
-		bool isOn = true;
-		string text;
-		if(gamerule == DEPRECIATION_MIN)
-			text = Format::Percentage(gamerules.DepreciationMin(), 2);
-		else if(gamerule == DEPRECIATION_GRACE_PERIOD)
-			text = Format::AbbreviatedNumber(gamerules.DepreciationGracePeriod());
-		else if(gamerule == DEPRECIATION_MAX_AGE)
-			text = Format::AbbreviatedNumber(gamerules.DepreciationMaxAge());
-		else if(gamerule == DEPRECIATION_DAILY)
-			text = Format::Percentage(gamerules.DepreciationDaily(), 2);
-		else if(gamerule == PERSON_SPAWN_PERIOD)
-			text = Format::AbbreviatedNumber(gamerules.PersonSpawnPeriod());
-		else if(gamerule == NO_PERSON_SPAWN_WEIGHT)
-			text = Format::AbbreviatedNumber(gamerules.NoPersonSpawnWeight());
-		else if(gamerule == NPC_MAX_MINING_TIME)
-			text = Format::AbbreviatedNumber(gamerules.NPCMaxMiningTime());
-		else if(gamerule == UNIVERSAL_FRUGAL_THRESHOLD)
-			text = Format::Percentage(gamerules.UniversalFrugalThreshold(), 2);
-		else if(gamerule == LOCK_ON_CAPTURE)
-			text = gamerules.LockOnCapture() ? "true" : "false";
-		else if(gamerule == REWIRING_COST_MULTIPLIER)
-			text = Format::Percentage(gamerules.RewiringCostMultiplier(), 2);
-		else if(gamerule == LOCKED_HULL_VALUE_MULTIPLIER)
-			text = Format::Percentage(gamerules.LockedHullValueMultiplier(), 2);
-		else if(gamerule == UNIVERSAL_RAMSCOOP)
-			text = gamerules.UniversalRamscoopActive() ? "true" : "false";
-		else if(gamerule == SYSTEM_ARRIVAL_MIN)
-		{
-			if(gamerules.SystemArrivalMin().has_value())
-				text = Format::AbbreviatedNumber(*gamerules.SystemArrivalMin(), std::nullopt);
-			else
-				text = "(unset)";
-		}
-		else if(gamerule == SYSTEM_DEPARTURE_MIN)
-			text = Format::AbbreviatedNumber(gamerules.SystemDepartureMin(), std::nullopt);
-		else if(gamerule == FLEET_MULTIPLIER)
-			text = Format::Percentage(gamerules.FleetMultiplier(), 2);
-		else if(gamerule == LOCK_GAMERULES)
-			text = gamerules.LockGamerules() ? "true" : "false";
-		else if(gamerule == FIGHTERS_HIT_WHEN_DISABLED)
-		{
-			switch(gamerules.FightersHitWhenDisabled())
-			{
-			case Gamerules::FighterDodgePolicy::ALL:
-				text = "all";
-				break;
-			case Gamerules::FighterDodgePolicy::ONLY_PLAYER:
-				text = "player";
-				break;
-			case Gamerules::FighterDodgePolicy::NONE:
-				text = "none";
-				break;
-			}
-		}
-		else if(gamerule == UNIVERSAL_AMMO_STOCKING)
-			text = gamerules.GetValue(AMMO_RESTOCKING_NAME) ? "true" : "false";
-
-		if(gamerule == hoverItem)
+		const string &displayName = gamerules.DisplayName(rule);
+		if(rule == hoverItem)
 		{
 			table.SetHighlight(-120, 120);
 			table.DrawHighlight(back);
 		}
-		else if(gamerule == selectedItem)
+		else if(rule == selectedItem)
 		{
-			auto width = FontSet::Get(14).Width(gamerule);
+			auto width = FontSet::Get(14).Width(displayName);
 			table.SetHighlight(-120, width - 110);
 			table.DrawHighlight(back);
 		}
 
-		table.Draw(gamerule, isOn ? medium : dim);
+		auto [text, isOn] = gamerules.DisplayValue(rule);
+		table.Draw(displayName, isOn ? medium : dim);
 		table.Draw(text, isOn ? bright : medium);
 	}
 
@@ -530,7 +468,7 @@ void GamerulesPanel::DrawPresets()
 	const Color &medium = *GameData::Colors().Get("medium");
 	const Color &bright = *GameData::Colors().Get("bright");
 
-	const Sprite *box[2] = { SpriteSet::Get("ui/unchecked"), SpriteSet::Get("ui/checked") };
+	const Sprite *box[2] = { SpriteSet::Get("ui/radio unselected"), SpriteSet::Get("ui/radio selected") };
 
 	// Animate scrolling.
 	presetListScroll.Step();
@@ -664,7 +602,7 @@ void GamerulesPanel::RenderPresetDescription(const string &name)
 void GamerulesPanel::RenderPresetDescription(const Gamerules &preset)
 {
 	const Color &medium = *GameData::Colors().Get("medium");
-	const Font &font = FontSet::Get(14);
+	const Font &font = FontSet::Get(Preferences::GetFontSize());
 	Rectangle box = presetUi->GetBox("preset description");
 
 	// We are resizing and redrawing the description buffer. Reset the scroll
@@ -725,7 +663,7 @@ void GamerulesPanel::DrawTooltips()
 		return;
 
 	if(!tooltip.HasText())
-		tooltip.SetText(GameData::Tooltip(hoverItem));
+		tooltip.SetText(GameData::Tooltip(gamerules.DisplayName(hoverItem)));
 
 	tooltip.Draw();
 }
@@ -734,115 +672,7 @@ void GamerulesPanel::DrawTooltips()
 
 void GamerulesPanel::HandleGamerulesString(const string &str)
 {
-	if(str == DEPRECIATION_MIN)
-	{
-		string message = "Set the minimum deprecation value. (Decimal value between 0 and 1.)";
-		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
-		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetDepreciationMin, validate,
-			message, gamerules.DepreciationMin()));
-	}
-	else if(str == DEPRECIATION_GRACE_PERIOD)
-	{
-		string message = "Set the depreciation grace period. (Integer value greater than or equal to 0.)";
-		auto validate = [](int value) -> bool { return value >= 0; };
-		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDepreciationGracePeriod,
-			validate, message, gamerules.DepreciationGracePeriod()));
-	}
-	else if(str == DEPRECIATION_MAX_AGE)
-	{
-		string message = "Set the depreciation maximum age. (Integer value greater than or equal to 0.)";
-		auto validate = [](int value) -> bool { return value >= 0; };
-		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetDepreciationMaxAge, validate,
-			message, gamerules.DepreciationMaxAge()));
-	}
-	else if(str == DEPRECIATION_DAILY)
-	{
-		string message = "Set the daily deprecation value. (Decimal value between 0 and 1.)";
-		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
-		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetDepreciationDaily, validate,
-			message, gamerules.DepreciationDaily()));
-	}
-	else if(str == PERSON_SPAWN_PERIOD)
-	{
-		string message = "Set the person ship spawn attempt period. (Integer value greater than or equal to 1.)";
-		auto validate = [](int value) -> bool { return value >= 1; };
-		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetPersonSpawnPeriod, validate,
-			message, gamerules.PersonSpawnPeriod()));
-	}
-	else if(str == NO_PERSON_SPAWN_WEIGHT)
-	{
-		string message = "Set the no person ship spawn weight. (Integer value greater than or equal to 0.)";
-		auto validate = [](int value) -> bool { return value >= 0; };
-		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetNoPersonSpawnWeight, validate,
-			message, gamerules.NoPersonSpawnWeight()));
-	}
-	else if(str == NPC_MAX_MINING_TIME)
-	{
-		string message = "Set the NPC max mining time. (Integer value greater than or equal to 0.)";
-		auto validate = [](int value) -> bool { return value >= 0; };
-		GetUI().Push(DialogPanel::RequestIntegerWithValidation(&gamerules, &Gamerules::SetNPCMaxMiningTime, validate,
-			message, gamerules.NPCMaxMiningTime()));
-	}
-	else if(str == UNIVERSAL_FRUGAL_THRESHOLD)
-	{
-		string message = "Set the universal frugal threshold. (Decimal value between 0 and 1.)";
-		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
-		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetUniversalFrugalThreshold,
-			validate, message, gamerules.UniversalFrugalThreshold()));
-	}
-	else if(str == LOCK_ON_CAPTURE)
-		gamerules.SetLockOnCapture(!gamerules.LockOnCapture());
-	else if(str == REWIRING_COST_MULTIPLIER)
-	{
-		string message = "Set the rewiring cost multiplier. (Decimal value greater than or equal to 0.)";
-		auto validate = [](double value) -> bool { return value >= 0.0; };
-		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetRewiringCostMultiplier, validate,
-			message, gamerules.RewiringCostMultiplier()));
-	}
-	else if(str == LOCKED_HULL_VALUE_MULTIPLIER)
-	{
-		string message = "Set the locked hull value multiplier. (Decimal value greater than or equal to 0.)";
-		auto validate = [](double value) -> bool { return value >= 0.0; };
-		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetLockedHullValueMultiplier, validate,
-			message, gamerules.LockedHullValueMultiplier()));
-	}
-	else if(str == UNIVERSAL_RAMSCOOP)
-		gamerules.SetUniversalRamscoopActive(!gamerules.UniversalRamscoopActive());
-	else if(str == SYSTEM_DEPARTURE_MIN)
-	{
-		string message = "Set the minimum system departure distance. (Decimal value greater than or equal to 0.)";
-		auto validate = [](double value) -> bool { return value >= 0.0; };
-		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetSystemDepartureMin, validate,
-			message, gamerules.SystemDepartureMin()));
-	}
-	else if(str == SYSTEM_ARRIVAL_MIN)
-	{
-		string message = "Set the minimum system arrival distance. (Any decimal value.)";
-		GetUI().Push(OptionalInputDialogPanel::RequestDouble(&gamerules, &Gamerules::SetSystemArrivalMin, message,
-			gamerules.SystemArrivalMin()));
-	}
-	else if(str == FLEET_MULTIPLIER)
-	{
-		string message = "Set the fleet spawn multiplier. (Decimal value greater than or equal to 0.)";
-		auto validate = [](double value) -> bool { return value >= 0.0; };
-		GetUI().Push(DialogPanel::RequestDoubleWithValidation(&gamerules, &Gamerules::SetFleetMultiplier, validate,
-			message, gamerules.FleetMultiplier()));
-	}
-	else if(str == LOCK_GAMERULES)
-		gamerules.SetLockGamerules(!gamerules.LockGamerules());
-	else if(str == FIGHTERS_HIT_WHEN_DISABLED)
-	{
-		Gamerules::FighterDodgePolicy value = gamerules.FightersHitWhenDisabled();
-		if(value == Gamerules::FighterDodgePolicy::ALL)
-			value = Gamerules::FighterDodgePolicy::NONE;
-		else if(value == Gamerules::FighterDodgePolicy::NONE)
-			value = Gamerules::FighterDodgePolicy::ONLY_PLAYER;
-		else if(value == Gamerules::FighterDodgePolicy::ONLY_PLAYER)
-			value = Gamerules::FighterDodgePolicy::ALL;
-		gamerules.SetFighterDodgePolicy(value);
-	}
-	else if(str == UNIVERSAL_AMMO_STOCKING)
-		gamerules.SetMiscValue(AMMO_RESTOCKING_NAME, !gamerules.GetValue(AMMO_RESTOCKING_NAME));
+	gamerules.Toggle(str, &GetUI());
 }
 
 

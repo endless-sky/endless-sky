@@ -44,11 +44,11 @@ public:
 
 	bool Validate() const;
 
-	// Apply any replacements, evaluate any condition sets, and generate from any phrases.
+	// Apply any replacements and generate from any phrases.
 	DialogSettings Instantiate(const std::map<std::string, std::string> &subs) const;
 
-	// Get the text of this dialog (after it has been instantiated and converted into a single block of text).
-	const std::string &Text() const;
+	// Get the text of this dialog, evaluating any conditions.
+	std::string Text() const;
 	bool IsEmpty() const;
 
 
@@ -58,6 +58,7 @@ private:
 	public:
 		explicit DialogLine(std::string text);
 		explicit DialogLine(const ExclusiveItem<Phrase> &phrase);
+		DialogLine(const std::string &text, const ConditionSet &condition);
 		DialogLine(const DataNode &node, const ConditionsStore *playerConditions);
 
 		std::string text;
@@ -69,6 +70,4 @@ private:
 private:
 	// Lines of text under the `dialog` node that haven't yet been instantiated into a single paragraph.
 	std::vector<DialogLine> lines;
-	// The instantiated string from the dialog lines, with all text substitions applied and phrases expanded.
-	std::string text;
 };

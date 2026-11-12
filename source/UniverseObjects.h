@@ -19,8 +19,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Set.h"
 #include "Shop.h"
 
+#include "CapacityList.h"
 #include "CategoryList.h"
 #include "Color.h"
+#include "ConditionAlias.h"
+#include "Confusion.h"
 #include "Conversation.h"
 #include "Effect.h"
 #include "Fleet.h"
@@ -42,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/Shader.h"
 #include "Ship.h"
 #include "StartConditions.h"
+#include "StellarObjectSpriteData.h"
 #include "Swizzle.h"
 #include "System.h"
 #include "test/Test.h"
@@ -111,6 +115,7 @@ private:
 private:
 	Set<Color> colors;
 	Set<Swizzle> swizzles;
+	Set<Confusion> confusions;
 	Set<Conversation> conversations;
 	Set<Effect> effects;
 	Set<GameEvent> events;
@@ -138,6 +143,7 @@ private:
 	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
 	Set<Gamerules> gamerulesPresets;
+	Set<ConditionAlias> conditionAliases;
 
 	// This is used for speeding up the route calculations.
 	std::set<std::string> universeWormholeRequirements;
@@ -147,11 +153,9 @@ private:
 	Trade trade;
 	std::vector<StartConditions> startConditions;
 	std::map<std::string, std::vector<std::string>> ratings;
-	std::map<const Sprite *, std::string> landingMessages;
-	std::map<const Sprite *, double> solarPower;
-	std::map<const Sprite *, double> solarWind;
-	std::map<const Sprite *, const Sprite *> starIcons;
+	std::map<const Sprite *, StellarObjectSpriteData> objectSpriteData;
 	std::map<CategoryType, CategoryList> categories;
+	CapacityList capacities;
 
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;

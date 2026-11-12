@@ -16,9 +16,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "Angle.h"
-#include "Body.h"
 #include "Distribution.h"
+#include "Drawable.h"
 #include "Point.h"
+#include "Projectile.h"
 
 #include <cstddef>
 #include <cstdint>
@@ -54,8 +55,7 @@ public:
 		// The base offset from the source projectile's position, relative to its current facing.
 		Point offset;
 
-		bool spawnOnNaturalDeath = true;
-		bool spawnOnAntiMissileDeath = false;
+		int spawnOn = Projectile::DeathType::NATURAL;
 	};
 
 
@@ -66,10 +66,11 @@ public:
 	// Load from a "weapon" node, either in an outfit, a ship (explosion), or a hazard.
 	void Load(const DataNode &node);
 	bool IsLoaded() const;
+	bool IsDecorative() const;
 
 	// Get assets used by this weapon.
-	const Body &WeaponSprite() const;
-	const Body &HardpointSprite() const;
+	const Drawable &ProjectileSprite() const;
+	const Drawable &HardpointSprite() const;
 	const Sound *WeaponSound() const;
 	const Sound *EmptySound() const;
 	const Sprite *Icon() const;
@@ -205,14 +206,6 @@ public:
 	// weapon is not a provocation (even if you push or pull it).
 	bool DoesDamage() const;
 
-	bool ConsumesHull() const;
-	bool ConsumesFuel() const;
-	bool ConsumesHeat() const;
-	bool ConsumesEnergy() const;
-	bool ConsumesIonization() const;
-	bool ConsumesDisruption() const;
-	bool ConsumesSlowing() const;
-
 	double Piercing() const;
 
 	double Prospecting() const;
@@ -239,10 +232,16 @@ private:
 
 private:
 	bool isLoaded = false;
+	bool isDecorative = false;
+	bool safeRangeOverriden = false;
+	bool disabledDamageSet = false;
+	bool minableDamageSet = false;
+	bool relativeDisabledDamageSet = false;
+	bool relativeMinableDamageSet = false;
 
 	// Sprites and sounds.
-	Body sprite;
-	Body hardpointSprite;
+	Drawable projectileSprite;
+	Drawable hardpointSprite;
 	const Sound *sound = nullptr;
 	const Sound *emptySound = nullptr;
 	const Sprite *icon = nullptr;
@@ -254,6 +253,10 @@ private:
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
 	std::vector<Submunition> submunitions;
+	// Whether the damage dealt by this weapon's submunitions are
+	// included in the damage of its projectiles when colliding
+	// with a target.
+	bool includeSubmunitionDamage = true;
 
 	bool isStreamed = false;
 	bool isSafe = false;
@@ -392,6 +395,8 @@ private:
 
 
 // Inline the accessors because they get called so frequently.
+inline bool Weapon::IsDecorative() const { return isDecorative; }
+
 inline int Weapon::Lifetime() const { return lifetime; }
 inline int Weapon::RandomLifetime() const { return randomLifetime; }
 inline int Weapon::FadeOut() const { return fadeOut; }
@@ -491,14 +496,6 @@ inline double Weapon::RelativeHeatDamage() const { return TotalDamage(RELATIVE_H
 inline double Weapon::RelativeEnergyDamage() const { return TotalDamage(RELATIVE_ENERGY_DAMAGE); }
 
 inline bool Weapon::DoesDamage() const { if(!calculatedDamage) TotalDamage(0); return doesDamage; }
-
-inline bool Weapon::ConsumesHull() const { return FiringHull() > 0. || RelativeFiringHull() > 0.; }
-inline bool Weapon::ConsumesFuel() const { return FiringFuel() > 0. || RelativeFiringFuel() > 0.; }
-inline bool Weapon::ConsumesHeat() const { return FiringHeat() < 0. || RelativeFiringHeat() > 0.; }
-inline bool Weapon::ConsumesEnergy() const { return FiringEnergy() > 0. || RelativeFiringEnergy() > 0.; }
-inline bool Weapon::ConsumesIonization() const { return FiringIon() < 0.; }
-inline bool Weapon::ConsumesDisruption() const { return FiringDisruption() < 0.; }
-inline bool Weapon::ConsumesSlowing() const { return FiringSlowing() < 0.; }
 
 inline bool Weapon::HasDamageDropoff() const { return hasDamageDropoff; }
 

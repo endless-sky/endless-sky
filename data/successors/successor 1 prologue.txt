@@ -11,6 +11,16 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Successor Space"
+	entering
+	invisible
+	non-blocking
+	source
+		near "Myruet-Kvelq" 0 100
+	on offer
+		set "discovered successor space"
+		fail
+
 mission "Successors: Entering the Scar"
 	invisible
 	entering
@@ -812,10 +822,6 @@ mission "Successors: Kaatrij First Contact 1"
 					to display
 						not "Successors: kijran"
 					goto kijran
-				`	"Can you tell me more about yourself?"`
-					to display
-						has "language: Successor"
-						not "Successors: kijran"
 			label kijran
 			action
 				set "Successors: kijran"

@@ -34,7 +34,7 @@ class Ship;
 // a government that is particularly repressive of independent pilots.)
 class ShipyardPanel : public ShopPanel {
 public:
-	explicit ShipyardPanel(PlayerInfo &player, Sale<Ship> stock);
+	ShipyardPanel(PlayerInfo &player, const Sale<Ship> &stock);
 
 	virtual void Step() override;
 
@@ -69,4 +69,9 @@ private:
 	std::set<Ship *> shipsToRewire;
 
 	Sale<Ship> shipyard;
+
+	// Warn the player if their recent purchases put them over their fleet capacity.
+	// Only do this once per opening of the shipyard.
+	int initialFleetUsage;
+	bool hasDoneFleetCapacityWarning = false;
 };

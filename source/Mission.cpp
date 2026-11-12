@@ -15,6 +15,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Mission.h"
 
+#include "Conversation.h"
 #include "DataNode.h"
 #include "DataWriter.h"
 #include "DialogPanel.h"
@@ -109,6 +110,23 @@ namespace {
 				return "on disabled";
 			default:
 				return "unknown trigger";
+		}
+	}
+
+	bool LocationInFlight(Mission::Location location)
+	{
+		switch(location)
+		{
+			case Mission::Location::ASSISTING:
+				return true;
+			case Mission::Location::BOARDING:
+				return true;
+			case Mission::Location::ENTERING:
+				return true;
+			case Mission::Location::TRANSITION:
+				return true;
+			default:
+				return false;
 		}
 	}
 }
@@ -432,7 +450,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 		if(!isVisible)
 			out.Write("invisible");
 		auto saveColor = [&out](const ExclusiveItem<Color> &color, string tokenName) noexcept -> void {
-			if(!color->IsLoaded())
+			if(!color || !color->IsLoaded())
 				return;
 			if(!color->TrueName().empty())
 				out.Write("color", tokenName, color->TrueName());
@@ -633,23 +651,23 @@ bool Mission::IsVisible() const
 
 // The colors that should be used to display the mission name if it is shown
 // in your mission list.
-const Color &Mission::Unavailable() const
+const Color *Mission::Unavailable() const
 {
-	return *unavailable;
+	return unavailable.Ptr();
 }
 
 
 
-const Color &Mission::Unselected() const
+const Color *Mission::Unselected() const
 {
-	return *unselected;
+	return unselected.Ptr();
 }
 
 
 
-const Color &Mission::Selected() const
+const Color *Mission::Selected() const
 {
-	return *selected;
+	return selected.Ptr();
 }
 
 
@@ -1012,20 +1030,21 @@ bool Mission::CanOffer(const PlayerInfo &player, const shared_ptr<Ship> &boardin
 		return false;
 
 	bool isFailed = IsFailed();
+	bool offersInFlight = LocationInFlight(location);
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 		return false;
 
 	it = actions.find(DECLINE);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 		return false;
 
 	it = actions.find(DEFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight, boardingShip))
 		return false;
 
 	return true;
@@ -1039,12 +1058,13 @@ bool Mission::CanAccept(const PlayerInfo &player) const
 		return false;
 
 	bool isFailed = IsFailed();
+	bool offersInFlight = LocationInFlight(location);
 	auto it = actions.find(OFFER);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight))
 		return false;
 
 	it = actions.find(ACCEPT);
-	if(it != actions.end() && !it->second.CanBeDone(player, isFailed))
+	if(it != actions.end() && !it->second.CanBeDone(player, isFailed, !offersInFlight))
 		return false;
 	return HasSpace(player);
 }
@@ -1095,7 +1115,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 
 	// Determine if any fines or outfits that must be transferred, can.
 	auto it = actions.find(COMPLETE);
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed()))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(), true))
 		return false;
 
 	// NPCs which must be accompanied or evaded must be present (or not),
@@ -1291,7 +1311,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 	}
 
 	// Don't update any further conditions if this action exists and can't be completed.
-	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(), boardingShip))
+	if(it != actions.end() && !it->second.CanBeDone(player, IsFailed(), player.GetPlanet(), boardingShip))
 		return false;
 
 	if(trigger == ACCEPT)
@@ -1300,7 +1320,7 @@ bool Mission::Do(Trigger trigger, PlayerInfo &player, UI *ui, const shared_ptr<S
 		++player.Conditions()[trueName + ": active"];
 		// Any potential on offer conversation has been finished, so update
 		// the active NPCs for the first time and cache any necessary information.
-		UpdateNPCs(player);
+		UpdateNPCs();
 		DistanceMap here(player);
 		player.CacheMissionInformation(*this, here);
 	}
@@ -1369,11 +1389,13 @@ const list<NPC> &Mission::NPCs() const
 
 
 
-// Update which NPCs are active based on their spawn and despawn conditions.
-void Mission::UpdateNPCs(const PlayerInfo &player)
+vector<const NPC *> Mission::UpdateNPCs()
 {
+	vector<const NPC *> spawn;
 	for(auto &npc : npcs)
-		npc.UpdateSpawning(player);
+		if(npc.UpdateSpawning())
+			spawn.emplace_back(&npc);
+	return spawn;
 }
 
 
@@ -1450,10 +1472,8 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI &ui)
 			Do(WAYPOINT, player, &ui);
 		}
 
-		// Perform an "on enter" action for this system, if possible, and if
-		// any was performed, update this mission's NPC spawn states.
-		if(Enter(system, player, ui))
-			UpdateNPCs(player);
+		// Perform an "on enter" action for this system, if possible.
+		Enter(system, player, ui);
 	}
 
 	for(NPC &npc : npcs)
@@ -1640,6 +1660,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		subs["<origin>"] = player.GetPlanet()->DisplayName();
 	else if(boardingShip)
 		subs["<origin>"] = boardingShip->GivenName();
+	else if(player.GetSystem())
+		subs["<origin>"] = player.GetSystem()->DisplayName();
 	subs["<planet>"] = result.destination ? result.destination->DisplayName() : "";
 	subs["<system>"] = result.destination ? result.destination->GetSystem()->DisplayName() : "";
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
@@ -1827,7 +1849,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 {
 	const auto eit = onEnter.find(system);
 	const auto originalSize = didEnter.size();
-	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed()))
+	if(eit != onEnter.end() && !didEnter.contains(&eit->second) && eit->second.CanBeDone(player, IsFailed(), false))
 	{
 		eit->second.Do(player, &ui, this);
 		didEnter.insert(&eit->second);
@@ -1836,7 +1858,7 @@ bool Mission::Enter(const System *system, PlayerInfo &player, UI &ui)
 	// which may use a LocationFilter to govern which systems it can be performed in.
 	else
 		for(MissionAction &action : genericOnEnter)
-			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed()))
+			if(!didEnter.contains(&action) && action.CanBeDone(player, IsFailed(), false))
 			{
 				action.Do(player, &ui, this);
 				didEnter.insert(&action);
@@ -1852,14 +1874,14 @@ bool Mission::Land(const Planet *planet, PlayerInfo &player, UI &ui)
 {
 	const auto lit = onLand.find(planet);
 	const auto originalSize = didLand.size();
-	if(lit != onLand.end() && !didLand.contains(&lit->second) && lit->second.CanBeDone(player, IsFailed()))
+	if(lit != onLand.end() && !didLand.contains(&lit->second) && lit->second.CanBeDone(player, IsFailed(), true))
 	{
 		lit->second.Do(player, &ui, this);
 		didLand.insert(&lit->second);
 	}
 	else
 		for(MissionAction &action : genericOnLand)
-			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed()))
+			if(!didLand.contains(&action) && action.CanBeDone(player, IsFailed(), true))
 			{
 				action.Do(player, &ui, this);
 				didLand.insert(&action);

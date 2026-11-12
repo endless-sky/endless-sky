@@ -22,6 +22,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "StellarObject.h"
 #include "WeightedList.h"
 
+#include <optional>
 #include <set>
 #include <string>
 #include <vector>
@@ -120,13 +121,17 @@ public:
 		double shipRamscoop, double shipCollection, double shipCollectionHeat) const;
 	// Additional travel distance to target for ships entering through hyperspace.
 	double ExtraHyperArrivalDistance() const;
-	// Additional travel distance to target for ships entering using a jumpdrive.
+	// Additional travel distance to target for ships entering using a jump drive.
 	double ExtraJumpArrivalDistance() const;
 
 	// The minimum distances from the system center to jump out of the system.
 	// Separated by jump drives and hyperdrives.
 	double JumpDepartureDistance() const;
 	double HyperDepartureDistance() const;
+
+	// The mass of the stars in this system. For use in calculating orbital periods
+	// of orbits defined outside of the System class.
+	double StarMass() const;
 
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.
@@ -255,7 +260,9 @@ private:
 	const Sprite *haze = nullptr;
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
-	double habitable = 1000.;
+	double habitable = 0.;
+	double starMass = 0.;
+	bool explicitHabitableDistanceSet = false;
 	WeightedList<double> belts;
 	double invisibleFenceRadius = 10000.;
 	double jumpRange = 0.;
@@ -268,13 +275,13 @@ private:
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a hyperspace link.
 	// Negative values are allowed, causing ships to jump beyond their target.
-	double extraHyperArrivalDistance = 0.;
+	std::optional<double> extraHyperArrivalDistance;
 	// The amount of additional distance that ships will arrive away from the
 	// system center when entering this system through a jumpdrive jump.
 	// Jump drives use a circle around the target for targeting, so a value below
 	// 0 doesn't have the same meaning as for hyperdrives. Negative values will
 	// be interpreted as positive values.
-	double extraJumpArrivalDistance = 0.;
+	std::optional<double> extraJumpArrivalDistance;
 
 	// The minimum distances from the system center to jump out of the system.
 	double jumpDepartureDistance = 0.;

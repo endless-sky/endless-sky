@@ -27,6 +27,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Point.h"
 #include "Screen.h"
 #include "image/Sprite.h"
+#include "image/SpriteLoadManager.h"
 #include "StellarObject.h"
 #include "System.h"
 #include "UI.h"
@@ -58,16 +59,25 @@ MapOutfitterPanel::MapOutfitterPanel(const MapPanel &panel, bool onlyHere)
 
 
 
-const Sprite *MapOutfitterPanel::SelectedSprite() const
+void MapOutfitterPanel::LoadCatalogThumbnails() const
 {
-	return selected ? selected->Thumbnail() : nullptr;
+	for(const auto &category : catalog)
+		for(const string &entry : category.second)
+			SpriteLoadManager::LoadDeferred(GetUI().AsyncQueue(), GameData::Outfits().Get(entry)->Thumbnail());
 }
 
 
 
-const Sprite *MapOutfitterPanel::CompareSprite() const
+const Drawable &MapOutfitterPanel::SelectedSprite() const
 {
-	return compare ? compare->Thumbnail() : nullptr;
+	return selected->Thumbnail();
+}
+
+
+
+const Drawable &MapOutfitterPanel::CompareSprite() const
+{
+	return compare->Thumbnail();
 }
 
 
@@ -82,6 +92,16 @@ const ItemInfoDisplay &MapOutfitterPanel::SelectedInfo() const
 const ItemInfoDisplay &MapOutfitterPanel::CompareInfo() const
 {
 	return compareInfo;
+}
+
+
+
+void MapOutfitterPanel::Hovering(int index)
+{
+	if(index < 0 || index >= static_cast<int>(list.size()))
+		hovering = nullptr;
+	else
+		hovering = list[index];
 }
 
 
@@ -166,14 +186,14 @@ int MapOutfitterPanel::FindItem(const string &text) const
 
 
 
-void MapOutfitterPanel::DrawKey(Information &info) const
+void MapOutfitterPanel::DrawSalesKey(Information &info) const
 {
 	const string condition = (selected && selected->Get("minable") > 0.)
 		? "is outfitters w/ minerals" : "is outfitters";
 
 	info.SetCondition(condition);
 
-	MapSalesPanel::DrawKey(info);
+	MapSalesPanel::DrawSalesKey(info);
 }
 
 
@@ -257,7 +277,7 @@ void MapOutfitterPanel::DrawItems()
 				: storedInSystem == 1
 				? "1 unit in storage"
 				: Format::Number(storedInSystem) + " units in storage";
-			Draw(corner, outfit->Thumbnail(), Swizzle::None(), isForSale, outfit == selected,
+			Draw(corner, outfit->Thumbnail(), Swizzle::None(), isForSale, outfit == selected, outfit == hovering,
 				outfit->DisplayName(), "", price, info, storage_details);
 			list.push_back(outfit);
 		}

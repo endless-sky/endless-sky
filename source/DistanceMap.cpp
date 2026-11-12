@@ -281,9 +281,9 @@ bool DistanceMap::Propagate(const RouteEdge &curEdge)
 		double fuelCost = 0;
 		if(ship)
 		{
-			auto jumpType = ship->JumpNavigation().GetCheapestJumpType(currentSystem, link);
-			useJump = jumpType.first == JumpType::JUMP_DRIVE;
-			fuelCost = jumpType.second;
+			auto jumpType = ship->JumpNavigation().GetCheapestJump(currentSystem, link);
+			useJump = jumpType.type == JumpType::JUMP_DRIVE;
+			fuelCost = jumpType.fuelCost;
 		}
 		else
 			fuelCost = linked ? Outfit::DEFAULT_HYPERDRIVE_COST : Outfit::DEFAULT_JUMP_DRIVE_COST;

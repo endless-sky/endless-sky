@@ -296,14 +296,14 @@ void MissionPanel::Draw()
 			"Missions available here:",
 			available.size(),
 			true);
-		DrawList(available, pos, availableIt, true);
+		DrawList(available, pos, availableIt, hoverAvailableIt, true);
 	}
 
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
 		"Your current missions:",
 		AcceptedVisible());
-	DrawList(accepted, pos, acceptedIt);
+	DrawList(accepted, pos, acceptedIt, hoverAcceptedIt);
 
 	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
 	DrawKey();
@@ -425,16 +425,16 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
-		// Panel header
+		// Panel header:
 		if(y + static_cast<int>(availableScroll) < Screen::Top() + 30)
 		{
 			dragSide = -1;
 			if(y + static_cast<int>(availableScroll) < Screen::Top() + 10)
 			{
-				// empty space
+				// Empty space.
 				return false;
 			}
-			// Sorter buttons
+			// Sorter buttons:
 			else if(hoverSort >= 0)
 			{
 				if(hoverSort == 0)
@@ -453,7 +453,7 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 			}
 			return false;
 		}
-		// Available missions
+		// Available missions:
 		unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 		if(index < available.size())
 		{
@@ -474,7 +474,10 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH)
 	{
-		// Accepted missions
+		// Panel header:
+		if(y + static_cast<int>(acceptedScroll) < Screen::Top() + 30)
+			return false;
+		// Accepted missions:
 		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
 		if(index < AcceptedVisible())
 		{
@@ -498,15 +501,7 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 	}
 
 	// Figure out if a system was clicked on.
-	Point click = Point(x, y) / Zoom() - center;
-	const System *system = nullptr;
-	for(const auto &it : GameData::Systems())
-		if(it.second.IsValid() && click.Distance(it.second.Position()) < 10.
-				&& (player.HasSeen(it.second) || &it.second == specialSystem))
-		{
-			system = &it.second;
-			break;
-		}
+	const System *system = ClickedSystem(x, y);
 	if(system)
 	{
 		Select(system);
@@ -622,6 +617,8 @@ bool MissionPanel::Hover(int x, int y)
 	dragSide = 0;
 	int oldSort = hoverSort;
 	hoverSort = -1;
+	hoverAcceptedIt = accepted.end();
+	hoverAvailableIt = available.end();
 	unsigned index = max(0, (y + static_cast<int>(availableScroll) - 36 - Screen::Top()) / 20);
 	if(x < Screen::Left() + SIDE_WIDTH)
 	{
@@ -629,20 +626,37 @@ bool MissionPanel::Hover(int x, int y)
 		{
 			dragSide = -1;
 
-			// Hovering over sort buttons
-			if(y + static_cast<int>(availableScroll) < Screen::Top() + 30 && y >= Screen::Top() + 10
-				&& x >= Screen::Left() + SIDE_WIDTH - 110)
+			// Panel header:
+			if(y + static_cast<int>(availableScroll) < Screen::Top() + 30)
 			{
-				hoverSort = (x - Screen::Left() - SIDE_WIDTH + 110) / 30;
-				if(hoverSort > 3)
-					hoverSort = -1;
+				// Hovering over sort buttons.
+				if(y >= Screen::Top() + 10 && x >= Screen::Left() + SIDE_WIDTH - 110)
+				{
+					hoverSort = (x - Screen::Left() - SIDE_WIDTH + 110) / 30;
+					if(hoverSort > 3)
+						hoverSort = -1;
+				}
+			}
+			else
+			{
+				hoverAvailableIt = available.begin();
+				while(index--)
+					++hoverAvailableIt;
 			}
 		}
 	}
-	else if(x >= Screen::Right() - SIDE_WIDTH)
+	else if(x >= Screen::Right() - SIDE_WIDTH && y + static_cast<int>(acceptedScroll) >= Screen::Top() + 30)
 	{
 		if(static_cast<int>(index) < AcceptedVisible())
+		{
 			dragSide = 1;
+			hoverAcceptedIt = accepted.begin();
+			while(index || !hoverAcceptedIt->IsVisible())
+			{
+				index -= hoverAcceptedIt->IsVisible();
+				++hoverAcceptedIt;
+			}
+		}
 	}
 
 	if(oldSort != hoverSort)
@@ -673,8 +687,8 @@ void MissionPanel::Resize()
 void MissionPanel::InitTextArea()
 {
 	description = make_shared<TextArea>();
-	description->SetFont(FontSet::Get(14));
-	description->SetAlignment(Alignment::JUSTIFIED);
+	description->SetFont(FontSet::Get(Preferences::GetFontSize()));
+	description->SetAlignment(Preferences::GetTextAlignment());
 	description->SetColor(*GameData::Colors().Get("bright"));
 	ResizeTextArea();
 }
@@ -852,7 +866,7 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 
 Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const list<Mission>::const_iterator &selectIt,
-	bool separateDeadlineOrPossible) const
+	const list<Mission>::const_iterator &hoverIt, bool separateDeadlineOrPossible) const
 {
 	const Font &font = FontSet::Get(14);
 	const Color &highlight = *GameData::Colors().Get("faint");
@@ -877,7 +891,7 @@ Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const 
 		}
 
 		bool isSelected = it == selectIt;
-		if(isSelected)
+		if(isSelected || it == hoverIt)
 			FillShader::Fill(
 				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
 				Point(SIDE_WIDTH - 10., 20.),
@@ -890,22 +904,25 @@ Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const 
 		bool canAccept = (&missionList == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		if(!canAccept)
 		{
-			if(it->Unavailable().IsLoaded())
-				color = &it->Unavailable();
+			const Color *customUnavailable = it->Unavailable();
+			if(customUnavailable && customUnavailable->IsLoaded())
+				color = customUnavailable;
 			else
 				color = &dim;
 		}
 		else if(isSelected)
 		{
-			if(it->Selected().IsLoaded())
-				color = &it->Selected();
+			const Color *customSelected = it->Selected();
+			if(customSelected && customSelected->IsLoaded())
+				color = customSelected;
 			else
 				color = &selected;
 		}
 		else
 		{
-			if(it->Unselected().IsLoaded())
-				color = &it->Unselected();
+			const Color *customUnselected = it->Unselected();
+			if(customUnselected && customUnselected->IsLoaded())
+				color = customUnselected;
 			else
 				color = &unselected;
 		}
