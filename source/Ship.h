@@ -371,7 +371,7 @@ public:
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
-	int GetHyperspacePercentage() const;
+	double GetHyperspaceFraction() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
 	// Fuel already used for ongoing hyperspace movement.
@@ -851,6 +851,7 @@ private:
 	const System *hyperspaceSystem = nullptr;
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
+	int hyperspaceTravelFrames = 100;
 	Point hyperspaceOffset;
 
 	std::vector<Leak> leaks;
