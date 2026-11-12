@@ -1761,9 +1761,9 @@ void Ship::SetVelocity(Point velocity)
 void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 {
 	this->position = position;
-	// For inertialess flight ships, convert the velocity to the
-	// corresponding throttle that creates that much velocity.
-	if(InertialessMovement())
+	// For inertialess flight ships that are placed in space, convert the
+	// velocity to the corresponding throttle that creates that much velocity.
+	if(InertialessMovement() && !isDeparting)
 	{
 		inertialessThrottle = min(1., velocity.Length() / MaxVelocity());
 		negateThrottle = false;
