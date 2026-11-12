@@ -141,6 +141,8 @@ namespace {
 		{"inertialess flight energy", 0},
 		{"inertialess flight fuel", 0},
 		{"inertialess flight heat", 0},
+		{"width attacking", 0},
+		{"width defending", 0},
 
 		{"thrust", 1},
 		{"reverse thrust", 1},

@@ -124,6 +124,7 @@ public:
 	static const std::string CAPTURE_SURVIVING_CREW_SHARES;
 	static const std::string CAPTURE_MIN_DEATH_BENEFIT;
 	static const std::string CAPTURE_VALUE_BASIS;
+	static const std::string BASE_COMBAT_WIDTH;
 
 
 public:
@@ -199,6 +200,7 @@ public:
 	double CaptureSurvivingCrewShares() const;
 	int CaptureMinimumDeathBenefit() const;
 	std::optional<double> CaptureValueBasis() const;
+	std::optional<double> BaseCombatWidth() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -260,6 +262,7 @@ private:
 		double captureSurvivingCrewShares = 1.;
 		int captureMinimumDeathBenefit = 100000;
 		std::optional<double> captureValueBasis;
+		std::optional<double> baseCombatWidth;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

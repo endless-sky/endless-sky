@@ -168,6 +168,8 @@ namespace {
 		{"slowing resistance fuel", std::nullopt},
 		{"slowing resistance heat", std::nullopt},
 		{"crew equivalent", std::nullopt},
+		{"width attacking", std::nullopt},
+		{"width defending", std::nullopt},
 
 		{"cloaking energy", std::nullopt},
 		{"cloaking fuel", std::nullopt},

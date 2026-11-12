@@ -61,3 +61,5 @@
 	"permadeath mode" off
 	"single save file" false
 	"restricted save loading" false
+	
+	"base combat width" unset

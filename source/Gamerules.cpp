@@ -69,6 +69,7 @@ const string Gamerules::CAPTURE_DEAD_CREW_SHARES = "capture dead crew shares";
 const string Gamerules::CAPTURE_SURVIVING_CREW_SHARES = "capture surviving crew shares";
 const string Gamerules::CAPTURE_MIN_DEATH_BENEFIT = "capture minimum death benefit";
 const string Gamerules::CAPTURE_VALUE_BASIS = "capture value basis";
+const string Gamerules::BASE_COMBAT_WIDTH = "base combat width";
 
 
 
@@ -825,6 +826,32 @@ Gamerules::Gamerules()
 		storage.captureValueBasis = preset.storage.captureValueBasis;
 		return std::nullopt;
 	});
+
+	settings[BASE_COMBAT_WIDTH] = Setting::Unique("Base combat width");
+	settings[BASE_COMBAT_WIDTH].SetDisplayFunc([this]() -> pair<string, bool> {
+		string text;
+		if(BaseCombatWidth().has_value())
+			text = Format::Percentage(*BaseCombatWidth(), 2);
+		else
+			text = "(unset)";
+		return make_pair(text, true);
+	});
+	settings[BASE_COMBAT_WIDTH].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the base combat width. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(OptionalInputDialogPanel::RequestDoubleWithValidation(
+			[this](optional<double> value) -> void { storage.baseCombatWidth = value; },
+			validate, message, BaseCombatWidth()));
+	});
+	settings[BASE_COMBAT_WIDTH].SetConditionFunc([this]() -> int {
+		return BaseCombatWidth().value_or(0.) * 1000;
+	});
+	settings[BASE_COMBAT_WIDTH].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.baseCombatWidth = preset.storage.baseCombatWidth;
+		return std::nullopt;
+	});
 }
 
 
@@ -1000,6 +1027,13 @@ void Gamerules::Load(const DataNode &node)
 			else
 				storage.captureValueBasis = max(0., child.Value(1));
 		}
+		else if(key == BASE_COMBAT_WIDTH)
+		{
+			if(child.Token(1) == "unset")
+				storage.baseCombatWidth.reset();
+			else
+				storage.baseCombatWidth = max<double>(0., child.Value(1));
+		}
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -1144,6 +1178,13 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 				out.Write(CAPTURE_VALUE_BASIS, *storage.captureValueBasis);
 			else
 				out.Write(CAPTURE_VALUE_BASIS, "unset");
+		}
+		if(storage.baseCombatWidth != preset.storage.baseCombatWidth)
+		{
+			if(storage.baseCombatWidth.has_value())
+				out.Write(BASE_COMBAT_WIDTH, *storage.baseCombatWidth);
+			else
+				out.Write(BASE_COMBAT_WIDTH, "unset");
 		}
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
@@ -1543,6 +1584,13 @@ int Gamerules::CaptureMinimumDeathBenefit() const
 std::optional<double> Gamerules::CaptureValueBasis() const
 {
 	return storage.captureValueBasis;
+}
+
+
+
+optional<double> Gamerules::BaseCombatWidth() const
+{
+	return storage.baseCombatWidth;
 }
 
 

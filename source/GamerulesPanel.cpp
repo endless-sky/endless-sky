@@ -388,6 +388,7 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::LOCK_GAMERULES,
 		Gamerules::FIGHTER_DODGE_POLICY,
 		Gamerules::UNIVERSAL_AMMO_RESTOCKING,
+		Gamerules::BASE_COMBAT_WIDTH,
 	};
 
 	bool isCategory = true;
