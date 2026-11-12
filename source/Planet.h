@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Port.h"
 #include "Sale.h"
 #include "Shop.h"
+#include "WeightedList.h"
 
 #include <list>
 #include <memory>
@@ -74,7 +75,7 @@ public:
 	// Return the description text for the planet, but not the spaceport:
 	const Paragraphs &Description() const;
 	// Get the landscape sprite.
-	const Sprite *Landscape() const;
+	const Sprite *Landscape(bool refresh = false) const;
 	// Get the name of the ambient audio to play on this planet.
 	const std::string &MusicName() const;
 
@@ -179,7 +180,8 @@ private:
 	std::string displayName;
 	Paragraphs description;
 	Port port;
-	const Sprite *landscape = nullptr;
+	mutable const Sprite *landscape = nullptr;
+	WeightedList<const Sprite *> landscapes;
 	std::string music;
 
 	std::set<std::string> attributes;

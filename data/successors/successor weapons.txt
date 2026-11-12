@@ -334,7 +334,7 @@ outfit `"Sjeja" Kinetic Lance`
 	licenses
 		"High Houses"
 	thumbnail "outfit/sjeja kinetic lance"
-	"mass" 60
+	"mass" 54
 	"outfit space" -60
 	"weapon capacity" -60
 	"energy capacity" 1900

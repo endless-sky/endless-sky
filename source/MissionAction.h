@@ -16,7 +16,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #pragma once
 
 #include "ConditionSet.h"
-#include "Conversation.h"
 #include "DialogSettings.h"
 #include "ExclusiveItem.h"
 #include "GameAction.h"
@@ -26,10 +25,12 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 
 class ConditionsStore;
+class Conversation;
 class DataNode;
 class DataWriter;
 class Mission;
 class Outfit;
+class Phrase;
 class Planet;
 class PlayerInfo;
 class System;
@@ -59,13 +60,14 @@ public:
 	// Determine if this MissionAction references content that is not fully defined.
 	std::string Validate() const;
 
-	const std::string &DialogText() const;
+	std::string DialogText() const;
 
 	// Check if this action can be completed right now. It cannot be completed
 	// if it takes away money or outfits that the player does not have, or should
 	// take place in a system that does not match the specified LocationFilter.
 	// It can also not be done if the mission is failed, and the trigger doesn't support it.
-	bool CanBeDone(const PlayerInfo &player, bool isFailed, const std::shared_ptr<Ship> &boardingShip = nullptr) const;
+	bool CanBeDone(const PlayerInfo &player, bool isFailed, bool executeWhenLanded,
+		const std::shared_ptr<Ship> &boardingShip = nullptr) const;
 	// Check if this action requires this ship to exist in order to ever be completed.
 	bool RequiresGiftedShip(const std::string &shipId) const;
 	// Perform this action. If a conversation is shown, the given destination

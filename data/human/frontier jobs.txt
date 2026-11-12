@@ -30,13 +30,11 @@ mission "Frontier delivery [0]"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 30
 		system destination
 		fleet "Small Northern Pirates"
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 30
 		system destination
 		fleet "Small Northern Pirates" 2
 	on complete
@@ -62,13 +60,11 @@ mission "Frontier delivery [1]"
 	npc
 		government "Pirate"
 		personality nemesis harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates" 2
 	npc
 		government "Pirate"
 		personality nemesis staying harvests plunders
-			confusion 20
 		system destination
 		fleet "Small Northern Pirates" 3
 	on complete
@@ -327,7 +323,6 @@ mission "Small Pirate gambling"
 
 	npc
 		personality launching heroic plunders vindictive nemesis
-			confusion 20
 		government "Pirate"
 		fleet
 			names "pirate"

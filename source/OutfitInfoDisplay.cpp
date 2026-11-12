@@ -69,11 +69,15 @@ namespace {
 		{"disruption resistance heat", 0},
 		{"energy consumption", 0},
 		{"energy generation", 0},
+		{"docked energy generation", 0},
+		{"docked energy heat", 0},
 		{"fuel consumption", 0},
 		{"fuel energy", 0},
 		{"fuel generation", 0},
+		{"docked fuel generation", 0},
 		{"fuel heat", 0},
 		{"heat generation", 0},
+		{"docked heat generation", 0},
 		{"heat dissipation", 0},
 		{"hull repair rate", 0},
 		{"hull energy", 0},
@@ -83,6 +87,10 @@ namespace {
 		{"delayed hull energy", 0},
 		{"delayed hull fuel", 0},
 		{"delayed hull heat", 0},
+		{"docked hull repair rate", 0},
+		{"docked hull energy", 0},
+		{"docked hull fuel", 0},
+		{"docked hull heat", 0},
 		{"ion resistance energy", 0},
 		{"ion resistance fuel", 0},
 		{"ion resistance heat", 0},
@@ -108,6 +116,10 @@ namespace {
 		{"delayed shield energy", 0},
 		{"delayed shield fuel", 0},
 		{"delayed shield heat", 0},
+		{"docked shield generation", 0},
+		{"docked shield energy", 0},
+		{"docked shield fuel", 0},
+		{"docked shield heat", 0},
 		{"slowing resistance energy", 0},
 		{"slowing resistance fuel", 0},
 		{"slowing resistance heat", 0},
@@ -124,12 +136,19 @@ namespace {
 		{"turning energy", 0},
 		{"turning fuel", 0},
 		{"turning heat", 0},
+		{"inertialess flight shields", 0},
+		{"inertialess flight hull", 0},
+		{"inertialess flight energy", 0},
+		{"inertialess flight fuel", 0},
+		{"inertialess flight heat", 0},
 		{"width attacking", 0},
 		{"width defending", 0},
 
 		{"thrust", 1},
 		{"reverse thrust", 1},
 		{"afterburner thrust", 1},
+		{"inertialess thrust", 1},
+		{"inertialess braking", 1},
 
 		{"afterburner discharge", 2},
 		{"afterburner corrosion", 2},
@@ -167,6 +186,15 @@ namespace {
 		{"turning slowing", 2},
 		{"turning disruption", 2},
 
+		{"inertialess flight discharge", 2},
+		{"inertialess flight corrosion", 2},
+		{"inertialess flight ion", 2},
+		{"inertialess flight scramble", 2},
+		{"inertialess flight leakage", 2},
+		{"inertialess flight burn", 2},
+		{"inertialess flight slowing", 2},
+		{"inertialess flight disruption", 2},
+
 		{"ion resistance", 2},
 		{"scramble resistance", 2},
 		{"disruption resistance", 2},
@@ -175,6 +203,8 @@ namespace {
 		{"corrosion resistance", 2},
 		{"leak resistance", 2},
 		{"burn resistance", 2},
+
+		{"flotsam chance", 3},
 
 		{"cloak by mass", 3},
 		{"shield multiplier", 3},
@@ -225,11 +255,12 @@ namespace {
 		{"shield delay", 5},
 		{"cloaking shield delay", 5},
 		{"depleted shield delay", 5},
-		{"disabled recovery time", 5}
+		{"disabled recovery time", 5},
+		{"jump duration", 5},
 	};
 
 	const map<string, string> BOOLEAN_ATTRIBUTES = {
-		{"unplunderable", "This outfit cannot be plundered."},
+		{"unplunderable", "Cannot be plundered while installed."},
 		{"installable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
@@ -242,7 +273,12 @@ namespace {
 		{"cloaked communication", "You may make hails while cloaked."},
 		{"cloaked deployment", "You may deploy from bays while cloaked."},
 		{"cloaked pickup", "You may pick up flotsam while cloaked."},
-		{"cloaked scanning", "You may scan other ships while cloaked."}
+		{"cloaked scanning", "You may scan other ships while cloaked."},
+		{"can jettison", "Can be jettisoned while installed."},
+		{"unremovable", "Can't be removed once installed."},
+		{"nondepreciable", "Doesn't lose value with age."},
+		{"instant braking", "Allows you to stop instantaneously."},
+		{"immovable", "Prevents being moved by external forces."},
 	};
 
 	bool IsNotRequirement(const string &label)
@@ -255,10 +291,13 @@ namespace {
 
 
 
-OutfitInfoDisplay::OutfitInfoDisplay(const Outfit &outfit, const PlayerInfo &player,
-		bool canSell, bool descriptionCollapsed)
+std::string OutfitInfoDisplay::FormatAttribute(const std::string &attribute, double value)
 {
-	Update(outfit, player, canSell, descriptionCollapsed);
+	auto sit = SCALE.find(attribute);
+	double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
+	string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
+
+	return Format::Number(value * scale) + units;
 }
 
 
@@ -369,9 +408,9 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		requirementsHeight += 10;
 	}
 
-	for(const pair<const char *, double> &it : outfit.Attributes())
-		if(!count(BEFORE.begin(), BEFORE.end(), it.first))
-			AddRequirementAttribute(it.first, it.second);
+	for(const auto &[name, value] : outfit)
+		if(!count(BEFORE.begin(), BEFORE.end(), name))
+			AddRequirementAttribute(name, value);
 }
 
 
@@ -437,47 +476,55 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		hasNormalAttributes = true;
 	}
 
-	for(const pair<const char *, double> &it : outfit.Attributes())
+	for(const auto &[name, value] : outfit)
 	{
-		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), it.first))
+		// Attributes that are expected to be negative and boolean attributes
+		// are displayed separately.
+		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), name) || BOOLEAN_ATTRIBUTES.contains(name))
 			continue;
 
 		// Only show positive values here, with some exceptions.
 		// Negative values are usually handled as a "requirement"
-		if(static_cast<string>(it.first) == "required crew")
+		if(name == "required crew")
 		{
 			// 'required crew' is inverted - positive values are requirements.
-			if(it.second > 0)
+			if(value > 0)
 				continue;
 
 			// A negative 'required crew' would be a benefit, so it is listed here.
 		}
 		// If this attribute is not a requirement, it is always listed here, though it may be negative.
-		else if(it.second < 0 && !IsNotRequirement(it.first))
+		else if(value < 0 && !IsNotRequirement(name))
 			continue;
 
-		auto sit = SCALE.find(it.first);
-		double scale = (sit == SCALE.end() ? 1. : SCALE_LABELS[sit->second].first);
-		string units = (sit == SCALE.end() ? "" : SCALE_LABELS[sit->second].second);
+		attributeLabels.emplace_back(name + ":");
+		attributeValues.emplace_back(FormatAttribute(name, value));
+		attributesHeight += 20;
+		hasNormalAttributes = true;
+	}
 
-		auto bit = BOOLEAN_ATTRIBUTES.find(it.first);
-		if(bit != BOOLEAN_ATTRIBUTES.end())
+	bool firstBoolean = true;
+	for(const auto &[name, display] : BOOLEAN_ATTRIBUTES)
+	{
+		double value = outfit.GetPrecise(name);
+		if(!value)
+			continue;
+		if(firstBoolean && hasNormalAttributes)
 		{
-			attributeLabels.emplace_back(bit->second);
-			attributeValues.emplace_back(" ");
-			attributesHeight += 20;
+			attributeLabels.emplace_back();
+			attributeValues.emplace_back();
+			attributesHeight += 10;
 		}
-		else
-		{
-			attributeLabels.emplace_back(static_cast<string>(it.first) + ":");
-			attributeValues.emplace_back(Format::Number(it.second * scale) + units);
-			attributesHeight += 20;
-		}
+		firstBoolean = false;
+
+		attributeLabels.emplace_back(display);
+		attributeValues.emplace_back(" ");
+		attributesHeight += 20;
 		hasNormalAttributes = true;
 	}
 
 	const Weapon *weapon = outfit.GetWeapon().get();
-	if(!weapon)
+	if(!weapon || weapon->IsDecorative())
 		return;
 
 	// Insert padding if any normal attributes were listed above.

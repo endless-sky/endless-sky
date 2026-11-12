@@ -56,6 +56,8 @@ public:
 	// Draw this panel.
 	virtual void Draw() override;
 
+	virtual void UpdateTextDisplay() override;
+
 
 protected:
 	// Event handlers.
@@ -97,6 +99,7 @@ private:
 		// Draw this paragraph at the given point, and return the point that the
 		// next paragraph below this one should be drawn at.
 		Point Draw(Point point, const Color &color) const;
+		void UpdateTextDisplay();
 
 	private:
 		const Sprite *scene = nullptr;
@@ -157,7 +160,6 @@ private:
 
 	// Whether the mouse moved in the current frame.
 	bool isHovering = false;
-	Point hoverPoint;
 };
 
 
