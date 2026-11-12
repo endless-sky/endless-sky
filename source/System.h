@@ -129,6 +129,10 @@ public:
 	double JumpDepartureDistance() const;
 	double HyperDepartureDistance() const;
 
+	// The mass of the stars in this system. For use in calculating orbital periods
+	// of orbits defined outside of the System class.
+	double StarMass() const;
+
 	// Get a list of systems you can "see" from here, whether or not there is a
 	// direct hyperspace link to them.
 	const std::set<const System *> &VisibleNeighbors() const;
@@ -257,6 +261,7 @@ private:
 	std::vector<RandomEvent<Fleet>> fleets;
 	std::vector<RandomEvent<Hazard>> hazards;
 	double habitable = 0.;
+	double starMass = 0.;
 	bool explicitHabitableDistanceSet = false;
 	WeightedList<double> belts;
 	double invisibleFenceRadius = 10000.;

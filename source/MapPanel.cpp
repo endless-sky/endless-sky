@@ -1425,7 +1425,7 @@ void MapPanel::DrawTravelPlan() const
 			for(auto &[ship, fuel] : fuel)
 				if(fuel >= 0.)
 				{
-					double cost = ship->JumpNavigation().GetCheapestJumpType(previous, next).second;
+					double cost = ship->JumpNavigation().GetCheapestJump(previous, next).fuelCost;
 					if(!cost || cost > fuel)
 					{
 						fuel = -1.;
