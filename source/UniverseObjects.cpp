@@ -132,9 +132,14 @@ void UniverseObjects::FinishLoading()
 			Logger::Log("Unhandled \"disable\" keyword of type \"" + category.first + "\".", Logger::Level::WARNING);
 	}
 
-	// Sort all category lists.
+	// Sort all category and capacity lists.
 	for(auto &list : categories)
 		list.second.Sort();
+	capacities.Sort();
+
+	// Guard against infinite loops in condition aliases.
+	for(auto &alias : conditionAliases | views::values)
+		alias.FinishLoading();
 
 	// Store the current state, so that we can revert back to it when exiting a game and starting/loading a new one.
 	defaultFleets = fleets;
@@ -272,6 +277,10 @@ void UniverseObjects::CheckReferences()
 		}
 	}
 
+	// Confusions are never serialized.
+	for(const auto &it : confusions)
+		if(it.second.Name().empty())
+			Warn("confusion", it.first);
 	// Stock conversations are never serialized.
 	for(const auto &it : conversations)
 		if(it.second.IsEmpty())
@@ -347,9 +356,9 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : colors)
 		if(!it.second.IsLoaded())
 			Warn("color", it.first);
-	for(const auto &it : swizzles)
+	for(auto &&it : swizzles)
 		if(!it.second.IsLoaded())
-			Warn("swizzle", it.first);
+			NameAndWarn("swizzle", it);
 	for(const auto &it : messageCategories)
 		if(!it.second.IsLoaded())
 			Warn("message category", it.first);
@@ -433,6 +442,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			if(overwrite)
 				*swizzle = Swizzle();
 			swizzle->Load(node);
+		}
+		else if(key == "confusion" && hasValue)
+		{
+			Confusion *confusion = confusions.Get(node.Token(1));
+			if(overwrite)
+				*confusion = Confusion();
+			confusion->Load(node);
 		}
 		else if(key == "conversation" && hasValue)
 		{
@@ -622,31 +638,25 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if(key == "landing message" && hasValue)
 		{
+			const string &value = node.Token(1);
 			for(const DataNode &child : node)
-				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+				objectSpriteData[SpriteSet::Get(child.Token(0))].SetLandingMessage(value);
+		}
+		else if(key == "planet mass" && hasValue)
+		{
+			double value = max(0., node.Value(1));
+			if(!value)
+				node.PrintTrace("A star or stellar object's mass must be greater than 0.");
+			else
+				for(const DataNode &child : node)
+					objectSpriteData[SpriteSet::Get(child.Token(0))].SetMass(value);
 		}
 		else if(key == "star" && hasValue)
 		{
 			const Sprite *sprite = SpriteSet::Get(node.Token(1));
 			if(overwrite)
-			{
-				solarPower.erase(sprite);
-				solarWind.erase(sprite);
-				starIcons.erase(sprite);
-			}
-			for(const DataNode &child : node)
-			{
-				const string &childKey = child.Token(0);
-				bool childHasValue = child.Size() >= 2;
-				if(childKey == "power" && childHasValue)
-					solarPower[sprite] = child.Value(1);
-				else if(childKey == "wind" && childHasValue)
-					solarWind[sprite] = child.Value(1);
-				else if(childKey == "icon" && childHasValue)
-					starIcons[sprite] = SpriteSet::Get(child.Token(1));
-				else
-					child.PrintTrace("Skipping unrecognized attribute:");
-			}
+				objectSpriteData.erase(sprite);
+			objectSpriteData[sprite].Load(node);
 		}
 		else if(key == "news" && hasValue)
 		{
@@ -681,6 +691,12 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 					list.Clear();
 				list.Load(node);
 			}
+		}
+		else if(key == "display capacities")
+		{
+			if(overwrite)
+				capacities.Clear();
+			capacities.Load(node);
 		}
 		else if((key == "tip" || key == "help") && hasValue)
 		{
@@ -758,6 +774,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			}
 			else
 				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
+		}
+		else if(key == "condition" && hasValue)
+		{
+			ConditionAlias *alias = conditionAliases.Get(node.Token(1));
+			if(overwrite)
+				*alias = ConditionAlias();
+			alias->Load(node, playerConditions);
 		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");

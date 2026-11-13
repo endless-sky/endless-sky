@@ -99,6 +99,8 @@ public:
 	bool LoadRecent();
 	// Save this player (using the Identifier() as the file name).
 	void Save() const;
+	// Apply the effects of permadeath, if this player has permadeath mode enabled.
+	void ApplyPermadeath() const;
 
 	// Get the pilot profile that this player is from.
 	std::shared_ptr<PilotProfile> &Pilot();
@@ -182,6 +184,8 @@ public:
 	std::map<const std::shared_ptr<Ship>, std::vector<std::string>> FlightCheck() const;
 	// Add a captured ship to your fleet.
 	void CaptureShip(const std::shared_ptr<Ship> &ship);
+	// Add a plundered outfit to the depreciation record.
+	void PlunderOutfit(const Outfit *outfit, int count);
 	// Buy, receive or sell a ship.
 	// In the case of buying, return whether the ship could be purchased.
 	// In the case of a gift, return a pointer to the newly instantiated ship.
@@ -199,7 +203,7 @@ public:
 	void SetShipOrder(const std::vector<std::shared_ptr<Ship>> &newOrder);
 	// Get the attraction factors of the player's fleet to raid fleets.
 	std::pair<double, double> RaidFleetFactors() const;
-	double RaidFleetAttraction(const RaidFleet &raidFleet, const System *system) const;
+	double RaidFleetAttraction(const RaidFleet &raid, const System *system) const;
 	// Get the player's fleet capacity and the current cost of their fleet.
 	int FleetCapacity() const;
 	int FleetCost() const;
@@ -207,6 +211,7 @@ public:
 	// Get cargo information.
 	CargoHold &Cargo();
 	const CargoHold &Cargo() const;
+	int LargestCargoHold() const;
 	// Get items stored on the player's current planet.
 	CargoHold &Storage();
 	// Get items stored on all planets (for map display).
@@ -227,7 +232,7 @@ public:
 
 	// Get or add to pilot's playtime.
 	double GetPlayTime() const noexcept;
-	void AddPlayTime(std::chrono::nanoseconds timeVal);
+	void AddPlayTime(std::chrono::nanoseconds timeVal, bool isIdle);
 
 	// Get the player's logbook.
 	const std::map<Date, BookEntry> &Logbook() const;
@@ -269,7 +274,9 @@ public:
 	void SortAvailable();
 
 	const Mission *ActiveInFlightMission() const;
-	void UpdateMissionNPCs();
+	// Update mission NPCs with the player's current conditions.
+	// Return the NPCs that should be spawned right now.
+	std::vector<const NPC *> UpdateMissionNPCs();
 	void AcceptJob(const Mission &mission, UI &ui);
 	// Check to see if there is any mission to offer right now.
 	Mission *MissionToOffer(Mission::Location location);
@@ -315,11 +322,11 @@ public:
 	int64_t GetTributeTotal() const;
 
 	// Check what the player knows about the given system or planet.
-	bool HasSeen(const System &system) const;
+	bool HasSeen(const System &system, bool excludeMission = false) const;
 	bool CanView(const System &system) const;
 	bool HasVisited(const System &system) const;
 	bool HasVisited(const Planet &planet) const;
-	bool KnowsName(const System &system) const;
+	bool KnowsName(const System &system, bool excludeMission = false) const;
 	// Marking a system as visited also "sees" its neighbors.
 	void Visit(const System &system);
 	void Visit(const Planet &planet);
@@ -362,6 +369,7 @@ public:
 	// Select one of the ships that the player owns.
 	void SelectEscort(const Ship *ship, bool hasShift);
 	void DeselectEscort(const Ship *ship);
+	void ClearSelectedEscorts();
 	void SelectEscortGroup(int group, bool hasShift);
 	void SetEscortGroup(int group, const std::set<Ship *> *newShips = nullptr);
 	std::set<Ship *> GetEscortGroup(int group);
@@ -372,6 +380,7 @@ public:
 	int Stock(const Outfit *outfit) const;
 	void AddStock(const Outfit *outfit, int count);
 	// Get depreciation information.
+	Depreciation &FleetDepreciation();
 	const Depreciation &FleetDepreciation() const;
 	const Depreciation &StockDepreciation() const;
 
@@ -408,6 +417,9 @@ public:
 	void StepMissionTimers(UI &ui);
 	// Checks and resets recacheJumpRoutes. Returns the value that was present upon entry.
 	bool RecacheJumpRoutes();
+
+	void AddBoardingCasualties(const std::weak_ptr<Ship> &ship, int casualties);
+	int GetBoardingCasualties(const std::weak_ptr<Ship> &ship) const;
 
 
 private:
@@ -494,6 +506,7 @@ private:
 
 	// The amount of in-game time played, in seconds.
 	double playTime = 0.;
+	double idleTime = 0.;
 
 	Account accounts;
 	// The licenses that the player owns.
@@ -507,6 +520,7 @@ private:
 	// and its scan range squared (for quicker comparisons).
 	std::map<int, std::map<std::weak_ptr<Ship>, double, std::owner_less<std::weak_ptr<const Ship>>>> scanners;
 	CargoHold cargo;
+	int largestCargoHold = 0;
 	std::map<const Planet *, CargoHold> planetaryStorage;
 	std::map<std::string, int64_t> costBasis;
 	std::optional<int> maxEscortCount;
@@ -607,4 +621,8 @@ private:
 	std::unique_ptr<DataWriter> transactionSnapshot;
 
 	bool recacheJumpRoutes = false;
+	// The number of casualties experienced during a boarding action.
+	// Death benefits may need to be paid on a per-ship basis.
+	typedef std::owner_less<std::weak_ptr<const Ship>> Comp;
+	std::map<std::weak_ptr<Ship>, int, Comp> boardingCasualties;
 };

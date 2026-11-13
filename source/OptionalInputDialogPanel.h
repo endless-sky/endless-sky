@@ -42,6 +42,32 @@ public:
 		std::optional<double> initialValue = std::nullopt,
 		Truncate truncate = Truncate::NONE,
 		bool allowsFastForward = false);
+	static OptionalInputDialogPanel *RequestDouble(std::function<void(std::optional<double>)> fun,
+		std::string message,
+		std::optional<double> initialValue = std::nullopt,
+		Truncate truncate = Truncate::NONE,
+		bool allowsFastForward = false);
+
+	template<class T>
+	static OptionalInputDialogPanel *RequestIntegerWithValidation(T *t, void (T::*fun)(std::optional<int>),
+		std::function<bool(int)> validate,
+		std::string message,
+		std::optional<int> initialValue = std::nullopt,
+		Truncate truncate = Truncate::NONE,
+		bool allowsFastForward = false);
+	template<class T>
+	static OptionalInputDialogPanel *RequestDoubleWithValidation(T *t, void (T::*fun)(std::optional<double>),
+		std::function<bool(double)> validate,
+		std::string message,
+		std::optional<double> initialValue = std::nullopt,
+		Truncate truncate = Truncate::NONE,
+		bool allowsFastForward = false);
+	static OptionalInputDialogPanel *RequestDoubleWithValidation(std::function<void(std::optional<double>)> fun,
+		std::function<bool(double)> validate,
+		std::string message,
+		std::optional<double> initialValue = std::nullopt,
+		Truncate truncate = Truncate::NONE,
+		bool allowsFastForward = false);
 
 
 private:
@@ -75,6 +101,40 @@ OptionalInputDialogPanel *OptionalInputDialogPanel::RequestDouble(T *t, void (T:
 	std::string message, std::optional<double> initialValue, Truncate truncate, bool allowsFastForward)
 {
 	DialogInit init;
+	init.message = std::move(message);
+	if(initialValue.has_value())
+		init.initialValue = Format::StripCommas(Format::Number(initialValue.value(), 5));
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new OptionalInputDialogPanel(init, nullptr, std::bind(fun, t, std::placeholders::_1));
+}
+
+
+
+template<class T>
+OptionalInputDialogPanel *OptionalInputDialogPanel::RequestIntegerWithValidation(T *t,
+	void (T::*fun)(std::optional<int>), std::function<bool(int)> validate,
+	std::string message, std::optional<int> initialValue, Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.validateIntFun = std::move(validate);
+	init.message = std::move(message);
+	if(initialValue.has_value())
+		init.initialValue = std::to_string(initialValue.value());
+	init.truncate = truncate;
+	init.allowsFastForward = allowsFastForward;
+	return new OptionalInputDialogPanel(init, std::bind(fun, t, std::placeholders::_1), nullptr);
+}
+
+
+
+template<class T>
+OptionalInputDialogPanel *OptionalInputDialogPanel::RequestDoubleWithValidation(T *t,
+	void (T::*fun)(std::optional<double>), std::function<bool(double)> validate,
+	std::string message, std::optional<double> initialValue, Truncate truncate, bool allowsFastForward)
+{
+	DialogInit init;
+	init.validateDoubleFun = std::move(validate);
 	init.message = std::move(message);
 	if(initialValue.has_value())
 		init.initialValue = Format::StripCommas(Format::Number(initialValue.value(), 5));

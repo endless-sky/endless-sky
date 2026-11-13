@@ -25,11 +25,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <vector>
 
 class CategoryList;
+class Drawable;
 class Information;
 class ItemInfoDisplay;
 class PlayerInfo;
 class Point;
-class Sprite;
 class Swizzle;
 
 
@@ -53,13 +53,14 @@ protected:
 	virtual bool Drag(double dx, double dy) override;
 	virtual bool Scroll(double dx, double dy) override;
 
-	virtual const Sprite *SelectedSprite() const = 0;
-	virtual const Sprite *CompareSprite() const = 0;
+	virtual const Drawable &SelectedSprite() const = 0;
+	virtual const Drawable &CompareSprite() const = 0;
 	virtual const Swizzle *SelectedSpriteSwizzle() const;
 	virtual const Swizzle *CompareSpriteSwizzle() const;
 	virtual const ItemInfoDisplay &SelectedInfo() const = 0;
 	virtual const ItemInfoDisplay &CompareInfo() const = 0;
 
+	virtual void Hovering(int index) = 0;
 	virtual void Select(int index) = 0;
 	virtual void Compare(int index) = 0;
 	virtual double SystemValue(const System *system) const override = 0;
@@ -67,14 +68,14 @@ protected:
 
 	virtual void DrawItems() = 0;
 
-	virtual void DrawKey(Information &info) const;
+	virtual void DrawSalesKey(Information &info) const;
 	void DrawPanel() const;
 	void DrawInfo() const;
 
 	bool DrawHeader(Point &corner, const std::string &category);
-	void DrawSprite(const Point &corner, const Sprite *sprite, const Swizzle * swizzle) const;
-	void Draw(Point &corner, const Sprite *sprite, const Swizzle *swizzle, bool isForSale, bool isSelected,
-		const std::string &name, const std::string &variantName, const std::string &price,
+	void DrawSprite(const Point &corner, const Drawable &drawable, bool animate, const Swizzle *swizzle) const;
+	void Draw(Point &corner, const Drawable &drawable, const Swizzle *swizzle, bool isForSale, bool isSelected,
+		bool isHovering, const std::string &name, const std::string &variantName, const std::string &price,
 		const std::string &info, const std::string &storage);
 
 	void DoFind(const std::string &text);
@@ -89,6 +90,8 @@ protected:
 
 
 protected:
+	// Step count for animations.
+	int step = 0;
 	double scroll = 0.;
 	double maxScroll = 0.;
 
@@ -96,6 +99,7 @@ protected:
 	const CategoryList &categories;
 	bool onlyShowSoldHere = false;
 	bool onlyShowStorageHere = false;
+	int hoverKey = -1;
 	// Whether this panel has preloaded the thumbnails from the catalog yet.
 	bool hasLoadedThumbnails = false;
 

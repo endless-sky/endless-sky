@@ -48,7 +48,7 @@ public:
 
 
 public:
-	explicit OutfitterPanel(PlayerInfo &player, Sale<Outfit> stock);
+	OutfitterPanel(PlayerInfo &player, const Sale<Outfit> &stock);
 
 	virtual void Step() override;
 
@@ -66,6 +66,7 @@ protected:
 	bool ButtonActive(char key, bool shipRelatedOnly = false);
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
+	virtual std::optional<Rectangle> KeyArea() const override;
 
 	// Toggles for the display filters.
 	void ToggleForSale();

@@ -15,15 +15,15 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Conversation.h"
 #include "DialogSettings.h"
 #include "EsUuid.h"
 #include "ExclusiveItem.h"
-#include "Fleet.h"
 #include "FleetCargo.h"
+#include "FleetPlacement.h"
 #include "LocationFilter.h"
 #include "NPCAction.h"
 #include "Personality.h"
+#include "ship/ShipFactory.h"
 
 #include <list>
 #include <map>
@@ -33,6 +33,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class ConditionsStore;
 class DataNode;
 class DataWriter;
+class Fleet;
 class Government;
 class Mission;
 class Planet;
@@ -92,13 +93,14 @@ public:
 	const EsUuid &UUID() const noexcept;
 
 	// Update or check spawning and despawning for this NPC.
-	void UpdateSpawning(const PlayerInfo &player);
+	// Return true if this NPC should be spawned right now.
+	bool UpdateSpawning();
 	bool ShouldSpawn() const;
 
 	// Get the personality that dictates the behavior of the ships associated with this set of NPCs.
 	const Personality &GetPersonality() const;
 	// Get the ships associated with this set of NPCs.
-	const std::list<std::shared_ptr<Ship>> Ships() const;
+	const std::list<std::shared_ptr<Ship>> &Ships() const;
 
 	// Handle the given ShipEvent. Return true if the event target is within this NPC.
 	bool Do(const ShipEvent &event, PlayerInfo &player, UI &ui,
@@ -141,6 +143,9 @@ private:
 	// Start out landed on this planet.
 	const Planet *planet = nullptr;
 
+	// Controls where in the system the NPC is and how damaged it is when placed.
+	FleetPlacement placement;
+
 	// Dialog or conversation to show when all requirements for this NPC are met:
 	DialogSettings dialog;
 	ExclusiveItem<Conversation> conversation;
@@ -157,13 +162,17 @@ private:
 	// Whether we have actually checked spawning conditions yet. (This
 	// will generally be true, except when reloading a save.)
 	bool checkedSpawnConditions = false;
+	// If true, an NPC whose spawn conditions are met when they are checked
+	// mid-flight can instantly spawn. If false, this NPC's ships can only
+	// be spawned when the player departs from a planet, or upon immediately
+	// accepting an in-flight mission.
+	bool inFlightSpawning = false;
 
-	// The ships may be listed individually or referred to as a fleet, and may
-	// be customized or just refer to stock objects:
-	std::list<std::shared_ptr<Ship>> ships;
-	std::list<const Ship *> stockShips;
-	std::list<std::string> shipNames;
+	// The ship and fleet definition that make up this NPC.
+	ShipFactory factory;
 	std::list<ExclusiveItem<Fleet>> fleets;
+	// The actual instantiated ships.
+	std::list<std::shared_ptr<Ship>> ships;
 
 	// This must be done to each ship in this set to complete the mission:
 	int succeedIf = 0;

@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Body.h"
 
 #include "Angle.h"
+#include "Depreciation.h"
 
 #include <string>
 #include <vector>
@@ -25,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Effect;
 class Government;
 class Outfit;
+class PlayerInfo;
 class Point;
 class Ship;
 class Visual;
@@ -35,7 +37,7 @@ class Flotsam : public Body {
 public:
 	// Constructors for flotsam carrying either a commodity or an outfit.
 	Flotsam(const std::string &commodity, int count, const Government *sourceGovernment = nullptr);
-	Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment = nullptr);
+	Flotsam(const Outfit *outfit, int count, const Government *sourceGovernment = nullptr, PlayerInfo *player = nullptr);
 
 	// Functions provided by the Body base class:
 	// Frame GetFrame(int step = -1) const;
@@ -59,6 +61,8 @@ public:
 	// Move the object one time-step forward.
 	void Move(std::vector<Visual> &visuals);
 	void SetVelocity(const Point &velocity);
+	// Prevent lifetime decay from occurring this frame due to the flotsam being within a tractor beam.
+	void InTractorBeam();
 
 	// This is the one ship that cannot pick up this flotsam.
 	const Ship *Source() const;
@@ -77,7 +81,7 @@ public:
 
 	// Transfer contents to the collector ship. The flotsam velocity is
 	// stabilized in proportion to the amount being transferred.
-	int TransferTo(Ship *collector);
+	int TransferTo(Ship *collector, PlayerInfo &player);
 
 
 public:
@@ -93,6 +97,8 @@ private:
 	const Ship *source = nullptr;
 	std::string commodity;
 	const Outfit *outfit = nullptr;
+	// The depreciation record of the stored outfit.
+	Depreciation depreciation;
 	int count = 0;
 	const Government *sourceGovernment = nullptr;
 };

@@ -119,7 +119,7 @@ mission "Heliarch Investigation 2"
 			branch evidence3
 				"lunarium evidence" == 3
 			label "final thanks"
-			`	Iekie thanks you for your efforts in the operation, and goes to analyze the findings with her team. Iplora, Kirrie and Tugroob remain there with them, and you're escorted back to your ships by the guards.`
+			`	Iekie thanks you for your efforts in the operation, and goes to analyze the findings with her team. Iplora, Kirrie and Tugroob remain there with them, and you're escorted back to your ship by the guards.`
 				accept
 			label evidence1
 			`	The agents then get closer to her, and Kirrie whispers something to the consul, handing her another report. Iekie turns to you once more, saying, "Quite a find, this is. Done well, you have, Captain."`

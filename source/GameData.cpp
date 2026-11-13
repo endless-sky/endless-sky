@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Depreciation.h"
 #include "Effect.h"
 #include "Files.h"
 #include "shader/FillShader.h"
@@ -49,7 +50,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Politics.h"
 #include "RenderBuffer.h"
@@ -60,6 +62,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
 #include "StartConditions.h"
+#include "StellarObjectSpriteData.h"
 #include "System.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
@@ -69,8 +72,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <filesystem>
-#include <iostream>
 #include <queue>
+#include <ranges>
 #include <utility>
 #include <vector>
 
@@ -96,7 +99,7 @@ namespace {
 
 	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
-		const auto *plugin = Plugins::Load(path);
+		const auto *plugin = PluginManager::Load(path);
 		if(!plugin)
 			return;
 
@@ -480,6 +483,15 @@ void GameData::DestroyPersons(vector<string> &names)
 
 
 
+void GameData::HandleEvent(const ShipEvent &event)
+{
+	for(Person &person : objects.persons | views::values)
+		if(person.Do(event))
+			break;
+}
+
+
+
 const Set<Color> &GameData::Colors()
 {
 	return objects.colors;
@@ -490,6 +502,13 @@ const Set<Color> &GameData::Colors()
 const Set<Swizzle> &GameData::Swizzles()
 {
 	return objects.swizzles;
+}
+
+
+
+const Set<Confusion> &GameData::Confusions()
+{
+	return objects.confusions;
 }
 
 
@@ -690,6 +709,13 @@ const Set<Gamerules> &GameData::GamerulesPresets()
 
 
 
+const Set<ConditionAlias> &GameData::ConditionAliases()
+{
+	return objects.conditionAliases;
+}
+
+
+
 const std::set<std::string> &GameData::UniverseWormholeRequirements()
 {
 	return objects.universeWormholeRequirements;
@@ -732,45 +758,11 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 
 
 
-// Custom messages to be shown when trying to land on certain stellar objects.
-bool GameData::HasLandingMessage(const Sprite *sprite)
+const StellarObjectSpriteData &GameData::ObjectSpriteData(const Sprite *sprite)
 {
-	return objects.landingMessages.contains(sprite);
-}
-
-
-
-const string &GameData::LandingMessage(const Sprite *sprite)
-{
-	static const string EMPTY;
-	auto it = objects.landingMessages.find(sprite);
-	return (it == objects.landingMessages.end() ? EMPTY : it->second);
-}
-
-
-
-// Get the solar power and wind output of the given stellar object sprite.
-double GameData::SolarPower(const Sprite *sprite)
-{
-	auto it = objects.solarPower.find(sprite);
-	return (it == objects.solarPower.end() ? 0. : it->second);
-}
-
-
-
-double GameData::SolarWind(const Sprite *sprite)
-{
-	auto it = objects.solarWind.find(sprite);
-	return (it == objects.solarWind.end() ? 0. : it->second);
-}
-
-
-
-// Get the map icon of the given stellar object sprite.
-const Sprite *GameData::StarIcon(const Sprite *sprite)
-{
-	const auto it = objects.starIcons.find(sprite);
-	return (it == objects.starIcons.end() ? nullptr : it->second);
+	static const StellarObjectSpriteData EMPTY;
+	auto it = objects.objectSpriteData.find(sprite);
+	return (it == objects.objectSpriteData.end() ? EMPTY : it->second);
 }
 
 
@@ -790,9 +782,16 @@ const string &GameData::Rating(const string &type, int level)
 
 
 // Collections for ship, bay type, outfit, and other categories.
-const CategoryList &GameData::GetCategory(const CategoryType type)
+const CategoryList &GameData::GetCategory(CategoryType type)
 {
 	return objects.categories[type];
+}
+
+
+
+const CapacityList &GameData::GetCapacities()
+{
+	return objects.capacities;
 }
 
 
@@ -840,6 +839,8 @@ const string &GameData::Tooltip(const string &label)
 	// the full price, so they will not match exactly.
 	if(it == objects.tooltips.end() && label.starts_with("cost"))
 		it = objects.tooltips.find("cost:");
+	if(it == objects.tooltips.end() && label.starts_with("ship: cost"))
+		it = objects.tooltips.find("ship: cost:");
 	if(it == objects.tooltips.end() && label.starts_with("sells for"))
 		it = objects.tooltips.find("sells for:");
 	return (it == objects.tooltips.end() ? EMPTY : it->second);
@@ -890,6 +891,9 @@ const Gamerules &GameData::GetGamerules()
 void GameData::SetGamerules(const Gamerules *gamerules)
 {
 	activeGamerules = gamerules;
+	// This pilot may have different depreciation gamerules than whatever was loaded before,
+	// so clear the cache to allow calculations with these gamerules to be accurate.
+	Depreciation::InvalidateCache();
 }
 
 
@@ -908,21 +912,21 @@ void GameData::LoadSources(TaskQueue &queue)
 
 	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
-		if(Plugins::IsPlugin(path))
+		if(PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 	// Load unzipped plugins first to give them precedence, then load the zipped plugins.
 	globalPlugins = Files::List(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
-		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+		if(path.extension() == ".zip" && PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 
 	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
 	for(const auto &path : localPlugins)
-		if(Plugins::IsPlugin(path))
+		if(PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 	localPlugins = Files::List(Files::UserPlugins());
 	for(const auto &path : localPlugins)
-		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+		if(path.extension() == ".zip" && PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
 

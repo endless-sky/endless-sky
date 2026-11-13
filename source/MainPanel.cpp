@@ -48,6 +48,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	const double MINIMUM_DRAG_BOX_SIZE = 25.;
+}
+
 
 
 MainPanel::MainPanel(PlayerInfo &player)
@@ -96,6 +100,7 @@ void MainPanel::Step()
 	// will call this object's OnCallback() function;
 	if(isActive && player.GetPlanet() && !player.GetPlanet()->IsWormhole())
 	{
+		engine.DisengageAutopilot();
 		GetUI().Push(new PlanetPanel(player, bind(&MainPanel::OnCallback, this)));
 		player.Land(GetUI());
 		isActive = false;
@@ -132,7 +137,16 @@ void MainPanel::Step()
 	StepEvents(isActive);
 
 	if(isActive)
+	{
+		// Now that all updates have been made to the player that could alter condition
+		// reads, check if any missions can spawn NPCs right now.
+		if(checkSpawns && !engine.IsPaused())
+		{
+			engine.CheckNpcSpawns();
+			checkSpawns = false;
+		}
 		engine.Go();
+	}
 	else
 		canDrag = false;
 	canClick = isActive;
@@ -150,7 +164,8 @@ void MainPanel::Draw()
 	{
 		if(canDrag)
 		{
-			const Color &dragColor = *GameData::Colors().Get("drag select");
+			bool validDrag = dragPoint.DistanceSquared(dragSource) > MINIMUM_DRAG_BOX_SIZE;
+			const Color &dragColor = *GameData::Colors().Get(validDrag ? "drag select" : "drag select invalid");
 			LineShader::Draw(dragSource, Point(dragSource.X(), dragPoint.Y()), .8f, dragColor);
 			LineShader::Draw(Point(dragSource.X(), dragPoint.Y()), dragPoint, .8f, dragColor);
 			LineShader::Draw(dragPoint, Point(dragPoint.X(), dragSource.Y()), .8f, dragColor);
@@ -210,17 +225,20 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		show = command;
 	else if(command.Has(Command::TURRET_TRACKING))
 	{
-		bool newValue = !Preferences::Has("Turrets focus fire");
-		Preferences::Set("Turrets focus fire", newValue);
+		bool newValue = Preferences::Toggle(Preferences::TURRETS_FOCUS_FIRE);
 		Messages::Add(*GameData::Messages().Get(newValue ?
 			"turret tracking focused" : "turret tracking opportunistic"));
 	}
 	else if(command.Has(Command::AMMO))
 	{
-		Preferences::ToggleAmmoUsage();
-		Messages::Add(*GameData::Messages().Get(
-			Preferences::Has("Escorts expend ammo") ? (Preferences::Has("Escorts use ammo frugally") ?
-			"expend ammo frugally" : "expend ammo always") : "expend ammo never"));
+		Preferences::Toggle(Preferences::ESCORT_AMMO_USAGE);
+		Preferences::EscortAmmoUsage ammoUsage = Preferences::AmmoUsage();
+		string message = "expend ammo never";
+		if(ammoUsage == Preferences::EscortAmmoUsage::ALWAYS)
+			message = "expend ammo always";
+		else if(ammoUsage == Preferences::EscortAmmoUsage::FRUGALLY)
+			message = "expend ammo frugally";
+		Messages::Add(*GameData::Messages().Get(message));
 	}
 	else if((key == SDLK_MINUS || key == SDLK_KP_MINUS) && !command)
 		Preferences::ZoomViewOut();
@@ -242,7 +260,7 @@ bool MainPanel::Click(int x, int y, MouseButton button, int clicks)
 	{
 		case MouseButton::MIDDLE:
 		case MouseButton::RIGHT:
-			engine.RightOrMiddleClick(Point(x, y), button);
+			engine.RightOrMiddleClick(Point(x, y), button, clicks);
 			return true;
 		case MouseButton::LEFT:
 			break;
@@ -263,7 +281,7 @@ bool MainPanel::Click(int x, int y, MouseButton button, int clicks)
 	hasShift = (mod & KMOD_SHIFT);
 	hasControl = (mod & KMOD_CTRL);
 
-	engine.Click(dragSource, dragSource, hasShift, hasControl);
+	engine.LeftClick(dragSource, hasShift, hasControl, clicks);
 
 	return true;
 }
@@ -290,8 +308,8 @@ bool MainPanel::Release(int x, int y, MouseButton button)
 	if(isDragging)
 	{
 		dragPoint = Point(x, y);
-		if(dragPoint.Distance(dragSource) > 5.)
-			engine.Click(dragSource, dragPoint, hasShift, hasControl);
+		if(dragPoint.DistanceSquared(dragSource) > MINIMUM_DRAG_BOX_SIZE)
+			engine.ReleaseDrag(dragSource, dragPoint);
 
 		isDragging = false;
 	}
@@ -354,7 +372,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 		if(first)
 			out << "This " + name + " is not carrying any cargo.\n";
 	}
-	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Attributes().Get("inscrutable"))
+	if((event.Type() & ShipEvent::SCAN_OUTFITS) && target->Inscrutable())
 		out << "Your scanners cannot make any sense of the interior of the " + name + ".";
 	else if(event.Type() & ShipEvent::SCAN_OUTFITS)
 	{
@@ -438,7 +456,7 @@ bool MainPanel::ShowHailPanel()
 
 	if(flagship->IsEnteringHyperspace())
 		Messages::Add(*GameData::Messages().Get("cannot hail while jumping"));
-	else if(flagship->IsCloaked() && !flagship->Attributes().Get("cloaked communication"))
+	else if(flagship->IsCloaked() && !flagship->CanCommunicateWhileCloaked())
 		Messages::Add(*GameData::Messages().Get("cannot hail while cloaked"));
 	else if(target)
 	{
@@ -490,7 +508,7 @@ bool MainPanel::ShowHelp(bool force)
 
 	vector<string> forced;
 	// Check if any help messages should be shown.
-	if(Preferences::Has("Control ship with mouse"))
+	if(Preferences::Has(Preferences::MOUSE_CONTROL_FLAGSHIP))
 	{
 		if(force)
 			forced.push_back("control ship with mouse");
@@ -548,9 +566,7 @@ bool MainPanel::ShowHelp(bool force)
 		else if(DoHelp("fleet harvest tutorial"))
 			return true;
 	}
-	if(flagship->IsTargetable() &&
-			flagship->Attributes().Get("asteroid scan power") &&
-			player.Ships().size() > 1)
+	if(flagship->IsTargetable() && flagship->AsteroidScanPower() && player.Ships().size() > 1)
 	{
 		// Different order of these messages is intentional,
 		// because we're displaying the forced messages in reverse order.
@@ -569,7 +585,7 @@ bool MainPanel::ShowHelp(bool force)
 		else if(DoHelp("try out fighters transfer cargo"))
 			return true;
 	}
-	if(Preferences::Has("Fighters transfer cargo"))
+	if(Preferences::Has(Preferences::FIGHTERS_TRANSFER_CARGO))
 	{
 		if(force)
 			forced.push_back("fighters transfer cargo");
@@ -693,7 +709,10 @@ void MainPanel::StepEvents(bool &isActive)
 		// Handle jump events from the player's flagship. This means we should check
 		// for entering missions that can be offered.
 		if((event.Type() & ShipEvent::JUMP) && flagship && event.Actor().get() == flagship)
+		{
 			player.CreateEnteringMissions();
+			checkSpawns = true;
+		}
 
 		// Remove the fully-handled event.
 		eventQueue.pop_front();

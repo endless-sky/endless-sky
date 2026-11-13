@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "Color.h"
 #include "ConditionSet.h"
 #include "Date.h"
 #include "DistanceCalculationSettings.h"
@@ -33,6 +32,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <set>
 #include <string>
 
+class Color;
 class ConditionsStore;
 class DataNode;
 class DataWriter;
@@ -86,9 +86,9 @@ public:
 	bool IsVisible() const;
 	// The colors that should be used to display the mission name if it is shown
 	// in your mission list.
-	const Color &Unavailable() const;
-	const Color &Unselected() const;
-	const Color &Selected() const;
+	const Color *Unavailable() const;
+	const Color *Unselected() const;
+	const Color *Selected() const;
 	// Check if this mission should be quarantined due to requiring currently-
 	// undefined ships, planets, or systems (i.e. is from an inactive plugin).
 	bool IsValid() const;
@@ -193,7 +193,8 @@ public:
 	// Iterate through the timers and progress them if applicable.
 	void StepTimers(PlayerInfo &player, UI &ui);
 	// Update which NPCs are active based on their spawn and despawn conditions.
-	void UpdateNPCs(const PlayerInfo &player);
+	// Return the NPCs that should be spawned now.
+	std::vector<const NPC *> UpdateNPCs();
 	// Checks if the given ship belongs to one of the mission's NPCs.
 	bool HasShip(const std::shared_ptr<Ship> &ship) const;
 	// If any event occurs between two ships, check to see if this mission cares
