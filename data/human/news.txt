@@ -1182,6 +1182,7 @@ news "reporter"
 			"Check this out! 'Top 20 Things Starship Pilots Don't Want You to Know!' Wait, never mind."
 			"'11 signs that you are dealing with a corporate executive.' Read my blog to protect yourself from those psychopaths!"
 			"Do you know Betteridge's law of headlines? Any headline that ends in a question mark can be answered by the word 'no.'"
+			"Check out this story! 'Syndicate Executive Resigns - Alleged to have Simultaneous Affairs With Spies from the Republic, Deep, and Free Worlds!'"
 		word
 			`"`
 
