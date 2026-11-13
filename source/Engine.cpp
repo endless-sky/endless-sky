@@ -2596,11 +2596,12 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 				if((isSafe && !targeted && gov && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
 					continue;
 
-				double multiplier = !gov->IsEnemy(ship->GetGovernment()) && !targeted && directHit
+				Projectile::ImpactInfo useInfo = impact;
+				useInfo.scaling *= !gov->IsEnemy(ship->GetGovernment()) && !targeted && directHit
 					? GameData::GetGamerules().FriendlyFireDamageMultiplier() : 1.;
 
 				// Only directly targeted ships get provoked by blast weapons.
-				entityCollisions[ship].emplace_back(DamageProfile(*ship, impact, ship == hit), gov, targeted);
+				entityCollisions[ship].emplace_back(DamageProfile(*ship, useInfo, ship == hit), gov, targeted);
 			}
 			blastCollisions.clear();
 			asteroids.MinablesCollisionsCircle(hitPos, blastRadius, blastCollisions);
@@ -2614,11 +2615,12 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 		{
 			if(collisionType == CollisionType::SHIP)
 			{
-				double multiplier = alliedGov && !targetedHit
+				Projectile::ImpactInfo useInfo = impact;
+				useInfo.scaling *= alliedGov && !targetedHit
 					? GameData::GetGamerules().FriendlyFireDamageMultiplier() : 1.;
 
 				auto ship = shipHit.get();
-				entityCollisions[ship].emplace_back(DamageProfile(*ship, impact), gov);
+				entityCollisions[ship].emplace_back(DamageProfile(*ship, useInfo), gov);
 			}
 			else if(collisionType == CollisionType::MINABLE)
 			{

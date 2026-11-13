@@ -50,6 +50,7 @@ public:
 		const Weapon &weapon;
 		Point position;
 		double distanceTraveled;
+		double scaling = 1.;
 	};
 
 	enum DeathType {

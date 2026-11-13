@@ -365,7 +365,7 @@ bool CollisionSet::ValidCollision(const Body *parent, const Body *hit, const Gov
 	// The likelihood of a friendly fire incident depends on the involved governments,
 	// and whether any of the involved ships are fighters or not.
 	double friendlyFireOdds = (pGov == govHit)
-		? GameData::GetGamerules().FriendlyFirePrbability()
+		? GameData::GetGamerules().FriendlyFireProbability()
 		: GameData::GetGamerules().AllyFriendlyFireProbability();
 	friendlyFireOdds *= firingCarry || carryHit
 		? GameData::GetGamerules().FighterFriendlyFireMultiplier() : 1.;

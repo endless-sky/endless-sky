@@ -2047,6 +2047,22 @@ tip "Minimum per casualty"
 tip "Capture value basis"
 	`Controls what percentage of the value of a captured ship is used to determine the size of a share. If unset, then a ship is valued at its sale price as it is captured.`
 
+tip "Same government probability"
+	`The probability that a projectile will collide with a ship with the same government. Weapons with the "safe" attribute cannot cause friendly fire.`
+
+tip "Allied government probability"
+	`The probability that a projectile will collide with a friendly ship of the same government. Ships hit this way will not be provoked.`
+
+tip "Fighter probability multiplier"
+	`Projectiles that are fired by or intersect with fighters and drones have their chance to cause friendly fire multiplied by this value.`
+
+tip "Carrier exception"
+	`Makes carrier groups ignore friendly fire entirely. Carriers will be unable to hit their fighters, and their fighters will not be able to hit each other and their carrier.`
+
+tip "Damage multiplier"
+	`This multiplier is applied to damage done between ships belonging to the same government as a result of random friendly fire. Blast damage and damage against ships being actively targeted are not affected.`
+
+
 # Boarding panel:
 tip `boarding: in cargo`
 	`This item is in the ship's cargo hold.`

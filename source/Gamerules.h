@@ -82,6 +82,13 @@ public:
 		ALL_CREW,
 	};
 
+	// The types of friendly fire that can occur if the friendly fire
+	// gamerules are active.
+	enum class FriendlyFireType : int_fast8_t {
+		SAME_GOVERNMENT = 0,
+		ALLIED_GOVERNMENT,
+	};
+
 
 public:
 	// Identifiers for specific gamerules.
@@ -124,6 +131,11 @@ public:
 	static const std::string CAPTURE_SURVIVING_CREW_SHARES;
 	static const std::string CAPTURE_MIN_DEATH_BENEFIT;
 	static const std::string CAPTURE_VALUE_BASIS;
+	static const std::string FRIENDLY_FIRE_PROB;
+	static const std::string FRIENDLY_FIRE_ALLY_PROB;
+	static const std::string FRIENDLY_FIRE_FIGHTER_PROB_MULT;
+	static const std::string FRIENDLY_FIRE_CARRIER_EXCEPTION;
+	static const std::string FRIENDLY_FIRE_DMG_MULT;
 
 
 public:
@@ -199,7 +211,8 @@ public:
 	double CaptureSurvivingCrewShares() const;
 	int CaptureMinimumDeathBenefit() const;
 	std::optional<double> CaptureValueBasis() const;
-	double FriendlyFirePrbability() const;
+	bool FriendlyFireActive(std::optional<FriendlyFireType> type = std::nullopt) const;
+	double FriendlyFireProbability() const;
 	double AllyFriendlyFireProbability() const;
 	double FighterFriendlyFireMultiplier() const;
 	bool CarrierFriendlyFireException() const;
