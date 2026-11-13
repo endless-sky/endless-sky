@@ -48,15 +48,10 @@ class System;
 
 using namespace std;
 
-namespace {
-	// Label for the description field of the detail pane.
-	const string DESCRIPTION = "description";
-}
 
 
-
-ShipyardPanel::ShipyardPanel(PlayerInfo &player, Sale<Ship> stock)
-	: ShopPanel(player, false), modifier(0), shipyard(std::move(stock)), initialFleetUsage(player.FleetCost())
+ShipyardPanel::ShipyardPanel(PlayerInfo &player, const Sale<Ship> &stock)
+	: ShopPanel(player, false), modifier(0), shipyard(stock), initialFleetUsage(player.FleetCost())
 {
 	for(const auto &it : GameData::Ships())
 		catalog[it.second.Attributes().Category()].push_back(it.first);
@@ -134,7 +129,6 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 	if(selectedShip)
 	{
-		shipInfo.Update(*selectedShip, player, hasFleetCapacity, collapsed.contains(DESCRIPTION), true);
 		selectedItem = selectedShip->DisplayModelName();
 
 		const Point spriteCenter(center.X(), center.Y() + 20 + TileSize() / 2);
@@ -148,42 +142,10 @@ double ShipyardPanel::DrawDetails(const Point &center)
 			const float spriteScale = min(1.f, (INFOBAR_WIDTH - 60.f) / max(shipSprite->Width(), shipSprite->Height()));
 			const Swizzle *swizzle = selectedShip->CustomSwizzle()
 				? selectedShip->CustomSwizzle() : GameData::PlayerGovernment()->GetSwizzle();
-			SpriteShader::Draw(shipSprite, spriteCenter, spriteScale, swizzle);
+			DrawThumbnail(*selectedShip, true, spriteCenter, spriteScale, swizzle);
 		}
 
-		const bool hasDescription = shipInfo.DescriptionHeight();
-
-		double descriptionOffset = hasDescription ? 40. : 0.;
-
-		if(hasDescription)
-		{
-			if(!collapsed.contains(DESCRIPTION))
-			{
-				descriptionOffset = shipInfo.DescriptionHeight();
-				shipInfo.DrawDescription(startPoint);
-			}
-			else
-			{
-				const Color &dim = *GameData::Colors().Get("medium");
-				font.Draw(DESCRIPTION, startPoint + Point(35., 12.), dim);
-				const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
-				SpriteShader::Draw(collapsedArrow, startPoint + Point(20., 20.));
-			}
-
-			// Calculate the ClickZone for the description and add it.
-			const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
-			const Point descriptionCenter(center.X(), startPoint.Y() + descriptionOffset / 2);
-			const ClickZone<string> collapseDescription = ClickZone<string>(
-				descriptionCenter, descriptionDimensions, DESCRIPTION);
-			categoryZones.emplace_back(collapseDescription);
-		}
-
-		const Point attributesPoint(startPoint.X(), startPoint.Y() + descriptionOffset);
-		const Point outfitsPoint(startPoint.X(), attributesPoint.Y() + shipInfo.AttributesHeight());
-		shipInfo.DrawAttributes(attributesPoint);
-		shipInfo.DrawOutfits(outfitsPoint);
-
-		heightOffset = outfitsPoint.Y() + shipInfo.OutfitsHeight();
+		heightOffset = startPoint.Y() + DrawShipInfo(startPoint, *selectedShip, true);
 	}
 
 	// Draw this string representing the selected ship (if any), centered in the details side panel.
@@ -272,7 +234,7 @@ void ShipyardPanel::DrawButtons()
 		if(buttonsTooltip.ShouldDraw())
 		{
 			buttonsTooltip.SetZone(buttonsFooter);
-			buttonsTooltip.SetText(tooltip, true);
+			buttonsTooltip.SetText(tooltip);
 			buttonsTooltip.Draw();
 		}
 	}
@@ -292,7 +254,7 @@ void ShipyardPanel::DrawButtons()
 			if(hasFleetCapacity)
 				tooltipText += '\n' + Format::Number(player.FleetCost()) + " out of "
 					+ Format::Number(player.FleetCapacity()) + " fleet capacity utilized";
-			creditsTooltip.SetText(tooltipText, true);
+			creditsTooltip.SetText(tooltipText);
 			creditsTooltip.Draw();
 		}
 	}

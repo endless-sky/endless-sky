@@ -11,6 +11,15 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Gegno Space"
+	entering
+	invisible
+	non-blocking
+	source
+		near "Aleit" 0 100
+	on offer
+		set "discovered gegno space"
+		fail
 
 mission "First Contact: Gegno Vi"
 	landing
@@ -242,6 +251,7 @@ mission "Visit Quarg in Gegno Space"
 				"Gneiss" 2
 	npc
 		government "Gegno Scin (Neutral)"
+			confusion "militia"
 		personality entering staying
 		system "Heutesl"
 		fleet
@@ -258,6 +268,7 @@ mission "Visit Quarg in Gegno Space"
 		fleet "Vi Warfleet"
 	npc
 		government "Gegno Scin (Neutral)"
+			confusion "militia"
 		personality staying
 		system "Heutesl"
 		fleet "Scin Warfleet"
@@ -680,6 +691,7 @@ mission "First Contact: Gegno Scin"
 			not "scin: provocative"
 		government "Gegno Scin"
 		personality launching uninterested
+			confusion "militia"
 		system "Ilirco"
 		fleet
 			names "gegno scin"

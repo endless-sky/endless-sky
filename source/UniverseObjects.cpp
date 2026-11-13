@@ -132,9 +132,14 @@ void UniverseObjects::FinishLoading()
 			Logger::Log("Unhandled \"disable\" keyword of type \"" + category.first + "\".", Logger::Level::WARNING);
 	}
 
-	// Sort all category lists.
+	// Sort all category and capacity lists.
 	for(auto &list : categories)
 		list.second.Sort();
+	capacities.Sort();
+
+	// Guard against infinite loops in condition aliases.
+	for(auto &alias : conditionAliases | views::values)
+		alias.FinishLoading();
 }
 
 
@@ -260,6 +265,10 @@ void UniverseObjects::CheckReferences()
 		}
 	}
 
+	// Confusions are never serialized.
+	for(const auto &it : confusions)
+		if(it.second.Name().empty())
+			Warn("confusion", it.first);
 	// Stock conversations are never serialized.
 	for(const auto &it : conversations)
 		if(it.second.IsEmpty())
@@ -335,9 +344,9 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : colors)
 		if(!it.second.IsLoaded())
 			Warn("color", it.first);
-	for(const auto &it : swizzles)
+	for(auto &&it : swizzles)
 		if(!it.second.IsLoaded())
-			Warn("swizzle", it.first);
+			NameAndWarn("swizzle", it);
 	for(const auto &it : messageCategories)
 		if(!it.second.IsLoaded())
 			Warn("message category", it.first);
@@ -402,6 +411,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			if(overwrite)
 				*swizzle = Swizzle();
 			swizzle->Load(node);
+		}
+		else if(key == "confusion" && hasValue)
+		{
+			Confusion *confusion = confusions.Get(node.Token(1));
+			if(overwrite)
+				*confusion = Confusion();
+			confusion->Load(node);
 		}
 		else if(key == "conversation" && hasValue)
 		{
@@ -591,31 +607,25 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if(key == "landing message" && hasValue)
 		{
+			const string &value = node.Token(1);
 			for(const DataNode &child : node)
-				landingMessages[SpriteSet::Get(child.Token(0))] = node.Token(1);
+				objectSpriteData[SpriteSet::Get(child.Token(0))].SetLandingMessage(value);
+		}
+		else if(key == "planet mass" && hasValue)
+		{
+			double value = max(0., node.Value(1));
+			if(!value)
+				node.PrintTrace("A star or stellar object's mass must be greater than 0.");
+			else
+				for(const DataNode &child : node)
+					objectSpriteData[SpriteSet::Get(child.Token(0))].SetMass(value);
 		}
 		else if(key == "star" && hasValue)
 		{
 			const Sprite *sprite = SpriteSet::Get(node.Token(1));
 			if(overwrite)
-			{
-				solarPower.erase(sprite);
-				solarWind.erase(sprite);
-				starIcons.erase(sprite);
-			}
-			for(const DataNode &child : node)
-			{
-				const string &childKey = child.Token(0);
-				bool childHasValue = child.Size() >= 2;
-				if(childKey == "power" && childHasValue)
-					solarPower[sprite] = child.Value(1);
-				else if(childKey == "wind" && childHasValue)
-					solarWind[sprite] = child.Value(1);
-				else if(childKey == "icon" && childHasValue)
-					starIcons[sprite] = SpriteSet::Get(child.Token(1));
-				else
-					child.PrintTrace("Skipping unrecognized attribute:");
-			}
+				objectSpriteData.erase(sprite);
+			objectSpriteData[sprite].Load(node);
 		}
 		else if(key == "news" && hasValue)
 		{
@@ -650,6 +660,12 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 					list.Clear();
 				list.Load(node);
 			}
+		}
+		else if(key == "display capacities")
+		{
+			if(overwrite)
+				capacities.Clear();
+			capacities.Load(node);
 		}
 		else if((key == "tip" || key == "help") && hasValue)
 		{
@@ -728,6 +744,13 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			else
 				node.PrintTrace("Invalid use of keyword \"disable\" for class \"" + category + "\"");
 		}
+		else if(key == "condition" && hasValue)
+		{
+			ConditionAlias *alias = conditionAliases.Get(node.Token(1));
+			if(overwrite)
+				*alias = ConditionAlias();
+			alias->Load(node, playerConditions);
+		}
 		else
 			node.PrintTrace("Skipping unrecognized root object:");
 		// Overwrite mode is only good for one node at a time.
@@ -736,10 +759,12 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 }
 
 
+
 void UniverseObjects::AddJumpRange(double neighborDistance)
 {
 	neighborDistances.insert(neighborDistance);
 }
+
 
 
 void UniverseObjects::DestroyPersons(const std::vector<std::string> &names)
@@ -749,17 +774,28 @@ void UniverseObjects::DestroyPersons(const std::vector<std::string> &names)
 }
 
 
+
 void UniverseObjects::ResetPersons()
 {
-	for(auto &it : persons)
-		it.second.ClearPlacement();
+	for(auto &person : persons | views::values)
+		person.ClearPlacement();
 }
+
 
 
 void UniverseObjects::SetDate(const Date &date)
 {
-	for(auto &it : systems)
-		it.second.SetDate(date);
+	for(auto &system : systems | views::values)
+		system.SetDate(date);
+}
+
+
+
+void UniverseObjects::HandleEvent(const ShipEvent &event)
+{
+	for(Person &person : persons | views::values)
+		if(person.Do(event))
+			break;
 }
 
 
@@ -770,10 +806,19 @@ const Set<Color> &UniverseObjects::Colors() const
 }
 
 
+
+const Set<Confusion> &UniverseObjects::Confusions() const
+{
+	return confusions;
+}
+
+
+
 const std::vector<Trade::Commodity> &UniverseObjects::Commodities() const
 {
 	return trade.Commodities();
 }
+
 
 
 const Set<Conversation> &UniverseObjects::Conversations() const
@@ -782,10 +827,12 @@ const Set<Conversation> &UniverseObjects::Conversations() const
 }
 
 
+
 const Set<Effect> &UniverseObjects::Effects() const
 {
 	return effects;
 }
+
 
 
 const Set<GameEvent> &UniverseObjects::Events() const
@@ -794,10 +841,12 @@ const Set<GameEvent> &UniverseObjects::Events() const
 }
 
 
+
 const Set<Fleet> &UniverseObjects::Fleets() const
 {
 	return fleets;
 }
+
 
 
 const Set<FormationPattern> &UniverseObjects::Formations() const
@@ -806,10 +855,12 @@ const Set<FormationPattern> &UniverseObjects::Formations() const
 }
 
 
+
 const Set<Galaxy> &UniverseObjects::Galaxies() const
 {
 	return galaxies;
 }
+
 
 
 const CategoryList &UniverseObjects::GetCategory(const CategoryType type)
@@ -818,10 +869,12 @@ const CategoryList &UniverseObjects::GetCategory(const CategoryType type)
 }
 
 
+
 const TextReplacements &UniverseObjects::GetTextReplacements() const
 {
 	return substitutions;
 }
+
 
 
 const Set<Government> &UniverseObjects::Governments() const
@@ -830,16 +883,12 @@ const Set<Government> &UniverseObjects::Governments() const
 }
 
 
-bool UniverseObjects::HasLandingMessage(const Sprite *sprite) const
-{
-	return landingMessages.contains(sprite);
-}
-
 
 const Set<Hazard> &UniverseObjects::Hazards() const
 {
 	return hazards;
 }
+
 
 
 const string UniverseObjects::HelpMessage(const string &name) const
@@ -850,10 +899,12 @@ const string UniverseObjects::HelpMessage(const string &name) const
 }
 
 
+
 const std::map<std::string, std::string> &UniverseObjects::HelpTemplates() const
 {
 	return helpMessages;
 }
+
 
 
 const Set<Interface> &UniverseObjects::Interfaces() const
@@ -862,18 +913,12 @@ const Set<Interface> &UniverseObjects::Interfaces() const
 }
 
 
-const std::string &UniverseObjects::LandingMessage(const Sprite *sprite) const
-{
-	static const string EMPTY;
-	auto it = landingMessages.find(sprite);
-	return (it == landingMessages.end() ? EMPTY : it->second);
-}
-
 
 const Set<Minable> &UniverseObjects::Minables() const
 {
 	return minables;
 }
+
 
 
 const Set<Mission> &UniverseObjects::Missions() const
@@ -882,10 +927,12 @@ const Set<Mission> &UniverseObjects::Missions() const
 }
 
 
+
 const Set<Outfit> &UniverseObjects::Outfits() const
 {
 	return outfits;
 }
+
 
 
 const Set<Shop<Outfit>> &UniverseObjects::Outfitters() const
@@ -894,10 +941,12 @@ const Set<Shop<Outfit>> &UniverseObjects::Outfitters() const
 }
 
 
+
 const Set<Person> &UniverseObjects::Persons() const
 {
 	return persons;
 }
+
 
 
 const Set<Phrase> &UniverseObjects::Phrases() const
@@ -906,10 +955,21 @@ const Set<Phrase> &UniverseObjects::Phrases() const
 }
 
 
+
 const Set<Planet> &UniverseObjects::Planets() const
 {
 	return planets;
 }
+
+
+
+const StellarObjectSpriteData &UniverseObjects::ObjectSpriteData(const Sprite *sprite) const
+{
+	static const StellarObjectSpriteData EMPTY;
+	auto it = objectSpriteData.find(sprite);
+	return (it == objectSpriteData.end() ? EMPTY : it->second);
+}
+
 
 
 const std::string &UniverseObjects::Rating(const std::string &type, int level) const
@@ -924,10 +984,12 @@ const std::string &UniverseObjects::Rating(const std::string &type, int level) c
 }
 
 
+
 const Set<Shader> &UniverseObjects::Shaders() const
 {
 	return shaders;
 }
+
 
 
 const Set<Ship> &UniverseObjects::Ships() const
@@ -936,24 +998,12 @@ const Set<Ship> &UniverseObjects::Ships() const
 }
 
 
+
 const Set<Shop<Ship>> &UniverseObjects::Shipyards() const
 {
 	return shipSales;
 }
 
-
-double UniverseObjects::SolarPower(const Sprite *sprite) const
-{
-	auto it = solarPower.find(sprite);
-	return (it == solarPower.end() ? 0. : it->second);
-}
-
-
-double UniverseObjects::SolarWind(const Sprite *sprite) const
-{
-	auto it = solarWind.find(sprite);
-	return (it == solarWind.end() ? 0. : it->second);
-}
 
 
 const Set<News> &UniverseObjects::SpaceportNews() const
@@ -962,17 +1012,12 @@ const Set<News> &UniverseObjects::SpaceportNews() const
 }
 
 
+
 const std::vector<Trade::Commodity> &UniverseObjects::SpecialCommodities() const
 {
 	return trade.SpecialCommodities();
 }
 
-
-const Sprite *UniverseObjects::StarIcon(const Sprite *sprite) const
-{
-	const auto it = starIcons.find(sprite);
-	return (it == starIcons.end() ? nullptr : it->second);
-}
 
 
 const std::vector<StartConditions> &UniverseObjects::StartOptions() const
@@ -981,10 +1026,12 @@ const std::vector<StartConditions> &UniverseObjects::StartOptions() const
 }
 
 
+
 const Set<Swizzle> &UniverseObjects::Swizzles() const
 {
 	return swizzles;
 }
+
 
 
 const Set<System> &UniverseObjects::Systems() const
@@ -993,16 +1040,19 @@ const Set<System> &UniverseObjects::Systems() const
 }
 
 
+
 const Set<TestData> &UniverseObjects::TestDataSets() const
 {
 	return testDataSets;
 }
 
 
+
 const Set<Test> &UniverseObjects::Tests() const
 {
 	return tests;
 }
+
 
 
 const string &UniverseObjects::Tooltip(const string &label) const
@@ -1013,10 +1063,13 @@ const string &UniverseObjects::Tooltip(const string &label) const
 	// the full price, so they will not match exactly.
 	if(it == tooltips.end() && label.starts_with("cost"))
 		it = tooltips.find("cost:");
+	if(it == tooltips.end() && label.starts_with("ship: cost"))
+		it = tooltips.find("ship: cost:");
 	if(it == tooltips.end() && label.starts_with("sells for"))
 		it = tooltips.find("sells for:");
 	return (it == tooltips.end() ? EMPTY : it->second);
 }
+
 
 
 const Set<Wormhole> &UniverseObjects::Wormholes() const

@@ -19,8 +19,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Set.h"
 #include "Shop.h"
 
+#include "CapacityList.h"
 #include "CategoryList.h"
 #include "Color.h"
+#include "ConditionAlias.h"
+#include "Confusion.h"
 #include "Conversation.h"
 #include "Effect.h"
 #include "Fleet.h"
@@ -42,6 +45,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/Shader.h"
 #include "Ship.h"
 #include "StartConditions.h"
+#include "StellarObjectSpriteData.h"
 #include "Swizzle.h"
 #include "System.h"
 #include "test/Test.h"
@@ -102,9 +106,11 @@ public:
 	void DestroyPersons(const std::vector<std::string> &names);
 	void ResetPersons();
 	void SetDate(const Date &date);
+	void HandleEvent(const ShipEvent &event);
 
 	// Accessors for the stored data.
 	const Set<Color> &Colors() const;
+	const Set<Confusion> &Confusions() const;
 	const std::vector<Trade::Commodity> &Commodities() const;
 	const Set<Conversation> &Conversations() const;
 	const Set<Effect> &Effects() const;
@@ -115,12 +121,10 @@ public:
 	const CategoryList &GetCategory(CategoryType type);
 	const TextReplacements &GetTextReplacements() const;
 	const Set<Government> &Governments() const;
-	bool HasLandingMessage(const Sprite *sprite) const;
 	const Set<Hazard> &Hazards() const;
 	const std::string HelpMessage(const std::string &name) const;
 	const std::map<std::string, std::string> &HelpTemplates() const;
 	const Set<Interface> &Interfaces() const;
-	const std::string &LandingMessage(const Sprite *sprite) const;
 	const Set<Minable> &Minables() const;
 	const Set<Mission> &Missions() const;
 	const Set<Outfit> &Outfits() const;
@@ -128,15 +132,13 @@ public:
 	const Set<Person> &Persons() const;
 	const Set<Phrase> &Phrases() const;
 	const Set<Planet> &Planets() const;
+	const StellarObjectSpriteData &ObjectSpriteData(const Sprite *sprite) const;
 	const std::string &Rating(const std::string &type, int level) const;
 	const Set<Shader> &Shaders() const;
 	const Set<Ship> &Ships() const;
 	const Set<Shop<Ship>> &Shipyards() const;
-	double SolarPower(const Sprite *sprite) const;
-	double SolarWind(const Sprite *sprite) const;
 	const Set<News> &SpaceportNews() const;
 	const std::vector<Trade::Commodity> &SpecialCommodities() const;
-	const Sprite *StarIcon(const Sprite *sprite) const;
 	const std::vector<StartConditions> &StartOptions() const;
 	const Set<Swizzle> &Swizzles() const;
 	const Set<System> &Systems() const;
@@ -159,6 +161,7 @@ private:
 private:
 	Set<Color> colors;
 	Set<Swizzle> swizzles;
+	Set<Confusion> confusions;
 	Set<Conversation> conversations;
 	Set<Effect> effects;
 	Set<GameEvent> events;
@@ -186,6 +189,7 @@ private:
 	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
 	Set<Gamerules> gamerulesPresets;
+	Set<ConditionAlias> conditionAliases;
 
 	// This is used for speeding up the route calculations.
 	std::set<std::string> universeWormholeRequirements;
@@ -195,11 +199,9 @@ private:
 	Trade trade;
 	std::vector<StartConditions> startConditions;
 	std::map<std::string, std::vector<std::string>> ratings;
-	std::map<const Sprite *, std::string> landingMessages;
-	std::map<const Sprite *, double> solarPower;
-	std::map<const Sprite *, double> solarWind;
-	std::map<const Sprite *, const Sprite *> starIcons;
+	std::map<const Sprite *, StellarObjectSpriteData> objectSpriteData;
 	std::map<CategoryType, CategoryList> categories;
+	CapacityList capacities;
 
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;

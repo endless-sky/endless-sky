@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Conversation.h"
 #include "DataNode.h"
 #include "DataWriter.h"
+#include "Depreciation.h"
 #include "Effect.h"
 #include "Files.h"
 #include "shader/FillShader.h"
@@ -49,7 +50,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
-#include "Plugins.h"
+#include "Plugin.h"
+#include "PluginManager.h"
 #include "shader/PointerShader.h"
 #include "Politics.h"
 #include "RenderBuffer.h"
@@ -60,6 +62,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
 #include "StartConditions.h"
+#include "StellarObjectSpriteData.h"
 #include "System.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
@@ -69,8 +72,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <filesystem>
-#include <iostream>
 #include <queue>
+#include <ranges>
 #include <utility>
 #include <vector>
 
@@ -106,7 +109,7 @@ namespace {
 
 	void LoadPlugin(TaskQueue &queue, const filesystem::path &path)
 	{
-		const auto *plugin = Plugins::Load(path);
+		const auto *plugin = PluginManager::Load(path);
 		if(!plugin)
 			return;
 
@@ -510,6 +513,13 @@ void GameData::DestroyPersons(vector<string> &names)
 
 
 
+void GameData::HandleEvent(const ShipEvent &event)
+{
+	objects->HandleEvent(event);
+}
+
+
+
 const Set<Color> &GameData::Colors()
 {
 	return objects->Colors();
@@ -520,6 +530,13 @@ const Set<Color> &GameData::Colors()
 const Set<Swizzle> &GameData::Swizzles()
 {
 	return objects->Swizzles();
+}
+
+
+
+const Set<Confusion> &GameData::Confusions()
+{
+	return objects->Confusions();
 }
 
 
@@ -720,6 +737,13 @@ const Set<Gamerules> &GameData::GamerulesPresets()
 
 
 
+const Set<ConditionAlias> &GameData::ConditionAliases()
+{
+	return objects->conditionAliases;
+}
+
+
+
 const std::set<std::string> &GameData::UniverseWormholeRequirements()
 {
 	return objects->universeWormholeRequirements;
@@ -762,40 +786,9 @@ const vector<Trade::Commodity> &GameData::SpecialCommodities()
 
 
 
-// Custom messages to be shown when trying to land on certain stellar objects.
-bool GameData::HasLandingMessage(const Sprite *sprite)
+const StellarObjectSpriteData &GameData::ObjectSpriteData(const Sprite *sprite)
 {
-	return objects->HasLandingMessage(sprite);
-}
-
-
-
-const string &GameData::LandingMessage(const Sprite *sprite)
-{
-	return objects->LandingMessage(sprite);
-}
-
-
-
-// Get the solar power and wind output of the given stellar object sprite.
-double GameData::SolarPower(const Sprite *sprite)
-{
-	return objects->SolarPower(sprite);
-}
-
-
-
-double GameData::SolarWind(const Sprite *sprite)
-{
-	return objects->SolarWind(sprite);
-}
-
-
-
-// Get the map icon of the given stellar object sprite.
-const Sprite *GameData::StarIcon(const Sprite *sprite)
-{
-	return objects->StarIcon(sprite);
+	return objects->ObjectSpriteData(sprite);
 }
 
 
@@ -809,9 +802,16 @@ const string &GameData::Rating(const string &type, int level)
 
 
 // Collections for ship, bay type, outfit, and other categories.
-const CategoryList &GameData::GetCategory(const CategoryType type)
+const CategoryList &GameData::GetCategory(CategoryType type)
 {
 	return objects->GetCategory(type);
+}
+
+
+
+const CapacityList &GameData::GetCapacities()
+{
+	return objects->capacities;
 }
 
 
@@ -899,6 +899,9 @@ const Gamerules &GameData::GetGamerules()
 void GameData::SetGamerules(const Gamerules *gamerules)
 {
 	activeGamerules = gamerules;
+	// This pilot may have different depreciation gamerules than whatever was loaded before,
+	// so clear the cache to allow calculations with these gamerules to be accurate.
+	Depreciation::InvalidateCache();
 }
 
 
@@ -917,21 +920,21 @@ void GameData::LoadSources(TaskQueue &queue)
 
 	vector<filesystem::path> globalPlugins = Files::ListDirectories(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
-		if(Plugins::IsPlugin(path))
+		if(PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 	// Load unzipped plugins first to give them precedence, then load the zipped plugins.
 	globalPlugins = Files::List(Files::GlobalPlugins());
 	for(const auto &path : globalPlugins)
-		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+		if(path.extension() == ".zip" && PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 
 	vector<filesystem::path> localPlugins = Files::ListDirectories(Files::UserPlugins());
 	for(const auto &path : localPlugins)
-		if(Plugins::IsPlugin(path))
+		if(PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 	localPlugins = Files::List(Files::UserPlugins());
 	for(const auto &path : localPlugins)
-		if(path.extension() == ".zip" && Plugins::IsPlugin(path))
+		if(path.extension() == ".zip" && PluginManager::IsPlugin(path))
 			LoadPlugin(queue, path);
 }
 

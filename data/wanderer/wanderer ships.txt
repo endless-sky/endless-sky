@@ -14,6 +14,7 @@
 ship "Earth Shaper"
 	sprite "ship/earth shaper"
 	thumbnail "thumbnail/earth shaper"
+	"administrative cost" 1
 	attributes
 		category "Light Freighter"
 		licenses
@@ -52,6 +53,7 @@ ship "Earth Shaper"
 ship "Flycatcher"
 	sprite "ship/flycatcher"
 	thumbnail "thumbnail/flycatcher"
+	"administrative cost" 0
 	attributes
 		category "Drone"
 		licenses
@@ -92,6 +94,7 @@ ship "Summer Leaf"
 	plural "Summer Leaves"
 	sprite "ship/summer leaf"
 	thumbnail "thumbnail/summer leaf"
+	"administrative cost" 3
 	attributes
 		category "Light Warship"
 		licenses
@@ -142,6 +145,7 @@ ship "Autumn Leaf"
 	plural "Autumn Leaves"
 	sprite "ship/autumn leaf"
 	thumbnail "thumbnail/autumn leaf"
+	"administrative cost" 4
 	attributes
 		category "Light Warship"
 		licenses
@@ -204,6 +208,7 @@ ship "Autumn Leaf" "Autumn Leaf (Heavy)"
 ship "Strong Wind"
 	sprite "ship/strong wind"
 	thumbnail "thumbnail/strong wind"
+	"administrative cost" 5
 	attributes
 		category "Medium Warship"
 		licenses
@@ -262,6 +267,7 @@ ship "Strong Wind"
 ship "Heavy Gust"
 	sprite "ship/heavy gust"
 	thumbnail "thumbnail/heavy gust"
+	"administrative cost" 6
 	attributes
 		category "Medium Warship"
 		licenses
@@ -332,6 +338,7 @@ ship "Heavy Gust" "Heavy Gust (Moonbeam)"
 ship "Tempest"
 	sprite "ship/tempest"
 	thumbnail "thumbnail/tempest"
+	"administrative cost" 7
 	attributes
 		category "Medium Warship"
 		licenses
@@ -455,6 +462,7 @@ ship "Tempest" "Tempest (Moonbeam)"
 ship "Derecho"
 	sprite "ship/derecho"
 	thumbnail "thumbnail/derecho"
+	"administrative cost" 8
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -585,6 +593,7 @@ ship "Derecho" "Derecho (Moonbeam)"
 ship "Hurricane"
 	sprite "ship/hurricane"
 	thumbnail "thumbnail/hurricane"
+	"administrative cost" 10
 	attributes
 		category "Heavy Warship"
 		licenses
@@ -725,6 +734,7 @@ ship "Hurricane" "Hurricane (Moonbeam)"
 ship "Cool Breeze"
 	sprite "ship/cool breeze"
 	thumbnail "thumbnail/cool breeze"
+	"administrative cost" 1
 	attributes
 		category "Interceptor"
 		licenses
@@ -782,6 +792,7 @@ ship "Cool Breeze" "Cool Breeze (Sunbeam)"
 ship "Winter Gale"
 	sprite "ship/winter gale"
 	thumbnail "thumbnail/winter gale"
+	"administrative cost" 5
 	attributes
 		category "Light Warship"
 		licenses
@@ -885,6 +896,7 @@ ship "Winter Gale" "Winter Gale (Missile)"
 ship "Deep River"
 	sprite "ship/deep river"
 	thumbnail "thumbnail/deep river"
+	"administrative cost" 7
 	attributes
 		category "Heavy Freighter"
 		licenses
@@ -974,6 +986,7 @@ ship "Deep River" "Deep River 4"
 ship "Deep River Transport"
 	sprite "ship/deep river"
 	thumbnail "thumbnail/deep river"
+	"administrative cost" 7
 	attributes
 		category "Space Liner"
 		licenses
@@ -1026,6 +1039,7 @@ ship "Deep River Transport"
 ship "Riptide"
 	sprite "ship/riptide"
 	thumbnail "thumbnail/riptide"
+	"administrative cost" 7
 	attributes
 		category "Space Liner"
 		licenses

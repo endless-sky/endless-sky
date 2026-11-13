@@ -32,7 +32,7 @@ namespace { // test namespace
 // #region unit tests
 SCENARIO( "Creating a Dictionary instance", "[dictionary]") {
 	GIVEN( "an instance" ) {
-		Dictionary dict;
+		Dictionary<double> dict;
 		THEN( "it has the correct default properties" ) {
 			CHECK( dict.empty() );
 			CHECK( dict.begin() == dict.end() );
@@ -42,7 +42,7 @@ SCENARIO( "Creating a Dictionary instance", "[dictionary]") {
 
 SCENARIO( "A Dictionary instance is being used", "[dictionary]") {
 	GIVEN( "an empty dictionary" ) {
-		Dictionary dict;
+		Dictionary<double> dict;
 		THEN( "add new elements works" ) {
 			dict["foo"] = 10.;
 			dict["bar"] = 42.;
@@ -59,7 +59,7 @@ TEST_CASE( "Benchmark Dictionary::Get", "[!benchmark][dictionary]" ) {
 	constexpr int SIZE = 100;
 	constexpr int AVERAGE_ATTRIBUTE_LENGTH = 20;
 
-	Dictionary dict;
+	Dictionary<double> dict;
 	std::vector<std::string> strings;
 	for(int i = 0; i < SIZE; ++i)
 	{

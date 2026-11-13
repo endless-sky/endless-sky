@@ -24,7 +24,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Engine.h"
 #include "Files.h"
 #include "text/Font.h"
-#include "text/FontSet.h"
 #include "text/Format.h"
 #include "FrameTimer.h"
 #include "GameData.h"
@@ -36,14 +35,16 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "MainPanel.h"
 #include "MenuPanel.h"
 #include "Panel.h"
+#include "PilotProfile.h"
 #include "PlayerInfo.h"
-#include "Plugins.h"
+#include "PluginManager.h"
 #include "Preferences.h"
 #include "PrintData.h"
 #include "Random.h"
 #include "Screen.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
+#include "Statistics.h"
 #include "TaskQueue.h"
 #include "test/Test.h"
 #include "test/TestContext.h"
@@ -170,8 +171,9 @@ int main(int argc, char *argv[])
 
 	try {
 		// Load plugin settings and preferences before game data.
+		Preferences::Init();
 		Preferences::Load();
-		Plugins::LoadSettings();
+		PluginManager::LoadSettings();
 
 		TaskQueue queue;
 
@@ -225,6 +227,7 @@ int main(int argc, char *argv[])
 
 			// Reference check the universe, as known to the player. If no player found,
 			// then check the default state of the universe.
+			PilotProfile::LoadProfiles();
 			if(!player.LoadRecent())
 				GameData::CheckReferences();
 			cout << "Parse completed with " << (hasErrors ? "at least one" : "no") << " error(s)." << endl;
@@ -278,11 +281,11 @@ int main(int argc, char *argv[])
 	}
 
 	// Remember the window state and preferences if quitting normally.
-	Preferences::Set("maximized", GameWindow::IsMaximized());
-	Preferences::Set("fullscreen", GameWindow::IsFullscreen());
+	Preferences::Set(Preferences::SCREEN_MAXIMIZED, GameWindow::IsMaximized());
+	Preferences::Set(Preferences::FULLSCREEN, GameWindow::IsFullscreen());
 	Screen::SetRaw(GameWindow::Width(), GameWindow::Height(), true);
 	Preferences::Save();
-	Plugins::Save();
+	PluginManager::Save();
 
 	Audio::Quit();
 	GameWindow::Quit();
@@ -305,6 +308,9 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// menuPanels is used for the panels related to pilot creation, preferences,
 	// game loading and game saving.
 	UI menuPanels;
+
+	// Record statistics about the player's play session.
+	Statistics stats(player);
 
 	// Whether the game data is done loading. This is used to trigger any
 	// tests to run.
@@ -331,6 +337,10 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	auto ProcessEvents = [&menuPanels, &gamePanels, &player, &cursorTime, &toggleTimeout, &debugMode, &isDebugPaused,
 			&isFastForward]
 	{
+		const Preferences::FastForwardCapsLockSync fastforwardCapsLockSync = Preferences::GetFastForwardCapsLockSync();
+		const bool fastForwardSyncToCapsLock = fastforwardCapsLockSync == Preferences::FastForwardCapsLockSync::ALWAYS
+			|| (fastforwardCapsLockSync == Preferences::FastForwardCapsLockSync::DEFAULT
+				&& Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD));
 		SDL_Event event;
 		while(SDL_PollEvent(&event))
 		{
@@ -338,9 +348,24 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			// If the mouse moves, reset the cursor movement timeout.
 			if(event.type == SDL_MOUSEMOTION)
+			{
 				cursorTime = 0;
+				// We only need to update the hover point after mouse movement has occurred.
+				// Panels need to receive this update before anything else, since event handling
+				// and the step/draw calls that happen later this frame rely on the hoverPoint being
+				// set.
+				menuPanels.SetHoverPoint();
+				gamePanels.SetHoverPoint();
+			}
 
-			if(debugMode && event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKQUOTE)
+#ifdef ES_USE_SDL3
+			SDL_Keycode eventKeyCode = event.key.key;
+			SDL_Keymod eventKeyMod = event.key.mod;
+#else
+			SDL_Keycode eventKeyCode = event.key.keysym.sym;
+			Uint16 eventKeyMod = event.key.keysym.mod;
+#endif
+			if(debugMode && event.type == SDL_KEYDOWN && eventKeyCode == SDLK_BACKQUOTE)
 			{
 				isDebugPaused = !isDebugPaused;
 				if(isDebugPaused)
@@ -349,7 +374,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 					Audio::Resume();
 			}
 			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-					&& Command(event.key.keysym.sym).Has(Command::MENU)
+					&& Command(eventKeyCode).Has(Command::MENU)
 					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
 			{
 				// User pressed the Menu key.
@@ -359,7 +384,11 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			}
 			else if(event.type == SDL_QUIT)
 				menuPanels.Quit();
+#ifdef ES_USE_SDL3
+			else if(event.type == SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED)
+#else
 			else if(event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+#endif
 				// The window has been resized. Adjust the raw screen size and the OpenGL viewport to match.
 				GameWindow::AdjustViewport();
 			else if(event.type == CustomEvents::GetResize())
@@ -372,22 +401,27 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				menuPanels.AdjustTextDisplay();
 				gamePanels.AdjustTextDisplay();
 			}
+			else if(event.type == CustomEvents::GetTooltipUpdate())
+			{
+				menuPanels.TooltipUpdate();
+				gamePanels.TooltipUpdate();
+			}
 			else if(event.type == SDL_KEYDOWN && !toggleTimeout
-					&& (Command(event.key.keysym.sym).Has(Command::FULLSCREEN)
-					|| (event.key.keysym.sym == SDLK_RETURN && (event.key.keysym.mod & KMOD_ALT))))
+					&& (Command(eventKeyCode).Has(Command::FULLSCREEN)
+					|| (eventKeyCode == SDLK_RETURN && (eventKeyMod & KMOD_ALT))))
 			{
 				toggleTimeout = 30;
-				Preferences::ToggleScreenMode();
+				Preferences::Toggle(Preferences::FULLSCREEN);
 			}
-			else if(event.type == SDL_KEYDOWN && Command(event.key.keysym.sym).Has(Command::PERFORMANCE_DISPLAY))
-				Preferences::Set("Show CPU / GPU load", !Preferences::Has("Show CPU / GPU load"));
+			else if(event.type == SDL_KEYDOWN && Command(eventKeyCode).Has(Command::PERFORMANCE_DISPLAY))
+				Preferences::Toggle(Preferences::SHOW_PERFORMANCE_METRICS);
 			else if(activeUI.Handle(event))
 			{
 				// The UI handled the event.
 			}
 			else if(event.type == SDL_KEYDOWN && !event.key.repeat
-					&& (Command(event.key.keysym.sym).Has(Command::FASTFORWARD))
-					&& !Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
+					&& (Command(eventKeyCode).Has(Command::FASTFORWARD))
+					&& !fastForwardSyncToCapsLock)
 			{
 				isFastForward = !isFastForward;
 			}
@@ -395,7 +429,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 		// Special case: If fastforward is on capslock, update on mod state and not
 		// on keypress.
-		if(Command(SDLK_CAPSLOCK).Has(Command::FASTFORWARD))
+		if(fastForwardSyncToCapsLock)
 			isFastForward = SDL_GetModState() & KMOD_CAPS;
 	};
 
@@ -434,14 +468,21 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			if(shouldShowCursor != showCursor)
 			{
 				showCursor = shouldShowCursor;
+#ifdef ES_USE_SDL3
+				if(shouldShowCursor)
+					SDL_ShowCursor();
+				else
+					SDL_HideCursor();
+#else
 				SDL_ShowCursor(showCursor);
+#endif
 			}
 
 			// Switch off fast-forward if the player is not in flight or flight-related screen
 			// (for example when the boarding dialog shows up or when the player lands). The player
 			// can switch fast-forward on again when flight is resumed.
 			bool allowFastForward = !gamePanels.IsEmpty() && gamePanels.Top()->AllowsFastForward();
-			if(Preferences::Has("Interrupt fast-forward") && !inFlight && isFastForward && !allowFastForward)
+			if(Preferences::Has(Preferences::INTERRUPT_FAST_FORWARD) && !inFlight && isFastForward && !allowFastForward)
 				isFastForward = false;
 
 			// Tell all the panels to step forward, then draw them.
@@ -490,7 +531,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 
 			gpuLoadSum += chrono::steady_clock::now() - drawStart;
 
-			if(Preferences::Has("Show CPU / GPU load"))
+			if(Preferences::Has(Preferences::SHOW_PERFORMANCE_METRICS))
 			{
 				Information performanceInfo;
 				performanceInfo.SetString("cpu", cpuLoadString);
@@ -553,8 +594,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			timer.Wait();
 
 			// If the player ended this frame in-game, count the elapsed time as played time.
-			if(menuPanels.IsEmpty())
-				player.AddPlayTime(chrono::steady_clock::now() - start);
+			// If the game window isn't in focus, track this as idle time.
+			stats.AddPlayTime(chrono::steady_clock::now() - start, menuPanels.IsEmpty(), !GameWindow::IsInFocus());
 		}
 	}
 	// Game loop when running the game as part of an integration test.
@@ -617,6 +658,8 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 	// If player quit while landed on a planet, save the game if there are changes.
 	if(player.GetPlanet() && gamePanels.CanSave())
 		player.Save();
+	// Always save statistics on the way out, regardless of the player state.
+	stats.Save();
 }
 
 
@@ -639,9 +682,8 @@ void PrintHelp()
 	cerr << "    --nomute: don't mute the game while running tests." << endl;
 	cerr << "    --rng-seed <seed>: every time the pseudo-random number generator is seeded,"
 		" it will be given this value." << endl;
-	cerr << "    --tq-threads: sets the number of threads used for the internal queue of tasks."
-		" Not specifying this will use a default depending on your system. This is only useful for debugging."
-		" Has to be at least 1." << endl;
+	cerr << "    --tq-threads <number>: sets the number of threads used for the internal queue of tasks."
+		" Not specifying this will use a default depending on your system. Has to be at least 1." << endl;
 	PrintData::Help();
 	cerr << endl;
 	cerr << "Report bugs to: <https://github.com/endless-sky/endless-sky/issues>" << endl;
@@ -690,7 +732,7 @@ Conversation LoadConversation(const PlayerInfo &player)
 		{"<original first>", "[Original First]"},
 		{"<original last>", "[Original Last]"},
 		{"<origin>", "[Origin Planet]"},
-		{"<passengers>", "[your passengers]"},
+		{"<passengers>", "[passengers]"},
 		{"<planet>", "[Planet]"},
 		{"<ship>", "[Ship]"},
 		{"<model>", "[Ship Model]"},
