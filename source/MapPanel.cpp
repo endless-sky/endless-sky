@@ -1075,7 +1075,7 @@ void MapPanel::Select(const System *system)
 void MapPanel::Find(const string &name)
 {
 	int bestIndex = 9999;
-	for(const System &system : std::views::values(GameData::Systems()))
+	for(const System &system : GameData::Systems() | views::values)
 	{
 		if(system.IsValid() && !system.Inaccessible() && player.CanView(system))
 		{
@@ -1094,7 +1094,7 @@ void MapPanel::Find(const string &name)
 			}
 		}
 	}
-	for(const Planet &planet : std::views::values(GameData::Planets()))
+	for(const Planet &planet : GameData::Planets() | views::values)
 	{
 		if(planet.IsValid() && player.CanView(*planet.GetSystem()))
 		{
