@@ -117,9 +117,10 @@ namespace {
 		return equipped;
 	}
 
-	void LogWarning(const string &trueModelName, const string &name, string &&warning)
+	void LogWarning(const string &trueModelName, const string &name, const string &onSpawn,
+		string &&warning)
 	{
-		string shipID = trueModelName + (name.empty() ? ": " : " \"" + name + "\": ");
+		string shipID = trueModelName + (name.empty() ? "" : " \"" + name + "\"") + onSpawn + ": ";
 		Logger::Log(shipID + std::move(warning), Logger::Level::WARNING);
 	}
 
@@ -832,15 +833,24 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			if(!hasOutfits)
 			{
 				outfits.clear();
+				spawnOutfits.clear();
 				hasOutfits = true;
 			}
 			for(const DataNode &grand : child)
 			{
 				int count = (grand.Size() >= 2) ? grand.Value(1) : 1;
-				if(count > 0)
-					outfits[GameData::Outfits().Get(grand.Token(0))] += count;
-				else
+				int spawnedCount = (grand.Size() >= 3) ? grand.Value(2) : count;
+				if(count != spawnedCount)
+					hasSpawnOutfits = true;
+				if(count < 0 || spawnedCount < 0)
 					grand.PrintTrace("Skipping invalid outfit count:");
+				else
+				{
+					if(count > 0)
+						outfits[GameData::Outfits().Get(grand.Token(0))] += count;
+					if(spawnedCount > 0)
+						spawnOutfits[GameData::Outfits().Get(grand.Token(0))] += spawnedCount;
+				}
 			}
 
 			// Verify we have at least as many installed outfits as were identified as "equipped."
@@ -905,6 +915,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			child.PrintTrace("Skipping unrecognized attribute:");
 	}
 
+	spawnArmament = armament;
+
 	// Variants will import their display and plural names from the base model in FinishLoading.
 	if(variantName.empty())
 	{
@@ -927,7 +939,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 // When loading a ship, some of the outfits it lists may not have been
 // loaded yet. So, wait until everything has been loaded, then call this.
-void Ship::FinishLoading(bool isNewInstance)
+void Ship::FinishLoading(bool isNewInstance, bool checkSpawnOutfits)
 {
 	// All copies of this ship should save pointers to the "explosion" weapon
 	// definition stored safely in the ship model, which will not be destroyed
@@ -976,7 +988,10 @@ void Ship::FinishLoading(bool isNewInstance)
 			finalExplosions = base->finalExplosions;
 		const bool inheritsOutfits = outfits.empty();
 		if(inheritsOutfits)
+		{
 			outfits = base->outfits;
+			spawnOutfits = base->spawnOutfits;
+		}
 		if(description.IsEmpty())
 			description = base->description;
 
@@ -1021,6 +1036,7 @@ void Ship::FinishLoading(bool isNewInstance)
 				}
 			}
 			armament = merged;
+			spawnArmament = merged;
 		}
 	}
 	else if(removeBays)
@@ -1031,37 +1047,13 @@ void Ship::FinishLoading(bool isNewInstance)
 	if(!thumbnail.GetSprite())
 		thumbnail = Drawable(*this);
 
-	// Check that all the "equipped" weapons actually match what your ship
-	// has, and that they are truly weapons. Remove any excess weapons and
-	// warn if any non-weapon outfits are "installed" in a hardpoint.
-	auto equipped = GetEquipped(Weapons());
-	for(auto &[outfit, count] : equipped)
-	{
-		auto outfitIt = outfits.find(outfit);
-		int amount = (outfitIt != outfits.end() ? outfitIt->second : 0);
-		int excess = count - amount;
-		if(excess > 0)
-		{
-			// If there are more hardpoints specifying this outfit than there
-			// are instances of this outfit installed, remove some of them.
-			armament.Add(outfit, -excess);
-			count -= excess;
-
-			LogWarning(VariantName(), GivenName(),
-					"outfit \"" + outfit->TrueName() + "\" equipped but not included in outfit list.");
-		}
-		else if(!outfit->GetWeapon())
-			// This ship was specified with a non-weapon outfit in a
-			// hardpoint. Hardpoint::Install removes it, but issue a
-			// warning so the definition can be fixed.
-			LogWarning(VariantName(), GivenName(),
-					"outfit \"" + outfit->TrueName() + "\" is not a weapon, but is installed as one.");
-	}
-
 	// Mark any drone that has no "automaton" value as an automaton, to
 	// grandfather in the drones from before that attribute existed.
 	if(baseAttributes.Category() == "Drone" && !baseAttributes.Get("automaton"))
 		baseAttributes.Set("automaton", 1.);
+
+	const auto &bayCategories = GameData::GetCategory(CategoryType::BAY);
+	canBeCarried = bayCategories.Contains(baseAttributes.Category());
 
 	baseAttributes.Set("gun ports", armament.GunCount());
 	baseAttributes.Set("turret mounts", armament.TurretCount());
@@ -1074,78 +1066,168 @@ void Ship::FinishLoading(bool isNewInstance)
 		baseAttributes.AddLicenses(attributes);
 		addAttributes = false;
 	}
-	// Add the attributes of all your outfits to the ship's base attributes.
-	attributes = baseAttributes;
-	vector<string> undefinedOutfits;
-	for(const auto &[outfit, count] : outfits)
-	{
-		if(!outfit->IsDefined())
-		{
-			undefinedOutfits.emplace_back("\"" + outfit->TrueName() + "\"");
-			continue;
-		}
-		attributes.Add(*outfit, count);
-		// Some ship variant definitions do not specify which weapons
-		// are placed in which hardpoint. Add any weapons that are not
-		// yet installed to the ship's armament.
-		if(outfit->GetWeapon())
-		{
-			int remaining = count;
-			auto eit = equipped.find(outfit);
-			if(eit != equipped.end())
-				remaining -= eit->second;
 
-			if(remaining)
+	// When loading ships when starting the game, first check if the outfits
+	// they come with when spawned naturally are valid.
+	for(int i = checkSpawnOutfits ? 0 : 1; i < 2; i++)
+	{
+		auto currentOutfits = i > 0 ? outfits : spawnOutfits;
+		auto currentArmament = i > 0 ? armament : spawnArmament;
+		string onSpawn = i > 0 ? "" : " (on spawn)";
+
+		// Check that all the "equipped" weapons actually match what your ship
+		// has, and that they are truly weapons. Remove any excess weapons and
+		// warn if any non-weapon outfits are "installed" in a hardpoint.
+		auto equipped = GetEquipped(Weapons());
+		for(auto &[outfit, count] : equipped)
+		{
+			auto outfitIt = currentOutfits.find(outfit);
+			int amount = (outfitIt != currentOutfits.end() ? outfitIt->second : 0);
+			int excess = count - amount;
+			if(excess > 0)
 			{
-				remaining -= armament.Add(outfit, remaining);
+				// If there are more hardpoints specifying this outfit than there
+				// are instances of this outfit installed, remove some of them.
+				currentArmament.Add(outfit, -excess);
+				count -= excess;
+
+				LogWarning(VariantName(), GivenName(), onSpawn,
+						"outfit \"" + outfit->TrueName() + "\" equipped but not included in outfit list.");
+			}
+			else if(!outfit->GetWeapon())
+				// This ship was specified with a non-weapon outfit in a
+				// hardpoint. Hardpoint::Install removes it, but issue a
+				// warning so the definition can be fixed.
+				LogWarning(VariantName(), GivenName(), onSpawn,
+						"outfit \"" + outfit->TrueName() + "\" is not a weapon, but is installed as one.");
+		}
+
+		// Add the attributes of all your outfits to the ship's base attributes.
+		attributes = baseAttributes;
+		vector<string> undefinedOutfits;
+		for(const auto &[outfit, count] : currentOutfits)
+		{
+			if(!outfit->IsDefined())
+			{
+				undefinedOutfits.emplace_back("\"" + outfit->TrueName() + "\"");
+				continue;
+			}
+			attributes.Add(*outfit, count);
+			// Some ship variant definitions do not specify which weapons
+			// are placed in which hardpoint. Add any weapons that are not
+			// yet installed to the ship's armament.
+			if(outfit->GetWeapon())
+			{
+				int remaining = count;
+				auto eit = equipped.find(outfit);
+				if(eit != equipped.end())
+					remaining -= eit->second;
+
 				if(remaining)
-					LogWarning(VariantName(), GivenName(),
-						"weapon \"" + outfit->TrueName() + "\" installed, but insufficient slots to use it.");
+				{
+					remaining -= currentArmament.Add(outfit, remaining);
+					if(remaining)
+						LogWarning(VariantName(), GivenName(), onSpawn,
+							"weapon \"" + outfit->TrueName() + "\" installed, but insufficient slots to use it.");
+				}
 			}
 		}
-	}
-	if(!undefinedOutfits.empty())
-	{
-		bool plural = undefinedOutfits.size() > 1;
-		// Print the ship name once, then all undefined outfits. If we're reporting for a stock ship, then it
-		// doesn't have a name, and missing outfits aren't named yet either. A variant name might exist, though.
-		string message;
-		if(isYours)
+		if(!undefinedOutfits.empty())
 		{
-			message = "Player ship " + trueModelName + " \"" + givenName + "\":";
-			string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
-			for(auto &&outfit : undefinedOutfits)
-				message += PREFIX + outfit;
+			bool plural = undefinedOutfits.size() > 1;
+			// Print the ship name once, then all undefined outfits. If we're reporting for a stock ship, then it
+			// doesn't have a name, and missing outfits aren't named yet either. A variant name might exist, though.
+			string message;
+			if(isYours)
+			{
+				message = "Player ship " + trueModelName + " \"" + givenName + onSpawn + "\":";
+				string PREFIX = plural ? "\n\tUndefined outfit " : " undefined outfit ";
+				for(auto &&outfit : undefinedOutfits)
+					message += PREFIX + outfit;
+			}
+			else
+			{
+				message = variantName.empty() ? "Stock ship \"" + trueModelName + "\": "
+					: trueModelName + " variant \"" + variantName;
+				message += onSpawn + "\": ";
+				message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
+			}
+
+			Logger::Log(message, Logger::Level::WARNING);
 		}
-		else
+		// Inspect the ship's armament to ensure that guns are in gun ports and
+		// turrets are in turret mounts. This can only happen when the armament
+		// is configured incorrectly in a ship or variant definition. Do not
+		// bother printing this warning if the outfit is not fully defined.
+		for(const Hardpoint &hardpoint : currentArmament.Get())
 		{
-			message = variantName.empty() ? "Stock ship \"" + trueModelName + "\": "
-				: trueModelName + " variant \"" + variantName + "\": ";
-			message += to_string(undefinedOutfits.size()) + " undefined outfit" + (plural ? "s" : "") + " installed.";
+			const Outfit *outfit = hardpoint.GetOutfit();
+			if(outfit && outfit->IsDefined()
+					&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
+			{
+				string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : trueModelName;
+				if(!givenName.empty())
+					warning += " \"" + givenName + "\"";
+				warning += onSpawn + ": outfit \"" + outfit->TrueName() + "\" installed as a ";
+				warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
+				warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
+				warning += " \"" + outfit->TrueName() + "\"";
+				Logger::Log(warning, Logger::Level::WARNING);
+			}
 		}
 
-		Logger::Log(message, Logger::Level::WARNING);
-	}
-	// Inspect the ship's armament to ensure that guns are in gun ports and
-	// turrets are in turret mounts. This can only happen when the armament
-	// is configured incorrectly in a ship or variant definition. Do not
-	// bother printing this warning if the outfit is not fully defined.
-	for(const Hardpoint &hardpoint : armament.Get())
-	{
-		const Outfit *outfit = hardpoint.GetOutfit();
-		if(outfit && outfit->IsDefined()
-				&& (hardpoint.IsTurret() != (outfit->Get("turret mounts") != 0.)))
+		// Ensure that all defined bays are of a valid category. Remove and warn about any
+		// invalid bays. Add a default "launch effect" to any remaining internal bays if
+		// this ship is crewed (i.e. pressurized).
+		string warning;
+		for(auto it = bays.begin(); it != bays.end(); )
 		{
-			string warning = (!isYours && !variantName.empty()) ? "variant \"" + variantName + "\"" : trueModelName;
-			if(!givenName.empty())
-				warning += " \"" + givenName + "\"";
-			warning += ": outfit \"" + outfit->TrueName() + "\" installed as a ";
-			warning += (hardpoint.IsTurret() ? "turret but is a gun.\n\tturret" : "gun but is a turret.\n\tgun");
-			warning += to_string(2. * hardpoint.GetPoint().X()) + " " + to_string(2. * hardpoint.GetPoint().Y());
-			warning += " \"" + outfit->TrueName() + "\"";
-			Logger::Log(warning, Logger::Level::WARNING);
+			Bay &bay = *it;
+			if(!bayCategories.Contains(bay.category))
+			{
+				warning += "Invalid bay category: " + bay.category + "\n";
+				it = bays.erase(it);
+				continue;
+			}
+			++it;
+			if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
+				bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
 		}
+
+		// Issue warnings if this ship has is misconfigured, e.g. is missing required values
+		// or has negative outfit, cargo, weapon, or engine capacity.
+		for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
+		{
+			double val = attributes.Get(attr);
+			if(val < 0)
+				warning += attr + ": " + Format::Number(val) + "\n";
+		}
+		if(attributes.Get("drag") <= 0.)
+		{
+			warning += "Defaulting " + string(attributes.Get("drag") ? "invalid" : "missing") + " \"drag\" attribute to 100.0\n";
+			attributes.Set("drag", 100.);
+		}
+
+		if(!warning.empty())
+		{
+			// This check is mostly useful for variants and stock ships, which have
+			// no names. Print the outfits to facilitate identifying this ship definition.
+			string message = (!givenName.empty() ? "Ship \"" + givenName + "\" " : "") + "(" + VariantName() + ")"
+					+ onSpawn + ":\n";
+			ostringstream outfitNames;
+			outfitNames << "has outfits:\n";
+			for(const auto &it : currentOutfits)
+				outfitNames << '\t' << it.second << " " + it.first->TrueName() << endl;
+			Logger::Log(message + warning + outfitNames.str(), Logger::Level::WARNING);
+		}
+
+		// Save any changes to the list of armaments to the base and spawn definitions.
+		if(i > 0)
+			armament = currentArmament;
+		else
+			spawnArmament = currentArmament;
 	}
+
 	cargo.SetSize(attributes.Get("cargo space"));
 	armament.FinishLoading();
 
@@ -1156,53 +1238,6 @@ void Ship::FinishLoading(bool isNewInstance)
 
 	// Allocate enough firing bits for this ship.
 	firingCommands.SetHardpoints(armament.Get().size(), decorations.size());
-
-	// Ensure that all defined bays are of a valid category. Remove and warn about any
-	// invalid bays. Add a default "launch effect" to any remaining internal bays if
-	// this ship is crewed (i.e. pressurized).
-	string warning;
-	const auto &bayCategories = GameData::GetCategory(CategoryType::BAY);
-	for(auto it = bays.begin(); it != bays.end(); )
-	{
-		Bay &bay = *it;
-		if(!bayCategories.Contains(bay.category))
-		{
-			warning += "Invalid bay category: " + bay.category + "\n";
-			it = bays.erase(it);
-			continue;
-		}
-		++it;
-		if(bay.side == Bay::INSIDE && bay.launchEffects.empty() && Crew())
-			bay.launchEffects.emplace_back(GameData::Effects().Get("basic launch"));
-	}
-
-	canBeCarried = bayCategories.Contains(attributes.Category());
-
-	// Issue warnings if this ship has is misconfigured, e.g. is missing required values
-	// or has negative outfit, cargo, weapon, or engine capacity.
-	for(auto &&attr : set<string>{"outfit space", "cargo space", "weapon capacity", "engine capacity"})
-	{
-		double val = attributes.Get(attr);
-		if(val < 0)
-			warning += attr + ": " + Format::Number(val) + "\n";
-	}
-	if(attributes.Get("drag") <= 0.)
-	{
-		warning += "Defaulting " + string(attributes.Get("drag") ? "invalid" : "missing") + " \"drag\" attribute to 100.0\n";
-		attributes.Set("drag", 100.);
-	}
-
-	if(!warning.empty())
-	{
-		// This check is mostly useful for variants and stock ships, which have
-		// no names. Print the outfits to facilitate identifying this ship definition.
-		string message = (!givenName.empty() ? "Ship \"" + givenName + "\" " : "") + "(" + VariantName() + "):\n";
-		ostringstream outfitNames;
-		outfitNames << "has outfits:\n";
-		for(const auto &it : outfits)
-			outfitNames << '\t' << it.second << " " + it.first->TrueName() << endl;
-		Logger::Log(message + warning + outfitNames.str(), Logger::Level::WARNING);
-	}
 
 	// Initialize various caches.
 	CacheAttributes();
@@ -4179,6 +4214,18 @@ const Outfit &Ship::BaseAttributes() const
 const map<const Outfit *, int> &Ship::Outfits() const
 {
 	return outfits;
+}
+
+
+
+void Ship::UseSpawnOutfits()
+{
+	if(hasSpawnOutfits)
+	{
+		outfits = spawnOutfits;
+		armament = spawnArmament;
+		FinishLoading(true);
+	}
 }
 
 
