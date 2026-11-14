@@ -215,7 +215,7 @@ namespace {
 		{"turret turn multiplier", -1. * ATTRIBUTE_PRECISION},
 	};
 
-	static const map<string, string> BOOLEAN_ATTRIBUTES = {
+	const map<string, string> BOOLEAN_ATTRIBUTES = {
 		{"unplunderable", "Cannot be plundered while installed."},
 		{"uninstallable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
