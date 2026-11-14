@@ -223,7 +223,7 @@ void MapOutfitterPanel::DrawItems()
 			string info;
 			if(outfit->Get("minable") > 0.)
 				info = "(Mined from asteroids)";
-			else if(outfit->Get("installable") < 0.)
+			else if(outfit->Get("uninstallable"))
 			{
 				double space = outfit->Mass();
 				info = Format::CargoString(space, "space");

@@ -219,7 +219,7 @@ outfit "Command Center"
 	"bunks" 1
 	"required crew" 1
 	"automaton" -1
-	unplunderable 1
+	unplunderable
 	description "In response to occasional raids by the robotic war machines left behind after their recent conflict, the Kor Efret have developed this minimal, spartan Command Center that can be installed in a captured robotic ship to allow a pilot to override the AI and interface with the ship's controls. The Command Center only provides a single bunk for the captain, so more bunks may be necessary if the ship has turrets or other systems that require crew."
 
 outfit "Reasoning Node"
@@ -887,8 +887,8 @@ outfit "Thermal Repeater Rifle"
 	thumbnail "outfit/korath rifle"
 	"capture attack" 1.6
 	"capture defense" 2.4
-	"unplunderable" 1
-	"can jettison" 1
+	"unplunderable"
+	"can jettison"
 	description "This rifle is commonplace among the Korath, predating the creation of the ship-scale Thermal Repeater by at least two centuries. As it uses superheated plasma instead of lasers, the rifle is slow to fire and can sometimes burn its user's hands if they aren't careful. It makes up for these setbacks by guaranteeing that those hit won't live long enough to fire back."
 
 outfit "Microbot Defense Station"
@@ -903,6 +903,6 @@ outfit "Microbot Defense Station"
 	illegal 10000000
 	"energy consumption" 0.01
 	"heat generation" 0.1
-	unplunderable 1
+	unplunderable
 	description `This insidious trap awaits anyone foolish enough to attempt to capture Korath World-Ships. Intruders are trapped before this airlock, ahead of which a cloud of microbots programmed to break down organic matter into nutrigel is released. The resulting gel then drains into the vat below while the robots are recalled.`
 	description `	Many races find this means of defense abhorrent. Citing the excruciating, confusing death experienced by its victims, the violation of taboos relating to cannibalism, and erroneous fears that the microbots could somehow "escape," possession of these airlocks may result in heavy fines.`

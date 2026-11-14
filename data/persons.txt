@@ -1055,7 +1055,7 @@ ship "Shooting Star"
 		"turn" 2453.7
 		"jump speed" .2
 		"jump fuel" 50
-		"hyperdrive" 1
+		"hyperdrive"
 		"energy generation" 1
 		"atmosphere scan" 100
 		"spinal mount" 1
@@ -1094,7 +1094,7 @@ outfit "Crystal Projector"
 	"outfit space" -2
 	"gun ports" -1
 	"crystal projector" -1
-	"unique" 1
+	"unique"
 	weapon
 		"hardpoint sprite" "hardpoint/shooting star flare/ss-rays"
 			"frame time" 3
@@ -1108,7 +1108,7 @@ outfit "Floating Crystal"
 	"outfit space" -3
 	"turret mounts" -1
 	"spinal mount" -1
-	"unique" 1
+	"unique"
 	weapon
 		"turret turn" 6
 		"velocity" 250
@@ -1127,7 +1127,7 @@ outfit "Crystalline Formation"
 	"outfit space" -1
 	"turret mounts" -1
 	"shooting star" -1
-	"unique" 1
+	"unique"
 	"core crystal" 1
 	weapon
 		sound "crunch"
@@ -1148,7 +1148,7 @@ outfit "Hexagonal Crystal"
 	"outfit space" -1
 	"turret mounts" -1
 	"shooting star" -1
-	"unique" 1
+	"unique"
 	"core crystal" 1
 	weapon
 		sound "crunch"
@@ -1169,7 +1169,7 @@ outfit "Tree Skeleton Key Stone"
 	thumbnail "outfit/rock 1"
 	"mass" 1
 	"outfit space" -1
-	"unique" 1
+	"unique"
 	"quantum keystone" 1
 	description "Although in appearance it may look somewhat similar to a tree, you don't know how it is supposed to resemble a skeleton. You aren't sure you want to find out either."
 

@@ -215,7 +215,7 @@ ship "Astral Cetacean"
 
 		"jump fuel" 80
 		"jump speed" .1
-		"hyperdrive" 1
+		"hyperdrive"
 		"hyperdrive sound" "organ drive"
 		"hyperdrive out sound" "organ drive out"
 		"hyperdrive in sound" "organ drive in"

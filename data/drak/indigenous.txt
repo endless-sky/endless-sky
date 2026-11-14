@@ -35,7 +35,7 @@ ship "Subsidurial"
 		"energy capacity" 1
 		"inscrutable" 1
 		"gaslining" 1
-		"hyperdrive" 1
+		"hyperdrive"
 		"jump speed" .2
 	outfits
 		Mouthparts? 3
@@ -204,7 +204,7 @@ ship "Ember Waste Node"
 		"gaslining" 1
 		"jump speed" .3
 		"jump fuel" 10
-		"jump drive" 1
+		"jump drive"
 	outfits
 		Mouthparts? 5
 	gun -9 -104 Mouthparts?
@@ -245,7 +245,7 @@ ship "Embershade"
 		"cloak" .02
 		"cloaked firing" .02
 		"cloaking energy" 5
-		"hyperdrive" 1
+		"hyperdrive"
 		"jump speed" .1
 		"ramscoop" .05
 		"gaslining" 1
@@ -288,7 +288,7 @@ ship "Embersylph"
 		"shield generation" 2
 		"scram drive" 0.4
 		"jump fuel" 100
-		"hyperdrive" 1
+		"hyperdrive"
 		"ramscoop" 1.5
 		"gaslining" 1
 		"inscrutable" 1

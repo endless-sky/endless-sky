@@ -361,7 +361,7 @@ void MainPanel::ShowScanDialog(const ShipEvent &event)
 				first = false;
 
 				out << "\t";
-				if(outfit->Get("installable") < 0.)
+				if(outfit->Get("uninstallable"))
 				{
 					int tons = ceil(count * outfit->Mass());
 					out << Format::CargoString(tons, Format::LowerCase(outfit->PluralName())) << "\n";

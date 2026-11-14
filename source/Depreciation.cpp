@@ -252,7 +252,7 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool cha
 // Add a single outfit to the depreciation record.
 void Depreciation::Buy(const Outfit *outfit, int day, Depreciation *source)
 {
-	if(outfit->GetPrecise("installable") < 0 || outfit->GetPrecise("nondepreciable"))
+	if(outfit->GetPrecise("uninstallable") || outfit->GetPrecise("nondepreciable"))
 		return;
 
 	if(source)
@@ -291,7 +291,7 @@ void Depreciation::Capture(const Ship &ship, int day)
 
 	for(const auto &[outfit, count] : ship.Outfits())
 	{
-		if(outfit->GetPrecise("installable") < 0 || outfit->GetPrecise("nondepreciable"))
+		if(outfit->GetPrecise("uninstallable") || outfit->GetPrecise("nondepreciable"))
 			continue;
 		outfits[outfit][day] += count;
 	}
@@ -307,7 +307,7 @@ void Depreciation::Capture(const Ship &ship, int day)
 void Depreciation::Plunder(const Outfit *outfit, int day, int count)
 {
 	assert(!isStock && "Outfits cannot be plundered into a stock depreciation record.");
-	if(outfit->GetPrecise("installable") < 0 || outfit->GetPrecise("nondepreciable"))
+	if(outfit->GetPrecise("uninstallable") || outfit->GetPrecise("nondepreciable"))
 		return;
 
 	day = (!AgingActive() || Plundered() < Min()) ? PLUNDERED : day - DepreciationToAge(Plundered());
@@ -374,7 +374,7 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count) const
 // Get the value of an outfit.
 int64_t Depreciation::Value(const Outfit *outfit, int day, int count) const
 {
-	if(outfit->GetPrecise("installable") < 0 || outfit->GetPrecise("nondepreciable"))
+	if(outfit->GetPrecise("uninstallable") || outfit->GetPrecise("nondepreciable"))
 		return count * outfit->Cost();
 
 	// Check whether a record exists for this outfit. If not, its value is full
