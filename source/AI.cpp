@@ -4574,13 +4574,11 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			if(!mission.IsVisible() || mission.IsFailed())
 				continue;
 
-			// If the accessible destination of a mission is in this system, and you've been
-			// to all waypoints and stopovers (i.e. could complete it), consider landing on it.
-			if(mission.Stopovers().empty() && mission.Waypoints().empty()
-					&& mission.Destination()->IsInSystem(system)
-					&& mission.Destination()->IsAccessible(&ship))
+			// If the accessible destination of a completable mission is in this system, consider landing on it.
+			const Planet *destination = mission.Destination();
+			if(destination->IsInSystem(system) && destination->IsAccessible(&ship) && mission.IsSatisfied(player))
 			{
-				destinations.insert(mission.Destination());
+				destinations.insert(destination);
 				++missions;
 				// If this mission has a deadline, check if it is the soonest
 				// deadline. If so, this should be your ship's destination.
