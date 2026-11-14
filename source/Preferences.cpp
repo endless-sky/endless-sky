@@ -238,7 +238,7 @@ void Preferences::Init()
 	settings[ANIMATE_MENU_BACKGROUND] = Setting::OnOff("Animate main menu background", true);
 	settings[ASTEROID_TARGETING] = Setting::List("Asteroid targeting", {"proximity", "expected value", "quality"}, 0,
 		true);
-	settings[AUTO_AIM] = Setting::List("Automatic aiming", {"off", "always on", "when firing"}, 2);
+	settings[AUTO_AIM] = Setting::List("Automatic aiming", {"off", "always on", "when firing"}, 1);
 	settings[AUTO_FIRE] = Setting::List("Automatic firing", {"off", "on", "guns only", "turrets only"}, 0);
 	settings[AUTO_UNPARK_FLAGSHIP] = Setting::OnOff("Automatically unpark flagship", false);
 
