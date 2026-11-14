@@ -65,12 +65,11 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cctype>
 #include <cmath>
 #include <limits>
+#include <ranges>
 
 using namespace std;
 
 namespace {
-	const string SHOW_ESCORT_SYSTEMS = "Show escort systems on map";
-	const string SHOW_STORED_OUTFITS = "Show stored outfits on map";
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
 	const int MAX_STARS = 5;
 
@@ -251,12 +250,14 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	// Recalculate escort positions every time the map is opened, as they may
 	// be changing systems even if the player does not.
 	// The player cannot toggle any preferences without closing the map panel.
-	if(Preferences::Has(SHOW_ESCORT_SYSTEMS) || Preferences::Has(SHOW_STORED_OUTFITS))
+	bool showEscorts = Preferences::Has(Preferences::MAP_SHOW_ESCORTS);
+	bool showOutfits = Preferences::Has(Preferences::MAP_SHOW_OUTFITS);
+	if(showEscorts || showOutfits)
 	{
 		escortSystems.clear();
-		if(Preferences::Has(SHOW_ESCORT_SYSTEMS))
+		if(showEscorts)
 			TallyEscorts(player.Ships(), escortSystems);
-		if(Preferences::Has(SHOW_STORED_OUTFITS))
+		if(showOutfits)
 			TallyOutfits(player.PlanetaryStorage(), escortSystems);
 	}
 
@@ -299,19 +300,16 @@ void MapPanel::Step()
 
 	// The mouse should be pointing to the same map position before and after zooming.
 	bool needsRecenter = !zoom.IsAnimationDone();
-	Point mouse, anchor;
+	Point anchor;
 	if(needsRecenter)
-	{
-		mouse = UI::GetMouse();
-		anchor = mouse / Zoom() - center;
-	}
+		anchor = hoverPoint / Zoom() - center;
 
 	zoom.Step();
 
 	// Now, Zoom() has changed (unless at one of the limits). But, we still want
 	// anchor to be the same, so:
 	if(needsRecenter)
-		center = mouse / Zoom() - anchor;
+		center = hoverPoint / Zoom() - anchor;
 }
 
 
@@ -323,7 +321,7 @@ void MapPanel::Draw()
 	for(const auto &it : GameData::Galaxies())
 		SpriteShader::Draw(it.second.GetSprite(), Zoom() * (center + it.second.Position()), Zoom());
 
-	if(Preferences::Has("Hide unexplored map regions"))
+	if(Preferences::Has(Preferences::MAP_HIDE_UNEXPLORED))
 		FogShader::Draw(center, Zoom(), player);
 
 	// Draw the "visible range" circle around your current location.
@@ -814,6 +812,8 @@ bool MapPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool
 		IncrementZoom();
 	else if(key == SDLK_MINUS || key == SDLK_KP_MINUS)
 		DecrementZoom();
+	else if(key == SDLK_SPACE || key == SDLK_HOME)
+		CenterOnSystem(&playerSystem);
 	else
 		return false;
 
@@ -1075,12 +1075,11 @@ void MapPanel::Select(const System *system)
 void MapPanel::Find(const string &name)
 {
 	int bestIndex = 9999;
-	for(const auto &it : GameData::Systems())
+	for(const System &system : GameData::Systems() | views::values)
 	{
-		const System &system = it.second;
 		if(system.IsValid() && !system.Inaccessible() && player.CanView(system))
 		{
-			int index = Format::Search(it.first, name);
+			int index = Format::Search(system.DisplayName(), name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -1095,12 +1094,11 @@ void MapPanel::Find(const string &name)
 			}
 		}
 	}
-	for(const auto &it : GameData::Planets())
+	for(const Planet &planet : GameData::Planets() | views::values)
 	{
-		const Planet &planet = it.second;
 		if(planet.IsValid() && player.CanView(*planet.GetSystem()))
 		{
-			int index = Format::Search(it.first, name);
+			int index = Format::Search(planet.DisplayName(), name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -1438,7 +1436,7 @@ void MapPanel::DrawTravelPlan()
 			for(auto &it : fuel)
 				if(it.second >= 0.)
 				{
-					double cost = it.first->JumpNavigation().GetCheapestJumpType(previous, next).second;
+					double cost = it.first->JumpNavigation().GetCheapestJump(previous, next).fuelCost;
 					if(!cost || cost > it.second)
 					{
 						it.second = -1.;

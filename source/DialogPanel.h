@@ -144,8 +144,20 @@ public:
 		std::optional<int> initialValue = std::nullopt,
 		Truncate truncate = Truncate::NONE,
 		bool allowsFastForward = false);
+	static DialogPanel *RequestIntegerWithValidation(std::function<void(int)> fun,
+		std::function<bool(int)> validate,
+		std::string message,
+		std::optional<int> initialValue = std::nullopt,
+		Truncate truncate = Truncate::NONE,
+		bool allowsFastForward = false);
 	template<class T>
 	static DialogPanel *RequestDoubleWithValidation(T *t, void (T::*fun)(double),
+		std::function<bool(double)> validate,
+		std::string message,
+		std::optional<double> initialValue = std::nullopt,
+		Truncate truncate = Truncate::NONE,
+		bool allowsFastForward = false);
+	static DialogPanel *RequestDoubleWithValidation(std::function<void(double)> fun,
 		std::function<bool(double)> validate,
 		std::string message,
 		std::optional<double> initialValue = std::nullopt,

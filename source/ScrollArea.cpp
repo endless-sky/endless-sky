@@ -187,11 +187,14 @@ bool ScrollArea::Hover(int x, int y)
 {
 	scrollBar.Hover(x, y);
 
-	if(!buffer)
-		return false;
-	Rectangle bounds(position, {buffer->Width(), buffer->Height()});
-	hovering = bounds.Contains(Point(x, y));
-	return hovering;
+	hovering = false;
+	if(buffer)
+	{
+		Rectangle bounds(position, {buffer->Width(), buffer->Height()});
+		hovering = bounds.Contains(Point(x, y));
+	}
+	// Allow the parent panel to update its hover.
+	return false;
 }
 
 

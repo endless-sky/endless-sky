@@ -176,6 +176,11 @@ public:
 
 
 public:
+	// If a ship's velocity is below this value, the ship is considered stopped.
+	static constexpr double VELOCITY_ZERO = .001;
+
+
+public:
 	// Functions provided by the Body base class:
 	// bool HasSprite() const;
 	// const Sprite *GetSprite() const;
@@ -243,6 +248,7 @@ public:
 
 	void SetPosition(Point position);
 	void SetVelocity(Point velocity);
+	void SetFacing(Angle angle);
 	// When creating a new ship, you must set the following:
 	void Place(Point position = Point(), Point velocity = Point(), Angle angle = Angle(), bool isDeparting = true);
 	void SetSystem(const System *system);
@@ -250,6 +256,10 @@ public:
 	void SetGovernment(const Government *government);
 	void SetIsSpecial(bool special = true);
 	bool IsSpecial() const;
+	void SetIsPlaced(bool placed = true);
+	bool IsPlaced() const;
+	void SetSkipRecharging(bool skipRecharging = true);
+	bool IsSkipRecharging() const;
 
 	// If a ship belongs to the player, the player can give it commands.
 	void SetIsYours(bool yours = true);
@@ -366,7 +376,7 @@ public:
 	bool IsEnteringHyperspace() const;
 	// Check if this ship is entering or leaving hyperspace.
 	bool IsHyperspacing() const;
-	int GetHyperspacePercentage() const;
+	double GetHyperspaceFraction() const;
 	// Check if this ship is hyperspacing, specifically via a jump drive.
 	bool IsUsingJumpDrive() const;
 	// Fuel already used for ongoing hyperspace movement.
@@ -462,19 +472,20 @@ public:
 	double Mass() const override;
 	double InertialMass() const;
 	double TurnRate() const;
-	double Acceleration() const;
 	double MaxVelocity(bool withAfterburner = false) const;
-	double ReverseAcceleration() const;
 	double MaxReverseVelocity() const;
-	// These two values are the ship's current maximum acceleration and turn rate, accounting for the effects of slow.
-	double TrueAcceleration() const;
-	double TrueTurnRate() const;
-	// These two values are the ship's effective maximum acceleration and turn rate,
-	// accounting for the effects of insufficient crew.
-	double CrewAcceleration() const;
-	double CrewTurnRate() const;
-	// The ship's current speed right now
-	double CurrentSpeed() const;
+	double Acceleration() const;
+	double ReverseAcceleration() const;
+	double ReverseThrust() const;
+	// The rate at which low crew will cause piloting errors.
+	// Used for estimating movement under the influence of low crew.
+	double CrewErrorRate() const;
+	// The reduction in this ship's acceleration and turn rate caused by accrued slowing.
+	double SlownessModifier() const;
+	// Inertialess flight characteristics:
+	bool InertialessMovement() const;
+	double InertialessThrottle() const;
+	double InertialessThrottleStep(bool isBraking) const;
 
 	double ThrustHeldFraction(ThrustKind kind) const;
 	uint8_t ThrustHeldFrames(ThrustKind kind) const;
@@ -512,8 +523,8 @@ public:
 	const CargoHold &Cargo() const;
 	// Display box effects from jettisoning cargo or installed outfits.
 	void Jettison(const std::string &commodity, int tons, bool wasAppeasing = false);
-	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false);
-	void JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing = false);
+	void Jettison(const Outfit *outfit, int count, bool wasAppeasing = false, PlayerInfo *player = nullptr);
+	void JettisonInstalled(const Outfit *outfit, int count, bool wasAppeasing = false, PlayerInfo *player = nullptr);
 
 	// Get the attributes of this ship chassis before any outfits were added.
 	const Outfit &BaseAttributes() const;
@@ -596,7 +607,6 @@ public:
 	bool Inscrutable() const;
 	bool CanCommunicateWhileCloaked() const;
 
-	double ReverseThrust() const;
 	// Whether this ship has an afterburner installed and it can be used. Does not consider
 	// the resource cost of using the afterburner.
 	bool CanUseAfterburner() const;
@@ -610,6 +620,8 @@ public:
 	bool CanRecoverShieldsWhileCloaked() const;
 
 	double TurretTurnMultiplier() const;
+
+	bool HasFuelGeneration() const;
 
 
 protected:
@@ -717,8 +729,8 @@ private:
 	void IncrementThrusterHeld(ThrustKind kind);
 
 	// Helper functions for jettisoning flotsam.
-	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false);
-	void Jettison(std::shared_ptr<Flotsam> toJettison);
+	void JettisonOutfit(const Outfit *outfit, int count, bool wasAppeasing = false, PlayerInfo *player = nullptr);
+	void Jettison(const std::shared_ptr<Flotsam> &toJettison);
 
 
 private:
@@ -742,6 +754,12 @@ private:
 	// "Special" ships cannot be forgotten, and if they land on a planet, they
 	// continue to exist and refuel instead of being deleted.
 	bool isSpecial = false;
+	// NPC, Fleet, and Engine can all update the placement of a ship when it is spawned.
+	// By setting this to true, Engine won't overwrite the placements made by NPC or Fleet.
+	bool isPlaced = false;
+	// Engine will recharge ships when they are placed, but NPC or another class may have dealt
+	// damage to the ship that should remain there. If this is true, Engine won't recharge the ship.
+	bool isSkipRecharging = false;
 	bool isYours = false;
 	bool isParked = false;
 	bool shouldDeploy = false;
@@ -811,6 +829,15 @@ private:
 	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
 	Point acceleration;
+	// If the ship uses inertialess thrust, this is how much throttle is currently applied.
+	// A value from 0 to 1 measuring how much of the maximum velocity should be applied
+	// to the ship in its facing direction.
+	double inertialessThrottle = 0.;
+	// Each frame that inertialess thrust is provided, the influence of inertialess thrust
+	// from the prior frame is removed before re-adding it with the latest facing angle.
+	// This step is skipped if there was no inertialess thrust added in the previous frame,
+	// such as when taking off from a planet or exiting hyperspace.
+	bool negateThrottle = false;
 	// The amount of time in frames that an engine has been on for.
 	std::array<uint8_t, 4> thrustHeldFrames = {};
 
@@ -829,6 +856,7 @@ private:
 	const System *hyperspaceSystem = nullptr;
 	bool isUsingJumpDrive = false;
 	double hyperspaceFuelCost = 0.;
+	int hyperspaceTravelFrames = 100;
 	Point hyperspaceOffset;
 
 	std::vector<Leak> leaks;

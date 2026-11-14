@@ -131,7 +131,7 @@ ResourceLevels Entity::AvailableResources() const
 	ResourceLevels available;
 	// An entity should not be able to disable itself through use of an outfit, so
 	// the available hull excludes the hull necessary to remain enabled.
-	available.hull = levels.hull - minimumHull;
+	available.hull = max(0., levels.hull - minimumHull);
 	// The availability of all other resources is just how much this entity currently has.
 	available.shields = levels.shields;
 	available.energy = levels.energy;
@@ -470,7 +470,7 @@ void Entity::CreateSparks(vector<Visual> &visuals, const string &name, double am
 
 
 
-void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount) const
+void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double amount, int frameOffset) const
 {
 	if(forget || amount <= 0.)
 		return;
@@ -489,13 +489,27 @@ void Entity::CreateSparks(vector<Visual> &visuals, const Effect *effect, double 
 
 		Point point((Random::Real() - .5) * Width(), (Random::Real() - .5) * Height());
 		if(GetMask().Contains(point, Angle()))
+		{
 			visuals.emplace_back(*effect, angle.Rotate(point) + position, velocity, angle);
+			visuals.back().AddFrameOffset(frameOffset);
+		}
 	}
 }
 
 
 
 int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, const Government *hitBy)
+{
+	// Create target effect visuals, if there are any.
+	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
+		CreateSparks(visuals, effect, count * damage.Scaling());
+
+	return TakeDamage(damage, hitBy);
+}
+
+
+
+int Entity::TakeDamage(const DamageDealt &damage, const Government *hitBy)
 {
 	bool wasDisabled = IsDisabled();
 	bool wasDestroyed = IsDestroyed();
@@ -507,10 +521,6 @@ int Entity::TakeDamage(std::vector<Visual> &visuals, const DamageDealt &damage, 
 	// so the only remaining unallowable values are overhealing hull or shields.
 	levels.hull = min(levels.hull, MaxHull());
 	levels.shields = min(levels.shields, MaxShields());
-
-	// Create target effect visuals, if there are any.
-	for(const auto &[effect, count] : damage.GetWeapon().TargetEffects())
-		CreateSparks(visuals, effect, count * damage.Scaling());
 
 	return DoTakeDamage(damage, hitBy, wasDisabled, wasDestroyed);
 }

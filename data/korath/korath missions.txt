@@ -11,6 +11,26 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Korath Exile Space"
+	entering
+	invisible
+	non-blocking
+	source
+		government "Korath"
+	on offer
+		set "discovered korath exile space"
+		fail
+
+mission "Discovery: Korath Space"
+	entering
+	invisible
+	non-blocking
+	source
+		near "Mesuket" 0 100
+	on offer
+		set "discovered korath space"
+		fail
+
 mission "First Contact: Korati Efreti"
 	landing
 	source "Korati Efreti"

@@ -83,6 +83,7 @@ color "flagship highlight" .5 .8 .2 0.
 color "cloak highlight" .45 0. 0. .65
 
 color "drag select" .2 1. 0. 0.
+color "drag select invalid" 1. .2 0. 0.
 
 # Colors used for drawing mission or job pointers on the map,
 # to indicate where the player should go.
@@ -1134,16 +1135,16 @@ interface "gamerules"
 		alignment right
 		color medium
 	
-	visible if "multiple settings pages"
+	visible if "multiple gamerules pages"
 	sprite "ui/dialog cancel"
 		center -115 210
-	active if "show next settings"
+	active if "show next gamerules"
 	button n "_Next"
 		center -115 210
 		dimensions 70 30
 	sprite "ui/wide button"
 		center -210 210
-	active if "show previous settings"
+	active if "show previous gamerules"
 	button r "P_revious"
 		center -210 210
 		dimensions 90 30
@@ -2532,7 +2533,7 @@ interface "map buttons (small screen)" bottom right
 	sprite "ui/dialog cancel"
 		from -170 -30 to -80 -180
 	button i "M_issions"
-		from -160 -60 to -90 -150
+		from -160 -90 to -90 -120
 
 	active if "!is ports"
 	sprite "ui/dialog cancel"

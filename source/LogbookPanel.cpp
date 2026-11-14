@@ -243,7 +243,6 @@ bool LogbookPanel::Scroll(double dx, double dy)
 
 bool LogbookPanel::Hover(int x, int y)
 {
-	hoverPoint = Point(x, y);
 	return MapPanel::Hover(x, y);
 }
 

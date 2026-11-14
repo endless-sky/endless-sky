@@ -33,22 +33,15 @@ class Ship;
 // showing changes to your ship as you add upgrades, for scanning other ships, etc.
 class ShipInfoDisplay : public ItemInfoDisplay {
 public:
-	ShipInfoDisplay() = default;
+	ShipInfoDisplay();
 
 	// Call this every time the ship changes.
 	void Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity = false,
-		bool descriptionCollapsed = true, bool scrollingPanel = false);
+		bool descriptionCollapsed = true, bool scrollingPanel = false, bool isDefinition = true);
 
-	// Provided by ItemInfoDisplay:
-	// int PanelWidth();
-	// int MaximumHeight() const;
-	// int DescriptionHeight() const;
-	// int AttributesHeight() const;
 	int GetAttributesHeight(bool sale) const;
 	int OutfitsHeight() const;
 
-	// Provided by ItemInfoDisplay:
-	// void DrawDescription(const Point &topLeft) const;
 	virtual void DrawAttributes(const Point &topLeft) const override;
 	virtual void DrawAttributes(const Point &topLeft, const bool sale) const;
 	void DrawOutfits(const Point &topLeft) const;
