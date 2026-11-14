@@ -597,7 +597,7 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 			TestData *testData = testDataSets.Get(node.Token(1));
 			if(overwrite)
 				*testData = TestData();
-			testData->Load(node, path);
+			testData->Load(*this, node, path);
 		}
 		else if(key == "trade")
 		{
@@ -756,4 +756,323 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		// Overwrite mode is only good for one node at a time.
 		overwrite = false;
 	}
+}
+
+
+
+void UniverseObjects::AddJumpRange(double neighborDistance)
+{
+	neighborDistances.insert(neighborDistance);
+}
+
+
+
+void UniverseObjects::DestroyPersons(const std::vector<std::string> &names)
+{
+	for(const string &name : names)
+		persons.Get(name)->Destroy();
+}
+
+
+
+void UniverseObjects::ResetPersons()
+{
+	for(auto &person : persons | views::values)
+		person.ClearPlacement();
+}
+
+
+
+void UniverseObjects::SetDate(const Date &date)
+{
+	for(auto &system : systems | views::values)
+		system.SetDate(date);
+}
+
+
+
+void UniverseObjects::HandleEvent(const ShipEvent &event)
+{
+	for(Person &person : persons | views::values)
+		if(person.Do(event))
+			break;
+}
+
+
+
+const Set<Color> &UniverseObjects::Colors() const
+{
+	return colors;
+}
+
+
+
+const Set<Confusion> &UniverseObjects::Confusions() const
+{
+	return confusions;
+}
+
+
+
+const std::vector<Trade::Commodity> &UniverseObjects::Commodities() const
+{
+	return trade.Commodities();
+}
+
+
+
+const Set<Conversation> &UniverseObjects::Conversations() const
+{
+	return conversations;
+}
+
+
+
+const Set<Effect> &UniverseObjects::Effects() const
+{
+	return effects;
+}
+
+
+
+const Set<GameEvent> &UniverseObjects::Events() const
+{
+	return events;
+}
+
+
+
+const Set<Fleet> &UniverseObjects::Fleets() const
+{
+	return fleets;
+}
+
+
+
+const Set<FormationPattern> &UniverseObjects::Formations() const
+{
+	return formations;
+}
+
+
+
+const Set<Galaxy> &UniverseObjects::Galaxies() const
+{
+	return galaxies;
+}
+
+
+
+const CategoryList &UniverseObjects::GetCategory(const CategoryType type)
+{
+	return categories[type];
+}
+
+
+
+const TextReplacements &UniverseObjects::GetTextReplacements() const
+{
+	return substitutions;
+}
+
+
+
+const Set<Government> &UniverseObjects::Governments() const
+{
+	return governments;
+}
+
+
+
+const Set<Hazard> &UniverseObjects::Hazards() const
+{
+	return hazards;
+}
+
+
+
+const string UniverseObjects::HelpMessage(const string &name) const
+{
+	static const string EMPTY;
+	auto it = helpMessages.find(name);
+	return Command::ReplaceNamesWithKeys(it == helpMessages.end() ? EMPTY : it->second);
+}
+
+
+
+const std::map<std::string, std::string> &UniverseObjects::HelpTemplates() const
+{
+	return helpMessages;
+}
+
+
+
+const Set<Interface> &UniverseObjects::Interfaces() const
+{
+	return interfaces;
+}
+
+
+
+const Set<Minable> &UniverseObjects::Minables() const
+{
+	return minables;
+}
+
+
+
+const Set<Mission> &UniverseObjects::Missions() const
+{
+	return missions;
+}
+
+
+
+const Set<Outfit> &UniverseObjects::Outfits() const
+{
+	return outfits;
+}
+
+
+
+const Set<Shop<Outfit>> &UniverseObjects::Outfitters() const
+{
+	return outfitSales;
+}
+
+
+
+const Set<Person> &UniverseObjects::Persons() const
+{
+	return persons;
+}
+
+
+
+const Set<Phrase> &UniverseObjects::Phrases() const
+{
+	return phrases;
+}
+
+
+
+const Set<Planet> &UniverseObjects::Planets() const
+{
+	return planets;
+}
+
+
+
+const StellarObjectSpriteData &UniverseObjects::ObjectSpriteData(const Sprite *sprite) const
+{
+	static const StellarObjectSpriteData EMPTY;
+	auto it = objectSpriteData.find(sprite);
+	return (it == objectSpriteData.end() ? EMPTY : it->second);
+}
+
+
+
+const std::string &UniverseObjects::Rating(const std::string &type, int level) const
+{
+	static const string EMPTY;
+	auto it = ratings.find(type);
+	if(it == ratings.end() || it->second.empty())
+		return EMPTY;
+
+	level = max(0, min<int>(it->second.size() - 1, level));
+	return it->second[level];
+}
+
+
+
+const Set<Shader> &UniverseObjects::Shaders() const
+{
+	return shaders;
+}
+
+
+
+const Set<Ship> &UniverseObjects::Ships() const
+{
+	return ships;
+}
+
+
+
+const Set<Shop<Ship>> &UniverseObjects::Shipyards() const
+{
+	return shipSales;
+}
+
+
+
+const Set<News> &UniverseObjects::SpaceportNews() const
+{
+	return news;
+}
+
+
+
+const std::vector<Trade::Commodity> &UniverseObjects::SpecialCommodities() const
+{
+	return trade.SpecialCommodities();
+}
+
+
+
+const std::vector<StartConditions> &UniverseObjects::StartOptions() const
+{
+	return startConditions;
+}
+
+
+
+const Set<Swizzle> &UniverseObjects::Swizzles() const
+{
+	return swizzles;
+}
+
+
+
+const Set<System> &UniverseObjects::Systems() const
+{
+	return systems;
+}
+
+
+
+const Set<TestData> &UniverseObjects::TestDataSets() const
+{
+	return testDataSets;
+}
+
+
+
+const Set<Test> &UniverseObjects::Tests() const
+{
+	return tests;
+}
+
+
+
+const string &UniverseObjects::Tooltip(const string &label) const
+{
+	static const string EMPTY;
+	auto it = tooltips.find(label);
+	// Special case: the "cost" and "sells for" labels include the percentage of
+	// the full price, so they will not match exactly.
+	if(it == tooltips.end() && label.starts_with("cost"))
+		it = tooltips.find("cost:");
+	if(it == tooltips.end() && label.starts_with("ship: cost"))
+		it = tooltips.find("ship: cost:");
+	if(it == tooltips.end() && label.starts_with("sells for"))
+		it = tooltips.find("sells for:");
+	return (it == tooltips.end() ? EMPTY : it->second);
+}
+
+
+
+const Set<Wormhole> &UniverseObjects::Wormholes() const
+{
+	return wormholes;
 }
