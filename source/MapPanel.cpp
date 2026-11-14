@@ -65,6 +65,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cctype>
 #include <cmath>
 #include <limits>
+#include <ranges>
 
 using namespace std;
 
@@ -1074,12 +1075,11 @@ void MapPanel::Select(const System *system)
 void MapPanel::Find(const string &name)
 {
 	int bestIndex = 9999;
-	for(const auto &it : GameData::Systems())
+	for(const System &system : std::views::values(GameData::Systems()))
 	{
-		const System &system = it.second;
 		if(system.IsValid() && !system.Inaccessible() && player.CanView(system))
 		{
-			int index = Format::Search(it.first, name);
+			int index = Format::Search(system.DisplayName(), name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -1094,12 +1094,11 @@ void MapPanel::Find(const string &name)
 			}
 		}
 	}
-	for(const auto &it : GameData::Planets())
+	for(const Planet &planet : std::views::values(GameData::Planets()))
 	{
-		const Planet &planet = it.second;
 		if(planet.IsValid() && player.CanView(*planet.GetSystem()))
 		{
-			int index = Format::Search(it.first, name);
+			int index = Format::Search(planet.DisplayName(), name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
