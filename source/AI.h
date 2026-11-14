@@ -34,6 +34,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class Angle;
 class AsteroidField;
 class Body;
+class CollisionSet;
 class ConditionsStore;
 class Flotsam;
 class Government;
@@ -59,7 +60,8 @@ public:
 	template<class Type>
 	using List = std::list<std::shared_ptr<Type>>;
 	// Constructor, giving the AI access to the player and various object lists.
-	AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam);
+	AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam,
+		const CollisionSet &shipCollisions);
 
 	// Fleet commands from the player.
 	void IssueFormationChange(PlayerInfo &player);
@@ -203,6 +205,8 @@ private:
 	void AutoFire(const Ship &ship, FireCommand &command, bool secondary = true,
 		bool isFlagship = false, const std::set<const Outfit *> *includeSecondaries = nullptr) const;
 	void AutoFire(const Ship &ship, FireCommand &command, const Body &target) const;
+	// Determine if a ship's line of fire is obstructed by a friendly if friendly fire is active.
+	bool ObstructedFire(const Ship &ship, const Point &from, const Point &to) const;
 
 	// Calculate how long it will take a projectile to reach a target given the
 	// target's relative position and velocity and the velocity of the
@@ -244,6 +248,7 @@ private:
 	const List<Ship> &ships;
 	const List<Minable> &minables;
 	const List<Flotsam> &flotsam;
+	const CollisionSet &shipCollisions;
 
 	// The current step count for the AI, incremented once per frame.
 	// Its value helps limit how often certain actions occur (such as changing targets).

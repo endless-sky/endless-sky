@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AI.h"
 
 #include "audio/Audio.h"
+#include "CollisionSet.h"
 #include "Command.h"
 #include "ConditionsStore.h"
 #include "DistanceMap.h"
@@ -436,8 +437,9 @@ namespace {
 
 
 
-AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
-	: player(player), ships(ships), minables(minables), flotsam(flotsam), routeCache()
+AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam,
+	const CollisionSet &shipCollisions)
+	: player(player), ships(ships), minables(minables), flotsam(flotsam), shipCollisions(shipCollisions), routeCache()
 {
 	// Allocate a starting amount of hardpoints for ships.
 	firingCommands.SetHardpoints(12, 12);
@@ -4305,7 +4307,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 
 			// Calculate how long it will take the projectile to reach its target.
 			double steps = RendezvousTime(p, v, vp);
-			if(!std::isnan(steps) && steps <= lifetime)
+			if(!std::isnan(steps) && steps <= lifetime && !ObstructedFire(ship, start, start + v))
 				command.SetFire(index);
 			continue;
 		}
@@ -4354,6 +4356,10 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				if(!CanFire(hardpoint))
 					continue;
 
+				// Avoid firing on friendlies.
+				if(ObstructedFire(ship, start, start + v))
+					continue;
+
 				command.SetFire(index);
 				break;
 			}
@@ -4399,9 +4405,24 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, const Body &target) co
 		v *= lifetime;
 
 		const Mask &mask = target.GetMask(step);
-		if(mask.Collide(-p, v, target.Facing()) < 1.)
+		if(mask.Collide(-p, v, target.Facing()) < 1. && !ObstructedFire(ship, start, start + v))
 			command.SetFire(index);
 	}
+}
+
+
+
+bool AI::ObstructedFire(const Ship &ship, const Point &from, const Point &to) const
+{
+	if(!GameData::GetGamerules().FriendlyFireActive())
+		return false;
+	const Government *gov = ship.GetGovernment();
+	vector<Collision> potentialCollisions;
+	shipCollisions.Line(from, to, potentialCollisions, ship.weak_from_this(), gov);
+	for(Collision &collision : potentialCollisions)
+		if(!gov->IsEnemy(collision.HitBody()->GetGovernment()))
+			return true;
+	return false;
 }
 
 

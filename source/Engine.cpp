@@ -198,7 +198,7 @@ namespace {
 
 
 Engine::Engine(PlayerInfo &player)
-	: player(player), ai(player, ships, asteroids.Minables(), flotsam),
+	: player(player), ai(player, ships, asteroids.Minables(), flotsam, shipCollisions),
 	ammoDisplay(player), minimap(player), shipCollisions(256u, 32u, CollisionType::SHIP)
 {
 	zoom.base = Preferences::ViewZoom();
