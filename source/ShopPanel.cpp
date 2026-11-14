@@ -131,10 +131,11 @@ void ShopPanel::Step()
 		if(!Preferences::Has("help: locked ships"))
 		{
 			for(const auto &it : player.Ships())
-			{
 				if(CanShowInSidebar(*it, player.GetPlanet()) && it.get()->IsLocked())
+				{
 					DoHelp("locked ships");
-			}
+					break;
+				}
 		}
 		if(DoHelp("multiple ships"))
 		{

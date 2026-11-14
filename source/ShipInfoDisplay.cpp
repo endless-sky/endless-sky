@@ -47,18 +47,18 @@ ShipInfoDisplay::ShipInfoDisplay()
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
-	bool descriptionCollapsed, bool scrollingPanel, bool isDefinition)
+	bool descriptionCollapsed, bool scrollingPanel, bool isSale)
 {
-	if(isDefinition)
+	if(isSale)
 		UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
 	else
 	{
-		// If the given ship is not a ship definition, then it won't have a description.
+		// If the given ship is not for sale, then it might not have a description.
 		// Locate the description it's supposed to have from its definition.
 		const Ship *definition = GameData::Ships().Get(ship.VariantName());
 		UpdateDescription(definition->Description(), ship.Attributes().Licenses(), true);
 	}
-	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel, isDefinition);
+	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel, isSale);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
 
@@ -143,7 +143,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
-	bool descriptionCollapsed, bool scrollingPanel, bool sale)
+	bool descriptionCollapsed, bool scrollingPanel, bool isSale)
 {
 	bool isGeneric = ship.GivenName().empty() || ship.GetPlanet();
 
@@ -209,17 +209,8 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	bool locked = ship.IsLocked();
 	if(scrollingPanel && locked)
 	{
-		// Only show the exact percentage cost of rewiring
-		// if the empty hull cost is also visible.
-		if(ship.AlwaysLocked() || !sale)
-			attributeLabels.push_back("rewiring cost:");
-		else
-		{
-			ostringstream out;
-			out << "rewiring cost (" << static_cast<int>(100 * ship.RewiringMultiplier()) << "%):";
-			attributeLabels.push_back(out.str());
-		}
-		if(ship.AlwaysLocked())
+		attributeLabels.push_back("rewiring cost:");
+		if(ship.CannotUnlock())
 			attributeValues.push_back("cannot be rewired");
 		else
 			attributeValues.push_back(Format::AbbreviatedNumber(ship.RewiringCost()));

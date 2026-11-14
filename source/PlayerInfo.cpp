@@ -1716,14 +1716,14 @@ void PlayerInfo::UpdateCargoCapacities()
 	largestCargoHold = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetPlanet() == planet && !ship->IsParked())
+		if(ship->GetPlanet() == planet && !ship->IsParked() && !ship->IsLocked())
 		{
 			int space = ship->Attributes().Get("cargo space");
 			size += space;
 			if(space > largestCargoHold)
 				largestCargoHold = space;
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
-			bunks += !ship->IsLocked() ? ship->Attributes().Get("bunks") - crew : 0;
+			bunks += ship->Attributes().Get("bunks") - crew;
 		}
 	cargo.SetSize(size);
 	cargo.SetBunks(bunks);
@@ -1981,7 +1981,7 @@ bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 	auto carriers = vector<Ship *>{};
 	auto toLoad = vector<shared_ptr<Ship>>{};
 	for(auto &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled())
+		if(!ship->IsParked() && !ship->IsDisabled() && !ship->IsLocked())
 		{
 			if(ship->CanBeCarried() && ship != flagship)
 				toLoad.emplace_back(ship);

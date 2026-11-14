@@ -37,7 +37,7 @@ public:
 
 	// Call this every time the ship changes.
 	void Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity = false,
-		bool descriptionCollapsed = true, bool scrollingPanel = false, bool isDefinition = true);
+		bool descriptionCollapsed = true, bool scrollingPanel = false, bool isSale = true);
 
 	int GetAttributesHeight(bool sale) const;
 	int OutfitsHeight() const;
@@ -49,7 +49,7 @@ public:
 
 private:
 	void UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity, bool descriptionCollapsed,
-		bool scrollingPanel, bool sale);
+		bool scrollingPanel, bool isSale);
 	void UpdateOutfits(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation);
 
 

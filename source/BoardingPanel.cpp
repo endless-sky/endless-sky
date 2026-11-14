@@ -310,16 +310,19 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					totalShares += familyShares;
 				if(totalShares)
 				{
-					double valueFraction;
-					if(rules.CaptureValueBasis().has_value())
-						valueFraction = *rules.CaptureValueBasis();
-					else
+					int64_t captureValue = 0;
+					double valueFraction = rules.CaptureValueBasis().value_or(Depreciation::Captured());
+					if(rules.LockOnCapture())
 					{
-						valueFraction = Depreciation::Captured();
-						if(rules.LockOnCapture())
-							valueFraction *= rules.LockedHullValueMultiplier();
+						// The impact of a ship being locked on its value only applies to the chassis.
+						captureValue += victim->ChassisCost() * victim->RewiringMultiplier();
+						for(const auto &[outfit, count] : victim->Outfits())
+							captureValue += outfit->Cost() * count;
+						captureValue *= valueFraction;
 					}
-					int64_t valuePerShare = victim->Cost() * valueFraction / totalShares;
+					else
+						captureValue = victim->Cost() * valueFraction;
+					int64_t valuePerShare = captureValue / totalShares;
 
 					if(payCrewBonuses)
 						crewBonuses = crewShares * valuePerShare;

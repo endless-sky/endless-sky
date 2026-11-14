@@ -681,8 +681,8 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			neverDisabled = true;
 		else if(key == "uncapturable")
 			isCapturable = false;
-		else if(key == "always locked")
-			alwaysLocked = true;
+		else if(key == "cannot unlock")
+			cannotUnlock = true;
 		else if(key == "never locked")
 			neverLocked = true;
 		else if(key == "rewiring multiplier" && hasValue)
@@ -988,7 +988,7 @@ void Ship::FinishLoading(bool isNewInstance)
 			outfits = base->outfits;
 		if(description.IsEmpty())
 			description = base->description;
-		if(baseRewiringMultiplier == -1.)
+		if(!baseRewiringMultiplier.has_value())
 			baseRewiringMultiplier = base->baseRewiringMultiplier;
 
 		bool hasHardpoints = false;
@@ -1237,10 +1237,6 @@ void Ship::FinishLoading(bool isNewInstance)
 		isDisabled = IsDisabled();
 	}
 
-	// If this ship did not set a rewiring multiplier, default it to 1.
-	if(baseRewiringMultiplier == -1.)
-		baseRewiringMultiplier = 1.;
-
 	// A saved ship may have an invalid target system. Since all game data is loaded and all player events are
 	// applied at this point, any target system that is not accessible should be cleared. Note: this does not
 	// account for systems accessible via wormholes, but also does not need to as AI will route the ship properly.
@@ -1305,12 +1301,12 @@ void Ship::Save(DataWriter &out) const
 		if(administrativeCost.has_value())
 			out.Write("administrative cost", administrativeCost.value());
 
-		if(alwaysLocked)
-			out.Write("always locked");
+		if(cannotUnlock)
+			out.Write("cannot unlock");
 		if(neverLocked)
 			out.Write("never locked");
-		if(baseRewiringMultiplier)
-			out.Write("rewiring multiplier", baseRewiringMultiplier);
+		if(baseRewiringMultiplier.has_value())
+			out.Write("rewiring multiplier", *baseRewiringMultiplier);
 		if(locked)
 			out.Write("locked");
 
@@ -1677,6 +1673,8 @@ int64_t Ship::Strength() const
 
 double Ship::Attraction() const
 {
+	// You can't access the cargo hold of locked ships, but pirates don't know that,
+	// so locked ships still add to the attraction of your fleet.
 	return attraction;
 }
 
@@ -1684,14 +1682,15 @@ double Ship::Attraction() const
 
 double Ship::Deterrence() const
 {
-	return deterrence;
+	// Locked ships do not provide any deterrence since they can't use their weapons.
+	return locked ? 0. : deterrence;
 }
 
 
 
-bool Ship::AlwaysLocked() const
+bool Ship::CannotUnlock() const
 {
-	return alwaysLocked;
+	return cannotUnlock;
 }
 
 
@@ -1719,14 +1718,10 @@ bool Ship::IsLocked() const
 
 double Ship::RewiringMultiplier() const
 {
-	double gameRewiringMultiplier = GameData::GetGamerules().RewiringCostMultiplier();
+	double rewiringMultiplier = baseRewiringMultiplier.value_or(1.) * GameData::GetGamerules().RewiringCostMultiplier();
 	if(landingPlanet && landingPlanet->GetGovernment())
-	{
-		return max(0., gameRewiringMultiplier * baseRewiringMultiplier
-					* landingPlanet->GetGovernment()->RewiringMultiplier());
-	}
-	else
-		return max(0., gameRewiringMultiplier * baseRewiringMultiplier);
+		rewiringMultiplier *= landingPlanet->GetGovernment()->RewiringMultiplier();
+	return max(0., rewiringMultiplier);
 }
 
 
@@ -1781,7 +1776,7 @@ vector<string> Ship::FlightCheck() const
 	// If no errors were found, check all warning conditions:
 	if(checks.empty())
 	{
-		if(IsLocked())
+		if(locked)
 			checks.emplace_back("locked systems");
 		if(RequiredCrew() > bunks)
 			checks.emplace_back("insufficient bunks?");
@@ -2456,7 +2451,7 @@ void Ship::Draw(DrawList &draw, optional<reference_wrapper<vector<Visual>>> visu
 void Ship::Launch(list<shared_ptr<Ship>> &ships, vector<Visual> &visuals)
 {
 	// Allow carried ships to launch from a disabled ship, but not from a ship that
-	// is landing, jumping, or cloaked. If already destroyed (e.g. self-destructing),
+	// is landing, jumping, cloaked, or locked. If already destroyed (e.g. self-destructing),
 	// eject any ships still docked, possibly destroying them in the process.
 	bool ejecting = IsDestroyed();
 	if(!ejecting && (!commands.Has(Command::DEPLOY) || zoom != 1.f || hyperspaceCount ||
@@ -4051,7 +4046,7 @@ int Ship::BaysTotal(const string &category) const
 // not reserved for one of its existing escorts.
 bool Ship::CanCarry(const Ship &ship) const
 {
-	if(!HasBays() || !ship.CanBeCarried() || (IsYours() && !ship.IsYours()))
+	if(!HasBays() || !ship.CanBeCarried() || (IsYours() && !ship.IsYours()) || locked)
 		return false;
 	// Check only for the category that we are interested in.
 	const string &category = ship.attributes.Category();
@@ -4760,7 +4755,7 @@ bool Ship::HasFuelForCloak() const
 
 bool Ship::CanRecoverHullWhileCloaked() const
 {
-	if(cache.cloakedRepairMult > -1.)
+	if(!locked && cache.cloakedRepairMult > -1.)
 	{
 		if(cache.hullRepairRate > 0.)
 			return true;
@@ -4774,7 +4769,7 @@ bool Ship::CanRecoverHullWhileCloaked() const
 
 bool Ship::CanRecoverShieldsWhileCloaked() const
 {
-	if(cache.cloakedRegenMult > -1.)
+	if(!locked && cache.cloakedRegenMult > -1.)
 	{
 		if(cache.shieldRegenRate > 0.)
 			return true;
@@ -5141,7 +5136,7 @@ void Ship::DoGeneration()
 
 	// Shield and hull recharge. This uses whatever energy is left over from the
 	// previous frame, so that it will not steal energy from movement, etc.
-	if(!isDisabled)
+	if(!isDisabled && !locked)
 	{
 		// Priority of repairs:
 		// 1. Ship's own hull
@@ -5159,7 +5154,7 @@ void Ship::DoGeneration()
 		};
 
 		ResourceLevels repairCost = hullDelay ? cache.hullRepairWithDelayCost : cache.hullRepairCost;
-		double hullRemaining = locked ? 0. : (hullDelay ? cache.hullRepairRateWithDelay : cache.hullRepairRate)
+		double hullRemaining = (hullDelay ? cache.hullRepairRateWithDelay : cache.hullRepairRate)
 			* (1. + cache.cloakedRepairMult * Cloaking());
 		if(hullRemaining)
 		{
@@ -5168,7 +5163,7 @@ void Ship::DoGeneration()
 		}
 
 		ResourceLevels regenCost = shieldDelay ? cache.shieldRegenWithDelayCost : cache.shieldRegenCost;
-		double shieldsRemaining = locked ? 0. : (shieldDelay ? cache.shieldRegenRateWithDelay : cache.shieldRegenRate)
+		double shieldsRemaining = (shieldDelay ? cache.shieldRegenRateWithDelay : cache.shieldRegenRate)
 			* (1. + cache.cloakedRegenMult * Cloaking());
 		if(shieldsRemaining)
 		{
@@ -5255,7 +5250,7 @@ void Ship::DoGeneration()
 		hullDelay = max(0, hullDelay - 1);
 	}
 	// Let the ship repair itself when disabled if it has the appropriate attribute.
-	if(isDisabled && cache.recoveryTime)
+	if(isDisabled && !locked && cache.recoveryTime)
 	{
 		disabledRecoveryCounter += 1;
 		const ResourceLevels &recoveryCost = cache.recoveryCost;
@@ -5274,7 +5269,7 @@ void Ship::DoGeneration()
 	// Handle ionization effects, etc.
 	bool wasDisabled = levels.hull < minimumHull;
 	bool wasDestroyed = IsDestroyed();
-	DoStatusEffects(isDisabled);
+	DoStatusEffects(isDisabled || locked);
 
 	// When ships recharge, what actually happens is that they can exceed their
 	// maximum capacity for the rest of the turn, but must be clamped to the
@@ -5387,11 +5382,9 @@ void Ship::DoJettison(list<shared_ptr<Flotsam>> &flotsam)
 
 void Ship::DoCloakDecision()
 {
-	if(isInvisible)
-		return;
 	// You cannot cloak if you do not have complete control over a ship's computer.
-	if(locked)
-		cloakDisruption = 1.;
+	if(isInvisible || locked)
+		return;
 
 	// If you are forced to decloak (e.g. by running out of fuel) you can't
 	// initiate cloaking again until you are fully decloaked.
@@ -6139,53 +6132,51 @@ double Ship::CalculateAttraction() const
 double Ship::CalculateDeterrence() const
 {
 	double tempDeterrence = 0.;
-	// Locked ships do not provide any deterrence.
-	if(!IsLocked())
-		for(const Hardpoint &hardpoint : Weapons())
+	for(const Hardpoint &hardpoint : Weapons())
+	{
+		const Weapon *weapon = hardpoint.GetWeapon();
+		if(weapon)
 		{
-			const Weapon *weapon = hardpoint.GetWeapon();
-			if(weapon)
-			{
-				// 1 DoT damage of type X = 100 damage of type X over an extended period of time
-				// (~95 damage after 5 seconds, ~99 damage after 8 seconds). Therefore, multiply
-				// DoT damage types by 100. Disruption, scrambling, and slowing don't have an
-				// analogous instantaneous damage type, but still just multiply them by 100 to
-				// stay consistent.
+			// 1 DoT damage of type X = 100 damage of type X over an extended period of time
+			// (~95 damage after 5 seconds, ~99 damage after 8 seconds). Therefore, multiply
+			// DoT damage types by 100. Disruption, scrambling, and slowing don't have an
+			// analogous instantaneous damage type, but still just multiply them by 100 to
+			// stay consistent.
 
-				// Compare the relative damage types to the strength of the firing ship, since we
-				// have nothing else to reasonably compare against.
+			// Compare the relative damage types to the strength of the firing ship, since we
+			// have nothing else to reasonably compare against.
 
-				// Shield and hull damage are the primary damage types that dictate combat, so
-				// consider the full damage dealt by these types for the strength of a weapon.
-				double shieldFactor = weapon->ShieldDamage()
-						+ weapon->RelativeShieldDamage() * MaxShields()
-						+ weapon->DischargeDamage() * 100.;
-				double hullFactor = weapon->HullDamage()
-						+ weapon->RelativeHullDamage() * MaxHull()
-						+ weapon->CorrosionDamage() * 100.;
+			// Shield and hull damage are the primary damage types that dictate combat, so
+			// consider the full damage dealt by these types for the strength of a weapon.
+			double shieldFactor = weapon->ShieldDamage()
+					+ weapon->RelativeShieldDamage() * MaxShields()
+					+ weapon->DischargeDamage() * 100.;
+			double hullFactor = weapon->HullDamage()
+					+ weapon->RelativeHullDamage() * MaxHull()
+					+ weapon->CorrosionDamage() * 100.;
 
-			// Other damage types don't outright destroy ships, so they aren't considered
-			// as heavily in the strength of a weapon.
-			double energyFactor = weapon->EnergyDamage()
-					+ weapon->RelativeEnergyDamage() * MaxEnergy()
-					+ weapon->IonDamage() * 100.;
-			double heatFactor = weapon->HeatDamage()
-					+ weapon->RelativeHeatDamage() * MaxHeat()
-					+ weapon->BurnDamage() * 100.;
-			double fuelFactor = weapon->FuelDamage()
-					+ weapon->RelativeFuelDamage() * MaxFuel()
-					+ weapon->LeakDamage() * 100.;
-			double scramblingFactor = weapon->ScramblingDamage() * 100.;
-			double slowingFactor = weapon->SlowingDamage() * 100.;
-			double disruptionFactor = weapon->DisruptionDamage() * 100.;
+		// Other damage types don't outright destroy ships, so they aren't considered
+		// as heavily in the strength of a weapon.
+		double energyFactor = weapon->EnergyDamage()
+				+ weapon->RelativeEnergyDamage() * MaxEnergy()
+				+ weapon->IonDamage() * 100.;
+		double heatFactor = weapon->HeatDamage()
+				+ weapon->RelativeHeatDamage() * MaxHeat()
+				+ weapon->BurnDamage() * 100.;
+		double fuelFactor = weapon->FuelDamage()
+				+ weapon->RelativeFuelDamage() * MaxFuel()
+				+ weapon->LeakDamage() * 100.;
+		double scramblingFactor = weapon->ScramblingDamage() * 100.;
+		double slowingFactor = weapon->SlowingDamage() * 100.;
+		double disruptionFactor = weapon->DisruptionDamage() * 100.;
 
-				// Disabled and asteroid damage are ignored because they don't matter in combat.
+			// Disabled and asteroid damage are ignored because they don't matter in combat.
 
-				double strength = shieldFactor + hullFactor + 0.2 * (energyFactor + heatFactor + fuelFactor
-						+ scramblingFactor + slowingFactor + disruptionFactor);
-				tempDeterrence += .12 * strength / weapon->Reload();
-			}
+			double strength = shieldFactor + hullFactor + 0.2 * (energyFactor + heatFactor + fuelFactor
+					+ scramblingFactor + slowingFactor + disruptionFactor);
+			tempDeterrence += .12 * strength / weapon->Reload();
 		}
+	}
 	return tempDeterrence;
 }
 

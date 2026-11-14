@@ -48,6 +48,10 @@ class System;
 
 using namespace std;
 
+namespace {
+	const int MAX_LIST = 20;
+}
+
 
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player, const Sale<Ship> &stock)
@@ -375,8 +379,6 @@ void ShipyardPanel::DoBuyButton()
 
 void ShipyardPanel::Sell(bool storeOutfits)
 {
-	static const int MAX_LIST = 20;
-
 	int count = playerShips.size();
 	int initialCount = count;
 	string message;
@@ -448,14 +450,29 @@ ShopPanel::TransactionResult ShipyardPanel::CanRewire()
 	shipsToRewire.clear();
 
 	if(!playerShip)
-		return false;
+		return "No ship selected.";
 
+	bool cannotUnlock = false;
 	for(Ship *selected : playerShips)
-		if(selected->IsLocked() && !selected->AlwaysLocked())
-			shipsToRewire.insert(selected);
+	{
+		if(!selected->IsLocked())
+			continue;
+		if(selected->CannotUnlock())
+		{
+			cannotUnlock = true;
+			continue;
+		}
+		shipsToRewire.insert(selected);
+	}
 
 	if(shipsToRewire.empty())
-		return false;
+	{
+		bool singleSelection = playerShips.size() == 1;
+		if(cannotUnlock)
+			return (singleSelection ? "The selected ship" : "At least one of the selected ships")
+				+ " cannot be rewired."s;
+		return "The selected ship"s + (singleSelection ? " does" : "s do") + " not need rewired";
+	}
 
 	int64_t cost = 0;
 	int64_t minimum = 0;
@@ -490,48 +507,23 @@ ShopPanel::TransactionResult ShipyardPanel::CanRewire()
 
 void ShipyardPanel::Rewire()
 {
-	static const int MAX_LIST = 20;
-
 	int count = shipsToRewire.size();
-	int initialCount = count;
 	string message = "Rewire the ";
 
 	if(count == 1)
-		message += (*shipsToRewire.begin())->GivenName();
-	else if(count <= MAX_LIST)
-	{
-		auto it = shipsToRewire.begin();
-		message += (*it++)->GivenName();
-		--count;
-
-		if(count == 1)
-			message += " and ";
-		else
-		{
-			while(count-- > 1)
-				message += ",\n" + (*it++)->GivenName();
-			message += ",\nand ";
-		}
-		message += (*it)->GivenName();
-	}
+		message += (*shipsToRewire.begin())->GivenName() + "?";
 	else
-	{
-		auto it = shipsToRewire.begin();
-		message += (*it++)->GivenName() + ",\n";
-		for(int i = 1; i < MAX_LIST - 1; ++i)
-			message += (*it++)->GivenName() + ",\n";
-
-		message += "and " + to_string(count - (MAX_LIST - 1)) + " other ships";
-	}
-	message += "?";
+		message += "following ships?\n" + Format::IndentedList(shipsToRewire,
+			[](const Ship *ship) -> string { return ship->GivenName(); },
+			MAX_LIST);
 
 	int64_t total = 0;
 	for(const auto &it : shipsToRewire)
 		total += it->RewiringCost();
 
 	if(total)
-		message += ((initialCount > 2) ? "\nIt will cost " : " It will cost ") + Format::CreditString(total) + ".";
-	GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipyardPanel::RewireShip, message, Truncate::MIDDLE));
+		message += (count > 1 ? "\n" : " ") + "It will cost "s + Format::CreditString(total) + ".";
+	GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipyardPanel::RewireShips, message, Truncate::MIDDLE));
 }
 
 
@@ -604,7 +596,7 @@ void ShipyardPanel::SellShip(bool storeOutfits)
 
 
 
-void ShipyardPanel::RewireShip()
+void ShipyardPanel::RewireShips()
 {
 	for(Ship *ship : shipsToRewire)
 	{

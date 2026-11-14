@@ -131,7 +131,7 @@ HailPanel::HailPanel(PlayerInfo &player, const shared_ptr<Ship> &ship, function<
 				helpOffer += "recharge you?";
 			SetMessage(helpOffer);
 		}
-		else if(playerNeedsHelp && canAssistPlayer)
+		else if(playerNeedsHelp && !canAssistPlayer)
 		{
 			if(ship->CanBeCarried())
 				SetMessage("Sorry, my ship is too small to have the right equipment to assist you.");

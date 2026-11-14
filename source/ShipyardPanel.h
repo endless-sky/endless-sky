@@ -60,7 +60,7 @@ private:
 	void SellShipAndOutfits();
 	void SellShipChassis();
 	void SellShip(bool toStorage);
-	void RewireShip();
+	void RewireShips();
 
 
 private:

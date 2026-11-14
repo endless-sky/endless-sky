@@ -238,7 +238,7 @@ public:
 	double Deterrence() const;
 	// Get whether this ship should be locked when captured, as well as
 	// any factors altering its ability to be rewired.
-	bool AlwaysLocked() const;
+	bool CannotUnlock() const;
 	bool NeverLocked() const;
 	// Set / Get whether this ship was damaged as a result of boarding,
 	// as well as the cost to repair that damage.
@@ -754,9 +754,9 @@ private:
 	EsUuid uuid;
 	std::string givenName;
 	bool canBeCarried = false;
-	bool alwaysLocked = false;
+	bool cannotUnlock = false;
 	bool neverLocked = false;
-	double baseRewiringMultiplier = -1.;
+	std::optional<double> baseRewiringMultiplier;
 	bool locked = false;
 
 	bool isInSystem = true;
