@@ -582,7 +582,8 @@ void Engine::Step(bool isActive)
 			color);
 	};
 	auto HighlightShip = [this, flagship, CreateOutline](const shared_ptr<Ship> &ship) -> void {
-		if(ship->GetSystem() != player.GetSystem() || ship->IsDestroyed() || ship->Cloaking() == 1. || ship == flagship)
+		if(ship->GetSystem() != player.GetSystem() || ship->IsParked() || ship->IsDestroyed() || ship->Cloaking() == 1.
+				|| ship == flagship)
 			return;
 
 		const Color &color = GetTargetOutlineColor(RadarType(*ship, wasActive ? uiStep : 0));
