@@ -140,6 +140,18 @@ void UniverseObjects::FinishLoading()
 	// Guard against infinite loops in condition aliases.
 	for(auto &alias : conditionAliases | views::values)
 		alias.FinishLoading();
+
+	// Store the current state, so that we can revert back to it when exiting a game and starting/loading a new one.
+	defaultFleets = fleets;
+	defaultGovernments = governments;
+	defaultPlanets = planets;
+	defaultSystems = systems;
+	defaultGalaxies = galaxies;
+	defaultShipSales = shipSales;
+	defaultOutfitSales = outfitSales;
+	defaultWormholes = wormholes;
+	defaultPersons = persons;
+	defaultSubstitutions = substitutions;
 }
 
 
@@ -357,6 +369,25 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : persons)
 		if(!it.second.IsValid())
 			Warn("person", it.first);
+}
+
+
+
+void UniverseObjects::Revert()
+{
+	fleets.Revert(defaultFleets);
+	governments.Revert(defaultGovernments);
+	planets.Revert(defaultPlanets);
+	systems.Revert(defaultSystems);
+	galaxies.Revert(defaultGalaxies);
+	shipSales.Revert(defaultShipSales);
+	outfitSales.Revert(defaultOutfitSales);
+	wormholes.Revert(defaultWormholes);
+	persons.Revert(defaultPersons);
+	substitutions.Revert(defaultSubstitutions);
+
+	for(auto &it : persons)
+		it.second.Restore();
 }
 
 
