@@ -198,7 +198,7 @@ namespace {
 
 
 Engine::Engine(PlayerInfo &player)
-	: player(player), ai(player, ships, asteroids.Minables(), flotsam),
+	: player(player), ai(player, ships, asteroids.Minables(), flotsam, shipCollisions),
 	ammoDisplay(player), minimap(player), shipCollisions(256u, 32u, CollisionType::SHIP)
 {
 	zoom.base = Preferences::ViewZoom();
@@ -2548,18 +2548,24 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 		Body *hit = collision.HitBody();
 		CollisionType collisionType = collision.GetCollisionType();
 		double range = collision.IntersectionRange();
+		bool targetedHit = (hit == projectile.Target());
+		bool alliedGov = hit && !gov->IsEnemy(hit->GetGovernment());
+		bool isSafe = weapon.IsSafe();
 
 		shared_ptr<Ship> shipHit;
 		if(hit && collisionType == CollisionType::SHIP)
 			shipHit = static_cast<Ship *>(hit)->shared_from_this();
 
 		// Don't collide with carried ships that are disabled and not directly targeted.
-		if(shipHit && hit != projectile.Target()
-				&& !FighterHitHelper::IsValidTarget(shipHit.get()))
+		if(shipHit && !targetedHit && !FighterHitHelper::IsValidTarget(shipHit.get()))
 			continue;
 
 		// If the ship is cloaked, and phasing, then skip this ship (during this step).
 		if(shipHit && shipHit->Phases(projectile))
+			continue;
+
+		// Safe weapons are immune to friendly fire.
+		if(alliedGov && isSafe && !targetedHit)
 			continue;
 
 		// A collision has actually occurred, and the projectile should be informed
@@ -2576,7 +2582,6 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 			// Even friendly ships can be hit by the blast, unless it is a
 			// "safe" weapon.
 			Point hitPos = projectile.Position() + range * projectile.Velocity();
-			bool isSafe = weapon.IsSafe();
 			vector<Body *> blastCollisions;
 			blastCollisions.reserve(32);
 			shipCollisions.Circle(hitPos, blastRadius, blastCollisions);
@@ -2584,12 +2589,19 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 			{
 				Ship *ship = static_cast<Ship *>(body);
 				bool targeted = (projectile.Target() == ship);
+				bool directHit = (ship == hit);
 				// Phasing cloaked ship will have a chance to ignore the effects of the explosion.
 				if((isSafe && !targeted && gov && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
 					continue;
 
+				Projectile::ImpactInfo useImpact = impact;
+				// A non-targeted direct hit on a friendly government can only occur if friendly fire is active.
+				// Scale the impact damage by the friendly fire damage multiplier.
+				if(!gov->IsEnemy(ship->GetGovernment()) && !targeted && directHit)
+					useImpact.scaling *= GameData::GetGamerules().FriendlyFireDamageMultiplier();
+
 				// Only directly targeted ships get provoked by blast weapons.
-				entityCollisions[ship].emplace_back(DamageProfile(*ship, impact, ship == hit), gov, targeted);
+				entityCollisions[ship].emplace_back(DamageProfile(*ship, useImpact, ship == hit), gov, targeted);
 			}
 			blastCollisions.clear();
 			asteroids.MinablesCollisionsCircle(hitPos, blastRadius, blastCollisions);
@@ -2603,8 +2615,14 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 		{
 			if(collisionType == CollisionType::SHIP)
 			{
+				Projectile::ImpactInfo useImpact = impact;
+				// A non-targeted direct hit on a friendly government can only occur if friendly fire is active.
+				// Scale the impact damage by the friendly fire damage multiplier.
+				if(alliedGov && !targetedHit)
+					useImpact.scaling *= GameData::GetGamerules().FriendlyFireDamageMultiplier();
+
 				auto ship = shipHit.get();
-				entityCollisions[ship].emplace_back(DamageProfile(*ship, impact), gov);
+				entityCollisions[ship].emplace_back(DamageProfile(*ship, useImpact), gov);
 			}
 			else if(collisionType == CollisionType::MINABLE)
 			{

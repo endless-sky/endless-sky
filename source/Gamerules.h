@@ -82,6 +82,13 @@ public:
 		ALL_CREW,
 	};
 
+	// The types of friendly fire that can occur if the friendly fire
+	// gamerules are active.
+	enum class FriendlyFireType : int_fast8_t {
+		SAME_GOVERNMENT = 0,
+		ALLIED_GOVERNMENT,
+	};
+
 
 public:
 	// Identifiers for specific gamerules.
@@ -127,6 +134,11 @@ public:
 	static const std::string LOCK_ON_CAPTURE;
 	static const std::string REWIRING_COST_MULTIPLIER;
 	static const std::string LOCKED_HULL_VALUE_MULTIPLIER;
+	static const std::string FRIENDLY_FIRE_SAME_PROB;
+	static const std::string FRIENDLY_FIRE_ALLY_PROB;
+	static const std::string FRIENDLY_FIRE_FIGHTER_PROB_MULT;
+	static const std::string FRIENDLY_FIRE_CARRIER_EXCEPTION;
+	static const std::string FRIENDLY_FIRE_DMG_MULT;
 
 
 public:
@@ -205,6 +217,12 @@ public:
 	bool LockOnCapture() const;
 	double RewiringCostMultiplier() const;
 	double LockedHullValueMultiplier() const;
+	bool FriendlyFireActive(std::optional<FriendlyFireType> type = std::nullopt) const;
+	double FriendlyFireSameGovProb() const;
+	double FriendlyFireAlliedGovProb() const;
+	double FriendlyFireFighterProbMult() const;
+	bool FriendlyFireCarrierException() const;
+	double FriendlyFireDamageMultiplier() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -269,6 +287,11 @@ private:
 		bool lockOnCapture = false;
 		double rewiringCostMultiplier = .7;
 		double lockedHullValueMultiplier = .2;
+		double friendlyFireSameGovProb = 0.;
+		double friendlyFireAlliedGovProb = 0.;
+		double friendlyFireFighterMultiplier = 0.;
+		bool friendlyFireCarrierException = false;
+		double friendlyFireDamageMultiplier = 1.;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

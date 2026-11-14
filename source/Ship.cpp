@@ -3871,7 +3871,7 @@ void Ship::AddCrew(int count)
 // Check if this is a ship that can be used as a flagship.
 bool Ship::CanBeFlagship() const
 {
-	return !cache.automaton && Crew() && !IsDisabled() && !locked;;
+	return !cache.automaton && Crew() && !IsDisabled() && !locked;
 }
 
 
