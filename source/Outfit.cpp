@@ -455,7 +455,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				AddLicense(grand.Token(0));
 		}
 		else if(BOOLEAN_ATTRIBUTES.contains(key))
-			attributes[key] = 1;
+			Set(key, 1.);
 		else if(hasValue)
 		{
 			double value = child.Value(1);
@@ -572,12 +572,11 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	convertScan("cargo");
 
 	// Convert instances of installable to uninstallable, if any exist.
-	int64_t installableCount = attributes.Get("installable");
-	if(installableCount)
+	if(attributes.Get("installable"))
 	{
 		attributes.Erase("installable");
 		node.PrintTrace("Deprecated use of \"installable\" instead of \"uninstallable\":");
-		attributes["uninstallable"] = 1;
+		Set("uninstallable", 1.);
 	}
 }
 
