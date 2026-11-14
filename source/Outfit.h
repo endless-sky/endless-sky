@@ -53,6 +53,9 @@ public:
 
 
 public:
+	// Get the list of boolean attributes.
+	static const std::map<std::string, std::string> &BooleanAttributes();
+
 	// Get the limit to how low an attribute is allowed to go on a ship when installing outfits.
 	// An empty optional means that there is no lower limit.
 	static std::optional<double> LowerLimit(const std::string &attribute, bool isAutomaton);

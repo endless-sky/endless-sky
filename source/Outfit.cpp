@@ -215,6 +215,28 @@ namespace {
 		{"turret turn multiplier", -1. * ATTRIBUTE_PRECISION},
 	};
 
+	static const map<string, string> BOOLEAN_ATTRIBUTES = {
+		{"unplunderable", "Cannot be plundered while installed."},
+		{"installable", "This is not an installable item."},
+		{"hyperdrive", "Allows you to make hyperjumps."},
+		{"jump drive", "Lets you jump to any nearby system."},
+		{"minable", "This item is mined from asteroids."},
+		{"map minables", "This map reveals minables."},
+		{"atrocity", "This outfit is considered an atrocity."},
+		{"unique", "This item is unique."},
+		{"cloaked afterburner", "You may use afterburners while cloaked."},
+		{"cloaked boarding", "You may board while cloaked."},
+		{"cloaked communication", "You may make hails while cloaked."},
+		{"cloaked deployment", "You may deploy from bays while cloaked."},
+		{"cloaked pickup", "You may pick up flotsam while cloaked."},
+		{"cloaked scanning", "You may scan other ships while cloaked."},
+		{"can jettison", "Can be jettisoned while installed."},
+		{"unremovable", "Can't be removed once installed."},
+		{"nondepreciable", "Doesn't lose value with age."},
+		{"instant braking", "Allows you to stop instantaneously."},
+		{"immovable", "Prevents being moved by external forces."},
+	};
+
 	void AddFlareSprites(vector<pair<Drawable, int>> &thisFlares, const pair<Drawable, int> &it, int count)
 	{
 		auto oit = find_if(thisFlares.begin(), thisFlares.end(),
@@ -243,6 +265,13 @@ namespace {
 				thisMap.erase(it.first);
 		}
 	}
+}
+
+
+
+const map<string, string> &Outfit::BooleanAttributes()
+{
+	return BOOLEAN_ATTRIBUTES;
 }
 
 
@@ -425,6 +454,11 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			for(const DataNode &grand : child)
 				AddLicense(grand.Token(0));
 		}
+		else if(BOOLEAN_ATTRIBUTES.contains(key))
+			if(key == "installable")
+				attributes[key] = -1;
+			else
+				attributes[key] = 1;
 		else if(hasValue)
 		{
 			double value = child.Value(1);
