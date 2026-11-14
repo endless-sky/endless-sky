@@ -18,7 +18,7 @@ outfit "Phantom Pallet"
 	cost 12000
 	thumbnail "outfit/phantom pallet"
 	"mass" 0.2
-	"unplunderable" 1
+	"unplunderable"
 	"energy consumption" 0.015
 	"heat generation" 0.03
 	# Replacing 30% of your cargo bay with these triples your cargo scan time.
@@ -34,7 +34,7 @@ outfit "Holovid Zone"
 	thumbnail "outfit/holovid zone"
 	"mass" 20
 	"outfit space" -20
-	"unplunderable" 1
+	"unplunderable"
 	"holographic entertainment" 1
 	"energy consumption" 0.5
 	"heat generation" 1.0
@@ -968,8 +968,8 @@ outfit "Pulse Rifle"
 	thumbnail "outfit/hai rifle"
 	"capture attack" .7
 	"capture defense" 1.0
-	"unplunderable" 1
-	"can jettison" 1
+	"unplunderable"
+	"can jettison"
 	description "The Pulse Rifle was first developed by the Hai to help protect their ships from boarders during the Korath raids. While it has since been adapted to more effectively incapacitate its target, if several bolts land in quick succession, the accumulated charge has a lethal effect on most species' nervous systems."
 
 
@@ -979,6 +979,6 @@ outfit "Shield Beetle Pendant"
 	index 30
 	thumbnail "outfit/crystal pendant"
 	"quantum keystone" 1
-	"unique" 1
+	"unique"
 	description "A pendant made of the same crystalline rocks found on the Hai homeworld, fashioned after a Shield Beetle. A gift from Nanachi."
 	description "	It comes with a finely crafted lit shadowbox so it can be installed and displayed with pride. A trio of mounting brackets - miniatures of those used on Quantum Keystones - provide a secure anchor to keep the pendant safe."

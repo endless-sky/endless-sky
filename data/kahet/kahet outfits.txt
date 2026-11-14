@@ -568,6 +568,6 @@ outfit "Ka'het Electric Stunner"
 	thumbnail "outfit/ka'het taser"
 	"capture attack" 1.3
 	"capture defense" 8.5
-	"unplunderable" 1
-	"can jettison" 1
+	"unplunderable"
+	"can jettison"
 	description "A weapon of curious design, clearly not built with human hands in mind. Its short range makes it effective only for defending against enemy boarders, using the knowledge of your ship's architecture to your advantage."

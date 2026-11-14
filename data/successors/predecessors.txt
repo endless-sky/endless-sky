@@ -326,7 +326,7 @@ outfit `"Iasa," Lethal Word`
 	"outfit space" -17
 	"weapon capacity" -17
 	"gun ports" -1
-	unique 1
+	unique
 	weapon
 		sprite "projectile/iasa"
 			"frame time" 3
@@ -366,7 +366,7 @@ outfit `"Kis," Lethal Wish`
 	"outfit space" -24
 	"weapon capacity" -24
 	"gun ports" -1
-	unique 1
+	unique
 	weapon
 		sound "drag cannon"
 		"hit effect" "kis impact" 12
@@ -471,7 +471,7 @@ outfit `Visions of Rime`
 	"outfit space" -10
 	cooling 28
 	"shield generation" -0.6
-	unique 1
+	unique
 	description `Radiating excess heat through a starship's shield matrix, this compact, ancient cooling system is strikingly efficient. On Resja's furious drone ships, the shield strength that this saps is all but insignificant, but on lesser craft it may come with a cost to endurance.`
 
 
@@ -620,7 +620,7 @@ outfit `"Tijra" Heirloom Lance`
 	"gun ports" -1
 	"spike capacity" 30
 	"spinal mount" -1
-	"unplunderable" 1
+	"unplunderable"
 	weapon
 		sprite "projectile/sjeja kinetic lance"
 			"frame rate" 4
@@ -716,7 +716,7 @@ outfit "Point Drive"
 	"jump speed" .6
 	"jump fuel" 180
 	"jump duration" 100
-	"jump drive" 1
+	"jump drive"
 	"jump effect" "point drive void small"
 	"jump effect" "point drive void 1"
 	"jump effect" "point drive void 2"
@@ -778,6 +778,6 @@ outfit "Stolen Cloak (Deactivated)"
 	# "cloak" .05
 	"cloaking fuel" 0.04
 	"cloaking shields" 3.2
-	"unique" 1
-	"unplunderable" 1
+	"unique"
+	"unplunderable"
 	description "An ancient cloaking device stolen from House Kaatrij. It has been temporarily deactivated by a detector device."

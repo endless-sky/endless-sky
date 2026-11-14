@@ -28,8 +28,8 @@ outfit "Aluminum"
 	thumbnail "outfit/harvested aluminum"
 	"flotsam sprite" "effect/flotsam aluminum"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "Lightweight and rust resistant, aluminum is often used for the hulls of civilian spacecraft that do not need to be able to stand up to prolonged weapons fire."
 
 
@@ -50,8 +50,8 @@ outfit "Copper"
 	thumbnail "outfit/harvested copper"
 	"flotsam sprite" "effect/flotsam copper"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "In its pure form, copper is valued mostly for its high thermal and electrical conductivity. But, it is also used in small quantities in a wide variety of alloys."
 
 
@@ -72,8 +72,8 @@ outfit "Gold"
 	thumbnail "outfit/harvested gold"
 	"flotsam sprite" "effect/flotsam gold"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "Useful for its high electrical conductivity and prized for its beauty and luxury status, gold can always find a well-paying market."
 
 
@@ -94,8 +94,8 @@ outfit "Iron"
 	thumbnail "outfit/harvested iron"
 	"flotsam sprite" "effect/flotsam iron"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "Although it is one of the most common metals, iron is also one of the most useful."
 
 
@@ -116,8 +116,8 @@ outfit "Lead"
 	thumbnail "outfit/harvested lead"
 	"flotsam sprite" "effect/flotsam lead"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "As one of the densest non-radioactive elements, lead has been the material of choice for bullets ever since the invention of firearms. Its other uses are limited by regulations for preventing lead poisoning."
 
 
@@ -138,8 +138,8 @@ outfit "Neodymium"
 	thumbnail "outfit/harvested neodymium"
 	"flotsam sprite" "effect/flotsam neodymium"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "One of the most abundant of the rare earth elements, neodymium is used to make strongly magnetic alloys for use in engines and generators."
 
 
@@ -160,8 +160,8 @@ outfit "Platinum"
 	thumbnail "outfit/harvested platinum"
 	"flotsam sprite" "effect/flotsam platinum"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "As rare as gold and even more valuable, platinum has many industrial uses because it resists oxidation even when heated to high temperatures."
 
 
@@ -182,8 +182,8 @@ outfit "Silicon"
 	thumbnail "outfit/harvested silicon"
 	"flotsam sprite" "effect/flotsam silicon"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "Silicon in its pure form is used for electronics and semiconductors. It is a very common element and easy to harvest."
 
 
@@ -204,8 +204,8 @@ outfit "Silver"
 	thumbnail "outfit/harvested silver"
 	"flotsam sprite" "effect/flotsam silver"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "Although not as pricey as gold, silver is used not just in jewelry but in electronics, disinfectants, and high-quality mirrors, and as a chemical catalyst."
 
 
@@ -226,8 +226,8 @@ outfit "Titanium"
 	thumbnail "outfit/harvested titanium"
 	"flotsam sprite" "effect/flotsam titanium"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "Strong, lightweight, and resistant to corrosion, titanium is one of the chief metals used for starship hulls and structural members."
 
 
@@ -248,8 +248,8 @@ outfit "Tungsten"
 	thumbnail "outfit/harvested tungsten"
 	"flotsam sprite" "effect/flotsam tungsten"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "Tungsten has many industrial uses due to its high melting point and its strength."
 
 
@@ -270,8 +270,8 @@ outfit "Uranium"
 	thumbnail "outfit/harvested uranium"
 	"flotsam sprite" "effect/flotsam uranium"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "Uranium is best known for its use in the nuclear reactors that power large starships. Its most stable isotope U-238 is also used for ultra-strong hull plating and for armor-piercing projectiles."
 
 
@@ -292,8 +292,8 @@ outfit "Yottrite"
 	thumbnail "outfit/harvested yottrite"
 	"flotsam sprite" "effect/flotsam yottrite"
 	"mass" 3.14
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "An extraordinarily rare crystalline formation, forged over tens of thousands of years in the molecular clouds around supernova remnants. Although less advanced species can potentially harvest it, very few civilizations other than the Quarg have developed the technology needed to incorporate yottrite in an alloy."
 
 
@@ -401,8 +401,8 @@ outfit "Void Orchid"
 	thumbnail "outfit/harvested silicon"
 	"flotsam sprite" "effect/flotsam silicon"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "'Void Orchid' is the generic term for a variety of strange, plant-like organisms that live primarily on asteroids. Due to the way they concentrate minerals from their host asteroid, they are valued both as scientific curiosities as well as for their mineral content."
 
 
@@ -497,8 +497,8 @@ outfit "Voidfish"
 	thumbnail "outfit/voidfish"
 	"flotsam sprite" "effect/flotsam voidfish"
 	"mass" 1
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "These are a collection of numerous species of voidborne fish harvested in a perhaps unconventional manner. Despite being both flash-boiled and freeze-dried, they are surprisingly appetizing, and equally nourishing."
 
 
@@ -608,7 +608,7 @@ outfit "Integral Wood"
 	thumbnail "outfit/integral wood"
 	"flotsam sprite" "effect/flotsam integral wood"
 	"mass" 0.3
-	"uninstallable" 1
-	"minable" 1
+	"uninstallable"
+	"minable"
 	description "Wood harvested from an integral tree is exquisitely lightweight, strong, and radiation resistant - it also fetches extraordinary prices on the market for exotic goods."
 	description "	Some claim it would even be the material of choice for a wooden starship, as ridiculous as the idea would be."
