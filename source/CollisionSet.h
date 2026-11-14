@@ -53,7 +53,7 @@ public:
 	// Get all possible collisions along a line. Collisions are not necessarily sorted by
 	// distance.
 	void Line(const Point &from, const Point &to, std::vector<Collision> &result,
-		const std::weak_ptr<const Ship> &parent, const Government *pGov = nullptr,
+		const std::weak_ptr<const Ship> &parent = std::weak_ptr<Ship>(), const Government *pGov = nullptr,
 		const Body *target = nullptr) const;
 
 	// Get all objects within the given range of the given point.
