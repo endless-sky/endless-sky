@@ -12421,7 +12421,7 @@ mission "Pict's Legacy 1"
 
 	npc
 		government "Republic"
-		personality heroic opportunistic launching staying
+		personality heroic opportunistic launching
 			confusion 10
 		fleet "Large Republic"
 		fleet "Small Republic" 3
