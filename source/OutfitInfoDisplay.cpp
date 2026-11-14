@@ -257,33 +257,11 @@ namespace {
 		{"jump duration", 5},
 	};
 
-	const map<string, string> BOOLEAN_ATTRIBUTES = {
-		{"unplunderable", "Cannot be plundered while installed."},
-		{"installable", "This is not an installable item."},
-		{"hyperdrive", "Allows you to make hyperjumps."},
-		{"jump drive", "Lets you jump to any nearby system."},
-		{"minable", "This item is mined from asteroids."},
-		{"map minables", "This map reveals minables."},
-		{"atrocity", "This outfit is considered an atrocity."},
-		{"unique", "This item is unique."},
-		{"cloaked afterburner", "You may use afterburners while cloaked."},
-		{"cloaked boarding", "You may board while cloaked."},
-		{"cloaked communication", "You may make hails while cloaked."},
-		{"cloaked deployment", "You may deploy from bays while cloaked."},
-		{"cloaked pickup", "You may pick up flotsam while cloaked."},
-		{"cloaked scanning", "You may scan other ships while cloaked."},
-		{"can jettison", "Can be jettisoned while installed."},
-		{"unremovable", "Can't be removed once installed."},
-		{"nondepreciable", "Doesn't lose value with age."},
-		{"instant braking", "Allows you to stop instantaneously."},
-		{"immovable", "Prevents being moved by external forces."},
-	};
-
 	bool IsNotRequirement(const string &label)
 	{
 		return label == "automaton" ||
 			SCALE.find(label) != SCALE.end() ||
-			BOOLEAN_ATTRIBUTES.find(label) != BOOLEAN_ATTRIBUTES.end();
+			Outfit::BooleanAttributes().find(label) != Outfit::BooleanAttributes().end();
 	}
 }
 
@@ -478,7 +456,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	{
 		// Attributes that are expected to be negative and boolean attributes
 		// are displayed separately.
-		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), name) || BOOLEAN_ATTRIBUTES.contains(name))
+		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), name) || Outfit::BooleanAttributes().contains(name))
 			continue;
 
 		// Only show positive values here, with some exceptions.
@@ -502,7 +480,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	}
 
 	bool firstBoolean = true;
-	for(const auto &[name, display] : BOOLEAN_ATTRIBUTES)
+	for(const auto &[name, display] : Outfit::BooleanAttributes())
 	{
 		double value = outfit.GetPrecise(name);
 		if(!value)
