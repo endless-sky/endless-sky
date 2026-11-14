@@ -310,7 +310,15 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					totalShares += familyShares;
 				if(totalShares)
 				{
-					double valueFraction = rules.CaptureValueBasis().value_or(Depreciation::Full());
+					double valueFraction;
+					if(rules.CaptureValueBasis().has_value())
+						valueFraction = *rules.CaptureValueBasis();
+					else
+					{
+						valueFraction = Depreciation::Captured();
+						if(rules.LockOnCapture())
+							valueFraction *= rules.LockedHullValueMultiplier();
+					}
 					int64_t valuePerShare = victim->Cost() * valueFraction / totalShares;
 
 					if(payCrewBonuses)
@@ -565,6 +573,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				remainingCrew = you->Crew() - 1;
 				successfulCapture = true;
 				AddMessage("You have succeeded in capturing this ship.");
+				if(!victim->NeverLocked() && GameData::GetGamerules().LockOnCapture())
+					AddMessage("Its computer systems are locked.");
 				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
 				int crewTransferred = victim->WasCaptured(you);
 				if(crewTransferred > 0)

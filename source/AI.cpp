@@ -580,14 +580,30 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
+	{
+		bool cloak = false;
+		int cloakFail = 0;
 		for(const auto &it : player.Ships())
 			if(!it->IsParked() && it->CloakingSpeed())
 			{
-				player.SetCloaking(!player.IsCloaking());
-				Messages::Add(*GameData::Messages().Get(player.IsCloaking() ?
-					"engaging cloaking device" : "disengaging cloaking device"));
-				break;
+				if(!it->IsLocked())
+					cloak = true;
+				else
+					++cloakFail;
 			}
+
+		if(cloakFail && !player.IsCloaking())
+		{
+			Messages::Add(*GameData::Messages().Get(cloakFail == 1 ?
+				"cloaking fail" : "cloaking fail multiple"));
+		}
+		if(cloak)
+		{
+			player.SetCloaking(!player.IsCloaking());
+			Messages::Add(*GameData::Messages().Get(player.IsCloaking() ?
+				"engaging cloaking device" : "disengaging cloaking device"));
+		}
+	}
 
 	// Toggle your secondary weapon.
 	if(activeCommands.Has(Command::SELECT))
@@ -1578,19 +1594,20 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		}
 	}
 
-	// If this ship is not armed, do not make it fight.
+	// If this ship is not armed or cannot access its weapons, do not make it fight.
 	double minRange = numeric_limits<double>::infinity();
 	double maxRange = 0.;
-	for(const Hardpoint &hardpoint : ship.Weapons())
-	{
-		const Weapon *weapon = hardpoint.GetWeapon();
-		if(weapon && !hardpoint.IsSpecial())
+	if(!ship.IsLocked())
+		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
-			double range = weapon->Range();
-			minRange = min(minRange, range);
-			maxRange = max(maxRange, range);
+			const Weapon *weapon = hardpoint.GetWeapon();
+			if(weapon && !hardpoint.IsSpecial())
+			{
+				double range = weapon->Range();
+				minRange = min(minRange, range);
+				maxRange = max(maxRange, range);
+			}
 		}
-	}
 	if(!maxRange)
 		return isYours ? target : FindNonHostileTarget(ship);
 

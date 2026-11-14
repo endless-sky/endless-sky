@@ -49,7 +49,7 @@ public:
 
 private:
 	void UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity, bool descriptionCollapsed,
-		bool scrollingPanel);
+		bool scrollingPanel, bool sale);
 	void UpdateOutfits(const Ship &ship, const PlayerInfo &player, const Depreciation &depreciation);
 
 

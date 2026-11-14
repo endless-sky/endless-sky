@@ -1723,7 +1723,7 @@ void PlayerInfo::UpdateCargoCapacities()
 			if(space > largestCargoHold)
 				largestCargoHold = space;
 			int crew = (ship == flagship ? ship->Crew() : ship->RequiredCrew());
-			bunks += ship->Attributes().Get("bunks") - crew;
+			bunks += !ship->IsLocked() ? ship->Attributes().Get("bunks") - crew : 0;
 		}
 	cargo.SetSize(size);
 	cargo.SetBunks(bunks);
@@ -2163,7 +2163,7 @@ const CargoHold &PlayerInfo::DistributeCargo()
 
 	// Distribute the remaining cargo among the escorts.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet && ship != flagship)
+		if(!ship->IsParked() && !ship->IsDisabled() && !ship->IsLocked() && ship->GetPlanet() == planet && ship != flagship)
 		{
 			ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
 			cargo.TransferAll(ship->Cargo());

@@ -84,6 +84,12 @@ message "disengaging autopilot"
 message "coming to a stop"
 	text "Coming to a stop."
 
+message "cloaking fail"
+	text "One of your ships could not engage its cloaking device."
+
+message "cloaking fail multiple"
+	text "Several of your ships could not engage their cloaking devices."
+
 message "engaging cloaking device"
 	text "Engaging cloaking device."
 

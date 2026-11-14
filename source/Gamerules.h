@@ -131,6 +131,9 @@ public:
 	static const std::string CAPTURE_SURVIVING_CREW_SHARES;
 	static const std::string CAPTURE_MIN_DEATH_BENEFIT;
 	static const std::string CAPTURE_VALUE_BASIS;
+	static const std::string LOCK_ON_CAPTURE;
+	static const std::string REWIRING_COST_MULTIPLIER;
+	static const std::string LOCKED_HULL_VALUE_MULTIPLIER;
 	static const std::string FRIENDLY_FIRE_SAME_PROB;
 	static const std::string FRIENDLY_FIRE_ALLY_PROB;
 	static const std::string FRIENDLY_FIRE_FIGHTER_PROB_MULT;
@@ -211,6 +214,9 @@ public:
 	double CaptureSurvivingCrewShares() const;
 	int CaptureMinimumDeathBenefit() const;
 	std::optional<double> CaptureValueBasis() const;
+	bool LockOnCapture() const;
+	double RewiringCostMultiplier() const;
+	double LockedHullValueMultiplier() const;
 	bool FriendlyFireActive(std::optional<FriendlyFireType> type = std::nullopt) const;
 	double FriendlyFireSameGovProb() const;
 	double FriendlyFireAlliedGovProb() const;
@@ -278,6 +284,9 @@ private:
 		double captureSurvivingCrewShares = 1.;
 		int captureMinimumDeathBenefit = 100000;
 		std::optional<double> captureValueBasis;
+		bool lockOnCapture = false;
+		double rewiringCostMultiplier = .7;
+		double lockedHullValueMultiplier = .2;
 		double friendlyFireSameGovProb = 0.;
 		double friendlyFireAlliedGovProb = 0.;
 		double friendlyFireFighterMultiplier = 0.;

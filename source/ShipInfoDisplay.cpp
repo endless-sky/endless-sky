@@ -58,7 +58,7 @@ void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool ha
 		const Ship *definition = GameData::Ships().Get(ship.VariantName());
 		UpdateDescription(definition->Description(), ship.Attributes().Licenses(), true);
 	}
-	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel);
+	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel, isDefinition);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
 
@@ -143,7 +143,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
-	bool descriptionCollapsed, bool scrollingPanel)
+	bool descriptionCollapsed, bool scrollingPanel, bool sale)
 {
 	bool isGeneric = ship.GivenName().empty() || ship.GetPlanet();
 
@@ -205,6 +205,26 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeValues.push_back(Format::Number(ship.FleetCost()));
 		attributesHeight += 20;
 	}
+	// Only show the rewiring cost on scrolling panels with no risk of overflow.
+	bool locked = ship.IsLocked();
+	if(scrollingPanel && locked)
+	{
+		// Only show the exact percentage cost of rewiring
+		// if the empty hull cost is also visible.
+		if(ship.AlwaysLocked() || !sale)
+			attributeLabels.push_back("rewiring cost:");
+		else
+		{
+			ostringstream out;
+			out << "rewiring cost (" << static_cast<int>(100 * ship.RewiringMultiplier()) << "%):";
+			attributeLabels.push_back(out.str());
+		}
+		if(ship.AlwaysLocked())
+			attributeValues.push_back("cannot be rewired");
+		else
+			attributeValues.push_back(Format::AbbreviatedNumber(ship.RewiringCost()));
+		attributesHeight += 20;
+	}
 
 	attributeLabels.push_back(string());
 	attributeValues.push_back(string());
@@ -212,7 +232,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double shieldRegen = (attributes.Get("shield generation")
 		+ attributes.Get("delayed shield generation"))
 		* (1. + attributes.Get("shield generation multiplier"));
-	bool hasShieldRegen = shieldRegen > 0.;
+	bool hasShieldRegen = shieldRegen > 0. && !locked;
 	if(hasShieldRegen)
 	{
 		attributeLabels.push_back("shields (charge):");
@@ -228,7 +248,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double hullRepair = (attributes.Get("hull repair rate")
 		+ attributes.Get("delayed hull repair rate"))
 		* (1. + attributes.Get("hull repair multiplier"));
-	bool hasHullRepair = hullRepair > 0.;
+	bool hasHullRepair = hullRepair > 0. && !locked;
 	if(hasHullRepair)
 	{
 		attributeLabels.push_back("hull (repair):");
@@ -605,10 +625,13 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 		}
 	}
 
+	int locked = ship.IsLocked() ? 1 : 0;
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
+	int64_t fullChassis = ship.ChassisCost();
 	int64_t chassisCost = depreciation.Value(
 		GameData::Ships().Get(ship.TrueModelName()),
-		player.GetDate().DaysSinceEpoch());
+		player.GetDate().DaysSinceEpoch(),
+		1 - locked, locked);
 	saleLabels.clear();
 	saleValues.clear();
 	saleHeight = 20;
@@ -616,7 +639,14 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	saleLabels.push_back("This ship will sell for:");
 	saleValues.push_back(string());
 	saleHeight += 20;
-	saleLabels.push_back("empty hull:");
+	if(chassisCost == fullChassis)
+		saleLabels.push_back("empty hull:");
+	else
+	{
+		ostringstream out;
+		out << "empty hull (" << (100 * chassisCost) / fullChassis << "%):";
+		saleLabels.push_back(out.str());
+	}
 	saleValues.push_back(Format::AbbreviatedNumber(chassisCost));
 	saleHeight += 20;
 	saleLabels.push_back("  + outfits:");

@@ -49,6 +49,12 @@ namespace {
 		return GameData::GetGamerules().DepreciationMaxAge() + GracePeriod();
 	}
 
+	// The multiplier applied to a ship's hull value if its systems are locked.
+	double LockedMultiplier()
+	{
+		return GameData::GetGamerules().LockedHullValueMultiplier();
+	}
+
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 
@@ -235,10 +241,11 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool cha
 			if(it->second.empty())
 				source->ships.erase(it);
 		}
-		else if(isStock)
+		else if(isStock || ship.IsLocked())
 		{
-			// If we're a planet buying from the player, and the player has no
-			// record of how old this ship is, it's fully depreciated.
+			// A ship's chassis will be fully depreciated if we're a planet buying
+			// from the player, and the player has no record of how old this ship is,
+			// or if the ship's computers are locked.
 			day -= MaxAge();
 		}
 	}
@@ -320,12 +327,15 @@ void Depreciation::Plunder(const Outfit *outfit, int day, int count)
 int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool chassisOnly) const
 {
 	map<const Ship *, int> shipCount;
+	map<const Ship *, int> lockedCount;
 	map<const Outfit *, int> outfitCount;
 
 	for(const shared_ptr<Ship> &ship : fleet)
 	{
 		const Ship *base = GameData::Ships().Get(ship->VariantName());
 		++shipCount[base];
+		if(ship->IsLocked())
+			++lockedCount[base];
 
 		if(!chassisOnly)
 			for(const auto &[outfit, count] : ship->Outfits())
@@ -334,7 +344,10 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool
 
 	int64_t value = 0;
 	for(const auto &[ship, count] : shipCount)
-		value += Value(ship, day, count);
+	{
+		int unlocked = count - lockedCount[ship];
+		value += Value(ship, day, unlocked, lockedCount[ship]);
+	}
 	for(const auto &[outfit, count] : outfitCount)
 		value += Value(outfit, day, count);
 	return value;
@@ -345,7 +358,8 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool
 // Get the value of a ship, along with all its outfits.
 int64_t Depreciation::Value(const Ship &ship, int day) const
 {
-	int64_t value = Value(&ship, day);
+	int locked = ship.IsLocked() ? 1 : 0;
+	int64_t value = Value(&ship, day, 1 - locked, locked);
 	for(const auto &[outfit, count] : ship.Outfits())
 		value += Value(outfit, day, count);
 	return value;
@@ -354,19 +368,21 @@ int64_t Depreciation::Value(const Ship &ship, int day) const
 
 
 // Get the value just of the chassis of a ship.
-int64_t Depreciation::Value(const Ship *ship, int day, int count) const
+int64_t Depreciation::Value(const Ship *ship, int day, int count, int locked) const
 {
 	if(ship->BaseAttributes().GetPrecise("nondepreciable"))
 		return count * ship->ChassisCost();
 
 	// Check whether a record exists for this ship. If not, its value is full
-	// if this is  planet's stock, or fully depreciated if this is the player.
+	// if this is a planet's stock, or fully depreciated if this is the player
+	// or a locked ship.
 	ship = GameData::Ships().Get(ship->TrueModelName());
 	auto recordIt = ships.find(ship);
 	if(recordIt == ships.end() || recordIt->second.empty())
-		return DefaultDepreciation() * count * ship->ChassisCost();
+		return (DefaultDepreciation() * count + Min() * LockedMultiplier() * locked)
+				* ship->ChassisCost();
 
-	return Depreciate(recordIt->second, day, count) * ship->ChassisCost();
+	return Depreciate(recordIt->second, day, count, locked) * ship->ChassisCost();
 }
 
 
@@ -414,10 +430,11 @@ int Depreciation::Sell(map<int, int> &record, int day) const
 
 
 // Calculate depreciation for some number of items.
-double Depreciation::Depreciate(const map<int, int> &record, int day, int count) const
+double Depreciation::Depreciate(const map<int, int> &record, int day, int count, int locked) const
 {
+	double lockedSum = locked * Min() * LockedMultiplier();
 	if(record.empty())
-		return count * DefaultDepreciation();
+		return count * DefaultDepreciation() + lockedSum;
 
 	// Map the date information to the depreciated value of the records so that
 	// we can iterate over the records in value order.
@@ -457,7 +474,7 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count)
 		}
 	}
 	// For all items we don't have a record for, apply the default depreciation.
-	return sum + count * DefaultDepreciation();
+	return sum + count * DefaultDepreciation() + lockedSum;
 }
 
 

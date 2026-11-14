@@ -128,6 +128,14 @@ void ShopPanel::Step()
 	loadingCircle.Step();
 	if(!checkedHelp && GetUI().IsTop(this) && player.Ships().size() > 1)
 	{
+		if(!Preferences::Has("help: locked ships"))
+		{
+			for(const auto &it : player.Ships())
+			{
+				if(CanShowInSidebar(*it, player.GetPlanet()) && it.get()->IsLocked())
+					DoHelp("locked ships");
+			}
+		}
 		if(DoHelp("multiple ships"))
 		{
 			// Nothing to do here, just don't want to execute the other branch.
@@ -195,8 +203,10 @@ void ShopPanel::Draw()
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
 		shipsTooltip.SetText(text);
-		shipsTooltip.SetBackgroundColor(GameData::Colors().Get(warningType.empty() ? "tooltip background"
-			: (warningType.back() == '!' ? "error back" : "warning back")));
+		string backgroundColor = warningType.empty() ? "tooltip background"
+			: (warningType.back() == '!' ? "error back"
+			: (warningType == "locked systems" ? "locked back" : "warning back"));
+		shipsTooltip.SetBackgroundColor(GameData::Colors().Get(backgroundColor));
 		shipsTooltip.Draw(true);
 	}
 
@@ -406,7 +416,10 @@ int ShopPanel::VisibilityCheckboxesSize() const
 
 bool ShopPanel::ShouldHighlight(const Ship *ship)
 {
-	return (hoverButton == 's' || hoverButton == 'r');
+	if(hoverButton == 'r')
+		return ship->IsLocked();
+
+	return (hoverButton == 's' || hoverButton == 'u');
 }
 
 
@@ -430,15 +443,24 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				DoHelp("outfitter with multiple ships", true);
 
 			set<string> modelNames;
+			bool displayLocked = false;
+			bool displayMultipleShips = false;
 			for(const auto &it : player.Ships())
 			{
 				if(!CanShowInSidebar(*it, player.GetPlanet()))
 					continue;
-				if(modelNames.contains(it->DisplayModelName()))
+				if(!displayLocked && it.get()->IsLocked())
+				{
+					DoHelp("locked ships", true);
+					displayLocked = true;
+				}
+				if(!displayMultipleShips && modelNames.contains(it->DisplayModelName()))
 				{
 					DoHelp("shop with multiple ships", true);
-					break;
+					displayMultipleShips = true;
 				}
+				if(displayLocked && displayMultipleShips)
+					break;
 				modelNames.insert(it->DisplayModelName());
 			}
 
@@ -910,7 +932,8 @@ void ShopPanel::DrawShipsSidebar()
 		if(checkIt != flightChecks.end())
 		{
 			const string &check = (*checkIt).second.front();
-			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
+			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" :
+					(check == "locked systems" ? "ui/lock" : "ui/warning"));
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
 			if(shipZones.back().Contains(hoverPoint))
 				warningType = check;
