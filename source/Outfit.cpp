@@ -573,7 +573,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 
 	// Convert instances of installable to uninstallable, if any exist.
 	int64_t installableCount = attributes.Get("installable");
-	if (installableCount)
+	if(installableCount)
 	{
 		attributes.Erase("installable");
 		node.PrintTrace("Deprecated use of \"installable\" instead of \"uninstallable\":");
