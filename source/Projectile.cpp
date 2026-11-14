@@ -63,7 +63,7 @@ namespace {
 
 Projectile::Projectile(const Ship &parent, Point position, Angle angle, const Weapon *weapon)
 	: Body(weapon->ProjectileSprite(), position, parent.Velocity(), angle),
-	weapon(weapon), lifetime(weapon->Lifetime())
+	weapon(weapon), parentShip(parent.weak_from_this()), lifetime(weapon->Lifetime())
 {
 	shared_ptr<Ship> targetShip = parent.GetTargetShip();
 	target = targetShip ? static_pointer_cast<Entity>(targetShip)
@@ -104,7 +104,7 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 Projectile::Projectile(const Projectile &parent, const Point &offset, const Angle &angle, const Weapon *weapon)
 	: Body(weapon->ProjectileSprite(), parent.position + parent.velocity + parent.angle.Rotate(offset),
 	parent.velocity, parent.angle + angle),
-	weapon(weapon), target(parent.target), lifetime(weapon->Lifetime())
+	weapon(weapon), parentShip(parent.parentShip), target(parent.target), lifetime(weapon->Lifetime())
 {
 	government = parent.government;
 	targetGovernment = parent.targetGovernment;
@@ -398,7 +398,13 @@ Projectile::ImpactInfo Projectile::GetInfo(double intersection) const
 
 
 
-// Find out which entity this projectile is targeting.
+const weak_ptr<const Ship> &Projectile::ParentShip() const
+{
+	return parentShip;
+}
+
+
+
 const Entity *Projectile::Target() const
 {
 	return cachedTarget;

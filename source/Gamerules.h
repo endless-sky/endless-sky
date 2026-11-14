@@ -82,6 +82,13 @@ public:
 		ALL_CREW,
 	};
 
+	// The types of friendly fire that can occur if the friendly fire
+	// gamerules are active.
+	enum class FriendlyFireType : int_fast8_t {
+		SAME_GOVERNMENT = 0,
+		ALLIED_GOVERNMENT,
+	};
+
 
 public:
 	// Identifiers for specific gamerules.
@@ -124,6 +131,11 @@ public:
 	static const std::string CAPTURE_SURVIVING_CREW_SHARES;
 	static const std::string CAPTURE_MIN_DEATH_BENEFIT;
 	static const std::string CAPTURE_VALUE_BASIS;
+	static const std::string FRIENDLY_FIRE_SAME_PROB;
+	static const std::string FRIENDLY_FIRE_ALLY_PROB;
+	static const std::string FRIENDLY_FIRE_FIGHTER_PROB_MULT;
+	static const std::string FRIENDLY_FIRE_CARRIER_EXCEPTION;
+	static const std::string FRIENDLY_FIRE_DMG_MULT;
 
 
 public:
@@ -199,6 +211,12 @@ public:
 	double CaptureSurvivingCrewShares() const;
 	int CaptureMinimumDeathBenefit() const;
 	std::optional<double> CaptureValueBasis() const;
+	bool FriendlyFireActive(std::optional<FriendlyFireType> type = std::nullopt) const;
+	double FriendlyFireSameGovProb() const;
+	double FriendlyFireAlliedGovProb() const;
+	double FriendlyFireFighterProbMult() const;
+	bool FriendlyFireCarrierException() const;
+	double FriendlyFireDamageMultiplier() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -260,6 +278,11 @@ private:
 		double captureSurvivingCrewShares = 1.;
 		int captureMinimumDeathBenefit = 100000;
 		std::optional<double> captureValueBasis;
+		double friendlyFireSameGovProb = 0.;
+		double friendlyFireAlliedGovProb = 0.;
+		double friendlyFireFighterMultiplier = 0.;
+		bool friendlyFireCarrierException = false;
+		double friendlyFireDamageMultiplier = 1.;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

@@ -17,17 +17,19 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Body.h"
 #include "Collision.h"
+#include "GameData.h"
+#include "Gamerules.h"
 #include "Government.h"
 #include "Logger.h"
 #include "image/Mask.h"
 #include "Point.h"
 #include "Projectile.h"
+#include "Random.h"
 #include "Ship.h"
 
 #include <algorithm>
-#include <cstdlib>
+#include <cmath>
 #include <numeric>
-#include <set>
 #include <string>
 
 using namespace std;
@@ -37,11 +39,15 @@ namespace {
 	constexpr int MAX_VELOCITY = 450000;
 	// Velocity used for any projectiles with v > MAX_VELOCITY
 	constexpr int USED_MAX_VELOCITY = MAX_VELOCITY - 1;
+	// Value that scales how much less likely slow projectiles are to
+	// cause friendly fire.
+	constexpr double VELOCITY_SCALE = 150.;
 	// Warn the user only once about too-large projectile velocities.
 	bool warned = false;
 
 	thread_local vector<bool> seen;
 }
+
 
 
 // Initialize a collision set. The cell size and cell count should both be
@@ -139,13 +145,16 @@ void CollisionSet::Finish()
 // sorted by distance.
 void CollisionSet::Line(const Projectile &projectile, vector<Collision> &result) const
 {
-	// What objects the projectile hits depends on its government.
+	// What objects the projectile hits depends on its government and parent ship.
+	const weak_ptr<const Ship> &parent = projectile.ParentShip();
+	// We grab the parent government from the projectile instead of from the parent ship in case
+	// the parent ship no longer exists.
 	const Government *pGov = projectile.GetGovernment();
 
 	// Convert the projectile to a line represented by its start and end points.
 	Point from = projectile.Position();
 	Point to = from + projectile.Velocity();
-	Line(from, to, result, pGov, projectile.Target());
+	Line(from, to, result, parent, pGov, projectile.Target());
 }
 
 
@@ -153,7 +162,7 @@ void CollisionSet::Line(const Projectile &projectile, vector<Collision> &result)
 // Get all possible collisions along a line. Collisions are not necessarily sorted by
 // distance.
 void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &lineResult,
-		const Government *pGov, const Body *target) const
+	const weak_ptr<const Ship> &parent, const Government *pGov, const Body *target) const
 {
 	const int x = from.X();
 	const int y = from.Y();
@@ -165,6 +174,8 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 	int gy = y >> SHIFT;
 	const int endGX = endX >> SHIFT;
 	const int endGY = endY >> SHIFT;
+
+	const Point pVelocity = to - from;
 
 	// Special case, very common: the projectile is contained in one grid cell.
 	// In this case, all the complicated code below can be skipped.
@@ -183,8 +194,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
-			const Government *iGov = it->body->GetGovernment();
-			if(it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
+			if(!ValidCollision(it->body, parent, pGov, target, pVelocity))
 				continue;
 
 			const Mask &mask = it->body->GetMask(step);
@@ -198,7 +208,6 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 		return;
 	}
 
-	const Point pVelocity = (to - from);
 	if(pVelocity.Length() > MAX_VELOCITY)
 	{
 		// Cap projectile velocity to prevent integer overflows.
@@ -210,7 +219,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 		}
 		Point newEnd = from + pVelocity.Unit() * USED_MAX_VELOCITY;
 
-		Line(from, newEnd, lineResult, pGov, target);
+		Line(from, newEnd, lineResult, parent, pGov, target);
 		return;
 	}
 
@@ -257,8 +266,7 @@ void CollisionSet::Line(const Point &from, const Point &to, vector<Collision> &l
 
 			// Check if this projectile can hit this object. If either the
 			// projectile or the object has no government, it will always hit.
-			const Government *iGov = it->body->GetGovernment();
-			if(it->body != target && iGov && pGov && !iGov->IsEnemy(pGov))
+			if(!ValidCollision(it->body, parent, pGov, target, pVelocity))
 				continue;
 
 			const Mask &mask = it->body->GetMask(step);
@@ -367,4 +375,83 @@ void CollisionSet::Ring(const Point &center, double inner, double outer, vector<
 const vector<Body *> &CollisionSet::All() const
 {
 	return all;
+}
+
+
+
+// Determine whether a collision should occur.
+bool CollisionSet::ValidCollision(const Body *hit, const weak_ptr<const Ship> &parent, const Government *pGov,
+	const Body *target, const Point &projectileVelocity) const
+{
+	// Collisions between any objects other than a projectile and a ship should
+	// always be valid.
+	if(collisionType != CollisionType::SHIP)
+		return true;
+
+	// If either the projectile or the hit object lack a government, default to
+	// a valid collision.
+	const Government *govHit = hit->GetGovernment();
+	if(!pGov || !govHit)
+		return true;
+
+	// Targeted ships and enemy ships will always be hit.
+	if(hit == target || pGov->IsEnemy(govHit))
+		return true;
+
+	// At this point, this collision can only be against a friendly ship.
+	// Bail out if friendly fire is inactive.
+	const Gamerules &rules = GameData::GetGamerules();
+	if(!rules.FriendlyFireActive())
+		return false;
+
+	// A ship cannot hit itself.
+	const shared_ptr<const Ship> &parentPtr = parent.lock();
+	const Ship *firingShip = parentPtr ? parentPtr.get() : nullptr;
+	if(firingShip == hit)
+		return false;
+
+	const Ship *shipHit = static_cast<const Ship *>(hit);
+
+	// If the ship that fired the projectile no longer exists, default to the
+	// regular probability calculation.
+	bool firingCarry = firingShip ? firingShip->CanBeCarried() : false;
+	bool hitCarry = shipHit->CanBeCarried();
+
+	if(rules.FriendlyFireCarrierException() && (firingCarry || hitCarry))
+	{
+		shared_ptr<Ship> firingParent = firingShip ? firingShip->GetParent() : nullptr;
+		shared_ptr<Ship> hitParent = shipHit->GetParent();
+
+		// Carriers cannot hit their fighters, and fighters cannot hit their carrier or
+		// other fighters within the same carrier group.
+		if((firingShip == hitParent.get() && hitCarry)
+				|| (firingParent.get() == shipHit && firingCarry)
+				|| (firingParent == hitParent && hitCarry && firingCarry))
+			return false;
+	}
+
+	// The likelihood of a friendly fire incident depends on the involved governments,
+	// and whether any of the involved ships are fighters or not.
+	double hitOdds = (pGov == govHit) ? rules.FriendlyFireSameGovProb() : rules.FriendlyFireAlliedGovProb();
+	if(firingCarry || hitCarry)
+		hitOdds *= rules.FriendlyFireFighterProbMult();
+
+	// Skip calculating friendly fire odds if it is guaranteed to hit or to miss.
+	if(hitOdds == 0. || hitOdds >= 1.)
+		return hitOdds;
+
+	// Use the odds to miss for the remaining calculations.
+	double missOdds = 1. - hitOdds;
+	// A slow projectile that doesn't cause friendly fire this frame will likely move into the
+	// collision mask of this ship on the next frame and be given another chance to impact it.
+	// To compensate for slower projectiles getting more chances to trigger friendly fire,
+	// reduce the likelihood of a collision based on the projectile's relative speed
+	// to the target.
+	double relativeSpeed = projectileVelocity.Distance(hit->Velocity());
+	if(relativeSpeed < VELOCITY_SCALE)
+		missOdds = pow(missOdds, relativeSpeed / VELOCITY_SCALE);
+	if(Random::Real() < missOdds)
+		return false;
+
+	return true;
 }
