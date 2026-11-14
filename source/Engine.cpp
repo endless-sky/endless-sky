@@ -2556,10 +2556,8 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 		if(hit && collisionType == CollisionType::SHIP)
 			shipHit = static_cast<Ship *>(hit)->shared_from_this();
 
-
 		// Don't collide with carried ships that are disabled and not directly targeted.
-		if(shipHit && targetedHit
-				&& !FighterHitHelper::IsValidTarget(shipHit.get()))
+		if(shipHit && !targetedHit && !FighterHitHelper::IsValidTarget(shipHit.get()))
 			continue;
 
 		// If the ship is cloaked, and phasing, then skip this ship (during this step).
@@ -2596,12 +2594,14 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 				if((isSafe && !targeted && gov && !gov->IsEnemy(ship->GetGovernment())) || ship->Phases(projectile))
 					continue;
 
-				Projectile::ImpactInfo useInfo = impact;
-				useInfo.scaling *= !gov->IsEnemy(ship->GetGovernment()) && !targeted && directHit
-					? GameData::GetGamerules().FriendlyFireDamageMultiplier() : 1.;
+				Projectile::ImpactInfo useImpact = impact;
+				// A non-targeted direct hit on a friendly government can only occur if friendly fire is active.
+				// Scale the impact damage by the friendly fire damage multiplier.
+				if(!gov->IsEnemy(ship->GetGovernment()) && !targeted && directHit)
+					useImpact.scaling *= GameData::GetGamerules().FriendlyFireDamageMultiplier();
 
 				// Only directly targeted ships get provoked by blast weapons.
-				entityCollisions[ship].emplace_back(DamageProfile(*ship, useInfo, ship == hit), gov, targeted);
+				entityCollisions[ship].emplace_back(DamageProfile(*ship, useImpact, ship == hit), gov, targeted);
 			}
 			blastCollisions.clear();
 			asteroids.MinablesCollisionsCircle(hitPos, blastRadius, blastCollisions);
@@ -2615,12 +2615,14 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 		{
 			if(collisionType == CollisionType::SHIP)
 			{
-				Projectile::ImpactInfo useInfo = impact;
-				useInfo.scaling *= alliedGov && !targetedHit
-					? GameData::GetGamerules().FriendlyFireDamageMultiplier() : 1.;
+				Projectile::ImpactInfo useImpact = impact;
+				// A non-targeted direct hit on a friendly government can only occur if friendly fire is active.
+				// Scale the impact damage by the friendly fire damage multiplier.
+				if(alliedGov && !targetedHit)
+					useImpact.scaling *= GameData::GetGamerules().FriendlyFireDamageMultiplier();
 
 				auto ship = shipHit.get();
-				entityCollisions[ship].emplace_back(DamageProfile(*ship, useInfo), gov);
+				entityCollisions[ship].emplace_back(DamageProfile(*ship, useImpact), gov);
 			}
 			else if(collisionType == CollisionType::MINABLE)
 			{

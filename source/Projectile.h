@@ -97,7 +97,7 @@ public:
 	ImpactInfo GetInfo(double intersection) const;
 
 	// Get the ship that initially fired this projectile.
-	const Ship *ParentShip() const;
+	const std::weak_ptr<const Ship> &ParentShip() const;
 
 	// Find out which entity or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it
@@ -133,7 +133,7 @@ private:
 	const Weapon *weapon = nullptr;
 	bool isShipExplosion = false;
 
-	const Ship *parentShip = nullptr;
+	std::weak_ptr<const Ship> parentShip;
 
 	std::weak_ptr<Entity> target;
 	const Entity *cachedTarget = nullptr;

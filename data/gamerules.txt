@@ -62,8 +62,8 @@
 	"single save file" false
 	"restricted save loading" false
 	
-	"friendly fire probability" 0.
-	"ally friendly fire probability" 0.
-	"fighter friendly fire multiplier" 1.
-	"carrier friendly fire exception" false
+	"friendly fire same gov probability" 0.
+	"friendly fire allied gov probability" 0.
+	"friendly fire fighter prob multiplier" 1.
+	"friendly fire carrier exception" false
 	"friendly fire damage multiplier" 1.

@@ -18,12 +18,14 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Collision.h"
 #include "CollisionType.h"
 
+#include <memory>
 #include <vector>
 
 class Body;
 class Government;
 class Point;
 class Projectile;
+class Ship;
 
 
 
@@ -51,11 +53,8 @@ public:
 	// Get all possible collisions along a line. Collisions are not necessarily sorted by
 	// distance.
 	void Line(const Point &from, const Point &to, std::vector<Collision> &result,
-		const Body *parent = nullptr, const Government *pGov = nullptr, const Body *target = nullptr) const;
-
-	// Determine whether a collision should occur.
-	bool ValidCollision(const Body *parent, const Body *hit, const Government *pGov,
-		const Body *target, const double relativeSpeed) const;
+		const std::weak_ptr<const Ship> &parent, const Government *pGov = nullptr,
+		const Body *target = nullptr) const;
 
 	// Get all objects within the given range of the given point.
 	void Circle(const Point &center, double radius, std::vector<Body *> &result) const;
@@ -81,6 +80,12 @@ private:
 
 
 private:
+	// Determine whether a collision should occur.
+	bool ValidCollision(const Body *hit, const std::weak_ptr<const Ship> &parent, const Government *pGov,
+		const Body *target, const Point &projectileVelocity) const;
+
+
+private:
 	// The type of collisions this CollisionSet is responsible for.
 	CollisionType collisionType;
 
@@ -94,7 +99,7 @@ private:
 	unsigned WRAP_MASK;
 
 	// The current game engine step.
-	int step;
+	int step = 0;
 
 	// Vectors to store the objects in the collision set.
 	std::vector<Body *> all;

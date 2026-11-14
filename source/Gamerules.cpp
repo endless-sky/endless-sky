@@ -69,10 +69,10 @@ const string Gamerules::CAPTURE_DEAD_CREW_SHARES = "capture dead crew shares";
 const string Gamerules::CAPTURE_SURVIVING_CREW_SHARES = "capture surviving crew shares";
 const string Gamerules::CAPTURE_MIN_DEATH_BENEFIT = "capture minimum death benefit";
 const string Gamerules::CAPTURE_VALUE_BASIS = "capture value basis";
-const string Gamerules::FRIENDLY_FIRE_PROB = "friendly fire probability";
-const string Gamerules::FRIENDLY_FIRE_ALLY_PROB = "ally friendly fire probability";
-const string Gamerules::FRIENDLY_FIRE_FIGHTER_PROB_MULT = "fighter friendly fire multiplier";
-const string Gamerules::FRIENDLY_FIRE_CARRIER_EXCEPTION = "carrier friendly fire exception";
+const string Gamerules::FRIENDLY_FIRE_SAME_PROB = "friendly fire same gov probability";
+const string Gamerules::FRIENDLY_FIRE_ALLY_PROB = "friendly fire allied gov probability";
+const string Gamerules::FRIENDLY_FIRE_FIGHTER_PROB_MULT = "friendly fire fighter prob multiplier";
+const string Gamerules::FRIENDLY_FIRE_CARRIER_EXCEPTION = "friendly fire carrier exception";
 const string Gamerules::FRIENDLY_FIRE_DMG_MULT = "friendly fire damage multiplier";
 
 
@@ -831,55 +831,55 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
-	settings[FRIENDLY_FIRE_PROB] = Setting::Unique("Same government probability");
-	settings[FRIENDLY_FIRE_PROB].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(Format::Percentage(FriendlyFireProbability(), 2),
+	settings[FRIENDLY_FIRE_SAME_PROB] = Setting::Unique("Same government probability");
+	settings[FRIENDLY_FIRE_SAME_PROB].SetDisplayFunc([this]() -> pair<string, bool> {
+		return make_pair(Format::Percentage(FriendlyFireSameGovProb(), 2),
 			FriendlyFireActive(FriendlyFireType::SAME_GOVERNMENT));
 	});
-	settings[FRIENDLY_FIRE_PROB].SetOnToggleFunc([this](UI *ui) -> void {
+	settings[FRIENDLY_FIRE_SAME_PROB].SetOnToggleFunc([this](UI *ui) -> void {
 		if(!ui)
 			return;
 		string message = "Set the probability that projectiles can deal friendly fire damage to the government "
-				   "matching the one that fired the projectile. (Decimal value between 0 and 1.)";
+			"matching the one that fired the projectile. (Decimal value between 0 and 1.)";
 		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.friendlyFireProbability = value; },
-			validate, message, FriendlyFireProbability()));
+			[this](double value) -> void { storage.friendlyFireSameGovProb = value; },
+			validate, message, FriendlyFireSameGovProb()));
 	});
-	settings[FRIENDLY_FIRE_PROB].SetConditionFunc([this]() -> int {
-		return FriendlyFireProbability() * 1000;
+	settings[FRIENDLY_FIRE_SAME_PROB].SetConditionFunc([this]() -> int {
+		return FriendlyFireSameGovProb() * 1000;
 	});
-	settings[FRIENDLY_FIRE_PROB].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
-		storage.friendlyFireProbability = preset.storage.friendlyFireProbability;
+	settings[FRIENDLY_FIRE_SAME_PROB].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.friendlyFireSameGovProb = preset.storage.friendlyFireSameGovProb;
 		return std::nullopt;
 	});
 
 	settings[FRIENDLY_FIRE_ALLY_PROB] = Setting::Unique("Allied government probability");
 	settings[FRIENDLY_FIRE_ALLY_PROB].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(Format::Percentage(AllyFriendlyFireProbability(), 2),
+		return make_pair(Format::Percentage(FriendlyFireAlliedGovProb(), 2),
 			FriendlyFireActive(FriendlyFireType::ALLIED_GOVERNMENT));
 	});
 	settings[FRIENDLY_FIRE_ALLY_PROB].SetOnToggleFunc([this](UI *ui) -> void {
 		if(!ui)
 			return;
 		string message = "Set the probability that projectiles can deal friendly fire damage to governments "
-				   "that are allied to the one that fired the projectile. (Decimal value between 0 and 1.)";
+			"that are allied to the one that fired the projectile. (Decimal value between 0 and 1.)";
 		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.allyFriendlyFireProbability = value; },
-			validate, message, AllyFriendlyFireProbability()));
+			[this](double value) -> void { storage.friendlyFireAlliedGovProb = value; },
+			validate, message, FriendlyFireAlliedGovProb()));
 	});
 	settings[FRIENDLY_FIRE_ALLY_PROB].SetConditionFunc([this]() -> int {
-		return AllyFriendlyFireProbability() * 1000;
+		return FriendlyFireAlliedGovProb() * 1000;
 	});
 	settings[FRIENDLY_FIRE_ALLY_PROB].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
-		storage.allyFriendlyFireProbability = preset.storage.allyFriendlyFireProbability;
+		storage.friendlyFireAlliedGovProb = preset.storage.friendlyFireAlliedGovProb;
 		return std::nullopt;
 	});
 
 	settings[FRIENDLY_FIRE_FIGHTER_PROB_MULT] = Setting::Unique("Fighter probability multiplier");
 	settings[FRIENDLY_FIRE_FIGHTER_PROB_MULT].SetDisplayFunc([this]() -> pair<string, bool> {
-		return make_pair(Format::Percentage(FighterFriendlyFireMultiplier(), 2), FriendlyFireActive());
+		return make_pair(Format::Percentage(FriendlyFireFighterProbMult(), 2), FriendlyFireActive());
 	});
 	settings[FRIENDLY_FIRE_FIGHTER_PROB_MULT].SetOnToggleFunc([this](UI *ui) -> void {
 		if(!ui)
@@ -888,28 +888,28 @@ Gamerules::Gamerules()
 			"the base chance for friendly fire to occur. (Decimal value between 0 and 1.)";
 		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
-			[this](double value) -> void { storage.fighterFriendlyFireMultiplier = value; },
-			validate, message, FighterFriendlyFireMultiplier()));
+			[this](double value) -> void { storage.friendlyFireFighterMultiplier = value; },
+			validate, message, FriendlyFireFighterProbMult()));
 	});
 	settings[FRIENDLY_FIRE_FIGHTER_PROB_MULT].SetConditionFunc([this]() -> int {
-		return FighterFriendlyFireMultiplier() * 1000;
+		return FriendlyFireFighterProbMult() * 1000;
 	});
 	settings[FRIENDLY_FIRE_FIGHTER_PROB_MULT].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
-		storage.fighterFriendlyFireMultiplier = preset.storage.fighterFriendlyFireMultiplier;
+		storage.friendlyFireFighterMultiplier = preset.storage.friendlyFireFighterMultiplier;
 		return std::nullopt;
 	});
 
 	settings[FRIENDLY_FIRE_CARRIER_EXCEPTION] = Setting::TrueFalse("Carrier exception");
 	settings[FRIENDLY_FIRE_CARRIER_EXCEPTION].SetDisplayFunc([this]() -> pair<string, bool> {
 		return make_pair(settings[FRIENDLY_FIRE_CARRIER_EXCEPTION].Option(),
-			CarrierFriendlyFireException() && FriendlyFireActive(FriendlyFireType::SAME_GOVERNMENT));
+			FriendlyFireCarrierException() && FriendlyFireActive(FriendlyFireType::SAME_GOVERNMENT));
 	});
 	settings[FRIENDLY_FIRE_CARRIER_EXCEPTION].SetOnToggleFunc([this](UI *) -> void {
-		storage.carrierFriendlyFireException = !storage.carrierFriendlyFireException;
+		storage.friendlyFireCarrierException = !storage.friendlyFireCarrierException;
 	});
 	settings[FRIENDLY_FIRE_CARRIER_EXCEPTION].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
-		storage.carrierFriendlyFireException = preset.storage.carrierFriendlyFireException;
-		return storage.carrierFriendlyFireException;
+		storage.friendlyFireCarrierException = preset.storage.friendlyFireCarrierException;
+		return storage.friendlyFireCarrierException;
 	});
 
 	settings[FRIENDLY_FIRE_DMG_MULT] = Setting::Unique("Damage multiplier");
@@ -920,7 +920,7 @@ Gamerules::Gamerules()
 		if(!ui)
 			return;
 		string message = "Set the probability that projectiles can deal friendly fire damage to governments "
-				   "that are allied to the one that fired the projectile. (Decimal value between 0 and 1.)";
+			"that are allied to the one that fired the projectile. (Decimal value between 0 and 1.)";
 		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
 			[this](double value) -> void { storage.friendlyFireDamageMultiplier = value; },
@@ -1108,14 +1108,14 @@ void Gamerules::Load(const DataNode &node)
 			else
 				storage.captureValueBasis = max(0., child.Value(1));
 		}
-		else if(key == FRIENDLY_FIRE_PROB)
-			storage.friendlyFireProbability = clamp(child.Value(1), 0., 1.);
+		else if(key == FRIENDLY_FIRE_SAME_PROB)
+			storage.friendlyFireSameGovProb = clamp(child.Value(1), 0., 1.);
 		else if(key == FRIENDLY_FIRE_ALLY_PROB)
-			storage.allyFriendlyFireProbability = clamp(child.Value(1), 0., 1.);
+			storage.friendlyFireAlliedGovProb = clamp(child.Value(1), 0., 1.);
 		else if(key == FRIENDLY_FIRE_FIGHTER_PROB_MULT)
-			storage.fighterFriendlyFireMultiplier = max(0., child.Value(1));
+			storage.friendlyFireFighterMultiplier = max(0., child.Value(1));
 		else if(key == FRIENDLY_FIRE_CARRIER_EXCEPTION)
-			storage.carrierFriendlyFireException = child.BoolValue(1);
+			storage.friendlyFireCarrierException = child.BoolValue(1);
 		else if(key == FRIENDLY_FIRE_DMG_MULT)
 			storage.friendlyFireDamageMultiplier = child.Value(1);
 		else
@@ -1263,14 +1263,14 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			else
 				out.Write(CAPTURE_VALUE_BASIS, "unset");
 		}
-		if(storage.friendlyFireProbability != preset.storage.friendlyFireProbability)
-			out.Write(FRIENDLY_FIRE_PROB, storage.friendlyFireProbability);
-		if(storage.allyFriendlyFireProbability != preset.storage.allyFriendlyFireProbability)
-			out.Write(FRIENDLY_FIRE_ALLY_PROB, storage.allyFriendlyFireProbability);
-		if(storage.fighterFriendlyFireMultiplier != preset.storage.fighterFriendlyFireMultiplier)
-			out.Write(FRIENDLY_FIRE_FIGHTER_PROB_MULT, storage.fighterFriendlyFireMultiplier);
-		if(storage.carrierFriendlyFireException != preset.storage.carrierFriendlyFireException)
-			out.Write(FRIENDLY_FIRE_CARRIER_EXCEPTION, storage.carrierFriendlyFireException ? 1 : 0);
+		if(storage.friendlyFireSameGovProb != preset.storage.friendlyFireSameGovProb)
+			out.Write(FRIENDLY_FIRE_SAME_PROB, storage.friendlyFireSameGovProb);
+		if(storage.friendlyFireAlliedGovProb != preset.storage.friendlyFireAlliedGovProb)
+			out.Write(FRIENDLY_FIRE_ALLY_PROB, storage.friendlyFireAlliedGovProb);
+		if(storage.friendlyFireFighterMultiplier != preset.storage.friendlyFireFighterMultiplier)
+			out.Write(FRIENDLY_FIRE_FIGHTER_PROB_MULT, storage.friendlyFireFighterMultiplier);
+		if(storage.friendlyFireCarrierException != preset.storage.friendlyFireCarrierException)
+			out.Write(FRIENDLY_FIRE_CARRIER_EXCEPTION, storage.friendlyFireCarrierException ? 1 : 0);
 		if(storage.friendlyFireDamageMultiplier != preset.storage.friendlyFireDamageMultiplier)
 			out.Write(FRIENDLY_FIRE_DMG_MULT, storage.friendlyFireDamageMultiplier);
 
@@ -1677,43 +1677,40 @@ std::optional<double> Gamerules::CaptureValueBasis() const
 
 bool Gamerules::FriendlyFireActive(optional<Gamerules::FriendlyFireType> type) const
 {
-	// Friendly fire is active if the damage multiplier and the probability of projectiles
-	// hitting their own or an allied government are non-zero.
-	if(!storage.friendlyFireDamageMultiplier)
-		return false;
+	// If an empty optional was given, check if either friendly fire type is active.
 	if(!type.has_value())
-		return storage.friendlyFireProbability || storage.allyFriendlyFireProbability;
+		return storage.friendlyFireSameGovProb || storage.friendlyFireAlliedGovProb;
 	if(type == FriendlyFireType::SAME_GOVERNMENT)
-		return storage.friendlyFireProbability;
-	return storage.allyFriendlyFireProbability;
+		return storage.friendlyFireSameGovProb;
+	return storage.friendlyFireAlliedGovProb;
 }
 
 
 
-double Gamerules::FriendlyFireProbability() const
+double Gamerules::FriendlyFireSameGovProb() const
 {
-	return storage.friendlyFireProbability;
+	return storage.friendlyFireSameGovProb;
 }
 
 
 
-double Gamerules::AllyFriendlyFireProbability() const
+double Gamerules::FriendlyFireAlliedGovProb() const
 {
-	return storage.allyFriendlyFireProbability;
+	return storage.friendlyFireAlliedGovProb;
 }
 
 
 
-double Gamerules::FighterFriendlyFireMultiplier() const
+double Gamerules::FriendlyFireFighterProbMult() const
 {
-	return storage.fighterFriendlyFireMultiplier;
+	return storage.friendlyFireFighterMultiplier;
 }
 
 
 
-bool Gamerules::CarrierFriendlyFireException() const
+bool Gamerules::FriendlyFireCarrierException() const
 {
-	return storage.carrierFriendlyFireException;
+	return storage.friendlyFireCarrierException;
 }
 
 
@@ -1741,7 +1738,7 @@ void Gamerules::SyncSettings()
 	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetIndex(HabitableBasedArrivalDistance());
 	settings[SINGLE_SAVE_FILE].SetIndex(SingleSaveFile());
 	settings[RESTRICTED_SAVE_LOADING].SetIndex(RestrictedSaveLoading());
-	settings[FRIENDLY_FIRE_CARRIER_EXCEPTION].SetIndex(CarrierFriendlyFireException());
+	settings[FRIENDLY_FIRE_CARRIER_EXCEPTION].SetIndex(FriendlyFireCarrierException());
 	settings[UNIVERSAL_AMMO_RESTOCKING].SetIndex(storage.miscRules[UNIVERSAL_AMMO_RESTOCKING]);
 	settings[FIGHTER_DODGE_POLICY].SetIndex(static_cast<int>(FightersHitWhenDisabled()));
 	settings[FLEET_SIZE_LIMITATION].SetIndex(static_cast<int>(GetFleetSizeLimitation()));

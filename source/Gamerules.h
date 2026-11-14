@@ -131,7 +131,7 @@ public:
 	static const std::string CAPTURE_SURVIVING_CREW_SHARES;
 	static const std::string CAPTURE_MIN_DEATH_BENEFIT;
 	static const std::string CAPTURE_VALUE_BASIS;
-	static const std::string FRIENDLY_FIRE_PROB;
+	static const std::string FRIENDLY_FIRE_SAME_PROB;
 	static const std::string FRIENDLY_FIRE_ALLY_PROB;
 	static const std::string FRIENDLY_FIRE_FIGHTER_PROB_MULT;
 	static const std::string FRIENDLY_FIRE_CARRIER_EXCEPTION;
@@ -212,10 +212,10 @@ public:
 	int CaptureMinimumDeathBenefit() const;
 	std::optional<double> CaptureValueBasis() const;
 	bool FriendlyFireActive(std::optional<FriendlyFireType> type = std::nullopt) const;
-	double FriendlyFireProbability() const;
-	double AllyFriendlyFireProbability() const;
-	double FighterFriendlyFireMultiplier() const;
-	bool CarrierFriendlyFireException() const;
+	double FriendlyFireSameGovProb() const;
+	double FriendlyFireAlliedGovProb() const;
+	double FriendlyFireFighterProbMult() const;
+	bool FriendlyFireCarrierException() const;
 	double FriendlyFireDamageMultiplier() const;
 
 	bool operator==(const Gamerules &other) const;
@@ -278,10 +278,10 @@ private:
 		double captureSurvivingCrewShares = 1.;
 		int captureMinimumDeathBenefit = 100000;
 		std::optional<double> captureValueBasis;
-		double friendlyFireProbability = 0.;
-		double allyFriendlyFireProbability = 0.;
-		double fighterFriendlyFireMultiplier = 0.;
-		bool carrierFriendlyFireException = false;
+		double friendlyFireSameGovProb = 0.;
+		double friendlyFireAlliedGovProb = 0.;
+		double friendlyFireFighterMultiplier = 0.;
+		bool friendlyFireCarrierException = false;
 		double friendlyFireDamageMultiplier = 1.;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.

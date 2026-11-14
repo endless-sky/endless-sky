@@ -385,7 +385,7 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::RESTRICTED_SAVE_LOADING,
 		"",
 		"Friendly Fire Settings",
-		Gamerules::FRIENDLY_FIRE_PROB,
+		Gamerules::FRIENDLY_FIRE_SAME_PROB,
 		Gamerules::FRIENDLY_FIRE_ALLY_PROB,
 		Gamerules::FRIENDLY_FIRE_FIGHTER_PROB_MULT,
 		Gamerules::FRIENDLY_FIRE_CARRIER_EXCEPTION,
