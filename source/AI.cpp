@@ -2684,7 +2684,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	double speed = velocity.Length();
 
 	// If asked for a complete stop, the ship needs to be going much slower.
-	if(speed <= (maxSpeed ? maxSpeed : Ship::VELOCITY_ZERO))
+	if(speed <= max(maxSpeed, Ship::VELOCITY_ZERO))
 		return true;
 	if(!maxSpeed)
 		command |= Command::STOP;
