@@ -417,9 +417,6 @@ namespace {
 	// The minimum speed advantage a ship has to have to consider running away.
 	const double SAFETY_MULTIPLIER = 1.1;
 
-	// If a ship's velocity is below this value, the ship is considered stopped.
-	constexpr double VELOCITY_ZERO = .001;
-
 	// If two ships are within sqrt(SCATTER_TOO_CLOSE) units of one another, they should scatter apart.
 	// If they are within sqrt(SCATTER_TRACK) units of one another, they should keep track of one
 	// another in case they become too close.
@@ -563,7 +560,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	escortsUseAmmo = escortsAreFrugal || ammoUsage == Preferences::EscortAmmoUsage::ALWAYS;
 
 	if(!autoPilot.Has(Command::STOP) && activeCommands.Has(Command::STOP)
-			&& flagship->Velocity().Length() > VELOCITY_ZERO)
+			&& flagship->Velocity().Length() > Ship::VELOCITY_ZERO)
 		Messages::Add(*GameData::Messages().Get("coming to a stop"));
 
 	autoPilot |= activeCommands;
@@ -1221,7 +1218,7 @@ void AI::Step(Command &activeCommands)
 		{
 			// Stopping to let fighters board or to be refueled takes priority
 			// even over following orders from the player.
-			if(it->Velocity().Length() > VELOCITY_ZERO || !target)
+			if(it->Velocity().Length() > Ship::VELOCITY_ZERO || !target)
 				Stop(*it, command);
 			else
 			{
@@ -1900,7 +1897,7 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 	else if(shipOrders.Has(Orders::Types::HOLD_POSITION) || shipOrders.Has(Orders::Types::HOLD_ACTIVE)
 		|| shipOrders.Has(Orders::Types::MOVE_TO))
 	{
-		if(ship.Velocity().Length() > VELOCITY_ZERO || !ship.GetTargetShip())
+		if(ship.Velocity().Length() > Ship::VELOCITY_ZERO || !ship.GetTargetShip())
 			Stop(ship, command);
 		else
 		{
@@ -1991,7 +1988,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 
 		// If the position and velocity matches, smoothly match velocity over multiple frames.
 		Point velocityDelta = formationLead->Velocity() - ship.Velocity();
-		Point snapAcceleration = velocityDelta.Length() < VELOCITY_ZERO ? velocityDelta : velocityDelta.Unit() * .001;
+		Point snapAcceleration = velocityDelta.Length() < Ship::VELOCITY_ZERO ? velocityDelta : velocityDelta.Unit() * .001;
 		if((ship.Velocity() + snapAcceleration).Length() <= ship.MaxVelocity())
 			ship.SetVelocity(ship.Velocity() + snapAcceleration);
 	}
@@ -2687,7 +2684,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	double speed = velocity.Length();
 
 	// If asked for a complete stop, the ship needs to be going much slower.
-	if(speed <= (maxSpeed ? maxSpeed : VELOCITY_ZERO))
+	if(speed <= max(maxSpeed, Ship::VELOCITY_ZERO))
 		return true;
 	if(!maxSpeed)
 		command |= Command::STOP;

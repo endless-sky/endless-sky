@@ -176,6 +176,11 @@ public:
 
 
 public:
+	// If a ship's velocity is below this value, the ship is considered stopped.
+	static constexpr double VELOCITY_ZERO = .001;
+
+
+public:
 	// Functions provided by the Body base class:
 	// bool HasSprite() const;
 	// const Sprite *GetSprite() const;

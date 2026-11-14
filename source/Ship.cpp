@@ -3189,7 +3189,7 @@ bool Ship::IsReadyToJump(bool waitingIsReady) const
 		if(deviation > scramThreshold)
 			return false;
 	}
-	else if(velocity.Length() > navigation.JumpSpeedThreshold())
+	else if(velocity.Length() > max(navigation.JumpSpeedThreshold(), VELOCITY_ZERO))
 		return false;
 
 	if(!isJump)
