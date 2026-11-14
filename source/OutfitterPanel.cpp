@@ -640,7 +640,7 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 					errors.emplace_back("This weapon is designed to be installed in a gun port, "
 						"but your ship does not have any unused gun ports available.");
 
-				if(selectedOutfit->Get("installable") < 0.)
+				if(selectedOutfit->Get("uninstallable"))
 					errors.emplace_back("This item is not an outfit that can be installed in a ship.");
 
 				// If the outfit category is ammo, the problem wasn't one of the above attributes, and this outfit

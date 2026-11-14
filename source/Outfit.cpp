@@ -217,7 +217,7 @@ namespace {
 
 	static const map<string, string> BOOLEAN_ATTRIBUTES = {
 		{"unplunderable", "Cannot be plundered while installed."},
-		{"installable", "This is not an installable item."},
+		{"uninstallable", "This is not an installable item."},
 		{"hyperdrive", "Allows you to make hyperjumps."},
 		{"jump drive", "Lets you jump to any nearby system."},
 		{"minable", "This item is mined from asteroids."},
@@ -455,10 +455,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				AddLicense(grand.Token(0));
 		}
 		else if(BOOLEAN_ATTRIBUTES.contains(key))
-			if(key == "installable")
-				attributes[key] = -1;
-			else
-				attributes[key] = 1;
+			attributes[key] = 1;
 		else if(hasValue)
 		{
 			double value = child.Value(1);
@@ -573,6 +570,15 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	};
 	convertScan("outfit");
 	convertScan("cargo");
+
+	// Convert instances of installable to uninstallable, if any exist.
+	int64_t installableCount = attributes.Get("installable");
+	if (installableCount)
+	{
+		attributes.Erase("installable");
+		node.PrintTrace("Deprecated use of \"installable\" instead of \"uninstallable\":");
+		attributes["uninstallable"] = 1;
+	}
 }
 
 
