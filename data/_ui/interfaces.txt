@@ -2534,7 +2534,7 @@ interface "map buttons (small screen)" bottom right
 	sprite "ui/dialog cancel"
 		from -170 -30 to -80 -180
 	button i "M_issions"
-		from -160 -60 to -90 -150
+		from -160 -90 to -90 -120
 
 	active if "!is ports"
 	sprite "ui/dialog cancel"
