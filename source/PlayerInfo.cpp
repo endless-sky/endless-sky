@@ -1400,7 +1400,7 @@ void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 			// Passing a pointer to Value gets only the hull cost. Passing a reference
 			// gets hull and outfit costs.
 			if(storeOutfits)
-				cost = depreciation.Value(selected, day);
+				cost = depreciation.Value(selected, day, 1, selected->IsLocked());
 			else
 				cost = depreciation.Value(*selected, day);
 
@@ -5732,11 +5732,14 @@ void PlayerInfo::DoAccounting()
 	// calculation of yearly income to determine maximum mortgage amounts.
 	int64_t assets = 0;
 	map<const Ship *, int> shipCount;
+	map<const Ship *, int> lockedCount;
 	map<const Outfit *, int> outfitCount;
 	for(const shared_ptr<Ship> &ship : ships)
 	{
 		const Ship *base = GameData::Ships().Get(ship->VariantName());
 		++shipCount[base];
+		if(ship->IsLocked())
+			++lockedCount[base];
 		for(const auto &[outfit, count] : ship->Outfits())
 			outfitCount[outfit] += count;
 
@@ -5752,7 +5755,7 @@ void PlayerInfo::DoAccounting()
 
 	int day = date.DaysSinceEpoch();
 	for(const auto &[ship, count] : shipCount)
-		assets += depreciation.Value(ship, day, count);
+		assets += depreciation.Value(ship, day, count, lockedCount[ship]);
 	for(const auto &[outfit, count] : outfitCount)
 		assets += depreciation.Value(outfit, day, count);
 

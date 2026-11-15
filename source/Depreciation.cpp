@@ -241,11 +241,10 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool cha
 			if(it->second.empty())
 				source->ships.erase(it);
 		}
-		else if(isStock || ship.IsLocked())
+		else if(isStock)
 		{
-			// A ship's chassis will be fully depreciated if we're a planet buying
-			// from the player, and the player has no record of how old this ship is,
-			// or if the ship's computers are locked.
+			// If we're a planet buying from the player, and the player has no
+			// record of how old this ship is, it's fully depreciated.
 			day -= MaxAge();
 		}
 	}
@@ -344,10 +343,7 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool
 
 	int64_t value = 0;
 	for(const auto &[ship, count] : shipCount)
-	{
-		int unlocked = count - lockedCount[ship];
-		value += Value(ship, day, unlocked, lockedCount[ship]);
-	}
+		value += Value(ship, day, count, lockedCount[ship]);
 	for(const auto &[outfit, count] : outfitCount)
 		value += Value(outfit, day, count);
 	return value;
@@ -358,8 +354,7 @@ int64_t Depreciation::Value(const vector<shared_ptr<Ship>> &fleet, int day, bool
 // Get the value of a ship, along with all its outfits.
 int64_t Depreciation::Value(const Ship &ship, int day) const
 {
-	int locked = ship.IsLocked() ? 1 : 0;
-	int64_t value = Value(&ship, day, 1 - locked, locked);
+	int64_t value = Value(&ship, day, 1, ship.IsLocked());
 	for(const auto &[outfit, count] : ship.Outfits())
 		value += Value(outfit, day, count);
 	return value;
@@ -373,16 +368,26 @@ int64_t Depreciation::Value(const Ship *ship, int day, int count, int locked) co
 	if(ship->BaseAttributes().GetPrecise("nondepreciable"))
 		return count * ship->ChassisCost();
 
+	// If the locked multiplier is 100%, then locked and unlocked items have the
+	// same value, so just act as if no items are locked.
+	if(LockedMultiplier() == 1.)
+		locked = 0;
+	// If the locked multiplier is 0%, then we can also skip accounting for locked
+	// items by just removing them from the given count of items.
+	else if(LockedMultiplier() == 0.)
+	{
+		count -= locked;
+		locked = 0;
+	}
+	int unlocked = count - locked;
 	// Check whether a record exists for this ship. If not, its value is full
-	// if this is a planet's stock, or fully depreciated if this is the player
-	// or a locked ship.
+	// if this is  planet's stock, or fully depreciated if this is the player.
 	ship = GameData::Ships().Get(ship->TrueModelName());
 	auto recordIt = ships.find(ship);
 	if(recordIt == ships.end() || recordIt->second.empty())
-		return (DefaultDepreciation() * count + Min() * LockedMultiplier() * locked)
-				* ship->ChassisCost();
+		return DefaultDepreciation() * (unlocked + locked * LockedMultiplier()) * ship->ChassisCost();
 
-	return Depreciate(recordIt->second, day, count, locked) * ship->ChassisCost();
+	return Depreciate(recordIt->second, day, unlocked, locked) * ship->ChassisCost();
 }
 
 
@@ -429,12 +434,10 @@ int Depreciation::Sell(map<int, int> &record, int day) const
 
 
 
-// Calculate depreciation for some number of items.
-double Depreciation::Depreciate(const map<int, int> &record, int day, int count, int locked) const
+double Depreciation::Depreciate(const map<int, int> &record, int day, int unlocked, int locked) const
 {
-	double lockedSum = locked * Min() * LockedMultiplier();
 	if(record.empty())
-		return count * DefaultDepreciation() + lockedSum;
+		return (unlocked + locked * LockedMultiplier()) * DefaultDepreciation();
 
 	// Map the date information to the depreciated value of the records so that
 	// we can iterate over the records in value order.
@@ -446,17 +449,25 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count,
 	// should either start with the lowest value item, or the highest.
 	auto it = (isStock ? values.begin() : --values.end());
 
+	int unlockedRemaining = unlocked;
+	int lockedRemaining = locked;
 	double sum = 0.;
 	while(true)
 	{
 		// Check whether there are enough items in this particular bin to use up
 		// the entire remaining count, and add the depreciation amount for
 		// however many items from this bin we can use.
-		int used = min(it->second, count);
-		count -= used;
-		sum += used * it->first;
+		// Use up the unlocked items before accounting for locked items.
+		// Only the fleet depreciation can contain locked items, so we want to consider
+		// locked items as the lowest value items being sold.
+		int used = min(it->second, unlockedRemaining + lockedRemaining);
+		int unlockedUsed = min(used, unlockedRemaining);
+		int lockedUsed = used - unlockedUsed;
+		unlockedRemaining -= unlockedUsed;
+		lockedRemaining -= lockedUsed;
+		sum += it->first * (unlockedUsed + lockedUsed * LockedMultiplier());
 		// Bail out if we've counted enough items.
-		if(!count)
+		if(!unlockedRemaining && !lockedRemaining)
 			break;
 
 		// Increment the iterator in the proper direction.
@@ -474,7 +485,7 @@ double Depreciation::Depreciate(const map<int, int> &record, int day, int count,
 		}
 	}
 	// For all items we don't have a record for, apply the default depreciation.
-	return sum + count * DefaultDepreciation() + lockedSum;
+	return sum + (unlockedRemaining + lockedRemaining * LockedMultiplier()) * DefaultDepreciation();
 }
 
 

@@ -871,8 +871,8 @@ Gamerules::Gamerules()
 	settings[LOCKED_HULL_VALUE_MULTIPLIER].SetOnToggleFunc([this](UI *ui) -> void {
 		if(!ui)
 			return;
-		string message = "Set the locked hull value multiplier. (Decimal value greater than or equal to 0.)";
-		auto validate = [](double value) -> bool { return value >= 0.; };
+		string message = "Set the locked hull value multiplier. (Decimal value between 0 and 1.)";
+		auto validate = [](double value) -> bool { return value >= 0. && value <= 1.; };
 		ui->Push(DialogPanel::RequestDoubleWithValidation(
 			[this](double value) -> void { storage.lockedHullValueMultiplier = value; },
 			validate, message, LockedHullValueMultiplier()));
@@ -1167,7 +1167,7 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == REWIRING_COST_MULTIPLIER)
 			storage.rewiringCostMultiplier = max(0., child.Value(1));
 		else if(key == LOCKED_HULL_VALUE_MULTIPLIER)
-			storage.lockedHullValueMultiplier = max(0., child.Value(1));
+			storage.lockedHullValueMultiplier = clamp(child.Value(1), 0., 1.);
 		else if(key == FRIENDLY_FIRE_SAME_PROB)
 			storage.friendlyFireSameGovProb = clamp(child.Value(1), 0., 1.);
 		else if(key == FRIENDLY_FIRE_ALLY_PROB)

@@ -616,13 +616,10 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 		}
 	}
 
-	int locked = ship.IsLocked() ? 1 : 0;
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
 	int64_t fullChassis = ship.ChassisCost();
-	int64_t chassisCost = depreciation.Value(
-		GameData::Ships().Get(ship.TrueModelName()),
-		player.GetDate().DaysSinceEpoch(),
-		1 - locked, locked);
+	int64_t chassisCost = depreciation.Value(GameData::Ships().Get(ship.TrueModelName()),
+		player.GetDate().DaysSinceEpoch(), 1, ship.IsLocked());
 	saleLabels.clear();
 	saleValues.clear();
 	saleHeight = 20;

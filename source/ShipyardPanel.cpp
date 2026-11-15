@@ -580,6 +580,19 @@ void ShipyardPanel::SellShipChassis()
 
 void ShipyardPanel::SellShip(bool storeOutfits)
 {
+	// Sell unlocked ships before selling locked ones so that the unlocked ships
+	// use the higher value depreciation records first.
+	for(auto it = playerShips.begin(); it != playerShips.end(); )
+	{
+		Ship *ship = *it;
+		if(!ship->IsLocked())
+		{
+			player.SellShip(ship, storeOutfits);
+			it = playerShips.erase(it);
+		}
+		else
+			++it;
+	}
 	for(Ship *ship : playerShips)
 		player.SellShip(ship, storeOutfits);
 	playerShips.clear();
