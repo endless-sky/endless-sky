@@ -48,6 +48,10 @@ class System;
 
 using namespace std;
 
+namespace {
+	const int MAX_LIST = 20;
+}
+
 
 
 ShipyardPanel::ShipyardPanel(PlayerInfo &player, const Sale<Ship> &stock)
@@ -115,7 +119,7 @@ double ShipyardPanel::ButtonPanelHeight() const
 {
 	// The 50 = (3 x 10 (pad) + 20 x 1 (text)) for the credit information line.
 	// Add 20 to make room for the fleet capacity line if that gamerule is active.
-	return 50 + BUTTON_HEIGHT * 2 + BUTTON_ROW_PAD * 1 + 20 * hasFleetCapacity;
+	return 50 + BUTTON_HEIGHT * 3 + BUTTON_ROW_PAD * 2 + 20 * hasFleetCapacity;
 }
 
 
@@ -161,11 +165,12 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 void ShipyardPanel::DrawButtons()
 {
-	// There will be two rows of buttons:
-	//  [    Buy    ] [    Sell    ] [ Sell Hull ]
+	// There will be three rows of buttons:
+	//  [    Buy    ] [    Sell    ] [   Rewire  ]
+	//                [  Sell Hull ]
 	//    Quantity [Dropdown]        [   Leave   ]
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 2 * rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
 	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2 - 1.;
 	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
@@ -206,19 +211,23 @@ void ShipyardPanel::DrawButtons()
 	// Clear the buttonZones, they will be populated again as buttons are drawn.
 	buttonZones.clear();
 
-	// Row 1
+	// Row 1:
 	DrawButton("_Buy",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize),
 		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
 	DrawButton("_Sell",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
 		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
-	DrawButton("Sell H_ull",
+	DrawButton("_Rewire",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
-		static_cast<bool>(playerShips.size()), hoverButton == 'r', 'r');
-	// Row 2
+		static_cast<bool>(CanRewire()), hoverButton == 'r', 'r');
+	// Row 2:
+	DrawButton("Sell H_ull",
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1), buttonSize),
+		static_cast<bool>(playerShips.size()), hoverButton == 'u', 'u');
+	// Row 3:
 	DrawButton("_Leave",
-		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2), buttonSize),
 		true, hoverButton == 'l', 'l');
 
 	font.Draw("Quantity:", Screen::BottomRight() - Point(SIDEBAR_WIDTH - 10, 33), dim);
@@ -280,11 +289,18 @@ ShopPanel::TransactionResult ShipyardPanel::HandleShortcuts(SDL_Keycode key)
 		if(playerShip)
 			Sell(false);
 	}
-	else if(key == 'r' || key == 'u')
+	else if(key == 'u')
 	{
 		// Sell selected ships and move outfits to Storage.
 		if(playerShip)
 			Sell(true);
+	}
+	else if(key == 'r')
+	{
+		// Repair selected ships if able.
+		result = CanRewire();
+		if(result)
+			Rewire();
 	}
 
 	return result;
@@ -365,8 +381,6 @@ void ShipyardPanel::DoBuyButton()
 
 void ShipyardPanel::Sell(bool storeOutfits)
 {
-	static const int MAX_LIST = 20;
-
 	int count = playerShips.size();
 	int initialCount = count;
 	string message;
@@ -433,6 +447,89 @@ void ShipyardPanel::Sell(bool storeOutfits)
 
 
 
+ShopPanel::TransactionResult ShipyardPanel::CanRewire()
+{
+	shipsToRewire.clear();
+
+	if(!playerShip)
+		return "No ship selected.";
+
+	bool cannotUnlock = false;
+	for(Ship *selected : playerShips)
+	{
+		if(!selected->IsLocked())
+			continue;
+		if(selected->CannotUnlock())
+		{
+			cannotUnlock = true;
+			continue;
+		}
+		shipsToRewire.insert(selected);
+	}
+
+	if(shipsToRewire.empty())
+	{
+		bool singleSelection = playerShips.size() == 1;
+		if(cannotUnlock)
+			return (singleSelection ? "The selected ship" : "At least one of the selected ships")
+				+ " cannot be rewired."s;
+		return "The selected ship"s + (singleSelection ? " does" : "s do") + " not need rewired";
+	}
+
+	int64_t cost = 0;
+	int64_t minimum = 0;
+	for(const auto &it : shipsToRewire)
+	{
+		cost += it->RewiringCost();
+		minimum = min(minimum, it->RewiringCost());
+	}
+
+	int64_t credits = player.Accounts().Credits();
+	if(credits < cost)
+	{
+		if(shipsToRewire.size() == 1)
+			return "You do not have enough credits to rewire this ship. "
+					"Consider checking if the bank will offer you a loan.";
+
+		// Alert the player if any of the selected ships could be rewired individually.
+		if(credits >= minimum)
+		{
+			return "You do not have enough credits to rewire all the selected ships at once. "
+					"Select fewer ships if you want to rewire some of them.";
+		}
+
+		return "You do not have enough credits to rewire the selected ships. "
+				"Consider checking if the bank will offer you a loan.";
+	}
+
+	return true;
+}
+
+
+
+void ShipyardPanel::Rewire()
+{
+	int count = shipsToRewire.size();
+	string message = "Rewire the ";
+
+	if(count == 1)
+		message += (*shipsToRewire.begin())->GivenName() + "?";
+	else
+		message += "following ships?\n" + Format::IndentedList(shipsToRewire,
+			[](const Ship *ship) -> string { return ship->GivenName(); },
+			MAX_LIST);
+
+	int64_t total = 0;
+	for(const auto &it : shipsToRewire)
+		total += it->RewiringCost();
+
+	if(total)
+		message += (count > 1 ? "\n" : " ") + "It will cost "s + Format::CreditString(total) + ".";
+	GetUI().Push(DialogPanel::CallFunctionIfOk(this, &ShipyardPanel::RewireShips, message, Truncate::MIDDLE));
+}
+
+
+
 bool ShipyardPanel::BuyShip(const string &name)
 {
 	int64_t licenseCost = LicenseCost(&selectedShip->Attributes());
@@ -485,6 +582,19 @@ void ShipyardPanel::SellShipChassis()
 
 void ShipyardPanel::SellShip(bool storeOutfits)
 {
+	// Sell unlocked ships before selling locked ones so that the unlocked ships
+	// use the higher value depreciation records first.
+	for(auto it = playerShips.begin(); it != playerShips.end(); )
+	{
+		Ship *ship = *it;
+		if(!ship->IsLocked())
+		{
+			player.SellShip(ship, storeOutfits);
+			it = playerShips.erase(it);
+		}
+		else
+			++it;
+	}
 	for(Ship *ship : playerShips)
 		player.SellShip(ship, storeOutfits);
 	playerShips.clear();
@@ -497,6 +607,17 @@ void ShipyardPanel::SellShip(bool storeOutfits)
 		}
 	if(playerShip)
 		playerShips.insert(playerShip);
+}
+
+
+
+void ShipyardPanel::RewireShips()
+{
+	for(Ship *ship : shipsToRewire)
+	{
+		ship->SetLock(false);
+		player.Accounts().AddCredits(-ship->RewiringCost());
+	}
 }
 
 

@@ -417,7 +417,8 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds)
 
 	if(table.GetRowBounds().Contains(hoverPoint))
 		table.DrawHighlight(backColor);
-	table.DrawTruncatedPair("ship:", dim, ship.GivenName(), bright, Truncate::MIDDLE, true);
+	table.DrawTruncatedPair(ship.IsLocked() ? "ship (locked):" : "ship:",
+		dim, ship.GivenName(), bright, Truncate::MIDDLE, true);
 
 	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
 }
