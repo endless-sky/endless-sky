@@ -393,7 +393,7 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::FRIENDLY_FIRE_FIGHTER_PROB_MULT,
 		Gamerules::FRIENDLY_FIRE_CARRIER_EXCEPTION,
 		Gamerules::FRIENDLY_FIRE_DMG_MULT,
-		"",
+		"\t",
 		"Miscellaneous",
 		Gamerules::LOCK_GAMERULES,
 		Gamerules::FIGHTER_DODGE_POLICY,

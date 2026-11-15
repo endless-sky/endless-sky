@@ -876,7 +876,7 @@ const string &GameData::Tooltip(const string &label)
 		it = objects.tooltips.find("ship: cost:");
 	if(it == objects.tooltips.end() && label.starts_with("sells for"))
 		it = objects.tooltips.find("sells for:");
-	if(it == objects.tooltips.end() && label.starts_with("empty hull"))
+	if(it == objects.tooltips.end() && label.starts_with("ship: empty hull"))
 		it = objects.tooltips.find("ship: empty hull:");
 	return (it == objects.tooltips.end() ? EMPTY : it->second);
 }

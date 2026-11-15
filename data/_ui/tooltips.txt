@@ -43,7 +43,7 @@ tip "ship: cost:"
 	`Items depreciate in value with time. If you have sold any used items today, you can buy them back for the same price you sold them for.`
 
 tip "ship: rewiring cost:"
-	`The cost of rewiring this ship.`
+	`The cost of rewiring this ship. Rewiring a ship will unlock all of its systems.`
 
 tip "ship: fleet cost:"
 	`How much this ship costs toward your fleet capacity. Your flagship and parked escorts do not count toward the capacity. You may exceed your capacity while landed, but will not be able to depart if you go over your capacity.`

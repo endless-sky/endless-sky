@@ -1825,7 +1825,7 @@ void Gamerules::SyncSettings()
 	settings[HABITABLE_BASED_ARRIVAL_DISTANCE].SetIndex(HabitableBasedArrivalDistance());
 	settings[SINGLE_SAVE_FILE].SetIndex(SingleSaveFile());
 	settings[RESTRICTED_SAVE_LOADING].SetIndex(RestrictedSaveLoading());
-	settings[LOCKED_HULL_VALUE_MULTIPLIER].SetIndex(LockOnCapture());
+	settings[LOCK_ON_CAPTURE].SetIndex(LockOnCapture());
 	settings[FRIENDLY_FIRE_CARRIER_EXCEPTION].SetIndex(FriendlyFireCarrierException());
 	settings[UNIVERSAL_AMMO_RESTOCKING].SetIndex(storage.miscRules[UNIVERSAL_AMMO_RESTOCKING]);
 	settings[FIGHTER_DODGE_POLICY].SetIndex(static_cast<int>(FightersHitWhenDisabled()));

@@ -119,7 +119,7 @@ double ShipyardPanel::ButtonPanelHeight() const
 {
 	// The 50 = (3 x 10 (pad) + 20 x 1 (text)) for the credit information line.
 	// Add 20 to make room for the fleet capacity line if that gamerule is active.
-	return 50 + BUTTON_HEIGHT * 2 + BUTTON_ROW_PAD * 1 + 20 * hasFleetCapacity;
+	return 50 + BUTTON_HEIGHT * 3 + BUTTON_ROW_PAD * 2 + 20 * hasFleetCapacity;
 }
 
 
@@ -165,11 +165,12 @@ double ShipyardPanel::DrawDetails(const Point &center)
 
 void ShipyardPanel::DrawButtons()
 {
-	// There will be two rows of buttons:
-	//  [    Buy    ] [    Sell    ] [ Sell Hull ]
+	// There will be three rows of buttons:
+	//  [    Buy    ] [    Sell    ] [   Rewire  ]
+	//                [  Sell Hull ]
 	//    Quantity [Dropdown]        [   Leave   ]
 	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
-	const double rowBaseY = Screen::BottomRight().Y() - rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
+	const double rowBaseY = Screen::BottomRight().Y() - 2 * rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
 	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
 	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2 - 1.;
 	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
@@ -210,7 +211,7 @@ void ShipyardPanel::DrawButtons()
 	// Clear the buttonZones, they will be populated again as buttons are drawn.
 	buttonZones.clear();
 
-	// Row 1
+	// Row 1:
 	DrawButton("_Buy",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * -1, rowBaseY + rowOffsetY * 0), buttonSize),
 		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
@@ -220,12 +221,13 @@ void ShipyardPanel::DrawButtons()
 	DrawButton("_Rewire",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
 		static_cast<bool>(CanRewire()), hoverButton == 'r', 'r');
-	// Row 2
+	// Row 2:
 	DrawButton("Sell H_ull",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1), buttonSize),
 		static_cast<bool>(playerShips.size()), hoverButton == 'u', 'u');
+	// Row 3:
 	DrawButton("_Leave",
-		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 1), buttonSize),
+		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2), buttonSize),
 		true, hoverButton == 'l', 'l');
 
 	font.Draw("Quantity:", Screen::BottomRight() - Point(SIDEBAR_WIDTH - 10, 33), dim);
