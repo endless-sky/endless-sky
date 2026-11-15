@@ -190,6 +190,9 @@ public:
 	double CrewAttack() const;
 	double CrewDefense() const;
 
+	// Get the rewiring costs multiplier for this government.
+	double RewiringMultiplier() const;
+
 	bool IsProvokedOnScan() const;
 
 	// Determine if ships from this government can travel to the given system or planet.
@@ -244,6 +247,7 @@ private:
 	std::vector<RaidFleet> raidFleets;
 	double crewAttack = 1.;
 	double crewDefense = 2.;
+	double rewiringMultiplier = 1.;
 	bool provokedOnScan = false;
 	ExclusiveItem<Confusion> confusion;
 	// If a government appears in this set, and the reputation with this government is affected by actions,

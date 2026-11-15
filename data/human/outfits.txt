@@ -203,7 +203,7 @@ outfit "Hyperdrive"
 	"jump speed" .2
 	"jump fuel" 100
 	"jump duration" 100
-	"hyperdrive" 1
+	"hyperdrive"
 	description "This mysterious box sits quietly at the heart of your ship, thinking its own inscrutable thoughts. When it comes time to travel between the stars it sets off a nuclear fusion reaction powerful enough to level an entire city, and then somehow tucks the resulting explosion in between the folds of regular space-time like a wasp stinging an oak leaf to lay her eggs inside. Your ship rides the resulting ripple in the fabric of space."
 	description "	They say that fewer than a dozen human beings alive today understand the inner workings of the hyperdrive."
 
@@ -218,7 +218,7 @@ outfit "Scram Drive"
 	"scram drive" .2
 	"jump fuel" 150
 	"jump duration" 100
-	"hyperdrive" 1
+	"hyperdrive"
 	description "A scram drive is a specially designed hyperdrive that works even if your ship is traveling at a much higher speed, at the expense of using more fuel. If you are being pursued by pirates (or just want to get somewhere in a hurry) that extra bit of speed can make a big difference."
 
 outfit "Jump Drive"
@@ -232,7 +232,7 @@ outfit "Jump Drive"
 	"jump speed" .3
 	"jump fuel" 200
 	"jump duration" 100
-	"jump drive" 1
+	"jump drive"
 	description "The workings of the jump drive are a total mystery. The best that human scientists have been able to find out is that this device is a containment field for matter in a state that cannot normally exist in this universe; if the drive is opened up, the field collapses and its contents disappear. Therefore, even though a few jump drives have been captured over the years, it has so far proved impossible to reverse engineer them."
 
 outfit "Jump Drive (Broken)"
@@ -322,8 +322,8 @@ outfit "Cloaking Device"
 	"cloaking fuel" .2
 	"cloaked regen multiplier" -1
 	"cloaked repair multiplier" -1
-	"unique" 1
-	"unplunderable" 1
+	"unique"
+	"unplunderable"
 	description "You're sure the cloaking device is here somewhere, but you can't see it."
 
 
@@ -338,7 +338,7 @@ outfit "Outfits Expansion"
 	"cargo space" -20
 	"cooling inefficiency" 1
 	"heat dissipation" -.0065
-	"unplunderable" 1
+	"unplunderable"
 	description "This expansion allows you to sacrifice some cargo space in order to make room for more outfits, in situations where you need just a bit more space to install a particular system. It does not increase your weapon or engine space."
 	description "	Unfortunately, rearranging the interior of your ship in such a fundamental way tends to interfere with its cooling systems."
 
@@ -351,7 +351,7 @@ outfit "Cargo Expansion"
 	"mass" 5
 	"cargo space" 15
 	"outfit space" -20
-	"unplunderable" 1
+	"unplunderable"
 	description "If being able to carry more cargo is more important to you than having advanced weapons or other systems, a cargo expansion will significantly increase the size of your cargo hold."
 
 outfit "Bunk Room"
@@ -363,7 +363,7 @@ outfit "Bunk Room"
 	"mass" 5
 	"bunks" 4
 	"outfit space" -20
-	"unplunderable" 1
+	"unplunderable"
 	description "If you really want to make space for a few more passengers (or crew members, if you're trying to capture other ships), you can expand the living space of your ship into the area usually reserved for outfits."
 
 outfit "Small Bunk Room"
@@ -375,7 +375,7 @@ outfit "Small Bunk Room"
 	"mass" 3
 	"bunks" 2
 	"outfit space" -12
-	"unplunderable" 1
+	"unplunderable"
 	description "Captains who do not care particularly much about the comfort of their passengers or crew can usually find a way to shove a bunk bed in behind the power generator or to hang a few hammocks from the engines as a makeshift way to make space for more people."
 
 outfit "Brig"
@@ -386,7 +386,7 @@ outfit "Brig"
 	thumbnail "outfit/brig"
 	"mass" 3
 	"outfit space" -3
-	"unplunderable" 1
+	"unplunderable"
 	description "With the addition of some reinforced doors, locks, and security systems, any ship's passenger compartment can be turned into a brig. This makes it suitable for transporting criminals and prisoners, or participating in the highly illegal galactic slave trade. These cells are often found on ships owned by bounty hunters, pirates, and of course, the Republic's interstellar law enforcement."
 
 outfit "Luxury Accommodations"
@@ -399,7 +399,7 @@ outfit "Luxury Accommodations"
 	"mass" 10
 	"outfit space" -10
 	"required crew" 2
-	"unplunderable" 1
+	"unplunderable"
 	description "Most deep space voyages involve a certain amount of passenger discomfort. With the addition of a few extra fresh water tanks, private bathrooms, wooden fixtures, and some hospitality staff, any ship can be made attractive to a significantly higher - and better paying - class of passenger."
 
 outfit "Fuel Pod"
@@ -433,8 +433,8 @@ outfit "Laser Rifle"
 	thumbnail "outfit/laser rifle"
 	"capture attack" .6
 	"capture defense" .8
-	"unplunderable" 1
-	"can jettison" 1
+	"unplunderable"
+	"can jettison"
 	description "A laser rifle is a step up from the sidearms that crew members typically carry for defense against pirates: more powerful, and more accurate as well. For each of these rifles that one of your crew is wielding, your odds of capturing another ship or defending your own ship from boarders are increased substantially."
 
 outfit "Fragmentation Grenades"
@@ -446,8 +446,8 @@ outfit "Fragmentation Grenades"
 	thumbnail "outfit/fragmentation grenades"
 	"capture attack" 1.3
 	"capture defense" .3
-	"unplunderable" 1
-	"can jettison" 1
+	"unplunderable"
+	"can jettison"
 	description "Fragmentation grenades are an only marginally legal weapon for hand-to-hand combat when boarding a ship, useful for flushing out defenders who are hunkered down in defensible choke points inside their own ship. They are much less useful as a defensive weapon, but still better than nothing."
 
 outfit "Security Station"
@@ -459,7 +459,7 @@ outfit "Security Station"
 	"mass" 2
 	"outfit space" -2
 	"capture defense" 3.4
-	"unplunderable" 1
+	"unplunderable"
 	description "This is a specially designed barricade, which can be installed in the hallways of your ship as a powerful defense against anyone who boards you in an attempt to take over your ship."
 
 outfit "Nerve Gas"
@@ -473,8 +473,8 @@ outfit "Nerve Gas"
 	"capture defense" .8
 	"scan brightness" 1
 	"illegal" 1000000
-	"unplunderable" 1
-	"can jettison" 1
+	"unplunderable"
+	"can jettison"
 	description "This is a highly illegal weapon for hand-to-hand combat when boarding an enemy ship. Because chemical weapons are banned by interstellar law, you can be severely fined for getting caught in possession of nerve gas canisters. But, they do clear out an enemy ship quicker than just about anything else..."
 
 outfit "Mug"
@@ -484,9 +484,9 @@ outfit "Mug"
 	cost 50
 	thumbnail "outfit/mug"
 	"capture attack" .1
-	"unique" 1
-	"unplunderable" 1
-	"can jettison" 1
+	"unique"
+	"unplunderable"
+	"can jettison"
 	description "You can throw it in a pinch, you guess."
 
 outfit "Antigrav Glass"
@@ -497,9 +497,9 @@ outfit "Antigrav Glass"
 	cost 25
 	thumbnail "outfit/unknown"
 	"capture attack" .2
-	"unique" 1
-	"unplunderable" 1
-	"can jettison" 1
+	"unique"
+	"unplunderable"
+	"can jettison"
 	description "This glass has had a miniature repulsor attached to it, similar to those found on drones, anti-grav trolleys, and spaceships. When it is activated it allows you to drink your beverage without holding it by way of levitation."
 	description "	The miniature repulsor installed on the bottom makes this glass a bit heavier than other cups, so if the time ever comes that you need to knock someone else out with a drinking vessel, you suspect this one will be marginally more effective than anything else you've got."
 
@@ -511,9 +511,9 @@ outfit "Old Man's Sword"
 	thumbnail "outfit/sword"
 	"capture attack" 1.4
 	"capture defense" 1
-	"unplunderable" 1
-	"unique" 1
-	"can jettison" 1
+	"unplunderable"
+	"unique"
+	"can jettison"
 	description "While swords are seen today as being old curios and commemorative objects, rendered useless when gunpowder became dominant on the battlefield thousands of years ago, this sword is unlike any you have seen before. Despite how heavy it looks, it is remarkably light, and there are inscriptions on the blade itself that don't appear to be in any human language."
 
 outfit "Puny"
@@ -522,8 +522,8 @@ outfit "Puny"
 	index 10
 	"display name" `"Puny"`
 	thumbnail "outfit/collar"
-	"unique" 1
-	"can jettison" 1
+	"unique"
+	"can jettison"
 	description `A poodle you rescued from a dubious racing complex on Freedom. She appears to have formed a strong bond with you, willing to stick by your side.`
 	description `	Her history matches with Pookie's, but Pookie's owner claimed that Puny was not hers. Puny is also vastly less urine-prone; you suspect that the race organizers may have toilet-trained her.`
 
@@ -533,8 +533,8 @@ outfit "Tear of Skade"
 	index 20
 	thumbnail "outfit/skadetear"
 	"cooling" 4
-	"unique" 1
-	"can jettison" 1
+	"unique"
+	"can jettison"
 	description "A strange glowing stone gifted to you by the Skadenga. It lacks any power source, yet is quite cold."
 
 outfit "Blood of Surtr"
@@ -544,8 +544,8 @@ outfit "Blood of Surtr"
 	thumbnail "outfit/surtrblood"
 	"energy generation" 2
 	"heat generation" 4
-	"unique" 1
-	"can jettison" 1
+	"unique"
+	"can jettison"
 	description "A strange glowing stone gifted to you by Ildico Drifa. It hums with energy and heat."
 
 
@@ -554,7 +554,7 @@ outfit "Local Map"
 	cost 1000
 	thumbnail "outfit/map"
 	"map" 12
-	"map minables" 1
+	"map minables"
 	description "This data chip contains complete information on the twelve star systems closest to this one: planets, ports, governments, trade prices, available services, etc. You can get all the same information just by exploring those systems yourself, but having a map can save you from making wrong turns if you are trying to travel through new territory to reach a certain system quickly."
 
 

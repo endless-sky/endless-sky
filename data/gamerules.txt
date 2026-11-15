@@ -36,6 +36,12 @@
 	"capture minimum death benefit" 100000
 	"capture value basis" unset
 	
+	"lock on capture" false
+	"rewiring cost multiplier" .7
+	"locked hull value multiplier" .2
+	
+	"base combat width" unset
+	
 	"universal ramscoop" true
 	"system arrival min" unset
 	"system departure min" 0.
@@ -62,4 +68,8 @@
 	"single save file" false
 	"restricted save loading" false
 	
-	"base combat width" unset
+	"friendly fire same gov probability" 0.
+	"friendly fire allied gov probability" 0.
+	"friendly fire fighter prob multiplier" 1.
+	"friendly fire carrier exception" false
+	"friendly fire damage multiplier" 1.

@@ -16,6 +16,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "AI.h"
 
 #include "audio/Audio.h"
+#include "CollisionSet.h"
 #include "Command.h"
 #include "ConditionsStore.h"
 #include "DistanceMap.h"
@@ -416,9 +417,6 @@ namespace {
 	// The minimum speed advantage a ship has to have to consider running away.
 	const double SAFETY_MULTIPLIER = 1.1;
 
-	// If a ship's velocity is below this value, the ship is considered stopped.
-	constexpr double VELOCITY_ZERO = .001;
-
 	// If two ships are within sqrt(SCATTER_TOO_CLOSE) units of one another, they should scatter apart.
 	// If they are within sqrt(SCATTER_TRACK) units of one another, they should keep track of one
 	// another in case they become too close.
@@ -436,8 +434,9 @@ namespace {
 
 
 
-AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam)
-	: player(player), ships(ships), minables(minables), flotsam(flotsam), routeCache()
+AI::AI(PlayerInfo &player, const List<Ship> &ships, const List<Minable> &minables, const List<Flotsam> &flotsam,
+	const CollisionSet &shipCollisions)
+	: player(player), ships(ships), minables(minables), flotsam(flotsam), shipCollisions(shipCollisions), routeCache()
 {
 	// Allocate a starting amount of hardpoints for ships.
 	firingCommands.SetHardpoints(12, 12);
@@ -561,7 +560,7 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	escortsUseAmmo = escortsAreFrugal || ammoUsage == Preferences::EscortAmmoUsage::ALWAYS;
 
 	if(!autoPilot.Has(Command::STOP) && activeCommands.Has(Command::STOP)
-			&& flagship->Velocity().Length() > VELOCITY_ZERO)
+			&& flagship->Velocity().Length() > Ship::VELOCITY_ZERO)
 		Messages::Add(*GameData::Messages().Get("coming to a stop"));
 
 	autoPilot |= activeCommands;
@@ -578,14 +577,30 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
 	if(activeCommands.Has(Command::CLOAK))
+	{
+		bool cloak = false;
+		int cloakFail = 0;
 		for(const auto &it : player.Ships())
 			if(!it->IsParked() && it->CloakingSpeed())
 			{
-				player.SetCloaking(!player.IsCloaking());
-				Messages::Add(*GameData::Messages().Get(player.IsCloaking() ?
-					"engaging cloaking device" : "disengaging cloaking device"));
-				break;
+				if(!it->IsLocked())
+					cloak = true;
+				else
+					++cloakFail;
 			}
+
+		if(cloakFail && !player.IsCloaking())
+		{
+			Messages::Add(*GameData::Messages().Get(cloakFail == 1 ?
+				"cloaking fail" : "cloaking fail multiple"));
+		}
+		if(cloak)
+		{
+			player.SetCloaking(!player.IsCloaking());
+			Messages::Add(*GameData::Messages().Get(player.IsCloaking() ?
+				"engaging cloaking device" : "disengaging cloaking device"));
+		}
+	}
 
 	// Toggle your secondary weapon.
 	if(activeCommands.Has(Command::SELECT))
@@ -1219,7 +1234,7 @@ void AI::Step(Command &activeCommands)
 		{
 			// Stopping to let fighters board or to be refueled takes priority
 			// even over following orders from the player.
-			if(it->Velocity().Length() > VELOCITY_ZERO || !target)
+			if(it->Velocity().Length() > Ship::VELOCITY_ZERO || !target)
 				Stop(*it, command);
 			else
 			{
@@ -1576,19 +1591,20 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 		}
 	}
 
-	// If this ship is not armed, do not make it fight.
+	// If this ship is not armed or cannot access its weapons, do not make it fight.
 	double minRange = numeric_limits<double>::infinity();
 	double maxRange = 0.;
-	for(const Hardpoint &hardpoint : ship.Weapons())
-	{
-		const Weapon *weapon = hardpoint.GetWeapon();
-		if(weapon && !hardpoint.IsSpecial())
+	if(!ship.IsLocked())
+		for(const Hardpoint &hardpoint : ship.Weapons())
 		{
-			double range = weapon->Range();
-			minRange = min(minRange, range);
-			maxRange = max(maxRange, range);
+			const Weapon *weapon = hardpoint.GetWeapon();
+			if(weapon && !hardpoint.IsSpecial())
+			{
+				double range = weapon->Range();
+				minRange = min(minRange, range);
+				maxRange = max(maxRange, range);
+			}
 		}
-	}
 	if(!maxRange)
 		return isYours ? target : FindNonHostileTarget(ship);
 
@@ -1898,7 +1914,7 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 	else if(shipOrders.Has(Orders::Types::HOLD_POSITION) || shipOrders.Has(Orders::Types::HOLD_ACTIVE)
 		|| shipOrders.Has(Orders::Types::MOVE_TO))
 	{
-		if(ship.Velocity().Length() > VELOCITY_ZERO || !ship.GetTargetShip())
+		if(ship.Velocity().Length() > Ship::VELOCITY_ZERO || !ship.GetTargetShip())
 			Stop(ship, command);
 		else
 		{
@@ -1989,7 +2005,7 @@ void AI::MoveInFormation(Ship &ship, Command &command)
 
 		// If the position and velocity matches, smoothly match velocity over multiple frames.
 		Point velocityDelta = formationLead->Velocity() - ship.Velocity();
-		Point snapAcceleration = velocityDelta.Length() < VELOCITY_ZERO ? velocityDelta : velocityDelta.Unit() * .001;
+		Point snapAcceleration = velocityDelta.Length() < Ship::VELOCITY_ZERO ? velocityDelta : velocityDelta.Unit() * .001;
 		if((ship.Velocity() + snapAcceleration).Length() <= ship.MaxVelocity())
 			ship.SetVelocity(ship.Velocity() + snapAcceleration);
 	}
@@ -2685,7 +2701,7 @@ bool AI::Stop(const Ship &ship, Command &command, double maxSpeed, const Point &
 	double speed = velocity.Length();
 
 	// If asked for a complete stop, the ship needs to be going much slower.
-	if(speed <= (maxSpeed ? maxSpeed : VELOCITY_ZERO))
+	if(speed <= max(maxSpeed, Ship::VELOCITY_ZERO))
 		return true;
 	if(!maxSpeed)
 		command |= Command::STOP;
@@ -4305,7 +4321,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 
 			// Calculate how long it will take the projectile to reach its target.
 			double steps = RendezvousTime(p, v, vp);
-			if(!std::isnan(steps) && steps <= lifetime)
+			if(!std::isnan(steps) && steps <= lifetime && !ObstructedFire(ship, start, start + v))
 				command.SetFire(index);
 			continue;
 		}
@@ -4354,6 +4370,10 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				if(!CanFire(hardpoint))
 					continue;
 
+				// Avoid firing on friendlies.
+				if(ObstructedFire(ship, start, start + v))
+					continue;
+
 				command.SetFire(index);
 				break;
 			}
@@ -4399,9 +4419,24 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, const Body &target) co
 		v *= lifetime;
 
 		const Mask &mask = target.GetMask(step);
-		if(mask.Collide(-p, v, target.Facing()) < 1.)
+		if(mask.Collide(-p, v, target.Facing()) < 1. && !ObstructedFire(ship, start, start + v))
 			command.SetFire(index);
 	}
+}
+
+
+
+bool AI::ObstructedFire(const Ship &ship, const Point &from, const Point &to) const
+{
+	if(!GameData::GetGamerules().FriendlyFireActive())
+		return false;
+	const Government *gov = ship.GetGovernment();
+	vector<Collision> potentialCollisions;
+	shipCollisions.Line(from, to, potentialCollisions, ship.weak_from_this(), gov);
+	for(Collision &collision : potentialCollisions)
+		if(!gov->IsEnemy(collision.HitBody()->GetGovernment()))
+			return true;
+	return false;
 }
 
 
@@ -4553,13 +4588,11 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			if(!mission.IsVisible() || mission.IsFailed())
 				continue;
 
-			// If the accessible destination of a mission is in this system, and you've been
-			// to all waypoints and stopovers (i.e. could complete it), consider landing on it.
-			if(mission.Stopovers().empty() && mission.Waypoints().empty()
-					&& mission.Destination()->IsInSystem(system)
-					&& mission.Destination()->IsAccessible(&ship))
+			// If the accessible destination of a completable mission is in this system, consider landing on it.
+			const Planet *destination = mission.Destination();
+			if(destination->IsInSystem(system) && destination->IsAccessible(&ship) && mission.IsSatisfied(player))
 			{
-				destinations.insert(mission.Destination());
+				destinations.insert(destination);
 				++missions;
 				// If this mission has a deadline, check if it is the soonest
 				// deadline. If so, this should be your ship's destination.

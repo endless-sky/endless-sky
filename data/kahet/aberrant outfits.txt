@@ -24,7 +24,7 @@ outfit "Aberrant Spiker"
 	"outfit space" -23
 	"weapon capacity" -23
 	"gun ports" -1
-	"unplunderable" 1
+	"unplunderable"
 	weapon
 		sprite "projectile/aberrant spike"
 			"frame rate" 24
@@ -93,7 +93,7 @@ outfit "Nucleolysis Beam"
 	"weapon capacity" -31
 	"flotsam chance" 0.1
 	"gun ports" -1
-	"unplunderable" 1
+	"unplunderable"
 	weapon
 		sprite "projectile/nucleolysis"
 			"frame rate" 15
@@ -124,7 +124,7 @@ outfit "Telescopic Antimissile"
 	"outfit space" -40
 	"weapon capacity" -40
 	"flotsam chance" 0.1
-	"unplunderable" 1
+	"unplunderable"
 	"turret mounts" -1
 	weapon
 		"hit effect" "quarg anti-missile"
@@ -152,7 +152,7 @@ outfit "Anomalous Shield Restorer"
 	"shield generation" 3
 	"shield energy" 6
 	"flotsam chance" 0.05
-	"unplunderable" 1
+	"unplunderable"
 	description "This emitter produces no detectable fields of any kind, but a shield springs into existence whenever any danger comes near."
 
 
@@ -170,7 +170,7 @@ outfit "Antimatter Power Cell"
 	"energy generation" 2.8
 	"heat generation" 4.9
 	"flotsam chance" 0.05
-	"unplunderable" 1
+	"unplunderable"
 	description "This strange device seems to be partially organic in nature, slowly leaking antiprotons through a constantly-regrowing spongelike structure to release energy. The amount of power produced is inconsistent with the amount of matter and antimatter annihilated, generating more energy than should be possible."
 
 
@@ -188,5 +188,5 @@ outfit "Anomalous Mass"
 	"heat generation" 0.4
 	"drag" 0.04
 	"inertia reduction" 0.01
-	"unplunderable" 1
+	"unplunderable"
 	description "Found with widely varying properties in different mechanisms of an Aberration, this mass of glassy, fleshy material is characterized by the very difficulty of classifying its composition. Webs of anomalous material embedded in the mass seem not to be composed of atomic matter as the Avgi know it, but by something entirely different, which resists any attempts to probe its makeup. This is thought to enable many of the Aberrants' more baffling abilities, for lack of any other explanation."

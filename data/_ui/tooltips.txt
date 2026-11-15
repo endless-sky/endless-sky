@@ -42,6 +42,9 @@ tip "ship: cost:"
 	`The total credit value of this ship.`
 	`Items depreciate in value with time. If you have sold any used items today, you can buy them back for the same price you sold them for.`
 
+tip "ship: rewiring cost:"
+	`The cost of rewiring this ship. Rewiring a ship will unlock all of its systems.`
+
 tip "ship: fleet cost:"
 	`How much this ship costs toward your fleet capacity. Your flagship and parked escorts do not count toward the capacity. You may exceed your capacity while landed, but will not be able to depart if you go over your capacity.`
 
@@ -1427,6 +1430,9 @@ tip "shipyard: s"
 	`Sell the selected ships and their outfits.`
 
 tip "shipyard: r"
+	`Rewire the selected ships, unlocking their onboard computers.`
+
+tip "shipyard: u"
 	`Sell the hulls of the selected ships, but retain the outfits in storage.`
 
 
@@ -1449,6 +1455,9 @@ tip "no thruster!"
 
 tip "no steering!"
 	`This ship is unable to turn. You must install steering systems.`
+
+tip "locked systems"
+	`You do not have access to this ship's computer systems. Until you rewire the ship at a shipyard, its capabilities will be limited and it cannot be your flagship.`
 
 tip "insufficient bunks?"
 	`This ship does not have enough bunks for its crew. It could become unresponsive at random times.`
@@ -1955,6 +1964,16 @@ tip "NPC max mining time"
 tip "Universal frugal threshold"
 	`Ships with the "frugal" personality will only use weapons that consume ammo or fuel while their health (shields + hull - the hull level when they become disabled) is at or below this percentage, or if the hostiles in the system are considerably stronger than them.`
 
+tip "Ships lock when captured"
+	`Determines whether a ship's computers are "locked" when captured, disabling some of their abilities. Ships can have their locks removed by rewiring them at a shipyard.`
+	`Locked ship restrictions include but are not limited to being unable to be your flagship, fire weapons, use shield generators or hull repair, use fighter or drone bays, and use their cargo space or bunks for missions or trading.`
+
+tip "Rewiring cost multiplier"
+	`How much rewiring a ship will cost, relative to the ship's chassis price without depreciation.`
+
+tip "Locked hull value multiplier"
+	`How much the hull of a ship will sell for if its computer systems are locked. This stacks multiplicatively with depreciation.`
+
 tip "Universal ramscoop"
 	`Determines whether the "universal ramscoop" is active on all ships. This ramscoop provides a very small amount of fuel to every ship regardless of whether it has an actual ramscoop installed. The strength of this ramscoop falls off much more strongly than normal ramscoops, requiring you to be as close to a star as possible to have any real gain in fuel. Having this enabled prevents needing to reload your save file if you run out of fuel and no NPCs spawn in the system that you can get fuel from.`
 
@@ -2055,6 +2074,21 @@ tip "Capture value basis"
 
 tip "Base combat width"
 	`Determines the maximum number of crew that can participate in a single round of boarding, based on the bunk count of each ship. The smallest base combat width between the attacking and defending ship is used. A lower base combat width increases the effect of hand-to-hand outfits and reduces the effect of extra crew. If this gamerule has a value of "(unset)", ships will always use their entire crew during boarding.`
+
+tip "Same government probability"
+	`The probability that a projectile will collide with a ship with the same government. The slower moving a projectile is relative to a ship, the less likely it is to cause friendly fire. Weapons with the "safe" attribute cannot cause friendly fire.`
+
+tip "Allied government probability"
+	`The probability that a projectile will collide with a friendly ship of the same government. Ships hit this way will not be provoked.`
+
+tip "Fighter probability multiplier"
+	`Projectiles that are fired by or intersect with fighters and drones have their chance to cause friendly fire multiplied by this value.`
+
+tip "Carrier exception"
+	`Makes carrier groups ignore friendly fire entirely. Carriers will be unable to hit their fighters, and their fighters will not be able to hit each other and their carrier.`
+
+tip "Damage multiplier"
+	`This multiplier is applied to damage dealt by friendly fire. Blast damage and damage against ships being actively targeted are not affected.`
 
 
 # Boarding panel:
