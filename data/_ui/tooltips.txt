@@ -1960,9 +1960,10 @@ tip "Universal frugal threshold"
 
 tip "Ships lock when captured"
 	`Determines whether a ship's computers are "locked" when captured, disabling some of their abilities. Ships can have their locks removed by rewiring them at a shipyard.`
+	`Locked ship restrictions include but are not limited to being unable to be your flagship, fire weapons, use shield generators or hull repair, use fighter or drone bays, and use their cargo space or bunks for missions or trading.`
 
 tip "Rewiring cost multiplier"
-	`How much rewiring a ship will cost, relative to the empty hull's original cost before depreciation.`
+	`How much rewiring a ship will cost, relative to the ship's chassis price without depreciation.`
 
 tip "Locked hull value multiplier"
 	`How much the hull of a ship will sell for if its computer systems are locked. This stacks multiplicatively with depreciation.`
