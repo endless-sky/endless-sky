@@ -47,18 +47,18 @@ ShipInfoDisplay::ShipInfoDisplay()
 // Call this every time the ship changes.
 // Panels that have scrolling abilities are not limited by space, allowing more detailed attributes.
 void ShipInfoDisplay::Update(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
-	bool descriptionCollapsed, bool scrollingPanel, bool isDefinition)
+	bool descriptionCollapsed, bool scrollingPanel, bool isSale)
 {
-	if(isDefinition)
+	if(isSale)
 		UpdateDescription(ship.Description(), ship.Attributes().Licenses(), true);
 	else
 	{
-		// If the given ship is not a ship definition, then it won't have a description.
+		// If the given ship is not for sale, then it might not have a description.
 		// Locate the description it's supposed to have from its definition.
 		const Ship *definition = GameData::Ships().Get(ship.VariantName());
 		UpdateDescription(definition->Description(), ship.Attributes().Licenses(), true);
 	}
-	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel);
+	UpdateAttributes(ship, player, hasFleetCapacity, descriptionCollapsed, scrollingPanel, isSale);
 	const Depreciation &depreciation = ship.IsYours() ? player.FleetDepreciation() : player.StockDepreciation();
 	UpdateOutfits(ship, player, depreciation);
 
@@ -143,7 +143,7 @@ void ShipInfoDisplay::DrawOutfits(const Point &topLeft) const
 
 
 void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &player, bool hasFleetCapacity,
-	bool descriptionCollapsed, bool scrollingPanel)
+	bool descriptionCollapsed, bool scrollingPanel, bool isSale)
 {
 	bool isGeneric = ship.GivenName().empty() || ship.GetPlanet();
 
@@ -205,6 +205,17 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 		attributeValues.emplace_back(Format::Number(ship.FleetCost()));
 		attributesHeight += 20;
 	}
+	// Only show the rewiring cost on scrolling panels with no risk of overflow.
+	bool locked = ship.IsLocked();
+	if(scrollingPanel && locked)
+	{
+		attributeLabels.push_back("rewiring cost:");
+		if(ship.CannotUnlock())
+			attributeValues.push_back("cannot be rewired");
+		else
+			attributeValues.push_back(Format::AbbreviatedNumber(ship.RewiringCost()));
+		attributesHeight += 20;
+	}
 
 	attributeLabels.emplace_back();
 	attributeValues.emplace_back();
@@ -212,7 +223,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double shieldRegen = (attributes.Get("shield generation")
 		+ attributes.Get("delayed shield generation"))
 		* (1. + attributes.Get("shield generation multiplier"));
-	bool hasShieldRegen = shieldRegen > 0.;
+	bool hasShieldRegen = shieldRegen > 0. && !locked;
 	if(hasShieldRegen)
 	{
 		attributeLabels.emplace_back("shields (charge):");
@@ -228,7 +239,7 @@ void ShipInfoDisplay::UpdateAttributes(const Ship &ship, const PlayerInfo &playe
 	double hullRepair = (attributes.Get("hull repair rate")
 		+ attributes.Get("delayed hull repair rate"))
 		* (1. + attributes.Get("hull repair multiplier"));
-	bool hasHullRepair = hullRepair > 0.;
+	bool hasHullRepair = hullRepair > 0. && !locked;
 	if(hasHullRepair)
 	{
 		attributeLabels.emplace_back("hull (repair):");
@@ -606,9 +617,9 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	}
 
 	int64_t totalCost = depreciation.Value(ship, player.GetDate().DaysSinceEpoch());
-	int64_t chassisCost = depreciation.Value(
-		GameData::Ships().Get(ship.TrueModelName()),
-		player.GetDate().DaysSinceEpoch());
+	int64_t fullChassis = ship.ChassisCost();
+	int64_t chassisCost = depreciation.Value(GameData::Ships().Get(ship.TrueModelName()),
+		player.GetDate().DaysSinceEpoch(), 1, ship.IsLocked());
 	saleLabels.clear();
 	saleValues.clear();
 	saleHeight = 20;
@@ -616,7 +627,14 @@ void ShipInfoDisplay::UpdateOutfits(const Ship &ship, const PlayerInfo &player, 
 	saleLabels.emplace_back("This ship will sell for:");
 	saleValues.emplace_back();
 	saleHeight += 20;
-	saleLabels.emplace_back("empty hull:");
+	if(chassisCost == fullChassis)
+		saleLabels.emplace_back("empty hull:");
+	else
+	{
+		ostringstream out;
+		out << "empty hull (" << (100 * chassisCost) / fullChassis << "%):";
+		saleLabels.emplace_back(out.str());
+	}
 	saleValues.emplace_back(Format::AbbreviatedNumber(chassisCost));
 	saleHeight += 20;
 	saleLabels.emplace_back("  + outfits:");

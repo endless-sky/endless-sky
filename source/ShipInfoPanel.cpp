@@ -247,7 +247,7 @@ bool ShipInfoPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				"How many tons of " + Format::LowerCase(selectedCommodity)
 					+ " do you want to jettison?", amount));
 		}
-		else if(plunderAmount > 0 && selectedPlunder->Get("installable") < 0.)
+		else if(plunderAmount > 0 && selectedPlunder->Get("uninstallable"))
 		{
 			GetUI().Push(DialogPanel::RequestPositiveInteger(this, &ShipInfoPanel::DumpPlunder,
 				"How many tons of " + Format::LowerCase(selectedPlunder->DisplayName())
@@ -417,7 +417,8 @@ void ShipInfoPanel::DrawShipStats(const Rectangle &bounds) const
 
 	if(table.GetRowBounds().Contains(hoverPoint))
 		table.DrawHighlight(backColor);
-	table.DrawTruncatedPair("ship:", dim, ship.GivenName(), bright, Truncate::MIDDLE, true);
+	table.DrawTruncatedPair(ship.IsLocked() ? "ship (locked):" : "ship:",
+		dim, ship.GivenName(), bright, Truncate::MIDDLE, true);
 
 	info.DrawAttributes(table.GetRowBounds().TopLeft() - Point(10., 10.));
 }
@@ -691,7 +692,7 @@ void ShipInfoPanel::DrawCargo(const Rectangle &bounds)
 				table.DrawHighlight(backColor);
 
 			// For outfits, show how many of them you have and their total mass.
-			bool isSingular = (count == 1 || outfit->Get("installable") < 0.);
+			bool isSingular = (count == 1 || outfit->Get("uninstallable"));
 			string name = (isSingular ? outfit->DisplayName() : outfit->PluralName());
 			name += " (" + to_string(count) + "x)";
 			table.Draw(name, dim);

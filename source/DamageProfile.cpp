@@ -26,7 +26,7 @@ using namespace std;
 
 DamageProfile::DamageProfile(const Entity &entity, const Projectile::ImpactInfo &info, bool ignoreBlast)
 	: entity(&entity), weapon(&info.weapon), position(info.position),
-	isBlast(!ignoreBlast && weapon->BlastRadius() > 0.)
+	isBlast(!ignoreBlast && weapon->BlastRadius() > 0.), scaling(info.scaling)
 {
 	// The damage dropoff of projectiles is influenced by the distance it traveled.
 	if(weapon->HasDamageDropoff())

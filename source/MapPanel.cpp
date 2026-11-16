@@ -1071,10 +1071,11 @@ void MapPanel::Select(const System *system)
 void MapPanel::Find(const string &name)
 {
 	int bestIndex = 9999;
-	for(const auto &[name, system] : GameData::Systems())
+	for(const System &system : GameData::Systems() | views::values)
+	{
 		if(system.IsValid() && !system.Inaccessible() && player.CanView(system))
 		{
-			int index = Format::Search(name, name);
+			int index = Format::Search(system.DisplayName(), name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
@@ -1088,10 +1089,12 @@ void MapPanel::Find(const string &name)
 				}
 			}
 		}
-	for(const auto &[name, planet] : GameData::Planets())
+	}
+	for(const Planet &planet : GameData::Planets() | views::values)
+	{
 		if(planet.IsValid() && player.CanView(*planet.GetSystem()))
 		{
-			int index = Format::Search(name, name);
+			int index = Format::Search(planet.DisplayName(), name);
 			if(index >= 0 && index < bestIndex)
 			{
 				bestIndex = index;
