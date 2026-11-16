@@ -1108,6 +1108,7 @@ void MapPanel::Find(const string &name)
 				}
 			}
 		}
+	}
 }
 
 

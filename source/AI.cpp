@@ -333,7 +333,7 @@ namespace {
 		// and refuel later. Calculate if it can reach the next refuel.
 		double fuel = fuelCapacity * ship.FuelFraction();
 		const vector<pair<const System *, int>> costs = route.FuelCosts();
-		for(const auto &[system, cost] : std::views::reverse(costs))
+		for(const auto &[system, cost] : costs | views::reverse)
 		{
 			// If the next system with fuel is outside the range of this ship, should refuel.
 			if(system->HasFuelFor(ship))

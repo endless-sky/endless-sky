@@ -155,7 +155,7 @@ void Messages::SaveLog(DataWriter &out)
 	out.Write("message log");
 	out.BeginChild();
 	{
-		for(auto &[message, category] : std::views::reverse(logged))
+		for(auto &[message, category] : logged | views::reverse)
 			out.Write(category->TrueName(), message);
 	}
 	out.EndChild();

@@ -228,7 +228,7 @@ template<typename ...FARGS, typename ...ARGS>
 bool Panel::EventVisit(bool (Panel::*f)(FARGS ...), ARGS ...args)
 {
 	// Check if a child panel will consume this event first.
-	for(auto &it : std::views::reverse(children))
+	for(auto &it : children | std::views::reverse)
 		if(it->EventVisit(f, args...))
 			return true;
 

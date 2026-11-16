@@ -202,7 +202,7 @@ void UI::Pop(const Panel *panel)
 // Remove the given panel and every panel that is higher in the stack.
 void UI::PopThrough(const Panel *panel)
 {
-	for(auto &it : std::views::reverse(stack))
+	for(auto &it : stack | views::reverse)
 	{
 		toPop.push_back(it.get());
 		if(it.get() == panel)

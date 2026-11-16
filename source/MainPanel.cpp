@@ -615,7 +615,7 @@ bool MainPanel::ShowHelp(bool force)
 
 	bool hasValidHelp = false;
 	// Reverse-iterate so that the player will see the basic messages first.
-	for(auto &it : std::views::reverse(forced))
+	for(auto &it : forced | views::reverse)
 		hasValidHelp |= DoHelp(it, true);
 	return hasValidHelp;
 }

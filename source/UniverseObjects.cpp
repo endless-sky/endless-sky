@@ -214,7 +214,7 @@ void UniverseObjects::RecomputeWormholeRequirements()
 {
 	// Create a complete set of all attributes that affect any wormhole in the universe.
 	universeWormholeRequirements.clear();
-	for(const auto &wormhole : std::views::values(wormholes))
+	for(const auto &wormhole : wormholes | views::values)
 		if(wormhole.IsValid() && wormhole.GetPlanet()->IsValid())
 			for(const auto &req : wormhole.GetPlanet()->RequiredAttributes())
 				universeWormholeRequirements.emplace(req);

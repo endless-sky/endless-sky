@@ -610,7 +610,7 @@ void Test::Fail(const TestContext &context, const PlayerInfo &player, const stri
 	if(context.callstack.empty())
 		stackMessage += "  No callstack info at moment of failure.";
 
-	for(auto [test, step] : std::views::reverse(context.callstack))
+	for(auto [test, step] : context.callstack | views::reverse)
 	{
 		stackMessage += "- \"" + test->Name() + "\", step: " + to_string(1 + step);
 		if(step < test->steps.size())
