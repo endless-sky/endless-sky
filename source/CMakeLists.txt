@@ -18,6 +18,7 @@ target_sources(EndlessSkyLib PRIVATE
 	AI.h
 	Account.cpp
 	Account.h
+	ActionResult.h
 	AlertLabel.cpp
 	AlertLabel.h
 	AmmoDisplay.cpp
