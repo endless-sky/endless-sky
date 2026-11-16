@@ -2098,29 +2098,29 @@ event "fw at war with Syndicate"
 		fleet "Large Southern Merchants" 3000
 	# Syndicate supply route to Tarazed stops working.
 	system Markab
-		remove fleet "Syndicate Supply Convoy" 4000
+		remove fleet "Syndicate Supply Convoy"
 	system Fomalhaut
-		remove fleet "Syndicate Supply Convoy" 4000
+		remove fleet "Syndicate Supply Convoy"
 	system Altair
-		remove fleet "Syndicate Supply Convoy" 4000
+		remove fleet "Syndicate Supply Convoy"
 	system Vega
-		remove fleet "Syndicate Supply Convoy" 4000
+		remove fleet "Syndicate Supply Convoy"
 	system Menkent
-		remove fleet "Syndicate Supply Convoy" 4000
+		remove fleet "Syndicate Supply Convoy"
 	system Cebalrai
-		remove fleet "Syndicate Supply Convoy" 5000
+		remove fleet "Syndicate Supply Convoy"
 	system "Kaus Borealis"
-		remove fleet "Syndicate Supply Convoy" 5000
+		remove fleet "Syndicate Supply Convoy"
 	system "Alpha Arae"
-		remove fleet "Syndicate Supply Convoy" 5000
+		remove fleet "Syndicate Supply Convoy"
 	system "Delta Sagitarii"
-		remove fleet "Syndicate Supply Convoy" 5000
+		remove fleet "Syndicate Supply Convoy"
 	system Eltanin
-		remove fleet "Syndicate Supply Convoy" 5000
+		remove fleet "Syndicate Supply Convoy"
 	system Dabih
-		remove fleet "Syndicate Supply Convoy" 5000
+		remove fleet "Syndicate Supply Convoy"
 	system Tarazed
-		remove fleet "Syndicate Supply Convoy" 6000
+		remove fleet "Syndicate Supply Convoy"
 
 
 
