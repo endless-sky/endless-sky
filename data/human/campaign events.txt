@@ -2096,7 +2096,7 @@ event "fw at war with Syndicate"
 	system "Holeb"
 		fleet "Small Southern Merchants" 1000
 		fleet "Large Southern Merchants" 3000
-	# Syndicate supply route to Tarazed stops working
+	# Syndicate supply route to Tarazed stops working.
 	system Markab
 		remove fleet "Syndicate Supply Convoy" 4000
 	system Fomalhaut
