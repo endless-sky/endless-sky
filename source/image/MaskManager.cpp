@@ -15,10 +15,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "MaskManager.h"
 
-#include <ranges>
-
 #include "../Logger.h"
 #include "Sprite.h"
+
+#include <ranges>
 
 using namespace std;
 
