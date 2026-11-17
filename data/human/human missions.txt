@@ -1330,7 +1330,7 @@ ship "Hallucination"
 		"fuel capacity" 100000
 		"jump fuel" 100
 		"jump speed" 1
-		"jump drive" 1
+		"jump drive"
 		"automaton" 1
 		"thrust" 30
 		"turn" 500

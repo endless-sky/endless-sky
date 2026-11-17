@@ -1400,7 +1400,7 @@ void PlayerInfo::SellShip(const Ship *selected, bool storeOutfits)
 			// Passing a pointer to Value gets only the hull cost. Passing a reference
 			// gets hull and outfit costs.
 			if(storeOutfits)
-				cost = depreciation.Value(selected, day);
+				cost = depreciation.Value(selected, day, 1, selected->IsLocked());
 			else
 				cost = depreciation.Value(*selected, day);
 
@@ -1716,7 +1716,7 @@ void PlayerInfo::UpdateCargoCapacities()
 	largestCargoHold = 0;
 	flagship = FlagshipPtr();
 	for(const shared_ptr<Ship> &ship : ships)
-		if(ship->GetPlanet() == planet && !ship->IsParked())
+		if(ship->GetPlanet() == planet && !ship->IsParked() && !ship->IsLocked())
 		{
 			int space = ship->Attributes().Get("cargo space");
 			size += space;
@@ -1981,7 +1981,7 @@ bool PlayerInfo::TakeOff(UI &ui, const bool distributeCargo)
 	auto carriers = vector<Ship *>{};
 	auto toLoad = vector<shared_ptr<Ship>>{};
 	for(auto &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled())
+		if(!ship->IsParked() && !ship->IsDisabled() && !ship->IsLocked())
 		{
 			if(ship->CanBeCarried() && ship != flagship)
 				toLoad.emplace_back(ship);
@@ -2163,7 +2163,7 @@ const CargoHold &PlayerInfo::DistributeCargo()
 
 	// Distribute the remaining cargo among the escorts.
 	for(const shared_ptr<Ship> &ship : ships)
-		if(!ship->IsParked() && !ship->IsDisabled() && ship->GetPlanet() == planet && ship != flagship)
+		if(!ship->IsParked() && !ship->IsDisabled() && !ship->IsLocked() && ship->GetPlanet() == planet && ship != flagship)
 		{
 			ship->Cargo().SetBunks(ship->Attributes().Get("bunks") - ship->RequiredCrew());
 			cargo.TransferAll(ship->Cargo());
@@ -5732,11 +5732,14 @@ void PlayerInfo::DoAccounting()
 	// calculation of yearly income to determine maximum mortgage amounts.
 	int64_t assets = 0;
 	map<const Ship *, int> shipCount;
+	map<const Ship *, int> lockedCount;
 	map<const Outfit *, int> outfitCount;
 	for(const shared_ptr<Ship> &ship : ships)
 	{
 		const Ship *base = GameData::Ships().Get(ship->VariantName());
 		++shipCount[base];
+		if(ship->IsLocked())
+			++lockedCount[base];
 		for(const auto &[outfit, count] : ship->Outfits())
 			outfitCount[outfit] += count;
 
@@ -5752,7 +5755,7 @@ void PlayerInfo::DoAccounting()
 
 	int day = date.DaysSinceEpoch();
 	for(const auto &[ship, count] : shipCount)
-		assets += depreciation.Value(ship, day, count);
+		assets += depreciation.Value(ship, day, count, lockedCount[ship]);
 	for(const auto &[outfit, count] : outfitCount)
 		assets += depreciation.Value(outfit, day, count);
 

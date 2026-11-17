@@ -179,6 +179,7 @@ color "planet target pointer dominated" 1. 1. 1. 0.
 # Colors used for warnings and errors.
 color "error back" .25 .1 .1 1.
 color "warning back" .21 .18 .08 1.
+color "locked back" .25 .14 .08 1.
 color "warning conflict" .315 .27 .12 1.
 color "warning no command" 0.16 0.16 0.13 1.
 
@@ -2533,7 +2534,7 @@ interface "map buttons (small screen)" bottom right
 	sprite "ui/dialog cancel"
 		from -170 -30 to -80 -180
 	button i "M_issions"
-		from -160 -60 to -90 -150
+		from -160 -90 to -90 -120
 
 	active if "!is ports"
 	sprite "ui/dialog cancel"

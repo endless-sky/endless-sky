@@ -310,8 +310,19 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 					totalShares += familyShares;
 				if(totalShares)
 				{
-					double valueFraction = rules.CaptureValueBasis().value_or(Depreciation::Full());
-					int64_t valuePerShare = victim->Cost() * valueFraction / totalShares;
+					int64_t captureValue = 0;
+					double valueFraction = rules.CaptureValueBasis().value_or(Depreciation::Captured());
+					if(rules.LockOnCapture())
+					{
+						// The impact of a ship being locked on its value only applies to the chassis.
+						captureValue += victim->ChassisCost() * victim->RewiringMultiplier();
+						for(const auto &[outfit, count] : victim->Outfits())
+							captureValue += outfit->Cost() * count;
+						captureValue *= valueFraction;
+					}
+					else
+						captureValue = victim->Cost() * valueFraction;
+					int64_t valuePerShare = captureValue / totalShares;
 
 					if(payCrewBonuses)
 						crewBonuses = crewShares * valuePerShare;
@@ -565,6 +576,8 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 				remainingCrew = you->Crew() - 1;
 				successfulCapture = true;
 				AddMessage("You have succeeded in capturing this ship.");
+				if(!victim->NeverLocked() && GameData::GetGamerules().LockOnCapture())
+					AddMessage("Its computer systems are locked.");
 				victim->GetGovernment()->Offend(ShipEvent::CAPTURE, victim->CrewValue());
 				int crewTransferred = victim->WasCaptured(you);
 				if(crewTransferred > 0)
@@ -689,7 +702,7 @@ BoardingPanel::Plunder::Plunder(const string &commodity, int count, int unitValu
 // Constructor (outfit installed in the victim ship or transported as cargo).
 BoardingPanel::Plunder::Plunder(const Outfit *outfit, int count, bool inCargo)
 	: inCargo(inCargo), name(outfit->DisplayName()), outfit(outfit), count(count),
-	unitValue(outfit->Cost() * ((outfit->GetPrecise("installable") < 0 || outfit->GetPrecise("nondepreciable")) ? 1.
+	unitValue(outfit->Cost() * ((outfit->GetPrecise("uninstallable") || outfit->GetPrecise("nondepreciable")) ? 1.
 		: !inCargo || GameData::GetGamerules().DepreciationCargoIsPlunder() ? Depreciation::Plundered()
 		: Depreciation::Full()))
 {

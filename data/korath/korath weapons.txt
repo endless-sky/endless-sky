@@ -1124,7 +1124,7 @@ outfit "Microbot Grinder"
 	"required crew" 20
 	"gun ports" -1
 	"spinal mount" -1
-	"unplunderable" 1
+	"unplunderable"
 	weapon
 		"hardpoint sprite" "hardpoint/factory/microbot factory"
 			"frame rate" 12

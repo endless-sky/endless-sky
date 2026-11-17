@@ -67,8 +67,9 @@ public:
 	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day, bool chassisOnly = false) const;
 	// Get the value of a ship, along with all its outfits.
 	int64_t Value(const Ship &ship, int day) const;
-	// Get the value just of the chassis of a ship.
-	int64_t Value(const Ship *ship, int day, int count = 1) const;
+	// Get the value just of the chassis of a ship. Provide the full count of ships,
+	// and the number of those ships which are locked.
+	int64_t Value(const Ship *ship, int day, int count = 1, int locked = 0) const;
 	// Get the value of an outfit.
 	int64_t Value(const Outfit *outfit, int day, int count = 1) const;
 
@@ -78,7 +79,7 @@ private:
 	// day for its depreciation.
 	int Sell(std::map<int, int> &record, int day) const;
 	// Calculate depreciation for some number of items.
-	double Depreciate(const std::map<int, int> &record, int day, int count = 1) const;
+	double Depreciate(const std::map<int, int> &record, int day, int unlocked = 1, int locked = 0) const;
 	// Calculate the value fraction for an item given the item's recorded date and the current day.
 	double Depreciate(int date, int day) const;
 	// Calculate the value fraction for an item of the given age.

@@ -140,6 +140,18 @@ void UniverseObjects::FinishLoading()
 	// Guard against infinite loops in condition aliases.
 	for(auto &alias : conditionAliases | views::values)
 		alias.FinishLoading();
+
+	// Store the current state, so that we can revert back to it when exiting a game and starting/loading a new one.
+	defaultFleets = fleets;
+	defaultGovernments = governments;
+	defaultPlanets = planets;
+	defaultSystems = systems;
+	defaultGalaxies = galaxies;
+	defaultShipSales = shipSales;
+	defaultOutfitSales = outfitSales;
+	defaultWormholes = wormholes;
+	defaultPersons = persons;
+	defaultSubstitutions = substitutions;
 }
 
 
@@ -357,6 +369,25 @@ void UniverseObjects::CheckReferences()
 	for(const auto &it : persons)
 		if(!it.second.IsValid())
 			Warn("person", it.first);
+}
+
+
+
+void UniverseObjects::Revert()
+{
+	fleets.Revert(defaultFleets);
+	governments.Revert(defaultGovernments);
+	planets.Revert(defaultPlanets);
+	systems.Revert(defaultSystems);
+	galaxies.Revert(defaultGalaxies);
+	shipSales.Revert(defaultShipSales);
+	outfitSales.Revert(defaultOutfitSales);
+	wormholes.Revert(defaultWormholes);
+	persons.Revert(defaultPersons);
+	substitutions.Revert(defaultSubstitutions);
+
+	for(auto &it : persons)
+		it.second.Restore();
 }
 
 
@@ -1059,14 +1090,15 @@ const string &UniverseObjects::Tooltip(const string &label) const
 {
 	static const string EMPTY;
 	auto it = tooltips.find(label);
-	// Special case: the "cost" and "sells for" labels include the percentage of
-	// the full price, so they will not match exactly.
+	// Special case: the following labels include the percentage of the full price, so they will not match exactly.
 	if(it == tooltips.end() && label.starts_with("cost"))
 		it = tooltips.find("cost:");
 	if(it == tooltips.end() && label.starts_with("ship: cost"))
 		it = tooltips.find("ship: cost:");
 	if(it == tooltips.end() && label.starts_with("sells for"))
 		it = tooltips.find("sells for:");
+	if(it == tooltips.end() && label.starts_with("ship: empty hull"))
+		it = tooltips.find("ship: empty hull:");
 	return (it == tooltips.end() ? EMPTY : it->second);
 }
 
