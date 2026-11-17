@@ -1448,6 +1448,13 @@ void Engine::SelectGroup(int group, bool hasShift, bool hasControl)
 
 
 
+void Engine::QueueCommand(const Command &queue)
+{
+	queued |= queue;
+}
+
+
+
 // Break targeting on all projectiles between the player and the given
 // government; gov projectiles stop targeting the player and player's
 // projectiles stop targeting gov.
@@ -2226,6 +2233,8 @@ void Engine::HandleKeyboardInputs()
 	// Determine which new keys were pressed by the player.
 	Command oldHeld = keyHeld;
 	keyHeld.ReadKeyboard();
+	keyHeld |= queued;
+	queued.Clear();
 	Command keyDown = keyHeld.AndNot(oldHeld);
 
 	// Certain commands are always sent when the corresponding key is depressed.
