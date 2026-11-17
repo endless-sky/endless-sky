@@ -251,7 +251,6 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			break;
 		}
 		return false;
-		break;
 	case SDLK_x:
 		if(ctrl)
 		{
@@ -260,7 +259,6 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			break;
 		}
 		return false;
-		break;
 	case SDLK_v:
 		if(ctrl)
 		{
@@ -269,7 +267,6 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			break;
 		}
 		return false;
-		break;
 	case SDLK_z:
 		if(ctrl)
 		{
@@ -286,7 +283,6 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			break;
 		}
 		return false;
-		break;
 	case SDLK_INSERT:
 		if(shift)
 		{
@@ -301,7 +297,6 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			break;
 		}
 		return false;
-		break;
 	case SDLK_AC_BACK:
 	case SDLK_ESCAPE:
 		SetFocus(false);
@@ -588,7 +583,7 @@ Point Edit::AlignedOffset(size_t offset) const
 {
 	const Font &font = FontSet::Get(fontSize);
 	const string &s = Text();
-	Point ret{};
+	Point ret;
 	switch(alignment)
 	{
 	case LEFT:

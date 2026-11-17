@@ -82,7 +82,7 @@ Point FormationPositioner::Position(const Ship *ship)
 	else
 	{
 		// Add the ship to the set of coordinates. We add it with a default
-		// coordinate of Point(0,0), it will gets its proper coordinate in
+		// coordinate of Point(0,0), it will get its proper coordinate in
 		// the next generate round.
 		shipPositions[ship] = make_pair(relPos, tickTock);
 

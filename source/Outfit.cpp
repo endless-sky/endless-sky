@@ -575,7 +575,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 	if(attributes.Get("installable"))
 	{
 		attributes.Erase("installable");
-		node.PrintTrace("Deprecated use of \"installable\" instead of \"uninstallable\":");
+		node.PrintTrace(R"(Deprecated use of "installable" instead of "uninstallable":)");
 		Set("uninstallable", 1.);
 	}
 }
@@ -753,12 +753,12 @@ pair<int, vector<string>> Outfit::CanAddWithReasons(const Outfit &other, int cou
 			if(value + otherValue * count < minimum)
 				count = (value - minimum) / -otherValue;
 			if(!count)
-				reasons.push_back(name);
+				reasons.emplace_back(name);
 		}
 		// Even if we know that this outfit can't be added/removed, we still check each
 		// attribute to determine if multiple attributes could be the reason why that is.
 		else if(value + otherValue * (isAdding ? 1 : -1) < minimum)
-			reasons.push_back(name);
+			reasons.emplace_back(name);
 	}
 
 	return make_pair(count, reasons);

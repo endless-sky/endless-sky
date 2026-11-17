@@ -419,7 +419,7 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 #else
 	const int originalState = SDL_GL_GetSwapInterval();
 #endif
-	int interval = 1;
+	int interval;
 	switch(state)
 	{
 		case Preferences::VSync::ADAPTIVE:

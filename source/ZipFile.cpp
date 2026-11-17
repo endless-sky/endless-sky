@@ -110,7 +110,7 @@ string ZipFile::ReadFile(const filesystem::path &filePath) const
 
 	char buffer[8192];
 	string contents;
-	int bytesRead = 0;
+	int bytesRead;
 	while((bytesRead = unzReadCurrentFile(zipFile, buffer, sizeof(buffer))) > 0)
 		contents.append(buffer, bytesRead);
 

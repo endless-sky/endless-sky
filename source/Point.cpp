@@ -179,7 +179,6 @@ Point &Point::operator*=(double scalar)
 #elif defined(__SSE2__)
 	__m128d scalar_vec = _mm_set1_pd(scalar);
 	v = _mm_mul_pd(v, scalar_vec);
-	return *this;
 #else
 	x *= scalar;
 	y *= scalar;

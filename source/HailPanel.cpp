@@ -35,7 +35,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "TextArea.h"
 #include "UI.h"
-#include "Weapon.h"
 
 #include <algorithm>
 #include <cmath>

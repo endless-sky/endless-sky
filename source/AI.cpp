@@ -64,7 +64,7 @@ using namespace std;
 namespace {
 	bool ShouldCancelAutopilot(const Ship &flagship, const Command &activeCommands)
 	{
-		// If the player issues any of those commands, then any autopilot actions for the player get cancelled.
+		// If the player issues any of those commands, then any autopilot actions for the player get canceled.
 		static const Command cancelers(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD
 			| Command::BACK | Command::FORWARD | Command::LEFT | Command::RIGHT
 			| Command::AUTOSTEER | Command::STOP);
@@ -1772,7 +1772,7 @@ shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 	int shipScanTime = scanTimeIt != scanTime.end() ? scanTimeIt->second : 0;
 	if((cargoScan || outfitScan) && shipScanCount < maxScanCount && shipScanTime < forfeitTime)
 	{
-		// If this ship already has a target, and is in the process of scanning it, prioritise that,
+		// If this ship already has a target, and is in the process of scanning it, prioritize that,
 		// even if the scan time for this ship has exceeded 2.5 minutes.
 		shared_ptr<Ship> oldTarget = ship.GetTargetShip();
 		if(oldTarget && !oldTarget->IsTargetable())
@@ -2983,12 +2983,11 @@ void AI::Attack(const Ship &ship, Command &command, const Ship &target, FireComm
 		minSafeDistance = 1.25 * minSafeDistance + totalRadius;
 
 		double approachSpeed = (ship.Velocity() - target.Velocity()).Dot(direction.Unit());
-		double slowdownDistance = 0.;
 		// If this ship can use reverse thrusters, consider doing so.
 		double reverseSpeed = ship.MaxReverseVelocity();
 		bool useReverse = reverseSpeed && (reverseSpeed >= min(target.MaxVelocity(), ship.MaxVelocity())
 				|| target.Velocity().Dot(-direction.Unit()) <= reverseSpeed);
-		slowdownDistance = approachSpeed * approachSpeed / (useReverse ?
+		double slowdownDistance = approachSpeed * approachSpeed / (useReverse ?
 			ship.ReverseAcceleration() : (ship.Acceleration() + 160. / ship.TurnRate())) / 2.;
 
 		// If we're too close, run away.
@@ -3623,7 +3622,7 @@ void AI::DoScatter(const Ship &ship, Command &command, bool recheckCloseShips)
 		// This ship isn't close enough to scatter from.
 		if(distanceSquared > SCATTER_TOO_CLOSE)
 			++it;
-		// This ships is very far away. Stop tracking it.
+		// This ship is very far away. Stop tracking it.
 		else if(distanceSquared > SCATTER_TRACK)
 			it = close.erase(it);
 		// Only scatter if the ship has a similar movement profile to you,

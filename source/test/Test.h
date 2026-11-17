@@ -84,7 +84,7 @@ public:
 	public:
 		Type stepType = Type::ASSERT;
 		std::string nameOrLabel;
-		// Variables for travel pan/navigate steps.
+		// Variables for travel plan/navigate steps.
 		std::vector<const System *> travelPlan;
 		const Planet *travelDestination = nullptr;
 		// For applying condition changes.

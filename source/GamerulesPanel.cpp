@@ -20,12 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DialogPanel.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Information.h"
 #include "Interface.h"
-#include "OptionalInputDialogPanel.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
@@ -676,7 +674,7 @@ void GamerulesPanel::DrawTooltips()
 
 
 
-void GamerulesPanel::HandleGamerulesString(const string &str)
+void GamerulesPanel::HandleGamerulesString(const string &str) const
 {
 	gamerules.Toggle(str, &GetUI());
 }
@@ -731,7 +729,7 @@ void GamerulesPanel::HandleDown()
 
 
 
-void GamerulesPanel::HandleConfirm()
+void GamerulesPanel::HandleConfirm() const
 {
 	switch(page)
 	{

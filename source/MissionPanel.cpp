@@ -898,7 +898,7 @@ Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const 
 		if(it->Deadline())
 			SpriteShader::Draw(fast, pos + Point(-4., 8.));
 
-		const Color *color = nullptr;
+		const Color *color;
 		bool canAccept = (&missionList == &available ? it->CanAccept(player) : IsSatisfied(*it));
 		if(!canAccept)
 		{

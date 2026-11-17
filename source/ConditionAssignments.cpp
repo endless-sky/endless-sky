@@ -179,7 +179,7 @@ void ConditionAssignments::Add(const DataNode &node, const ConditionsStore *cond
 	else if(node.Size() >= 3)
 	{
 		// Parse the assignment operator.
-		AssignOp ao = AssignOp::ASSIGN;
+		AssignOp ao;
 		const string &assignOpString = node.Token(1);
 		auto it = ranges::find_if(ASSIGN_OP_TO_TEXT,
 			[&assignOpString](const pair<AssignOp, const string> &e) {

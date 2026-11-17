@@ -1411,7 +1411,7 @@ void MapPanel::DrawTravelPlan() const
 	// fleet are unable to make it this far.
 	const double jumpRange = flagship->JumpNavigation().JumpRange();
 	const System *previous = &playerSystem;
-	const System *next = nullptr;
+	const System *next;
 	for(int i = player.TravelPlan().size() - 1; i >= 0; --i, previous = next)
 	{
 		next = player.TravelPlan()[i];

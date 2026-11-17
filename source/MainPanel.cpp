@@ -50,7 +50,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const double MINIMUM_DRAG_BOX_SIZE = 25.;
+	constexpr double MINIMUM_DRAG_BOX_SIZE = 25.;
 }
 
 
