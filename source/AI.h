@@ -79,10 +79,14 @@ public:
 	// Clear ship orders. This should be done when the player lands on a planet,
 	// but not when they jump from one system to another.
 	void ClearOrders();
+	// Clear orders given to the player's flagship. Certain orders force the
+	// ship's target to match the order's. Engine should call this if the player
+	// changes their target.
+	void ClearFlagshipTargetOrders();
 	// Issue AI commands to all ships for one game step.
 	void Step(Command &activeCommands);
 	// Process commands for the player only, called by Step in non-paused mode.
-	void MovePlayer(Ship &ship, Command &activeCommands);
+	void MovePlayer(Ship &ship, Command &activeCommands, Command &command);
 	void DisengageAutopilot(bool sendMessage = true);
 
 	// Set the mouse position for turning the player's flagship.
@@ -143,7 +147,7 @@ private:
 	// Obtain a list of ships matching the desired hostility.
 	std::vector<Ship *> GetShipsList(const Ship &ship, bool targetEnemies, double maxRange = -1.) const;
 
-	bool FollowOrders(Ship &ship, Command &command);
+	bool FollowOrders(Ship &ship, Command &command, bool isFlagship = false);
 	void MoveInFormation(Ship &ship, Command &command);
 	void MoveIndependent(Ship &ship, Command &command);
 	void MoveWithParent(Ship &ship, Command &command, const Ship &parent);

@@ -702,6 +702,7 @@ void PreferencesPanel::DrawSettings()
 		"\n",
 		"Flagship Behavior",
 		Preferences::MOUSE_CONTROL_FLAGSHIP,
+		Preferences::CONTROL_FLAGSHIP_WITH_ORDERS,
 		Preferences::MOUSE_CONTROL_TURRETS,
 		Preferences::AUTO_AIM,
 		Preferences::AUTO_FIRE,

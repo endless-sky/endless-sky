@@ -1772,6 +1772,9 @@ tip "Extra fleet status messages"
 tip "Control ship with mouse"
 	`If active, your flagship will always turn toward your mouse. For activating mouse turning on a key press, see the "Mouse turning (hold)" control.`
 
+tip "Control ship with orders"
+	`If active, you can select your flagship as if it were an escort and send fleet orders to it. Using normal movement commands on your flagship will cancel any active orders.`
+
 tip "Aim turrets with mouse"
 	`If active, your turrets will target your mouse position. See the "Turret aim override (hold)" keybind to toggle based on a held key.`
 
