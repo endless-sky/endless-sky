@@ -383,8 +383,8 @@ government "Bunrodea (Megasa)"
 government "Coalition"
 	swizzle 5
 	color 1 .6 .7
-	"crew attack" .6
-	"crew defense" 3
+	"crew attack" 1.1
+	"crew defense" 2.1
 	language "Coalition"
 	confusion "civilian"
 	"player reputation" 1
@@ -919,7 +919,7 @@ government "Hai (Wormhole Access)"
 government "Heliarch"
 	swizzle 22
 	color 1 .8 .5
-	"crew attack" 1.3
+	"crew attack" 1.5
 	"crew defense" 2.8
 	confusion "elite"
 	"player reputation" 1
