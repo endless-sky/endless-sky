@@ -1195,8 +1195,11 @@ interface "gamerules presets"
 		color medium
 
 
+
 # On-screen buttons that send commands can be defined here.
 interface "main hud"
+
+
 
 interface "hud"
 	# Player status.
