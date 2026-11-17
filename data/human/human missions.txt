@@ -10084,7 +10084,6 @@ mission "Timothy Radrickson 5d: Greenrock"
 	destination Greenrock
 	to offer
 		has "Timothy Radrickson 5a: Timshank Redemption: active"
-	on offer
 	on complete
 		conversation
 			`You feel the pressure of many unseen eyes watching you as you leave the spaceport and enter into the sprawling stalls of Greenrock's rowdy emporium, where everything and everyone is for sale.`
@@ -10117,8 +10116,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 				`	(Find the detoxification medicine.)`
 					goto med1
 					to display
-						"timothy radrickson id" <= 1
-						not "id1"
+						not "med1"
 				`	(Go back to the drug dealer to get the detoxification medicine.)`
 					goto med2
 					to display
