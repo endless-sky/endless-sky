@@ -27,6 +27,7 @@ class System;
 class UniverseObjects;
 
 
+
 // Class representing a dataset for automated testing
 class TestData {
 public:
@@ -54,7 +55,7 @@ private:
 
 
 private:
-	UniverseObjects *universe;
+	UniverseObjects *universe = nullptr;
 
 	// Name of the dataset
 	std::string dataSetName;

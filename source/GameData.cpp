@@ -168,7 +168,6 @@ shared_future<void> GameData::BeginLoad(TaskQueue &queue, const PlayerInfo &play
 
 void GameData::FinishLoading()
 {
-
 	activeGamerules = objects->gamerulesPresets.Get("Default");
 	playerGovernment = objects->governments.Get("Escort");
 
