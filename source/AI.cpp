@@ -570,7 +570,9 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
 		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
 		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
-		canceled |= orders.contains(flagship);
+		// Moving while having any order that isn't HOLD_FIRE cancels the orders.
+		auto it = orders.find(flagship);
+		canceled |= it != orders.end() && !it->second.AnyExcept(Orders::Types::HOLD_FIRE);
 		DisengageAutopilot(canceled);
 	}
 
@@ -5238,7 +5240,20 @@ void AI::DisengageAutopilot(bool sendMessage)
 	if(sendMessage)
 		Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
 	autoPilot.Clear();
-	orders.erase(player.Flagship());
+
+	const Ship *flagship = player.Flagship();
+	auto it = orders.find(flagship);
+	if(it != orders.end())
+	{
+		// Maintain any hold fire orders.
+		bool holdFire = it->second.Has(Orders::Types::HOLD_FIRE);
+		orders.erase(it);
+		if(holdFire)
+		{
+			OrderSingle newOrder{Orders::Types::HOLD_FIRE};
+			orders[flagship].Add(newOrder);
+		}
+	}
 }
 
 

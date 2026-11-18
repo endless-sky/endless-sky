@@ -79,9 +79,8 @@ public:
 	// Clear ship orders. This should be done when the player lands on a planet,
 	// but not when they jump from one system to another.
 	void ClearOrders();
-	// Clear orders given to the player's flagship. Certain orders force the
-	// ship's target to match the order's. Engine should call this if the player
-	// changes their target.
+	// Certain orders force the ship's target to match the order's. Engine should
+	// call this if the player changes their flagship's target.
 	void ClearFlagshipTargetOrders();
 	// Issue AI commands to all ships for one game step.
 	void Step(Command &activeCommands);
