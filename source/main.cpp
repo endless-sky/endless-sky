@@ -171,6 +171,7 @@ int main(int argc, char *argv[])
 
 	try {
 		// Load plugin settings and preferences before game data.
+		Command::Init();
 		Preferences::Init();
 		Preferences::Load();
 		PluginManager::LoadSettings();

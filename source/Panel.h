@@ -79,6 +79,7 @@ public:
 	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
 	void AddZone(const Rectangle &rect, const std::function<void(const Event &)> &fun);
 	void AddZone(const Rectangle &rect, SDL_Keycode key);
+	void AddZone(const Rectangle &rect, const Command &command);
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, apply that zone's action and return true.
 	bool ZoneClick(const Point &point);
