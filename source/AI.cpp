@@ -5097,8 +5097,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands, Command &command)
 
 		if(ShouldCancelAutopilot(ship, activeCommands))
 		{
+			DisengageAutopilot(false);
 			autoPilot = activeCommands;
-			orders.erase(&ship);
 		}
 	}
 	bool shouldAutoAim = false;
