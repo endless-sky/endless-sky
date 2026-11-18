@@ -319,7 +319,7 @@ phrase "entering house idriss"
 		"Message buoy to all ships: Welcome to Ablub, home of House Idriss"
 	word
 		"."
-		", leading mining guild of the Coalition."
+		", chief electronics exporter of the Coalition."
 		`. "Sparked with spirit."`
 
 mission "Coalition Message Buoy: House Mallob"
