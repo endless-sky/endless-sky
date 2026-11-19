@@ -813,6 +813,12 @@ tip "scram drive:"
 tip "self destruct:"
 	`The chance of this ship self-destructing when you try to board or capture it.`
 
+tip "board self destruct:"
+	`The chance of this ship self-destructing when you try to board it.`
+
+tip "capture self destruct:"
+	`The chance of this ship self-destructing when you try to capture it.`
+
 tip "shield energy:"
 	`Energy consumed per second when recharging shields.`
 
