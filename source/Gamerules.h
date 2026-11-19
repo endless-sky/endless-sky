@@ -134,6 +134,7 @@ public:
 	static const std::string LOCK_ON_CAPTURE;
 	static const std::string REWIRING_COST_MULTIPLIER;
 	static const std::string LOCKED_HULL_VALUE_MULTIPLIER;
+	static const std::string BASE_COMBAT_WIDTH;
 	static const std::string FRIENDLY_FIRE_SAME_PROB;
 	static const std::string FRIENDLY_FIRE_ALLY_PROB;
 	static const std::string FRIENDLY_FIRE_FIGHTER_PROB_MULT;
@@ -217,6 +218,7 @@ public:
 	bool LockOnCapture() const;
 	double RewiringCostMultiplier() const;
 	double LockedHullValueMultiplier() const;
+	std::optional<double> BaseCombatWidth() const;
 	bool FriendlyFireActive(std::optional<FriendlyFireType> type = std::nullopt) const;
 	double FriendlyFireSameGovProb() const;
 	double FriendlyFireAlliedGovProb() const;
@@ -287,6 +289,7 @@ private:
 		bool lockOnCapture = false;
 		double rewiringCostMultiplier = .7;
 		double lockedHullValueMultiplier = .2;
+		std::optional<double> baseCombatWidth;
 		double friendlyFireSameGovProb = 0.;
 		double friendlyFireAlliedGovProb = 0.;
 		double friendlyFireFighterMultiplier = 0.;
