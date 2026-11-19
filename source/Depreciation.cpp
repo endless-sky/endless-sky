@@ -226,9 +226,7 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool cha
 			for(int i = 0; i < count; ++i)
 				Buy(outfit, day, source);
 
-	// Planetary stock doesn't keep a record of locked ships. If you sell a locked ship
-	// and then go to buy that same chassis, you'll need to pay full price.
-	if(ship.BaseAttributes().GetPrecise("nondepreciable") || (isStock && ship.IsLocked()))
+	if(ship.BaseAttributes().GetPrecise("nondepreciable"))
 		return;
 
 	// Then, check the base day for the ship chassis itself.
@@ -250,6 +248,10 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool cha
 			day -= MaxAge();
 		}
 	}
+	// Planetary stock doesn't keep a record of locked ships. If you sell a locked ship
+	// and then go to buy that same chassis, you'll need to pay full price.
+	if(isStock && ship.IsLocked())
+		return;
 
 	// Increment our count for this ship on this day.
 	++ships[base][day];
