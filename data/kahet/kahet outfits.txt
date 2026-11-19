@@ -44,8 +44,8 @@ outfit "Ka'het Nullifier"
 		"firing force" 135
 		"firing heat" 160
 		"turn" 73
-		"shield damage" 120
-		"hull damage" 40
+		"shield damage" 132
+		"hull damage" 44
 		"energy damage" 3200
 		"ion damage" 220
 		"scrambling damage" 10
@@ -133,8 +133,8 @@ outfit "Ka'het Ravager Beam"
 		"reload" 1
 		"firing energy" 3.7
 		"firing heat" 1.5
-		"shield damage" 1.8
-		"hull damage" 4.3
+		"shield damage" 2
+		"hull damage" 4.7
 	description "This laser beam was created by the Builders for use in asteroid mining. Unfortunately, they understood its effectiveness in combat only after it turned against them."
 
 outfit "Ka'het Ravager Turret"
@@ -161,8 +161,8 @@ outfit "Ka'het Ravager Turret"
 		"reload" 1
 		"firing energy" 3.7
 		"firing heat" 1.5
-		"shield damage" 1.8
-		"hull damage" 4.3
+		"shield damage" 2
+		"hull damage" 4.7
 	description "This turret-mounted version of the Ravager Beam is one of the strongest weapons the Ka'het possess."
 
 effect "ravager impact"
@@ -193,8 +193,8 @@ outfit "Ka'het Annihilator"
 		"reload" 10
 		"firing energy" 31
 		"firing heat" 8
-		"shield damage" 43
-		"hull damage" 12
+		"shield damage" 47.3
+		"hull damage" 13.2
 	description "The Builders initially created the Annihilator long ago, as a countermeasure to their newly discovered shield matrix. They kept developing it for centuries, with this being its final version."
 
 outfit "Ka'het Annihilator Turret"
@@ -233,8 +233,8 @@ outfit "Annihilator Projectile"
 		"inaccuracy" 2
 		"velocity" 18
 		"lifetime" 35
-		"shield damage" 43
-		"hull damage" 12
+		"shield damage" 47.3
+		"hull damage" 13.2
 
 outfit "Ka'het EMP Deployer"
 	category "Secondary Weapons"
@@ -275,8 +275,8 @@ outfit "Ka'het EMP Deployer"
 		"radar tracking" .8
 		"trigger radius" 50
 		"blast radius" 200
-		"shield damage" 700
-		"hull damage" 100
+		"shield damage" 770
+		"hull damage" 110
 		"ion damage" 48
 		"scrambling damage" 48
 		"hit force" 135
@@ -315,8 +315,8 @@ outfit "Ka'het Emergency Deployer"
 		"firing hull" 60
 		"trigger radius" 40
 		"blast radius" 230
-		"shield damage" 28750
-		"hull damage" 9060
+		"shield damage" 31625
+		"hull damage" 9966
 		"heat damage" 4920
 		"hit force" 2400
 		"missile strength" 280

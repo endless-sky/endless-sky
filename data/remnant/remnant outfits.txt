@@ -288,8 +288,8 @@ outfit "EMP Torpedo Bay"
 		"radar tracking" .8
 		"trigger radius" 50
 		"blast radius" 200
-		"shield damage" 700
-		"hull damage" 100
+		"shield damage" 770
+		"hull damage" 110
 		"ion damage" 48
 		"scrambling damage" 48
 		"hit force" 135
