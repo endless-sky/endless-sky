@@ -2557,8 +2557,11 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 		if(hit && collisionType == CollisionType::SHIP)
 			shipHit = static_cast<Ship *>(hit)->shared_from_this();
 
-		// Don't collide with carried ships that are disabled and not directly targeted.
-		if(shipHit && !targetedHit && !FighterHitHelper::IsValidTarget(shipHit.get()))
+		// If this collision was on an untargeted disabled ship, ignore it if
+		// the weapon can't hit disabled targets or the hit is on a fighter with
+		// the disabled fighter collision dodging gamerule enabled.
+		if(shipHit && !targetedHit && shipHit.get()->IsDisabled()
+				&& (!weapon.CanCollideDisabled() || !FighterHitHelper::IsValidTarget(shipHit.get())))
 			continue;
 
 		// If the ship is cloaked, and phasing, then skip this ship (during this step).

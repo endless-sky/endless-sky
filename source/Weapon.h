@@ -168,6 +168,7 @@ public:
 	bool IsFused() const;
 	// Whether projectiles from this weapon can directly collide with objects.
 	bool CanCollideShips() const;
+	bool CanCollideDisabled() const;
 	bool CanCollideAsteroids() const;
 	bool CanCollideMinables() const;
 	// Attributes that determine how projectiles from this weapon home onto targets.
@@ -265,6 +266,7 @@ private:
 	bool isGravitational = false;
 	bool isFused = false;
 	bool canCollideShips = true;
+	bool canCollideDisabled = true;
 	bool canCollideAsteroids = true;
 	bool canCollideMinables = true;
 	// Guns and missiles are by default aimed a converged point at the
@@ -463,6 +465,7 @@ inline bool Weapon::IsDamageScaled() const { return isDamageScaled; }
 inline bool Weapon::IsGravitational() const { return isGravitational; }
 inline bool Weapon::IsFused() const { return isFused; }
 inline bool Weapon::CanCollideShips() const { return canCollideShips; }
+inline bool Weapon::CanCollideDisabled() const { return canCollideDisabled; }
 inline bool Weapon::CanCollideAsteroids() const { return canCollideAsteroids; }
 inline bool Weapon::CanCollideMinables() const { return canCollideMinables; }
 inline bool Weapon::Homing() const { return homing; }

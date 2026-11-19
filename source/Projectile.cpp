@@ -188,16 +188,12 @@ void Projectile::Move(vector<Visual> &visuals, vector<Projectile> &projectiles)
 		if(!Random::Int(it.second))
 			visuals.emplace_back(*it.first, position, velocity, angle);
 
-	// If the target has left the system, stop following it. Also stop if the
-	// target has been captured by a different government.
-	// Also stop targeting fighters that have become disabled after this projectile was fired.
+	// Check if the lock on the current target should be broken.
 	const Entity *currentTarget = cachedTarget;
 	if(currentTarget)
 	{
 		currentTarget = TargetPtr().get();
-		if(!currentTarget || !currentTarget->IsTargetable() || currentTarget->GetGovernment() != targetGovernment
-			|| (currentTarget->EntityType() == Entity::Type::SHIP && !targetDisabled
-				&& !FighterHitHelper::IsValidTarget(static_cast<const Ship *>(currentTarget))))
+		if(ShouldBreakTarget(currentTarget))
 		{
 			BreakTarget();
 			currentTarget = nullptr;
@@ -433,6 +429,26 @@ void Projectile::BreakTarget()
 	cachedTarget = nullptr;
 	targetGovernment = nullptr;
 	targetDisabled = false;
+}
+
+
+
+bool Projectile::ShouldBreakTarget(const Entity *target) const
+{
+	// The target no longer exists.
+	if(!target)
+		return true;
+	// The target has become untargetable in some way (e.g. jumped out of the system or cloaked).
+	if(!target->IsTargetable())
+		return true;
+	// The target has been captured by a different government.
+	if(target->GetGovernment() != targetGovernment)
+		return true;
+	// The target has become disabled and this projectile shouldn't hit disabled targets.
+	if(target->EntityType() == Entity::Type::SHIP && !targetDisabled
+			&& (!weapon->CanCollideDisabled() || !FighterHitHelper::IsValidTarget(static_cast<const Ship *>(target))))
+		return true;
+	return false;
 }
 
 
