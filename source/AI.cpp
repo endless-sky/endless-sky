@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConditionsStore.h"
 #include "DistanceMap.h"
-#include "FighterHitHelper.h"
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "FormationPattern.h"
@@ -30,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Hasher.h"
+#include "HitHelper.h"
 #include "JumpType.h"
 #include "image/Mask.h"
 #include "Messages.h"
@@ -913,8 +913,9 @@ void AI::Step(Command &activeCommands)
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
 			if(targetTurn == targetStep || !target || target->IsDestroyed() || (target->IsDisabled() &&
-					(personality.Disables() || (!FighterHitHelper::IsValidTarget(target.get()) && !personality.IsVindictive())))
-					|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
+				(personality.Disables()
+				|| (!HitHelper::IsValid(target.get(), nullptr) && !personality.IsVindictive())))
+				|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
 				target = FindTarget(*it);
 				it->SetTargetShip(target);
@@ -4336,7 +4337,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			if(target->IsFleeing() && person.IsMerciful())
 				continue;
 			// Don't fire at ships that cannot be hit without targeting.
-			if(target != currentTarget.get() && !FighterHitHelper::IsValidTarget(target))
+			if(target != currentTarget.get() && !HitHelper::IsValid(target, weapon))
 				continue;
 
 			Point p = target->Position() - start;

@@ -19,7 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "CollisionType.h"
 #include "Effect.h"
 #include "Entity.h"
-#include "FighterHitHelper.h"
+#include "HitHelper.h"
 #include "Minable.h"
 #include "pi.h"
 #include "Random.h"
@@ -446,7 +446,7 @@ bool Projectile::ShouldBreakTarget(const Entity *target) const
 		return true;
 	// The target has become disabled and this projectile shouldn't hit disabled targets.
 	if(target->EntityType() == Entity::Type::SHIP && !targetDisabled
-			&& (!weapon->CanCollideDisabled() || !FighterHitHelper::IsValidTarget(static_cast<const Ship *>(target))))
+			&& !HitHelper::IsValid(static_cast<const Ship *>(target), weapon))
 		return true;
 	return false;
 }
