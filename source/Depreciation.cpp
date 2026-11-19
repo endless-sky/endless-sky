@@ -249,7 +249,9 @@ void Depreciation::Buy(const Ship &ship, int day, Depreciation *source, bool cha
 		}
 	}
 	// Planetary stock doesn't keep a record of locked ships. If you sell a locked ship
-	// and then go to buy that same chassis, you'll need to pay full price.
+	// and then go to buy that same chassis, you'll need to pay full price. This is done
+	// here so that selling a locked ship still removes its depreciation record from the
+	// player.
 	if(isStock && ship.IsLocked())
 		return;
 
