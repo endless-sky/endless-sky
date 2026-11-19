@@ -354,6 +354,7 @@ void ShipAttributeCache::Misc(const Outfit &attributes)
 	landingSpeed = attributes.Get("landing speed");
 	silentJumps = attributes.Get("silent jumps");
 	selfDestruct = attributes.Get("self destruct");
+	selfDestructTime = max<int>(0, attributes.Get("self destruct time"));
 
 	turretTurnMult = 1. + attributes.Get("turret turn multiplier");
 

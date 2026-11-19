@@ -5249,8 +5249,10 @@ void Ship::DoGeneration()
 		shieldDelay = max(0, shieldDelay - 1);
 		hullDelay = max(0, hullDelay - 1);
 	}
-	// Let the ship repair itself when disabled if it has the appropriate attribute.
-	if(isDisabled && !locked && cache.recoveryTime)
+
+	// Let the ship repair itself when disabled due to low hull if it has the appropriate attribute.
+	bool wasDisabled = levels.hull < minimumHull;
+	if(wasDisabled && !locked && cache.recoveryTime)
 	{
 		disabledRecoveryCounter += 1;
 		const ResourceLevels &recoveryCost = cache.recoveryCost;
@@ -5263,11 +5265,24 @@ void Ship::DoGeneration()
 			disabledRecoveryCounter = 0;
 			levels.hull = min(max(levels.hull, minimumHull * 1.5), MaxHull());
 			isDisabled = false;
+			wasDisabled = false;
 		}
 	}
+	// A ship that is disabled due to low hull may also be on a self destruct timer.
+	if(cache.selfDestructTime)
+	{
+		if(wasDisabled)
+		{
+			selfDestructCounter += 1;
+			if(selfDestructCounter >= cache.selfDestructTime)
+				SelfDestruct();
+		}
+		else
+			selfDestructCounter = 0;
+	}
 
-	// Handle ionization effects, etc.
-	bool wasDisabled = levels.hull < minimumHull;
+	// Handle status effects. Certain status effects may cause a ship to become disabled or destroyed,
+	// hence checking if the ship was already disabled or destroyed prior to this point.
 	bool wasDestroyed = IsDestroyed();
 	DoStatusEffects(isDisabled || locked);
 

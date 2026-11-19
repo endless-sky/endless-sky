@@ -158,6 +158,7 @@ private:
 	float landingSpeed = 0.f;
 	bool silentJumps = false;
 	double selfDestruct = 0.;
+	int selfDestructTime = 0;
 
 	double turretTurnMult = 1.;
 
