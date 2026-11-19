@@ -534,7 +534,7 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 		{
 			buttonCommand = Command(value);
 			if(!buttonCommand)
-				node.PrintTrace("\"" + value + "\" is not a recognized command. Buttons values should either be a "
+				node.PrintTrace("\"" + value + "\" is not a recognized command. Button values should either be a "
 					"single character or the name of a valid command:");
 		}
 		if(node.Size() >= 3)
