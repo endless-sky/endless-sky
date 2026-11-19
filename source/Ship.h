@@ -329,6 +329,10 @@ public:
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
 	std::shared_ptr<Ship> Board(bool autoPlunder, bool nonDocking);
+	// The odds of this ship self destructing when boarded
+	// or when starting a capture attempt against it.
+	double BoardSelfDestructChance() const;
+	double CaptureSelfDestructChance() const;
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
 	int Scan(const PlayerInfo &player);

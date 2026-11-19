@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Ship.h"
 
+#include <algorithm>
 #include <cmath>
 
 using namespace std;
@@ -353,7 +354,9 @@ void ShipAttributeCache::Misc(const Outfit &attributes)
 
 	landingSpeed = attributes.Get("landing speed");
 	silentJumps = attributes.Get("silent jumps");
-	selfDestruct = attributes.Get("self destruct");
+	selfDestruct = clamp(attributes.Get("self destruct"), 0., 1.);
+	boardSelfDestruct = clamp(attributes.Get("board self destruct"), 0., 1.);
+	captureSelfDestruct = clamp(attributes.Get("capture self destruct"), 0., 1.);
 
 	turretTurnMult = 1. + attributes.Get("turret turn multiplier");
 
