@@ -6002,7 +6002,7 @@ void Ship::StepTargeting()
 				else
 				{
 					isBoarding = false;
-					if(!isYours && government->IsEnemy(target->government)
+					if(!target->IsYours() && government->IsEnemy(target->government)
 						&& Random::Real() < target->cache.selfDestruct)
 					{
 						Messages::Add({"The " + target->DisplayModelName() + " \"" + target->GivenName()
