@@ -5426,13 +5426,14 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 	// A "hold fire" order can be used on the flagship to temporarily block autofire.
 	// Other orders can be issued only to escorts, unless the flagship is being treated
 	// like an escort.
+	const Ship *flagship = player.Flagship();
 	bool includeFlagship = newOrder.type == Orders::Types::HOLD_FIRE
 		|| Preferences::Has(Preferences::CONTROL_FLAGSHIP_WITH_ORDERS);
 	const vector<weak_ptr<Ship>> &selected = player.SelectedEscorts();
 	if(selected.empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
-			if((includeFlagship || it.get() != player.Flagship()) && !it->IsParked())
+			if((includeFlagship || it.get() != flagship) && !it->IsParked())
 			{
 				if(it->IsDestroyed())
 					++destroyedCount;
@@ -5464,6 +5465,12 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 				GameData::MessageCategories().Get("normal")});
 		return;
 	}
+	// If the flagship's autopilot is controlling it and then an
+	// order is issued to the flagship that would cause it to
+	// move, cancel the autopilot so that the order can be
+	// followed.
+	if(autoPilot && newOrder.type != Orders::Types::HOLD_FIRE && ranges::find(ships, flagship) != ships.end())
+		autoPilot.Clear();
 
 	Point centerOfGravity;
 	bool isMoveOrder = newOrder.type == Orders::Types::MOVE_TO;
@@ -5483,7 +5490,6 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 	// enough that each ship takes up no more than about 30,000 square pixels.
 	double maxSquadOffset = sqrt(10000. * squadCount);
 
-	const Ship *flagship = player.Flagship();
 	const Ship *newTargetShip = newOrder.GetTargetShip().get();
 	// A target is valid if we have no target, or when the target is in the
 	// same system as the flagship.
