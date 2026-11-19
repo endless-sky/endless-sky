@@ -596,6 +596,9 @@ tip "disabled recovery leak:"
 tip "disabled recovery burning:"
 	`The burning damage applied when a disabled ship repairs itself.`
 
+tip "self destruct time:"
+	`The number of seconds it takes for a disabled ship to self destruct.`
+
 tip "absolute threshold:"
 	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
 
