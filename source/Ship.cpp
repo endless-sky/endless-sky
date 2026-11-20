@@ -5269,7 +5269,8 @@ void Ship::DoGeneration()
 		}
 	}
 	// A ship that is disabled due to low hull may also be on a self destruct timer.
-	if(cache.selfDestructTime || cache.randomSelfDestructTime)
+	// Player ships can't self destruct.
+	if(!isYours && (cache.selfDestructTime || cache.randomSelfDestructTime))
 	{
 		if(wasDisabled)
 		{
