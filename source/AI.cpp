@@ -5051,7 +5051,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands, Command &command)
 	if(Preferences::GetAutoFire() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
-		AutoFire(ship, firingCommands, false, true, &player.SelectedSecondaryWeapons());
+		AutoFire(ship, firingCommands, Preferences::Has(Preferences::CONTROL_FLAGSHIP_WITH_ORDERS), true,
+			&player.SelectedSecondaryWeapons());
 
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(mouseTurning && !ship.IsBoarding() && (!ship.IsReversing() || ship.ReverseThrust()))
