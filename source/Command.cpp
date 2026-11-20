@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SDL.h"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <map>
 
@@ -31,8 +32,9 @@ using namespace std;
 namespace {
 	// These lookup tables make it possible to map a command to its description,
 	// the name of the key it is mapped to, or the SDL keycode it is mapped to.
-	map<Command, string> description;
+	map<Command, string> descriptions;
 	map<Command, string> keyName;
+	map<string, Command> commandForDescription;
 	map<int, Command> commandForKeycode;
 	map<Command, int> keycodeForCommand;
 	// Keep track of any keycodes that are mapped to multiple commands, in order
@@ -96,13 +98,90 @@ const Command Command::SHIFT(ONE << 41, "");
 
 
 
+void Command::Init()
+{
+	// Create a map of command names to Command objects in the enumeration above.
+	for(const auto &[command, description] : descriptions)
+		if(!description.empty())
+			commandForDescription[description] = command;
+}
+
+
+
+// Load the keyboard preferences.
+void Command::LoadSettings(const filesystem::path &path)
+{
+	assert(!commandForDescription.empty() && "Must call Command::Init first.");
+	DataFile file(path);
+
+	// Each command can only have one keycode, one keycode can be assigned
+	// to multiple commands.
+	for(const DataNode &node : file)
+	{
+		auto it = commandForDescription.find(node.Token(0));
+		if(it != commandForDescription.end() && node.Size() >= 2)
+		{
+			Command command = it->second;
+			int keycode = node.Value(1);
+			keycodeForCommand[command] = keycode;
+			keyName[command] = SDL_GetKeyName(keycode);
+		}
+	}
+
+	// Regenerate the lookup tables.
+	commandForKeycode.clear();
+	keycodeCount.clear();
+	for(const auto &[command, keyCode] : keycodeForCommand)
+	{
+		commandForKeycode[keyCode] = command;
+		++keycodeCount[keyCode];
+	}
+}
+
+
+
+// Save the keyboard preferences.
+void Command::SaveSettings(const filesystem::path &path)
+{
+	DataWriter out(path);
+
+	for(const auto &[command, keyCode] : keycodeForCommand)
+	{
+		auto dit = descriptions.find(command);
+		if(dit != descriptions.end())
+			out.Write(dit->second, keyCode);
+	}
+}
+
+
+
+// Set the key that is mapped to the given command.
+void Command::SetKey(Command command, int keycode)
+{
+	// Always reset *all* the mappings when one is set. That way, if two commands
+	// are mapped to the same key and you change one of them, the other stays mapped.
+	keycodeForCommand[command] = keycode;
+	keyName[command] = SDL_GetKeyName(keycode);
+
+	commandForKeycode.clear();
+	keycodeCount.clear();
+
+	for(const auto &[command, keyCode] : keycodeForCommand)
+	{
+		commandForKeycode[keyCode] = command;
+		++keycodeCount[keyCode];
+	}
+}
+
+
+
 // In the given text, replace any instances of command names (in angle brackets)
 // with key names (in quotes).
 string Command::ReplaceNamesWithKeys(const string &text)
 {
 	map<string, string> subs;
-	for(const auto &it : description)
-		subs['<' + it.second + '>'] = '"' + keyName[it.first] + '"';
+	for(const auto &[command, description] : descriptions)
+		subs['<' + description + '>'] = '"' + keyName[command] + '"';
 
 	return Format::Replace(text, subs);
 }
@@ -114,6 +193,16 @@ Command::Command(SDL_Keycode keycode)
 {
 	auto it = commandForKeycode.find(keycode);
 	if(it != commandForKeycode.end())
+		*this = it->second;
+}
+
+
+
+Command::Command(const string &name)
+{
+	assert(!commandForDescription.empty() && "Must call Command::Init first.");
+	auto it = commandForDescription.find(name);
+	if(it != commandForDescription.end())
 		*this = it->second;
 }
 
@@ -148,84 +237,13 @@ void Command::ReadKeyboard()
 
 
 
-// Load the keyboard preferences.
-void Command::LoadSettings(const filesystem::path &path)
-{
-	DataFile file(path);
-
-	// Create a map of command names to Command objects in the enumeration above.
-	map<string, Command> commands;
-	for(const auto &it : description)
-		commands[it.second] = it.first;
-
-	// Each command can only have one keycode, one keycode can be assigned
-	// to multiple commands.
-	for(const DataNode &node : file)
-	{
-		auto it = commands.find(node.Token(0));
-		if(it != commands.end() && node.Size() >= 2)
-		{
-			Command command = it->second;
-			int keycode = node.Value(1);
-			keycodeForCommand[command] = keycode;
-			keyName[command] = SDL_GetKeyName(keycode);
-		}
-	}
-
-	// Regenerate the lookup tables.
-	commandForKeycode.clear();
-	keycodeCount.clear();
-	for(const auto &it : keycodeForCommand)
-	{
-		commandForKeycode[it.second] = it.first;
-		++keycodeCount[it.second];
-	}
-}
-
-
-
-// Save the keyboard preferences.
-void Command::SaveSettings(const filesystem::path &path)
-{
-	DataWriter out(path);
-
-	for(const auto &it : keycodeForCommand)
-	{
-		auto dit = description.find(it.first);
-		if(dit != description.end())
-			out.Write(dit->second, it.second);
-	}
-}
-
-
-
-// Set the key that is mapped to the given command.
-void Command::SetKey(Command command, int keycode)
-{
-	// Always reset *all* the mappings when one is set. That way, if two commands
-	// are mapped to the same key and you change one of them, the other stays mapped.
-	keycodeForCommand[command] = keycode;
-	keyName[command] = SDL_GetKeyName(keycode);
-
-	commandForKeycode.clear();
-	keycodeCount.clear();
-
-	for(const auto &it : keycodeForCommand)
-	{
-		commandForKeycode[it.second] = it.first;
-		++keycodeCount[it.second];
-	}
-}
-
-
-
 // Get the description of this command. If this command is a combination of more
 // than one command, an empty string is returned.
 const string &Command::Description() const
 {
 	static const string empty;
-	auto it = description.find(*this);
-	return (it == description.end() ? empty : it->second);
+	auto it = descriptions.find(*this);
+	return (it == descriptions.end() ? empty : it->second);
 }
 
 
@@ -447,5 +465,5 @@ Command::Command(uint64_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())
-		description[*this] = text;
+		descriptions[*this] = text;
 }

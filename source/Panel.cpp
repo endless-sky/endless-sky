@@ -122,6 +122,13 @@ void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 
 
 
+void Panel::AddZone(const Rectangle &rect, const Command &command)
+{
+	AddZone(rect, [this, command](){ this->KeyDown('\0', 0, command, true); });
+}
+
+
+
 // Check if a click at the given coordinates triggers a clickable zone. If
 // so, apply that zone's action and return true.
 bool Panel::ZoneClick(const Point &point)
