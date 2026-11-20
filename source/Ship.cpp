@@ -4877,6 +4877,18 @@ int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool 
 			Messages::Add({"Your " + DisplayModelName()
 				+ " \"" + GivenName() + "\" has been destroyed.",
 				GameData::MessageCategories().Get("high duplicating")});
+
+		// If the weapon that killed this ship has kill effects, they replace this
+		// ship's explosion effects.
+		const Weapon &weapon = damage.GetWeapon();
+		if(!weapon.KillEffects().empty())
+		{
+			populatedExplosions = true;
+			for(const auto &[effect, count] : weapon.KillEffects())
+				explosionEffects.emplace_back(count, effect);
+			for(const auto &[effect, count] : weapon.KillFinalEffects())
+				finalExplosions[effect] += count;
+		}
 	}
 
 	// Inflicted heat damage may also disable a ship, but does not trigger a "DISABLE" event by itself.
