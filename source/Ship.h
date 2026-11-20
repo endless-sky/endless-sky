@@ -890,10 +890,9 @@ private:
 	// such as installed outfits.
 	WeightedList<const Effect *> explosionEffects;
 	std::map<const Effect *, int> finalExplosions;
-	// Whether the above two containers have been populated from this ship's outfits.
-	// They are populated at the moment the ship first starts creating explosion effects
-	// so that we don't need to track the addition and loss of effects from outfits being
-	// installed or removed.
+	// Whether the above two containers have been populated. They can be populated by kill effects
+	// on the weapon that dealt the killing blow to this ship, or by the ship's base effects and those
+	// of any installed outfits at the moment the ship first starts exploding.
 	bool populatedExplosions = false;
 	// The rate at which explosion effects are created. Increases as the ship
 	// explosion count below reaches its maximum value.
