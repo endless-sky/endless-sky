@@ -35,6 +35,8 @@ template<class Type>
 class WeightedList {
 	using iterator = typename std::vector<Type>::iterator;
 	using const_iterator = typename std::vector<Type>::const_iterator;
+	using weight_iterator = typename std::vector<std::size_t>::iterator;
+	using const_weight_iterator = typename std::vector<std::size_t>::const_iterator;
 public:
 	template<class T>
 	friend std::size_t erase(WeightedList<T> &list, const T &item);
@@ -50,13 +52,18 @@ public:
 		std::is_arithmetic_v<std::invoke_result_t<Callable &&, const Type &&>>,
 		// The return type of WeightedList::Average, if the above test passes:
 		std::invoke_result_t<Callable &&, const Type &&>
-	> Average(Callable c) const;
+	> Average(Callable fn) const;
 	// Supplying a callable that does not return an arithmetic value will fail to compile.
 
 	iterator begin() noexcept { return choices.begin(); }
 	const_iterator begin() const noexcept { return choices.begin(); }
 	iterator end() noexcept { return choices.end(); }
 	const_iterator end() const noexcept { return choices.end(); }
+
+	weight_iterator wbegin() noexcept { return weights.begin(); }
+	const_weight_iterator wbegin() const noexcept { return weights.begin(); }
+	weight_iterator wend() noexcept { return weights.end(); }
+	const_weight_iterator wend() const noexcept { return weights.end(); }
 
 	void clear() noexcept { choices.clear(); weights.clear(); total = 0; }
 	void reserve(std::size_t n) { choices.reserve(n); weights.reserve(n); }

@@ -15,6 +15,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "WeightedList.h"
+
 #include <algorithm>
 #include <filesystem>
 #include <map>
@@ -148,4 +150,17 @@ void WriteSorted(const std::map<const K *, V, Args...> &container, A sortFn, B w
 
 	for(const auto &sit : sorted)
 		writeFn(*sit);
+}
+template<class K, typename A, typename B>
+void WriteSortedWeightedList(const WeightedList<const K *> &container, A sortFn, B writeFn)
+{
+	// Convert the WeightedList into a vector of pairs,
+	// then use the normal WriteSorted function on that.
+	std::vector<std::pair<const K *const, int>> elements;
+	elements.reserve(container.size());
+	auto wit = container.wbegin();
+	for(auto it = container.begin(); it != container.end(); ++it, ++wit)
+		elements.emplace_back(*it, static_cast<int>(*wit));
+
+	WriteSorted(elements, sortFn, writeFn);
 }
