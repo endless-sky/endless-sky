@@ -26,9 +26,11 @@ class PlayerInfo;
 // This class holds a combination of orders given to a ship.
 class OrderSet : public Orders {
 public:
-	// Operations on the bitset
+	// Operations on the bitset.
 	bool Has(Types type) const noexcept;
 	bool Empty() const noexcept;
+	// Whether the bitset has any order except the given order.
+	bool AnyExcept(Types type) const noexcept;
 
 	// Add a single new order to this set.
 	void Add(const OrderSingle &newOrder, bool *hasMismatch = nullptr, bool *alreadyHarvesting = nullptr);

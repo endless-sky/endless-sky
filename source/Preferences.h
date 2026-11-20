@@ -316,6 +316,7 @@ public:
 	static const std::string BLOCK_SCREEN_SAVER;
 	static const std::string BOARDING_TARGET_PRIORITY;
 	static const std::string CAMERA_ACCELERATION;
+	static const std::string CONTROL_FLAGSHIP_WITH_ORDERS;
 	static const std::string DAMAGED_FIGHTERS_RETREAT;
 	static const std::string DATE_FORMAT;
 	static const std::string DEFER_LOADING_IMAGES;

@@ -570,9 +570,10 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 		canceled |= (autoPilot.Has(Command::STOP) && !activeCommands.Has(Command::STOP));
 		canceled |= (autoPilot.Has(Command::LAND) && !activeCommands.Has(Command::LAND));
 		canceled |= (autoPilot.Has(Command::BOARD) && !activeCommands.Has(Command::BOARD));
-		if(canceled)
-			Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
-		autoPilot.Clear();
+		// Moving while having any order that isn't HOLD_FIRE cancels the orders.
+		auto it = orders.find(flagship);
+		canceled |= it != orders.end() && !it->second.AnyExcept(Orders::Types::HOLD_FIRE);
+		DisengageAutopilot(canceled);
 	}
 
 	// Only toggle the "cloak" command if one of your ships has a cloaking device.
@@ -606,8 +607,9 @@ void AI::UpdateKeys(PlayerInfo &player, const Command &activeCommands)
 	if(activeCommands.Has(Command::SELECT))
 		player.SelectNextSecondary();
 
-	// The commands below here only apply if you have escorts or fighters.
-	if(player.Ships().size() < 2)
+	// The commands below here only apply if you have escorts or fighters,
+	// or if your flagship can accept escort commands.
+	if(player.Ships().size() < 2 && !Preferences::Has(Preferences::CONTROL_FLAGSHIP_WITH_ORDERS))
 		return;
 
 	// Toggle the "deploy" command for the fleet or selected ships.
@@ -745,6 +747,24 @@ void AI::ClearOrders()
 
 
 
+void AI::ClearFlagshipTargetOrders()
+{
+	const Ship *flagship = player.Flagship();
+	if(!flagship)
+		return;
+
+	auto it = orders.find(flagship);
+	if(it == orders.end())
+		return;
+
+	const OrderSet &shipOrders = it->second;
+	if(shipOrders.Has(Orders::Types::MINE) || shipOrders.Has(Orders::Types::ATTACK)
+			|| shipOrders.Has(Orders::Types::FINISH_OFF) || shipOrders.Has(Orders::Types::SCAN))
+		DisengageAutopilot();
+}
+
+
+
 void AI::Step(Command &activeCommands)
 {
 	// First, figure out the comparative strengths of the present governments.
@@ -804,11 +824,24 @@ void AI::Step(Command &activeCommands)
 		if(!it->GetSystem())
 			continue;
 
+		Command command;
 		if(it.get() == flagship)
 		{
+			Ship &ship = *it;
 			// Player cannot do anything if the flagship is landing.
-			if(!flagship->IsLanding())
-				MovePlayer(*it, activeCommands);
+			if(!ship.IsLanding())
+			{
+				MovePlayer(ship, activeCommands, command);
+				// If the player's flagship is being controlled like an escort and no commands were issued
+				// by MovePlayer, determine if any escort orders have been given to the flagship.
+				if(Preferences::Has(Preferences::CONTROL_FLAGSHIP_WITH_ORDERS) && !command)
+				{
+					if(FollowOrders(ship, command, true))
+						UpdateOrders(ship);
+				}
+				ship.SetCommands(command);
+				ship.SetCommands(firingCommands);
+			}
 			continue;
 		}
 
@@ -846,7 +879,6 @@ void AI::Step(Command &activeCommands)
 		if(it->IsOverheated())
 			continue;
 
-		Command command;
 		firingCommands.SetHardpoints(it->Weapons().size(), it->Decorations().size());
 		if(it->IsYours())
 		{
@@ -1861,7 +1893,7 @@ vector<Ship *> AI::GetShipsList(const Ship &ship, bool targetEnemies, double max
 
 
 // TODO: This should be const when ships are not added and removed from formations in MoveInFormation
-bool AI::FollowOrders(Ship &ship, Command &command)
+bool AI::FollowOrders(Ship &ship, Command &command, bool isFlagship)
 {
 	auto it = orders.find(&ship);
 	if(it == orders.end())
@@ -1869,9 +1901,10 @@ bool AI::FollowOrders(Ship &ship, Command &command)
 
 	const OrderSet &shipOrders = it->second;
 
-	// Ships without an (alive) parent don't follow orders.
+	// Ships without an (alive) parent don't follow orders,
+	// unless this is the player's flagship.
 	shared_ptr<Ship> parent = ship.GetParent();
-	if(!parent)
+	if(!parent && !isFlagship)
 		return false;
 	// If your parent is jumping or absent, that overrides your orders unless
 	// your orders are to hold position.
@@ -4542,9 +4575,8 @@ bool AI::PlayerTargetMinable(Ship &flagship) const
 
 
 
-void AI::MovePlayer(Ship &ship, Command &activeCommands)
+void AI::MovePlayer(Ship &ship, Command &activeCommands, Command &command)
 {
-	Command command;
 	firingCommands.SetHardpoints(ship.Weapons().size(), ship.Decorations().size());
 
 	bool shift = activeCommands.Has(Command::SHIFT);
@@ -5019,7 +5051,8 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	if(Preferences::GetAutoFire() != Preferences::AutoFire::OFF && !ship.IsBoarding()
 			&& !(autoPilot | activeCommands).Has(Command::LAND | Command::JUMP | Command::FLEET_JUMP | Command::BOARD)
 			&& (!target || target->GetGovernment()->IsEnemy()))
-		AutoFire(ship, firingCommands, false, true, &player.SelectedSecondaryWeapons());
+		AutoFire(ship, firingCommands, Preferences::Has(Preferences::CONTROL_FLAGSHIP_WITH_ORDERS), true,
+			&player.SelectedSecondaryWeapons());
 
 	const bool mouseTurning = activeCommands.Has(Command::MOUSE_TURNING_HOLD);
 	if(mouseTurning && !ship.IsBoarding() && (!ship.IsReversing() || ship.ReverseThrust()))
@@ -5064,7 +5097,10 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 			command |= Command::AFTERBURNER;
 
 		if(ShouldCancelAutopilot(ship, activeCommands))
+		{
+			DisengageAutopilot(false);
 			autoPilot = activeCommands;
+		}
 	}
 	bool shouldAutoAim = false;
 	bool isFiring = activeCommands.Has(Command::PRIMARY) || activeCommands.Has(Command::SECONDARY);
@@ -5196,9 +5232,6 @@ void AI::MovePlayer(Ship &ship, Command &activeCommands)
 	}
 	if(player.IsCloaking())
 		command |= Command::CLOAK;
-
-	ship.SetCommands(command);
-	ship.SetCommands(firingCommands);
 }
 
 
@@ -5208,6 +5241,20 @@ void AI::DisengageAutopilot(bool sendMessage)
 	if(sendMessage)
 		Messages::Add(*GameData::Messages().Get("disengaging autopilot"));
 	autoPilot.Clear();
+
+	const Ship *flagship = player.Flagship();
+	auto it = orders.find(flagship);
+	if(it != orders.end())
+	{
+		// Maintain any hold fire orders.
+		bool holdFire = it->second.Has(Orders::Types::HOLD_FIRE);
+		orders.erase(it);
+		if(holdFire)
+		{
+			OrderSingle newOrder{Orders::Types::HOLD_FIRE};
+			orders[flagship].Add(newOrder);
+		}
+	}
 }
 
 
@@ -5378,13 +5425,16 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 	vector<const Ship *> ships;
 	size_t destroyedCount = 0;
 	// A "hold fire" order can be used on the flagship to temporarily block autofire.
-	// Other orders can be issued only to escorts.
-	bool includeFlagship = newOrder.type == Orders::Types::HOLD_FIRE;
+	// Other orders can be issued only to escorts, unless the flagship is being treated
+	// like an escort.
+	const Ship *flagship = player.Flagship();
+	bool includeFlagship = newOrder.type == Orders::Types::HOLD_FIRE
+		|| Preferences::Has(Preferences::CONTROL_FLAGSHIP_WITH_ORDERS);
 	const vector<weak_ptr<Ship>> &selected = player.SelectedEscorts();
 	if(selected.empty())
 	{
 		for(const shared_ptr<Ship> &it : player.Ships())
-			if((includeFlagship || it.get() != player.Flagship()) && !it->IsParked())
+			if((includeFlagship || it.get() != flagship) && !it->IsParked())
 			{
 				if(it->IsDestroyed())
 					++destroyedCount;
@@ -5416,6 +5466,12 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 				GameData::MessageCategories().Get("normal")});
 		return;
 	}
+	// If the flagship's autopilot is controlling it and then an
+	// order is issued to the flagship that would cause it to
+	// move, cancel the autopilot so that the order can be
+	// followed.
+	if(autoPilot && newOrder.type != Orders::Types::HOLD_FIRE && ranges::find(ships, flagship) != ships.end())
+		autoPilot.Clear();
 
 	Point centerOfGravity;
 	bool isMoveOrder = newOrder.type == Orders::Types::MOVE_TO;
@@ -5435,7 +5491,6 @@ void AI::IssueOrder(const OrderSingle &newOrder, const string &description)
 	// enough that each ship takes up no more than about 30,000 square pixels.
 	double maxSquadOffset = sqrt(10000. * squadCount);
 
-	const Ship *flagship = player.Flagship();
 	const Ship *newTargetShip = newOrder.GetTargetShip().get();
 	// A target is valid if we have no target, or when the target is in the
 	// same system as the flagship.
