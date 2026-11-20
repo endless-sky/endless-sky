@@ -599,6 +599,9 @@ tip "disabled recovery burning:"
 tip "self destruct time:"
 	`The number of seconds it takes for a disabled ship to self destruct.`
 
+tip "random self destruct time:"
+	`The self destruct sequence of a disabled ship can vary by this much time.`
+
 tip "absolute threshold:"
 	`The remaining hull strength at which the ship becomes disabled. This attribute takes priority over other attributes that change the disabled threshold.`
 

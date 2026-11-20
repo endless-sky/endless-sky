@@ -255,6 +255,7 @@ namespace {
 		{"depleted shield delay", 5},
 		{"disabled recovery time", 5},
 		{"self destruct time", 5},
+		{"random self destruct time", 5},
 		{"jump duration", 5},
 	};
 
