@@ -884,7 +884,7 @@ private:
 	std::vector<Decor> decorations;
 
 	// Explosions that happen when the ship is dying. The base effects come from the ship's hull.
-	WeightedList<const Effect *> baseExplosionEffects;
+	std::map<const Effect *, int> baseExplosionEffects;
 	std::map<const Effect *, int> baseFinalExplosions;
 	// These containers store the explosions from the hull, plus any effects from other sources,
 	// such as installed outfits.

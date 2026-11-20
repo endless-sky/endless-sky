@@ -821,7 +821,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				hasExplode = true;
 			}
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			baseExplosionEffects.emplace_back(count, GameData::Effects().Get(child.Token(1)));
+			baseExplosionEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
 		else if(key == "final explode" && hasValue)
 		{
@@ -1511,7 +1511,7 @@ void Ship::Save(DataWriter &out) const
 		using EffectElement = pair<const Effect *const, int>;
 		auto effectSort = [](const EffectElement *lhs, const EffectElement *rhs)
 			{ return lhs->first->TrueName() < rhs->first->TrueName(); };
-		WriteSortedWeightedList(baseExplosionEffects, effectSort, [&out](const EffectElement &it)
+		WriteSorted(baseExplosionEffects, effectSort, [&out](const EffectElement &it)
 		{
 			if(it.second)
 				out.Write("explode", it.first->TrueName(), it.second);
@@ -1877,8 +1877,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
-	explosionEffects = baseExplosionEffects;
-	finalExplosions = baseFinalExplosions;
+	explosionEffects.clear();
+	finalExplosions.clear();
 	populatedExplosions = false;
 	ResetConfusion();
 	if(isDeparting)
@@ -4974,8 +4974,11 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 	if(!populatedExplosions)
 	{
 		populatedExplosions = true;
+		for(const auto &[effect, count] : baseExplosionEffects)
+			explosionEffects.emplace_back(count, effect);
 		for(const auto &[effect, count] : attributes.ShipExplosions())
 			explosionEffects.emplace_back(count, effect);
+		finalExplosions = baseFinalExplosions;
 		for(const auto &[effect, count] : attributes.ShipFinalExplosions())
 			finalExplosions[effect] += count;
 	}
