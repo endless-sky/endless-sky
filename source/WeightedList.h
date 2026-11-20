@@ -50,7 +50,7 @@ public:
 		std::is_arithmetic_v<std::invoke_result_t<Callable &&, const Type &&>>,
 		// The return type of WeightedList::Average, if the above test passes:
 		std::invoke_result_t<Callable &&, const Type &&>
-	> Average(Callable c) const;
+	> Average(Callable fn) const;
 	// Supplying a callable that does not return an arithmetic value will fail to compile.
 
 	iterator begin() noexcept { return choices.begin(); }

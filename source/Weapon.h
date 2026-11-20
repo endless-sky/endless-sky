@@ -81,6 +81,10 @@ public:
 	const std::map<const Effect *, int> &HitEffects() const;
 	const std::map<const Effect *, int> &TargetEffects() const;
 	const std::map<const Effect *, int> &DieEffects() const;
+	// Effects to be created by a target if this weapon is the one that killed it.
+	const std::map<const Effect *, int> &KillEffects() const;
+	const std::map<const Effect *, int> &KillFinalEffects() const;
+
 	const std::vector<Submunition> &Submunitions() const;
 
 	// Accessor functions for various attributes.
@@ -246,12 +250,16 @@ private:
 	const Sound *emptySound = nullptr;
 	const Sprite *icon = nullptr;
 
-	// Fire, die and hit effects.
+	// Projectile effects.
 	std::map<const Effect *, int> fireEffects;
 	std::map<const Effect *, int> liveEffects;
 	std::map<const Effect *, int> hitEffects;
 	std::map<const Effect *, int> targetEffects;
 	std::map<const Effect *, int> dieEffects;
+	std::map<const Effect *, int> killEffects;
+	std::map<const Effect *, int> killFinalEffects;
+
+	// Projectiles created when this one dies.
 	std::vector<Submunition> submunitions;
 	// Whether the damage dealt by this weapon's submunitions are
 	// included in the damage of its projectiles when colliding
