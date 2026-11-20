@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 // Helper class for easily creating/handling/drawing scrollbars.
 //
-// Useable as a panel, with special considerations:
+// Usable as a panel, with special considerations:
 // - Scroll percentage/start/end will have to be manually updated when needed.
 // - Changes will have to be checked every frame, as there is no way to notify parents on change.
 //
@@ -43,7 +43,7 @@ public:
 	void Draw() override;
 	// Draw at a point, overriding the stored 'from' position. Useful for RenderBuffers to be drawn
 	// without affecting the input handling.
-	void DrawAt(const Point &from);
+	void DrawAt(const Point &from) const;
 	bool Hover(int x, int y) override;
 	bool Drag(double dx, double dy) override;
 	bool Click(int x, int y, MouseButton button, int clicks) override;

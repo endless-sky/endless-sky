@@ -277,7 +277,7 @@ vector<filesystem::path> Files::List(const filesystem::path &directory)
 		if(zip)
 		{
 			list = zip->ListFiles(directory, false, false);
-			sort(list.begin(), list.end());
+			ranges::sort(list);
 		}
 		return list;
 	}
@@ -287,7 +287,7 @@ vector<filesystem::path> Files::List(const filesystem::path &directory)
 		if(entry.is_regular_file())
 			list.emplace_back(entry);
 
-	sort(list.begin(), list.end());
+	ranges::sort(list);
 
 	return list;
 }
@@ -306,7 +306,7 @@ vector<filesystem::path> Files::ListDirectories(const filesystem::path &director
 		if(zip)
 		{
 			list = zip->ListFiles(directory, false, true);
-			sort(list.begin(), list.end());
+			ranges::sort(list);
 		}
 		return list;
 	}
@@ -315,7 +315,7 @@ vector<filesystem::path> Files::ListDirectories(const filesystem::path &director
 		if(entry.is_directory())
 			list.emplace_back(entry);
 
-	sort(list.begin(), list.end());
+	ranges::sort(list);
 	return list;
 }
 
@@ -331,7 +331,7 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 		if(zip)
 		{
 			list = zip->ListFiles(directory, true, false);
-			sort(list.begin(), list.end());
+			ranges::sort(list);
 		}
 		return list;
 	}
@@ -340,7 +340,7 @@ vector<filesystem::path> Files::RecursiveList(const filesystem::path &directory)
 		if(entry.is_regular_file())
 			list.emplace_back(entry);
 
-	sort(list.begin(), list.end());
+	ranges::sort(list);
 	return list;
 }
 
@@ -417,12 +417,12 @@ std::string Files::NameNoExtension(const std::filesystem::path &path)
 
 
 // Validate that a filename doesn't contain any illegal characters.
-bool Files::IsValidCharacter(char32_t ch)
+bool Files::IsValidCharacter(char ch)
 {
 	// Don't allow characters that can't be used in a file name.
 	static const string FORBIDDEN = "/\\?*:|\"<>";
 
-	return FORBIDDEN.find(ch) == FORBIDDEN.npos;
+	return FORBIDDEN.find(ch) == string::npos;
 }
 
 
@@ -430,7 +430,7 @@ bool Files::IsValidCharacter(char32_t ch)
 // Check if a filename is valid.
 bool Files::IsValid(const string &filename)
 {
-	return !filename.empty() && all_of(filename.begin(), filename.end(), IsValidCharacter);
+	return !filename.empty() && ranges::all_of(filename, IsValidCharacter);
 }
 
 
@@ -465,7 +465,7 @@ shared_ptr<iostream> Files::Open(const filesystem::path &path, bool write)
 		// Writing to a zip is not supported.
 		shared_ptr<ZipFile> zip = GetZipFile(path);
 		if(zip)
-			return shared_ptr<iostream>(new stringstream(zip->ReadFile(path), ios::in | ios::binary));
+			return shared_ptr<iostream>{new stringstream{zip->ReadFile(path), ios::in | ios::binary}};
 		return {};
 	}
 
@@ -487,11 +487,11 @@ string Files::Read(const filesystem::path &path)
 
 
 
-string Files::Read(shared_ptr<iostream> file)
+string Files::Read(const shared_ptr<iostream> &file)
 {
 	if(!file)
 		return "";
-	return string{istreambuf_iterator<char>{*file}, {}};
+	return string{istreambuf_iterator{*file}, {}};
 }
 
 
@@ -503,7 +503,7 @@ void Files::Write(const filesystem::path &path, const string &data)
 
 
 
-void Files::Write(shared_ptr<iostream> file, const string &data)
+void Files::Write(const shared_ptr<iostream> &file, const string &data)
 {
 	if(!file)
 		return;
@@ -519,7 +519,7 @@ void Files::CreateFolder(const filesystem::path &path)
 		return;
 
 	if(filesystem::create_directory(path))
-		filesystem::permissions(path, filesystem::perms(filesystem::perms::owner_all));
+		filesystem::permissions(path, filesystem::perms::owner_all);
 	else
 		throw runtime_error("Error creating directory!");
 }

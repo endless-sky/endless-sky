@@ -123,7 +123,7 @@ void Interface::Load(const DataNode &node)
 			else if(key == "fill" || key == "line")
 			{
 				if(key == "line")
-					child.PrintTrace("\"line\" is deprecated, use \"fill\" instead:");
+					child.PrintTrace(R"("line" is deprecated, use "fill" instead:)");
 				elements.push_back(make_unique<FillElement>(child, anchor));
 			}
 			else
@@ -822,11 +822,11 @@ void Interface::BarElement::Draw(const Rectangle &rect, const Information &info,
 
 			// Rounded lines have a bit of padding, so account for that here.
 			float d = (to - from).Length() / 2.;
-			float twidth = d < width ? width * d / 2. : width;
-			from += unit * twidth;
-			to -= unit * twidth;
+			float tWidth = d < width ? width * d / 2. : width;
+			from += unit * tWidth;
+			to -= unit * tWidth;
 
-			LineShader::DrawGradient(from, to, twidth, nFromColor, nToColor);
+			LineShader::DrawGradient(from, to, tWidth, nFromColor, nToColor);
 		}
 	}
 }

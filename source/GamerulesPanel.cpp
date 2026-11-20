@@ -20,12 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DialogPanel.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Information.h"
 #include "Interface.h"
-#include "OptionalInputDialogPanel.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
@@ -495,9 +493,8 @@ void GamerulesPanel::DrawPresets()
 	int firstY = presetListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(presetListScroll.AnimatedValue())));
 
-	for(const auto &it : GameData::GamerulesPresets())
+	for(const auto &preset : GameData::GamerulesPresets() | views::values)
 	{
-		const auto &preset = it.second;
 		const string &name = preset.Name();
 		if(name.empty())
 			continue;
@@ -677,14 +674,14 @@ void GamerulesPanel::DrawTooltips()
 
 
 
-void GamerulesPanel::HandleGamerulesString(const string &str)
+void GamerulesPanel::HandleGamerulesString(const string &str) const
 {
 	gamerules.Toggle(str, &GetUI());
 }
 
 
 
-void GamerulesPanel::SelectPreset(const string &name)
+void GamerulesPanel::SelectPreset(const string &name) const
 {
 	gamerules.Replace(*GameData::GamerulesPresets().Get(name));
 }
@@ -732,7 +729,7 @@ void GamerulesPanel::HandleDown()
 
 
 
-void GamerulesPanel::HandleConfirm()
+void GamerulesPanel::HandleConfirm() const
 {
 	switch(page)
 	{

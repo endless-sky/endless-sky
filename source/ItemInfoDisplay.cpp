@@ -26,7 +26,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "text/Table.h"
 #include "UI.h"
 
-#include <algorithm>
 #include <cmath>
 
 using namespace std;

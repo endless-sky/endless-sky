@@ -85,7 +85,7 @@ float Information::GetSpriteFrame(const string &name) const
 const Swizzle *Information::GetSwizzle(const string &name) const
 {
 	auto it = spriteSwizzles.find(name);
-	return it == spriteSwizzles.end() ? 0 : it->second;
+	return it == spriteSwizzles.end() ? nullptr : it->second;
 }
 
 
@@ -99,10 +99,10 @@ void Information::SetString(const string &name, const string &value)
 
 const string &Information::GetString(const string &name) const
 {
-	static const string empty;
+	static const string EMPTY;
 
 	auto it = strings.find(name);
-	return (it == strings.end()) ? empty : it->second;
+	return (it == strings.end()) ? EMPTY : it->second;
 }
 
 

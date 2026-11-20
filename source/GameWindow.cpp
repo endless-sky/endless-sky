@@ -419,7 +419,7 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 #else
 	const int originalState = SDL_GL_GetSwapInterval();
 #endif
-	int interval = 1;
+	int interval;
 	switch(state)
 	{
 		case Preferences::VSync::ADAPTIVE:
@@ -511,7 +511,11 @@ void GameWindow::ToggleFullscreen()
 	// no need to adjust the viewport here.
 	if(IsFullscreen())
 	{
+#ifdef ES_USE_SDL3
+		SDL_SetWindowFullscreen(mainWindow, false);
+#else
 		SDL_SetWindowFullscreen(mainWindow, 0);
+#endif
 		SDL_SetWindowSize(mainWindow, width, height);
 	}
 	else

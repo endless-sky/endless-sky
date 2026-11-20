@@ -49,7 +49,7 @@ class System;
 using namespace std;
 
 namespace {
-	const int MAX_LIST = 20;
+	constexpr int MAX_LIST = 20;
 }
 
 
@@ -57,11 +57,11 @@ namespace {
 ShipyardPanel::ShipyardPanel(PlayerInfo &player, const Sale<Ship> &stock)
 	: ShopPanel(player, false), modifier(0), shipyard(stock), initialFleetUsage(player.FleetCost())
 {
-	for(const auto &it : GameData::Ships())
-		catalog[it.second.Attributes().Category()].push_back(it.first);
+	for(const auto &[name, ship] : GameData::Ships())
+		catalog[ship.Attributes().Category()].push_back(name);
 
-	for(pair<const string, vector<string>> &it : catalog)
-		sort(it.second.begin(), it.second.end(), BySeriesAndIndex<Ship>());
+	for(auto &names : catalog | views::values)
+		ranges::sort(names, BySeriesAndIndex<Ship>());
 }
 
 
@@ -169,9 +169,9 @@ void ShipyardPanel::DrawButtons()
 	//  [    Buy    ] [    Sell    ] [   Rewire  ]
 	//                [  Sell Hull ]
 	//    Quantity [Dropdown]        [   Leave   ]
-	const double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
+	constexpr double rowOffsetY = BUTTON_HEIGHT + BUTTON_ROW_PAD;
 	const double rowBaseY = Screen::BottomRight().Y() - 2 * rowOffsetY - .5 * BUTTON_HEIGHT - BUTTON_ROW_START_PAD;
-	const double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
+	constexpr double buttonOffsetX = BUTTON_WIDTH + BUTTON_COL_PAD;
 	const double buttonCenterX = Screen::Right() - SIDEBAR_WIDTH / 2 - 1.;
 	const Point buttonSize{BUTTON_WIDTH, BUTTON_HEIGHT};
 
@@ -217,14 +217,14 @@ void ShipyardPanel::DrawButtons()
 		static_cast<bool>(CanDoBuyButton()), hoverButton == 'b', 'b');
 	DrawButton("_Sell",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 0), buttonSize),
-		static_cast<bool>(playerShips.size()), hoverButton == 's', 's');
+		!playerShips.empty(), hoverButton == 's', 's');
 	DrawButton("_Rewire",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 0), buttonSize),
 		static_cast<bool>(CanRewire()), hoverButton == 'r', 'r');
 	// Row 2:
 	DrawButton("Sell H_ull",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 0, rowBaseY + rowOffsetY * 1), buttonSize),
-		static_cast<bool>(playerShips.size()), hoverButton == 'u', 'u');
+		!playerShips.empty(), hoverButton == 'u', 'u');
 	// Row 3:
 	DrawButton("_Leave",
 		Rectangle(Point(buttonCenterX + buttonOffsetX * 1, rowBaseY + rowOffsetY * 2), buttonSize),
