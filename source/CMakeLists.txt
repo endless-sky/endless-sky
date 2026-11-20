@@ -124,7 +124,6 @@ target_sources(EndlessSkyLib PRIVATE
 	EscortDisplay.cpp
 	EscortDisplay.h
 	ExclusiveItem.h
-	FighterHitHelper.h
 	Files.cpp
 	Files.h
 	FireCommand.cpp
@@ -172,6 +171,7 @@ target_sources(EndlessSkyLib PRIVATE
 	Hazard.h
 	HiringPanel.cpp
 	HiringPanel.h
+	HitHelper.h
 	InfoPanelState.cpp
 	InfoPanelState.h
 	Information.cpp
