@@ -817,21 +817,21 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		{
 			if(!hasExplode)
 			{
-				explosionEffects.clear();
+				baseExplosionEffects.clear();
 				hasExplode = true;
 			}
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			explosionEffects[GameData::Effects().Get(child.Token(1))] += count;
+			baseExplosionEffects.emplace_back(count, GameData::Effects().Get(child.Token(1)));
 		}
 		else if(key == "final explode" && hasValue)
 		{
 			if(!hasFinalExplode)
 			{
-				finalExplosions.clear();
+				baseFinalExplosions.clear();
 				hasFinalExplode = true;
 			}
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
-			finalExplosions[GameData::Effects().Get(child.Token(1))] += count;
+			baseFinalExplosions[GameData::Effects().Get(child.Token(1))] += count;
 		}
 		else if(key == "outfits")
 		{
@@ -974,12 +974,10 @@ void Ship::FinishLoading(bool isNewInstance)
 			reverseEnginePoints = base->reverseEnginePoints;
 		if(steeringEnginePoints.empty())
 			steeringEnginePoints = base->steeringEnginePoints;
-		if(explosionEffects.empty())
-		{
-			explosionEffects = base->explosionEffects;
-		}
-		if(finalExplosions.empty())
-			finalExplosions = base->finalExplosions;
+		if(baseExplosionEffects.empty())
+			baseExplosionEffects = base->baseExplosionEffects;
+		if(baseFinalExplosions.empty())
+			baseFinalExplosions = base->baseFinalExplosions;
 		const bool inheritsOutfits = outfits.empty();
 		if(inheritsOutfits)
 			outfits = base->outfits;
@@ -1513,12 +1511,12 @@ void Ship::Save(DataWriter &out) const
 		using EffectElement = pair<const Effect *const, int>;
 		auto effectSort = [](const EffectElement *lhs, const EffectElement *rhs)
 			{ return lhs->first->TrueName() < rhs->first->TrueName(); };
-		WriteSorted(explosionEffects, effectSort, [&out](const EffectElement &it)
+		WriteSortedWeightedList(baseExplosionEffects, effectSort, [&out](const EffectElement &it)
 		{
 			if(it.second)
 				out.Write("explode", it.first->TrueName(), it.second);
 		});
-		WriteSorted(finalExplosions, effectSort, [&out](const EffectElement &it)
+		WriteSorted(baseFinalExplosions, effectSort, [&out](const EffectElement &it)
 		{
 			if(it.second)
 				out.Write("final explode", it.first->TrueName(), it.second);
@@ -1879,6 +1877,9 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
+	explosionEffects = baseExplosionEffects;
+	finalExplosions = baseFinalExplosions;
+	populatedExplosions = false;
 	ResetConfusion();
 	if(isDeparting)
 		lingerSteps = 0;
@@ -4958,6 +4959,14 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 	if(!IsDestroyed())
 		return 0;
 	PauseAnimation();
+	if(!populatedExplosions)
+	{
+		populatedExplosions = true;
+		for(const auto &[effect, count] : attributes.ShipExplosions())
+			explosionEffects.emplace_back(count, effect);
+		for(const auto &[effect, count] : attributes.ShipFinalExplosions())
+			finalExplosions[effect] += count;
+	}
 
 	// Make sure the shields are zero, as well as the hull.
 	levels.shields = 0.;
@@ -6018,7 +6027,8 @@ void Ship::StepTargeting()
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
 	target = GetTargetShip();
-	if(target && target->IsDestroyed() && target->explosionCount >= target->explosionTotal)
+	if(target && target->IsDestroyed() && target->populatedExplosions
+			&& target->explosionCount >= target->explosionEffects.TotalWeight())
 		targetShip.reset();
 }
 

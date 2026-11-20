@@ -414,6 +414,10 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 			++cargoScanSounds[Audio::Get(child.Token(1))];
 		else if(key == "outfit scan sound" && hasValue)
 			++outfitScanSounds[Audio::Get(child.Token(1))];
+		else if(key == "ship explosion effect" && hasValue)
+			shipExplosions[GameData::Effects().Get(child.Token(1))] += child.Size() >= 3 ? child.Value(2) : 1.;
+		else if(key == "ship final explosion effect" && hasValue)
+			shipFinalExplosions[GameData::Effects().Get(child.Token(1))] += child.Size() >= 3 ? child.Value(2) : 1.;
 		else if(key == "flotsam sprite" && hasValue)
 			flotsamSprite = SpriteSet::Get(child.Token(1));
 		else if(key == "thumbnail" && hasValue)
@@ -794,6 +798,8 @@ void Outfit::Add(const Outfit &other, int count)
 	MergeMaps(jumpOutSounds, other.jumpOutSounds, count);
 	MergeMaps(cargoScanSounds, other.cargoScanSounds, count);
 	MergeMaps(outfitScanSounds, other.outfitScanSounds, count);
+	MergeMaps(shipExplosions, other.shipExplosions, count);
+	MergeMaps(shipFinalExplosions, other.shipFinalExplosions, count);
 }
 
 
@@ -956,6 +962,20 @@ const map<const Sound *, int> &Outfit::CargoScanSounds() const
 const map<const Sound *, int> &Outfit::OutfitScanSounds() const
 {
 	return outfitScanSounds;
+}
+
+
+
+const std::map<const Effect *, int> &Outfit::ShipExplosions() const
+{
+	return shipExplosions;
+}
+
+
+
+const std::map<const Effect *, int> &Outfit::ShipFinalExplosions() const
+{
+	return shipFinalExplosions;
 }
 
 

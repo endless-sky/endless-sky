@@ -883,11 +883,25 @@ private:
 	std::vector<LiveEffect> liveEffects;
 	std::vector<Decor> decorations;
 
-	// Explosions that happen when the ship is dying:
+	// Explosions that happen when the ship is dying. The base effects come from the ship's hull.
+	WeightedList<const Effect *> baseExplosionEffects;
+	std::map<const Effect *, int> baseFinalExplosions;
+	// These containers store the explosions from the hull, plus any effects from other sources,
+	// such as installed outfits.
 	WeightedList<const Effect *> explosionEffects;
-	unsigned explosionRate = 0;
-	unsigned explosionCount = 0;
 	std::map<const Effect *, int> finalExplosions;
+	// Whether the above two containers have been populated from this ship's outfits.
+	// They are populated at the moment the ship first starts creating explosion effects
+	// so that we don't need to track the addition and loss of effects from outfits being
+	// installed or removed.
+	bool populatedExplosions = false;
+	// The rate at which explosion effects are created. Increases as the ship
+	// explosion count below reaches its maximum value.
+	unsigned explosionRate = 0;
+	// The explosions that have occurred so far. A ship creates explosions until
+	// this count reaches the total number of possible explosion effects that the
+	// ship can produce.
+	unsigned explosionCount = 0;
 
 	// Target ships, planets, systems, etc.
 	std::weak_ptr<Ship> targetShip;
