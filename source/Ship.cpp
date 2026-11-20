@@ -5269,12 +5269,19 @@ void Ship::DoGeneration()
 		}
 	}
 	// A ship that is disabled due to low hull may also be on a self destruct timer.
-	if(cache.selfDestructTime)
+	if(cache.selfDestructTime || cache.randomSelfDestructTime)
 	{
 		if(wasDisabled)
 		{
-			selfDestructCounter += 1;
-			if(selfDestructCounter >= cache.selfDestructTime)
+			// This is the first frame this ship spent disabled. Initialized the self
+			// destruct sequence.
+			if(!selfDestructCounter)
+			{
+				selfDestructCounter = cache.selfDestructTime;
+				if(cache.randomSelfDestructTime)
+					selfDestructCounter += Random::Int(cache.randomSelfDestructTime);
+			}
+			if(--selfDestructCounter <= 0)
 				SelfDestruct();
 		}
 		else
