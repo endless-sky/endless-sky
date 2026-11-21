@@ -631,7 +631,9 @@ public:
 
 	double TurretTurnMultiplier() const;
 
-	bool HasFuelGeneration() const;
+	// Whether this ship has decent enough fuel generation to support frequent usage of
+	// weapons that require fuel to fire.
+	bool SupportsFuelWeaponUsage() const;
 
 
 protected:
