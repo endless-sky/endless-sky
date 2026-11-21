@@ -2109,13 +2109,13 @@ event "fw at war with Syndicate"
 		remove fleet "Syndicate Supply Convoy"
 	system Cebalrai
 		remove fleet "Syndicate Supply Convoy"
-	system "Kaus Borealis"
+	system Rasalhague
 		remove fleet "Syndicate Supply Convoy"
-	system "Alpha Arae"
+	system Ascella
 		remove fleet "Syndicate Supply Convoy"
-	system "Delta Sagitarii"
+	system Peacock
 		remove fleet "Syndicate Supply Convoy"
-	system Eltanin
+	system "Kaus Australis"
 		remove fleet "Syndicate Supply Convoy"
 	system Dabih
 		remove fleet "Syndicate Supply Convoy"
