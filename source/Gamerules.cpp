@@ -72,6 +72,7 @@ const string Gamerules::CAPTURE_VALUE_BASIS = "capture value basis";
 const string Gamerules::LOCK_ON_CAPTURE = "lock on capture";
 const string Gamerules::REWIRING_COST_MULTIPLIER = "rewiring cost multiplier";
 const string Gamerules::LOCKED_HULL_VALUE_MULTIPLIER = "locked hull value multiplier";
+const string Gamerules::BASE_COMBAT_WIDTH = "base combat width";
 const string Gamerules::FRIENDLY_FIRE_SAME_PROB = "friendly fire same gov probability";
 const string Gamerules::FRIENDLY_FIRE_ALLY_PROB = "friendly fire allied gov probability";
 const string Gamerules::FRIENDLY_FIRE_FIGHTER_PROB_MULT = "friendly fire fighter prob multiplier";
@@ -885,6 +886,32 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
+	settings[BASE_COMBAT_WIDTH] = Setting::Unique("Base combat width");
+	settings[BASE_COMBAT_WIDTH].SetDisplayFunc([this]() -> pair<string, bool> {
+		string text;
+		if(BaseCombatWidth().has_value())
+			text = Format::Percentage(*BaseCombatWidth(), 2);
+		else
+			text = "(unset)";
+		return make_pair(text, true);
+	});
+	settings[BASE_COMBAT_WIDTH].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the base combat width. (Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(OptionalInputDialogPanel::RequestDoubleWithValidation(
+			[this](optional<double> value) -> void { storage.baseCombatWidth = value; },
+			validate, message, BaseCombatWidth()));
+	});
+	settings[BASE_COMBAT_WIDTH].SetConditionFunc([this]() -> int {
+		return BaseCombatWidth().value_or(0.) * 1000;
+	});
+	settings[BASE_COMBAT_WIDTH].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.baseCombatWidth = preset.storage.baseCombatWidth;
+		return std::nullopt;
+	});
+
 	settings[FRIENDLY_FIRE_SAME_PROB] = Setting::Unique("Same government probability");
 	settings[FRIENDLY_FIRE_SAME_PROB].SetDisplayFunc([this]() -> pair<string, bool> {
 		return make_pair(Format::Percentage(FriendlyFireSameGovProb(), 2),
@@ -1168,6 +1195,13 @@ void Gamerules::Load(const DataNode &node)
 			storage.rewiringCostMultiplier = max(0., child.Value(1));
 		else if(key == LOCKED_HULL_VALUE_MULTIPLIER)
 			storage.lockedHullValueMultiplier = clamp(child.Value(1), 0., 1.);
+		else if(key == BASE_COMBAT_WIDTH)
+		{
+			if(child.Token(1) == "unset")
+				storage.baseCombatWidth.reset();
+			else
+				storage.baseCombatWidth = max<double>(0., child.Value(1));
+		}
 		else if(key == FRIENDLY_FIRE_SAME_PROB)
 			storage.friendlyFireSameGovProb = clamp(child.Value(1), 0., 1.);
 		else if(key == FRIENDLY_FIRE_ALLY_PROB)
@@ -1329,6 +1363,13 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write(REWIRING_COST_MULTIPLIER, storage.rewiringCostMultiplier);
 		if(storage.lockedHullValueMultiplier != preset.storage.lockedHullValueMultiplier)
 			out.Write(LOCKED_HULL_VALUE_MULTIPLIER, storage.lockedHullValueMultiplier);
+		if(storage.baseCombatWidth != preset.storage.baseCombatWidth)
+		{
+			if(storage.baseCombatWidth.has_value())
+				out.Write(BASE_COMBAT_WIDTH, *storage.baseCombatWidth);
+			else
+				out.Write(BASE_COMBAT_WIDTH, "unset");
+		}
 		if(storage.friendlyFireSameGovProb != preset.storage.friendlyFireSameGovProb)
 			out.Write(FRIENDLY_FIRE_SAME_PROB, storage.friendlyFireSameGovProb);
 		if(storage.friendlyFireAlliedGovProb != preset.storage.friendlyFireAlliedGovProb)
@@ -1758,6 +1799,13 @@ double Gamerules::RewiringCostMultiplier() const
 double Gamerules::LockedHullValueMultiplier() const
 {
 	return storage.lockedHullValueMultiplier;
+}
+
+
+
+optional<double> Gamerules::BaseCombatWidth() const
+{
+	return storage.baseCombatWidth;
 }
 
 

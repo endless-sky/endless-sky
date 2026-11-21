@@ -40,6 +40,8 @@
 	"rewiring cost multiplier" 1.
 	"locked hull value multiplier" .2
 	
+	"base combat width" unset
+	
 	"universal ramscoop" true
 	"system arrival min" unset
 	"system departure min" 0.
