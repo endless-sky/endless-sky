@@ -4139,23 +4139,23 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		return;
 
 	bool isPlayerEscort = ship.IsYours() && !isFlagship;
-	bool useAmmo = !isPlayerEscort || escortsUseAmmo;
+	bool beFrugal = (isPlayerEscort && !escortsUseAmmo);
 	// If this ship has a frugal personality, then it will only use ammo when it is low on health or being outgunned.
 	bool isFrugalPersonality = person.IsFrugal() || (isPlayerEscort && escortsAreFrugal && escortsUseAmmo);
 	if(isFrugalPersonality)
 	{
-		useAmmo = (ship.HealthFraction() < GameData::GetGamerules().UniversalFrugalThreshold());
-		if(!useAmmo)
+		beFrugal = (ship.HealthFraction() > GameData::GetGamerules().UniversalFrugalThreshold());
+		if(beFrugal)
 		{
 			auto ait = allyStrength.find(ship.GetGovernment());
 			auto eit = enemyStrength.find(ship.GetGovernment());
 			if(ait != allyStrength.end() && eit != enemyStrength.end() && ait->second < eit->second)
-				useAmmo = true;
+				beFrugal = false;
 		}
 	}
 	// Frugal NPCs that lack any weapons that can be fired while frugal should ignore their frugal behavior.
 	bool hasFuelGeneration = ship.SupportsFuelWeaponUsage();
-	if(!useAmmo && !ship.IsYours())
+	if(beFrugal && !ship.IsYours())
 	{
 		bool hasUsableWeapon = false;
 		for(const Hardpoint &hardpoint : ship.Weapons())
@@ -4168,7 +4168,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			}
 		}
 		if(!hasUsableWeapon)
-			useAmmo = true;
+			beFrugal = false;
 	}
 
 	// Special case: your target is not your enemy. Do not fire, because you do
@@ -4219,7 +4219,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				&& !includeSecondaries->contains(hardpoint.GetOutfit()))))
 			return false;
 		// Don't expend ammo if trying to be frugal.
-		if(!useAmmo && ammo)
+		if(beFrugal && ammo)
 			return false;
 		bool usesFuel = weapon->FiringFuel() > 0.;
 		if(usesFuel)
@@ -4234,7 +4234,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				return false;
 			// Fuel may be expended when frugal behavior is active if the ship has
 			// fuel generation.
-			if(!useAmmo && !hasFuelGeneration)
+			if(beFrugal && !hasFuelGeneration)
 				return false;
 		}
 		// No point in sending a firing command to weapons without ammo.
