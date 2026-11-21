@@ -1877,9 +1877,8 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 	forget = 1;
 	targetShip.reset();
 	shipToAssist.reset();
-	explosionEffects.clear();
-	finalExplosions.clear();
-	populatedExplosions = false;
+	explosionEffects.reset();
+	finalExplosions.reset();
 	ResetConfusion();
 	if(isDeparting)
 		lingerSteps = 0;
@@ -2840,7 +2839,8 @@ void Ship::Fire(vector<Projectile> &projectiles, vector<Visual> &visuals, vector
 
 	// A ship that is about to die creates a special single-turn "projectile"
 	// representing its death explosion.
-	if(IsDestroyed() && explosionCount == explosionEffects.TotalWeight() && explosionWeapon)
+	if(IsDestroyed() && explosionWeapon && explosionEffects.has_value()
+			&& explosionCount == explosionEffects->TotalWeight())
 		projectiles.emplace_back(position, angle, explosionWeapon);
 
 	if(CannotAct(Ship::ActionType::FIRE))
@@ -4883,11 +4883,15 @@ int Ship::DoTakeDamage(const DamageDealt &damage, const Government *hitBy, bool 
 		const Weapon &weapon = damage.GetWeapon();
 		if(!weapon.KillEffects().empty())
 		{
-			populatedExplosions = true;
+			explosionEffects = WeightedList<const Effect *>{};
 			for(const auto &[effect, count] : weapon.KillEffects())
-				explosionEffects.emplace_back(count, effect);
+				explosionEffects->emplace_back(count, effect);
+		}
+		if(!weapon.KillFinalEffects().empty())
+		{
+			finalExplosions = map<const Effect *, int>{};
 			for(const auto &[effect, count] : weapon.KillFinalEffects())
-				finalExplosions[effect] += count;
+				(*finalExplosions)[effect] += count;
 		}
 	}
 
@@ -4971,23 +4975,26 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 	if(!IsDestroyed())
 		return 0;
 	PauseAnimation();
-	if(!populatedExplosions)
+	if(!explosionEffects.has_value())
 	{
-		populatedExplosions = true;
+		explosionEffects = WeightedList<const Effect *>{};
 		for(const auto &[effect, count] : baseExplosionEffects)
-			explosionEffects.emplace_back(count, effect);
+			explosionEffects->emplace_back(count, effect);
 		for(const auto &[effect, count] : attributes.ShipExplosions())
-			explosionEffects.emplace_back(count, effect);
+			explosionEffects->emplace_back(count, effect);
+	}
+	if(!finalExplosions.has_value())
+	{
 		finalExplosions = baseFinalExplosions;
 		for(const auto &[effect, count] : attributes.ShipFinalExplosions())
-			finalExplosions[effect] += count;
+			(*finalExplosions)[effect] += count;
 	}
 
 	// Make sure the shields are zero, as well as the hull.
 	levels.shields = 0.;
 
 	// Once we've created enough little explosions, die.
-	unsigned explosionTotal = explosionEffects.TotalWeight();
+	unsigned explosionTotal = explosionEffects->TotalWeight();
 	if(explosionCount == explosionTotal || forget)
 	{
 		if(!forget)
@@ -4999,7 +5006,7 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 			int debrisCount = attributes.Mass() * .07;
 
 			// Estimate how many new visuals will be added during destruction.
-			visuals.reserve(visuals.size() + debrisCount + explosionTotal + finalExplosions.size());
+			visuals.reserve(visuals.size() + debrisCount + explosionTotal + finalExplosions->size());
 
 			for(int i = 0; i < debrisCount; ++i)
 			{
@@ -5012,7 +5019,7 @@ int Ship::StepDestroyed(vector<Visual> &visuals, list<shared_ptr<Flotsam>> &flot
 
 			for(unsigned i = 0; i < explosionTotal / 2; ++i)
 				CreateExplosion(visuals, true);
-			for(const auto &it : finalExplosions)
+			for(const auto &it : *finalExplosions)
 				visuals.emplace_back(*it.first, position, velocity, angle);
 			// For everything in this ship's cargo hold there is a 25% chance
 			// that it will survive as flotsam.
@@ -6042,8 +6049,8 @@ void Ship::StepTargeting()
 	// Clear your target if it is destroyed. This is only important for NPCs,
 	// because ordinary ships cease to exist once they are destroyed.
 	target = GetTargetShip();
-	if(target && target->IsDestroyed() && target->populatedExplosions
-			&& target->explosionCount >= target->explosionEffects.TotalWeight())
+	if(target && target->IsDestroyed() && target->explosionEffects.has_value()
+			&& target->explosionCount >= target->explosionEffects->TotalWeight())
 		targetShip.reset();
 }
 
@@ -6111,7 +6118,7 @@ void Ship::RemoveEscort(const Ship &ship)
 
 void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 {
-	if(!HasSprite() || !GetMask().IsLoaded() || explosionEffects.empty())
+	if(!HasSprite() || !GetMask().IsLoaded() || !explosionEffects.has_value() || explosionEffects->empty())
 		return;
 
 	// Pick a random point within the ship sprite. If it lands within the ship's
@@ -6124,7 +6131,7 @@ void Ship::CreateExplosion(vector<Visual> &visuals, bool spread)
 		if(GetMask().Contains(point, Angle()))
 		{
 			// Pick an explosion.
-			const Effect *explosion = explosionEffects.Get();
+			const Effect *explosion = explosionEffects->Get();
 			Point effectVelocity = velocity;
 			if(spread)
 			{

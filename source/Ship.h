@@ -886,14 +886,11 @@ private:
 	// Explosions that happen when the ship is dying. The base effects come from the ship's hull.
 	std::map<const Effect *, int> baseExplosionEffects;
 	std::map<const Effect *, int> baseFinalExplosions;
-	// These containers store the explosions from the hull, plus any effects from other sources,
-	// such as installed outfits.
-	WeightedList<const Effect *> explosionEffects;
-	std::map<const Effect *, int> finalExplosions;
-	// Whether the above two containers have been populated. They can be populated by kill effects
-	// on the weapon that dealt the killing blow to this ship, or by the ship's base effects and those
-	// of any installed outfits at the moment the ship first starts exploding.
-	bool populatedExplosions = false;
+	// The currently in-use explosions as the ship is dying. Can be populated by external sources
+	// to overwrite the base effects, or will be populated from the base effects and effects from
+	// installed outfits when the ship is destroyed.
+	std::optional<WeightedList<const Effect *>> explosionEffects;
+	std::optional<std::map<const Effect *, int>> finalExplosions;
 	// The rate at which explosion effects are created. Increases as the ship
 	// explosion count below reaches its maximum value.
 	unsigned explosionRate = 0;
