@@ -49,6 +49,7 @@ public:
 	static const Command BOARD;
 	static const Command HAIL;
 	static const Command SCAN;
+	static const Command GUNSIGHT;
 	static const Command JUMP;
 	static const Command FLEET_JUMP;
 	static const Command TARGET;
