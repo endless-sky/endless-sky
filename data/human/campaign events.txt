@@ -1158,7 +1158,7 @@ event "oathkeepers founded"
 
 
 
-# Syndicate supply route to Tarazed -- Change in frequency reflects side business schemes.
+# Syndicate supply route to Tarazed - Change in frequency reflects side business schemes.
 # Of all cargo which starts from Markab, 20% ends up at the Navy base in Menkent, and
 # another 20% is sold to Southern Mechants in Dabih. Only about 60% reaches Tarazed.
 event "syndicate convoys to Tarazed"
