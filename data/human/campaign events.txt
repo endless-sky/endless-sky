@@ -1158,9 +1158,34 @@ event "oathkeepers founded"
 
 
 
-# TODO: Expand this event to other Dirt Belt systems.
-# TODO: Create Syndicate freighter fleets.
+# Syndicate supply route to Tarazed - Change in frequency reflects side business schemes.
+# Of all cargo which starts from Markab, 20% ends up at the Navy base in Menkent, and
+# another 20% is sold to Southern Mechants in Dabih. Only about 60% reaches Tarazed.
 event "syndicate convoys to Tarazed"
+	system Markab
+		add fleet "Syndicate Supply Convoy" 4000
+	system Fomalhaut
+		add fleet "Syndicate Supply Convoy" 4000
+	system Altair
+		add fleet "Syndicate Supply Convoy" 4000
+	system Vega
+		add fleet "Syndicate Supply Convoy" 4000
+	system Menkent
+		add fleet "Syndicate Supply Convoy" 4000
+	system Cebalrai
+		add fleet "Syndicate Supply Convoy" 5000
+	system Rasalhague
+		add fleet "Syndicate Supply Convoy" 5000
+	system Ascella
+		add fleet "Syndicate Supply Convoy" 5000
+	system Peacock
+		add fleet "Syndicate Supply Convoy" 5000
+	system "Kaus Australis"
+		add fleet "Syndicate Supply Convoy" 5000
+	system Dabih
+		add fleet "Syndicate Supply Convoy" 5000
+	system Tarazed
+		add fleet "Syndicate Supply Convoy" 6000
 
 
 
@@ -2052,6 +2077,34 @@ event "fw expanded and cut"
 		fleet "Large Republic" 1000
 		fleet "Large Free Worlds" 3000
 		fleet "Derelict Southern" 30000
+
+
+
+event "end of syndicate convoys to Tarazed"
+	system Markab
+		remove fleet "Syndicate Supply Convoy"
+	system Fomalhaut
+		remove fleet "Syndicate Supply Convoy"
+	system Altair
+		remove fleet "Syndicate Supply Convoy"
+	system Vega
+		remove fleet "Syndicate Supply Convoy"
+	system Menkent
+		remove fleet "Syndicate Supply Convoy"
+	system Cebalrai
+		remove fleet "Syndicate Supply Convoy"
+	system Rasalhague
+		remove fleet "Syndicate Supply Convoy"
+	system Ascella
+		remove fleet "Syndicate Supply Convoy"
+	system Peacock
+		remove fleet "Syndicate Supply Convoy"
+	system "Kaus Australis"
+		remove fleet "Syndicate Supply Convoy"
+	system Dabih
+		remove fleet "Syndicate Supply Convoy"
+	system Tarazed
+		remove fleet "Syndicate Supply Convoy"
 
 
 
