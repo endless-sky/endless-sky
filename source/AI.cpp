@@ -4155,7 +4155,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	}
 	// Frugal NPCs that lack any weapons that can be fired while frugal should ignore their frugal behavior.
 	bool hasFuelGeneration = ship.SupportsFuelWeaponUsage();
-	if(beFrugal && !ship.IsYours())
+	if(beFrugal && !isYours)
 	{
 		bool hasUsableWeapon = false;
 		for(const Hardpoint &hardpoint : ship.Weapons())
@@ -4230,7 +4230,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 				return false;
 			// Player ships should never use fuel weapons if they're set to never use ammo,
 			// even if they have the fuel generation to support their usage.
-			if(isPlayerEscort && !escortsUseAmmo)
+			if(isYours && !escortsUseAmmo)
 				return false;
 			// Fuel may be expended when frugal behavior is active if the ship has
 			// fuel generation.
