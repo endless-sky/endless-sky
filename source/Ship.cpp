@@ -2644,6 +2644,20 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 
 
+double Ship::BoardSelfDestructChance() const
+{
+	return cache.boardSelfDestruct ? cache.boardSelfDestruct : cache.selfDestruct;
+}
+
+
+
+double Ship::CaptureSelfDestructChance() const
+{
+	return cache.captureSelfDestruct ? cache.captureSelfDestruct : cache.selfDestruct;
+}
+
+
+
 // Scan the target, if able and commanded to. Return a ShipEvent bitmask
 // giving the types of scan that succeeded.
 int Ship::Scan(const PlayerInfo &player)
@@ -6025,12 +6039,13 @@ void Ship::StepTargeting()
 				else
 				{
 					isBoarding = false;
-					bool isEnemy = government->IsEnemy(target->government);
-					if(isEnemy && Random::Real() < target->cache.selfDestruct)
+					if(!target->IsYours() && government->IsEnemy(target->government)
+						&& Random::Real() < target->BoardSelfDestructChance())
 					{
-						Messages::Add({"The " + target->DisplayModelName() + " \"" + target->GivenName()
-							+ "\" has activated its self-destruct mechanism.",
-							GameData::MessageCategories().Get("high")});
+						if(isYours)
+							Messages::Add({"The " + target->DisplayModelName() + " \"" + target->GivenName()
+								+ "\" has activated its self-destruct mechanism.",
+								GameData::MessageCategories().Get("high")});
 						GetTargetShip()->SelfDestruct();
 					}
 					else

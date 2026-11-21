@@ -284,8 +284,8 @@ private:
 		double captureSurvivingCrewShares = 1.;
 		int captureMinimumDeathBenefit = 100000;
 		std::optional<double> captureValueBasis;
-		bool lockOnCapture = false;
-		double rewiringCostMultiplier = .7;
+		bool lockOnCapture = true;
+		double rewiringCostMultiplier = 1.;
 		double lockedHullValueMultiplier = .2;
 		double friendlyFireSameGovProb = 0.;
 		double friendlyFireAlliedGovProb = 0.;

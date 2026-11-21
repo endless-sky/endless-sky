@@ -203,6 +203,9 @@ namespace {
 		{"burn resistance", 2},
 
 		{"flotsam chance", 3},
+		{"self destruct", 3},
+		{"board self destruct", 3},
+		{"capture self destruct", 3},
 
 		{"cloak by mass", 3},
 		{"shield multiplier", 3},

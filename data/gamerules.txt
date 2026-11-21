@@ -36,8 +36,8 @@
 	"capture minimum death benefit" 100000
 	"capture value basis" unset
 	
-	"lock on capture" false
-	"rewiring cost multiplier" .7
+	"lock on capture" true
+	"rewiring cost multiplier" 1.
 	"locked hull value multiplier" .2
 	
 	"universal ramscoop" true

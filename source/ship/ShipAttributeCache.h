@@ -158,6 +158,8 @@ private:
 	float landingSpeed = 0.f;
 	bool silentJumps = false;
 	double selfDestruct = 0.;
+	double boardSelfDestruct = 0.;
+	double captureSelfDestruct = 0.;
 	int selfDestructTime = 0;
 	int randomSelfDestructTime = 0;
 
