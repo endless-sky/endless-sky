@@ -5274,8 +5274,8 @@ void Ship::DoGeneration()
 	{
 		if(wasDisabled)
 		{
-			// This is the first frame this ship spent disabled. Initialized the self
-			// destruct sequence.
+			// This is the first frame this ship spent disabled.
+			// Initialize the self destruct sequence.
 			if(!selfDestructCounter)
 			{
 				selfDestructCounter = cache.selfDestructTime;
