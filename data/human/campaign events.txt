@@ -2080,23 +2080,7 @@ event "fw expanded and cut"
 
 
 
-event "fw at war with Syndicate"
-	government Syndicate
-		"attitude toward"
-			"Free Worlds" -.3
-			"Pirate" -.01
-			"Korath" -.01
-		bribe 0
-	system "Rutilicus"
-		fleet "Small Southern Merchants" 600
-		fleet "Large Southern Merchants" 2000
-	system "Cebalrai"
-		fleet "Small Southern Merchants" 600
-		fleet "Large Southern Merchants" 2000
-	system "Holeb"
-		fleet "Small Southern Merchants" 1000
-		fleet "Large Southern Merchants" 3000
-	# Syndicate supply route to Tarazed stops working.
+event "end of syndicate convoys to Tarazed"
 	system Markab
 		remove fleet "Syndicate Supply Convoy"
 	system Fomalhaut
@@ -2121,6 +2105,25 @@ event "fw at war with Syndicate"
 		remove fleet "Syndicate Supply Convoy"
 	system Tarazed
 		remove fleet "Syndicate Supply Convoy"
+
+
+
+event "fw at war with Syndicate"
+	government Syndicate
+		"attitude toward"
+			"Free Worlds" -.3
+			"Pirate" -.01
+			"Korath" -.01
+		bribe 0
+	system "Rutilicus"
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 2000
+	system "Cebalrai"
+		fleet "Small Southern Merchants" 600
+		fleet "Large Southern Merchants" 2000
+	system "Holeb"
+		fleet "Small Southern Merchants" 1000
+		fleet "Large Southern Merchants" 3000
 
 
 
