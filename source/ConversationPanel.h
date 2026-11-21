@@ -160,7 +160,6 @@ private:
 
 	// Whether the mouse moved in the current frame.
 	bool isHovering = false;
-	Point hoverPoint;
 };
 
 

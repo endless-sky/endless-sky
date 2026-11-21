@@ -11,6 +11,19 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Deneb Pug Pre-Invasion"
+	entering
+	invisible
+	non-blocking
+	source
+		system "Deneb"
+	to offer
+		not "event: pug invasion"
+		not "event: fwc pug invasion"
+	on offer
+		set "discovered deneb pug pre-invasion"
+		fail
+
 mission "Ruin: Landing"
 	landing
 	source Ruin

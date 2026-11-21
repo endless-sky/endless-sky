@@ -102,7 +102,7 @@ ship "Ayym"
 		
 		"jump fuel" 100
 		"jump speed" .2
-		"hyperdrive" 1
+		"hyperdrive"
 		"hyperdrive sound" "organ drive"
 		"hyperdrive out sound" "organ drive out"
 		"hyperdrive in sound" "organ drive in"

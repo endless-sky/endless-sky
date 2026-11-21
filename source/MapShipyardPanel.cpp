@@ -112,6 +112,16 @@ const ItemInfoDisplay &MapShipyardPanel::CompareInfo() const
 
 
 
+void MapShipyardPanel::Hovering(int index)
+{
+	if(index < 0 || index >= static_cast<int>(list.size()))
+		hovering = nullptr;
+	else
+		hovering = list[index];
+}
+
+
+
 void MapShipyardPanel::Select(int index)
 {
 	if(index < 0 || index >= static_cast<int>(list.size()))
@@ -259,7 +269,7 @@ void MapShipyardPanel::DrawItems()
 				: parkedInSystem == 1
 				? "1 ship parked"
 				: Format::Number(parkedInSystem) + " ships parked";
-			Draw(corner, ship->Thumbnail(), ship->CustomSwizzle(), isForSale, ship == selected,
+			Draw(corner, ship->Thumbnail(), ship->CustomSwizzle(), isForSale, ship == selected, ship == hovering,
 					ship->DisplayModelName(), ship->VariantMapShopName(), price, info, parking_details);
 			list.push_back(ship);
 		}

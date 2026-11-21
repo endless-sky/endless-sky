@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Color.h"
-#include "shader/FillShader.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -25,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "Screen.h"
 #include "text/Table.h"
+#include "UI.h"
 
 #include <algorithm>
 #include <cmath>
@@ -78,7 +78,7 @@ int ItemInfoDisplay::AttributesHeight() const
 void ItemInfoDisplay::DrawDescription(const Point &topLeft) const
 {
 	Rectangle hoverTarget = Rectangle::FromCorner(topLeft, Point(PanelWidth(), DescriptionHeight()));
-	Color color = hoverTarget.Contains(hoverPoint) ? *GameData::Colors().Get("bright") : *GameData::Colors().Get("medium");
+	Color color = *GameData::Colors().Get(hasHover && hoverTarget.Contains(UI::GetMouse()) ? "bright" : "medium");
 	description.Draw(topLeft + Point(10., 12.), color);
 }
 
@@ -101,10 +101,8 @@ void ItemInfoDisplay::DrawTooltips() const
 
 
 
-// Update the location where the mouse is hovering.
-void ItemInfoDisplay::Hover(const Point &point)
+void ItemInfoDisplay::Hover()
 {
-	hoverPoint = point;
 	hasHover = true;
 }
 
@@ -188,7 +186,7 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 		return;
 
 	Rectangle zone = table.GetRowBounds();
-	if(!zone.Contains(hoverPoint))
+	if(!zone.Contains(UI::GetMouse()))
 		return;
 
 	if(label == hover)
@@ -202,7 +200,7 @@ void ItemInfoDisplay::CheckHover(const Table &table, const string &label) const
 	if(tooltip.ShouldDraw())
 	{
 		tooltip.SetZone(zone);
-		tooltip.SetText(GameData::Tooltip(hover));
+		tooltip.SetText(GameData::Tooltip(isShip ? "ship: " + hover : hover));
 	}
 
 	hoveringTooltip |= true;

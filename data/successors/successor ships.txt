@@ -219,9 +219,8 @@ ship "Ejniisde-Khora"
 		"Overcharged Pulse Laser" 5
 		"Overcharged Laser Turret" 3
 
-		`1-"Uurau" Betavoltaic Cell`
-		`OC-"Mavra" Betavoltaic Cell` 3
-		"Auxiliary Power Reserve"
+		`"Nnesa" Fusion Core`
+		"Auxiliary Power Reserve" 2
 		"Primary Power Reserve"
 		`"Ej" Shield Cortex`
 

@@ -17,7 +17,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "../Ship.h"
 
+#include <algorithm>
 #include <cmath>
+
+using namespace std;
 
 
 
@@ -40,6 +43,7 @@ void ShipAttributeCache::Calibrate(const Ship &ship)
 	Turn(attributes);
 	ReverseThrust(attributes);
 	AfterburnerThrust(attributes);
+	InertialessMovement(attributes);
 
 	// Miscellaneous actions and attributes:
 	Cloaking(attributes);
@@ -51,9 +55,7 @@ void ShipAttributeCache::Calibrate(const Ship &ship)
 
 void ShipAttributeCache::Capacity(const Outfit &attributes, const Outfit &baseAttributes)
 {
-	outfitCapacity = baseAttributes.Get("outfit space");
-	weaponCapacity = baseAttributes.Get("weapon capacity");
-	engineCapacity = baseAttributes.Get("engine capacity");
+	baseOutfitCapacity = baseAttributes.Get("outfit space");
 
 	cargoSpace = attributes.Get("cargo space");
 	automaton = attributes.Get("automaton");
@@ -70,8 +72,11 @@ void ShipAttributeCache::EnergyAndFuelGeneration(const Outfit &attributes)
 {
 	energyGeneration = attributes.Get("energy generation");
 	energyConsumption = attributes.Get("energy consumption");
+	dockedEnergyGeneration = attributes.Get("docked energy generation");
+	dockedEnergyHeat = attributes.Get("docked energy heat");
 
 	fuelGeneration = attributes.Get("fuel generation");
+	dockedFuelGeneration = attributes.Get("docked fuel generation");
 	fuelConsumption = attributes.Get("fuel consumption");
 	fuelEnergy = attributes.Get("fuel energy");
 	fuelHeat = attributes.Get("fuel heat");
@@ -86,6 +91,7 @@ void ShipAttributeCache::EnergyAndFuelGeneration(const Outfit &attributes)
 void ShipAttributeCache::HeatAndCooling(const Outfit &attributes)
 {
 	heatGeneration = attributes.Get("heat generation");
+	dockedHeatGeneration = attributes.Get("docked heat generation");
 	heatCapacity = attributes.Get("heat capacity");
 	overheatDamageThreshold = 1. + attributes.Get("overheat damage threshold");
 	overheatDamageRate = attributes.Get("overheat damage rate");
@@ -107,19 +113,25 @@ void ShipAttributeCache::HullRepair(const Outfit &attributes)
 	repairDelay = attributes.Get("repair delay");
 	disabledRepairDelay = attributes.Get("disabled repair delay");
 
-	hullRepairRate = (attributes.Get("hull repair rate") + attributes.Get("delayed hull repair rate"))
-		* (1. + attributes.Get("hull repair multiplier"));
-	hullRepairCost.energy = (attributes.Get("hull energy") + attributes.Get("delayed hull energy"))
-		* (1. + attributes.Get("hull energy multiplier"));
-	hullRepairCost.heat = (attributes.Get("hull heat") + attributes.Get("delayed hull heat"))
-		* (1. + attributes.Get("hull heat multiplier"));
-	hullRepairCost.fuel = (attributes.Get("hull fuel") + attributes.Get("delayed hull fuel"))
-		* (1. + attributes.Get("hull fuel multiplier"));
+	double repairMult = 1. + attributes.Get("hull repair multiplier");
+	double energyMult = 1. + attributes.Get("hull energy multiplier");
+	double heatMult = 1. + attributes.Get("hull heat multiplier");
+	double fuelMult = 1. + attributes.Get("hull fuel multiplier");
 
-	hullRepairRateWithDelay = attributes.Get("hull repair rate") * (1. + attributes.Get("hull repair multiplier"));
-	hullRepairWithDelayCost.energy = attributes.Get("hull energy") * (1. + attributes.Get("hull energy multiplier"));
-	hullRepairWithDelayCost.heat = attributes.Get("hull heat") * (1. + attributes.Get("hull heat multiplier"));
-	hullRepairWithDelayCost.fuel = attributes.Get("hull fuel") * (1. + attributes.Get("hull fuel multiplier"));
+	hullRepairRate = (attributes.Get("hull repair rate") + attributes.Get("delayed hull repair rate")) * repairMult;
+	hullRepairCost.energy = (attributes.Get("hull energy") + attributes.Get("delayed hull energy")) * energyMult;
+	hullRepairCost.heat = (attributes.Get("hull heat") + attributes.Get("delayed hull heat")) * heatMult;
+	hullRepairCost.fuel = (attributes.Get("hull fuel") + attributes.Get("delayed hull fuel")) * fuelMult;
+
+	hullRepairRateWithDelay = attributes.Get("hull repair rate") * repairMult;
+	hullRepairWithDelayCost.energy = attributes.Get("hull energy") * energyMult;
+	hullRepairWithDelayCost.heat = attributes.Get("hull heat") * heatMult;
+	hullRepairWithDelayCost.fuel = attributes.Get("hull fuel") * fuelMult;
+
+	dockedHullRepairRate = attributes.Get("docked hull repair rate") * repairMult;
+	dockedHullRepairCost.energy = attributes.Get("docked hull energy") * energyMult;
+	dockedHullRepairCost.heat = attributes.Get("docked hull heat") * heatMult;
+	dockedHullRepairCost.fuel = attributes.Get("docked hull fuel") * fuelMult;
 }
 
 
@@ -129,21 +141,25 @@ void ShipAttributeCache::ShieldRegen(const Outfit &attributes)
 	shieldDelay = attributes.Get("shield delay");
 	depletedShieldDelay = attributes.Get("depleted shield delay");
 
-	shieldRegenRate = (attributes.Get("shield generation") + attributes.Get("delayed shield generation"))
-		* (1. + attributes.Get("shield generation multiplier"));
-	shieldRegenCost.energy = (attributes.Get("shield energy") + attributes.Get("delayed shield energy"))
-		* (1. + attributes.Get("shield energy multiplier"));
-	shieldRegenCost.heat = (attributes.Get("shield heat") + attributes.Get("delayed shield heat"))
-		* (1. + attributes.Get("shield heat multiplier"));
-	shieldRegenCost.fuel = (attributes.Get("shield fuel") + attributes.Get("delayed shield fuel"))
-		* (1. + attributes.Get("shield fuel multiplier"));
+	double regenMult = 1. + attributes.Get("shield generation multiplier");
+	double energyMult = 1. + attributes.Get("shield energy multiplier");
+	double heatMult = 1. + attributes.Get("shield heat multiplier");
+	double fuelMult = 1. + attributes.Get("shield fuel multiplier");
 
-	shieldRegenRateWithDelay = attributes.Get("shield generation")
-		* (1. + attributes.Get("shield generation multiplier"));
-	shieldRegenWithDelayCost.energy = attributes.Get("shield energy")
-		* (1. + attributes.Get("shield energy multiplier"));
-	shieldRegenWithDelayCost.heat = attributes.Get("shield heat") * (1. + attributes.Get("shield heat multiplier"));
-	shieldRegenWithDelayCost.fuel = attributes.Get("shield fuel") * (1. + attributes.Get("shield fuel multiplier"));
+	shieldRegenRate = (attributes.Get("shield generation") + attributes.Get("delayed shield generation")) * regenMult;
+	shieldRegenCost.energy = (attributes.Get("shield energy") + attributes.Get("delayed shield energy")) * energyMult;
+	shieldRegenCost.heat = (attributes.Get("shield heat") + attributes.Get("delayed shield heat")) * heatMult;
+	shieldRegenCost.fuel = (attributes.Get("shield fuel") + attributes.Get("delayed shield fuel")) * fuelMult;
+
+	shieldRegenRateWithDelay = attributes.Get("shield generation") * regenMult;
+	shieldRegenWithDelayCost.energy = attributes.Get("shield energy") * energyMult;
+	shieldRegenWithDelayCost.heat = attributes.Get("shield heat") * heatMult;
+	shieldRegenWithDelayCost.fuel = attributes.Get("shield fuel") * fuelMult;
+
+	dockedShieldRegenRate = attributes.Get("docked shield generation") * regenMult;
+	dockedShieldRegenCost.energy = attributes.Get("docked shield energy") * energyMult;
+	dockedShieldRegenCost.heat = attributes.Get("docked shield heat") * heatMult;
+	dockedShieldRegenCost.fuel = attributes.Get("docked shield fuel") * fuelMult;
 }
 
 
@@ -255,6 +271,31 @@ void ShipAttributeCache::AfterburnerThrust(const Outfit &attributes)
 
 
 
+void ShipAttributeCache::InertialessMovement(const Outfit &attributes)
+{
+	inertialessThrust = attributes.Get("inertialess thrust");
+	inertialessBraking = attributes.Get("inertialess braking");
+	if(!inertialessBraking)
+		inertialessBraking = inertialessThrust;
+
+	inertialessFlightCost.hull = attributes.Get("inertialess flight hull");
+	inertialessFlightCost.shields = attributes.Get("inertialess flight shields");
+	inertialessFlightCost.energy = attributes.Get("inertialess flight energy");
+	inertialessFlightCost.heat = attributes.Get("inertialess flight heat");
+	inertialessFlightCost.fuel = attributes.Get("inertialess flight fuel");
+
+	inertialessFlightCost.corrosion = attributes.Get("inertialess flight corrosion");
+	inertialessFlightCost.discharge = attributes.Get("inertialess flight discharge");
+	inertialessFlightCost.ionization = attributes.Get("inertialess flight ion");
+	inertialessFlightCost.scrambling = attributes.Get("inertialess flight scramble");
+	inertialessFlightCost.burning = attributes.Get("inertialess flight burn");
+	inertialessFlightCost.leakage = attributes.Get("inertialess flight leakage");
+	inertialessFlightCost.disruption = attributes.Get("inertialess flight disruption");
+	inertialessFlightCost.slowness = attributes.Get("inertialess flight slowing");
+}
+
+
+
 void ShipAttributeCache::Cloaking(const Outfit &attributes)
 {
 	cloakCost.shields = attributes.Get("cloaking shields");
@@ -313,7 +354,14 @@ void ShipAttributeCache::Misc(const Outfit &attributes)
 
 	landingSpeed = attributes.Get("landing speed");
 	silentJumps = attributes.Get("silent jumps");
-	selfDestruct = attributes.Get("self destruct");
+	selfDestruct = clamp(attributes.Get("self destruct"), 0., 1.);
+	boardSelfDestruct = clamp(attributes.Get("board self destruct"), 0., 1.);
+	captureSelfDestruct = clamp(attributes.Get("capture self destruct"), 0., 1.);
+	selfDestructTime = attributes.Get("self destruct time");
+	randomSelfDestructTime = attributes.Get("random self destruct time");
 
 	turretTurnMult = 1. + attributes.Get("turret turn multiplier");
+
+	immovable = attributes.Get("immovable");
+	instantBraking = attributes.Get("instant braking");
 }

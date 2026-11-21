@@ -47,6 +47,8 @@ mission "Remnant: Cognizance 1"
 		system "Nenia"
 		personality staying heroic disables uninterested
 		ship "Archon (Cloaked)" "Lifted Lorax"
+		on encounter
+			set "discovered archon"
 	npc
 		government "Korath"
 		system "Nenia"
@@ -1311,8 +1313,7 @@ mission "Remnant: Cognizance 28"
 			names "korath"
 			cargo 0
 			variant
-				"Rano'erek" 1
-				"Rano'erek (Ground Assault)" 4
+				"Rano'erek" 5
 				"Palavret (Ember)" 6
 				"'olofez" 32
 		on kill
@@ -1353,8 +1354,7 @@ mission "Remnant: Cognizance 29"
 			names "korath"
 			cargo 0
 			variant
-				"Rano'erek" 1
-				"Rano'erek (Ground Assault)" 2
+				"Rano'erek" 3
 				"Palavret (Ember)" 6
 				"'olofez" 24
 	on complete

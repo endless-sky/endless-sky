@@ -52,10 +52,11 @@ using namespace std;
 
 StartConditionsPanel::StartConditionsPanel(PlayerInfo &player, UI &gamePanels,
 	const StartConditionsList &allScenarios, const Panel *parent)
-	: player(player), gamePanels(gamePanels), parent(parent), gamerules(GameData::DefaultGamerules()),
+	: player(player), gamePanels(gamePanels), parent(parent),
 	bright(*GameData::Colors().Get("bright")), medium(*GameData::Colors().Get("medium")),
 	selectedBackground(*GameData::Colors().Get("faint"))
 {
+	gamerules.Replace(GameData::DefaultGamerules());
 	// Extract from all start scenarios those that are visible to the player.
 	for(const auto &scenario : allScenarios)
 		if(scenario.Visible())
@@ -224,7 +225,6 @@ bool StartConditionsPanel::Click(int x, int y, MouseButton button, int /* clicks
 bool StartConditionsPanel::Hover(int x, int y)
 {
 	hasHover = true;
-	hoverPoint = Point(x, y);
 	return true;
 }
 

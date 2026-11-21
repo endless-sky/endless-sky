@@ -128,11 +128,20 @@ void ShopPanel::Step()
 	loadingCircle.Step();
 	if(!checkedHelp && GetUI().IsTop(this) && player.Ships().size() > 1)
 	{
+		if(!Preferences::Has("help: locked ships"))
+		{
+			for(const auto &it : player.Ships())
+				if(CanShowInSidebar(*it, player.GetPlanet()) && it.get()->IsLocked())
+				{
+					DoHelp("locked ships");
+					break;
+				}
+		}
 		if(DoHelp("multiple ships"))
 		{
 			// Nothing to do here, just don't want to execute the other branch.
 		}
-		else if(!Preferences::Has("help: shop with multiple ships"))
+		else if(!Preferences::HelpShown("help: shop with multiple ships"))
 		{
 			set<string> modelNames;
 			for(const auto &it : player.Ships())
@@ -195,8 +204,10 @@ void ShopPanel::Draw()
 		if(!warningType.empty())
 			text += "\n" + GameData::Tooltip(warningType);
 		shipsTooltip.SetText(text);
-		shipsTooltip.SetBackgroundColor(GameData::Colors().Get(warningType.empty() ? "tooltip background"
-			: (warningType.back() == '!' ? "error back" : "warning back")));
+		string backgroundColor = warningType.empty() ? "tooltip background"
+			: (warningType.back() == '!' ? "error back"
+			: (warningType == "locked systems" ? "locked back" : "warning back"));
+		shipsTooltip.SetBackgroundColor(GameData::Colors().Get(backgroundColor));
 		shipsTooltip.Draw(true);
 	}
 
@@ -311,6 +322,47 @@ void ShopPanel::DrawThumbnail(const Drawable &thumbnail, bool animate, const Poi
 
 
 
+int ShopPanel::DrawShipInfo(const Point &point, const Ship &ship, bool isSale)
+{
+	string descriptionType = isSale ? "description" : "ship description";
+	shipInfo.Update(ship, player, hasFleetCapacity, collapsed.contains(descriptionType), true, isSale);
+
+	const bool hasDescription = shipInfo.DescriptionHeight();
+	double descriptionOffset = hasDescription ? 40. : 0.;
+	if(hasDescription)
+	{
+		if(!collapsed.contains(descriptionType))
+		{
+			descriptionOffset = shipInfo.DescriptionHeight();
+			shipInfo.DrawDescription(point);
+		}
+		else
+		{
+			const Font &font = FontSet::Get(14);
+			const Color &dim = *GameData::Colors().Get("medium");
+			font.Draw("description", point + Point(35., 12.), dim);
+			const Sprite *collapsedArrow = SpriteSet::Get("ui/collapsed");
+			SpriteShader::Draw(collapsedArrow, point + Point(20., 20.));
+		}
+
+		// Calculate the ClickZone for the description and add it.
+		const Point descriptionDimensions(INFOBAR_WIDTH, descriptionOffset);
+		const Point descriptionCenter(point.X() + INFOBAR_WIDTH / 2, point.Y() + descriptionOffset / 2);
+		const ClickZone<string> collapseDescription(descriptionCenter, descriptionDimensions, descriptionType);
+		categoryZones.emplace_back(collapseDescription);
+	}
+
+	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter && !isSale);
+	const Point attributesPoint(point.X(), point.Y() + descriptionOffset);
+	const Point outfitsPoint(point.X(), attributesPoint.Y() + attributesHeight);
+	shipInfo.DrawAttributes(attributesPoint, !isOutfitter && !isSale);
+	shipInfo.DrawOutfits(outfitsPoint);
+
+	return descriptionOffset + attributesHeight + shipInfo.OutfitsHeight();
+}
+
+
+
 void ShopPanel::CheckForMissions(Mission::Location location) const
 {
 	if(!GetUI().IsTop(this))
@@ -365,7 +417,10 @@ int ShopPanel::VisibilityCheckboxesSize() const
 
 bool ShopPanel::ShouldHighlight(const Ship *ship)
 {
-	return (hoverButton == 's' || hoverButton == 'r');
+	if(hoverButton == 'r')
+		return ship->IsLocked();
+
+	return (hoverButton == 's' || hoverButton == 'u');
 }
 
 
@@ -389,15 +444,24 @@ bool ShopPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 				DoHelp("outfitter with multiple ships", true);
 
 			set<string> modelNames;
+			bool displayLocked = false;
+			bool displayMultipleShips = false;
 			for(const auto &it : player.Ships())
 			{
 				if(!CanShowInSidebar(*it, player.GetPlanet()))
 					continue;
-				if(modelNames.contains(it->DisplayModelName()))
+				if(!displayLocked && it.get()->IsLocked())
+				{
+					DoHelp("locked ships", true);
+					displayLocked = true;
+				}
+				if(!displayMultipleShips && modelNames.contains(it->DisplayModelName()))
 				{
 					DoHelp("shop with multiple ships", true);
-					break;
+					displayMultipleShips = true;
 				}
+				if(displayLocked && displayMultipleShips)
+					break;
 				modelNames.insert(it->DisplayModelName());
 			}
 
@@ -629,7 +693,6 @@ bool ShopPanel::Hover(int x, int y)
 	infobarScrollbar.Hover(x, y);
 	sidebarScrollbar.Hover(x, y);
 
-	hoverPoint = Point(x, y);
 	// Check that the point is not in the button area.
 	hoverButton = CheckButton(x, y);
 	if(hoverButton)
@@ -639,8 +702,8 @@ bool ShopPanel::Hover(int x, int y)
 	}
 	else
 	{
-		shipInfo.Hover(hoverPoint);
-		outfitInfo.Hover(hoverPoint);
+		shipInfo.Hover();
+		outfitInfo.Hover();
 	}
 
 	activePane = ShopPane::Main;
@@ -828,7 +891,6 @@ void ShopPanel::DrawShipsSidebar()
 
 	// Check whether flight check tooltips should be shown.
 	const auto flightChecks = player.FlightCheck();
-	Point mouse = UI::GetMouse();
 	warningType.clear();
 	shipName.clear();
 	shipZones.clear();
@@ -861,7 +923,7 @@ void ShopPanel::DrawShipsSidebar()
 
 		shipZones.emplace_back(point, Point(ICON_TILE, ICON_TILE), ship.get());
 
-		if(mouse.Y() < Screen::Bottom() - ButtonPanelHeight() && shipZones.back().Contains(mouse))
+		if(hoverPoint.Y() < Screen::Bottom() - ButtonPanelHeight() && shipZones.back().Contains(hoverPoint))
 		{
 			shipName = ship->GivenName() + (ship->IsParked() ? "\n" + GameData::Tooltip("parked") : "");
 			shipsTooltip.SetZone(shipZones.back());
@@ -871,9 +933,10 @@ void ShopPanel::DrawShipsSidebar()
 		if(checkIt != flightChecks.end())
 		{
 			const string &check = (*checkIt).second.front();
-			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" : "ui/warning");
+			const Sprite *icon = SpriteSet::Get(check.back() == '!' ? "ui/error" :
+					(check == "locked systems" ? "ui/lock" : "ui/warning"));
 			SpriteShader::Draw(icon, point + .5 * Point(ICON_TILE - icon->Width(), ICON_TILE - icon->Height()));
-			if(shipZones.back().Contains(mouse))
+			if(shipZones.back().Contains(hoverPoint))
 				warningType = check;
 		}
 
@@ -1065,12 +1128,7 @@ void ShopPanel::DrawMain()
 
 int ShopPanel::DrawPlayerShipInfo(const Point &point)
 {
-	shipInfo.Update(*playerShip, player, hasFleetCapacity, collapsed.contains("description"), true);
-	shipInfo.DrawAttributes(point, !isOutfitter);
-	const int attributesHeight = shipInfo.GetAttributesHeight(!isOutfitter);
-	shipInfo.DrawOutfits(Point(point.X(), point.Y() + attributesHeight));
-
-	return attributesHeight + shipInfo.OutfitsHeight();
+	return DrawShipInfo(point, *playerShip, false);
 }
 
 

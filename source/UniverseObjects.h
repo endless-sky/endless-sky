@@ -19,8 +19,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Set.h"
 #include "Shop.h"
 
+#include "CapacityList.h"
 #include "CategoryList.h"
 #include "Color.h"
+#include "ConditionAlias.h"
 #include "Confusion.h"
 #include "Conversation.h"
 #include "Effect.h"
@@ -95,9 +97,59 @@ public:
 	// Check for objects that are referred to but never defined.
 	void CheckReferences();
 
+	// Revert the universe back to the state just after initial datafile loading.
+	// This reverts all changes that resulted from savegame loading and all changes that resulted from playing the game.
+	void Revert();
+
 	// Draws the current menu background. Unlike accessing the menu background
 	// through GameData, this function is thread-safe.
 	void DrawMenuBackground(Panel *panel) const;
+
+	// Modifiers for the stored data.
+	void AddJumpRange(double neighborDistance);
+	void DestroyPersons(const std::vector<std::string> &names);
+	void ResetPersons();
+	void SetDate(const Date &date);
+	void HandleEvent(const ShipEvent &event);
+
+	// Accessors for the stored data.
+	const Set<Color> &Colors() const;
+	const Set<Confusion> &Confusions() const;
+	const std::vector<Trade::Commodity> &Commodities() const;
+	const Set<Conversation> &Conversations() const;
+	const Set<Effect> &Effects() const;
+	const Set<GameEvent> &Events() const;
+	const Set<Fleet> &Fleets() const;
+	const Set<FormationPattern> &Formations() const;
+	const Set<Galaxy> &Galaxies() const;
+	const CategoryList &GetCategory(CategoryType type);
+	const TextReplacements &GetTextReplacements() const;
+	const Set<Government> &Governments() const;
+	const Set<Hazard> &Hazards() const;
+	const std::string HelpMessage(const std::string &name) const;
+	const std::map<std::string, std::string> &HelpTemplates() const;
+	const Set<Interface> &Interfaces() const;
+	const Set<Minable> &Minables() const;
+	const Set<Mission> &Missions() const;
+	const Set<Outfit> &Outfits() const;
+	const Set<Shop<Outfit>> &Outfitters() const;
+	const Set<Person> &Persons() const;
+	const Set<Phrase> &Phrases() const;
+	const Set<Planet> &Planets() const;
+	const StellarObjectSpriteData &ObjectSpriteData(const Sprite *sprite) const;
+	const std::string &Rating(const std::string &type, int level) const;
+	const Set<Shader> &Shaders() const;
+	const Set<Ship> &Ships() const;
+	const Set<Shop<Ship>> &Shipyards() const;
+	const Set<News> &SpaceportNews() const;
+	const std::vector<Trade::Commodity> &SpecialCommodities() const;
+	const std::vector<StartConditions> &StartOptions() const;
+	const Set<Swizzle> &Swizzles() const;
+	const Set<System> &Systems() const;
+	const Set<TestData> &TestDataSets() const;
+	const Set<Test> &Tests() const;
+	const std::string &Tooltip(const std::string &label) const;
+	const Set<Wormhole> &Wormholes() const;
 
 
 private:
@@ -141,10 +193,23 @@ private:
 	Set<Shop<Outfit>> outfitSales;
 	Set<Wormhole> wormholes;
 	Set<Gamerules> gamerulesPresets;
+	Set<ConditionAlias> conditionAliases;
 
 	// This is used for speeding up the route calculations.
 	std::set<std::string> universeWormholeRequirements;
 	std::set<double> neighborDistances;
+
+	// Copy of the data from just after loading, to allow resetting the universe back to the initial post-loading state.
+	Set<Fleet> defaultFleets;
+	Set<Government> defaultGovernments;
+	Set<Planet> defaultPlanets;
+	Set<System> defaultSystems;
+	Set<Galaxy> defaultGalaxies;
+	Set<Shop<Ship>> defaultShipSales;
+	Set<Shop<Outfit>> defaultOutfitSales;
+	Set<Wormhole> defaultWormholes;
+	Set<Person> defaultPersons;
+	TextReplacements defaultSubstitutions;
 
 	TextReplacements substitutions;
 	Trade trade;
@@ -152,6 +217,7 @@ private:
 	std::map<std::string, std::vector<std::string>> ratings;
 	std::map<const Sprite *, StellarObjectSpriteData> objectSpriteData;
 	std::map<CategoryType, CategoryList> categories;
+	CapacityList capacities;
 
 	std::map<std::string, std::string> tooltips;
 	std::map<std::string, std::string> helpMessages;

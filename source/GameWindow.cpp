@@ -184,15 +184,15 @@ bool GameWindow::Init(bool headless)
 		windowHeight = min(windowHeight, Screen::RawHeight());
 	}
 
-	if(!Preferences::Has("Block screen saver"))
+	if(!Preferences::Has(Preferences::BLOCK_SCREEN_SAVER))
 		SDL_EnableScreenSaver();
 
 	// Settings that must be declared before the window creation.
 	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_ALLOW_HIGHDPI;
 
-	if(Preferences::ScreenModeSetting() == "fullscreen")
+	if(Preferences::Has(Preferences::FULLSCREEN))
 		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-	else if(Preferences::Has("maximized"))
+	else if(Preferences::Has(Preferences::SCREEN_MAXIMIZED))
 		flags |= SDL_WINDOW_MAXIMIZED;
 
 	// The main window spawns visibly at this point.
@@ -331,6 +331,10 @@ bool GameWindow::Init(bool headless)
 	UpdateWindowRounding();
 #endif
 
+	const char *glVendor = reinterpret_cast<const char *>(glGetString(GL_VENDOR));
+	const char *glRenderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
+	Logger::Log(string("Game window created successfully. Renderer: ") + glVendor + ' ' + glRenderer
+		+ ". OpenGL: " + glVersion + ". GLSL: " + glslVersion + '.', Logger::Level::INFO);
 	return true;
 }
 
@@ -422,13 +426,13 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 	int interval = 1;
 	switch(state)
 	{
-		case Preferences::VSync::adaptive:
+		case Preferences::VSync::ADAPTIVE:
 			interval = -1;
 			break;
-		case Preferences::VSync::off:
+		case Preferences::VSync::OFF:
 			interval = 0;
 			break;
-		case Preferences::VSync::on:
+		case Preferences::VSync::ON:
 			interval = 1;
 			break;
 		default:

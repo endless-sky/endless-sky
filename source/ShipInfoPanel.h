@@ -70,7 +70,7 @@ private:
 
 	// Helper functions.
 	void DrawLine(const Point &from, const Point &to, const Color &color) const;
-	bool Hover(const Point &point);
+	bool Hover();
 	bool Rename(const std::string &name);
 	bool CanDump() const;
 	void Dump();
@@ -104,8 +104,6 @@ private:
 
 	InfoPanelState panelState;
 
-	// Track the current mouse location.
-	Point hoverPoint;
 	// Track whether a commodity, plundered outfit, or installed outfit is selected to jettison.
 	std::string selectedCommodity;
 	const Outfit *selectedPlunder = nullptr;

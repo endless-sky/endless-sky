@@ -53,6 +53,7 @@ public:
 	float GetFrame(int step = -1) const;
 	void PauseAnimation() const;
 	void UnpauseAnimation() const;
+	void AddFrameOffset(int offset) const;
 
 	// Positional attributes.
 	double Zoom() const;
@@ -106,6 +107,7 @@ private:
 	mutable bool randomize = false;
 	bool repeat = true;
 	bool rewind = false;
+	bool reverse = false;
 	bool noFrameTweening = false;
 	mutable int pause = 0;
 

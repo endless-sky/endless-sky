@@ -18,7 +18,9 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "LoadingCircle.h"
 #include "MapPanel.h"
 
+#include <optional>
 #include <string>
+#include <utility>
 
 class MapDetailPanel;
 class Point;
@@ -44,12 +46,20 @@ public:
 
 
 public:
+	static double Height();
+	static void ResetSize();
+	static std::optional<unsigned> MapModeToCategory(int mode);
+
+
+public:
 	// For the orbit selection to work properly this has to be a planet.
 	explicit MapPlanetCard(const StellarObject &object, unsigned number, bool hasVisited, const MapDetailPanel *parent);
 	// Return if this one was clicked, whether or not we did something about it.
-	ClickAction Click(int x, int y, int clicks);
+	ClickAction Click(const Point &clickPoint, int clicks);
+	std::pair<ClickAction, std::optional<unsigned>> Hover(const Point &hoverPoint) const;
 	// Draw this at the corresponding scroll; if it is not outside bounds, and return if we drew it.
-	bool DrawIfFits(const Point &uiPoint);
+	// If the player is hovering over this card, highlight its contents.
+	bool DrawIfFits(const Point &uiPoint, const Point &hoverPoint);
 	// If this object is currently being shown.
 	bool IsShown() const;
 	// Whether or not this object by selected, by clicking on it or otherwise.
@@ -60,10 +70,7 @@ public:
 	const Planet *GetPlanet() const;
 
 	void Select(bool select = true);
-
-	static double Height();
-
-	static void ResetSize();
+	void SelectCategory(std::optional<unsigned> category);
 
 
 protected:
@@ -97,5 +104,5 @@ private:
 	std::string reputationLabel;
 	const std::string &planetName;
 	// The currently select category (outfitter, shipyard, ...)
-	unsigned selectedCategory = 0;
+	std::optional<unsigned> selectedCategory;
 };

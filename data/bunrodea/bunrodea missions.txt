@@ -11,6 +11,16 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
+mission "Discovery: Bunrodea Space"
+	entering
+	invisible
+	non-blocking
+	source
+		government "Bunrodea" "Bunrodea (Guard)"
+	on offer
+		set "discovered bunrodea space"
+		fail
+
 mission "First Contact: Bunrodea (Hostile)"
 	landing
 	name "An Intriguing Invitation"

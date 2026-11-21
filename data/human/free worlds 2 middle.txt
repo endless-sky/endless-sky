@@ -2143,6 +2143,7 @@ mission "FW Defend New Tibet"
 		dialog phrase "free worlds failed"
 	
 	on offer
+		event "end of syndicate convoys to Tarazed"
 		log "As a member of the Council, must make the deciding vote on a difficult decision. A defector from the Syndicate is claiming to have proof that the Syndicate was behind the bombings of Martini and Geminus. If that is true, the Republic may agree to make peace with the Free Worlds. But, refusing to return the defector to the Syndicate would certainly earn their enmity."
 		conversation
 			`The fleet in orbit around Wayfarer is pitifully small, surely not enough to take on more than a couple of Navy capital ships. JJ orders one of their communication officers to try to establish a secure link to Bourne or to any Free Worlds post on the other side of the Navy blockade. After about ten minutes, the officer returns and says, "Sir, we've received communications from New Tibet sent earlier today. You need to talk to them."`

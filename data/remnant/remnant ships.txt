@@ -502,7 +502,7 @@ ship "Gull"
 		"cloaked shield permeability" 1
 		"cloaking energy" 5
 		"cloaking fuel" .1
-		"cloaked communication" 1
+		"cloaked communication"
 		"outfit scan power" 12
 		"outfit scan efficiency" 20
 		"tactical scan power" 26
@@ -665,7 +665,7 @@ ship "Heron"
 		"cloaked shield permeability" 1
 		"cloaking energy" 3
 		"cloaking fuel" .05
-		"cloaked communication" 1
+		"cloaked communication"
 		"gaslining" 1
 		"atmosphere scan" 100
 		"outfit scan power" 175
@@ -921,7 +921,7 @@ ship "Merganser"
 		"cloaked shield permeability" 1
 		"cloaking energy" 4
 		"cloaking fuel" .075
-		"cloaked communication" 1
+		"cloaked communication"
 		"atmosphere scan" 100
 		"outfit scan power" 12
 		"outfit scan efficiency" 12
@@ -1115,8 +1115,8 @@ ship "Penguin"
 		"cloaked shield permeability" 1
 		"cloaking energy" 3
 		"cloaking fuel" .05
-		"cloaked communication" 1
-		"cloaked scanning" 1
+		"cloaked communication"
+		"cloaked scanning"
 		"outfit scan power" 50
 		"outfit scan efficiency" 36
 		"tactical scan power" 50
@@ -1231,7 +1231,7 @@ ship "Peregrine"
 		"cloaked shield permeability" 1
 		"cloaking energy" 4
 		"cloaking fuel" .075
-		"cloaked communication" 1
+		"cloaked communication"
 		"gaslining" 1
 		"outfit scan power" 18
 		"outfit scan efficiency" 22
@@ -1547,7 +1547,7 @@ ship "Starling"
 		"cloaked shield permeability" 1
 		"cloaking energy" 5
 		"cloaking fuel" .1
-		"cloaked communication" 1
+		"cloaked communication"
 		"outfit scan power" 12
 		"outfit scan efficiency" 20
 		"tactical scan power" 26

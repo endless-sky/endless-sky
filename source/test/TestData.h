@@ -24,6 +24,7 @@ class DataFile;
 class DataNode;
 class Planet;
 class System;
+class UniverseObjects;
 
 
 
@@ -31,7 +32,7 @@ class System;
 class TestData {
 public:
 	const std::string &Name() const;
-	void Load(const DataNode &node, const std::filesystem::path &sourceDataFilePath);
+	void Load(UniverseObjects &universe, const DataNode &node, const std::filesystem::path &sourceDataFilePath);
 	// Function to inject the test-data into the game or into the game's
 	// environment.
 	bool Inject(const ConditionsStore *playerConditions, const std::set<const System *> *visitedSystems,
@@ -48,12 +49,14 @@ private:
 	// Writes out testdata as savegame file.
 	bool InjectSavegame() const;
 
-	// Loads a mission stored in testdata into a Mission through GameData.
+	// Loads a mission stored in testdata into the universe.
 	bool InjectMission(const ConditionsStore *playerConditions, const std::set<const System *> *visitedSystems,
 		const std::set<const Planet *> *visitedPlanets) const;
 
 
 private:
+	UniverseObjects *universe = nullptr;
+
 	// Name of the dataset
 	std::string dataSetName;
 	// Type of the dataset

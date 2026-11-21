@@ -42,6 +42,11 @@ public:
 		std::optional<double> initialValue = std::nullopt,
 		Truncate truncate = Truncate::NONE,
 		bool allowsFastForward = false);
+	static OptionalInputDialogPanel *RequestDouble(std::function<void(std::optional<double>)> fun,
+		std::string message,
+		std::optional<double> initialValue = std::nullopt,
+		Truncate truncate = Truncate::NONE,
+		bool allowsFastForward = false);
 
 	template<class T>
 	static OptionalInputDialogPanel *RequestIntegerWithValidation(T *t, void (T::*fun)(std::optional<int>),
@@ -52,6 +57,12 @@ public:
 		bool allowsFastForward = false);
 	template<class T>
 	static OptionalInputDialogPanel *RequestDoubleWithValidation(T *t, void (T::*fun)(std::optional<double>),
+		std::function<bool(double)> validate,
+		std::string message,
+		std::optional<double> initialValue = std::nullopt,
+		Truncate truncate = Truncate::NONE,
+		bool allowsFastForward = false);
+	static OptionalInputDialogPanel *RequestDoubleWithValidation(std::function<void(std::optional<double>)> fun,
 		std::function<bool(double)> validate,
 		std::string message,
 		std::optional<double> initialValue = std::nullopt,

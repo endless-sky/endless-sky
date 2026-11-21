@@ -50,6 +50,7 @@ public:
 		const Weapon &weapon;
 		Point position;
 		double distanceTraveled;
+		double scaling = 1.;
 	};
 
 	enum DeathType {
@@ -95,6 +96,9 @@ public:
 	// Get information on how this projectile impacted a ship.
 	ImpactInfo GetInfo(double intersection) const;
 
+	// Get the ship that initially fired this projectile.
+	const std::weak_ptr<const Ship> &ParentShip() const;
+
 	// Find out which entity or government this projectile is targeting. Note:
 	// this pointer is not guaranteed to be dereferenceable, so only use it
 	// for comparing.
@@ -128,6 +132,8 @@ private:
 private:
 	const Weapon *weapon = nullptr;
 	bool isShipExplosion = false;
+
+	std::weak_ptr<const Ship> parentShip;
 
 	std::weak_ptr<Entity> target;
 	const Entity *cachedTarget = nullptr;

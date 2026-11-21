@@ -394,7 +394,6 @@ bool ConversationPanel::Scroll(double dx, double dy)
 // Handle selecting choices by hovering with the mouse.
 bool ConversationPanel::Hover(int x, int y)
 {
-	hoverPoint = Point(x, y);
 	isHovering = true;
 	return true;
 }

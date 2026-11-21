@@ -139,14 +139,12 @@ private:
 	int selected = 0;
 	ScrollVar<double> scroll;
 	ScrollBar scrollBar;
-	// Initialize mouse point to something off-screen to not
-	// make the game think the player is hovering on something.
-	Point hoverPoint = Point(-10000., -10000.);
 	Tooltip tooltip;
 
 	bool playerDied = false;
 	bool isCapturing = false;
 	bool isFirstCaptureAction = true;
+	bool successfulCapture = false;
 	// Calculating the odds of combat success, and the expected casualties, is
 	// non-trivial. So, cache the results for all crew amounts up to full.
 	CaptureOdds attackOdds;
@@ -157,4 +155,9 @@ private:
 
 	// Whether or not the ship can be captured.
 	bool canCapture = false;
+
+	// If the player boarded this ship multiple times, remember how many casualties
+	// occurred on previous boardings.
+	int pastCasualties = 0;
+	int remainingCrew = 0;
 };

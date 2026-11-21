@@ -2415,7 +2415,8 @@ outfit "Asteroid Jump Drive"
 	"outfit space" -20
 	"jump speed" 0.2
 	"jump fuel" 200
-	"jump drive" 1
+	"jump duration" 100
+	"jump drive"
 	"asteroid mount jd" -1
 	"jump effect" "jump drive circle"
 	"jump effect" "jump drive spark 1"
