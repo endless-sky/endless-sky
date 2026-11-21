@@ -4794,7 +4794,7 @@ bool Ship::SupportsFuelWeaponUsage() const
 	if(currentSystem)
 	{
 		System::SolarGeneration generation = currentSystem->GetSolarGeneration(position,
-			cache.ramscoop, cache.solarCollection, cache.solarHeat, false);
+			cache.ramscoop, cache.solarCollection, cache.solarHeat);
 		fuelGen += generation.fuel;
 	}
 	// Only return true if this ship has at least enough fuel generation to generate
