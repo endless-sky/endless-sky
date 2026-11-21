@@ -1174,13 +1174,13 @@ event "syndicate convoys to Tarazed"
 		add fleet "Syndicate Supply Convoy" 4000
 	system Cebalrai
 		add fleet "Syndicate Supply Convoy" 5000
-	system "Kaus Borealis"
+	system Rasalhague
 		add fleet "Syndicate Supply Convoy" 5000
-	system "Alpha Arae"
+	system Ascella
 		add fleet "Syndicate Supply Convoy" 5000
-	system "Delta Sagitarii"
+	system Peacock
 		add fleet "Syndicate Supply Convoy" 5000
-	system Eltanin
+	system "Kaus Australis"
 		add fleet "Syndicate Supply Convoy" 5000
 	system Dabih
 		add fleet "Syndicate Supply Convoy" 5000
