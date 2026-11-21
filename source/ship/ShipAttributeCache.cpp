@@ -357,6 +357,8 @@ void ShipAttributeCache::Misc(const Outfit &attributes)
 	selfDestruct = clamp(attributes.Get("self destruct"), 0., 1.);
 	boardSelfDestruct = clamp(attributes.Get("board self destruct"), 0., 1.);
 	captureSelfDestruct = clamp(attributes.Get("capture self destruct"), 0., 1.);
+	selfDestructTime = attributes.Get("self destruct time");
+	randomSelfDestructTime = attributes.Get("random self destruct time");
 
 	turretTurnMult = 1. + attributes.Get("turret turn multiplier");
 

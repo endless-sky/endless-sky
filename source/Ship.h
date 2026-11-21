@@ -843,6 +843,10 @@ private:
 	int hullDelay = 0;
 	// Timer for a disabled ship to repair itself.
 	int disabledRecoveryCounter = 0;
+	// Timer for a disabled ship to self destruct. When the ship is disabled,
+	// this becomes a positive value and is decremented each frame until reaching
+	// 0 and triggering the self destruct.
+	int selfDestructCounter = 0;
 	// Number of frames the damage overlay should be displayed, if any.
 	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.
