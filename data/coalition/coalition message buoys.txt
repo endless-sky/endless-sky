@@ -11,7 +11,7 @@
 # You should have received a copy of the GNU General Public License along with
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
-# Entering Coalition space
+# Entering Coalition space:
 mission "Coalition Message Buoy: Entering Coalition Space"
 	invisible
 	entering
@@ -22,9 +22,8 @@ mission "Coalition Message Buoy: Entering Coalition Space"
 	destination "Earth"
 	to offer
 		not "entered system by: takeoff"
-		and
-			not "previous system government: Coalition"
-			not "previous system government: Heliarch"
+		not "previous system government: Coalition"
+		not "previous system government: Heliarch"
 	on offer
 		message
 			phrase "entering coalition space"
@@ -55,7 +54,7 @@ phrase "entering coalition space"
 		". If a Quarg you are, leave."
 		", where welcome, no Quarg oppressor is."
 
-# Entering Heliarch ring systems
+# Entering Heliarch ring systems:
 mission "Coalition Message Buoy: Entering Heliarch Ring System"
 	invisible
 	entering
@@ -95,7 +94,7 @@ phrase "entering heliarch ring system"
 		", by a millennium of battles earned."
 		". Forget not what it cost."
 
-# Entering each species' home system
+# Entering each species' home system:
 mission "Coalition Message Buoy: Entering Sol Saryd"
 	invisible
 	entering
@@ -177,7 +176,7 @@ phrase "entering sol arach"
 		", where peace reigns."
 		", the keen sapphire."
 
-# Entering Systems with Arach Houses
+# Entering Systems with Arach Houses:
 mission "Coalition Message Buoy: House Ablomab"
 	invisible
 	entering
@@ -370,7 +369,7 @@ phrase "entering house plumtab"
 		". Let us help your wealth safekeep."
 		`. "Deep vaults. Strong wills."`
 
-# Other message buoys
+# Other message buoys:
 mission "Coalition Message Buoy: 14 Pole"
 	invisible
 	entering
