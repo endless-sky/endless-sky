@@ -427,34 +427,23 @@ mission "Coalition Message Buoy: Belug"
 			text "Message buoy to all ships: Welcome to Belug, home to the Heliarch Academy."
 		fail
 
-mission "Coalition Message Buoy: Saryd Factory World 1"
+mission "Coalition Message Buoy: Saryd Factory Worlds"
 	invisible
 	entering
 	non-blocking
 	repeat
 	source
-		system "Steep Roof"
+		system "Steep Roof" "Belonging"
 	destination "Earth"
+	substitutions
+		"<factory world>" "Diligent Hand"
+		"<factory world>" "Ceaseless Toil"
+			has "flagship system: Steep Roof"
 	to offer
 		not "entered system by: takeoff"
 	on offer
 		message
-			text "Message buoy to all ships: Welcome to Steep Roof. To keep a safe distance from the factories of Ceaseless Toil, authorities advise."
-		fail
-
-mission "Coalition Message Buoy: Saryd Factory World 2"
-	invisible
-	entering
-	non-blocking
-	repeat
-	source
-		system "Belonging"
-	destination "Earth"
-	to offer
-		not "entered system by: takeoff"
-	on offer
-		message
-			text "Message buoy to all ships: Welcome to Belonging. To keep a safe distance from the factories of Diligent Hand, authorities advise."
+			text "Message buoy to all ships: Welcome to <origin>. To keep a safe distance from the factories of <factory world>, authorities advise."
 		fail
 
 mission "Coalition Message Buoy: Garden Empyreal"
