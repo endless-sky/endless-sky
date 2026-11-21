@@ -4138,10 +4138,10 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	if(person.IsPacifist() || ship.CannotAct(Ship::ActionType::FIRE))
 		return;
 
-	bool isPlayerEscort = ship.IsYours() && !isFlagship;
-	bool beFrugal = (isPlayerEscort && !escortsUseAmmo);
+	bool isYours = ship.IsYours();
+	bool beFrugal = (isYours && !escortsUseAmmo);
 	// If this ship has a frugal personality, then it will only use ammo when it is low on health or being outgunned.
-	bool isFrugalPersonality = person.IsFrugal() || (isPlayerEscort && escortsAreFrugal && escortsUseAmmo);
+	bool isFrugalPersonality = person.IsFrugal() || (isYours && escortsAreFrugal && escortsUseAmmo);
 	if(isFrugalPersonality)
 	{
 		beFrugal = (ship.HealthFraction() > GameData::GetGamerules().UniversalFrugalThreshold());
@@ -4178,7 +4178,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 	const Government *gov = ship.GetGovernment();
 	bool friendlyOverride = false;
 	bool disabledOverride = false;
-	if(isPlayerEscort)
+	if(isYours)
 	{
 		auto it = orders.find(&ship);
 		if(it != orders.end())
