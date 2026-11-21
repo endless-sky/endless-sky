@@ -6002,12 +6002,13 @@ void Ship::StepTargeting()
 				else
 				{
 					isBoarding = false;
-					bool isEnemy = government->IsEnemy(target->government);
-					if(isEnemy && Random::Real() < target->cache.selfDestruct)
+					if(!target->IsYours() && government->IsEnemy(target->government)
+						&& Random::Real() < target->cache.selfDestruct)
 					{
-						Messages::Add({"The " + target->DisplayModelName() + " \"" + target->GivenName()
-							+ "\" has activated its self-destruct mechanism.",
-							GameData::MessageCategories().Get("high")});
+						if(isYours)
+							Messages::Add({"The " + target->DisplayModelName() + " \"" + target->GivenName()
+								+ "\" has activated its self-destruct mechanism.",
+								GameData::MessageCategories().Get("high")});
 						GetTargetShip()->SelfDestruct();
 					}
 					else
