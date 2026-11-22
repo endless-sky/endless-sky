@@ -2905,16 +2905,16 @@ system Alcyone
 	asteroids "medium metal" 11 2.5272
 	asteroids "large metal" 2 2.0736
 	minables copper 5 2.95151
-	trade Clothing 322
-	trade Electronics 699
-	trade Equipment 658
-	trade Food 197
-	trade "Heavy Metals" 868
-	trade Industrial 714
-	trade "Luxury Goods" 1042
-	trade Medical 705
-	trade Metal 249
-	trade Plastic 439
+	trade Clothing 387
+	trade Electronics 834
+	trade Equipment 681
+	trade Food 429
+	trade "Heavy Metals" 1131
+	trade Industrial 838
+	trade "Luxury Goods" 1368
+	trade Medical 829
+	trade Metal 451
+	trade Plastic 489
 	fleet "Small Core Pirates" 400
 	fleet "Large Core Pirates" 600
 	fleet "Large Syndicate" 1200
@@ -3241,16 +3241,16 @@ system Algenib
 	belt 1330
 	link Gienah
 	asteroids "large metal" 1 6.7392
-	trade Clothing 357
-	trade Electronics 660
-	trade Equipment 386
-	trade Food 538
-	trade "Heavy Metals" 798
-	trade Industrial 606
-	trade "Luxury Goods" 1078
-	trade Medical 607
-	trade Metal 293
-	trade Plastic 423
+	trade Clothing 400
+	trade Electronics 826
+	trade Equipment 599
+	trade Food 585
+	trade "Heavy Metals" 1111
+	trade Industrial 812
+	trade "Luxury Goods" 1376
+	trade Medical 800
+	trade Metal 467
+	trade Plastic 484
 	fleet "Small Core Pirates" 300
 	fleet "Large Core Pirates" 500
 	fleet "Large Syndicate" 800
@@ -3683,16 +3683,16 @@ system Almaaz
 	minables iron 7 7.81811
 	minables silicon 6 9.57028
 	minables silver 4 6.29355
-	trade Clothing 253
-	trade Electronics 841
-	trade Equipment 511
-	trade Food 226
-	trade "Heavy Metals" 1142
-	trade Industrial 754
-	trade "Luxury Goods" 1073
-	trade Medical 814
-	trade Metal 523
-	trade Plastic 308
+	trade Clothing 361
+	trade Electronics 860
+	trade Equipment 637
+	trade Food 442
+	trade "Heavy Metals" 1212
+	trade Industrial 847
+	trade "Luxury Goods" 1375
+	trade Medical 861
+	trade Metal 553
+	trade Plastic 449
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 600
 	fleet "Old Northern Pirates" 4000
@@ -3725,16 +3725,16 @@ system Almach
 	minables iron 2 2.87775
 	minables lead 2 3.17637
 	minables silicon 30 2.47255
-	trade Clothing 364
-	trade Electronics 664
-	trade Equipment 601
-	trade Food 298
-	trade "Heavy Metals" 889
-	trade Industrial 754
-	trade "Luxury Goods" 962
-	trade Medical 746
-	trade Metal 338
-	trade Plastic 266
+	trade Clothing 403
+	trade Electronics 827
+	trade Equipment 664
+	trade Food 475
+	trade "Heavy Metals" 1137
+	trade Industrial 847
+	trade "Luxury Goods" 1351
+	trade Medical 841
+	trade Metal 484
+	trade Plastic 436
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 1400
 	fleet "Large Syndicate" 6000
@@ -3895,16 +3895,16 @@ system Alnilam
 	minables aluminum 13 2.6002
 	minables iron 4 2.28631
 	minables silicon 15 2.97138
-	trade Clothing 264
-	trade Electronics 707
-	trade Equipment 537
-	trade Food 154
-	trade "Heavy Metals" 1231
-	trade Industrial 739
-	trade "Luxury Goods" 946
-	trade Medical 880
-	trade Metal 520
-	trade Plastic 334
+	trade Clothing 365
+	trade Electronics 835
+	trade Equipment 645
+	trade Food 409
+	trade "Heavy Metals" 1238
+	trade Industrial 844
+	trade "Luxury Goods" 1347
+	trade Medical 881
+	trade Metal 552
+	trade Plastic 457
 	fleet "Small Northern Pirates" 500
 	fleet "Large Northern Pirates" 700
 	fleet "Old Northern Pirates" 5000
@@ -4385,16 +4385,16 @@ system Alpherg
 	link Fumalsamakah
 	asteroids "medium rock" 3 2.97
 	asteroids "small metal" 3 3.195
-	trade Clothing 305
-	trade Electronics 878
-	trade Equipment 442
-	trade Food 221
-	trade "Heavy Metals" 860
-	trade Industrial 900
-	trade "Luxury Goods" 1280
-	trade Medical 869
-	trade Metal 280
-	trade Plastic 286
+	trade Clothing 380
+	trade Electronics 867
+	trade Equipment 616
+	trade Food 440
+	trade "Heavy Metals" 1129
+	trade Industrial 882
+	trade "Luxury Goods" 1420
+	trade Medical 877
+	trade Metal 462
+	trade Plastic 443
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Small CCOR" 3800
@@ -5196,16 +5196,16 @@ system Antares
 	minables iron 1 5.1176
 	minables lead 8 3.07041
 	minables silicon 8 4.38126
-	trade Clothing 242
-	trade Electronics 804
-	trade Equipment 432
-	trade Food 190
-	trade "Heavy Metals" 1034
-	trade Industrial 622
-	trade "Luxury Goods" 1058
-	trade Medical 896
-	trade Metal 473
-	trade Plastic 403
+	trade Clothing 357
+	trade Electronics 853
+	trade Equipment 613
+	trade Food 426
+	trade "Heavy Metals" 1180
+	trade Industrial 816
+	trade "Luxury Goods" 1371
+	trade Medical 885
+	trade Metal 534
+	trade Plastic 478
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Large Militia" 5000
@@ -5724,16 +5724,16 @@ system Arneb
 	asteroids "small metal" 2 5.2245
 	asteroids "medium metal" 9 4.7385
 	asteroids "large metal" 1 6.0345
-	trade Clothing 365
-	trade Electronics 800
-	trade Equipment 583
-	trade Food 135
-	trade "Heavy Metals" 1210
-	trade Industrial 636
-	trade "Luxury Goods" 1012
-	trade Medical 890
-	trade Metal 566
-	trade Plastic 358
+	trade Clothing 403
+	trade Electronics 852
+	trade Equipment 659
+	trade Food 401
+	trade "Heavy Metals" 1232
+	trade Industrial 819
+	trade "Luxury Goods" 1361
+	trade Medical 884
+	trade Metal 569
+	trade Plastic 465
 	fleet "Small Northern Pirates" 400
 	fleet "Large Northern Pirates" 500
 	fleet "Old Northern Pirates" 6000
@@ -6577,16 +6577,16 @@ system Belenos
 	asteroids "large rock" 1 0.977
 	asteroids "small metal" 6 0.977
 	asteroids "medium metal" 6 0.871
-	trade Clothing 270
-	trade Electronics 805
-	trade Equipment 404
-	trade Food 243
-	trade "Heavy Metals" 900
-	trade Industrial 870
-	trade "Luxury Goods" 1330
-	trade Medical 833
-	trade Metal 265
-	trade Plastic 267
+	trade Clothing 367
+	trade Electronics 853
+	trade Equipment 605
+	trade Food 450
+	trade "Heavy Metals" 1141
+	trade Industrial 875
+	trade "Luxury Goods" 1431
+	trade Medical 867
+	trade Metal 456
+	trade Plastic 437
 	fleet "Small Southern Pirates" 600
 	fleet "Large Southern Pirates" 2000
 	fleet "Small CCOR" 3800
@@ -8725,16 +8725,16 @@ system Citadelle
 	asteroids "large metal" 3 1.661
 	minables iron 6 1.7
 	minables lead 7 2.9
-	trade Clothing 260
-	trade Electronics 882
-	trade Equipment 470
-	trade Food 260
-	trade "Heavy Metals" 832
-	trade Industrial 911
-	trade "Luxury Goods" 1190
-	trade Medical 879
-	trade Metal 236
-	trade Plastic 278
+	trade Clothing 364
+	trade Electronics 868
+	trade Equipment 625
+	trade Food 458
+	trade "Heavy Metals" 1121
+	trade Industrial 885
+	trade "Luxury Goods" 1400
+	trade Medical 880
+	trade Metal 446
+	trade Plastic 440
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2500
 	fleet "Small CCOR" 3800
@@ -10894,16 +10894,16 @@ system Durax
 	minables platinum 13 6.9774
 	minables uranium 11 5.907
 	minables tungsten 8 5.105
-	trade Clothing 381
-	trade Electronics 747
-	trade Equipment 714
-	trade Food 252
-	trade "Heavy Metals" 923
-	trade Industrial 777
-	trade "Luxury Goods" 1128
-	trade Medical 791
-	trade Metal 329
-	trade Plastic 372
+	trade Clothing 409
+	trade Electronics 843
+	trade Equipment 698
+	trade Food 454
+	trade "Heavy Metals" 1147
+	trade Industrial 853
+	trade "Luxury Goods" 1387
+	trade Medical 854
+	trade Metal 480
+	trade Plastic 469
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 900
 	fleet "Large Syndicate" 2500
@@ -14189,16 +14189,16 @@ system Fumalsamakah
 	link Citadelle
 	link Thuban
 	asteroids "small rock" 4 12
-	trade Clothing 318
-	trade Electronics 808
-	trade Equipment 358
-	trade Food 217
-	trade "Heavy Metals" 954
-	trade Industrial 834
-	trade "Luxury Goods" 1220
-	trade Medical 882
-	trade Metal 245
-	trade Plastic 366
+	trade Clothing 385
+	trade Electronics 854
+	trade Equipment 591
+	trade Food 438
+	trade "Heavy Metals" 1157
+	trade Industrial 867
+	trade "Luxury Goods" 1407
+	trade Medical 881
+	trade Metal 449
+	trade Plastic 467
 	fleet "Small Southern Pirates" 1000
 	fleet "Large Southern Pirates" 2000
 	fleet "Small CCOR" 3800
@@ -14908,16 +14908,16 @@ system Gienah
 	minables aluminum 1 1.81803
 	minables copper 12 1.48149
 	minables silver 59 2.13643
-	trade Clothing 320
-	trade Electronics 648
-	trade Equipment 387
-	trade Food 504
-	trade "Heavy Metals" 849
-	trade Industrial 632
-	trade "Luxury Goods" 1043
-	trade Medical 600
-	trade Metal 245
-	trade Plastic 460
+	trade Clothing 386
+	trade Electronics 824
+	trade Equipment 600
+	trade Food 570
+	trade "Heavy Metals" 1126
+	trade Industrial 818
+	trade "Luxury Goods" 1368
+	trade Medical 798
+	trade Metal 449
+	trade Plastic 496
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 800
 	fleet "Large Syndicate" 5000
@@ -15907,16 +15907,16 @@ system Hatysa
 	minables copper 27 2.2074
 	minables iron 4 2.54657
 	minables neodymium 9 2.45903
-	trade Clothing 298
-	trade Electronics 774
-	trade Equipment 552
-	trade Food 157
-	trade "Heavy Metals" 1211
-	trade Industrial 702
-	trade "Luxury Goods" 990
-	trade Medical 863
-	trade Metal 546
-	trade Plastic 330
+	trade Clothing 378
+	trade Electronics 848
+	trade Equipment 649
+	trade Food 411
+	trade "Heavy Metals" 1232
+	trade Industrial 835
+	trade "Luxury Goods" 1357
+	trade Medical 876
+	trade Metal 561
+	trade Plastic 456
 	fleet "Small Northern Pirates" 600
 	fleet "Large Northern Pirates" 1000
 	fleet "Large Republic" 15000
@@ -22218,16 +22218,16 @@ system Men
 	asteroids "large metal" 27 3.072
 	minables lead 9 4.54626
 	minables silver 10 5.20399
-	trade Clothing 299
-	trade Electronics 842
-	trade Equipment 425
-	trade Food 203
-	trade "Heavy Metals" 922
-	trade Industrial 841
-	trade "Luxury Goods" 1294
-	trade Medical 885
-	trade Metal 285
-	trade Plastic 300
+	trade Clothing 378
+	trade Electronics 860
+	trade Equipment 611
+	trade Food 432
+	trade "Heavy Metals" 1147
+	trade Industrial 868
+	trade "Luxury Goods" 1423
+	trade Medical 882
+	trade Metal 464
+	trade Plastic 447
 	fleet "Small Southern Pirates" 400
 	fleet "Large Southern Pirates" 600
 	fleet "Small Northern Pirates" 2000
@@ -23070,16 +23070,16 @@ system Misam
 	minables copper 22 2.79651
 	minables silver 18 1.38539
 	minables neodymium 14 1.81077
-	trade Clothing 307
-	trade Electronics 741
-	trade Equipment 661
-	trade Food 168
-	trade "Heavy Metals" 851
-	trade Industrial 787
-	trade "Luxury Goods" 1002
-	trade Medical 688
-	trade Metal 288
-	trade Plastic 368
+	trade Clothing 381
+	trade Electronics 841
+	trade Equipment 682
+	trade Food 416
+	trade "Heavy Metals" 1126
+	trade Industrial 855
+	trade "Luxury Goods" 1359
+	trade Medical 824
+	trade Metal 465
+	trade Plastic 468
 	fleet "Small Core Pirates" 750
 	fleet "Large Core Pirates" 2000
 	fleet "Korath Raid" 65000
@@ -24350,16 +24350,16 @@ system Nunki
 	minables iron 8 3.70445
 	minables titanium 7 3.31242
 	minables tungsten 23 3.33817
-	trade Clothing 259
-	trade Electronics 789
-	trade Equipment 624
-	trade Food 212
-	trade "Heavy Metals" 946
-	trade Industrial 840
-	trade "Luxury Goods" 1239
-	trade Medical 844
-	trade Metal 241
-	trade Plastic 321
+	trade Clothing 363
+	trade Electronics 850
+	trade Equipment 671
+	trade Food 436
+	trade "Heavy Metals" 1154
+	trade Industrial 868
+	trade "Luxury Goods" 1411
+	trade Medical 870
+	trade Metal 448
+	trade Plastic 453
 	fleet "Small Southern Pirates" 1200
 	fleet "Large Southern Pirates" 2000
 	fleet "Small Southern Merchants" 1600
@@ -24472,16 +24472,16 @@ system Oblate
 	minables iron 4 3.88695
 	minables lead 1 3.86035
 	minables silicon 3 2.34276
-	trade Clothing 385
-	trade Electronics 626
-	trade Equipment 617
-	trade Food 248
-	trade "Heavy Metals" 964
-	trade Industrial 751
-	trade "Luxury Goods" 1113
-	trade Medical 656
-	trade Metal 328
-	trade Plastic 399
+	trade Clothing 410
+	trade Electronics 820
+	trade Equipment 669
+	trade Food 452
+	trade "Heavy Metals" 1160
+	trade Industrial 847
+	trade "Luxury Goods" 1383
+	trade Medical 814
+	trade Metal 480
+	trade Plastic 477
 	fleet "Small Core Pirates" 600
 	fleet "Large Core Pirates" 1000
 	fleet "Large Syndicate" 3000
@@ -30007,16 +30007,16 @@ system Shaula
 	asteroids "large metal" 45 4.4196
 	minables platinum 9 4.50188
 	minables silver 18 4.95626
-	trade Clothing 232
-	trade Electronics 727
-	trade Equipment 606
-	trade Food 196
-	trade "Heavy Metals" 991
-	trade Industrial 582
-	trade "Luxury Goods" 1039
-	trade Medical 793
-	trade Metal 533
-	trade Plastic 249
+	trade Clothing 353
+	trade Electronics 839
+	trade Equipment 666
+	trade Food 429
+	trade "Heavy Metals" 1167
+	trade Industrial 806
+	trade "Luxury Goods" 1367
+	trade Medical 855
+	trade Metal 556
+	trade Plastic 431
 	fleet "Small Southern Pirates" 500
 	fleet "Large Southern Pirates" 800
 	fleet "Small Core Pirates" 4000
@@ -32757,16 +32757,6 @@ system Thuban
 	asteroids "large rock" 25 4
 	minables uranium 9 1.3
 	minables titanium 11 1
-	trade Clothing 295
-	trade Electronics 818
-	trade Equipment 395
-	trade Food 221
-	trade "Heavy Metals" 925
-	trade Industrial 848
-	trade "Luxury Goods" 1281
-	trade Medical 866
-	trade Metal 265
-	trade Plastic 311
 	fleet "Small Southern Pirates" 1500
 	fleet "Large Southern Pirates" 2500
 	fleet "Small CCOR" 6000
@@ -33601,16 +33591,16 @@ system Unagi
 	asteroids "large metal" 1 2.805
 	minables gold 4 5.8391
 	minables tungsten 1 3.91882
-	trade Clothing 215
-	trade Electronics 816
-	trade Equipment 487
-	trade Food 265
-	trade "Heavy Metals" 1102
-	trade Industrial 711
-	trade "Luxury Goods" 1014
-	trade Medical 797
-	trade Metal 479
-	trade Plastic 364
+	trade Clothing 347
+	trade Electronics 855
+	trade Equipment 630
+	trade Food 460
+	trade "Heavy Metals" 1200
+	trade Industrial 837
+	trade "Luxury Goods" 1362
+	trade Medical 856
+	trade Metal 536
+	trade Plastic 466
 	fleet "Small Northern Pirates" 1500
 	fleet "Large Northern Pirates" 3000
 	fleet "Derelict Pirate" 10000
