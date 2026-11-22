@@ -2094,10 +2094,10 @@ tip "Damage multiplier"
 	`This multiplier is applied to damage dealt by friendly fire. Blast damage and damage against ships being actively targeted are not affected.`
 
 tip "Take off protection"
-	`When you take off from a planet, the game generates five seconds worth of fleet spawns in the system. This rule lets you control which fleets can be spawned based off of their hostility to you or other governments.`
+	`When you take off from a planet, the game generates five seconds worth of fleet spawns in the system. This rule lets you control which fleets can be spawned based off of their hostility to you or other governments. For any option aside from "off", raid fleets will also be prevented from spawning when you take off.`
 	`- "off": All fleets will be capable of spawning.`
-	`- "loose": Fleets hostile to the current system won't be spawned. For example, pirate fleets won't already be spawned in when you take off from a Republic planet, but they may be if you take off from a pirate planet. Raid fleets won't spawn on take off regardless of their relationship to the current system.`
-	`- "strict": Fleets hostile to the player won't be spawned, even if you're in a system owned by a hostile government. Raid fleets also won't spawn.`
+	`- "loose": Fleets hostile to the current system won't be spawned. For example, pirate fleets won't already be spawned in when you take off from a Republic planet, but they may be if you take off from a pirate planet.`
+	`- "strict": Fleets hostile to the player won't be spawned, even if you're in a system owned by a hostile government.`
 
 
 # Boarding panel:

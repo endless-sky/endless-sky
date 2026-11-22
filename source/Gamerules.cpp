@@ -1870,5 +1870,5 @@ void Gamerules::SyncSettings()
 	settings[FLEET_SIZE_LIMITATION].SetIndex(static_cast<int>(GetFleetSizeLimitation()));
 	settings[PERMADEATH_MODE].SetIndex(static_cast<int>(GetPermadeathMode()));
 	settings[CAPTURE_PROFIT_SHARING].SetIndex(static_cast<int>(GetCaptureProfitSharing()));
-	settings[TAKE_OFF_PROTECTION].SetIndex(static_cast<int>(TakeOffProtection()));
+	settings[TAKE_OFF_PROTECTION].SetIndex(static_cast<int>(GetTakeOffProtection()));
 }

@@ -361,6 +361,7 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::HABITABLE_ARRIVAL_MIN,
 		Gamerules::HABITABLE_ARRIVAL_MAX,
 		Gamerules::FLEET_MULTIPLIER,
+		Gamerules::TAKE_OFF_PROTECTION,
 		"",
 		"Raid Fleet Behavior",
 		Gamerules::RAID_FLEET_ROLL_CHANCE,
@@ -398,7 +399,6 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::LOCK_GAMERULES,
 		Gamerules::FIGHTER_DODGE_POLICY,
 		Gamerules::UNIVERSAL_AMMO_RESTOCKING,
-		Gamerules::TAKE_OFF_PROTECTION,
 	};
 
 	bool isCategory = true;
