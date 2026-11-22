@@ -90,7 +90,7 @@ public:
 	};
 
 	// Controls which fleets can be pre-spawned when you take off from a planet.
-	enum class TakeOffProtection: int_fast8_t {
+	enum class TakeOffProtection : int_fast8_t {
 		OFF = 0,
 		// Fleets hostile to the current system won't spawn.
 		LOOSE,
