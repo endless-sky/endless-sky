@@ -32757,6 +32757,16 @@ system Thuban
 	asteroids "large rock" 25 4
 	minables uranium 9 1.3
 	minables titanium 11 1
+	trade Clothing 295
+	trade Electronics 818
+	trade Equipment 395
+	trade Food 221
+	trade "Heavy Metals" 925
+	trade Industrial 848
+	trade "Luxury Goods" 1281
+	trade Medical 866
+	trade Metal 265
+	trade Plastic 311
 	fleet "Small Southern Pirates" 1500
 	fleet "Large Southern Pirates" 2500
 	fleet "Small CCOR" 6000
