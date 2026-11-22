@@ -149,6 +149,7 @@ public:
 	static const std::string FRIENDLY_FIRE_CARRIER_EXCEPTION;
 	static const std::string FRIENDLY_FIRE_DMG_MULT;
 	static const std::string TAKE_OFF_PROTECTION;
+	static const std::string TAKE_OFF_PROTECTION_DURATION;
 
 
 public:
@@ -234,6 +235,7 @@ public:
 	bool FriendlyFireCarrierException() const;
 	double FriendlyFireDamageMultiplier() const;
 	Gamerules::TakeOffProtection GetTakeOffProtection() const;
+	int TakeOffProtectionDuration() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -304,6 +306,7 @@ private:
 		bool friendlyFireCarrierException = false;
 		double friendlyFireDamageMultiplier = 1.;
 		TakeOffProtection takeOffProtection = TakeOffProtection::LOOSE;
+		int takeOffProtectionDuration = 180;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

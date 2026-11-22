@@ -318,6 +318,8 @@ private:
 	bool doEnterLabels = false;
 	bool doEnter = false;
 	bool hadHostiles = false;
+	int protectionTime = 0;
+	const Government *protectionGov = nullptr;
 
 	// A timer preventing out-of-ammo sounds from triggering constantly every frame when the fire key is held.
 	std::vector<int> emptySoundsTimer;

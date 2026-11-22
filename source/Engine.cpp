@@ -1506,6 +1506,7 @@ void Engine::EnterSystem()
 	const Date &today = player.GetDate();
 
 	const System *system = flagship->GetSystem();
+	SystemEntry entry = player.GetSystemEntry();
 	Audio::PlayMusic(system->MusicName());
 	GameData::SetHaze(system->Haze(), false);
 
@@ -1576,29 +1577,44 @@ void Engine::EnterSystem()
 
 	// Clear any active weather events
 	activeWeather.clear();
-	// Place five seconds worth of fleets and weather events. Check for
-	// undefined fleets by not trying to create anything with no
-	// government set.
-	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
+
 	// Determine whether take off protection is active, and which government
 	// should be compared against if it is. Take off protection prevents
 	// hostile fleets from being pre-spawned when the player takes off from
 	// a planet.
-	bool isTakeOff = player.GetSystemEntry() == SystemEntry::TAKE_OFF;
-	const Government *compareGov = nullptr;
-	Gamerules::TakeOffProtection takeOffProtection = GameData::GetGamerules().GetTakeOffProtection();
-	if(takeOffProtection == Gamerules::TakeOffProtection::LOOSE)
-		compareGov = system->GetGovernment();
-	else if(takeOffProtection == Gamerules::TakeOffProtection::STRICT)
-		compareGov = GameData::PlayerGovernment();
+	bool isTakeOff = entry == SystemEntry::TAKE_OFF;
+	const Gamerules &rules = GameData::GetGamerules();
+	bool hasTakeOffProtection = false;
+	protectionTime = 0;
+	protectionGov = nullptr;
+	if(isTakeOff)
+		switch(rules.GetTakeOffProtection())
+		{
+			case Gamerules::TakeOffProtection::OFF:
+				break;
+			case Gamerules::TakeOffProtection::LOOSE:
+				hasTakeOffProtection = true;
+				protectionTime = rules.TakeOffProtectionDuration();
+				protectionGov = system->GetGovernment();
+				break;
+			case Gamerules::TakeOffProtection::STRICT:
+				hasTakeOffProtection = true;
+				protectionTime = rules.TakeOffProtectionDuration();
+				protectionGov = GameData::PlayerGovernment();
+				break;
+		}
+
+	// Place five seconds worth of fleets and weather events.
+	double fleetMultiplier = rules.FleetMultiplier();
 	for(int i = 0; i < 5; ++i)
 	{
 		if(fleetMultiplier)
 			for(const auto &fleet : system->Fleets())
 			{
-				if(!fleet.Get()->GetGovernment() || !fleet.CanTrigger())
+				const Government *gov = fleet.Get()->GetGovernment();
+				if(!gov || !fleet.CanTrigger())
 					continue;
-				if(isTakeOff && compareGov && fleet.Get()->GetGovernment()->IsEnemy(compareGov))
+				if(protectionGov && gov->IsEnemy(protectionGov))
 					continue;
 				if(Random::Int(fleet.Period() / fleetMultiplier) < 60)
 					fleet.Get()->Place(*system, newShips);
@@ -1606,7 +1622,7 @@ void Engine::EnterSystem()
 
 		auto CreateWeather = [this](const RandomEvent<Hazard> &hazard, Point origin)
 		{
-			if(hazard.Get()->IsValid() && Random::Int(hazard.Period()) < 60 && hazard.CanTrigger())
+			if(hazard.Get()->IsValid() && hazard.CanTrigger() && Random::Int(hazard.Period()) < 60)
 			{
 				const Hazard *weather = hazard.Get();
 				int hazardLifetime = weather->RandomDuration();
@@ -1622,10 +1638,8 @@ void Engine::EnterSystem()
 				CreateWeather(hazard, stellar.Position());
 	}
 
-	const Gamerules &rules = GameData::GetGamerules();
-	double rollChance = rules.RaidFleetRollChance();
 	// Take off protection prevents raid fleets from being spawned on take off.
-	if((!isTakeOff || !compareGov) && rollChance && Random::Real() < rollChance)
+	if(!hasTakeOffProtection && Random::Real() < rules.RaidFleetRollChance())
 	{
 		int spawnAttempts = rules.RaidFleetSpawnAttempts();
 		for(const auto &raidFleet : system->RaidFleets())
@@ -1662,7 +1676,6 @@ void Engine::EnterSystem()
 	// so that there is a seamless transition between systems, and entry by taking off
 	// from a planet is also excluded as to prevent the background from snapping to a
 	// different position relative to what it was when the player landed.
-	SystemEntry entry = player.GetSystemEntry();
 	if(entry == SystemEntry::WORMHOLE || entry == SystemEntry::JUMP)
 		GameData::SetBackgroundPosition(camera.Center());
 
@@ -2105,24 +2118,29 @@ void Engine::SpawnFleets()
 	// Non-mission NPCs spawn at random intervals in neighboring systems,
 	// or coming from planets in the current one.
 	double fleetMultiplier = GameData::GetGamerules().FleetMultiplier();
-	if(!fleetMultiplier)
-		return;
-	for(const auto &fleet : player.GetSystem()->Fleets())
-		if(!Random::Int(fleet.Period() / fleetMultiplier) && fleet.CanTrigger())
+	if(fleetMultiplier)
+		for(const auto &fleet : player.GetSystem()->Fleets())
 		{
 			const Government *gov = fleet.Get()->GetGovernment();
-			if(!gov)
+			if(!gov || !fleet.CanTrigger())
 				continue;
-
+			// If take off protection is active, don't spawn this fleet if it's
+			// an enemy of the government being protected.
+			if(protectionGov && gov->IsEnemy(protectionGov))
+				continue;
+			// This must roll 0 in order for the fleet to spawn.
+			if(Random::Int(fleet.Period() / fleetMultiplier))
+				continue;
 			// Don't spawn a fleet if its allies in-system already far outnumber
 			// its enemies. This is to avoid having a system get mobbed with
 			// massive numbers of "reinforcements" during a battle.
 			int64_t enemyStrength = ai.EnemyStrength(gov);
 			if(enemyStrength && ai.AllyStrength(gov) > 2 * enemyStrength)
 				continue;
-
 			fleet.Get()->Enter(*player.GetSystem(), newShips);
 		}
+	if(protectionTime)
+		--protectionTime;
 }
 
 

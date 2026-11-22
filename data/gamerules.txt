@@ -73,3 +73,4 @@
 	"friendly fire damage multiplier" 1.
 	
 	"take off protection" "loose"
+	"take off protection duration" 180

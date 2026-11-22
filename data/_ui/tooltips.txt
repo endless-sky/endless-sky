@@ -2099,6 +2099,9 @@ tip "Take off protection"
 	`- "loose": Fleets hostile to the current system won't be spawned. For example, pirate fleets won't already be spawned in when you take off from a Republic planet, but they may be if you take off from a pirate planet.`
 	`- "strict": Fleets hostile to the player won't be spawned, even if you're in a system owned by a hostile government.`
 
+tip "Protection duration"
+	`If "take off protection" is on, this specifies an additional number of seconds after take off where hostile fleets will not be spawned. This protection only applies to the system you took off in and is lost upon jumping into another system if there was any remaining time.`
+
 
 # Boarding panel:
 tip `boarding: in cargo`
