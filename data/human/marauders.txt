@@ -30,7 +30,7 @@ ship "Marauder Arrow"
 		"outfit space" 210
 		"weapon capacity" 55
 		"engine capacity" 95
-		"self destruct" .25
+		"board self destruct" .25
 		weapon
 			"blast radius" 27
 			"shield damage" 265
@@ -131,7 +131,7 @@ ship "Marauder Bounder"
 		"outfit space" 240
 		"weapon capacity" 80
 		"engine capacity" 115
-		"self destruct" .25
+		"board self destruct" .25
 		weapon
 			"blast radius" 35
 			"shield damage" 350
@@ -243,7 +243,7 @@ ship "Marauder Falcon"
 		"outfit space" 620
 		"weapon capacity" 275
 		"engine capacity" 165
-		"self destruct" .15
+		"board self destruct" .15
 		weapon
 			"blast radius" 170
 			"shield damage" 1750
@@ -384,7 +384,7 @@ ship "Marauder Firebird"
 		"outfit space" 450
 		"weapon capacity" 175
 		"engine capacity" 110
-		"self destruct" .25
+		"board self destruct" .25
 		weapon
 			"blast radius" 110
 			"shield damage" 1100
@@ -504,7 +504,7 @@ ship "Marauder Leviathan"
 		"outfit space" 680
 		"weapon capacity" 265
 		"engine capacity" 140
-		"self destruct" .15
+		"board self destruct" .15
 		weapon
 			"blast radius" 90
 			"shield damage" 900
@@ -636,7 +636,7 @@ ship "Marauder Manta"
 		"outfit space" 400
 		"weapon capacity" 155
 		"engine capacity" 110
-		"self destruct" .25
+		"board self destruct" .25
 		weapon
 			"blast radius" 90
 			"shield damage" 900
@@ -767,7 +767,7 @@ ship "Marauder Quicksilver"
 		"outfit space" 265
 		"weapon capacity" 85
 		"engine capacity" 75
-		"self destruct" .25
+		"board self destruct" .25
 		weapon
 			"blast radius" 45
 			"shield damage" 450
@@ -801,7 +801,7 @@ ship "Marauder Quicksilver"
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Safe)"
 	add attributes
-		"self destruct" -.25
+		"board self destruct" -.25
 
 
 ship "Marauder Quicksilver" "Marauder Quicksilver (Engines)"
@@ -836,7 +836,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Engines) (Safe)"
 	thumbnail "thumbnail/mquicksilvere"
 	add attributes
 		"engine capacity" 40
-		"self destruct" -.25
+		"board self destruct" -.25
 	outfits
 		"Pulse Cannon" 2
 		"Anti-Missile Turret"
@@ -889,7 +889,7 @@ ship "Marauder Quicksilver" "Marauder Quicksilver (Weapons) (Safe)"
 	thumbnail "thumbnail/mquicksilverw"
 	add attributes
 		"weapon capacity" 15
-		"self destruct" -.25
+		"board self destruct" -.25
 	outfits
 		"Heavy Laser" 2
 		"Heavy Laser Turret"
@@ -930,7 +930,7 @@ ship "Marauder Raven"
 		"outfit space" 310
 		"weapon capacity" 115
 		"engine capacity" 110
-		"self destruct" .25
+		"board self destruct" .25
 		weapon
 			"blast radius" 65
 			"shield damage" 650
@@ -1046,7 +1046,7 @@ ship "Marauder Splinter"
 		"outfit space" 450
 		"weapon capacity" 165
 		"engine capacity" 110
-		"self destruct" .25
+		"board self destruct" .25
 		weapon
 			"blast radius" 60
 			"shield damage" 600
