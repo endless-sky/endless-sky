@@ -5476,7 +5476,7 @@ void PlayerInfo::Fine(UI &ui)
 	pair<const Conversation *, string> message = gov->Fine(*this, 0, nullptr, planet->Security());
 	if(!message.second.empty())
 	{
-		if(message.second == "atrocity")
+		if(message.second.rfind("atrocity:", 0) == 0)
 		{
 			if(message.first)
 				ui.Push(new ConversationPanel(*this, *message.first));
@@ -5484,8 +5484,9 @@ void PlayerInfo::Fine(UI &ui)
 			{
 				message.second = "Before you can leave your ship, the " + gov->DisplayName()
 					+ " authorities of " + planet->DisplayName() + " show up and begin scanning it. "
-					"They say, \"Captain " + LastName() + ", we detect highly illegal material on your ship.\""
-					"\n\tYou are sentenced to lifetime imprisonment on a penal colony."
+					"They say, \"Captain " + LastName() + ", you're being sentenced"
+					+ message.second.substr(9) + ".\""
+					+ "\n\tYou are sentenced to lifetime imprisonment on a penal colony."
 					" Your days of traveling the stars have come to an end.";
 				ui.Push(DialogPanel::Info(message.second));
 			}

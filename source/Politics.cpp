@@ -382,7 +382,9 @@ pair<const Conversation *, string> Politics::Fine(PlayerInfo &player,
 		gov->Offend(ShipEvent::ATROCITY);
 		if(!scan)
 		{
-			reason = "atrocity";
+			// Preserve the reason so that callers can explain what was discovered
+			// when no custom death sentence conversation is defined.
+			reason = "atrocity:" + reason;
 			if(!deathSentence)
 				deathSentence = gov->DeathSentence();
 		}
