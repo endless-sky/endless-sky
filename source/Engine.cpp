@@ -1582,12 +1582,11 @@ void Engine::EnterSystem()
 	// should be compared against if it is. Take off protection prevents
 	// hostile fleets from being pre-spawned when the player takes off from
 	// a planet.
-	bool isTakeOff = entry == SystemEntry::TAKE_OFF;
 	const Gamerules &rules = GameData::GetGamerules();
 	bool hasTakeOffProtection = false;
 	protectionTime = 0;
 	protectionGov = nullptr;
-	if(isTakeOff)
+	if(entry == SystemEntry::TAKE_OFF)
 		switch(rules.GetTakeOffProtection())
 		{
 			case Gamerules::TakeOffProtection::OFF:
@@ -2139,8 +2138,8 @@ void Engine::SpawnFleets()
 				continue;
 			fleet.Get()->Enter(*player.GetSystem(), newShips);
 		}
-	if(protectionTime)
-		--protectionTime;
+	if(protectionTime && --protectionTime <= 0)
+		protectionGov = nullptr;
 }
 
 
