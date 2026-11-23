@@ -6838,7 +6838,9 @@ mission "Lost Racer 3"
 	passengers 2
 	to offer
 		has "Lost Racer 2 - Continued: done"
-		not "event: lost racer deadline"
+		or
+			not "event: lost racer deadline"
+			has "lost racer found artemis"
 	on offer
 		conversation
 			`Upon reaching the planet, you pinpoint the radio signal to a valley in the southern hemisphere. You descend through a raging sandstorm; you have to rely entirely on instruments as the view from the <ship>'s bridge is almost entirely obscured. Soon, your scanners report that the source of the signal is less than a kilometer out, and after a few moments more, you begin to discern the vague shape of a crashed Flivver through the haze of dust. You land the <ship> next to the wreck, and both you and Mr. Renard go to exit the ship.`
