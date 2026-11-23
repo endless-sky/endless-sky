@@ -315,6 +315,10 @@ public:
 	// it or, if this is a player ship, returns the ship it is plundering so a
 	// plunder dialog can be displayed.
 	std::shared_ptr<Ship> Board(bool autoPlunder, bool nonDocking);
+	// The odds of this ship self destructing when boarded
+	// or when starting a capture attempt against it.
+	double BoardSelfDestructChance() const;
+	double CaptureSelfDestructChance() const;
 	// Scan the target, if able and commanded to. Return a ShipEvent bitmask
 	// giving the types of scan that succeeded.
 	int Scan(const PlayerInfo &player);
@@ -825,6 +829,10 @@ private:
 	int hullDelay = 0;
 	// Timer for a disabled ship to repair itself.
 	int disabledRecoveryCounter = 0;
+	// Timer for a disabled ship to self destruct. When the ship is disabled,
+	// this becomes a positive value and is decremented each frame until reaching
+	// 0 and triggering the self destruct.
+	int selfDestructCounter = 0;
 	// Number of frames the damage overlay should be displayed, if any.
 	int damageOverlayTimer = 0;
 	// Acceleration can be created by engines, firing weapons, or weapon impacts.

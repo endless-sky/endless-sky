@@ -331,6 +331,10 @@ bool GameWindow::Init(bool headless)
 	UpdateWindowRounding();
 #endif
 
+	const char *glVendor = reinterpret_cast<const char *>(glGetString(GL_VENDOR));
+	const char *glRenderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
+	Logger::Log(string("Game window created successfully. Renderer: ") + glVendor + ' ' + glRenderer
+		+ ". OpenGL: " + glVersion + ". GLSL: " + glslVersion + '.', Logger::Level::INFO);
 	return true;
 }
 

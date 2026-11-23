@@ -151,6 +151,7 @@ ship "Kvelqde" "Kvelqde (Violent)"
 		"Overcharged Laser Turret"
 
 		`1-"Uurau" Betavoltaic Cell` 2
+		"Auxiliary Power Reserve"
 		`"Ej" Shield Cortex`
 
 		`"Aqra" Inductive Thruster`

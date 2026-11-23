@@ -130,11 +130,11 @@ bool LogbookPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		if(key == SDLK_DOWN)
 		{
 			++i;
+			if(i >= selections.size())
+				i = 0;
 			// Skip expanded entries.
 			if(selections[i].first.empty())
 				++i;
-			if(i >= selections.size())
-				i = 0;
 		}
 		else if(i)
 		{

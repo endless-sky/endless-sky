@@ -2645,6 +2645,20 @@ shared_ptr<Ship> Ship::Board(bool autoPlunder, bool nonDocking)
 
 
 
+double Ship::BoardSelfDestructChance() const
+{
+	return cache.boardSelfDestruct ? cache.boardSelfDestruct : cache.selfDestruct;
+}
+
+
+
+double Ship::CaptureSelfDestructChance() const
+{
+	return cache.captureSelfDestruct ? cache.captureSelfDestruct : cache.selfDestruct;
+}
+
+
+
 // Scan the target, if able and commanded to. Return a ShipEvent bitmask
 // giving the types of scan that succeeded.
 int Ship::Scan(const PlayerInfo &player)
@@ -5247,8 +5261,10 @@ void Ship::DoGeneration()
 		shieldDelay = max(0, shieldDelay - 1);
 		hullDelay = max(0, hullDelay - 1);
 	}
-	// Let the ship repair itself when disabled if it has the appropriate attribute.
-	if(isDisabled && !locked && cache.recoveryTime)
+
+	// Let the ship repair itself when disabled due to low hull if it has the appropriate attribute.
+	bool wasDisabled = levels.hull < minimumHull;
+	if(wasDisabled && !locked && cache.recoveryTime)
 	{
 		disabledRecoveryCounter += 1;
 		const ResourceLevels &recoveryCost = cache.recoveryCost;
@@ -5261,11 +5277,32 @@ void Ship::DoGeneration()
 			disabledRecoveryCounter = 0;
 			levels.hull = min(max(levels.hull, minimumHull * 1.5), MaxHull());
 			isDisabled = false;
+			wasDisabled = false;
 		}
 	}
+	// A ship that is disabled due to low hull may also be on a self destruct timer.
+	// Player ships can't self destruct.
+	if(!isYours && (cache.selfDestructTime || cache.randomSelfDestructTime))
+	{
+		if(wasDisabled)
+		{
+			// This is the first frame this ship spent disabled.
+			// Initialize the self destruct sequence.
+			if(!selfDestructCounter)
+			{
+				selfDestructCounter = cache.selfDestructTime;
+				if(cache.randomSelfDestructTime)
+					selfDestructCounter += Random::Int(cache.randomSelfDestructTime);
+			}
+			if(--selfDestructCounter <= 0)
+				SelfDestruct();
+		}
+		else
+			selfDestructCounter = 0;
+	}
 
-	// Handle ionization effects, etc.
-	bool wasDisabled = levels.hull < minimumHull;
+	// Handle status effects. Certain status effects may cause a ship to become disabled or destroyed,
+	// hence checking if the ship was already disabled or destroyed prior to this point.
 	bool wasDestroyed = IsDestroyed();
 	DoStatusEffects(isDisabled || locked);
 
@@ -6000,12 +6037,13 @@ void Ship::StepTargeting()
 				else
 				{
 					isBoarding = false;
-					bool isEnemy = government->IsEnemy(target->government);
-					if(isEnemy && Random::Real() < target->cache.selfDestruct)
+					if(!target->IsYours() && government->IsEnemy(target->government)
+						&& Random::Real() < target->BoardSelfDestructChance())
 					{
-						Messages::Add({"The " + target->DisplayModelName() + " \"" + target->GivenName()
-							+ "\" has activated its self-destruct mechanism.",
-							GameData::MessageCategories().Get("high")});
+						if(isYours)
+							Messages::Add({"The " + target->DisplayModelName() + " \"" + target->GivenName()
+								+ "\" has activated its self-destruct mechanism.",
+								GameData::MessageCategories().Get("high")});
 						GetTargetShip()->SelfDestruct();
 					}
 					else

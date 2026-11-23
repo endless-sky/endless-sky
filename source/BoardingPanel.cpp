@@ -246,7 +246,7 @@ void BoardingPanel::Draw()
 		// but not knowing what your true odds are is annoying.
 		double odds = attackOdds.Odds(crew, vCrew);
 		if(!isCapturing)
-			odds *= (1. - victim->Attributes().Get("self destruct"));
+			odds *= (1. - victim->CaptureSelfDestructChance());
 		info.SetString("attack odds",
 			Format::Percentage(odds, 1, false));
 		info.SetString("attack casualties",
@@ -444,7 +444,7 @@ bool BoardingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command,
 		// A ship that self-destructs checks once when you board it, and again
 		// when you try to capture it, to see if it will self-destruct. This is
 		// so that capturing will be harder than plundering.
-		if(Random::Real() < victim->Attributes().Get("self destruct"))
+		if(Random::Real() < victim->CaptureSelfDestructChance())
 		{
 			victim->SelfDestruct();
 			GetUI().Pop(this);
