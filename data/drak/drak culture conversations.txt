@@ -144,7 +144,6 @@ mission "Drak Revelations: Avgi"
 	minor
 	invisible
 	source "Ashkelon"
-	destination "Earth"
 	to offer
 		has "drak revelations: avgi"
 	on offer
@@ -164,7 +163,6 @@ mission "Drak Revelations: Kimek"
 	minor
 	invisible
 	source "Ki Patek Ka"
-	destination "Earth"
 	to offer
 		has "drak revelations: kimek"
 	on offer
@@ -196,7 +194,7 @@ mission "Drak Revelations: Successors"
 			`	You find yourself submerged in a deep abyss, where only faint traces of sunlight can make out the forms of the krakens circling around you. Then the first of then strikes against rocky formations in the trench, producing an array of sparks that briefly light up your surroundings.`
 			`	The krakens appear to be covered in a metal coating, like mercury, and are traversing the area as if in a ball, ignoring you and weaving their paths with those of others, sometimes even interlocking their tentacles as they pass by another of the creatures.`
 			`	Their dance and strikes against rocks grows in intensity, and the currents around you swell as they swim.`
-			`	After so much of their powerful maneuvers, you notice the darkness belows starts copying their movements, producing a whirlpool deep underwater. So caught up are the krakens in their dance, they do not realize the danger, and continue on. Only when the first few start being sucked deeper into the abyss, do they try to escape, but their heavy bodies impede their movements out of the maelstrom they have created.`
+			`	After so much of their powerful maneuvers, you notice the darkness below starts copying their movements, producing a whirlpool deep underwater. So caught up are the krakens in their dance, they do not realize the danger, and continue on. Only when the first few start being sucked deeper into the abyss, do they try to escape, but their heavy bodies impede their movements out of the maelstrom they have created.`
 			`	More and more are swallowed by the vortex, and only a scarce few at the top, after what looks like an agonizing pain, manage to shave off their mercury coating, revealing bare, coral-like forms. The liquid metal is eaten up by the current, just as everything else, and the few krakens who have escaped its pull can do nought but swim away in shame to escape.`
 			`	You manage to wipe the tears from your eyes, and find yourself back in your cockpit, looking at the stars.`
 				decline
