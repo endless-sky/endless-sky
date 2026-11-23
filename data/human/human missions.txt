@@ -6836,6 +6836,7 @@ mission "Lost Racer 3"
 	source "Sandswell"
 	destination "Glory"
 	passengers 2
+	blocked `You're pretty sure Artemis Renard is stranded on this planet, but you don't have an extra bunk to transport her back to civilization. Come back when you have space.`
 	to offer
 		has "Lost Racer 2 - Continued: done"
 		not "event: lost racer deadline"
