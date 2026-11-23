@@ -143,12 +143,9 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
 	if(!FindMissionForSystem(selectedSystem) && player.HasTravelPlan())
-	{
-		const auto &tp = player.TravelPlan();
-		for(auto it : tp | views::reverse)
-			if(FindMissionForSystem(it))
+		for(const System *system : player.TravelPlan() | views::reverse)
+			if(FindMissionForSystem(system))
 				break;
-	}
 
 	SetSelectedScrollAndCenter(true);
 }
@@ -186,9 +183,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 		&& !(player.GetSystem() != selectedSystem && FindMissionForSystem(player.GetSystem()))
 		&& player.HasTravelPlan())
 	{
-		const auto &tp = player.TravelPlan();
-		for(auto it : tp | views::reverse)
-			if(FindMissionForSystem(it))
+		for(const System *system : player.TravelPlan() | views::reverse)
+			if(FindMissionForSystem(system))
 				break;
 	}
 
@@ -254,7 +250,7 @@ void MissionPanel::Draw()
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
 	const System *previous = player.GetSystem();
 	const vector<const System *> plan = distance.Plan(*selectedSystem);
-	for(auto next : plan | views::reverse)
+	for(const System *next : plan | views::reverse)
 	{
 		bool isJump, isWormhole, isMappable;
 		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))

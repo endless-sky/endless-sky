@@ -933,11 +933,11 @@ void Planet::DeployDefense(list<shared_ptr<Ship>> &ships) const
 	Personality fighterPersonality = Personality::DefenderFighter();
 	for(auto it = defenders.begin(); it != end; ++it)
 	{
-		(*it)->SetPersonality(defenderPersonality);
-		if((*it)->HasBays())
-			for(const auto &bay : (*it)->Bays())
-				if(bay.ship)
-					bay.ship->SetPersonality(fighterPersonality);
+		shared_ptr<Ship> &ship = *it;
+		ship->SetPersonality(defenderPersonality);
+		for(const auto &bay : ship->Bays())
+			if(bay.ship)
+				bay.ship->SetPersonality(fighterPersonality);
 	}
 
 	++defenseDeployed;

@@ -453,10 +453,10 @@ const GameAction &Conversation::GetAction(int node) const
 // Get the text of the given element of the given node.
 const string &Conversation::Text(int node, int element) const
 {
-	static const string empty;
+	static const string EMPTY;
 
 	if(!NodeIsValid(node) || !ElementIsValid(node, element))
-		return empty;
+		return EMPTY;
 
 	return nodes[node].elements[element].text;
 }

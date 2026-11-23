@@ -223,9 +223,9 @@ void Command::SetKey(Command command, int keycode)
 // than one command, an empty string is returned.
 const string &Command::Description() const
 {
-	static const string empty;
+	static const string EMPTY;
 	auto it = description.find(*this);
-	return (it == description.end() ? empty : it->second);
+	return (it == description.end() ? EMPTY : it->second);
 }
 
 
@@ -234,10 +234,10 @@ const string &Command::Description() const
 // a combination of more than one command, an empty string is returned.
 const string &Command::KeyName() const
 {
-	static const string empty = "(none)";
+	static const string EMPTY = "(none)";
 	auto it = keyName.find(*this);
 
-	return (!HasBinding() ? empty : it->second);
+	return (!HasBinding() ? EMPTY : it->second);
 }
 
 

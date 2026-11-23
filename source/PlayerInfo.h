@@ -266,13 +266,10 @@ public:
 
 	SortType GetAvailableSortType() const;
 	void NextAvailableSortType();
-
 	bool ShouldSortAscending() const;
 	void ToggleSortAscending();
-
 	bool ShouldSortSeparateDeadline() const;
 	void ToggleSortSeparateDeadline();
-
 	bool ShouldSortSeparatePossible() const;
 	void ToggleSortSeparatePossible();
 	void SortAvailable();
@@ -572,7 +569,7 @@ private:
 	std::map<const Mission *, int> remainingDeadlines;
 	// How to sort availableJobs
 	bool availableSortAsc = true;
-	SortType availableSortType = ABC;
+	SortType availableSortType = SortType::ABC;
 	bool sortSeparateDeadline = false;
 	bool sortSeparatePossible = false;
 

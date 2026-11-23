@@ -127,7 +127,7 @@ void Panel::AddZone(const Rectangle &rect, SDL_Keycode key)
 // so, apply that zone's action and return true.
 bool Panel::ZoneClick(const Point &point)
 {
-	for(auto & it : children | views::reverse)
+	for(auto &it : children | views::reverse)
 		if(it->ZoneClick(point))
 			return true;
 

@@ -17,4 +17,8 @@
 # -*-pass-by-value: We normally pass strings by const ref. Clang-tidy is saying that many of them can be replaced with
 #  passing by value and using std::move. It doesn't make much difference either way.
 # -*-slicing: Casting a variable to a superclass shouldn't be flagged as an issue. We're doing so intentionally.
-Checks: '-*-narrowing-conversions,-*-integer-division,-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c,-*-use-override,-*-pass-by-value,-*-slicing'
+# -*-inefficient-string-concatenation: This warning is about using the + operator to add strings instead of using += or
+#  string::append. While these alternatives may be more efficient, they're also more verbose, and string concatenation
+#  isn't exactly an area of the codebase that we're losing enough performance on to necessitate more verbose code for
+#  the sake of performance.
+Checks: '-*-narrowing-conversions,-*-integer-division,-*-use-nodiscard,-*-return-braced-init-list,-*-use-auto,-*-branch-clone,-*-use-anyofallof,-*-default-arguments,-*-flp30-c,-*-use-override,-*-pass-by-value,-*-slicing,-*-inefficient-string-concatenation'

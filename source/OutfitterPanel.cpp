@@ -494,8 +494,8 @@ ShopPanel::TransactionResult OutfitterPanel::CanMoveOutfit(OutfitLocation fromLo
 				{
 					if(playerShips.size() > 1)
 					{
-						errorMessage += to_string(++i) + ". You cannot " + actionName + " this outfit from \"";
-						errorMessage += shipName + "\", because:\n";
+						errorMessage += to_string(++i) + ". You cannot " + actionName + " this outfit from \""
+							+ shipName + "\", because:\n";
 					}
 					for(const string &error : errors)
 						errorMessage += "- " + error + '\n';

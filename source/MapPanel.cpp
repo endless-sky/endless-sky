@@ -463,7 +463,7 @@ void MapPanel::DrawOrbits()
 			const Color *color = GameData::Colors().Get("map orbits fleet destination");
 			// TODO: Add a "batch pointer shader" method that takes
 			// the shape description, a count, and a reference point+orientation.
-			// Use that method below and in Engine for drawing target reticules.
+			// Use that method below and in Engine for drawing target reticles.
 			auto a = Angle{45.};
 			auto inc = Angle{90.};
 
