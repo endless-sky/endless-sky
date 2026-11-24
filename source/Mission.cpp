@@ -671,7 +671,7 @@ std::string Mission::Reminder(const PlayerInfo &player) const
 	subs["<fare>"] = (passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
 	ostringstream out;
 	if(passengers > 0)
-		out << to_string(passengers) << (passengers == 1 ? " bunk" :  + " bunks");
+		out << to_string(passengers) << (passengers == 1 ? " bunk" : " bunks");
 	if(passengers > 0 && cargoSize > 0)
 		out << " and ";
 	if(cargoSize > 0)
