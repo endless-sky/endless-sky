@@ -81,6 +81,13 @@ public:
 	const std::string &TrueName() const;
 	const std::string &DisplayName() const;
 	const std::string &Description() const;
+	// A mission that can offer but hasn't been accepted yet may appear with a
+	// reminder description in the missions map panel.
+	std::string Reminder(const PlayerInfo &player) const;
+	// Whether this mission could display a reminder, and if it should display
+	// it right now.
+	bool HasReminder(bool checkValidity = true) const;
+	bool ShowReminder(const PlayerInfo &player) const;
 	// Check if this mission should be shown in your mission list. If not, the
 	// player will not know this mission exists (which is sometimes useful).
 	bool IsVisible() const;
@@ -110,6 +117,7 @@ public:
 
 	// Information about what you are doing.
 	const Ship *SourceShip() const;
+	const System *SourceSystem() const;
 	const Planet *Destination() const;
 	const std::set<const System *> &Waypoints() const;
 	const std::set<const System *> &VisitedWaypoints() const;
@@ -224,6 +232,8 @@ private:
 	std::string trueName;
 	std::string displayName;
 	std::string description;
+	std::string reminderName;
+	std::string reminder;
 	std::string blocked;
 	Location location = SPACEPORT;
 

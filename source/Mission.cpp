@@ -177,6 +177,10 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 			description = child.Token(1);
 		else if(key == "blocked" && hasValue)
 			blocked = child.Token(1);
+		else if(key == "reminder name" && hasValue)
+			reminderName = child.Token(1);
+		else if(key == "reminder" && hasValue)
+			reminder = child.Token(1);
 		else if(key == "deadline" && child.Size() >= 4)
 			deadline = Date(child.Value(1), child.Value(2), child.Value(3));
 		else if(key == "deadline")
@@ -418,6 +422,9 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 	if(displayName.empty())
 		displayName = trueName;
 	hasTrackedNpcs = ranges::any_of(npcs, [](const NPC &npc) { return npc.GetPersonality().IsTracked(); });
+	if(!reminder.empty() && !HasReminder(false))
+		node.PrintTrace("Mission with reminder node does not meet the criteria to display a reminder. "
+			"A mission must be visible, not offer in flight, and have a singular source planet.");
 }
 
 
@@ -628,7 +635,9 @@ const string &Mission::TrueName() const
 
 const string &Mission::DisplayName() const
 {
-	return displayName;
+	// If this is an instantiated mission, it won't have a reminder name
+	// and will always use its normal display name.
+	return reminderName.empty() ? displayName : reminderName;
 }
 
 
@@ -636,6 +645,104 @@ const string &Mission::DisplayName() const
 const string &Mission::Description() const
 {
 	return description;
+}
+
+
+
+std::string Mission::Reminder(const PlayerInfo &player) const
+{
+	if(reminder.empty())
+		return "";
+
+	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs);
+	substitutions.Substitutions(subs);
+	player.AddPlayerSubstitutions(subs);
+
+	// Only use a subset of the usual substitutions.
+	// Note that cargo and passengers could differ at instantiation time if they are
+	// randomized, but if that is the case, then it's a misuse of the sub in the mission
+	// reminder, as reminders should only provide details that are set in stone.
+	subs["<commodity>"] = Phrase::ExpandPhrases(cargo);
+	subs["<tons>"] = Format::MassString(cargoSize);
+	subs["<cargo>"] = Format::CargoString(cargoSize, subs["<commodity>"]);
+	subs["<bunks>"] = to_string(passengers);
+	subs["<passengers>"] = (passengers == 1) ? "passenger" : "passengers";
+	subs["<fare>"] = (passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
+	ostringstream out;
+	if(passengers > 0)
+		out << to_string(passengers) << (passengers == 1 ? " bunk" :  + " bunks");
+	if(passengers > 0 && cargoSize > 0)
+		out << " and ";
+	if(cargoSize > 0)
+		out << to_string(cargoSize) << (cargoSize == 1 ? " ton" : " tons") << " of cargo space";
+	subs["<capacity>"] = out.str();
+
+	subs["<origin>"] = source->DisplayName();
+	subs["<planet>"] = destination ? destination->DisplayName() : "";
+	subs["<system>"] = destination ? destination->GetSystem()->DisplayName() : "";
+	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
+	// Stopovers: "<name> in the <system name> system" with "," and "and".
+	auto getDisplayName = [](const auto *const &item)
+	{
+		return item->DisplayName();
+	};
+	if(!stopovers.empty())
+	{
+		subs["<stopovers>"] = Format::List<set, const Planet *>(stopovers,
+			[](const Planet *const &planet)
+			{
+				return planet->DisplayName() + " in the " + planet->GetSystem()->DisplayName() + " system";
+			});
+		subs["<planet stopovers>"] = Format::List<set, const Planet *>(stopovers, getDisplayName);
+	}
+	// Waypoints and marks: "<system name>" with "," and "and".
+	if(!waypoints.empty())
+		subs["<waypoints>"] = Format::List<set, const System *>(waypoints, getDisplayName);
+	if(!markedSystems.empty())
+		subs["<marks>"] = Format::List<set, const System *>(markedSystems, getDisplayName);
+
+	for(const auto &keyValue : subs)
+		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
+	Format::Expand(subs);
+
+	const ConditionsStore &conditions = player.Conditions();
+	Format::ConditionGetter getter = [&conditions](const string &str, size_t start, size_t length) -> int64_t
+	{
+		return conditions.Get(str.substr(start, length));
+	};
+	return Format::Replace(Format::ExpandConditions(Phrase::ExpandPhrases(reminder), getter), subs);
+}
+
+
+
+bool Mission::HasReminder(bool checkValidity) const
+{
+	// A mission must be valid, visible, offer while landed, and have a singular source
+	// location instead of a source filter in order to have a reminder displayed.
+	return !reminder.empty() && (!checkValidity || IsValid()) && isVisible && !LocationInFlight(location)
+		&& source && source->IsValid();
+}
+
+
+
+bool Mission::ShowReminder(const PlayerInfo &player) const
+{
+	if(!HasReminder())
+		return false;
+
+	// This is a subset of what gets checked by CanOffer, determining if this mission
+	// has the potential to offer if the player were at the mission's source.
+	if(!toOffer.Test())
+		return false;
+
+	if(!toFail.IsEmpty() && toFail.Test())
+		return false;
+
+	if(repeat && player.Conditions().Get(trueName + ": offered") >= repeat)
+		return false;
+
+	return true;
 }
 
 
@@ -785,6 +892,13 @@ bool Mission::IsAtLocation(Location location) const
 const Ship *Mission::SourceShip() const
 {
 	return sourceShip;
+}
+
+
+
+const System *Mission::SourceSystem() const
+{
+	return source ? source->GetSystem() : nullptr;
 }
 
 
@@ -1782,6 +1896,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 	// Perform substitution in the name and description.
 	result.displayName = Format::Replace(Phrase::ExpandPhrases(displayName), subs);
 	result.description = Format::Replace(Phrase::ExpandPhrases(description), subs);
+	// Reminders are not instantiated because they only get displayed by the mission definition.
 	result.clearance = Format::Replace(Phrase::ExpandPhrases(clearance), subs);
 	result.blocked = Format::Replace(Phrase::ExpandPhrases(blocked), subs);
 	result.clearanceFilter = clearanceFilter;

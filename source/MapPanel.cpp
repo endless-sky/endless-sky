@@ -73,6 +73,9 @@ namespace {
 	const double MISSION_POINTERS_ANGLE_DELTA = 30.;
 	const int MAX_STARS = 5;
 
+	// The number of mission pointers to create for mission reminders.
+	map<const System *, int> reminders;
+
 	// Class to track per system how many pointers are drawn and still
 	// need to be drawn.
 	class PointerDrawCount {
@@ -274,6 +277,12 @@ MapPanel::MapPanel(PlayerInfo &player, int commodity, const System *special, boo
 	// recalculated on the day change.
 	if(player.GetPlanet())
 		player.CacheMissionInformation(true);
+
+	// Check where mission reminder pointers should be drawn.
+	reminders.clear();
+	for(const Mission &mission : GameData::Missions() | views::values)
+		if(mission.ShowReminder(player))
+			++reminders[mission.SourceSystem()];
 
 	CenterOnSystem(selectedSystem, true);
 }
@@ -1712,6 +1721,9 @@ void MapPanel::DrawMissions()
 {
 	// Draw a pointer for each active or available mission.
 	map<const System *, PointerDrawCount> missionCount;
+	// Account for mission reminders.
+	for(const auto &[system, count] : reminders)
+		missionCount[system].available += count;
 
 	const Set<Color> &colors = GameData::Colors();
 	const Color &availableColor = *colors.Get("available job");
@@ -1741,6 +1753,7 @@ void MapPanel::DrawMissions()
 		else
 			++it.unavailable;
 	}
+	// Check and draw the missions the player currently has accepted.
 	for_each(missionCount.begin(), missionCount.end(), [](auto &it) { it.second.Reserve(); });
 	for(const Mission &mission : player.Missions())
 	{
@@ -1773,11 +1786,9 @@ void MapPanel::DrawMissions()
 		for(const System *mark : mission.TrackedSystems())
 			DrawPointer(mark, missionCount[mark].drawn, missionCount[mark].MaximumActive(), waypointColor);
 	}
-	// Draw the available and unavailable jobs.
-	for(auto &&it : missionCount)
+	// Draw the reminders and available and unavailable jobs.
+	for(auto &[system, counters] : missionCount)
 	{
-		const auto &system = it.first;
-		auto &&counters = it.second;
 		for(unsigned i = 0; i < counters.available; ++i)
 			DrawPointer(system, counters.drawn, MAX_MISSION_POINTERS_DRAWN, availableColor);
 		for(unsigned i = 0; i < counters.unavailable; ++i)

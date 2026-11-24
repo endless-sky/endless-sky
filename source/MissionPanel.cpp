@@ -34,7 +34,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "Planet.h"
 #include "PlayerInfo.h"
-#include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "shader/RingShader.h"
 #include "Screen.h"
@@ -49,6 +48,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <algorithm>
 #include <cmath>
+#include <ranges>
 #include <sstream>
 
 using namespace std;
@@ -86,25 +86,19 @@ namespace {
 	}
 
 	// Compute the required scroll amount for the given list of jobs/missions.
-	void ScrollMissionList(const list<Mission> &missionList, const list<Mission>::const_iterator &it,
-		double &sideScroll, bool checkVisibility)
+	void ScrollMissionList(size_t missionCount, size_t countBefore, double &sideScroll, bool isAccepted)
 	{
 		// We don't need to scroll at all if the selection must be within the viewport. The current
 		// scroll could be non-zero if missions were added/aborted, so return the delta that will reset it.
-		const auto maxViewable = MaxDisplayedMissions(checkVisibility);
-		const auto missionCount = missionList.size();
+		size_t maxViewable = MaxDisplayedMissions(isAccepted);
 		if(missionCount < maxViewable)
 			sideScroll = 0;
 		else
 		{
-			const auto countBefore = static_cast<size_t>(checkVisibility
-					? count_if(missionList.begin(), it, [](const Mission &m) { return m.IsVisible(); })
-					: distance(missionList.begin(), it));
-
-			const auto maximumScroll = (missionCount - maxViewable) * 20.;
-			const auto pageScroll = maxViewable * 20.;
-			const auto desiredScroll = countBefore * 20.;
-			const auto bottomOfPage = sideScroll + pageScroll;
+			double maximumScroll = (missionCount - maxViewable) * 20.;
+			double pageScroll = maxViewable * 20.;
+			double desiredScroll = countBefore * 20.;
+			double bottomOfPage = sideScroll + pageScroll;
 			if(desiredScroll < sideScroll)
 			{
 				// Scroll upwards.
@@ -126,17 +120,21 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	: MapPanel(player),
 	missionInterface(GameData::Interfaces().Get("mission")),
 	available(player.AvailableJobs()),
-	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
-	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	tooltip(150, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Re-do job sorting since something could have changed
 	player.SortAvailable();
 
-	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
-		++acceptedIt;
+	for(const Mission &mission : player.Missions())
+		if(mission.IsVisible())
+			accepted.push_back(&mission);
+	for(const Mission &mission : GameData::Missions() | views::values)
+		if(mission.ShowReminder(player))
+			accepted.push_back(&mission);
+
+	acceptedIt = accepted.empty() ? accepted.begin() : accepted.end();
 
 	InitTextArea();
 
@@ -160,9 +158,7 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	: MapPanel(panel),
 	missionInterface(GameData::Interfaces().Get("mission")),
 	available(player.AvailableJobs()),
-	accepted(player.Missions()),
 	availableIt(player.AvailableJobs().begin()),
-	acceptedIt(player.AvailableJobs().empty() ? accepted.begin() : accepted.end()),
 	availableScroll(0), acceptedScroll(0), dragSide(0),
 	tooltip(150, Alignment::LEFT, Tooltip::Direction::DOWN_RIGHT, Tooltip::Corner::BOTTOM_LEFT,
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
@@ -175,8 +171,14 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 	// In this view, always color systems based on player reputation.
 	commodity = SHOW_REPUTATION;
 
-	while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
-		++acceptedIt;
+	for(const Mission &mission : player.Missions())
+		if(mission.IsVisible())
+			accepted.push_back(&mission);
+	for(const Mission &mission : GameData::Missions() | views::values)
+		if(mission.ShowReminder(player))
+			accepted.push_back(&mission);
+
+	acceptedIt = accepted.empty() ? accepted.begin() : accepted.end();
 
 	InitTextArea();
 
@@ -285,8 +287,16 @@ void MissionPanel::Draw()
 	const Color &blockedColor = *colors.Get("blocked back");
 	if(availableIt != available.end() && availableIt->Destination())
 		DrawMissionSystem(*availableIt, CanAccept() ? availableColor : unavailableColor);
-	if(acceptedIt != accepted.end() && acceptedIt->Destination())
-		DrawMissionSystem(*acceptedIt, IsSatisfied(*acceptedIt) ? currentColor : blockedColor);
+	if(acceptedIt != accepted.end())
+	{
+		// Instantiated missions don't have reminders, so we don't need to worry about accidentally
+		// drawing a reminder for a mission that should actually be drawing its objectives.
+		const Mission &mission = **acceptedIt;
+		if(mission.HasReminder())
+			DrawReminder(mission, availableColor);
+		else if(mission.Destination())
+			DrawMissionSystem(mission, IsSatisfied(**acceptedIt) ? currentColor : blockedColor);
+	}
 
 	Point pos;
 	if(player.GetPlanet())
@@ -296,14 +306,14 @@ void MissionPanel::Draw()
 			"Missions available here:",
 			available.size(),
 			true);
-		DrawList(available, pos, availableIt, hoverAvailableIt, true);
+		DrawAvailable(pos);
 	}
 
 	pos = DrawPanel(
 		Screen::TopRight() + Point(-SIDE_WIDTH, -acceptedScroll),
 		"Your current missions:",
-		AcceptedVisible());
-	DrawList(accepted, pos, acceptedIt, hoverAcceptedIt);
+		accepted.size());
+	DrawAccepted(pos);
 
 	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
 	DrawKey();
@@ -339,9 +349,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 	}
 	else if(key == 'A' || (key == 'a' && (mod & KMOD_SHIFT)))
 	{
-		if(acceptedIt != accepted.end() && acceptedIt->IsVisible())
+		// Reminder missions can't be aborted because they haven't actually
+		// been accepted yet.
+		if(acceptedIt != accepted.end() && !(*acceptedIt)->HasReminder())
 			GetUI().Push(DialogPanel::CallFunctionIfOk(this, &MissionPanel::AbortMission,
-				"Abort mission \"" + acceptedIt->DisplayName() + "\"?"));
+				"Abort mission \"" + (*acceptedIt)->DisplayName() + "\"?"));
 		return true;
 	}
 	else if(key == SDLK_LEFT && availableIt == available.end())
@@ -350,13 +362,11 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		acceptedIt = accepted.end();
 		availableIt = available.begin();
 	}
-	else if(key == SDLK_RIGHT && acceptedIt == accepted.end() && AcceptedVisible())
+	else if(key == SDLK_RIGHT && acceptedIt == accepted.end())
 	{
 		// Switch to the first mission in the "accepted missions" list.
 		availableIt = available.end();
 		acceptedIt = accepted.begin();
-		while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
-			++acceptedIt;
 	}
 	else if(key == SDLK_UP)
 	{
@@ -364,19 +374,15 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		// Select the previous mission, which may be at the end of the list.
 		if(availableIt != available.end())
 		{
-			// All available missions are, by definition, visible.
 			if(availableIt == available.begin())
 				availableIt = available.end();
 			--availableIt;
 		}
 		else if(acceptedIt != accepted.end())
 		{
-			// Skip over any invisible, accepted missions.
-			do {
-				if(acceptedIt == accepted.begin())
-					acceptedIt = accepted.end();
-				--acceptedIt;
-			} while(!acceptedIt->IsVisible());
+			if(acceptedIt == accepted.begin())
+				acceptedIt = accepted.end();
+			--acceptedIt;
 		}
 	}
 	else if(key == SDLK_DOWN)
@@ -393,11 +399,9 @@ bool MissionPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		}
 		else if(acceptedIt != accepted.end())
 		{
-			do {
-				++acceptedIt;
-				if(acceptedIt == accepted.end())
-					acceptedIt = accepted.begin();
-			} while(!acceptedIt->IsVisible());
+			++acceptedIt;
+			if(acceptedIt == accepted.end())
+				acceptedIt = accepted.begin();
 		}
 	}
 	else
@@ -478,21 +482,18 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 		if(y + static_cast<int>(acceptedScroll) < Screen::Top() + 30)
 			return false;
 		// Accepted missions:
-		int index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
-		if(index < AcceptedVisible())
+		unsigned index = max(0, (y + static_cast<int>(acceptedScroll) - 36 - Screen::Top()) / 20);
+		if(index < accepted.size())
 		{
 			const auto lastAcceptedIt = acceptedIt;
 			acceptedIt = accepted.begin();
-			while(index || !acceptedIt->IsVisible())
-			{
-				index -= acceptedIt->IsVisible();
+			while(index--)
 				++acceptedIt;
-			}
 			availableIt = available.end();
 			dragSide = 1;
 			if(lastAcceptedIt == acceptedIt)
 			{
-				CycleInvolvedSystems(*acceptedIt);
+				CycleInvolvedSystems(**acceptedIt);
 				return true;
 			}
 			SetSelectedScrollAndCenter();
@@ -519,25 +520,25 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 		// When clicking a new system, select the first available mission
 		// (instead of continuing from wherever the iterator happens to be)
 		if((availableIt != available.end() && !Involves(*availableIt, system)) ||
-			(acceptedIt != accepted.end() && !Involves(*acceptedIt, system)))
+			(acceptedIt != accepted.end() && !Involves(**acceptedIt, system)))
 		{
-			auto firstExistingIt = find_if(available.begin(), available.end(),
+			auto firstAvailableIt = ranges::find_if(available,
 				[&system](const Mission &m) { return Involves(m, system); });
 
-			if(firstExistingIt != available.end())
+			if(firstAvailableIt != available.end())
 			{
-				availableIt = firstExistingIt;
+				availableIt = firstAvailableIt;
 				acceptedIt = accepted.end();
 			}
 			else
 			{
-				firstExistingIt = find_if(accepted.begin(), accepted.end(),
-					[&system](const Mission &m) { return m.IsVisible() && Involves(m, system); });
+				auto firstAcceptedIt = ranges::find_if(accepted,
+					[&system](const Mission *m) { return Involves(*m, system); });
 
-				if(firstExistingIt != accepted.end())
+				if(firstAcceptedIt != accepted.end())
 				{
 					availableIt = available.end();
-					acceptedIt = firstExistingIt;
+					acceptedIt = firstAcceptedIt;
 				}
 			}
 		}
@@ -565,23 +566,20 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 						acceptedIt = accepted.begin();
 				}
 			}
-			if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
+			if(acceptedIt != accepted.end())
 				continue;
 
 			if(availableIt != available.end() && Involves(*availableIt, system))
 				break;
-			if(acceptedIt != accepted.end() && Involves(*acceptedIt, system))
+			if(acceptedIt != accepted.end() && Involves(**acceptedIt, system))
 				break;
 		}
-		// Make sure invisible missions are never selected, even if there were
-		// no other missions in this system.
-		if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
-			acceptedIt = accepted.end();
 		// Scroll the relevant panel so that the mission highlighted is visible.
 		if(availableIt != available.end())
-			ScrollMissionList(available, availableIt, availableScroll, false);
+			ScrollMissionList(available.size(), std::distance(available.cbegin(), availableIt), availableScroll, false);
 		else if(acceptedIt != accepted.end())
-			ScrollMissionList(accepted, acceptedIt, acceptedScroll, true);
+			ScrollMissionList(accepted.size(), std::distance(accepted.cbegin(), acceptedIt),
+				acceptedScroll, true);
 	}
 
 	return true;
@@ -592,17 +590,9 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 bool MissionPanel::Drag(double dx, double dy)
 {
 	if(dragSide < 0)
-	{
-		availableScroll = max(0.,
-			min(available.size() * 20. + 190. - Screen::Height(),
-				availableScroll - dy));
-	}
+		availableScroll = max(0., min(available.size() * 20. + 190. - Screen::Height(), availableScroll - dy));
 	else if(dragSide > 0)
-	{
-		acceptedScroll = max(0.,
-			min(accepted.size() * 20. + 160. - Screen::Height(),
-				acceptedScroll - dy));
-	}
+		acceptedScroll = max(0., min(accepted.size() * 20. + 160. - Screen::Height(), acceptedScroll - dy));
 	else if(canDrag)
 		MapPanel::Drag(dx, dy);
 
@@ -647,15 +637,12 @@ bool MissionPanel::Hover(int x, int y)
 	}
 	else if(x >= Screen::Right() - SIDE_WIDTH && y + static_cast<int>(acceptedScroll) >= Screen::Top() + 30)
 	{
-		if(static_cast<int>(index) < AcceptedVisible())
+		if(index < accepted.size())
 		{
 			dragSide = 1;
 			hoverAcceptedIt = accepted.begin();
-			while(index || !hoverAcceptedIt->IsVisible())
-			{
-				index -= hoverAcceptedIt->IsVisible();
+			while(index--)
 				++hoverAcceptedIt;
-			}
 		}
 	}
 
@@ -709,13 +696,18 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 	{
 		selectedSystem = availableIt->Destination()->GetSystem();
 		UpdateCache();
-		ScrollMissionList(available, availableIt, availableScroll, false);
+		ScrollMissionList(available.size(), std::distance(available.cbegin(), availableIt), availableScroll, false);
 	}
 	else if(acceptedIt != accepted.end())
 	{
-		selectedSystem = acceptedIt->Destination()->GetSystem();
+		const Mission &mission = **acceptedIt;
+		if(mission.HasReminder())
+			selectedSystem = mission.SourceSystem();
+		else
+			selectedSystem = mission.Destination()->GetSystem();
 		UpdateCache();
-		ScrollMissionList(accepted, acceptedIt, acceptedScroll, true);
+		ScrollMissionList(accepted.size(), std::distance(accepted.cbegin(), acceptedIt),
+			acceptedScroll, true);
 	}
 
 	// Center on the selected system.
@@ -738,8 +730,14 @@ void MissionPanel::DrawKey() const
 	int selected = -1;
 	if(availableIt != available.end())
 		selected = 0 + !CanAccept();
-	if(acceptedIt != accepted.end() && acceptedIt->Destination())
-		selected = 2 + !IsSatisfied(*acceptedIt);
+	if(acceptedIt != accepted.end())
+	{
+		const Mission &mission = **acceptedIt;
+		if(mission.HasReminder())
+			selected = 0;
+		else
+			selected = 2 + !IsSatisfied(mission);
+	}
 
 	Information info;
 	if(selected >= 0)
@@ -782,6 +780,14 @@ void MissionPanel::DrawMissionSystem(const Mission &mission, const Color &color)
 			drawRing(system, visited);
 	}
 	RingShader::Unbind();
+}
+
+
+
+void MissionPanel::DrawReminder(const Mission &mission, const Color &color) const
+{
+	if(mission.SourceSystem())
+		RingShader::Draw(Zoom() * (mission.SourceSystem()->Position() + center), 22.f, 20.5f, color);
 }
 
 
@@ -865,72 +871,77 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 
 
-Point MissionPanel::DrawList(const list<Mission> &missionList, Point pos, const list<Mission>::const_iterator &selectIt,
-	const list<Mission>::const_iterator &hoverIt, bool separateDeadlineOrPossible) const
+Point MissionPanel::DrawAvailable(Point pos) const
 {
-	const Font &font = FontSet::Get(14);
-	const Color &highlight = *GameData::Colors().Get("faint");
-	const Color &unselected = *GameData::Colors().Get("medium");
-	const Color &selected = *GameData::Colors().Get("bright");
-	const Color &dim = *GameData::Colors().Get("dim");
-	const Sprite *fast = SpriteSet::Get("ui/fast forward");
 	bool separated = false;
-
-	for(auto it = missionList.begin(); it != missionList.end(); ++it)
-	{
-		if(!it->IsVisible())
-			continue;
-
-		pos.Y() += 20.;
-		if(separateDeadlineOrPossible && !separated
-				&& ((player.ShouldSortSeparateDeadline() && it->Deadline())
-						|| (player.ShouldSortSeparatePossible() && !it->CanAccept(player))))
-		{
-			pos.Y() += 8.;
-			separated = true;
-		}
-
-		bool isSelected = it == selectIt;
-		if(isSelected || it == hoverIt)
-			FillShader::Fill(
-				pos + Point(.5 * SIDE_WIDTH - 5., 8.),
-				Point(SIDE_WIDTH - 10., 20.),
-				highlight);
-
-		if(it->Deadline())
-			SpriteShader::Draw(fast, pos + Point(-4., 8.));
-
-		const Color *color = nullptr;
-		bool canAccept = (&missionList == &available ? it->CanAccept(player) : IsSatisfied(*it));
-		if(!canAccept)
-		{
-			const Color *customUnavailable = it->Unavailable();
-			if(customUnavailable && customUnavailable->IsLoaded())
-				color = customUnavailable;
-			else
-				color = &dim;
-		}
-		else if(isSelected)
-		{
-			const Color *customSelected = it->Selected();
-			if(customSelected && customSelected->IsLoaded())
-				color = customSelected;
-			else
-				color = &selected;
-		}
-		else
-		{
-			const Color *customUnselected = it->Unselected();
-			if(customUnselected && customUnselected->IsLoaded())
-				color = customUnselected;
-			else
-				color = &unselected;
-		}
-
-		font.Draw({it->DisplayName(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
-	}
+	for(auto it = available.begin(); it != available.end(); ++it)
+		DrawMissionName(*it, pos, true, separated, availableIt == it, hoverAvailableIt == it, true);
 
 	return pos;
+}
+
+
+
+Point MissionPanel::DrawAccepted(Point pos) const
+{
+	bool separated = false;
+	for(auto it = accepted.begin(); it != accepted.end(); ++it)
+		DrawMissionName(**it, pos, false, separated, acceptedIt == it, hoverAcceptedIt == it, false);
+
+	return pos;
+}
+
+
+
+void MissionPanel::DrawMissionName(const Mission &mission, Point &pos, bool separateDeadlineOrPossible, bool &separated,
+	bool isSelected, bool isHovered, bool isAvailable) const
+{
+	pos.Y() += 20.;
+	if(separateDeadlineOrPossible && !separated
+		&& ((player.ShouldSortSeparateDeadline() && mission.Deadline())
+		|| (player.ShouldSortSeparatePossible() && !mission.CanAccept(player))))
+	{
+		pos.Y() += 8.;
+		separated = true;
+	}
+
+	if(isSelected || isHovered)
+		FillShader::Fill(pos + Point(.5 * SIDE_WIDTH - 5., 8.), Point(SIDE_WIDTH - 10., 20.),
+			*GameData::Colors().Get("faint"));
+
+	bool isReminder = mission.HasReminder();
+	if(!isReminder && mission.Deadline())
+		SpriteShader::Draw(SpriteSet::Get("ui/fast forward"), pos + Point(-4., 8.));
+
+	const Color *color;
+	bool canAccept = isReminder || (isAvailable ? mission.CanAccept(player) : IsSatisfied(mission));
+	if(!canAccept)
+	{
+		const Color *customUnavailable = mission.Unavailable();
+		if(customUnavailable && customUnavailable->IsLoaded())
+			color = customUnavailable;
+		else
+			color = GameData::Colors().Get("dim");
+	}
+	else if(isSelected)
+	{
+		const Color *customSelected = mission.Selected();
+		if(customSelected && customSelected->IsLoaded())
+			color = customSelected;
+		else
+			color = GameData::Colors().Get("bright");
+	}
+	else
+	{
+		const Color *customUnselected = mission.Unselected();
+		if(customUnselected && customUnselected->IsLoaded())
+			color = customUnselected;
+		else
+			color = GameData::Colors().Get("medium");
+	}
+
+	const Font &font = FontSet::Get(14);
+	font.Draw({mission.DisplayName(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
 }
 
 
@@ -943,7 +954,7 @@ void MissionPanel::DrawMissionInfo()
 	// if any, is selected, and whether missions are available.
 	if(CanAccept())
 		info.SetCondition("can accept");
-	else if(acceptedIt != accepted.end())
+	else if(acceptedIt != accepted.end() && !(*acceptedIt)->HasReminder())
 		info.SetCondition("can abort");
 
 	if(availableIt != available.end() || acceptedIt != accepted.end())
@@ -973,7 +984,11 @@ void MissionPanel::DrawMissionInfo()
 			AddChild(description);
 			descriptionVisible = true;
 		}
-		description->SetText(acceptedIt->Description());
+		const Mission &mission = **acceptedIt;
+		if(mission.HasReminder())
+			description->SetText(mission.Reminder(player));
+		else
+			description->SetText(mission.Description());
 	}
 	else if(descriptionVisible)
 	{
@@ -984,7 +999,7 @@ void MissionPanel::DrawMissionInfo()
 
 
 
-void MissionPanel::DrawTooltips()
+void MissionPanel::DrawTooltips() const
 {
 	if(hoverSort < 0 || !tooltip.ShouldDraw())
 		return;
@@ -1150,24 +1165,14 @@ void MissionPanel::AbortMission()
 {
 	if(acceptedIt != accepted.end())
 	{
-		const Mission &toAbort = *acceptedIt;
+		const Mission &toAbort = **acceptedIt;
+		if(toAbort.HasReminder())
+			return;
 		++acceptedIt;
 		player.RemoveMission(Mission::ABORT, toAbort, GetUI());
 		if(acceptedIt == accepted.end() && !accepted.empty())
 			--acceptedIt;
-		if(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
-			acceptedIt = accepted.end();
 	}
-}
-
-
-
-int MissionPanel::AcceptedVisible() const
-{
-	int count = 0;
-	for(const Mission &mission : accepted)
-		count += mission.IsVisible();
-	return count;
 }
 
 
@@ -1183,8 +1188,16 @@ bool MissionPanel::FindMissionForSystem(const System *system)
 		if(availableIt->Destination()->IsInSystem(system))
 			return true;
 	for(acceptedIt = accepted.begin(); acceptedIt != accepted.end(); ++acceptedIt)
-		if(acceptedIt->IsVisible() && acceptedIt->Destination()->IsInSystem(system))
+	{
+		const Mission &mission = **acceptedIt;
+		if(mission.HasReminder())
+		{
+			if(mission.SourceSystem() == system)
+				return true;
+		}
+		else if(mission.Destination()->IsInSystem(system))
 			return true;
+	}
 
 	return false;
 }
@@ -1199,11 +1212,7 @@ bool MissionPanel::SelectAnyMission()
 		if(!available.empty())
 			availableIt = available.begin();
 		else
-		{
 			acceptedIt = accepted.begin();
-			while(acceptedIt != accepted.end() && !acceptedIt->IsVisible())
-				++acceptedIt;
-		}
 		return availableIt != available.end() || acceptedIt != accepted.end();
 	}
 	return false;
@@ -1213,6 +1222,12 @@ bool MissionPanel::SelectAnyMission()
 
 void MissionPanel::CycleInvolvedSystems(const Mission &mission)
 {
+	if(mission.HasReminder())
+	{
+		CenterOnSystem(mission.SourceSystem());
+		return;
+	}
+
 	cycleInvolvedIndex++;
 
 	int index = 0;
