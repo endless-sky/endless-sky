@@ -399,7 +399,7 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 		{
 			for(const DataNode &grand : child)
 				if(grand.Size() >= 2)
-					clearance[GameData::Planets().Get(grand.Token(0))] = grand.Value(1);
+					clearance[GameData::Planets().Get(grand.Token(0))] = (grand.Token(1) == "full");
 		}
 		else if(key == "max escort count" && hasValue)
 			maxEscortCount = max<int>(0, child.Value(1));
@@ -5201,7 +5201,7 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.BeginChild();
 	{
 		for(const auto &[planet, fullAccess] : clearance)
-			out.Write(planet->TrueName(), fullAccess);
+			out.Write(planet->TrueName(), fullAccess ? "full" : "limited");
 	}
 	out.EndChild();
 

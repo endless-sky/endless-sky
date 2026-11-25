@@ -234,10 +234,31 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		set<const System *> &toUnmark = (child.Size() == 2) ? unmark : unmarkOther[child.Token(2)];
 		toUnmark.insert(GameData::Systems().Get(child.Token(1)));
 	}
-	else if(key == "grant clearance" && hasValue)
-		grantClearance[GameData::Planets().Get(child.Token(1))] = child.Size() >= 3 ? child.BoolValue(2) : false;
-	else if(key == "remove clearance" && hasValue)
-		revokeClearance.insert(GameData::Planets().Get(child.Token(1)));
+	else if(key == "clearance" && child.Size() >= 3)
+	{
+		const string &action = child.Token(1);
+		const Planet *planet = GameData::Planets().Get(child.Token(2));
+		if(action == "grant")
+		{
+			bool fullAccess = true;
+			if(child.Size() >= 4)
+			{
+				const string &value = child.Token(4);
+				if(value == "limited")
+					fullAccess = false;
+				else if(value != "full")
+				{
+					child.PrintTrace(R"(Skipping unrecognized "clearance" level":)");
+					return;
+				}
+			}
+			grantClearance[planet] = fullAccess;
+		}
+		else if(action == "revoke")
+			revokeClearance.insert(planet);
+		else
+			child.PrintTrace(R"(Skipping unrecognized "clearance" action":)");
+	}
 	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
@@ -311,9 +332,9 @@ void GameAction::Save(DataWriter &out) const
 		for(const System *system : unmarks)
 			out.Write("unmark", system->TrueName(), mission);
 	for(const auto &[planet, fullClearance] : grantClearance)
-		out.Write("grant clearance", planet->TrueName(), fullClearance);
+		out.Write("clearance", "grant", planet->TrueName(), fullClearance ? "full" : "limited");
 	for(const Planet *planet : revokeClearance)
-		out.Write("revoke clearance", planet->TrueName());
+		out.Write("clearance", "revoke", planet->TrueName());
 	for(const string &name : fail)
 		out.Write("fail", name);
 	if(failCaller)
