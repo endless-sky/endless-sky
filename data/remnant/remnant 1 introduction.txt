@@ -3246,7 +3246,7 @@ mission "Remnant: Keystone Research 2"
 # preventing any of the stopover missions from appearing. None of the stopover missions have blocked
 # dialogs, nor would that prevent the stopover objective from this mission from being fulfilled it they
 # were blocked. It would be cleaner if we just kept the 19 tons of cargo space reserved throughout the
-# whole missions chain, starting with Keystone Research 1. 
+# whole missions chain, starting with Keystone Research 1.
 mission "Remnant: Keystone Research 3"
 	landing
 	name "Retrieve more keystones"
