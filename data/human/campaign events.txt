@@ -654,6 +654,8 @@ event "central outfitters expansion"
 
 mission "Central Outfitters Expansion"
 	outfitter
+	"reminder name" ""
+	reminder ""
 	source
 		planet "Earth" "Heartland" "Luna" "New China" "New Wales"
 	to offer

@@ -332,6 +332,7 @@ mission "Efreti: Distress Call 2"
 	destination "Laki Nemparu"
 	passengers 40
 	blocked `Looking towards the downed <EDC-ship>, you suddenly realize you forgot the <bunks> bunks you need for the evacuees.`
+	reminder ""
 	to offer
 		has "Efreti: Distress Call 1: done"
 	on offer
@@ -364,6 +365,8 @@ mission "Efreti: Distress Call 3"
 	landing
 	name "Recover the fallen crew of the <EDC-ship>"
 	description "Recover the bodies of the dead <EDC-ship> crew on <destination> and return them to <origin>."
+	blocked ""
+	reminder ""
 	source "Laki Nemparu"
 	destination "Seleptra Nak"
 	cargo "efreti coffins" 13
@@ -454,13 +457,14 @@ mission "Efreti: Distress Call 4"
 			`	Rather than intrude on their grief, you return to your ship, slotting the data chip you received into your systems. Unfortunately, the information is in an alien language, so you set it aside and work on a plan to salvage the <EDC-ship>. Gathering some notes on the ship and the number of crew they were carrying, it's clear that you will need to carry at least 66 additional crew that you can communicate with to be able to salvage it. The closest system that comes to mind with many human speakers is on Greenwater, in Hai space.`
 
 mission "Efreti: Distress Call 5"
+	landing
 	name "<EDC-ship> salvage team"
 	description "Hire a <bunks> member salvage team on <destination> to salvage the Efreti ship <EDC-ship>."
 	source "Karek Fornati"
 	destination "Greenwater"
-	landing
 	passengers 66
 	blocked `You need <bunks> available bunks to carry the salvage team.`
+	reminder ""
 	
 	to offer
 		has "Efreti: Distress Call 4: done"
@@ -496,7 +500,6 @@ mission "Efreti: Distress Call 6"
 	source "Greenwater"
 	destination "Seleptra Nak"
 	passengers 66
-	blocked "You need to be able to carry <bunks> additional crew to salvage the ship. Return here when you have sufficient crew capacity."
 
 	to offer
 		has "Efreti: Distress Call 5: done"

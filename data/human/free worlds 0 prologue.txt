@@ -329,6 +329,7 @@ mission "FW Recon 0"
 mission "FW Recon 1"
 	name "Free Worlds Reconnaissance"
 	description "Perform an outfit scan on the Cruiser <npc>, which is currently patrolling <system>, then report to a Free Worlds officer on <planet>."
+	reminder "Visit the <origin> spaceport to meet up with a Free Worlds commanding officer about doing more work for the Free Worlds."
 	source "Glaze"
 	to offer
 		has "FW Recon 0: done"
@@ -398,6 +399,7 @@ mission "FW Recon 1"
 mission "FW Recon 2"
 	name "Free Worlds Reconnaissance"
 	description "Scan any ships in the <waypoints> system that are equipped like the combat-ready Cruiser you scanned previously, then return to <destination>."
+	reminder "Visit the <origin> spaceport to meet up with a Free Worlds commanding officer about doing more work for the Free Worlds."
 	source "Glaze"
 	waypoint "Menkent"
 	to offer
@@ -445,6 +447,7 @@ mission "FW Recon 2"
 mission "FW Recon 3"
 	name "Free Worlds Reconnaissance"
 	description "Land on <destination> and secretly collect information on the developing Navy base there."
+	reminder "Visit the <origin> spaceport to meet up with a Free Worlds commanding officer about doing more work for the Free Worlds."
 	source "Glaze"
 	destination "New Wales"
 	to offer
@@ -476,9 +479,9 @@ mission "FW Recon 3"
 
 
 mission "FW Recon 3B"
+	landing
 	name "Free Worlds Reconnaissance"
 	description "Return to <destination> with information on the Navy base on <origin>."
-	landing
 	source "New Wales"
 	destination "Glaze"
 	to offer
@@ -1232,6 +1235,7 @@ mission "FW Bounty 2"
 
 
 mission "FW Bounty 3"
+	minor
 	name "Free Worlds Bounty Hunting"
 	description `A Free Worlds militia officer from <destination> asked you to hunt down the <npc>, a powerful pirate ship last seen in the Shaula system.`
 	source
@@ -1426,6 +1430,7 @@ mission "FW Katya 1B"
 	landing
 	name "Assist the Free Worlds"
 	description "Bring some cargo (harmless but intended to look suspicious) and two tourists to <destination>."
+	reminder "Return to <origin> after you have <capacity>."
 	source "Glory"
 	destination "Skymoot"
 	passengers 2
@@ -1581,6 +1586,7 @@ mission "FW Katya Alt 2"
 mission "FW Katya 2"
 	name "Transport Mr. Eyes"
 	description "Katya Reynolds asked you to travel to <destination>, where her friend Mr. Eyes is waiting for you."
+	reminder "Return to the spaceport of <origin> to meet up with Katya and Mr. Eyes."
 	source "Skymoot"
 	destination "Foundry"
 	passengers 1
@@ -1708,6 +1714,7 @@ mission "FW Katya 2C"
 mission "FW Katya 3"
 	name "Drone Hunting"
 	description `Disable a surveillance drone (ideally when no Cruisers are watching), board it, "salvage" its surveillance equipment, and return to <destination>. (Until you leave the system where you disabled the drone, other Republic ships may attack you.)`
+	reminder "Return to the spaceport of <origin> to meet up with Katya and Mr. Eyes."
 	source "Rand"
 	to offer
 		has "FW Katya 2C: done"
@@ -1777,6 +1784,7 @@ mission "FW Katya 3"
 mission "FW Katya 4"
 	name "Katya and Mr. Eyes"
 	description "Stop on <destination> and check the planet for signs of nuclear testing."
+	reminder "Return to the spaceport of <origin> after you have <capacity> available to meet up with Katya and Mr. Eyes."
 	source "Rand"
 	destination "Oblivion"
 	passengers 2
@@ -1990,6 +1998,7 @@ mission "FW Katya 5C"
 mission "FW Katya 6"
 	name "The Hunt Continues"
 	description "Take Katya and Eyes to <destination>."
+	reminder "Return to the spaceport of <origin> to meet up with Katya and Mr. Eyes."
 	source "Harmony"
 	destination "Sinter"
 	passengers 2

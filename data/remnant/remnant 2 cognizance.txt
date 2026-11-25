@@ -18,7 +18,6 @@ mission "Remnant: Cognizance 1"
 	source "Aventine"
 	stopover "Nasqueron"
 	stopover "Slylandro"
-	blocked "The Remnant researcher has another job for you, but you're going to have to free up <tons> cargo space in order to take it on."
 	cargo "scanning equipment" 8
 	to offer
 		has "event: remnant: wait for plume"
@@ -77,6 +76,7 @@ mission "Remnant: Cognizance 1"
 mission "Remnant: Cognizance 2"
 	name "Eliminate Korath Ship"
 	description "Plume ordered you to eliminate the Korath ship in the <waypoints> system."
+	reminder ""
 	source "Aventine"
 	waypoint "Nenia"
 	to offer
@@ -214,6 +214,7 @@ mission "Remnant: Cognizance 4"
 mission "Remnant: Cognizance 5"
 	name "Destroy Korath"
 	description "Prefect Chilia has asked you to eliminate the Korath fleet before returning to <destination> by <date>."
+	reminder ""
 	source "Caelian"
 	mark "Aescolanus"
 	deadline 20
@@ -280,6 +281,8 @@ mission "Remnant: Cognizance 5"
 mission "Remnant: Cognizance 6"
 	name "Transport Plume"
 	description "Pick up Plume on <stopovers> and bring him to <origin> by <day>. Prefect Chilia wants to consult him about the void sprites."
+	blocked ""
+	reminder ""
 	source "Caelian"
 	stopover "Aventine"
 	passengers 1
@@ -313,6 +316,8 @@ mission "Remnant: Cognizance 6"
 mission "Remnant: Cognizance 7"
 	name "Take Plume to <planet>"
 	description "Plume wants to witness firsthand what is going on in Nenia, and would like to visit <planet>."
+	blocked ""
+	reminder ""
 	source "Caelian"
 	destination "Nasqueron"
 	passengers 1
@@ -380,6 +385,7 @@ mission "Remnant: Cognizance 9"
 	name "Transport engineer to <planet>"
 	description "An engineer working for Plume needs transportation for himself and some equipment to <planet>."
 	blocked "Plume's engineer needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
+	reminder ""
 	source "Aventine"
 	destination "Esquiline"
 	cargo "equipment" 8
@@ -417,6 +423,7 @@ mission "Remnant: Cognizance 10"
 	source "Esquiline"
 	stopover "Caelian"
 	blocked "Plume's technician needs a free bunk and <tons> of cargo space for his equipment. Come back when you have enough space."
+	reminder ""
 	cargo "equipment" 8
 	passengers 1
 	to offer
@@ -463,6 +470,8 @@ mission "Remnant: Cognizance 11"
 mission "Remnant: Cognizance 12"
 	name "Meet with escorts"
 	description "Travel with the <npc> to pick up a shipment of atmosphere from <stopovers>, and deliver it to <destination>."
+	blocked ""
+	reminder ""
 	source "Viminal"
 	destination "Esquiline"
 	stopover "Nasqueron"
@@ -720,14 +729,15 @@ mission "Remnant: Cognizance 19"
 mission "Remnant: Cognizance 20"
 	name "Preparation for expedition"
 	description "Install a Research Laboratory, retrieve equipment from <stopovers>, then bring it to <destination>."
+	blocked "You need 10 free cargo space for this mission."
+	reminder ""
+	cargo "supplies" 10
 	source
 		government "Remnant"
 	stopover
 		government "Remnant"
 		distance 1 5
 		attributes "remnant primary"
-	blocked "You need 10 free cargo space for this mission."
-	cargo "supplies" 10
 	to offer
 		has "Remnant: Cognizance 19: done"
 		has "event: remnant: lab availability"
@@ -805,6 +815,7 @@ mission "Remnant: Cognizance 21"
 		attributes "remnant primary"
 	stopover "Ssil Vida"
 	blocked "You need 10 free space, five free bunks, and a Research Laboratory for this mission."
+	reminder ""
 	passengers 5
 	cargo "supplies" 10
 	to offer
@@ -927,6 +938,7 @@ mission "Remnant: Cognizance Interest Condition Patch"
 mission "Remnant: Cognizance 22"
 	name "Deliver Data Backups for Taely"
 	description "Deliver a data backup to <stopovers> for Taely."
+	reminder ""
 	source
 		government "Remnant"
 		attributes "shipyard"
@@ -1133,6 +1145,7 @@ mission "Remnant: Cognizance 24"
 	cargo "outpost equipment" 11
 	passengers 1
 	blocked "You receive a message from Dusk and Taely indicating the next mission requires space for <tons> of cargo and <fare>."
+	reminder ""
 	to offer
 		has "Remnant: Cognizance 23: done"
 		not "remnant: dusk busy"
@@ -1254,6 +1267,7 @@ mission "Remnant: Cognizance 25"
 mission "Remnant: Cognizance 26"
 	name "Bring an Aeon Cell to Ssil Vida"
 	description "Gavriil has asked you to go pick up an Aeon Cell from <stopovers> by <date>."
+	reminder ""
 	deadline 14
 	source "Ssil Vida"
 	stopover "Viminal"
@@ -1296,6 +1310,7 @@ mission "Remnant: Cognizance 28"
 	source "Caelian"
 	destination "Baianus"
 	blocked `Over the commlink Torza is a flurry of motion as he issues orders in several directions. "Right now, we need another ship that can evacuate 280 tons and 20 people. Return here when you have suitable capabilities."`
+	reminder ""
 	cargo "reserved" 280
 	passengers 20
 	deadline 13
@@ -1328,6 +1343,7 @@ mission "Remnant: Cognizance 29"
 	source "Baianus"
 	destination "Caelian"
 	blocked `The scene is one of organized chaos. One Remnant signs "We need a ship that can carry <tons> of cargo and 20 passengers."`
+	reminder ""
 	cargo "equipment" 280
 	passengers 20
 	deadline 13
@@ -1371,6 +1387,7 @@ mission "Remnant: Cognizance 30"
 	source "Caelian"
 	destination "Ssil Vida"
 	blocked `You check in with Torza, who glances at his commlink. "You will need a ship with space for 15 people and 30 tons of cargo."`
+	reminder ""
 	cargo "equipment" 30
 	passengers 15
 	to offer
@@ -1426,6 +1443,7 @@ mission "Remnant: Cognizance 32"
 	source "Viminal"
 	destination "Clink"
 	blocked "Chilia and Taely look excited about something, but when you inquire, they shake their heads and say you need to have earned their capital license before they can tell you more."
+	reminder ""
 	deadline 19
 	to offer
 		has "Remnant: Cognizance 31: done"
@@ -1502,6 +1520,7 @@ mission "Remnant: Cognizance 33"
 	cargo "refined fuel" 58
 	deadline 19
 	blocked "For the next mission in the Remnant campaign, you must have at least 58 cargo space free."
+	reminder ""
 	to offer
 		has "Remnant: Cognizance 32: done"
 	on offer

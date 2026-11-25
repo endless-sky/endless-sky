@@ -60,6 +60,7 @@ mission "FW Diplomacy 1B"
 		has "FW Diplomacy 1: done"
 	passengers 1
 	blocked "You do not have a bunk free for Alondo. Return here when you do."
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	
@@ -173,9 +174,10 @@ mission "FW Diplomacy 1D"
 
 
 mission "FW Southern Recon 1"
+	autosave
 	name "Reconnaissance"
 	description "Fly through <waypoints> to get a sense of the Navy's strength in those systems, then report to <destination>."
-	autosave
+	reminder ""
 	source "Longjump"
 	waypoint "Rastaban"
 	waypoint "Delta Sagittarii"
@@ -342,6 +344,7 @@ mission "FW Southern Recon 1B: Alnasl Hint 2"
 mission "FW Southern Battle 1"
 	name "Escort Battle Fleet"
 	description "Travel to <planet> to gather a fleet of experimental new warships, and escort them back to Trinket."
+	reminder ""
 	source Trinket
 	destination Zug
 	to offer
@@ -378,10 +381,10 @@ mission "FW Southern Battle 1"
 
 
 mission "FW Southern Battle 1B"
+	autosave
 	landing
 	name "Escort Battle Fleet"
 	description "Escort a fleet of experimental warships to <destination>."
-	autosave
 	source Zug
 	destination Trinket
 	to offer
@@ -442,6 +445,7 @@ event "battle for Rastaban"
 mission "FW Southern Battle 2"
 	name "Attack Rastaban"
 	description "Travel directly to the <system> system, so that you will arrive on <day> and join the battle against the Navy. Disable or destroy all Navy ships in the system."
+	reminder ""
 	source Trinket
 	destination Dancer
 	clearance
@@ -614,6 +618,7 @@ mission "FW Southern Battle 3"
 mission "FW Southern Prisoners - Release"
 	name "Return Navy Prisoners"
 	description "As a goodwill gesture, return the Navy prisoners to <destination> rather than imprisoning them on Clink. Your safe passage ends on <day>."
+	reminder ""
 	source Dancer
 	clearance
 	destination "New Iceland"
@@ -812,6 +817,7 @@ mission "FW Northern 1"
 		has "event: fw occupying the north"
 	passengers 1
 	blocked `You receive a message from Freya: "Captain, please meet up with us as soon as you have a bunk free for Alondo." You have no bunks free, so you should return here once you have made one available.`
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	
@@ -855,6 +861,7 @@ mission "FW Northern 1"
 mission "FW Northern 2"
 	name "Meet With Freya"
 	description "Now that the northern star systems are secured, go back to <planet> to meet with Freya and work with her to remove any surveillance equipment the Navy installed in the Wei system or elsewhere."
+	reminder ""
 	source "New Tibet"
 	destination "Dancer"
 	to offer
@@ -892,6 +899,7 @@ mission "FW Northern 2A"
 		has "FW Northern 2: done"
 	passengers 1
 	blocked "To continue this mission, you need a bunk free for Freya. Return here when you have made one available."
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	
@@ -1034,9 +1042,10 @@ mission "FW Northern 3"
 
 
 mission "FW Northern 3B"
+	autosave
 	name "Dreadnoughts to <planet>"
 	description "Escort two more Dreadnoughts to <destination> to help defend the front against any Navy incursions."
-	autosave
+	reminder ""
 	source "Zug"
 	destination "Clark"
 	to offer
@@ -1189,10 +1198,10 @@ mission "FW Northern 4.2A"
 
 
 mission "FW Alphas 1.1"
+	autosave
 	landing
 	name "Liberate Poisonwood"
 	description "Destroy the pirate ships occupying the <system> system with the help of the Navy Oathkeepers, then land on the planet and let the Navy troops eliminate the Alphas."
-	autosave
 	source "New Tibet"
 	destination Poisonwood
 	clearance
@@ -1292,10 +1301,10 @@ mission "FW Alphas 1.1"
 
 
 mission "FW Alphas 1.2"
+	autosave
 	landing
 	name "Liberate Poisonwood"
 	description "Destroy any pirate ships in orbit around <planet>, then land and eliminate the Alphas and their servants who have occupied the city."
-	autosave
 	source "New Tibet"
 	destination Poisonwood
 	clearance
@@ -1351,9 +1360,10 @@ mission "FW Alphas 1.2"
 
 
 mission "FW Alphas 1.1A"
+	autosave
 	name "Danforth to <planet>"
 	description "Escort Admiral Danforth's ship to <destination> so that he can leave Free space without being accidentally attacked."
-	autosave
+	reminder ""
 	source Poisonwood
 	destination "New Tibet"
 	to offer
@@ -1458,6 +1468,7 @@ mission "FW Bloodsea 1"
 		has "fw alphas done"
 	passengers 1
 	blocked `Alondo contacts you and asks, "Do you have a bunk ready for me?" You do not, so you will need to free one up to continue this mission.`
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	
@@ -1747,10 +1758,12 @@ mission "FW Dreadnoughts Ready"
 
 
 mission "FW Albatross 1"
+	autosave
 	landing
 	name "Freya to <planet>"
 	description "Bring Freya to <planet> to meet up with JJ and make plans for convincing Albatross to give up piracy and join the Free Worlds."
-	autosave
+	blocked ""
+	reminder ""
 	source "Zug"
 	destination "Dancer"
 	to offer
@@ -1798,10 +1811,10 @@ mission "FW Albatross 1"
 
 
 mission "FW Albatross 2"
+	autosave
 	landing
 	name "Visit Albatross"
 	description "Bring JJ to Albatross to negotiate with the local leaders and perhaps convince them to join the Free Worlds and give up their support of piracy."
-	autosave
 	source Dancer
 	destination Albatross
 	clearance
@@ -1829,10 +1842,10 @@ mission "FW Albatross 2"
 
 
 mission "FW Albatross 2A"
+	autosave
 	landing
 	name "Hunt Ryk Bartlett"
 	description "Hunt down the pirate warlord Ryk Bartlett, who has been plundering merchant convoys in the vicinity of Zeta Aquilae. (Only his personal ship, the Dread, must be destroyed.) Then, return to Albatross."
-	autosave
 	source "Albatross"
 	clearance
 	to offer
@@ -1908,10 +1921,10 @@ mission "FW Albatross 2A"
 
 
 mission "FW Albatross 2B"
+	autosave
 	landing
 	name "Return to Dancer"
 	description "Return to Dancer with JJ, and meet up with Freya."
-	autosave
 	source Albatross
 	destination Dancer
 	clearance
@@ -1948,6 +1961,7 @@ mission "FW Rand 1"
 	clearance
 	passengers 2
 	blocked "You need a bunk free for Freya (in addition to JJ) to continue this mission."
+	reminder ""
 	to offer
 		has "FW Albatross 2B: done"
 	on fail
@@ -2296,6 +2310,8 @@ mission "FW Defend New Tibet"
 mission "FW Liberate Delta Sagittarii"
 	name "Liberate Delta Sagittarii"
 	description "Lead a Free Worlds fleet to drive the Navy out of Delta Sagittarii. Another fleet ought to be arriving from the Rim at about the same time."
+	blocked ""
+	reminder ""
 	source Wayfarer
 	destination "New Portland"
 	clearance

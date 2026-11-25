@@ -236,6 +236,8 @@ mission "Hai Legacy 2"
 	landing
 	name "Heritage Reclaimed"
 	description "Use your newly acquired Anomalocaris to bring aid to the Unfettered Hai on <planet> by <date>."
+	blocked ""
+	reminder ""
 	clearance
 	deadline 7
 	cargo "food (aid)" 121

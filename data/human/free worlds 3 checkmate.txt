@@ -242,10 +242,12 @@ mission "FWC Cebalrai 1"
 
 
 mission "FWC Cebalrai 1B"
+	autosave
 	landing
 	name "Capture Cebalrai"
 	description "Lead an attack on the Cebalrai system and drive out or destroy any Navy ships that you find there."
-	autosave
+	blocked ""
+	reminder ""
 	source "New Iceland"
 	destination "Tundra"
 	clearance
@@ -503,6 +505,7 @@ mission "FWC Diplomacy 1B"
 		has "FWC Diplomacy 1: done"
 	passengers 2
 	blocked "You have reached <origin>, but you don't have a bunk free for Alondo! You should return to <origin> once you have freed one up."
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	
@@ -858,6 +861,7 @@ mission "FWC Checkmate 1B"
 		has "FWC Checkmate 1: done"
 	passengers 1
 	blocked "You have returned to <origin>, but you do not have a bunk free for Katya. You should return here once you have a bunk free."
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	
@@ -954,10 +958,10 @@ mission "FWC Checkmate 1B"
 
 
 mission "FWC Checkmate 1C"
+	autosave
 	landing
 	name "Capture <planet>"
 	description "Bring a fleet to <destination>, driving off any Republic ships in the system."
-	autosave
 	source "New Austria"
 	destination "Silver"
 	clearance
@@ -1036,6 +1040,7 @@ mission "FWC Checkmate Escorts"
 mission "FWC Pug 1"
 	name "Defend <planet>"
 	description "<planet> is under attack by ships of an unknown type. Drive them off, and then return to the planet to figure out what to do next."
+	reminder ""
 	source "Silver"
 	to offer
 		has "FWC Checkmate 1C: done"
@@ -1278,6 +1283,7 @@ mission "FWC Pug 2B"
 		has "FWC Pug 2: done"
 	passengers 1
 	blocked "You need to have a bunk free for Katya to continue with the next mission. Complete or abort whatever mission is using up all your passenger space, then return here to <origin>."
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	
@@ -1321,9 +1327,9 @@ mission "FWC Pug 2B: Pugglequat"
 
 
 mission "FWC Pug 2C"
+	landing
 	name "Visit <planet>"
 	description "Visit <destination>, which was part of Free Worlds territory before the alien invasion, and see if any military equipment is still available there."
-	landing
 	source Pugglemug
 	destination Oblivion
 	to offer
@@ -1628,6 +1634,7 @@ mission "FWC Pug 3C"
 	passengers 1
 	cargo "graviton reflector" 10
 	blocked `As you are landing, Freya contacts you and says, "You're going to need ten tons of cargo space for this next mission, and a bunk for me, as well." That means you have to free up <capacity>.`
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	
@@ -1917,6 +1924,7 @@ mission "FWC Pug 4B"
 	cargo "graviton reflector" 10
 	passengers 1
 	blocked `When you land on <origin>, Freya says, "Captain, it looks like you're going to need <capacity> to continue with this mission." You should free up more space, then return here.`
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	
@@ -2081,9 +2089,11 @@ mission "FWC Pug 4C"
 
 
 mission "FWC Pug 5"
+	autosave
 	name "Liberate <system>"
 	description "Some of the Navy ships have been outfitted with jump drives. Travel with them to the <system> system, avoiding the main Pug fleet in their home system, and reclaim control of the planet."
-	autosave
+	blocked ""
+	reminder ""
 	source Rand
 	destination Silver
 	clearance
@@ -2160,6 +2170,7 @@ mission "FWC Pug 5B"
 	passengers 1
 	cargo "graviton reflector" 10
 	blocked `When you land on <origin>, Freya says, "Captain, it looks like you're going to need <capacity> to continue with this mission." You should free up more space, then return here.`
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	
@@ -2256,6 +2267,7 @@ mission "FWC Pug 6"
 		has "FWC Pug 5C: done"
 	passengers 1
 	blocked "You need at least one bunk free for Freya in order to continue this mission."
+	reminder ""
 	on enter Deneb
 		dialog
 			`You enter the Deneb system expecting a massive Pug battle fleet to be waiting for you. Instead, it is entirely deserted. Also, your sensors are picking up some sort of anomaly outside the orbit of the outermost planet.`
@@ -2415,6 +2427,7 @@ mission "FWC End"
 		has "FWC Pug 6: done"
 	passengers 1
 	blocked "You need at least one bunk free for Freya in order to continue this mission."
+	reminder ""
 	on fail
 		dialog phrase "free worlds failed"
 	

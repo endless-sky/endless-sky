@@ -991,6 +991,7 @@ mission "Hai Honeymoon"
 
 
 mission "Pirate Troubles [0]"
+	minor
 	name "Defend <system>"
 	description "A sizable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
 	source
@@ -1468,6 +1469,7 @@ mission "Nanachi 1"
 mission "Nanachi 2"
 	name "Escort Nanachi to <planet>"
 	description "Bring Nanachi and her passengers to <destination>."
+	reminder ""
 	source "Cloudfire"
 	destination "Hai-home"
 	clearance
@@ -1502,6 +1504,7 @@ mission "Nanachi 2"
 mission "Nanachi 3"
 	name "Deliver spices with Nanachi"
 	description "Accompany Nanachi to <stopovers> to pick up some Quarg spices for a festival on <destination> by <date>."
+	reminder ""
 	source "Hai-home"
 	stopover "Alta Hai"
 	destination "Allhome"
@@ -1575,6 +1578,7 @@ mission "Nanachi 3"
 mission "Nanachi 4"
 	name "Protect Nanachi"
 	description "Bring Nanachi's ship to <stopovers>, keeping her safe from a pirate fleet that attacked a convoy heading to Hai space, then head back to <destination> by <date>."
+	reminder ""
 	source "Allhome"
 	stopover "Prime"
 	deadline 17
@@ -1853,6 +1857,7 @@ mission "Strider: Remnant 2"
 	infiltrating
 	passengers 3
 	blocked "The Hai delegation to meet the Remnant requires 3 bunks for the trip, but you don't have enough available space! Return when you have room for the delegation."
+	reminder ""
 	to offer
 		has "Strider: Remnant 1: done"
 	on offer
@@ -1883,6 +1888,7 @@ mission "Strider: Remnant 3"
 	passengers 3
 	cargo "repair technology" 12
 	blocked "You need <capacity> in order to return the Hai delegation and the repair technology back to <planet>."
+	reminder ""
 	to offer
 		has "Strider: Remnant 2: done"
 	on offer
@@ -1922,6 +1928,7 @@ mission "Strider: Coalition 1"
 	destination "Ring of Friendship"
 	passengers 3
 	blocked "The Hai delegation to meet the Coalition requires 3 bunks for the trip, but you don't have enough available space! Return when you have room for the delegation."
+	reminder ""
 	to offer
 		has "strider: coalition"
 	on offer
@@ -1951,6 +1958,7 @@ mission "Strider: Coalition 2"
 	passengers 3
 	cargo "repair technology" 12
 	blocked "You need <capacity> in order to return the Hai delegation and the repair technology back to <planet>."
+	reminder ""
 	to offer
 		has "Strider: Coalition 1: done"
 	on offer
@@ -2212,6 +2220,7 @@ mission "Hai Film Crew 3"
 	cargo "film equipment" 30
 	passengers 80
 	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	source "Darkrest"
 	destination
 		attributes hai

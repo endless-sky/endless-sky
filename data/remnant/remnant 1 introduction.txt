@@ -360,6 +360,8 @@ mission "Remnant: Defense 3"
 	landing
 	name "Remnant surveillance"
 	description "Travel to the <waypoints> system, destroy any Korath ships you find there, then deploy a Remnant surveillance satellite to give them advance warning of Korath raids in the future. Return to <planet> when you are done."
+	blocked ""
+	reminder ""
 	source
 		government "Remnant"
 	to offer
@@ -719,6 +721,7 @@ mission "Remnant: Void Sprites 3"
 	stopover "Slylandro"
 	cargo "scanning equipment" 8
 	blocked "The Remnant researcher has another job for you, but you're going to have to free up some cargo space in order to take it on."
+	reminder ""
 	to offer
 		has "Remnant: Void Sprites 2: done"
 	on offer
@@ -2173,6 +2176,8 @@ mission "Remnant: Return the Samples"
 mission "Remnant: Return the Samples 2"
 	name "Return the Samples"
 	description "Plume has asked you to return more stolen eggs, this time to Slylandro. Then return to <planet> with footage of the void sprites."
+	blocked ""
+	reminder ""
 	source "Aventine"
 	stopover "Slylandro"
 	cargo "void sprite eggs" 6
@@ -2379,6 +2384,7 @@ mission "Remnant: Salvage 3"
 	passengers 8
 	cargo "medical gear" 5
 	blocked "A prefect informs you that they need to evacuate some injured to a hospital on Aventine, but you will need 8 free bunks and 5 tons of cargo space in order to handle the injured."
+	reminder ""
 	stopover Aventine
 	to offer
 		has "Remnant: Salvage 2: done"
@@ -2410,6 +2416,7 @@ mission "Remnant: Salvage 3"
 mission "Remnant: Salvage 4"
 	name "Track down the <npc>"
 	description "Track down and disable a Korath ship that escaped the raid on Viminal so that the Remnant may salvage it for technology."
+	reminder ""
 	source "Viminal"
 	to offer
 		has "Remnant: Salvage 3: done"
@@ -2463,6 +2470,7 @@ mission "Remnant: Salvage 5"
 	destination "Caelian"
 	cargo "Korath salvage" 20
 	blocked `Taely would like you to deliver some valuable Korath equipment to Caelian, but you will need 20 tons of space to carry it.`
+	reminder ""
 	to offer
 		or
 			has "Remnant: Salvage 4: done"
@@ -2495,6 +2503,7 @@ mission "Remnant: Salvage 6"
 	destination "Viminal"
 	cargo "ship parts" 20
 	blocked `The technician you delivered Taely's salvaged parts to would like you to take some finished parts back to Taely, but you will need 20 tons of space to do so.`
+	reminder ""
 	to offer
 		has "Remnant: Salvage 5: done"
 	on offer
@@ -2634,6 +2643,7 @@ mission "Remnant: Expanded Horizons Quarg 1"
 mission "Remnant: Expanded Horizons Quarg 2"
 	name "Quarg Scanning"
 	description "Perform an outfit scan on the Quarg ship <npc>, then land again on <destination>."
+	reminder ""
 	source "Wayfarer"
 	to offer
 		has "Remnant: Expanded Horizons Quarg 1: done"
@@ -2678,6 +2688,7 @@ mission "Remnant: Expanded Horizons Quarg 3"
 		not attributes "requires: gaslining"
 	passengers 3
 	blocked `This mission requires bunks for three passengers.`
+	reminder ""
 	to offer
 		has "Remnant: Expanded Horizons Quarg 2: done"
 	on offer
@@ -3013,12 +3024,14 @@ mission "Remnant: Face to Maw 1"
 mission "Remnant: Face to Maw 2"
 	name "Bring slime to <planet>"
 	description "The void sprite slime has properties of interest to a team of engineers on <planet>."
-	to offer
-		has "Remnant: Face to Maw 1: done"
-		not "remnant: face to maw: raised shields"
+	blocked ""
+	reminder ""
 	source "Aventine"
 	destination "Viminal"
 	cargo "slime sample" 1
+	to offer
+		has "Remnant: Face to Maw 1: done"
+		not "remnant: face to maw: raised shields"
 	on offer
 		conversation
 			`When Plume finally arrives you can tell from his step that he is excited. He slides onto the bench opposite to you and pulls out a data pad. "I admire your bravery, Captain. I don't think I would have had the courage to hold my ground against a void sprite like that," he chants respectfully, then changes tone to one of wonder. "In that last moment it almost looked like it was sizing you up or examining you." He shakes his head with an amused expression. "I spend so much time studying non-human creatures I sometimes slip and start anthropomorphizing them." His voice takes on a more militant cadence. "That was probably some kind of territorial display, or possibly some kind of dominance challenge. We don't know enough about void sprite behavior to speculate further, though.`
@@ -3067,15 +3080,17 @@ mission "Remnant: Face to Maw 2"
 mission "Remnant: Face to Maw 2B"
 	name "Bring tentacle to <planet>"
 	description "The tentacle has properties that may be put to use by the engineers on <planet>."
+	blocked ""
+	reminder ""
+	source "Aventine"
+	destination "Caelian"
+	cargo "tentacle" 1
 	to offer
 		or
 			has "Remnant: Face to Maw 1B: done"
 			and
 				has "Remnant: Face to Maw 1: done"
 				has "remnant: face to maw: raised shields"
-	source "Aventine"
-	destination "Caelian"
-	cargo "tentacle" 1
 	on offer
 		conversation
 			`When the technician arrives in the spaceport he immediately strides over to you. "I checked the records, and my memory was correct. One of our research teams centuries ago discovered that these tentacles could be used as a devastating weapon in close quarters combat."`
@@ -3227,6 +3242,11 @@ mission "Remnant: Keystone Research 2"
 
 
 
+# TODO: This whole string is prone to breaking. You could start this mission and load up on cargo,
+# preventing any of the stopover missions from appearing. None of the stopover missions have blocked
+# dialogs, nor would that prevent the stopover objective from this mission from being fulfilled it they
+# were blocked. It would be cleaner if we just kept the 19 tons of cargo space reserved throughout the
+# whole missions chain, starting with Keystone Research 1. 
 mission "Remnant: Keystone Research 3"
 	landing
 	name "Retrieve more keystones"
@@ -3357,6 +3377,7 @@ mission "Remnant: Keystone Research 4"
 	name "Retrieve more keystones"
 	description `Return the quantum keystones to Viminal.`
 	blocked `The cargo is ready to load, however you do not have enough free space. Come back when you have <tons> of free space.`
+	reminder ""
 	source "Newhome"
 	destination "Viminal"
 	cargo "Keystones" 19
@@ -3470,6 +3491,7 @@ mission "Remnant: Keystone Research 6"
 mission "Remnant: Keystone Research 7"
 	name "Deliver Data to <planet>"
 	description `A copy of the scanner data needs to be delivered to the researchers on <destination>.`
+	reminder ""
 	source "Viminal"
 	destination
 		government "Remnant"
@@ -3703,6 +3725,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 	name "Research expedition to Sagittarius A*"
 	description "Travel to Sagittarius A* with a Research Laboratory installed in order to make measurements on the supermassive black hole and then return to <destination>."
 	blocked "You need a jump drive and a research laboratory to take this mission."
+	reminder ""
 	source
 		government "Remnant"
 	destination
@@ -3711,6 +3734,7 @@ mission "Remnant: Expanded Horizons Astral 2"
 	waypoint "Sagittarius A*"
 	to offer
 		has "Remnant: Expanded Horizons Astral 1: done"
+	to accept
 		has "ship attribute: jump drive"
 	on offer
 		require "Research Laboratory"

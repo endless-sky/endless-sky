@@ -884,6 +884,7 @@ mission "Avgi: Atomics Testing 1"
 	source "Ergastirio Station"
 	destination "Dokimi Range"
 	blocked "You need <capacity> to transport Aliza and her colleagues to Dokimi."
+	reminder ""
 	passengers 3
 	to offer
 		has "Avgi: Twilight Escape 3: done"

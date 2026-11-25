@@ -287,6 +287,8 @@ mission "Successors: Ghosts 2"
 	waypoint "Eta Carinae"
 	waypoint "Avasaa-Novaa"
 	description "House Seineq is concerned that the incident at Qasa-Sija-Iri may be the doing of parties from the other side of the wormhole, and have asked you to deploy a net of sensors in <waypoints> before returning to <destination>."
+	blocked ""
+	reminder ""
 	cargo "Successor sensor drones" 6
 	to offer
 		has "Successors: Ghosts 1: done"
@@ -544,6 +546,8 @@ mission "Successors: Ghosts 5"
 	clearance
 	name "Transport equipment for Kaatrij"
 	description "Some scientific equipment belonging to House Kaatrij needs to return to <destination> by <date> as the House consolidates itself after its recent crises."
+	blocked ""
+	reminder ""
 	deadline
 	source
 		government "Successor" "New Houses" # So, not the homeworlds of any of the other houses.
@@ -630,6 +634,8 @@ mission "Successors: Ghosts 5"
 mission "Successors: Ghosts 6"
 	name "Visit <planet> again"
 	description "Saajret, of Somber Sejra has been instructed by House Kaatrij to scan the wildlife on <destination>, which must be of interest to multiple of the High Houses."
+	blocked ""
+	reminder ""
 	source "Raaqa-Puan-Uuoru"
 	destination "Raaqa-Uur-Kaav"
 	passengers 1
@@ -1247,6 +1253,8 @@ mission "Successors: Ghosts 10"
 mission "Successors: Ghosts 11"
 	name "Visit Kaatrij archive"
 	description "Take Saajret to <planet stopovers> so they can consult one of House Kaatrij's offworld archives, before returning them to <planet>."
+	blocked ""
+	reminder ""
 	source "Qasa-Sija-Iri"
 	stopover "Kasi-Osolaa-Sossa"
 	passengers 1
@@ -1324,6 +1332,7 @@ mission "Successors: Ghosts 11"
 mission "Successors: Ghosts 12"
 	name "Pick up keystone shipment"
 	description "Travel to <destination> to pick up 16 tons of modified quantum keystones from House Aqrabe."
+	reminder ""
 	source "Qasa-Sija-Iri"
 	destination "Kasii-Cavasaa-Oa"
 	to offer
@@ -1344,6 +1353,8 @@ mission "Successors: Ghosts 13"
 	landing
 	name "Deliver keystone shipment"
 	description "Return the <tons> of <cargo> to <destination>."
+	blocked ""
+	reminder ""
 	source "Kasii-Cavasaa-Oa"
 	destination "Qasa-Sija-Iri"
 	cargo "Harmonic Keystones" 16
@@ -1520,6 +1531,7 @@ mission "Successors: Saajret Remarks"
 mission "Successors: Ghosts 16"
 	name "Investigate mysterious station"
 	description "Return to the mysterious station in <system> with Saajret to investigate what has happened to it."
+	reminder ""
 	source "Qasa-Sija-Iri"
 	destination "Ijra-Ea, Shimmering Veil"
 	to offer
@@ -1668,6 +1680,8 @@ mission "Successors: Ghosts 18"
 	landing
 	name "Set up cloak detectors"
 	description "Set up the Quarg cloak detectors on the far side of the Successors' wormhole before landing on <destination> to lay in wait for the heirloom warship."
+	blocked ""
+	reminder ""
 	source "Qasa-Sija-Iri"
 	destination "Myiara-Aret-Iir"
 	cargo "Cloak detection node" 10

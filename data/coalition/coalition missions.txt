@@ -281,9 +281,9 @@ mission "Coalition Yottrite 1"
 
 
 mission "Coalition Yottrite 2"
+	landing
 	name "Even More Yottrite"
 	description "You were once again asked to bring seven samples of the rare mineral yottrite to <destination>."
-	landing
 	to offer
 		has "Coalition Yottrite 1: offered"
 	to complete
@@ -323,9 +323,11 @@ mission "Coalition Yottrite 2"
 
 
 mission "Coalition Yottrite 3"
+	landing
 	name "Neighbor's Mailbox"
 	description "Deliver the <cargo> to the sister world of <origin>, <destination>."
-	landing
+	blocked ""
+	reminder ""
 	cargo "experimental yottrite samples" 5
 	to offer
 		has "Coalition Yottrite 2: offered"
@@ -373,6 +375,7 @@ mission "Coalition Yottrite 3"
 mission "Coalition Yottrite 4"
 	name "Yottrite Research"
 	description "Lugglop, one of the Arachi that oversees the mining operations in Bloptab, asked that you pick up some friends of his on <destination> so that they may help with the yottrite research."
+	reminder ""
 	to offer
 		has "Coalition Yottrite 3: done"
 	source "Delve of Bloptab"
@@ -400,6 +403,7 @@ mission "Coalition Yottrite 5"
 	description "Transport the twins Nasilor and Alituri to <destination>, where they will assist in the yottrite research."
 	passengers 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Coalition Yottrite 4: done"
 	source "Shadowed Valley"
@@ -443,6 +447,7 @@ mission "Coalition Yottrite 7"
 	description "Bring Pichiie to <destination>, where she will join Lugglop's team in their yottrite research."
 	passengers 1
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	landing
 	to offer
 		has "Coalition Yottrite 6: done"
@@ -528,6 +533,7 @@ mission "Coalition Yottrite 9"
 	passengers 6
 	cargo "yottrite presentation materials" 6.14
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Coalition Yottrite 8: done"
 	source "Pelubta Station"
@@ -640,6 +646,7 @@ event "chikee break"
 mission "Kimek Student 2"
 	name "Transport Chikee"
 	description "Chikee, a young Kimek, is studying to become a Heliarch. Transport him to <destination>, where he was offered an internship and hopes to be awarded with a recommendation letter."
+	reminder ""
 	deadline
 	passengers 1
 	to offer
@@ -689,9 +696,9 @@ mission "Kimek Student 2"
 
 
 mission "Kimek Student 3"
+	landing
 	name "Transport Chikee"
 	description "Chikee, a young Kimek, is studying to become a Heliarch. Transport him to <destination>, where he will work with some members of House Idriss to further his research project."
-	landing
 	passengers 1
 	to offer
 		has "event: chikee break"
@@ -733,10 +740,10 @@ mission "Kimek Student 3"
 
 
 mission "Kimek Student 4"
+	landing
 	name "Transport Chikee"
 	description "Chikee, the young Kimek whom you've transported many times, has finally become a candidate for elevation to the rank of Heliarch. Bring him to the <destination> by <date>."
 	deadline
-	landing
 	passengers 1
 	to offer
 		has "event: chikee break"
@@ -805,6 +812,7 @@ mission "Coalition Outbreak 2"
 	deadline
 	cargo "vaccines" 80
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Coalition Outbreak 1: done"
 	source "Celestial Third"
@@ -842,6 +850,8 @@ mission "Coalition Outbreak 2"
 mission "Coalition Outbreak 3"
 	name "Distribute Vaccines"
 	description "Accompanied by the three volunteer ships, head to the designated Kimek worlds, delivering vaccines to deal with the current viral outbreak, then return to <destination> by <date>."
+	blocked ""
+	reminder ""
 	deadline
 	cargo "vaccines" 80
 	to offer
@@ -974,6 +984,7 @@ mission "Saryd Students 2"
 	deadline
 	cargo "arach rum" 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Saryd Students 1: done"
 	source "Weir of Glubatub"
@@ -1040,6 +1051,7 @@ mission "Saryd Census 2"
 	description "Transport these <bunks> Saryd census workers to <destination>, where they will collect data on the population growth there."
 	passengers 17
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Saryd Census 1: done"
 	source "Flowing Fields"
@@ -1125,6 +1137,8 @@ event "saryd couple has money"
 mission "Saryd Couple 2"
 	name "Home Sweet Plot Of Land"
 	description "The Saryd couple Inturi and Aunaris have finally amassed enough money to buy a plot of land on <destination>, where they will begin building their very own home. Bring both of them there so that they can settle the purchase."
+	blocked ""
+	reminder ""
 	passengers 2
 	to offer
 		has "event: saryd couple has money"
@@ -1150,9 +1164,9 @@ mission "Saryd Couple 2"
 
 
 mission "Saryd Couple 3"
+	landing
 	name "Reversed House Spider"
 	description "Take Inturi to <destination>, where he will purchase a small Arach ship that he and Aunaris will repurpose into a home."
-	landing
 	passengers 1
 	to offer
 		has "Saryd Couple 2: done"
@@ -1180,9 +1194,9 @@ mission "Saryd Couple 3"
 
 
 mission "Saryd Couple 4"
+	landing
 	name "Test Drive, Final Drive"
 	description "Escort Inturi's ship, which will be repurposed into a home for him and Aunaris, to <destination>."
-	landing
 	to offer
 		has "Saryd Couple 3: done"
 	source "Saros"
@@ -1295,9 +1309,9 @@ mission "Longcow Antibiotics 1"
 
 
 mission "Longcow Antibiotics 2"
+	landing
 	name "Longcow Antibiotics"
 	description "Deliver the remaining <cargo> to <destination>, where some Arachi also work as longcow ranchers."
-	landing
 	cargo "longcow antibiotics" 1
 	to offer
 		has "Longcow Antibiotics 1: done"
@@ -1529,6 +1543,7 @@ event "alitis freed"
 
 
 mission "Saryd University Lecture"
+	minor
 	name "Transport Saryd Scientist"
 	description "Starlit University on <planet> is hosting a seminar on xenology. Transport a guest speaker there by <date>. Payment is <payment>."
 	passengers 1
@@ -2063,6 +2078,10 @@ mission "Coalition: Council of Ahr"
 		"coalition jobs" += 5
 		payment 4500000
 
+# TODO: The above missions should mark the destinations instead of using a stopover, and
+# these missions should unmark them after being accepted. Otherwise, if the blocked dialogs
+# are encountered, that doesn't prevent the stopover objective of the main mission from being
+# fulfilled.
 mission "Coalition: Council of Ahr: Ablomab"
 	invisible
 	landing
@@ -2282,6 +2301,7 @@ mission "Coalition: Submarines 2"
 	passengers 1
 	cargo "unmanned submarines" 60
 	blocked "You need <capacity> to help Apri'ie move the submarines. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Coalition: Submarines 1: done"
 	source "Market of Gupta"
@@ -2333,6 +2353,7 @@ mission "Coalition: Submarines 3"
 	passengers 1
 	cargo "unmanned submarines" 60
 	blocked "You need <capacity> to take the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Coalition: Submarines 2: done"
 	source "Inmost Blue"
@@ -2458,6 +2479,7 @@ mission "Coalition: Expeditions Past 2"
 	description "Bring Sedlitaris and some representatives of the Heliarch council to <destination>, where members of House Idriss will provide her with a relay pylon to search for signs of her ancestor's expedition."
 	passengers 6
 	blocked "You need <capacity> to take the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Coalition: Expeditions Past 1: done"
 	source "Ring of Friendship"
@@ -3133,6 +3155,7 @@ mission "Coalition: Long Lost Property 3B"
 mission "Coalition: Long Lost Property 4"
 	name "Comparing Binaries"
 	description "Head to <waypoints> to gather data on the binary stars, so that House Idriss may compare it with their probe's own predictions."
+	reminder ""
 	to offer
 		has "Coalition: Long Lost Property 3: done"
 	source "Ablub's Invention"
@@ -3363,6 +3386,7 @@ mission "Coalition: Struggling Author 1"
 	destination "Ki Patek Ka"
 	passengers 1
 	blocked "You may need space on your ship for Anna in the next mission."
+	reminder ""
 	to offer
 		has "Coalition: Struggling Author - Book Discovered: done"
 	on offer
@@ -3491,6 +3515,7 @@ mission "Coalition: Struggling Author 1"
 mission "Coalition: Book Discovered 2"
 	name `Beyond the Hyperdrive for Kachachee`
 	description `Now that you have a copy of Anna Fangvin's Beyond the Hyperdrive, give it to Kachachee and their group on <destination>.`
+	reminder ""
 	to offer
 		has "coalition: struggling author - beyond the hyperdrive"
 	source
@@ -3525,6 +3550,7 @@ mission "Coalition: Book Discovered 2"
 mission "Coalition: Struggling Author 2"
 	name "Help Anna register with the Heliarchy"
 	description "Take Anna Fangvin to the <destination> so she can register with the Heliarchs."
+	reminder ""
 	source "Ki Patek Ka"
 	destination "Ring of Friendship"
 	passengers 1
@@ -3556,6 +3582,7 @@ mission "Coalition: Struggling Author 3"
 	destination "Ki Patek Ka"
 	passengers 2
 	blocked "You do not have enough space for Anna and the Heliarch agent. Return here when you have two bunks free."
+	reminder ""
 	to offer
 		has "Coalition: Struggling Author 2: done"
 	on offer
@@ -3631,6 +3658,7 @@ mission "Coalition: Struggling Author 4"
 	source "Ki Patek Ka"
 	destination "Inmost Blue"
 	blocked "You do not have enough bunk space for Anna Fangvin and the Heliarch agent. Come back here when you have two bunks free."
+	reminder ""
 	passengers 2
 	to offer
 		has "Coalition: Struggling Author 3: done"
@@ -3969,6 +3997,7 @@ mission "Coalition: Powerless 2"
 	description "Bring Arbiter Kyrra Ieka and her delegation to Pa'ee's village on <planet> so that they can see the situation first hand and determine the viability of a bioreactor plant."
 	passengers 7
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Coalition: Powerless 1: done"
 	source "Celestial Third"
@@ -4005,6 +4034,7 @@ mission "Coalition: Powerless 3"
 	description "Bring Arbiter Kyrra Ieka and three of her aides back to <destination>, where they will look into setting up a supply chain and plan the plant construction for Pa'ee's village."
 	passengers 4
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Coalition: Powerless 2: done"
 	source "Fourth Shadow"

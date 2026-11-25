@@ -1046,6 +1046,7 @@ mission "Ka'het: Patir Mystery 2"
 	destination "Builder Settlement"
 	cargo "short range scanner" 15
 	blocked "You'll need <capacity> available to carry short range scanners. Return here when you have enough free space."
+	reminder ""
 	to offer
 		has "Ka'het: Patir Mystery 1: done"
 		not "remnant: dusk busy"
@@ -1166,6 +1167,7 @@ mission "Ka'het: Patir Mystery 4"
 	destination "Builder Settlement"
 	passengers 1
 	blocked "You'll need <capacity> available so Dusk can join you on your mission. Return with the available space to continue."
+	reminder ""
 	to offer
 		has "Ka'het: Patir Mystery 3: done"
 	on offer
@@ -1366,6 +1368,7 @@ mission "Ka'het: Patir Mystery 6"
 	passengers 5
 	cargo "instruments and samplers" 2
 	blocked `As soon as you arrive, Dusk contacts you again. "Welcome back, <first>! We should be ready for the next Patir expedition, but we need at least five free bunks to attempt it, and at least 2 tons of cargo space for samples."`
+	reminder ""
 	to offer
 		has "event: patir mystery timer"
 		has "Remnant: Cognizance 38: done"
@@ -1608,6 +1611,7 @@ mission "Ka'het: Patir Mystery 8A"
 	destination "Babiali"
 	passengers 5
 	blocked `Dusk contacts you soon after you reach the spaceport. "<first>, we will need at least five free bunks for the mission we are preparing."`
+	reminder ""
 	to offer
 		has "Ka'het: Patir Mystery 7: done"
 	on offer
@@ -1637,6 +1641,7 @@ mission "Ka'het: Patir Mystery 8B"
 	passengers 5
 	cargo "research lab and satellite" 97
 	blocked `Dusk contacts you soon after you reach the spaceport. "<first>, this mission is going to require <capacity>."`
+	reminder ""
 	to offer
 		has "Ka'het: Patir Mystery 8A: done"
 	on enter Patir
@@ -1873,6 +1878,7 @@ mission "Ka'het: Patir Mystery 10"
 	passengers 1
 	source "Builder Settlement"
 	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least a free bunk for the mission we are preparing."`
+	reminder ""
 	to offer
 		has "Ka'het: Patir Mystery 9: done"
 	on offer
@@ -1932,6 +1938,7 @@ ship "Remnant Satellite"
 mission "Ka'het: Patir Mystery 11"
 	name "Gather more data"
 	description "Visit <waypoints>'s neutron star to study the mysterious creatures living around it."
+	reminder ""
 	source "Builder Settlement"
 	waypoint "Lathia"
 	to offer
@@ -1990,6 +1997,7 @@ mission "Ka'het: Patir Mystery 12.1A"
 	source "Builder Settlement"
 	destination "Chanai Structure"
 	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least five free bunks for the mission we are preparing."`
+	reminder ""
 	to offer
 		has "Ka'het: Patir Mystery 11: done"
 	on offer
@@ -2131,6 +2139,7 @@ mission "Ka'het: Patir Mystery 12.1B"
 	source "Chanai Structure"
 	destination "Builder Settlement"
 	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least five free bunks for the mission we are preparing."`
+	reminder ""
 	to offer
 		has "Ka'het: Patir Mystery 12.1A: done"
 	on visit
@@ -2173,6 +2182,7 @@ mission "Ka'het: Patir Mystery 12.2A"
 	waypoint "Mitera"
 	waypoint "Thepa"
 	blocked `Right as you touch down, you notice a message coming in from Dusk. "<first>, we will need at least five free bunks and 3 tons of cargo for the mission we are preparing."`
+	reminder ""
 	to offer
 		has "Ka'het: Patir Mystery 11: done"
 		( "Ka'het: Patir Mystery 12.1A: offered" + "Ka'het: Patir Mystery 12.1A: declined" ) % 2 == 0
@@ -2493,6 +2503,8 @@ ship "Asteroid Large 1" "Asteroid Large (Patir 12.2)"
 mission "Ka'het: Patir Mystery 13.1"
 	name "Return to <planet>"
 	description "Now that the Patir black hole appears to have returned to the Milky Way, return to <planet> together with Dusk."
+	blocked ""
+	reminder ""
 	passengers 5
 	source "Builder Settlement"
 	destination "Aventine"
@@ -2770,6 +2782,7 @@ event "ssil vida changes"
 mission "Ka'het: Patir Mystery 15"
 	name "Remnant scientists"
 	description "Visit <planet> to gather three Remnant scientists who want to return to Patir."
+	reminder ""
 	source
 		government "Remnant"
 	destination "Ssil Vida"
@@ -2796,6 +2809,7 @@ mission "Ka'het: Patir Mystery 16"
 	name "Stop by <planet>"
 	description "Before bringing the Remnant to the Builder settlement around Patir, stop by <destination> to meet up with Chilia."
 	blocked "You dock with Ssil Vida, but despite Chilia's advice, you are still lacking the <bunks> bunks necessary for the job."
+	reminder ""
 	source "Ssil Vida"
 	destination "Caelian"
 	passengers 3
@@ -2816,6 +2830,7 @@ mission "Ka'het: Patir Mystery 17"
 	name "Return to <system>"
 	description "Bring the three Remnant archaeologists and Prefect Chilia to <destination>, together with the new equipment."
 	blocked "You start to follow Chilia's directions, but you soon realize you won't have enough space: you need <tons> of cargo and <bunks> bunks."
+	reminder ""
 	source "Caelian"
 	destination "Builder Settlement"
 	passengers 4
@@ -2949,6 +2964,8 @@ outfit "Asteroid Jump Drive (Patir 18)"
 mission "Ka'het: Patir Mystery 18"
 	name "Rogue Ka'sei"
 	description "Find a way to take away from the target Ka'sei the asteroid components it ingested, and return to <destination> once you're done."
+	blocked ""
+	reminder ""
 	source "Builder Settlement"
 	passengers 4
 	cargo "equipment and asteroid material" 3
@@ -3060,6 +3077,8 @@ mission "Ka'het: Patir Mystery 19"
 mission "Ka'het: Patir Mystery 20"
 	name "Explore <system> again"
 	description "Bring a group of Remnant scientists to the <destination>, together with the Petrel you have been given, exactly on <date>."
+	blocked ""
+	reminder ""
 	deadline 6
 	source "Caelian"
 	destination "Builder Settlement"
@@ -3277,6 +3296,8 @@ event "Patir unland on Pacili"
 mission "Ka'het: Patir Mystery 23"
 	name "Return to <planet>"
 	description "Bring the Remnant researchers back to <destination> to evaluate the results of the test."
+	blocked ""
+	reminder ""
 	source "Builder Settlement"
 	destination "Caelian"
 	passengers 5
@@ -3345,6 +3366,7 @@ mission "Ka'het: Patir Mystery 24"
 	description "Return to <system> again with the same research team, this time with the intention of exploring the systems that lie beyond it. Be there exactly on <date>."
 	deadline 6
 	blocked `The cargo for the next expedition to Patir is ready, but you do not have enough free space. Come back when you have <tons> free.`
+	reminder ""
 	source "Caelian"
 	destination "Builder Settlement"
 	passengers 5
@@ -3620,6 +3642,8 @@ event "Patir Lathia landable"
 mission "Ka'het: Patir Mystery 27"
 	name "Another asteroid"
 	description "Board the remains of the asteroid in <origin> before the Ka'sei get to it, then take what you find to <destination>."
+	blocked ""
+	reminder ""
 	source "Builder Settlement"
 	destination "Caelian"
 	passengers 5
@@ -3668,6 +3692,8 @@ ship "Asteroid Young 2" "Asteroid Young 2 (Patir 27)"
 mission "Ka'het: Patir Mystery 28"
 	name "Tanker fleet"
 	description "Escort the Swan fleet to <destination> for fit checks."
+	blocked ""
+	reminder ""
 	source "Caelian"
 	destination "Ssil Vida"
 	passengers 1
@@ -3751,6 +3777,7 @@ mission "Ka'het: Patir Mystery 28"
 mission "Ka'het: Patir Mystery 29"
 	name "Korath Beyond"
 	description "Find and take care of the Korath ships in the Postverta cluster (with Ssil Vida active) so that they do not cause further damage."
+	reminder ""
 	source "Ssil Vida"
 	to offer
 		has "Ka'het: Patir Mystery 28: done"
@@ -3815,6 +3842,8 @@ ship "Tubfalet" "Tubfalet (Crew Destroyed)"
 mission "Ka'het: Patir Mystery 30"
 	name "Taely to <planet>"
 	description "Accompany Taely to <destination> so that she can return to her work."
+	blocked ""
+	reminder ""
 	source "Ssil Vida"
 	destination "Aventine"
 	passengers 1
@@ -3927,6 +3956,7 @@ mission "Ka'het: Patir Mystery 32"
 	passengers 10
 	cargo "scientific payload" 130
 	blocked `The cargo for the next expedition to Patir is ready, but you do not have enough free space. Come back when you have <tons> free.`
+	reminder ""
 	to offer
 		has "Ka'het: Patir Mystery 31: done"
 	on offer
@@ -4289,6 +4319,8 @@ mission "Ka'het: Patir Mystery 34"
 mission "Ka'het: Patir Mystery 35"
 	name "End of the voyage"
 	description "Return to <destination> with the Remnant and their scientific payload."
+	blocked ""
+	reminder ""
 	source "Builder Settlement"
 	destination "Caelian"
 	passengers 10
@@ -4569,6 +4601,7 @@ mission "Ka'het: Voice From The Past 0 Patir 3"
 mission "Ka'het: Voice From The Past 1"
 	name "Builder signal"
 	description "Look for Gavriil aboard <destination> to ask them about the Builder satellite."
+	reminder ""
 	source
 		government "Remnant"
 		attributes "remnant primary"
@@ -4647,6 +4680,7 @@ mission "Ka'het: Voice From The Past 2"
 	name "Outpost on Kumkapi"
 	description "Bring Gavriil to <destination> to prepare for the capture of the Builder satellite."
 	blocked `This mission requires one empty bunk to carry Gavriil with you.`
+	reminder ""
 	source "Ssil Vida"
 	destination "Kumkapi"
 	passengers 1
@@ -4687,6 +4721,7 @@ mission "Ka'het: Voice From The Past 3"
 	name "Builder satellite"
 	description "Capture the Builder satellite in <waypoints> and bring it to <destination>."
 	blocked `The cargo is ready to load, but you do not have enough free space. Come back when you have <tons> free.`
+	reminder ""
 	source "Kumkapi"
 	waypoint "Fereti"
 	cargo "Satellite Capture Equipment" 45
@@ -4818,6 +4853,7 @@ mission "Ka'het: Voice From The Past 6"
 	name "Explore <stopovers>"
 	description "Visit <stopovers> to search for the remains of the quarantine facility."
 	blocked `The cargo is ready to load, but you do not have enough free space. Come back when you have <tons> of empty cargo space.`
+	reminder ""
 	source "Kumkapi"
 	stopover "Alix"
 	cargo "High-powered scanner" 7
@@ -5143,6 +5179,7 @@ mission "Ka'het: Lightning in a Bottle 3"
 mission "Ka'het: Lightning in a Bottle 4A"
 	name "Builder balloon"
 	description "Escort the Remnant to <destination> to try to capture at least one of the Builder probes deep inside the gas giant."
+	reminder ""
 	source "Aventine"
 	destination "Meligara"
 	to offer

@@ -1027,6 +1027,7 @@ mission "Acquiescence"
 	clearance
 	description `Head to <destination>, with the Vi warrior as your 'passenger'.`
 	blocked `You need at least one available bunk to accept this mission.`
+	reminder ""
 	source "Dueyu Eitch"
 	passengers 1
 	to offer
