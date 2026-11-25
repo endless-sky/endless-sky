@@ -69,11 +69,11 @@ private:
 	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
 	Point DrawPanel(Point pos, const std::string &label, int entries, bool sorter = false) const;
 	// Draw the display names of the missions, using the reference point.
-	Point DrawAvailable(Point pos) const;
-	Point DrawAccepted(Point pos) const;
+	void DrawAvailable(Point pos) const;
+	void DrawAccepted(Point pos) const;
 	// Draw an individual mission's display name.
-	void DrawMissionName(const Mission &mission, Point &pos, bool separateDeadlineOrPossible, bool &separated,
-		bool isSelected, bool isHovered, bool isAvailable) const;
+	void DrawMissionName(const Mission &mission, Point &pos, bool &separated, bool isSelected, bool isHovered,
+		bool isAvailable) const;
 	void DrawMissionInfo();
 	void DrawTooltips() const;
 

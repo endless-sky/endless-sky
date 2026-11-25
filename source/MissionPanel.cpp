@@ -295,7 +295,7 @@ void MissionPanel::Draw()
 		if(mission.HasReminder())
 			DrawReminder(mission, availableColor);
 		else if(mission.Destination())
-			DrawMissionSystem(mission, IsSatisfied(**acceptedIt) ? currentColor : blockedColor);
+			DrawMissionSystem(mission, IsSatisfied(mission) ? currentColor : blockedColor);
 	}
 
 	Point pos;
@@ -871,33 +871,29 @@ Point MissionPanel::DrawPanel(Point pos, const string &label, int entries, bool 
 
 
 
-Point MissionPanel::DrawAvailable(Point pos) const
+void MissionPanel::DrawAvailable(Point pos) const
 {
 	bool separated = false;
 	for(auto it = available.begin(); it != available.end(); ++it)
-		DrawMissionName(*it, pos, true, separated, availableIt == it, hoverAvailableIt == it, true);
-
-	return pos;
+		DrawMissionName(*it, pos, separated, availableIt == it, hoverAvailableIt == it, true);
 }
 
 
 
-Point MissionPanel::DrawAccepted(Point pos) const
+void MissionPanel::DrawAccepted(Point pos) const
 {
 	bool separated = false;
 	for(auto it = accepted.begin(); it != accepted.end(); ++it)
-		DrawMissionName(**it, pos, false, separated, acceptedIt == it, hoverAcceptedIt == it, false);
-
-	return pos;
+		DrawMissionName(**it, pos, separated, acceptedIt == it, hoverAcceptedIt == it, false);
 }
 
 
 
-void MissionPanel::DrawMissionName(const Mission &mission, Point &pos, bool separateDeadlineOrPossible, bool &separated,
-	bool isSelected, bool isHovered, bool isAvailable) const
+void MissionPanel::DrawMissionName(const Mission &mission, Point &pos, bool &separated, bool isSelected, bool isHovered,
+	bool isAvailable) const
 {
 	pos.Y() += 20.;
-	if(separateDeadlineOrPossible && !separated
+	if(isAvailable && !separated
 		&& ((player.ShouldSortSeparateDeadline() && mission.Deadline())
 		|| (player.ShouldSortSeparatePossible() && !mission.CanAccept(player))))
 	{
