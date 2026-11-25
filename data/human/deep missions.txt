@@ -3959,12 +3959,14 @@ mission "Home for Skadenga 12"
 
 
 
+# TODO: This seems to be a hidden alternative route for this storyline, in which
+# case a reminder shouldn't be used. That also means that a player could stumble
+# upon this a considerable amount of time after having last interacted with the
+# storyline, which isn't ideal.
 mission "Home for Skadenga Captain"
 	landing
 	name "Evacuate <origin>"
 	description `Escort your fleet carrying the Skadenga to <destination>.`
-	blocked ""
-	reminder ""
 	passengers 2200
 	source "Nifel"
 	destination "Windblain"
