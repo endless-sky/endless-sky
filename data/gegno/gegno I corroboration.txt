@@ -1022,13 +1022,14 @@ mission "Gegno Intervention"
 
 
 mission "Acquiescence"
-	name `Transport the Vi Warrior to <destination>.`
 	landing
-	clearance
-	description `Head to <destination>, with the Vi warrior as your 'passenger'.`
-	blocked `You need at least one available bunk to accept this mission.`
-	reminder ""
+	name `Transport the Vi Warrior to <destination>.`
+	description `Head to <destination>, with the Vi warrior as your "passenger."`
+	blocked `Although you've arrived on time, the Gegno have requested that you have at least one bunk available. In appreciation of arriving when they asked, they have given you extra time to return with the spare bunk space.`
+	"reminder name" "Return to <origin>"
+	reminder "Return to <origin> once you have <capacity>. The Gegno originally only gave you eight days to arrive. They have given you more time to arrange for the extra bunk space, but you probably shouldn't keep them waiting for too much longer lest they change their minds."
 	source "Dueyu Eitch"
+	clearance
 	passengers 1
 	to offer
 		or
