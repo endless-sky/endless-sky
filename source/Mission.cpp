@@ -635,9 +635,7 @@ const string &Mission::TrueName() const
 
 const string &Mission::DisplayName() const
 {
-	// If this is an instantiated mission, it won't have a reminder name
-	// and will always use its normal display name.
-	return reminderName.empty() ? displayName : reminderName;
+	return displayName;
 }
 
 
@@ -649,63 +647,28 @@ const string &Mission::Description() const
 
 
 
-std::string Mission::Reminder(const PlayerInfo &player) const
+string Mission::ReminderName(const PlayerInfo &player) const
+{
+	string name = reminderName.empty() ? displayName : reminderName;
+
+	map<string, string> subs = ReminderSubstitutions(player);
+
+	const ConditionsStore &conditions = player.Conditions();
+	Format::ConditionGetter getter = [&conditions](const string &str, size_t start, size_t length) -> int64_t
+	{
+		return conditions.Get(str.substr(start, length));
+	};
+	return Format::Replace(Format::ExpandConditions(Phrase::ExpandPhrases(name), getter), subs);
+}
+
+
+
+string Mission::Reminder(const PlayerInfo &player) const
 {
 	if(reminder.empty())
 		return "";
 
-	map<string, string> subs;
-	GameData::GetTextReplacements().Substitutions(subs);
-	substitutions.Substitutions(subs);
-	player.AddPlayerSubstitutions(subs);
-
-	// Only use a subset of the usual substitutions.
-	// Note that cargo and passengers could differ at instantiation time if they are
-	// randomized, but if that is the case, then it's a misuse of the sub in the mission
-	// reminder, as reminders should only provide details that are set in stone.
-	subs["<commodity>"] = Phrase::ExpandPhrases(cargo);
-	subs["<tons>"] = Format::MassString(cargoSize);
-	subs["<cargo>"] = Format::CargoString(cargoSize, subs["<commodity>"]);
-	subs["<bunks>"] = to_string(passengers);
-	subs["<passengers>"] = (passengers == 1) ? "passenger" : "passengers";
-	subs["<fare>"] = (passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
-	ostringstream out;
-	if(passengers > 0)
-		out << to_string(passengers) << (passengers == 1 ? " bunk" : " bunks");
-	if(passengers > 0 && cargoSize > 0)
-		out << " and ";
-	if(cargoSize > 0)
-		out << to_string(cargoSize) << (cargoSize == 1 ? " ton" : " tons") << " of cargo space";
-	subs["<capacity>"] = out.str();
-
-	subs["<origin>"] = source->DisplayName();
-	const Planet *usePlanet = destination ? destination : source;
-	subs["<planet>"] = usePlanet->DisplayName();
-	subs["<system>"] = usePlanet->GetSystem()->DisplayName();
-	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
-	// Stopovers: "<name> in the <system name> system" with "," and "and".
-	auto getDisplayName = [](const auto *const &item)
-	{
-		return item->DisplayName();
-	};
-	if(!stopovers.empty())
-	{
-		subs["<stopovers>"] = Format::List<set, const Planet *>(stopovers,
-			[](const Planet *const &planet)
-			{
-				return planet->DisplayName() + " in the " + planet->GetSystem()->DisplayName() + " system";
-			});
-		subs["<planet stopovers>"] = Format::List<set, const Planet *>(stopovers, getDisplayName);
-	}
-	// Waypoints and marks: "<system name>" with "," and "and".
-	if(!waypoints.empty())
-		subs["<waypoints>"] = Format::List<set, const System *>(waypoints, getDisplayName);
-	if(!markedSystems.empty())
-		subs["<marks>"] = Format::List<set, const System *>(markedSystems, getDisplayName);
-
-	for(const auto &keyValue : subs)
-		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
-	Format::Expand(subs);
+	map<string, string> subs = ReminderSubstitutions(player);
 
 	const ConditionsStore &conditions = player.Conditions();
 	Format::ConditionGetter getter = [&conditions](const string &str, size_t start, size_t length) -> int64_t
@@ -2025,4 +1988,63 @@ bool Mission::ParseContraband(const DataNode &node)
 		return false;
 
 	return true;
+}
+
+
+
+std::map<std::string, std::string> Mission::ReminderSubstitutions(const PlayerInfo &player) const
+{
+	map<string, string> subs;
+	GameData::GetTextReplacements().Substitutions(subs);
+	substitutions.Substitutions(subs);
+	player.AddPlayerSubstitutions(subs);
+
+	// Only use a subset of the usual substitutions.
+	// Note that cargo and passengers could differ at instantiation time if they are
+	// randomized, but if that is the case, then it's a misuse of the sub in the mission
+	// reminder, as reminders should only provide details that are set in stone.
+	subs["<commodity>"] = Phrase::ExpandPhrases(cargo);
+	subs["<tons>"] = Format::MassString(cargoSize);
+	subs["<cargo>"] = Format::CargoString(cargoSize, subs["<commodity>"]);
+	subs["<bunks>"] = to_string(passengers);
+	subs["<passengers>"] = (passengers == 1) ? "passenger" : "passengers";
+	subs["<fare>"] = (passengers == 1) ? "a passenger" : (subs["<bunks>"] + " passengers");
+	ostringstream out;
+	if(passengers > 0)
+		out << to_string(passengers) << (passengers == 1 ? " bunk" : " bunks");
+	if(passengers > 0 && cargoSize > 0)
+		out << " and ";
+	if(cargoSize > 0)
+		out << to_string(cargoSize) << (cargoSize == 1 ? " ton" : " tons") << " of cargo space";
+	subs["<capacity>"] = out.str();
+
+	subs["<origin>"] = source->DisplayName();
+	const Planet *usePlanet = destination ? destination : source;
+	subs["<planet>"] = usePlanet->DisplayName();
+	subs["<system>"] = usePlanet->GetSystem()->DisplayName();
+	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
+	// Stopovers: "<name> in the <system name> system" with "," and "and".
+	auto getDisplayName = [](const auto *const &item)
+	{
+		return item->DisplayName();
+	};
+	if(!stopovers.empty())
+	{
+		subs["<stopovers>"] = Format::List<set, const Planet *>(stopovers,
+			[](const Planet *const &planet)
+			{
+				return planet->DisplayName() + " in the " + planet->GetSystem()->DisplayName() + " system";
+			});
+		subs["<planet stopovers>"] = Format::List<set, const Planet *>(stopovers, getDisplayName);
+	}
+	// Waypoints and marks: "<system name>" with "," and "and".
+	if(!waypoints.empty())
+		subs["<waypoints>"] = Format::List<set, const System *>(waypoints, getDisplayName);
+	if(!markedSystems.empty())
+		subs["<marks>"] = Format::List<set, const System *>(markedSystems, getDisplayName);
+
+	for(const auto &keyValue : subs)
+		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
+	Format::Expand(subs);
+	return subs;
 }

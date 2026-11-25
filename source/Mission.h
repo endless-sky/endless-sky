@@ -83,6 +83,7 @@ public:
 	const std::string &Description() const;
 	// A mission that can offer but hasn't been accepted yet may appear with a
 	// reminder description in the missions map panel.
+	std::string ReminderName(const PlayerInfo &player) const;
 	std::string Reminder(const PlayerInfo &player) const;
 	// Whether this mission could display a reminder, and if it should display
 	// it right now.
@@ -226,6 +227,7 @@ private:
 	// For legacy code, contraband definitions can be placed in two different
 	// locations, so move that parsing out to a helper function.
 	bool ParseContraband(const DataNode &node);
+	std::map<std::string, std::string> ReminderSubstitutions(const PlayerInfo &player) const;
 
 
 private:

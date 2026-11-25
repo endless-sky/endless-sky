@@ -937,7 +937,8 @@ void MissionPanel::DrawMissionName(const Mission &mission, Point &pos, bool &sep
 	}
 
 	const Font &font = FontSet::Get(14);
-	font.Draw({mission.DisplayName(), {SIDE_WIDTH - 11, Truncate::BACK}}, pos, *color);
+	font.Draw({isReminder ? mission.ReminderName(player) : mission.DisplayName(), {SIDE_WIDTH - 11, Truncate::BACK}},
+		pos, *color);
 }
 
 
