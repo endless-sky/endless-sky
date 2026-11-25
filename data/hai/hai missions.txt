@@ -2223,7 +2223,8 @@ mission "Hai Film Crew 3"
 	cargo "film equipment" 30
 	passengers 80
 	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
-	reminder ""
+	"reminder name" `"Aaaand... Cut!"`
+	reminder "Most people don't realize how many resources a film shooting needs. 80 crew and 30 tons of equipment, for example. And a captain who'll ferry all this. Like you. Likeet seems to be inspired by Darkrest station, so he probably doesn't note if you return a little later. You... will return, right? In space, no one can hear Likeet scream if you don't."
 	source "Darkrest"
 	destination
 		attributes hai
