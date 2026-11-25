@@ -108,6 +108,8 @@ namespace {
 				return "on daily";
 			case Mission::Trigger::DISABLED:
 				return "on disabled";
+			case Mission::Trigger::DEADLINE:
+				return "on deadline";
 			default:
 				return "unknown trigger";
 		}
@@ -386,6 +388,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 				{"waypoint", WAYPOINT},
 				{"daily", DAILY},
 				{"disabled", DISABLED},
+				{"deadline", DEADLINE},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())

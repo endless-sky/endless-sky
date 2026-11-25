@@ -135,7 +135,7 @@ protected:
 	void DrawBackdrop() const;
 
 	UI &GetUI() const noexcept;
-	void SetUI(UI *ui);
+	virtual void SetUI(UI *ui);
 
 	// This is not for overriding, but for calling KeyDown with only one or two
 	// arguments. In this form, the command is never set, so you can call this

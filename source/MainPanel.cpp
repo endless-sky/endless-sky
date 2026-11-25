@@ -62,6 +62,14 @@ MainPanel::MainPanel(PlayerInfo &player)
 
 
 
+void MainPanel::SetUI(UI *ui)
+{
+	Panel::SetUI(ui);
+	engine.SetUI(ui);
+}
+
+
+
 void MainPanel::Step()
 {
 	engine.Wait();

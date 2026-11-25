@@ -917,7 +917,7 @@ const Date &PlayerInfo::GetDate() const
 
 
 // Set the date, and perform all daily actions the given number of times.
-void PlayerInfo::AdvanceDate(int amount)
+void PlayerInfo::AdvanceDate(UI *ui, int amount)
 {
 	if(amount <= 0)
 		return;
@@ -941,11 +941,15 @@ void PlayerInfo::AdvanceDate(int amount)
 		// do any daily mission actions for those that have not failed.
 		for(Mission &mission : missions)
 		{
-			if(mission.CheckDeadline(date) && mission.IsVisible())
-				Messages::Add({"You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
-					GameData::MessageCategories().Get("high")});
+			if(mission.CheckDeadline(date))
+			{
+				if(mission.IsVisible())
+					Messages::Add({"You failed to meet the deadline for the mission \"" + mission.DisplayName() + "\".",
+						GameData::MessageCategories().Get("high")});
+				mission.Do(Mission::DEADLINE, *this, ui);
+			}
 			if(!mission.IsFailed())
-				mission.Do(Mission::DAILY, *this);
+				mission.Do(Mission::DAILY, *this, ui);
 		}
 		DoAccounting();
 	}
