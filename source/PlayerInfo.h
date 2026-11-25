@@ -421,6 +421,14 @@ public:
 	void AddBoardingCasualties(const std::weak_ptr<Ship> &ship, int casualties);
 	int GetBoardingCasualties(const std::weak_ptr<Ship> &ship) const;
 
+	// Grant or revoke clearance to land on a planet. This clearance lives outside
+	// of the context of a mission.
+	void GrantClearance(const Planet *planet, bool fullClearance);
+	void RevokeClearance(const Planet *planet);
+	// The planets that the player currently has persistent (i.e. outside of a mission)
+	// clearance to.
+	const std::map<const Planet *, bool> &Clearance() const;
+
 
 private:
 	class ScheduledEvent {
@@ -482,6 +490,7 @@ private:
 	// Handle the daily salaries and payments.
 	void DoAccounting();
 
+	// Whether the player has clearance to the planet they're currently landed on.
 	bool HasClearance() const;
 
 
@@ -580,6 +589,12 @@ private:
 	std::set<const Planet *> visitedPlanets;
 	std::vector<const System *> travelPlan;
 	const Planet *travelDestination = nullptr;
+
+	// Planets that the player has been granted clearance to land on, regardless
+	// of the player's reputation. The boolean is true if the player has full
+	// access to the planet, and false if they only have landing access but no
+	// service access.
+	std::map<const Planet *, bool> clearance;
 
 	std::set<const Outfit *> selectedWeapons;
 

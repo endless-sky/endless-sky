@@ -395,6 +395,12 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 				if(grand.Size() >= 2)
 					tributeReceived[GameData::Planets().Get(grand.Token(0))] = grand.Value(1);
 		}
+		else if(key == "persistent clearance")
+		{
+			for(const DataNode &grand : child)
+				if(grand.Size() >= 2)
+					clearance[GameData::Planets().Get(grand.Token(0))] = grand.Value(1);
+		}
 		else if(key == "max escort count" && hasValue)
 			maxEscortCount = max<int>(0, child.Value(1));
 		else if(key == "max escort crew" && hasValue)
@@ -3859,6 +3865,8 @@ void PlayerInfo::ApplyChanges()
 	// because EnterSystem() is not called the first time through.
 	GameData::SetDate(GetDate());
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
+	for(const auto &[planet, fullClearance] : clearance)
+		planet->Bribe(fullClearance);
 	for(const Mission &mission : Missions())
 		if(mission.ClearanceMessage() == "auto")
 		{
@@ -5058,6 +5066,27 @@ int PlayerInfo::GetBoardingCasualties(const weak_ptr<Ship> &ship) const
 
 
 
+void PlayerInfo::GrantClearance(const Planet *planet, bool fullClearance)
+{
+	clearance[planet] = fullClearance;
+}
+
+
+
+void PlayerInfo::RevokeClearance(const Planet *planet)
+{
+	clearance.erase(planet);
+}
+
+
+
+const map<const Planet *, bool> &PlayerInfo::Clearance() const
+{
+	return clearance;
+}
+
+
+
 void PlayerInfo::Autosave() const
 {
 	if(!CanBeSaved() || filePath.length() < 4 || pilot->GetGamerules().SingleSaveFile())
@@ -5165,6 +5194,14 @@ void PlayerInfo::Save(DataWriter &out) const
 		for(const auto &it : tributeReceived)
 			if(it.second > 0)
 				out.Write((it.first)->TrueName(), it.second);
+	}
+	out.EndChild();
+
+	out.Write("persistent clearance");
+	out.BeginChild();
+	{
+		for(const auto &[planet, fullAccess] : clearance)
+			out.Write(planet->TrueName(), fullAccess);
 	}
 	out.EndChild();
 
@@ -5462,7 +5499,9 @@ void PlayerInfo::Fine(UI &ui)
 		|| !(planet->IsInhabited() || planet->HasCustomSecurity()))
 		return;
 
-	// Planets should not fine you if you have mission clearance or are infiltrating.
+	// Planets should not fine you if you have clearance or are infiltrating.
+	if(clearance.contains(planet))
+		return;
 	for(const Mission &mission : missions)
 		if(mission.HasClearance(planet) || (!mission.HasFullClearance() &&
 					(mission.Destination() == planet || mission.Stopovers().contains(planet))))
@@ -5770,7 +5809,9 @@ void PlayerInfo::DoAccounting()
 
 bool PlayerInfo::HasClearance() const
 {
-	return any_of(missions.begin(), missions.end(),
+	if(clearance.contains(planet))
+		return true;
+	return ranges::any_of(missions,
 		[this](const Mission &mission) -> bool {
 			return mission.HasClearance(planet);
 		});

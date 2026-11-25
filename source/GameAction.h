@@ -33,6 +33,7 @@ class DataWriter;
 class GameEvent;
 class Mission;
 class Outfit;
+class Planet;
 class PlayerInfo;
 class Ship;
 class System;
@@ -108,6 +109,9 @@ private:
 	std::map<std::string, std::set<const System *>> markOther;
 	std::set<const System *> unmark;
 	std::map<std::string, std::set<const System *>> unmarkOther;
+
+	std::map<const Planet *, bool> grantClearance;
+	std::set<const Planet *> revokeClearance;
 
 	// When this action is performed, the missions with these names fail.
 	std::set<std::string> fail;
