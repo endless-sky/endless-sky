@@ -679,8 +679,9 @@ std::string Mission::Reminder(const PlayerInfo &player) const
 	subs["<capacity>"] = out.str();
 
 	subs["<origin>"] = source->DisplayName();
-	subs["<planet>"] = destination ? destination->DisplayName() : "";
-	subs["<system>"] = destination ? destination->GetSystem()->DisplayName() : "";
+	const Planet *usePlanet = destination ? destination : source;
+	subs["<planet>"] = usePlanet->DisplayName();
+	subs["<system>"] = usePlanet->GetSystem()->DisplayName();
 	subs["<destination>"] = subs["<planet>"] + " in the " + subs["<system>"] + " system";
 	// Stopovers: "<name> in the <system name> system" with "," and "and".
 	auto getDisplayName = [](const auto *const &item)
@@ -719,7 +720,7 @@ std::string Mission::Reminder(const PlayerInfo &player) const
 bool Mission::HasReminder(bool checkValidity) const
 {
 	return !reminder.empty() && isVisible && source && location != Location::JOB && !LocationInFlight(location)
-		&& (!checkValidity || IsValid());
+		&& (!checkValidity || source->IsValid());
 }
 
 
