@@ -1291,7 +1291,7 @@ mission "Wanderers: Alpha Surveillance D"
 			has "Wanderers: Alpha Surveillance C (Naughty): done"
 	passengers 1
 	blocked "You need a bunk free in order to take on this mission."
-	remdiner ""
+	reminder ""
 	
 	on offer
 		log "Met a human named Elias Hanover who is friends with the Quarg and who has been given permission to use Quarg technology to track the Alpha ship that is selling jump drives to the Unfettered."
