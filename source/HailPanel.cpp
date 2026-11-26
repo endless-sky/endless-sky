@@ -158,10 +158,10 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 		header = gov->DisplayName() + " " + planet->Noun() + " \"" + planet->DisplayName() + "\":";
 	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 
-	// If the player is hailing a planet that they don't already have clearance to, determine if a mission
-	// grants them clearance before checking if they have a language that matches the planet's government.
-	// This allows mission clearance to bypass language barriers.
-	if(planet && player.Flagship() && !GameData::GetPolitics().HasClearance(planet))
+	// If the player is hailing a planet, determine if they have clearance to land before checking
+	// if they have a language that matches the planet's government. This allows mission clearance
+	// to bypass language barriers.
+	if(planet && player.Flagship())
 	{
 		optional<pair<bool, string>> clearance = player.HasClearance(planet);
 		if(clearance.has_value() && clearance->second != "auto")
