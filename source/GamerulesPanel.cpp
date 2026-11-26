@@ -332,7 +332,7 @@ void GamerulesPanel::DrawGamerules()
 	// * The namespace variable GAMERULES_PAGE_COUNT should be updated to the max
 	//   page count (count of '\n' characters plus one).
 	static const string GAMERULES[] = {
-		"Depreciation",
+		"Depreciation Settings",
 		Gamerules::DEPRECIATIVE_AGING,
 		Gamerules::DEPRECIATION_MIN,
 		Gamerules::DEPRECIATION_CAPTURED,
@@ -364,7 +364,7 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::SINGLE_SAVE_FILE,
 		Gamerules::RESTRICTED_SAVE_LOADING,
 		"",
-		"Friendly Fire",
+		"Friendly Fire Settings",
 		Gamerules::FRIENDLY_FIRE_SAME_PROB,
 		Gamerules::FRIENDLY_FIRE_ALLY_PROB,
 		Gamerules::FRIENDLY_FIRE_FIGHTER_PROB_MULT,
