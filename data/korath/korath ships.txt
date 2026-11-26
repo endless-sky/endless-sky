@@ -1503,6 +1503,7 @@ ship "Kar Ik Vot 349"
 	sprite "ship/kar ik vot 349"
 	thumbnail "thumbnail/kar ik vot 349"
 	"administrative cost" 10
+	"rewiring multiplier" 2.
 	attributes
 		category "Heavy Warship"
 		"cost" 41280000
@@ -1518,7 +1519,8 @@ ship "Kar Ik Vot 349"
 		"outfit space" 1054
 		"weapon capacity" 447
 		"engine capacity" 173
-		"self destruct" .8
+		"self destruct time" 3600
+		"random self destruct time" 1800
 		"ramscoop" 3
 		weapon
 			"blast radius" 450
@@ -1571,6 +1573,7 @@ ship "Tek Far 71 - Lek"
 	sprite "ship/tek far 71 lek"
 	thumbnail "thumbnail/tek far 71 lek"
 	"administrative cost" 5
+	"rewiring multiplier" 2.
 	attributes
 		category "Medium Warship"
 		"cost" 22870000
@@ -1586,7 +1589,8 @@ ship "Tek Far 71 - Lek"
 		"outfit space" 533
 		"weapon capacity" 235
 		"engine capacity" 102
-		"self destruct" .7
+		"self destruct time" 5400
+		"random self destruct time" 2700
 		"ramscoop" 3
 		weapon
 			"blast radius" 320
@@ -1652,6 +1656,7 @@ ship "Tek Far 78 - Osk"
 	sprite "ship/tek far 78 osk"
 	thumbnail "thumbnail/tek far 78 osk"
 	"administrative cost" 6
+	"rewiring multiplier" 2.
 	attributes
 		category "Medium Warship"
 		"cost" 25630000
@@ -1667,7 +1672,8 @@ ship "Tek Far 78 - Osk"
 		"outfit space" 611
 		"weapon capacity" 272
 		"engine capacity" 117
-		"self destruct" .7
+		"self destruct time" 5400
+		"random self destruct time" 2700
 		"ramscoop" 3
 		weapon
 			"blast radius" 340
@@ -1733,6 +1739,7 @@ ship "Tek Far 109"
 	sprite "ship/tek far 109"
 	thumbnail "thumbnail/tek far 109"
 	"administrative cost" 4
+	"rewiring multiplier" 2.
 	attributes
 		category "Medium Warship"
 		"cost" 18290000
@@ -1748,7 +1755,8 @@ ship "Tek Far 109"
 		"outfit space" 491
 		"weapon capacity" 217
 		"engine capacity" 98
-		"self destruct" .7
+		"self destruct time" 5400
+		"random self destruct time" 2700
 		"ramscoop" 3
 		weapon
 			"blast radius" 280
@@ -1822,6 +1830,7 @@ ship "Met Par Tek 53"
 	sprite "ship/met par tek 53"
 	thumbnail "thumbnail/met par tek 53"
 	"administrative cost" 4
+	"rewiring multiplier" 2.
 	attributes
 		category "Light Warship"
 		"cost" 14480000
@@ -1837,7 +1846,8 @@ ship "Met Par Tek 53"
 		"outfit space" 610
 		"weapon capacity" 213
 		"engine capacity" 110
-		"self destruct" .65
+		"self destruct time" 7200
+		"random self destruct time" 3600
 		"ramscoop" 3
 		weapon
 			"blast radius" 250
@@ -1882,6 +1892,7 @@ ship "Far Lek 14"
 	sprite "ship/far lek 14"
 	thumbnail "thumbnail/far lek 14"
 	"administrative cost" 0
+	"rewiring multiplier" 2.
 	attributes
 		category "Drone"
 		"cost" 573000
@@ -1895,7 +1906,8 @@ ship "Far Lek 14"
 		"outfit space" 65
 		"weapon capacity" 11
 		"engine capacity" 24
-		"self destruct" .6
+		"self destruct time" 7200
+		"random self destruct time" 3600
 		weapon
 			"blast radius" 5
 			"shield damage" 50
@@ -1923,6 +1935,7 @@ ship "Far Osk 27"
 	sprite "ship/far osk 27"
 	thumbnail "thumbnail/far osk 27"
 	"administrative cost" 0
+	"rewiring multiplier" 2.
 	attributes
 		category "Fighter"
 		"cost" 761000
@@ -1936,7 +1949,8 @@ ship "Far Osk 27"
 		"outfit space" 99
 		"weapon capacity" 22
 		"engine capacity" 24
-		"self destruct" .6
+		"self destruct time" 7200
+		"random self destruct time" 3600
 		weapon
 			"blast radius" 12
 			"shield damage" 120
@@ -1966,6 +1980,7 @@ ship "Model 8"
 	sprite "ship/model 8"
 	thumbnail "thumbnail/model 8"
 	"administrative cost" 1
+	"rewiring multiplier" 2.
 	attributes
 		category "Interceptor"
 		"cost" 3725000
@@ -1981,7 +1996,8 @@ ship "Model 8"
 		"outfit space" 220
 		"weapon capacity" 49
 		"engine capacity" 60
-		"self destruct" .60
+		"self destruct time" 7200
+		"random self destruct time" 3600
 		"ramscoop" 3
 		weapon
 			"blast radius" 100
@@ -2014,6 +2030,7 @@ ship "Model 16"
 	sprite "ship/model 16"
 	thumbnail "thumbnail/model 16"
 	"administrative cost" 3
+	"rewiring multiplier" 2.
 	attributes
 		category "Light Warship"
 		"cost" 8449000
@@ -2029,7 +2046,8 @@ ship "Model 16"
 		"outfit space" 426
 		"weapon capacity" 149
 		"engine capacity" 107
-		"self destruct" .65
+		"self destruct time" 7200
+		"random self destruct time" 3600
 		"ramscoop" 3
 		weapon
 			"blast radius" 200
@@ -2069,6 +2087,7 @@ ship "Model 32"
 	sprite "ship/model 32"
 	thumbnail "thumbnail/model 32"
 	"administrative cost" 4
+	"rewiring multiplier" 2.
 	attributes
 		category "Light Warship"
 		"cost" 12765000
@@ -2084,7 +2103,8 @@ ship "Model 32"
 		"outfit space" 481
 		"weapon capacity" 205
 		"engine capacity" 110
-		"self destruct" .70
+		"self destruct time" 7200
+		"random self destruct time" 3600
 		"ramscoop" 3
 		weapon
 			"blast radius" 240
@@ -2125,6 +2145,7 @@ ship "Model 64"
 	sprite "ship/model 64"
 	thumbnail "thumbnail/model 64"
 	"administrative cost" 5
+	"rewiring multiplier" 2.
 	attributes
 		category "Medium Warship"
 		"cost" 19552000
@@ -2140,7 +2161,8 @@ ship "Model 64"
 		"outfit space" 567
 		"weapon capacity" 263
 		"engine capacity" 114
-		"self destruct" .74
+		"self destruct time" 5400
+		"random self destruct time" 2700
 		"ramscoop" 3
 		weapon
 			"blast radius" 280
@@ -2183,6 +2205,7 @@ ship "Model 128"
 	sprite "ship/model 128"
 	thumbnail "thumbnail/model 128"
 	"administrative cost" 6
+	"rewiring multiplier" 2.
 	attributes
 		category "Medium Warship"
 		"cost" 24073000
@@ -2198,7 +2221,8 @@ ship "Model 128"
 		"outfit space" 713
 		"weapon capacity" 344
 		"engine capacity" 132
-		"self destruct" .77
+		"self destruct time" 5400
+		"random self destruct time" 2700
 		"ramscoop" 3
 		weapon
 			"blast radius" 320
@@ -2242,6 +2266,7 @@ ship "Model 256"
 	sprite "ship/model 256"
 	thumbnail "thumbnail/model 256"
 	"administrative cost" 8
+	"rewiring multiplier" 2.
 	attributes
 		category "Heavy Warship"
 		"cost" 34920000
@@ -2257,7 +2282,8 @@ ship "Model 256"
 		"outfit space" 857
 		"weapon capacity" 393
 		"engine capacity" 145
-		"self destruct" .79
+		"self destruct time" 3600
+		"random self destruct time" 1800
 		"ramscoop" 3
 		weapon
 			"blast radius" 340
@@ -2303,6 +2329,7 @@ ship "Model 512"
 	sprite "ship/model 512"
 	thumbnail "thumbnail/model 512"
 	"administrative cost" 9
+	"rewiring multiplier" 2.
 	attributes
 		category "Heavy Warship"
 		"cost" 40375000
@@ -2318,7 +2345,8 @@ ship "Model 512"
 		"outfit space" 994
 		"weapon capacity" 440
 		"engine capacity" 161
-		"self destruct" .80
+		"self destruct time" 3600
+		"random self destruct time" 1800
 		"ramscoop" 3
 		weapon
 			"blast radius" 380

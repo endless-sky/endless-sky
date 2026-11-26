@@ -4134,11 +4134,11 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 
 	bool isYours = ship.IsYours();
 	bool beFrugal = (isYours && !escortsUseAmmo);
-	bool hasFuelGeneration = ship.HasFuelGeneration();
-	if(person.IsFrugal() || (isYours && escortsAreFrugal && escortsUseAmmo))
+	Preferences::EscortRegeneratingAmmoUsage regeneratingUsage = Preferences::RegeneratingAmmoUsage();
+	// If this ship has a frugal personality, then it will only use ammo when it is low on health or being outgunned.
+	bool isFrugalPersonality = person.IsFrugal() || (isYours && escortsAreFrugal && escortsUseAmmo);
+	if(isFrugalPersonality)
 	{
-		// The frugal personality is only active when ships have more than a certain fraction of their total health,
-		// and are not outgunned. The default threshold is 75%.
 		beFrugal = (ship.HealthFraction() > GameData::GetGamerules().UniversalFrugalThreshold());
 		if(beFrugal)
 		{
@@ -4149,7 +4149,8 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		}
 	}
 	// Frugal NPCs that lack any weapons that can be fired while frugal should ignore their frugal behavior.
-	if(beFrugal && !ship.IsYours())
+	bool hasFuelGeneration = ship.SupportsFuelWeaponUsage();
+	if(beFrugal && !isYours)
 	{
 		bool hasUsableWeapon = false;
 		for(const Hardpoint &hardpoint : ship.Weapons())
@@ -4212,9 +4213,28 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		if(weapon->Icon() && (!secondary || (includeSecondaries
 				&& !includeSecondaries->contains(hardpoint.GetOutfit()))))
 			return false;
-		// Don't expend ammo or fuel if trying to be frugal.
-		if(beFrugal && (ammo || (weapon->FiringFuel() > 0. && !hasFuelGeneration)))
+		// Don't expend ammo if trying to be frugal.
+		if(beFrugal && ammo)
 			return false;
+		bool usesFuel = weapon->FiringFuel() > 0.;
+		if(usesFuel)
+		{
+			// If this ship has a frugal personality, don't fire weapons that
+			// would leave you without enough fuel to jump out of the system.
+			if(isFrugalPersonality && ship.FuelLevel() - ship.JumpNavigation().JumpFuel() < weapon->FiringFuel())
+				return false;
+			// Player ships should never use fuel weapons if they're set to never use ammo,
+			// unless they're allowed to freely use regenerating ammo and has sufficient fuel generation.
+			if(isYours && !escortsUseAmmo
+					&& !(regeneratingUsage == Preferences::EscortRegeneratingAmmoUsage::FREELY && hasFuelGeneration))
+				return false;
+			// Fuel may be expended when frugal behavior is active if the ship has
+			// fuel generation. For player ships, the player must also allow escorts
+			// to freely use regenerating ammo while frugal.
+			if(beFrugal && (!hasFuelGeneration
+					|| (isYours && regeneratingUsage == Preferences::EscortRegeneratingAmmoUsage::DEFAULT)))
+				return false;
+		}
 		// No point in sending a firing command to weapons without ammo.
 		if(ammo && ship.OutfitCount(ammo) < weapon->AmmoUsage())
 			return false;

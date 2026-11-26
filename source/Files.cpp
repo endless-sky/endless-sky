@@ -518,9 +518,7 @@ void Files::CreateFolder(const filesystem::path &path)
 	if(Exists(path))
 		return;
 
-	if(filesystem::create_directory(path))
-		filesystem::permissions(path, filesystem::perms::owner_all);
-	else
+	if(!filesystem::create_directory(path))
 		throw runtime_error("Error creating directory!");
 }
 

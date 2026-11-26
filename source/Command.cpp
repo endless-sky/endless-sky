@@ -23,6 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "SDL.h"
 
 #include <algorithm>
+#include <cassert>
 #include <cmath>
 #include <map>
 
@@ -31,8 +32,9 @@ using namespace std;
 namespace {
 	// These lookup tables make it possible to map a command to its description,
 	// the name of the key it is mapped to, or the SDL keycode it is mapped to.
-	map<Command, string> description;
+	map<Command, string> descriptions;
 	map<Command, string> keyName;
+	map<string, Command> commandForDescription;
 	map<int, Command> commandForKeycode;
 	map<Command, int> keycodeForCommand;
 	// Keep track of any keycodes that are mapped to multiple commands, in order
@@ -96,54 +98,12 @@ const Command Command::SHIFT(ONE << 41, "");
 
 
 
-// In the given text, replace any instances of command names (in angle brackets)
-// with key names (in quotes).
-string Command::ReplaceNamesWithKeys(const string &text)
+void Command::Init()
 {
-	map<string, string> subs;
-	for(const auto &[command, name] : description)
-		subs['<' + name + '>'] = '"' + keyName[command] + '"';
-
-	return Format::Replace(text, subs);
-}
-
-
-
-// Create a command representing whatever is mapped to the given key code.
-Command::Command(SDL_Keycode keycode)
-{
-	auto it = commandForKeycode.find(keycode);
-	if(it != commandForKeycode.end())
-		*this = it->second;
-}
-
-
-
-// Read the current keyboard state.
-void Command::ReadKeyboard()
-{
-	Clear();
-#ifdef ES_USE_SDL3
-	const bool *keyDown = SDL_GetKeyboardState(nullptr);
-#else
-	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
-#endif
-
-	// Each command can only have one keycode, but misconfigured settings can
-	// temporarily cause one keycode to be used for two commands. Also, more
-	// than one key can be held down at once.
-	for(const auto &[command, keyCode] : keycodeForCommand)
-#ifdef ES_USE_SDL3
-		// Use no modifiers for the scancode.
-		if(keyDown[SDL_GetScancodeFromKey(keyCode, nullptr)])
-#else
-		if(keyDown[SDL_GetScancodeFromKey(keyCode)])
-#endif
-			*this |= command;
-
-	// Check whether the `Shift` modifier key was pressed for this step.
-	if(SDL_GetModState() & KMOD_SHIFT)
-		*this |= SHIFT;
+	// Create a map of command names to Command objects in the enumeration above.
+	for(const auto &[command, description] : descriptions)
+		if(!description.empty())
+			commandForDescription[description] = command;
 }
 
 
@@ -151,19 +111,15 @@ void Command::ReadKeyboard()
 // Load the keyboard preferences.
 void Command::LoadSettings(const filesystem::path &path)
 {
+	assert(!commandForDescription.empty() && "Must call Command::Init first.");
 	DataFile file(path);
-
-	// Create a map of command names to Command objects in the enumeration above.
-	map<string, Command> commands;
-	for(const auto &[command, name] : description)
-		commands[name] = command;
 
 	// Each command can only have one keycode, one keycode can be assigned
 	// to multiple commands.
 	for(const DataNode &node : file)
 	{
-		auto it = commands.find(node.Token(0));
-		if(it != commands.end() && node.Size() >= 2)
+		auto it = commandForDescription.find(node.Token(0));
+		if(it != commandForDescription.end() && node.Size() >= 2)
 		{
 			Command command = it->second;
 			int keycode = node.Value(1);
@@ -191,8 +147,8 @@ void Command::SaveSettings(const filesystem::path &path)
 
 	for(const auto &[command, keyCode] : keycodeForCommand)
 	{
-		auto dit = description.find(command);
-		if(dit != description.end())
+		auto dit = descriptions.find(command);
+		if(dit != descriptions.end())
 			out.Write(dit->second, keyCode);
 	}
 }
@@ -219,13 +175,74 @@ void Command::SetKey(Command command, int keycode)
 
 
 
+// In the given text, replace any instances of command names (in angle brackets)
+// with key names (in quotes).
+string Command::ReplaceNamesWithKeys(const string &text)
+{
+	map<string, string> subs;
+	for(const auto &[command, description] : descriptions)
+		subs['<' + description + '>'] = '"' + keyName[command] + '"';
+
+	return Format::Replace(text, subs);
+}
+
+
+
+// Create a command representing whatever is mapped to the given key code.
+Command::Command(SDL_Keycode keycode)
+{
+	auto it = commandForKeycode.find(keycode);
+	if(it != commandForKeycode.end())
+		*this = it->second;
+}
+
+
+
+Command::Command(const string &name)
+{
+	assert(!commandForDescription.empty() && "Must call Command::Init first.");
+	auto it = commandForDescription.find(name);
+	if(it != commandForDescription.end())
+		*this = it->second;
+}
+
+
+
+// Read the current keyboard state.
+void Command::ReadKeyboard()
+{
+	Clear();
+#ifdef ES_USE_SDL3
+	const bool *keyDown = SDL_GetKeyboardState(nullptr);
+#else
+	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
+#endif
+
+	// Each command can only have one keycode, but one keycode can map to
+	// multiple commands. Also, more than one key can be held down at once.
+	for(const auto &[command, keyCode] : keycodeForCommand)
+#ifdef ES_USE_SDL3
+		// Use no modifiers for the scancode.
+		if(keyDown[SDL_GetScancodeFromKey(keyCode, nullptr)])
+#else
+		if(keyDown[SDL_GetScancodeFromKey(keyCode)])
+#endif
+			*this |= command;
+
+	// Check whether the `Shift` modifier key was pressed for this step.
+	if(SDL_GetModState() & KMOD_SHIFT)
+		*this |= SHIFT;
+}
+
+
+
 // Get the description of this command. If this command is a combination of more
 // than one command, an empty string is returned.
 const string &Command::Description() const
 {
 	static const string EMPTY;
-	auto it = description.find(*this);
-	return (it == description.end() ? EMPTY : it->second);
+	auto it = descriptions.find(*this);
+	return (it == descriptions.end() ? EMPTY : it->second);
 }
 
 
@@ -447,5 +464,5 @@ Command::Command(uint64_t state, const string &text)
 	: state(state)
 {
 	if(!text.empty())
-		description[*this] = text;
+		descriptions[*this] = text;
 }

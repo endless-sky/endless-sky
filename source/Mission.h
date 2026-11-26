@@ -184,8 +184,8 @@ public:
 	// action that does pass the UI pointer.)
 	// - ACCEPT, DECLINE, and DEFER if it is from PlayerInfo::MissionCallback(), as in this case the mission already
 	// used the UI to create a conversation or dialog that triggered the callback.
-	// - DAILY is called in PlayerInfo::AdvanceDate and never has access to the UI.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED};
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED,
+		DEADLINE};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 
 	// Get a list of NPCs associated with this mission. Every time the player

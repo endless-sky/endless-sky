@@ -24,6 +24,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Government.h"
 #include "HailPanel.h"
+#include "Interface.h"
 #include "shader/LineShader.h"
 #include "MapDetailPanel.h"
 #include "MessageLogPanel.h"
@@ -63,13 +64,21 @@ MainPanel::MainPanel(PlayerInfo &player)
 
 
 
+void MainPanel::SetUI(UI *ui)
+{
+	Panel::SetUI(ui);
+	engine.SetUI(ui);
+}
+
+
+
 void MainPanel::Step()
 {
 	engine.Wait();
 
 	// Depending on what UI element is on top, the game is "paused." This
 	// checks only already-drawn panels.
-	bool isActive = GetUI().IsTop(this);
+	isActive = GetUI().IsTop(this);
 
 	// If the player is dead, don't show anything.
 	if(player.IsDead())
@@ -135,7 +144,7 @@ void MainPanel::Step()
 	eventQueue.splice(eventQueue.end(), engine.Events());
 	// Handle as many ShipEvents as possible (stopping if no longer active
 	// and updating the isActive flag).
-	StepEvents(isActive);
+	StepEvents();
 
 	if(isActive)
 	{
@@ -160,6 +169,9 @@ void MainPanel::Draw()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	engine.Draw();
+
+	Information info;
+	GameData::Interfaces().Get("main hud")->Draw(info, this);
 
 	if(isDragging)
 	{
@@ -247,6 +259,8 @@ bool MainPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, boo
 		Preferences::ZoomViewIn();
 	else if(key >= '0' && key <= '9' && !command)
 		engine.SelectGroup(key - '0', mod & KMOD_SHIFT, mod & (KMOD_CTRL | KMOD_GUI));
+	else if(isActive)
+		engine.QueueCommand(command);
 	else
 		return false;
 
@@ -624,7 +638,7 @@ bool MainPanel::ShowHelp(bool force)
 
 // Handle ShipEvents from this and previous Engine::Step calls. Start with the
 // oldest and then process events until any create a new UI element.
-void MainPanel::StepEvents(bool &isActive)
+void MainPanel::StepEvents()
 {
 	while(isActive && !eventQueue.empty())
 	{
