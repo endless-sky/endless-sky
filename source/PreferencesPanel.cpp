@@ -719,6 +719,7 @@ void PreferencesPanel::DrawSettings()
 		"Fleet Behavior",
 		Preferences::TURRETS_FOCUS_FIRE,
 		Preferences::ESCORT_AMMO_USAGE,
+		Preferences::ESCORT_REGENERATING_AMMO_USAGE,
 		Preferences::FLOTSAM_COLLECTION,
 		Preferences::FIGHTERS_REPAIR_IN,
 		Preferences::DAMAGED_FIGHTERS_RETREAT,

@@ -4802,7 +4802,7 @@ double Ship::TurretTurnMultiplier() const
 
 
 
-bool Ship::HasFuelGeneration() const
+bool Ship::SupportsFuelWeaponUsage() const
 {
 	double fuelGen = cache.fuelGeneration;
 	if(currentSystem)
@@ -4811,7 +4811,11 @@ bool Ship::HasFuelGeneration() const
 			cache.ramscoop, cache.solarCollection, cache.solarHeat);
 		fuelGen += generation.fuel;
 	}
-	return fuelGen > 0.;
+	// Only return true if this ship has at least enough fuel generation to generate
+	// fuel for one default hyperspace jump in three minutes (10800 frames, or 1 minute on fast-forward).
+	// Otherwise, any fuel this ship is capable of generating is probably too slow to matter.
+	static constexpr double FUEL_LIMIT = Outfit::DEFAULT_HYPERDRIVE_COST / 10800.;
+	return fuelGen > FUEL_LIMIT;
 }
 
 
