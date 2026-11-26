@@ -104,6 +104,7 @@ public:
 	void ReleaseDrag(const Point &from, const Point &to);
 	void RightOrMiddleClick(const Point &point, MouseButton button, int clicks);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
+	void QueueCommand(const Command &queue);
 
 	// Break targeting on all projectiles between the player and the given
 	// government; gov projectiles stop targeting the player and player's
@@ -329,6 +330,8 @@ private:
 	Command activeCommands;
 	// Keyboard commands that were active in the previous step.
 	Command keyHeld;
+	// Commands sent through the MainPanel.
+	Command queued;
 	// Pressing "land" or "board" rapidly toggles targets; pressing it once re-engages landing or boarding.
 	int keyInterval = 0;
 
