@@ -527,7 +527,16 @@ Interface::TextElement::TextElement(const DataNode &node, const Point &globalAnc
 	isDynamic = (key.ends_with("string") || key.ends_with("dynamic button"));
 	if(key.ends_with("button") || key.ends_with("dynamic button"))
 	{
-		buttonKey = node.Token(1).front();
+		const string &value = node.Token(1);
+		if(value.size() == 1)
+			buttonKey = value.front();
+		else
+		{
+			buttonCommand = Command(value);
+			if(!buttonCommand)
+				node.PrintTrace("\"" + value + "\" is not a recognized command. Button values should either be a "
+					"single character or the name of a valid command:");
+		}
 		if(node.Size() >= 3)
 			str = node.Token(2);
 	}
@@ -576,8 +585,12 @@ bool Interface::TextElement::ParseLine(const DataNode &node)
 // called if the element is visible and active.
 void Interface::TextElement::Place(const Rectangle &bounds, Panel *panel) const
 {
-	if(buttonKey && panel)
+	if(!panel)
+		return;
+	if(buttonKey)
 		panel->AddZone(bounds, buttonKey);
+	else if(buttonCommand)
+		panel->AddZone(bounds, buttonCommand);
 }
 
 

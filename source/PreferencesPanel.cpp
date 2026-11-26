@@ -275,11 +275,15 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 				GetUI().Push(DialogPanel::CallFunctionIfOk([this, index]()
 					{
 						this->editing = this->selected = index;
+						GetUI().SetCaptureAllKeyboardInput(true);
 					},
 					"Rebinding this key will change the keypress you need to access this menu. "
 					"You really shouldn't rebind this unless needed.", true));
 			else
+			{
 				editing = selected = index;
+				GetUI().SetCaptureAllKeyboardInput(true);
+			}
 		}
 
 	for(const auto &zone : prefZones)
@@ -445,6 +449,7 @@ void PreferencesPanel::Resize()
 void PreferencesPanel::EndEditing()
 {
 	editing = -1;
+	GetUI().SetCaptureAllKeyboardInput(false);
 }
 
 
@@ -1031,6 +1036,7 @@ void PreferencesPanel::DrawTooltips()
 
 void PreferencesPanel::Exit()
 {
+	GetUI().SetCaptureAllKeyboardInput(false);
 	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
 	{
 		GetUI().Push(DialogPanel::Info("Menu keybind is not bound or has conflicts."));
@@ -1112,6 +1118,7 @@ void PreferencesPanel::HandleConfirm()
 	{
 	case 'c':
 		editing = selected;
+		GetUI().SetCaptureAllKeyboardInput(true);
 		break;
 	case 's':
 		HandleSettingsString(selectedItem);

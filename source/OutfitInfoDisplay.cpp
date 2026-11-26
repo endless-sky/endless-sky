@@ -203,6 +203,9 @@ namespace {
 		{"burn resistance", 2},
 
 		{"flotsam chance", 3},
+		{"self destruct", 3},
+		{"board self destruct", 3},
+		{"capture self destruct", 3},
 
 		{"cloak by mass", 3},
 		{"shield multiplier", 3},
@@ -254,6 +257,8 @@ namespace {
 		{"cloaking shield delay", 5},
 		{"depleted shield delay", 5},
 		{"disabled recovery time", 5},
+		{"self destruct time", 5},
+		{"random self destruct time", 5},
 		{"jump duration", 5},
 	};
 
