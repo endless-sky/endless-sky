@@ -218,9 +218,8 @@ void Command::ReadKeyboard()
 	const Uint8 *keyDown = SDL_GetKeyboardState(nullptr);
 #endif
 
-	// Each command can only have one keycode, but misconfigured settings can
-	// temporarily cause one keycode to be used for two commands. Also, more
-	// than one key can be held down at once.
+	// Each command can only have one keycode, but one keycode can map to
+	// multiple commands. Also, more than one key can be held down at once.
 	for(const auto &it : keycodeForCommand)
 #ifdef ES_USE_SDL3
 		// Use no modifiers for the scancode.
