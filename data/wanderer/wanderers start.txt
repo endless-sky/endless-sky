@@ -161,8 +161,6 @@ mission "Wanderers: Hai Diplomat"
 	landing
 	name "Hai Diplomat"
 	description "Travel to Hai-home to pick up a diplomat who can help you communicate with the Wanderers."
-	blocked ""
-	reminder ""
 	source
 		not planet "Hai-home"
 		attributes "hai"
@@ -201,6 +199,7 @@ mission "Wanderers: Diplomacy"
 	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
 	source "Hai-home"
 	destination "Vara K'chrai"
+	blocked ""
 	clearance
 	passengers 1
 	to offer
