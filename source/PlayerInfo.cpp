@@ -1229,8 +1229,8 @@ const shared_ptr<Ship> &PlayerInfo::FlagshipPtr()
 		}
 	}
 
-	static const shared_ptr<Ship> empty;
-	return (flagship && flagship->IsYours()) ? flagship : empty;
+	static const shared_ptr<Ship> EMPTY;
+	return (flagship && flagship->IsYours()) ? flagship : EMPTY;
 }
 
 
@@ -5617,14 +5617,7 @@ void PlayerInfo::CalculateScanners(const shared_ptr<Ship> &ship)
 	const Outfit &attributes = ship->Attributes();
 
 	double cargo = attributes.Get("cargo scan power") * 10000.;
-	double cargoSpeed = attributes.Get("cargo scan efficiency");
-	if(!cargoSpeed)
-		cargoSpeed = cargo;
-
 	double outfit = attributes.Get("outfit scan power") * 10000.;
-	double outfitSpeed = attributes.Get("outfit scan efficiency");
-	if(!outfitSpeed)
-		outfitSpeed = outfit;
 
 	double asteroid = attributes.Get("asteroid scan power") * 10000.;
 	double tactical = attributes.Get("tactical scan power") * 10000.;

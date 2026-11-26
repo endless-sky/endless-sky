@@ -429,9 +429,9 @@ bool Conversation::IsAction(int node) const
 // Get the list of conditions that the given node tests.
 const ConditionSet &Conversation::Conditions(int node) const
 {
-	static ConditionSet empty;
+	static const ConditionSet EMPTY;
 	if(!NodeIsValid(node))
-		return empty;
+		return EMPTY;
 
 	return nodes[node].conditions;
 }
@@ -441,9 +441,9 @@ const ConditionSet &Conversation::Conditions(int node) const
 // Get the action that the given node applies.
 const GameAction &Conversation::GetAction(int node) const
 {
-	static GameAction empty;
+	static const GameAction EMPTY;
 	if(!NodeIsValid(node))
-		return empty;
+		return EMPTY;
 
 	return nodes[node].actions;
 }

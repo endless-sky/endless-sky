@@ -56,10 +56,10 @@ void Information::SetSprite(const string &name, const Sprite *sprite, const Poin
 
 const Sprite *Information::GetSprite(const string &name) const
 {
-	static const Sprite empty;
+	static const Sprite EMPTY;
 
 	auto it = sprites.find(name);
-	return (it == sprites.end()) ? &empty : it->second;
+	return (it == sprites.end()) ? &EMPTY : it->second;
 }
 
 

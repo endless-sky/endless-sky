@@ -2709,9 +2709,7 @@ int Ship::Scan(const PlayerInfo &player)
 	int activeScanning = ShipEvent::NONE;
 	int result = ShipEvent::NONE;
 	auto doScan = [&distanceSquared, &startedScanning, &activeScanning, &result]
-			(double &elapsed, const double speed, const double scannerRangeSquared,
-					const double depth, const int event)
-	-> void
+		(double &elapsed, double speed, double scannerRangeSquared, double depth, int event) -> void
 	{
 		if(elapsed >= SCAN_TIME)
 			return;
