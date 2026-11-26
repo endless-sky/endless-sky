@@ -421,13 +421,15 @@ public:
 	void AddBoardingCasualties(const std::weak_ptr<Ship> &ship, int casualties);
 	int GetBoardingCasualties(const std::weak_ptr<Ship> &ship) const;
 
+	// If the player has clearance to the given planet, returns if that clearance is full (true) or limited (false),
+	// and a message to display in the hail panel if clearance requires hailing, or "auto" if no hail is required.
+	std::optional<std::pair<bool, std::string>> HasClearance(const Planet *planet) const;
+	// Apply the player's persistent and mission clearance to planets.
+	void ApplyClearance() const;
 	// Grant or revoke clearance to land on a planet. This clearance lives outside
 	// of the context of a mission.
-	void GrantClearance(const Planet *planet, bool fullClearance);
+	void GrantClearance(const Planet *planet, bool fullClearance, const std::string &message);
 	void RevokeClearance(const Planet *planet);
-	// The planets that the player currently has persistent (i.e. outside of a mission)
-	// clearance to.
-	const std::map<const Planet *, bool> &Clearance() const;
 
 
 private:
@@ -594,7 +596,7 @@ private:
 	// of the player's reputation. The boolean is true if the player has full
 	// access to the planet, and false if they only have landing access but no
 	// service access.
-	std::map<const Planet *, bool> clearance;
+	std::map<const Planet *, std::pair<bool, std::string>> clearance;
 
 	std::set<const Outfit *> selectedWeapons;
 

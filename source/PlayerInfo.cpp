@@ -398,8 +398,9 @@ void PlayerInfo::Load(const filesystem::path &path, const shared_ptr<PilotProfil
 		else if(key == "persistent clearance")
 		{
 			for(const DataNode &grand : child)
-				if(grand.Size() >= 2)
-					clearance[GameData::Planets().Get(grand.Token(0))] = (grand.Token(1) == "full");
+				if(grand.Size() >= 3)
+					clearance[GameData::Planets().Get(grand.Token(0))] = make_pair(grand.Token(1) == "full",
+						grand.Token(2));
 		}
 		else if(key == "max escort count" && hasValue)
 			maxEscortCount = max<int>(0, child.Value(1));
@@ -3865,15 +3866,7 @@ void PlayerInfo::ApplyChanges()
 	// because EnterSystem() is not called the first time through.
 	GameData::SetDate(GetDate());
 	// SetDate() clears any bribes from yesterday, so restore any auto-clearance.
-	for(const auto &[planet, fullClearance] : clearance)
-		planet->Bribe(fullClearance);
-	for(const Mission &mission : Missions())
-		if(mission.ClearanceMessage() == "auto")
-		{
-			mission.Destination()->Bribe(mission.HasFullClearance());
-			for(const Planet *planet : mission.Stopovers())
-				planet->Bribe(mission.HasFullClearance());
-		}
+	ApplyClearance();
 
 	// Check if any special persons have been destroyed.
 	GameData::DestroyPersons(destroyedPersons);
@@ -5066,9 +5059,38 @@ int PlayerInfo::GetBoardingCasualties(const weak_ptr<Ship> &ship) const
 
 
 
-void PlayerInfo::GrantClearance(const Planet *planet, bool fullClearance)
+optional<pair<bool, string>> PlayerInfo::HasClearance(const Planet *planet) const
 {
-	clearance[planet] = fullClearance;
+	auto it = clearance.find(planet);
+	if(it != clearance.end())
+		return it->second;
+	for(const Mission &mission : missions)
+		if(mission.HasClearance(planet))
+			return make_pair(mission.HasFullClearance(), mission.ClearanceMessage());
+	return std::nullopt;
+}
+
+
+
+void PlayerInfo::ApplyClearance() const
+{
+	for(const auto &[planet, details] : clearance)
+		if(details.second == "auto")
+			planet->Bribe(details.first);
+	for(const Mission &mission : Missions())
+		if(mission.ClearanceMessage() == "auto")
+		{
+			mission.Destination()->Bribe(mission.HasFullClearance());
+			for(const Planet *planet : mission.Stopovers())
+				planet->Bribe(mission.HasFullClearance());
+		}
+}
+
+
+
+void PlayerInfo::GrantClearance(const Planet *planet, bool fullClearance, const string &message)
+{
+	clearance[planet] = make_pair(fullClearance, message);
 }
 
 
@@ -5076,13 +5098,6 @@ void PlayerInfo::GrantClearance(const Planet *planet, bool fullClearance)
 void PlayerInfo::RevokeClearance(const Planet *planet)
 {
 	clearance.erase(planet);
-}
-
-
-
-const map<const Planet *, bool> &PlayerInfo::Clearance() const
-{
-	return clearance;
 }
 
 
@@ -5200,8 +5215,8 @@ void PlayerInfo::Save(DataWriter &out) const
 	out.Write("persistent clearance");
 	out.BeginChild();
 	{
-		for(const auto &[planet, fullAccess] : clearance)
-			out.Write(planet->TrueName(), fullAccess ? "full" : "limited");
+		for(const auto &[planet, details] : clearance)
+			out.Write(planet->TrueName(), details.first ? "full" : "limited", details.second);
 	}
 	out.EndChild();
 

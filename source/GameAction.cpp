@@ -241,9 +241,10 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		if(action == "grant")
 		{
 			bool fullAccess = true;
+			string message = "auto";
 			if(child.Size() >= 4)
 			{
-				const string &value = child.Token(4);
+				const string &value = child.Token(3);
 				if(value == "limited")
 					fullAccess = false;
 				else if(value != "full")
@@ -252,7 +253,9 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 					return;
 				}
 			}
-			grantClearance[planet] = fullAccess;
+			if(child.Size() >= 5)
+				message = child.Token(4);
+			grantClearance[planet] = make_pair(fullAccess, message);
 		}
 		else if(action == "revoke")
 			revokeClearance.insert(planet);
@@ -331,8 +334,8 @@ void GameAction::Save(DataWriter &out) const
 	for(const auto &[mission, unmarks] : unmarkOther)
 		for(const System *system : unmarks)
 			out.Write("unmark", system->TrueName(), mission);
-	for(const auto &[planet, fullClearance] : grantClearance)
-		out.Write("clearance", "grant", planet->TrueName(), fullClearance ? "full" : "limited");
+	for(const auto &[planet, details] : grantClearance)
+		out.Write("clearance", "grant", planet->TrueName(), details.first ? "full" : "limited", details.second);
 	for(const Planet *planet : revokeClearance)
 		out.Write("clearance", "revoke", planet->TrueName());
 	for(const string &name : fail)
@@ -537,8 +540,8 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 	// Revoke clearance before granting new clearance.
 	for(const Planet *planet : revokeClearance)
 		player.RevokeClearance(planet);
-	for(const auto &[planet, fullClearance] : grantClearance)
-		player.GrantClearance(planet, fullClearance);
+	for(const auto &[planet, details] : grantClearance)
+		player.GrantClearance(planet, details.first, details.second);
 
 	// If this action causes this mission to fail, mark it as failed.
 	// It will not be removed from the player's mission list until it is safe to do so.

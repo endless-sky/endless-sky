@@ -110,7 +110,7 @@ private:
 	std::set<const System *> unmark;
 	std::map<std::string, std::set<const System *>> unmarkOther;
 
-	std::map<const Planet *, bool> grantClearance;
+	std::map<const Planet *, std::pair<bool, std::string>> grantClearance;
 	std::set<const Planet *> revokeClearance;
 
 	// When this action is performed, the missions with these names fail.
