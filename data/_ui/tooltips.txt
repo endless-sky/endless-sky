@@ -1806,6 +1806,12 @@ tip "Escorts expend ammo"
 	`- "frugal": your escorts will only fire their secondary weapons when their HP is low or the hostiles in the system are stronger than your fleet and friendlies.`
 	`- "always": your escorts will always use their secondary weapons when firing.`
 
+tip "   Regenerating ammo"
+	`If a secondary weapon's ammo can be regenerated while in flight, such as fuel gained through having a ramscoop, then your escorts can be told to use that weapon more freely than weapons with limited ammo.`
+	`- "default": your escorts will treat secondary weapons with regenerating ammo the same way they treat all secondary weapons.`
+	`- "obey never": your escorts will use regenerating ammo if "Escorts expend ammo" is set to frugal or always, but not if it is set to never.`
+	`- "freely": your escorts will always use their secondary weapons that can regenerate ammo when firing, even if "Escorts expend ammo" is set to never.`
+
 tip "Flotsam collection"
 	`Control which of your ships can pick up flotsam (cargo floating in space). Flotsam is picked up automatically when your ships overlap it.`
 	`- "off": your ships will never pick up flotsam.`
