@@ -35,6 +35,8 @@ class MainPanel : public Panel {
 public:
 	explicit MainPanel(PlayerInfo &player);
 
+	virtual void SetUI(UI *ui) override;
+
 	virtual void Step() override;
 	virtual void Draw() override;
 

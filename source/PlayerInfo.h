@@ -131,7 +131,7 @@ public:
 
 	// Get or change the current date.
 	const Date &GetDate() const;
-	void AdvanceDate(int amount = 1);
+	void AdvanceDate(UI *ui = nullptr, int amount = 1);
 
 	// Get basic data about the player's starting scenario.
 	const CoreStartData &StartData() const noexcept;

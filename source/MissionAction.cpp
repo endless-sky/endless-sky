@@ -223,7 +223,7 @@ string MissionAction::DialogText() const
 bool MissionAction::CanBeDone(const PlayerInfo &player, bool isFailed,
 	bool executeWhenLanded, const shared_ptr<Ship> &boardingShip) const
 {
-	if(isFailed && !runsWhenFailed && trigger != "fail")
+	if(isFailed && !runsWhenFailed && trigger != "fail" && trigger != "deadline")
 		return false;
 	if(player.Accounts().Credits() < -Payment())
 		return false;

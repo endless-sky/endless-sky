@@ -263,6 +263,13 @@ Engine::~Engine()
 
 
 
+void Engine::SetUI(UI *ui)
+{
+	this->ui = ui;
+}
+
+
+
 void Engine::Place()
 {
 	ships.clear();
@@ -1509,7 +1516,7 @@ void Engine::EnterSystem()
 
 	doEnter = true;
 	doEnterLabels = true;
-	player.AdvanceDate();
+	player.AdvanceDate(ui);
 	const Date &today = player.GetDate();
 
 	const System *system = flagship->GetSystem();

@@ -70,6 +70,8 @@ public:
 	explicit Engine(PlayerInfo &player);
 	~Engine();
 
+	void SetUI(UI *ui);
+
 	// Place all the player's ships, and "enter" the system the player is in.
 	void Place();
 	// Place NPCs spawned by a mission that offers when the player is not landed.
@@ -237,6 +239,7 @@ private:
 
 private:
 	PlayerInfo &player;
+	UI *ui = nullptr;
 
 	std::list<std::shared_ptr<Ship>> ships;
 	std::vector<Projectile> projectiles;
