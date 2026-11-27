@@ -34,17 +34,17 @@ public:
 		// Certain weapons can't hit disabled ships unless targeting them.
 		if(weapon && !weapon->CanCollideDisabled())
 			return false;
-		// Carriable ships are valid or not based off of gamerules.
-		if(!ship->CanBeCarried())
-			return true;
-		switch(GameData::GetGamerules().FightersHitWhenDisabled())
+		// Gamerules can also provide blanket protection to some or all disabled ships.
+		switch(GameData::GetGamerules().GetCrossfireImmunity())
 		{
-			case Gamerules::FighterDodgePolicy::ALL:
-				return false;
-			case Gamerules::FighterDodgePolicy::NONE:
+			case Gamerules::CrossfireImmunity::NONE:
 				return true;
-			case Gamerules::FighterDodgePolicy::ONLY_PLAYER:
-				return !ship->IsYours();
+			case Gamerules::CrossfireImmunity::ALL_FIGHTERS:
+				return !ship->CanBeCarried();
+			case Gamerules::CrossfireImmunity::PLAYER_FIGHTERS:
+				return !(ship->IsYours() && ship->CanBeCarried());
+			case Gamerules::CrossfireImmunity::ALL_SHIPS:
+				return false;
 		}
 		return false;
 	}

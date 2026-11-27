@@ -2011,11 +2011,12 @@ tip "Fleet multiplier"
 tip "Lock gamerules"
 	`Controls whether gamerules can be altered after a pilot has been created. If true, the gamerules button will not appear on the main menu for this pilot. If you set this to true on an existing pilot, you will not be able to return to this menu after leaving.`
 
-tip "Fighter crossfire immunity"
-	`Controls which carried ships (fighters and drones), when disabled, will not be hit by projectiles unless they are directly targeted. Fighters and drones are fragile ships that can be difficult and/or tedious to replace for the player, so this gamerule is a means of increasing their survivability without increasing their combat effectiveness. Disabled carried ships can still be hit by explosions, whether from weapons or exploding ships.`
-	`- "none": no carried ships are affected.`
-	`- "player": only ships owned by the player are affected.`
-	`- "all": all carried ships are affected.`
+tip "Crossfire immunity"
+	`Controls which ships, when disabled, will not be hit by projectiles from enemies that are targeted at another ship ("crossfire"). Projectiles that were fired at a ship prior to it being disabled will also lose their targeting and collision with the ship if it is disabled while the projectile is in flight. Note that this does not grant immunity to explosions that happen near a disabled ship.`
+	`- "none": disabled ships can block projectiles targeted at other ships.`
+	`- "player fighters": disabled fighters and drones owned by crossfire.`
+	`- "all fighters": all disabled carried ships are immune to crossfire.`
+	`- "all ships": all disabled ships are immune to crossfire.`
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`

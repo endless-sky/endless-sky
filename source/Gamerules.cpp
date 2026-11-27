@@ -44,7 +44,7 @@ const string Gamerules::DEPRECIATION_CARGO_IS_PLUNDER = "depreciation cargo is p
 const string Gamerules::DEPRECIATION_DAILY = "depreciation daily";
 const string Gamerules::DEPRECIATION_GRACE_PERIOD = "depreciation grace period";
 const string Gamerules::DEPRECIATION_MAX_AGE = "depreciation max age";
-const string Gamerules::FIGHTER_DODGE_POLICY = "disabled fighters avoid projectiles";
+const string Gamerules::CROSSFIRE_IMMUNITY = "crossfire immunity";
 const string Gamerules::SYSTEM_DEPARTURE_MIN = "system departure min";
 const string Gamerules::SYSTEM_ARRIVAL_MIN = "system arrival min";
 const string Gamerules::HABITABLE_BASED_ARRIVAL_DISTANCE = "habitable based arrival distance";
@@ -342,13 +342,14 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
-	settings[FIGHTER_DODGE_POLICY] = Setting::List("Fighter crossfire immunity", {"none", "player", "all"});
-	settings[FIGHTER_DODGE_POLICY].SetOnToggleFunc([this](UI *) -> void {
-		storage.fighterHitPolicy = static_cast<FighterDodgePolicy>(settings[FIGHTER_DODGE_POLICY].Index());
+	settings[CROSSFIRE_IMMUNITY] = Setting::List("Crossfire immunity",
+		{"none", "player fighters", "all fighters", "all ships"});
+	settings[CROSSFIRE_IMMUNITY].SetOnToggleFunc([this](UI *) -> void {
+		storage.crossfireImmunity = static_cast<CrossfireImmunity>(settings[CROSSFIRE_IMMUNITY].Index());
 	});
-	settings[FIGHTER_DODGE_POLICY].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
-		storage.fighterHitPolicy = preset.storage.fighterHitPolicy;
-		return static_cast<int>(storage.fighterHitPolicy);
+	settings[CROSSFIRE_IMMUNITY].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.crossfireImmunity = preset.storage.crossfireImmunity;
+		return static_cast<int>(storage.crossfireImmunity);
 	});
 
 	settings[SYSTEM_DEPARTURE_MIN] = Setting::Unique("Minimum departure distance");
@@ -1074,15 +1075,20 @@ void Gamerules::Load(const DataNode &node)
 			storage.depreciationMaxAge = max<int>(0, child.Value(1));
 		else if(key == DEPRECIATION_CARGO_IS_PLUNDER)
 			storage.depreciationCargoIsPlunder = child.BoolValue(1);
-		else if(key == FIGHTER_DODGE_POLICY)
+		else if(key == CROSSFIRE_IMMUNITY || key == "disabled fighters avoid projectiles")
 		{
+			if(key != CROSSFIRE_IMMUNITY)
+				child.PrintTrace("The \"disabled fighters avoid projectiles\" gamerule has been deprecated. "
+					"Use \"crossfire immunity\" instead.");
 			const string &value = child.Token(1);
-			if(value == "all")
-				storage.fighterHitPolicy = FighterDodgePolicy::ALL;
-			else if(value == "none")
-				storage.fighterHitPolicy = FighterDodgePolicy::NONE;
-			else if(value == "only player")
-				storage.fighterHitPolicy = FighterDodgePolicy::ONLY_PLAYER;
+			if(value == "none")
+				storage.crossfireImmunity = CrossfireImmunity::NONE;
+			else if(value == "only player" || value == "player fighters")
+				storage.crossfireImmunity = CrossfireImmunity::PLAYER_FIGHTERS;
+			else if(value == "all" || value == "all fighters")
+				storage.crossfireImmunity = CrossfireImmunity::ALL_FIGHTERS;
+			else if(value == "all ships")
+				storage.crossfireImmunity = CrossfireImmunity::ALL_SHIPS;
 			else
 				child.PrintTrace("Skipping unrecognized value for gamerule:");
 		}
@@ -1116,7 +1122,7 @@ void Gamerules::Load(const DataNode &node)
 		else if(key == "spawn raid fleets")
 		{
 			child.PrintTrace("The \"spawn raid fleets\" gamerule has been deprecated. "
-					"Use \"raid fleet roll chance\" instead.");
+				"Use \"raid fleet roll chance\" instead.");
 			storage.raidFleetRollChance = child.BoolValue(1);
 		}
 		else if(key == RAID_FLEET_ROLL_CHANCE)
@@ -1267,14 +1273,16 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write(DEPRECIATION_MAX_AGE, storage.depreciationMaxAge);
 		if(storage.depreciationCargoIsPlunder != preset.storage.depreciationCargoIsPlunder)
 			out.Write(DEPRECIATION_CARGO_IS_PLUNDER, storage.depreciationCargoIsPlunder ? 1 : 0);
-		if(storage.fighterHitPolicy != preset.storage.fighterHitPolicy)
+		if(storage.crossfireImmunity != preset.storage.crossfireImmunity)
 		{
-			if(storage.fighterHitPolicy == FighterDodgePolicy::ALL)
-				out.Write(FIGHTER_DODGE_POLICY, "all");
-			else if(storage.fighterHitPolicy == FighterDodgePolicy::ONLY_PLAYER)
-				out.Write(FIGHTER_DODGE_POLICY, "only player");
+			if(storage.crossfireImmunity == CrossfireImmunity::ALL_SHIPS)
+				out.Write(CROSSFIRE_IMMUNITY, "all ships");
+			else if(storage.crossfireImmunity == CrossfireImmunity::ALL_FIGHTERS)
+				out.Write(CROSSFIRE_IMMUNITY, "all fighters");
+			else if(storage.crossfireImmunity == CrossfireImmunity::PLAYER_FIGHTERS)
+				out.Write(CROSSFIRE_IMMUNITY, "player fighters");
 			else
-				out.Write(FIGHTER_DODGE_POLICY, "none");
+				out.Write(CROSSFIRE_IMMUNITY, "none");
 		}
 		if(storage.systemDepartureMin != preset.storage.systemDepartureMin)
 			out.Write(SYSTEM_DEPARTURE_MIN, storage.systemDepartureMin);
@@ -1631,9 +1639,9 @@ bool Gamerules::DepreciationCargoIsPlunder() const
 
 
 
-Gamerules::FighterDodgePolicy Gamerules::FightersHitWhenDisabled() const
+Gamerules::CrossfireImmunity Gamerules::GetCrossfireImmunity() const
 {
-	return storage.fighterHitPolicy;
+	return storage.crossfireImmunity;
 }
 
 
@@ -1901,7 +1909,7 @@ void Gamerules::SyncSettings()
 	settings[LOCK_ON_CAPTURE].SetIndex(LockOnCapture());
 	settings[FRIENDLY_FIRE_CARRIER_EXCEPTION].SetIndex(FriendlyFireCarrierException());
 	settings[UNIVERSAL_AMMO_RESTOCKING].SetIndex(storage.miscRules[UNIVERSAL_AMMO_RESTOCKING]);
-	settings[FIGHTER_DODGE_POLICY].SetIndex(static_cast<int>(FightersHitWhenDisabled()));
+	settings[CROSSFIRE_IMMUNITY].SetIndex(static_cast<int>(GetCrossfireImmunity()));
 	settings[FLEET_SIZE_LIMITATION].SetIndex(static_cast<int>(GetFleetSizeLimitation()));
 	settings[PERMADEATH_MODE].SetIndex(static_cast<int>(GetPermadeathMode()));
 	settings[CAPTURE_PROFIT_SHARING].SetIndex(static_cast<int>(GetCaptureProfitSharing()));

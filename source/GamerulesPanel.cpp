@@ -398,7 +398,7 @@ void GamerulesPanel::DrawGamerules()
 		"",
 		"Miscellaneous",
 		Gamerules::LOCK_GAMERULES,
-		Gamerules::FIGHTER_DODGE_POLICY,
+		Gamerules::CROSSFIRE_IMMUNITY,
 		Gamerules::UNIVERSAL_AMMO_RESTOCKING,
 	};
 

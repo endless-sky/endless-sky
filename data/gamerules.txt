@@ -49,7 +49,7 @@
 	"fleet multiplier" 1.
 	
 	"lock gamerules" true
-	"disabled fighters avoid projectiles" "all"
+	"crossfire immunity" "all ships"
 	"universal ammo restocking" true
 	
 	"raid fleet roll chance" 1.

@@ -33,11 +33,12 @@ class UI;
 // for example, the spawn rate of person ships or whether universal ramscoops are active.
 class Gamerules {
 public:
-	// Defines which disabled fighters can dodge stray projectiles.
-	enum class FighterDodgePolicy : int_fast8_t {
+	// Defines which disabled ships can dodge stray projectiles.
+	enum class CrossfireImmunity : int_fast8_t {
 		NONE = 0,
-		ONLY_PLAYER,
-		ALL,
+		PLAYER_FIGHTERS,
+		ALL_FIGHTERS,
+		ALL_SHIPS,
 	};
 
 	// Defines how big the player's active fleet can get.
@@ -115,7 +116,7 @@ public:
 	static const std::string DEPRECIATION_DAILY;
 	static const std::string DEPRECIATION_GRACE_PERIOD;
 	static const std::string DEPRECIATION_MAX_AGE;
-	static const std::string FIGHTER_DODGE_POLICY;
+	static const std::string CROSSFIRE_IMMUNITY;
 	static const std::string SYSTEM_DEPARTURE_MIN;
 	static const std::string SYSTEM_ARRIVAL_MIN;
 	static const std::string HABITABLE_BASED_ARRIVAL_DISTANCE;
@@ -201,7 +202,7 @@ public:
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
 	bool DepreciationCargoIsPlunder() const;
-	FighterDodgePolicy FightersHitWhenDisabled() const;
+	CrossfireImmunity GetCrossfireImmunity() const;
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
 	bool HabitableBasedArrivalDistance() const;
@@ -267,7 +268,7 @@ private:
 		bool depreciationCargoIsPlunder = false;
 		int depreciationGracePeriod = 7;
 		int depreciationMaxAge = 1000;
-		FighterDodgePolicy fighterHitPolicy = FighterDodgePolicy::ALL;
+		CrossfireImmunity crossfireImmunity = CrossfireImmunity::ALL_SHIPS;
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
 		bool habitableBasedArrivalDistance = true;
