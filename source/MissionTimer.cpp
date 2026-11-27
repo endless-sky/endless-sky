@@ -25,6 +25,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 
 #include <cmath>
+#include <ranges>
 
 using namespace std;
 
@@ -211,7 +212,7 @@ void MissionTimer::Save(DataWriter &out) const
 			}
 			out.EndChild();
 		}
-		for(const auto &[trigger, action] : actions)
+		for(const auto &action : actions | views::values)
 			action.Save(out);
 	}
 	out.EndChild();

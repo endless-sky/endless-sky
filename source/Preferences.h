@@ -174,6 +174,15 @@ public:
 		ALWAYS,
 	};
 
+	enum class EscortRegeneratingAmmoUsage : int_fast8_t {
+		// Treat weapons with regenerating ammo like any other weapon.
+		DEFAULT = 0,
+		// Only use regenerating ammo if ammo usage isn't set to never
+		OBEY_NEVER,
+		// Regardless of the ammo usage preference, regenerating ammo can be used.
+		FREELY,
+	};
+
 #ifdef _WIN32
 	enum class TitleBarTheme : int_fast8_t {
 		DEFAULT = 0,
@@ -207,6 +216,7 @@ public:
 	static void SetHelp(const std::string &name, bool shown = true);
 
 	static EscortAmmoUsage AmmoUsage();
+	static EscortRegeneratingAmmoUsage RegeneratingAmmoUsage();
 
 	/// Date format preferences.
 	static DateFormat GetDateFormat();
@@ -323,6 +333,7 @@ public:
 	static const std::string DRAW_BACKGROUND_HAZE;
 	static const std::string DRAW_STARFIELD;
 	static const std::string ESCORT_AMMO_USAGE;
+	static const std::string ESCORT_REGENERATING_AMMO_USAGE;
 	static const std::string EXTENDED_JUMP_EFFECTS;
 	static const std::string FF_CAPSLOCK_SYNC;
 	static const std::string FIGHTERS_REPAIR_IN;

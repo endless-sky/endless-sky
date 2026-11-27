@@ -38,7 +38,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Rectangle.h"
 #include "TaskQueue.h"
 
-#include <condition_variable>
 #include <list>
 #include <map>
 #include <memory>
@@ -69,6 +68,8 @@ class Engine {
 public:
 	explicit Engine(PlayerInfo &player);
 	~Engine();
+
+	void SetUI(UI *ui);
 
 	// Place all the player's ships, and "enter" the system the player is in.
 	void Place();
@@ -104,6 +105,7 @@ public:
 	void ReleaseDrag(const Point &from, const Point &to);
 	void RightOrMiddleClick(const Point &point, MouseButton button, int clicks);
 	void SelectGroup(int group, bool hasShift, bool hasControl);
+	void QueueCommand(const Command &queue);
 
 	// Break targeting on all projectiles between the player and the given
 	// government; gov projectiles stop targeting the player and player's
@@ -133,9 +135,9 @@ private:
 	public:
 		Point center;
 		Angle angle;
-		double radius;
+		double radius = 0.;
 		const Color &color;
-		int count;
+		int count = 0;
 	};
 
 	class Status {
@@ -170,8 +172,8 @@ private:
 	public:
 		Point position;
 		Point angle;
-		double scale;
-		bool isBlind;
+		double scale = 0;
+		bool isBlind = false;
 	};
 
 	class Zoom {
@@ -212,7 +214,7 @@ private:
 	void SpawnFleets();
 	void SpawnPersons();
 	void GenerateWeather();
-	void SendHails();
+	void SendHails() const;
 	void HandleKeyboardInputs();
 	void HandleMouseClicks();
 	void HandleMouseInput(Command &activeCommands);
@@ -236,6 +238,7 @@ private:
 
 private:
 	PlayerInfo &player;
+	UI *ui = nullptr;
 
 	std::list<std::shared_ptr<Ship>> ships;
 	std::vector<Projectile> projectiles;
@@ -318,6 +321,8 @@ private:
 	bool doEnterLabels = false;
 	bool doEnter = false;
 	bool hadHostiles = false;
+	int protectionTime = 0;
+	const Government *protectionGov = nullptr;
 
 	// A timer preventing out-of-ammo sounds from triggering constantly every frame when the fire key is held.
 	std::vector<int> emptySoundsTimer;
@@ -327,6 +332,8 @@ private:
 	Command activeCommands;
 	// Keyboard commands that were active in the previous step.
 	Command keyHeld;
+	// Commands sent through the MainPanel.
+	Command queued;
 	// Pressing "land" or "board" rapidly toggles targets; pressing it once re-engages landing or boarding.
 	int keyInterval = 0;
 

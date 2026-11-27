@@ -17,6 +17,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "text/Alignment.h"
 #include "Color.h"
+#include "Command.h"
 #include "Point.h"
 #include "Rectangle.h"
 #include "text/Truncate.h"
@@ -73,9 +74,9 @@ private:
 	class Element {
 	public:
 		// State enumeration:
-		static const int INACTIVE = 0;
-		static const int ACTIVE = 1;
-		static const int HOVER = 2;
+		static constexpr int INACTIVE = 0;
+		static constexpr int ACTIVE = 1;
+		static constexpr int HOVER = 2;
 
 	public:
 		// Make sure the destructor is virtual, because classes derived from
@@ -175,6 +176,7 @@ private:
 		const Color *color[3] = {nullptr, nullptr, nullptr};
 		int fontSize = 14;
 		char buttonKey = '\0';
+		Command buttonCommand;
 		bool isDynamic = false;
 		Truncate truncate = Truncate::NONE;
 	};

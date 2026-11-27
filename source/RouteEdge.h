@@ -28,7 +28,7 @@ class System;
 // gets replaced when a better route is found.
 class RouteEdge {
 public:
-	RouteEdge(const System *system = nullptr);
+	explicit RouteEdge(const System *system = nullptr);
 
 	// Sorting operator to prioritize the "best" edges. The priority queue
 	// returns the "largest" item, so this should return true if this item

@@ -251,7 +251,6 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			break;
 		}
 		return false;
-		break;
 	case SDLK_x:
 		if(ctrl)
 		{
@@ -260,7 +259,6 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			break;
 		}
 		return false;
-		break;
 	case SDLK_v:
 		if(ctrl)
 		{
@@ -269,7 +267,6 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			break;
 		}
 		return false;
-		break;
 	case SDLK_z:
 		if(ctrl)
 		{
@@ -286,7 +283,6 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			break;
 		}
 		return false;
-		break;
 	case SDLK_INSERT:
 		if(shift)
 		{
@@ -301,7 +297,6 @@ bool Edit::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, bool isN
 			break;
 		}
 		return false;
-		break;
 	case SDLK_AC_BACK:
 	case SDLK_ESCAPE:
 		SetFocus(false);
@@ -584,17 +579,17 @@ void Edit::Redo()
 }
 
 
-Point Edit::AlignedOffset(size_t offset)
+Point Edit::AlignedOffset(size_t offset) const
 {
 	const Font &font = FontSet::Get(fontSize);
 	const string &s = Text();
-	Point ret{};
+	Point ret;
 	switch(alignment)
 	{
-	case Edit::LEFT:
+	case LEFT:
 		ret = Point(textBounds.Left(), textBounds.Center().Y() - font.Height() / 2.0);
 		break;
-	case Edit::RIGHT:
+	case RIGHT:
 		ret = Point(textBounds.Right() - font.Width(s), textBounds.Center().Y() - font.Height() / 2.0);
 		break;
 	default: // CENTER

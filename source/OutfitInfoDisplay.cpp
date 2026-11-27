@@ -203,6 +203,9 @@ namespace {
 		{"burn resistance", 2},
 
 		{"flotsam chance", 3},
+		{"self destruct", 3},
+		{"board self destruct", 3},
+		{"capture self destruct", 3},
 
 		{"cloak by mass", 3},
 		{"shield multiplier", 3},
@@ -254,14 +257,16 @@ namespace {
 		{"cloaking shield delay", 5},
 		{"depleted shield delay", 5},
 		{"disabled recovery time", 5},
+		{"self destruct time", 5},
+		{"random self destruct time", 5},
 		{"jump duration", 5},
 	};
 
 	bool IsNotRequirement(const string &label)
 	{
 		return label == "automaton" ||
-			SCALE.find(label) != SCALE.end() ||
-			Outfit::BooleanAttributes().find(label) != Outfit::BooleanAttributes().end();
+			SCALE.contains(label) ||
+			Outfit::BooleanAttributes().contains(label);
 	}
 }
 
@@ -324,34 +329,34 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 		const auto &licenseOutfit = GameData::Outfits().Find(license + " License");
 		if(descriptionCollapsed || (licenseOutfit && licenseOutfit->Cost()))
 		{
-			requirementLabels.push_back("license:");
-			requirementValues.push_back(license);
+			requirementLabels.emplace_back("license:");
+			requirementValues.emplace_back(license);
 			requirementsHeight += 20;
 		}
 	}
 
 	if(buyValue == cost)
-		requirementLabels.push_back("cost:");
+		requirementLabels.emplace_back("cost:");
 	else
 	{
 		ostringstream out;
 		out << "cost (" << (100 * buyValue) / cost << "%):";
-		requirementLabels.push_back(out.str());
+		requirementLabels.emplace_back(out.str());
 	}
-	requirementValues.push_back(buyValue ? Format::AbbreviatedNumber(buyValue) : "free");
+	requirementValues.emplace_back(buyValue ? Format::AbbreviatedNumber(buyValue) : "free");
 	requirementsHeight += 20;
 
 	if(canSell && sellValue != buyValue)
 	{
 		if(sellValue == cost)
-			requirementLabels.push_back("sells for:");
+			requirementLabels.emplace_back("sells for:");
 		else
 		{
 			ostringstream out;
 			out << "sells for (" << (100 * sellValue) / cost << "%):";
-			requirementLabels.push_back(out.str());
+			requirementLabels.emplace_back(out.str());
 		}
-		requirementValues.push_back(Format::AbbreviatedNumber(sellValue));
+		requirementValues.emplace_back(Format::AbbreviatedNumber(sellValue));
 		requirementsHeight += 20;
 	}
 
@@ -385,7 +390,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 	}
 
 	for(const auto &[name, value] : outfit)
-		if(!count(BEFORE.begin(), BEFORE.end(), name))
+		if(!ranges::count(BEFORE, name))
 			AddRequirementAttribute(name, value);
 }
 
@@ -395,7 +400,7 @@ void OutfitInfoDisplay::UpdateRequirements(const Outfit &outfit, const PlayerInf
 // Any exceptions to that rule would require in-game code to handle
 // their unique properties, so when code is added to handle a new
 // attribute, this code also should also be updated.
-void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
+void OutfitInfoDisplay::AddRequirementAttribute(const string &label, double value)
 {
 	// These attributes have negative values but are not requirements
 	if(IsNotRequirement(label))
@@ -406,8 +411,8 @@ void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
 	{
 		if(value > 0)
 		{
-			requirementLabels.push_back(label + ":");
-			requirementValues.push_back(Format::Number(value));
+			requirementLabels.emplace_back(label + ":");
+			requirementValues.emplace_back(Format::Number(value));
 			requirementsHeight += 20;
 			return;
 		}
@@ -418,8 +423,8 @@ void OutfitInfoDisplay::AddRequirementAttribute(string label, double value)
 	if(value >= 0)
 		return;
 
-	requirementLabels.push_back(label + " needed:");
-	requirementValues.push_back(Format::Number(-value));
+	requirementLabels.emplace_back(label + " needed:");
+	requirementValues.emplace_back(Format::Number(-value));
 	requirementsHeight += 20;
 }
 
@@ -456,7 +461,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	{
 		// Attributes that are expected to be negative and boolean attributes
 		// are displayed separately.
-		if(count(EXPECTED_NEGATIVE.begin(), EXPECTED_NEGATIVE.end(), name) || Outfit::BooleanAttributes().contains(name))
+		if(ranges::count(EXPECTED_NEGATIVE, name) || Outfit::BooleanAttributes().contains(name))
 			continue;
 
 		// Only show positive values here, with some exceptions.
@@ -547,8 +552,7 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 		// Identify the ranges between which the dropoff takes place.
 		attributeLabels.emplace_back("dropoff range:");
 		const pair<double, double> &ranges = weapon->DropoffRanges();
-		attributeValues.emplace_back(Format::Number(ranges.first)
-			+ " - " + Format::Number(ranges.second));
+		attributeValues.emplace_back(Format::Number(ranges.first) + " - " + Format::Number(ranges.second));
 		attributesHeight += 20;
 	}
 
@@ -700,8 +704,8 @@ void OutfitInfoDisplay::UpdateAttributes(const Outfit &outfit)
 	for(unsigned i = 0; i < PERCENT_NAMES.size(); ++i)
 		if(percentValues[i])
 		{
-			attributeLabels.push_back(PERCENT_NAMES[i]);
-			attributeValues.push_back(Format::Percentage(percentValues[i]));
+			attributeLabels.emplace_back(PERCENT_NAMES[i]);
+			attributeValues.emplace_back(Format::Percentage(percentValues[i]));
 			attributesHeight += 20;
 		}
 	if(weapon->ThrottleControl())

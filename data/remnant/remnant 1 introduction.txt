@@ -3774,6 +3774,8 @@ mission "Remnant: Expanded Horizons Astral 2"
 				`	"Let me know when you are done."`
 					goto "astral done"
 				`	"Would you mind if I came too?"`
+			action
+				set "drak revelations: sagittarius a*"
 			`	"Not at all, Captain. The view should be remarkable, and so long as we stay inside the shields, the radiation will not pose a problem." You quickly don your spacesuit and join Dawn outside on the hull. As promised, the view is indeed magnificent. Dawn signs occasionally, pointing out various features, and you appreciate that out here, sound would just be incongruous with the natural splendor.`
 			scene "scene/sagittarius a"
 			label "astral done"

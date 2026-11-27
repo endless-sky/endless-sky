@@ -40,7 +40,7 @@ using namespace std;
 
 namespace {
 	// The number of frames to spend interpolating to the next target center.
-	const double LERP_DURATION = 150.;
+	constexpr double LERP_DURATION = 150.;
 }
 
 
@@ -175,19 +175,23 @@ void MiniMap::Draw(int step) const
 	const Color &blockedColor = colors.Get("blocked mission")->Additive(alpha * 2.f);
 	const Color &waypointColor = colors.Get("waypoint")->Additive(alpha * 2.f);
 
+	auto drawRing = [&](const System &system, const Point &point) -> void {
+		Color color = Color(.5f * alpha, 0.f);
+		const Government *gov = system.GetGovernment();
+		if(player.CanView(system) && system.IsInhabited(flagship) && gov)
+			color = gov->GetColor().Additive(alpha);
+		RingShader::Draw(point, MapPanel::OUTER, MapPanel::INNER, color);
+	};
+
 	auto drawSystemLinks = [&](const System &system) -> void {
 		static const string UNKNOWN_SYSTEM = "Unexplored System";
-		const Government *gov = system.GetGovernment();
 		Point from = system.Position() - center + drawPos;
 		const string &name = player.KnowsName(system) ? system.DisplayName() : UNKNOWN_SYSTEM;
 		font.Draw(name, from + Point(MapPanel::OUTER, -.5 * font.Height()), lineColor);
 
 		// Draw the origin and destination systems, since they
 		// might not be linked via hyperspace.
-		Color color = Color(.5f * alpha, 0.f);
-		if(player.CanView(system) && system.IsInhabited(flagship) && gov)
-			color = gov->GetColor().Additive(alpha);
-		RingShader::Draw(from, MapPanel::OUTER, MapPanel::INNER, color);
+		drawRing(system, from);
 
 		// Add a circle around the system that the player is currently in.
 		if(&system == current)
@@ -208,12 +212,7 @@ void MiniMap::Draw(int step) const
 			if(drawnSystems.contains(link))
 				continue;
 			drawnSystems.insert(link);
-
-			gov = link->GetGovernment();
-			Color color = Color(.5f * alpha, 0.f);
-			if(player.CanView(*link) && link->IsInhabited(flagship) && gov)
-				color = gov->GetColor().Additive(alpha);
-			RingShader::Draw(to, MapPanel::OUTER, MapPanel::INNER, color);
+			drawRing(*link, to);
 		}
 
 		unsigned missionCounter = 0;

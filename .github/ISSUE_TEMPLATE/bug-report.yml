@@ -75,12 +75,13 @@ body:
       label: Game Source
       description: From where did you obtain your current game version?
       options:
+        - GitHub Releases
         - Steam
         - GOG
+        - Homebrew
+        - Flathub
         - ESLauncher2
         - Built from source
-        - GitHub Releases
-        - Homebrew
         - Other (please describe)
     validations:
       required: true

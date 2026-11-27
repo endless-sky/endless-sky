@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Swizzle.h"
 #include "Tooltip.h"
 
+#include <cstdint>
 #include <map>
 #include <set>
 #include <string>
@@ -245,7 +246,7 @@ private:
 	std::vector<Zone>::const_iterator Selected() const;
 	// Check if the given point is within the button zone, and if so return the
 	// letter of the button (or ' ' if it's not on a button).
-	char CheckButton(int x, int y);
+	char CheckButton(int x, int y) const;
 
 
 private:

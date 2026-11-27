@@ -40,10 +40,10 @@ namespace {
 	const string HEADING[6] = {"Type", "Principal", "Interest", "Term", "Payment", ""};
 	// X coordinates of the columns of the table.
 	const int COLUMN[5] = {20, 130, 210, 280, 330};
-	const int EXTRA_X = 410;
+	constexpr int EXTRA_X = 410;
 
 	// Maximum number of rows of mortgages, etc. to draw.
-	const int MAX_ROWS = 8;
+	constexpr int MAX_ROWS = 8;
 }
 
 

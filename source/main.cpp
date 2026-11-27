@@ -64,6 +64,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cassert>
 #include <future>
 #include <exception>
+#include <ranges>
 #include <string>
 
 #ifdef _WIN32
@@ -88,7 +89,7 @@ using namespace std;
 void PrintHelp();
 void PrintVersion();
 void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversation,
-	const string &testToRun, bool debugMode);
+	const string &testToRunName, bool debugMode);
 Conversation LoadConversation(const PlayerInfo &player);
 void PrintTestsTable();
 
@@ -171,6 +172,7 @@ int main(int argc, char *argv[])
 
 	try {
 		// Load plugin settings and preferences before game data.
+		Command::Init();
 		Preferences::Init();
 		Preferences::Load();
 		PluginManager::LoadSettings();
@@ -269,7 +271,7 @@ int main(int argc, char *argv[])
 		// This is the main loop where all the action begins.
 		GameLoop(player, queue, conversation, testToRunName, debugMode);
 	}
-	catch(Test::known_failure_tag)
+	catch(const Test::known_failure_tag &)
 	{
 		// This is not an error. Simply exit successfully.
 	}
@@ -365,24 +367,7 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 			SDL_Keycode eventKeyCode = event.key.keysym.sym;
 			Uint16 eventKeyMod = event.key.keysym.mod;
 #endif
-			if(debugMode && event.type == SDL_KEYDOWN && eventKeyCode == SDLK_BACKQUOTE)
-			{
-				isDebugPaused = !isDebugPaused;
-				if(isDebugPaused)
-					Audio::Pause();
-				else
-					Audio::Resume();
-			}
-			else if(event.type == SDL_KEYDOWN && menuPanels.IsEmpty()
-					&& Command(eventKeyCode).Has(Command::MENU)
-					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
-			{
-				// User pressed the Menu key.
-				menuPanels.Push(shared_ptr<Panel>(
-					new MenuPanel(player, gamePanels)));
-				UI::PlaySound(UI::UISound::NORMAL);
-			}
-			else if(event.type == SDL_QUIT)
+			if(event.type == SDL_QUIT)
 				menuPanels.Quit();
 #ifdef ES_USE_SDL3
 			else if(event.type == SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED)
@@ -406,25 +391,46 @@ void GameLoop(PlayerInfo &player, TaskQueue &queue, const Conversation &conversa
 				menuPanels.TooltipUpdate();
 				gamePanels.TooltipUpdate();
 			}
-			else if(event.type == SDL_KEYDOWN && !toggleTimeout
-					&& (Command(eventKeyCode).Has(Command::FULLSCREEN)
+			else if(event.type == SDL_KEYDOWN)
+			{
+				// If debug mode is active, always map backquote to the debug pause.
+				if(debugMode && eventKeyCode == SDLK_BACKQUOTE)
+				{
+					isDebugPaused = !isDebugPaused;
+					if(isDebugPaused)
+						Audio::Pause();
+					else
+						Audio::Resume();
+				}
+				// The menu button is the only (normal) button that is immune to being captured
+				// by the active UI.
+				else if(menuPanels.IsEmpty() && Command(eventKeyCode).Has(Command::MENU)
+					&& !gamePanels.IsEmpty() && gamePanels.Top()->IsInterruptible())
+				{
+					// User pressed the Menu key.
+					menuPanels.Push(make_shared<MenuPanel>(player, gamePanels));
+					UI::PlaySound(UI::UISound::NORMAL);
+				}
+				else if(activeUI.CaptureAllKeyboardInput() && activeUI.Handle(event))
+				{
+					// The UI handled the event.
+				}
+				else if(!toggleTimeout && (Command(eventKeyCode).Has(Command::FULLSCREEN)
 					|| (eventKeyCode == SDLK_RETURN && (eventKeyMod & KMOD_ALT))))
-			{
-				toggleTimeout = 30;
-				Preferences::Toggle(Preferences::FULLSCREEN);
+				{
+					toggleTimeout = 30;
+					Preferences::Toggle(Preferences::FULLSCREEN);
+				}
+				else if(Command(eventKeyCode).Has(Command::PERFORMANCE_DISPLAY))
+					Preferences::Toggle(Preferences::SHOW_PERFORMANCE_METRICS);
+				else if(!event.key.repeat && (Command(eventKeyCode).Has(Command::FASTFORWARD))
+						&& !fastForwardSyncToCapsLock)
+					isFastForward = !isFastForward;
+				else if(!activeUI.CaptureAllKeyboardInput())
+					activeUI.Handle(event);
 			}
-			else if(event.type == SDL_KEYDOWN && Command(eventKeyCode).Has(Command::PERFORMANCE_DISPLAY))
-				Preferences::Toggle(Preferences::SHOW_PERFORMANCE_METRICS);
-			else if(activeUI.Handle(event))
-			{
-				// The UI handled the event.
-			}
-			else if(event.type == SDL_KEYDOWN && !event.key.repeat
-					&& (Command(eventKeyCode).Has(Command::FASTFORWARD))
-					&& !fastForwardSyncToCapsLock)
-			{
-				isFastForward = !isFastForward;
-			}
+			else
+				activeUI.Handle(event);
 		}
 
 		// Special case: If fastforward is on capslock, update on mod state and not
@@ -750,9 +756,9 @@ Conversation LoadConversation(const PlayerInfo &player)
 // (active/missing feature/known failure)..
 void PrintTestsTable()
 {
-	for(auto &it : GameData::Tests())
-		if(it.second.GetStatus() != Test::Status::PARTIAL
-				&& it.second.GetStatus() != Test::Status::BROKEN)
-			cout << it.second.Name() << '\n';
+	for(const auto &test : GameData::Tests() | views::values)
+		if(test.GetStatus() != Test::Status::PARTIAL
+				&& test.GetStatus() != Test::Status::BROKEN)
+			cout << test.Name() << '\n';
 	cout.flush();
 }
