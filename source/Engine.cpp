@@ -1728,7 +1728,10 @@ void Engine::CalculateStep()
 	if(timePaused)
 	{
 		// Only process player commands and handle mouse clicks.
-		ai.MovePlayer(*player.Flagship(), activeCommands);
+		Ship &flag = *player.Flagship();
+		Command command;
+		ai.MovePlayer(flag, activeCommands, command);
+		flag.SetCommands(command);
 		activeCommands.Clear();
 		HandleMouseClicks();
 	}
@@ -2414,21 +2417,24 @@ void Engine::HandleMouseClicks()
 	double clickRange = 50.;
 	shared_ptr<Ship> clickTarget;
 	for(shared_ptr<Ship> &ship : ships)
-		if(ship->GetSystem() == playerSystem && &*ship != flagship && ship->IsTargetable())
+	{
+		if(ship->GetSystem() != playerSystem || !ship->IsTargetable())
+			continue;
+		if(!Preferences::Has(Preferences::CONTROL_FLAGSHIP_WITH_ORDERS) && ship.get() == flagship)
+			continue;
+		const Mask &mask = ship->GetMask(step);
+		double range = mask.Range(clickPoint - ship->Position(), ship->Facing());
+		if(range <= clickRange)
 		{
-			const Mask &mask = ship->GetMask(step);
-			double range = mask.Range(clickPoint - ship->Position(), ship->Facing());
-			if(range <= clickRange)
-			{
-				clickRange = range;
-				clickTarget = ship;
-				// If we've found an enemy within the click zone, favor
-				// targeting it rather than any other ship. Otherwise, keep
-				// checking for hits because another ship might be an enemy.
-				if(!range && ship->GetGovernment()->IsEnemy())
-					break;
-			}
+			clickRange = range;
+			clickTarget = ship;
+			// If we've found an enemy within the click zone, favor
+			// targeting it rather than any other ship. Otherwise, keep
+			// checking for hits because another ship might be an enemy.
+			if(!range && ship->GetGovernment()->IsEnemy())
+				break;
 		}
+	}
 
 	MouseButton secondaryMouseButton = isMouseTurningEnabled ? MouseButton::MIDDLE : MouseButton::RIGHT;
 	bool clickedAsteroid = false;
@@ -2453,9 +2459,10 @@ void Engine::HandleMouseClicks()
 			else
 			{
 				UI::PlaySound(UI::UISound::TARGET);
-				flagship->SetTargetShip(clickTarget);
+				flagship->SetTargetShip(clickTarget.get() == flagship ? nullptr : clickTarget);
 				if(clickTarget->IsYours())
 					player.SelectEscort(clickTarget.get(), hasShift);
+				ai.ClearFlagshipTargetOrders();
 			}
 		}
 	}
@@ -2475,6 +2482,7 @@ void Engine::HandleMouseClicks()
 				flagship->SetTargetAsteroid(minable);
 				if(mouseButton == secondaryMouseButton)
 					ai.IssueAsteroidTarget(minable);
+				ai.ClearFlagshipTargetOrders();
 			}
 		}
 	}
@@ -2492,6 +2500,7 @@ void Engine::HandleMouseClicks()
 		if(numClicks > 1)
 			flagship->SetTargetStellar(nullptr);
 		player.ClearSelectedEscorts();
+		ai.ClearFlagshipTargetOrders();
 	}
 }
 

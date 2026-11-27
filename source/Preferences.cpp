@@ -153,6 +153,7 @@ const string Preferences::AUTO_UNPARK_FLAGSHIP = "Automatically unpark flagship"
 const string Preferences::BLOCK_SCREEN_SAVER = "Block screen saver";
 const string Preferences::BOARDING_TARGET_PRIORITY = "boarding target";
 const string Preferences::CAMERA_ACCELERATION = "camera acceleration";
+const string Preferences::CONTROL_FLAGSHIP_WITH_ORDERS = "control flagship with orders";
 const string Preferences::DAMAGED_FIGHTERS_RETREAT = "Damaged fighters retreat";
 const string Preferences::DATE_FORMAT = "date format";
 const string Preferences::DEFER_LOADING_IMAGES = "Defer loading images";
@@ -249,6 +250,7 @@ void Preferences::Init()
 	settings[BOARDING_TARGET_PRIORITY] = Setting::List("Boarding target priority", {"proximity", "value", "mixed"}, 0,
 		true);
 	settings[CAMERA_ACCELERATION] = Setting::List("Camera acceleration", {"off", "on", "reversed"}, 0);
+	settings[CONTROL_FLAGSHIP_WITH_ORDERS] = Setting::OnOff("Control ship with orders", false);
 	settings[DAMAGED_FIGHTERS_RETREAT] = Setting::OnOff("Damaged fighters retreat", true);
 	settings[DATE_FORMAT] = Setting::List("Date format", {"dd/mm/yyyy", "mm/dd/yyyy", "yyyy-mm-dd"}, 0, true);
 	settings[DEFER_LOADING_IMAGES] = Setting::OnOff("Defer loading images", false);

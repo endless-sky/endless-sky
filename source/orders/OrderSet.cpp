@@ -82,6 +82,15 @@ bool OrderSet::Empty() const noexcept
 
 
 
+bool OrderSet::AnyExcept(Types type) const noexcept
+{
+	auto copy = types;
+	copy.reset(static_cast<size_t>(type));
+	return copy.any();
+}
+
+
+
 void OrderSet::Add(const OrderSingle &newOrder, bool *hasMismatch, bool *alreadyHarvesting)
 {
 	// HOLD_ACTIVE cannot be given as manual order, but is used internally by ship AI.
