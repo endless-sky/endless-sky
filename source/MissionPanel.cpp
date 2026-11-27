@@ -62,6 +62,9 @@ namespace {
 		if(!system)
 			return false;
 
+		if(mission.HasReminder())
+			return mission.SourceSystem() == system;
+
 		if(mission.Destination()->IsInSystem(system))
 			return true;
 
@@ -560,8 +563,6 @@ bool MissionPanel::Click(int x, int y, MouseButton button, int clicks)
 						acceptedIt = accepted.begin();
 				}
 			}
-			if(acceptedIt != accepted.end())
-				continue;
 
 			if(availableIt != available.end() && Involves(*availableIt, system))
 				break;
