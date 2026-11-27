@@ -610,7 +610,7 @@ mission "Intro [1 Transport]"
 	description "Bring your new friend James, along with this large family, to <destination>. Payment will be <payment>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	source "New Greenland"
 	destination "New China"
 	passengers 5
@@ -653,7 +653,7 @@ mission "Intro [2 Transport]"
 	description "These tourists will pay you <payment> to take them to <destination>. Your new friend James will also be tagging along for the ride."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 4
 	source "New China"
 	destination "Earth"
@@ -685,7 +685,7 @@ mission "Intro [3 Transport]"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -711,7 +711,7 @@ mission "Intro [1 Freighter]"
 	description "Travel with your new friend James to <destination>, and deliver <cargo>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	cargo vaccines 48
 	passengers 1
 	source "New Greenland"
@@ -747,7 +747,7 @@ mission "Intro [2 Freighter]"
 	description "This shipment of <commodity> needs to get to <destination>, by <date>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	cargo "raw eel" 34
 	passengers 1
 	source "Heartland"
@@ -783,7 +783,7 @@ mission "Intro [3 Freighter]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Ingot"
 	destination "Hestia"
@@ -807,7 +807,7 @@ mission "Intro [1 Interceptor]"
 	description "Escort a merchant convoy to <destination>, along with your new friend James."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "New Greenland"
 	destination "Gemstone"
@@ -862,7 +862,7 @@ mission "Intro [2 Interceptor]"
 	description "Deliver <commodity> to <destination>, while avoiding pirate attacks."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	cargo gemstones 15
 	source "Gemstone"
@@ -893,7 +893,7 @@ mission "Intro [2.1 Interceptor]"
 	description "Go to the <system> system and mine five tons of silicon, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Ingot"
 	destination "New Sahara"
@@ -922,7 +922,7 @@ mission "Intro [3 Interceptor]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "New Sahara"
 	destination "Hestia"
@@ -976,7 +976,7 @@ mission "Midgard Intro [1 Transport]"
 	description "Bring your new friend James, along with a team of scientists, to <destination>. Payment will be <payment>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	source "Asgard"
 	destination "Nifel"
 	passengers 5
@@ -1019,7 +1019,7 @@ mission "Midgard Intro [2 Transport]"
 	description "These tourists will pay you <payment> to take them to <destination>. Your new friend James will also be tagging along for the ride."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 4
 	source "Nifel"
 	destination "Calda"
@@ -1054,7 +1054,7 @@ mission "Midgard Intro [3 Transport]"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Calda"
 	destination "Hestia"
@@ -1087,7 +1087,7 @@ mission "Midgard Intro [1 Transport Alt]"
 	description "Bring your new friend James, along with a spacediver, to <destination>. Payment will be <payment>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	source "Asgard"
 	destination "Norn"
 	passengers 2
@@ -1131,7 +1131,7 @@ mission "Midgard Intro [2 Transport Alt]"
 	description "This returning tourist will pay you <payment> to take them to <destination>. Your new friend James will also be tagging along for the ride."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 2
 	source "Norn"
 	destination "Earth"
@@ -1163,7 +1163,7 @@ mission "Midgard Intro [3 Transport Alt]"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -1189,7 +1189,7 @@ mission "Midgard Intro [1 Freighter]"
 	description "Travel with your new friend James to <destination> and deliver <cargo>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	cargo "outfit parts" 40
 	passengers 1
 	source "Asgard"
@@ -1225,7 +1225,7 @@ mission "Midgard Intro [2 Freighter]"
 	description "This shipment of <commodity> needs to get to <destination>, by <date>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	cargo "raw bass" 34
 	passengers 1
 	source "Valhalla"
@@ -1263,7 +1263,7 @@ mission "Midgard Intro [3 Freighter]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Ingot"
 	destination "Hestia"
@@ -1287,7 +1287,7 @@ mission "Midgard Intro [1 Interceptor]"
 	description "Deliver <commodity>, along with your new friend James, to <destination>, while avoiding a pirate warship."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	cargo "confidential documents" 2
 	source "Asgard"
@@ -1341,7 +1341,7 @@ mission "Midgard Intro [2 Interceptor]"
 	description "Escort a merchant convoy to <destination>, along with James."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Valhalla"
 	destination "Ingot"
@@ -1389,7 +1389,7 @@ mission "Midgard Intro [2.1 Interceptor]"
 	description "Go to the <system> system and mine five tons of silicon, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Ingot"
 	destination "New Sahara"
@@ -1417,7 +1417,7 @@ mission "Midgard Intro [3 Interceptor]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "New Sahara"
 	destination "Hestia"
@@ -1471,7 +1471,7 @@ mission "Mainsail Intro [1 Transport]"
 	description "Bring your new friend James, along with a team of engineers, to <destination>. Payment will be <payment>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	source "Glory"
 	destination "Tinker"
 	passengers 5
@@ -1515,7 +1515,7 @@ mission "Mainsail Intro [2 Transport]"
 	description "These tourists will pay you <payment> to take them to <destination>. Your new friend James will also be tagging along for the ride."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 4
 	source "Tinker"
 	destination "Earth"
@@ -1549,7 +1549,7 @@ mission "Mainsail Intro [3 Transport]"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -1575,7 +1575,7 @@ mission "Mainsail Intro [1 Transport Alt]"
 	description "Bring your new friend James, along with a passenger, to <destination>. Payment will be <payment>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	source "Glory"
 	destination "Tinker"
 	passengers 2
@@ -1619,7 +1619,7 @@ mission "Mainsail Intro [2 Transport Alt]"
 	description "This tourist will pay you <payment> to take him to <destination>. Your new friend James will also be tagging along for the ride."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 2
 	source "Tinker"
 	destination "Earth"
@@ -1653,7 +1653,7 @@ mission "Mainsail Intro [3 Transport Alt]"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -1679,7 +1679,7 @@ mission "Mainsail Intro [1 Freighter]"
 	description "Travel with your new friend James to <destination>, and deliver <cargo>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	cargo "climbing equipment" 37
 	passengers 1
 	source "Glory"
@@ -1715,7 +1715,7 @@ mission "Mainsail Intro [2 Freighter]"
 	description "This shipment of <commodity> needs to get to <destination>, by <date>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	cargo "viral samples" 32
 	passengers 1
 	source "Maelstrom"
@@ -1752,7 +1752,7 @@ mission "Mainsail Intro [3 Freighter]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Hermes"
 	destination "Hestia"
@@ -1787,7 +1787,7 @@ mission "Mainsail Intro [0.1 Interceptor]"
 	description "Go to the <system> system and mine five tons of lead, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Glory"
 	destination "Pearl"
@@ -1826,7 +1826,7 @@ mission "Mainsail Intro [1 Interceptor]"
 	description "Escort a merchant convoy to <destination>, along with James."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Pearl"
 	destination "Prime"
@@ -1873,7 +1873,7 @@ mission "Mainsail Intro [2 Interceptor]"
 	description "Transport an informant, along with James, to <destination>, while avoiding a pirate warship."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 2
 	source "Prime"
 	destination "Pearl"
@@ -1909,7 +1909,7 @@ mission "Mainsail Intro [3 Interceptor]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Pearl"
 	destination "Hestia"
@@ -1981,7 +1981,7 @@ mission "Delve Intro [1 Transport]"
 	description "Bring your new friend James, along with a family, to <destination>. Payment will be <payment>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	source "Burthen"
 	destination "Tinker"
 	passengers 5
@@ -2024,7 +2024,7 @@ mission "Delve Intro [2 Transport]"
 	description "These tourists will pay you <payment> to take them to <destination>. Your new friend James will also be tagging along for the ride."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 4
 	source "Tinker"
 	destination "Earth"
@@ -2066,7 +2066,7 @@ mission "Delve Intro [3 Transport]"
 	description "Bring James to <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Earth"
 	destination "Hestia"
@@ -2100,7 +2100,7 @@ mission "Delve Intro [1 Freighter]"
 	description "Travel with your new friend James to <destination>, and deliver <cargo>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	cargo "lithium" 27
 	passengers 1
 	source "Burthen"
@@ -2135,7 +2135,7 @@ mission "Delve Intro [2 Freighter]"
 	description "This shipment of <commodity> needs to get to <destination>, by <date>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	cargo "thorium" 33
 	passengers 1
 	source "Tinker"
@@ -2174,7 +2174,7 @@ mission "Delve Intro [3 Freighter]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Relic"
 	destination "Hestia"
@@ -2198,7 +2198,7 @@ mission "Delve Intro [1 Interceptor]"
 	description "Escort a merchant convoy to <destination>, along with your new friend James."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Burthen"
 	destination "Lodestone"
@@ -2253,7 +2253,7 @@ mission "Delve Intro [2 Interceptor]"
 	description "Deliver <commodity> to <destination>, while avoiding pirate attacks."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I found you another mission, but it looks like you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	cargo "niobium" 10
 	source "Lodestone"
@@ -2284,7 +2284,7 @@ mission "Delve Intro [2.1 Interceptor]"
 	description "Go to the Procyon system and mine five tons of silicon, then land on <planet>."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I think you'll find what I want to show you next very interesting, but you'll need to free up <capacity> first. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	mark "Procyon"
 	source "Ada"
@@ -2316,7 +2316,7 @@ mission "Delve Intro [3 Interceptor]"
 	description "Drop James off on <destination>, where he has a spot reserved in a retirement home."
 	blocked `When you meet up with James in the spaceport, he says, "Hi there, <first>! I have one final mission for you, but you'll need <capacity> in order to take it on. So, you'll either have to cancel another mission, or come back here later to continue this one. Sorry!"`
 	"reminder name" "Learning the Ropes"
-	reminder "Meet James in the <origin> spaceport. Make sure you have <capacity> available."
+	reminder "Meet James in the <origin> spaceport so that you can continue to learn the ropes about being a captain. Make sure you have <capacity> available before you get there."
 	passengers 1
 	source "Relic"
 	destination "Hestia"
