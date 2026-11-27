@@ -23,7 +23,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Tooltip.h"
 
 #include <filesystem>
-#include <map>
 #include <memory>
 #include <optional>
 #include <string>
@@ -61,7 +60,7 @@ private:
 
 	std::optional<std::filesystem::path> SnapshotPathBase() const;
 	// Snapshot name callbacks.
-	bool SnapshotNameFilter(const std::string &name, char ch);
+	bool SnapshotNameFilter(const std::string &name, char ch) const;
 	void SnapshotCallback(const std::string &name);
 	void WriteSnapshot(const std::filesystem::path &sourceFile, const std::filesystem::path &snapshotName);
 	// Load snapshot callback.

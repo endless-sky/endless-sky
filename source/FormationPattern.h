@@ -60,7 +60,7 @@ public:
 		const FormationPattern &pattern;
 
 		// The iteration of the (repeating) pattern we are processing.
-		// Most formationpatterns grow from the inside to the outside.
+		// Most formation patterns grow from the inside to the outside.
 		unsigned int ring = 0;
 		// The line (or point, or arc) in the pattern that we are processing.
 		unsigned int line = 0;

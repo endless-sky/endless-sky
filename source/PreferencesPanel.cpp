@@ -31,7 +31,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
-#include "Screen.h"
 #include "image/Sprite.h"
 #include "image/SpriteSet.h"
 #include "shader/SpriteShader.h"
@@ -49,8 +48,8 @@ using namespace std;
 
 namespace {
 	// How many pages of controls and settings there are.
-	const int CONTROLS_PAGE_COUNT = 2;
-	const int SETTINGS_PAGE_COUNT = 3;
+	constexpr int CONTROLS_PAGE_COUNT = 2;
+	constexpr int SETTINGS_PAGE_COUNT = 3;
 
 	const map<string, SoundCategory> volumeBars = {
 		{"volume", SoundCategory::MASTER},
@@ -76,10 +75,10 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 		GameData::Colors().Get("tooltip background"), GameData::Colors().Get("medium"))
 {
 	// Select the first valid plugin.
-	for(const auto &plugin : PluginManager::Get())
-		if(plugin.second.IsValid())
+	for(const auto &[name, plugin] : PluginManager::Get())
+		if(plugin.IsValid())
 		{
-			selectedPlugin = plugin.first;
+			selectedPlugin = name;
 			break;
 		}
 
@@ -90,21 +89,14 @@ PreferencesPanel::PreferencesPanel(PlayerInfo &player)
 	Rectangle pluginListBox = pluginUi->GetBox("plugin list");
 
 	int pluginListHeight = 0;
-	for(const auto &plugin : PluginManager::Get())
-		if(plugin.second.IsValid())
+	for(const auto &plugin : PluginManager::Get() | views::values)
+		if(plugin.IsValid())
 			pluginListHeight += 20;
 
 	pluginListScroll.SetDisplaySize(pluginListBox.Height());
 	pluginListScroll.SetMaxValue(pluginListHeight);
 	Rectangle pluginDescriptionBox = pluginUi->GetBox("plugin description");
 	pluginDescriptionScroll.SetDisplaySize(pluginDescriptionBox.Height());
-}
-
-
-
-// Stub, for unique_ptr destruction to be defined in the right compilation unit.
-PreferencesPanel::~PreferencesPanel()
-{
 }
 
 
@@ -275,11 +267,15 @@ bool PreferencesPanel::Click(int x, int y, MouseButton button, int clicks)
 				GetUI().Push(DialogPanel::CallFunctionIfOk([this, index]()
 					{
 						this->editing = this->selected = index;
+						GetUI().SetCaptureAllKeyboardInput(true);
 					},
 					"Rebinding this key will change the keypress you need to access this menu. "
 					"You really shouldn't rebind this unless needed.", true));
 			else
+			{
 				editing = selected = index;
+				GetUI().SetCaptureAllKeyboardInput(true);
+			}
 		}
 
 	for(const auto &zone : prefZones)
@@ -445,6 +441,7 @@ void PreferencesPanel::Resize()
 void PreferencesPanel::EndEditing()
 {
 	editing = -1;
+	GetUI().SetCaptureAllKeyboardInput(false);
 }
 
 
@@ -714,6 +711,7 @@ void PreferencesPanel::DrawSettings()
 		"Fleet Behavior",
 		Preferences::TURRETS_FOCUS_FIRE,
 		Preferences::ESCORT_AMMO_USAGE,
+		Preferences::ESCORT_REGENERATING_AMMO_USAGE,
 		Preferences::FLOTSAM_COLLECTION,
 		Preferences::FIGHTERS_REPAIR_IN,
 		Preferences::DAMAGED_FIGHTERS_RETREAT,
@@ -796,7 +794,7 @@ void PreferencesPanel::DrawSettings()
 		}
 
 		// Record where this setting is displayed, so the user can click on it.
-		// Temporarily reset the row's size so the clickzone can cover the entire preference.
+		// Temporarily reset the row's size so the click zone can cover the entire preference.
 		table.SetHighlight(-120, 120);
 		prefZones.emplace_back(table.GetCenterPoint(), table.GetRowSize(), setting);
 
@@ -855,9 +853,8 @@ void PreferencesPanel::DrawPlugins()
 	int firstY = pluginListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(pluginListScroll.AnimatedValue())));
 
-	for(const auto &it : PluginManager::Get())
+	for(const auto &plugin : PluginManager::Get() | views::values)
 	{
-		const auto &plugin = it.second;
 		if(!plugin.IsValid())
 			continue;
 
@@ -1028,8 +1025,9 @@ void PreferencesPanel::DrawTooltips()
 
 
 
-void PreferencesPanel::Exit()
+void PreferencesPanel::Exit() const
 {
+	GetUI().SetCaptureAllKeyboardInput(false);
 	if(Command::MENU.HasConflict() || !Command::MENU.HasBinding())
 	{
 		GetUI().Push(DialogPanel::Info("Menu keybind is not bound or has conflicts."));
@@ -1111,6 +1109,7 @@ void PreferencesPanel::HandleConfirm()
 	{
 	case 'c':
 		editing = selected;
+		GetUI().SetCaptureAllKeyboardInput(true);
 		break;
 	case 's':
 		HandleSettingsString(selectedItem);

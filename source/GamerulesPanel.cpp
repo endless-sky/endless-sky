@@ -20,12 +20,10 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DialogPanel.h"
 #include "text/Font.h"
 #include "text/FontSet.h"
-#include "text/Format.h"
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Information.h"
 #include "Interface.h"
-#include "OptionalInputDialogPanel.h"
 #include "shader/PointerShader.h"
 #include "Preferences.h"
 #include "RenderBuffer.h"
@@ -353,34 +351,11 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::REWIRING_COST_MULTIPLIER,
 		Gamerules::LOCKED_HULL_VALUE_MULTIPLIER,
 		"\t",
-		"System Behavior",
-		Gamerules::UNIVERSAL_RAMSCOOP,
-		Gamerules::SYSTEM_ARRIVAL_MIN,
-		Gamerules::SYSTEM_DEPARTURE_MIN,
-		Gamerules::HABITABLE_BASED_ARRIVAL_DISTANCE,
-		Gamerules::HABITABLE_ARRIVAL_MIN,
-		Gamerules::HABITABLE_ARRIVAL_MAX,
-		Gamerules::FLEET_MULTIPLIER,
-		"",
-		"Raid Fleet Behavior",
-		Gamerules::RAID_FLEET_ROLL_CHANCE,
-		Gamerules::RAID_ATTRACTION_MULTIPLIER,
-		Gamerules::RAID_DETERRENCE_MULTIPLIER,
-		Gamerules::RAID_FLEET_SPAWN_ATTEMPTS,
-		"",
 		"Player Fleet Size Limit",
 		Gamerules::FLEET_SIZE_LIMITATION,
 		Gamerules::DEFAULT_MAX_ESCORT_COUNT,
 		Gamerules::DEFAULT_MAX_ESCORT_CREW,
 		Gamerules::DEFAULT_ADMIN_CAP,
-		"\n",
-		"NPC Behavior",
-		Gamerules::NPC_MAX_MINING_TIME,
-		Gamerules::UNIVERSAL_FRUGAL_THRESHOLD,
-		"",
-		"Person Ships",
-		Gamerules::PERSON_SPAWN_PERIOD,
-		Gamerules::NO_PERSON_SPAWN_WEIGHT,
 		"",
 		"Hardcore Settings",
 		Gamerules::PERMADEATH_MODE,
@@ -393,7 +368,34 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::FRIENDLY_FIRE_FIGHTER_PROB_MULT,
 		Gamerules::FRIENDLY_FIRE_CARRIER_EXCEPTION,
 		Gamerules::FRIENDLY_FIRE_DMG_MULT,
+		"\n",
+		"System Settings",
+		Gamerules::UNIVERSAL_RAMSCOOP,
+		Gamerules::SYSTEM_ARRIVAL_MIN,
+		Gamerules::SYSTEM_DEPARTURE_MIN,
+		Gamerules::HABITABLE_BASED_ARRIVAL_DISTANCE,
+		Gamerules::HABITABLE_ARRIVAL_MIN,
+		Gamerules::HABITABLE_ARRIVAL_MAX,
+		"",
+		"Fleet Spawn Settings",
+		Gamerules::FLEET_MULTIPLIER,
+		Gamerules::TAKE_OFF_PROTECTION,
+		Gamerules::TAKE_OFF_PROTECTION_DURATION,
+		"",
+		"Raid Fleet Settings",
+		Gamerules::RAID_FLEET_ROLL_CHANCE,
+		Gamerules::RAID_ATTRACTION_MULTIPLIER,
+		Gamerules::RAID_DETERRENCE_MULTIPLIER,
+		Gamerules::RAID_FLEET_SPAWN_ATTEMPTS,
 		"\t",
+		"NPC Settings",
+		Gamerules::NPC_MAX_MINING_TIME,
+		Gamerules::UNIVERSAL_FRUGAL_THRESHOLD,
+		"",
+		"Person Ships",
+		Gamerules::PERSON_SPAWN_PERIOD,
+		Gamerules::NO_PERSON_SPAWN_WEIGHT,
+		"",
 		"Miscellaneous",
 		Gamerules::LOCK_GAMERULES,
 		Gamerules::FIGHTER_DODGE_POLICY,
@@ -495,9 +497,8 @@ void GamerulesPanel::DrawPresets()
 	int firstY = presetListClip->Top();
 	table.DrawAt(Point(0, firstY - static_cast<int>(presetListScroll.AnimatedValue())));
 
-	for(const auto &it : GameData::GamerulesPresets())
+	for(const auto &preset : GameData::GamerulesPresets() | views::values)
 	{
-		const auto &preset = it.second;
 		const string &name = preset.Name();
 		if(name.empty())
 			continue;
@@ -677,14 +678,14 @@ void GamerulesPanel::DrawTooltips()
 
 
 
-void GamerulesPanel::HandleGamerulesString(const string &str)
+void GamerulesPanel::HandleGamerulesString(const string &str) const
 {
 	gamerules.Toggle(str, &GetUI());
 }
 
 
 
-void GamerulesPanel::SelectPreset(const string &name)
+void GamerulesPanel::SelectPreset(const string &name) const
 {
 	gamerules.Replace(*GameData::GamerulesPresets().Get(name));
 }
@@ -732,7 +733,7 @@ void GamerulesPanel::HandleDown()
 
 
 
-void GamerulesPanel::HandleConfirm()
+void GamerulesPanel::HandleConfirm() const
 {
 	switch(page)
 	{

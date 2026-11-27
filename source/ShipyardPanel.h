@@ -59,7 +59,7 @@ private:
 	bool BuyShip(const std::string &name);
 	void SellShipAndOutfits();
 	void SellShipChassis();
-	void SellShip(bool toStorage);
+	void SellShip(bool storeOutfits);
 	void RewireShips();
 
 

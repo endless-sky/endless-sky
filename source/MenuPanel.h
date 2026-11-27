@@ -62,6 +62,6 @@ private:
 	double yAmplitude = 0.;
 
 	std::vector<std::string> credits;
-	long long int scroll = 0;
+	int scroll = 0;
 	bool scrollingPaused = false;
 };

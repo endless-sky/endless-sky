@@ -160,6 +160,7 @@ const string Preferences::DESTINATION_NOTIFICATION = "notification settings";
 const string Preferences::DRAW_BACKGROUND_HAZE = "Draw background haze";
 const string Preferences::DRAW_STARFIELD = "Draw starfield";
 const string Preferences::ESCORT_AMMO_USAGE = "Escort ammo usage";
+const string Preferences::ESCORT_REGENERATING_AMMO_USAGE = "Regenerating ammo usage";
 const string Preferences::EXTENDED_JUMP_EFFECTS = "Extended jump effects";
 const string Preferences::FF_CAPSLOCK_SYNC = "Sync FF to CapsLock";
 const string Preferences::FIGHTERS_REPAIR_IN = "Repair fighters in";
@@ -255,6 +256,8 @@ void Preferences::Init()
 	settings[DRAW_BACKGROUND_HAZE] = Setting::OnOff("Draw background haze", true);
 	settings[DRAW_STARFIELD] = Setting::OnOff("Draw starfield", true);
 	settings[ESCORT_AMMO_USAGE] = Setting::List("Escorts expend ammo", {"never", "frugally", "always"}, 1);
+	settings[ESCORT_REGENERATING_AMMO_USAGE] = Setting::List("   Regenerating ammo",
+		{"default", "obey never", "freely"}, 0);
 
 	settings[EXTENDED_JUMP_EFFECTS] = Setting::List("Extended jump effects", {"off", "medium", "heavy"}, 0);
 	settings[FF_CAPSLOCK_SYNC] = Setting::List("Sync FF to CapsLock", {"default", "never", "always"}, 0, true);
@@ -800,6 +803,13 @@ void Preferences::SetHelp(const string &name, bool shown)
 Preferences::EscortAmmoUsage Preferences::AmmoUsage()
 {
 	return static_cast<EscortAmmoUsage>(settings[ESCORT_AMMO_USAGE].Index());
+}
+
+
+
+Preferences::EscortRegeneratingAmmoUsage Preferences::RegeneratingAmmoUsage()
+{
+	return static_cast<EscortRegeneratingAmmoUsage>(settings[ESCORT_REGENERATING_AMMO_USAGE].Index());
 }
 
 

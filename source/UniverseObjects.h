@@ -126,7 +126,7 @@ public:
 	const TextReplacements &GetTextReplacements() const;
 	const Set<Government> &Governments() const;
 	const Set<Hazard> &Hazards() const;
-	const std::string HelpMessage(const std::string &name) const;
+	std::string HelpMessage(const std::string &name) const;
 	const std::map<std::string, std::string> &HelpTemplates() const;
 	const Set<Interface> &Interfaces() const;
 	const Set<Minable> &Minables() const;

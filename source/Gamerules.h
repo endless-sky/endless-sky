@@ -89,6 +89,15 @@ public:
 		ALLIED_GOVERNMENT,
 	};
 
+	// Controls which fleets can be pre-spawned when you take off from a planet.
+	enum class TakeOffProtection : int_fast8_t {
+		OFF = 0,
+		// Fleets hostile to the current system won't spawn.
+		LOOSE,
+		// Fleets hostile to the player won't spawn.
+		STRICT,
+	};
+
 
 public:
 	// Identifiers for specific gamerules.
@@ -139,6 +148,8 @@ public:
 	static const std::string FRIENDLY_FIRE_FIGHTER_PROB_MULT;
 	static const std::string FRIENDLY_FIRE_CARRIER_EXCEPTION;
 	static const std::string FRIENDLY_FIRE_DMG_MULT;
+	static const std::string TAKE_OFF_PROTECTION;
+	static const std::string TAKE_OFF_PROTECTION_DURATION;
 
 
 public:
@@ -223,6 +234,8 @@ public:
 	double FriendlyFireFighterProbMult() const;
 	bool FriendlyFireCarrierException() const;
 	double FriendlyFireDamageMultiplier() const;
+	Gamerules::TakeOffProtection GetTakeOffProtection() const;
+	int TakeOffProtectionDuration() const;
 
 	bool operator==(const Gamerules &other) const;
 
@@ -284,14 +297,16 @@ private:
 		double captureSurvivingCrewShares = 1.;
 		int captureMinimumDeathBenefit = 100000;
 		std::optional<double> captureValueBasis;
-		bool lockOnCapture = false;
-		double rewiringCostMultiplier = .7;
+		bool lockOnCapture = true;
+		double rewiringCostMultiplier = 1.;
 		double lockedHullValueMultiplier = .2;
 		double friendlyFireSameGovProb = 0.;
 		double friendlyFireAlliedGovProb = 0.;
 		double friendlyFireFighterMultiplier = 0.;
 		bool friendlyFireCarrierException = false;
 		double friendlyFireDamageMultiplier = 1.;
+		TakeOffProtection takeOffProtection = TakeOffProtection::LOOSE;
+		int takeOffProtectionDuration = 180;
 
 		// Miscellaneous rules that are only used by the game data and not by the engine.
 		std::map<std::string, int> miscRules;

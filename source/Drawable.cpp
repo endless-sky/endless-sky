@@ -69,7 +69,7 @@ const Sprite *Drawable::GetSprite() const
 // Get the width of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Drawable::Width() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * scale.X() * sprite->Width() : 0.f);
+	return sprite ? .5f * zoom * scale.X() * sprite->Width() : 0.f;
 }
 
 
@@ -77,7 +77,7 @@ double Drawable::Width() const
 // Get the height of this object, in world coordinates (i.e. taking zoom and scale into account).
 double Drawable::Height() const
 {
-	return static_cast<double>(sprite ? (.5f * zoom) * scale.Y() * sprite->Height() : 0.f);
+	return sprite ? .5f * zoom * scale.Y() * sprite->Height() : 0.f;
 }
 
 

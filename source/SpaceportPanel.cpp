@@ -15,7 +15,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "SpaceportPanel.h"
 
-#include "text/Alignment.h"
 #include "text/FontSet.h"
 #include "text/Format.h"
 #include "GameData.h"
@@ -176,9 +175,9 @@ const News *SpaceportPanel::PickNews() const
 
 	vector<const News *> matches;
 	const Planet *planet = player.GetPlanet();
-	for(const auto &it : GameData::SpaceportNews())
-		if(!it.second.IsEmpty() && it.second.Matches(planet))
-			matches.push_back(&it.second);
+	for(const auto &news : GameData::SpaceportNews() | views::values)
+		if(!news.IsEmpty() && news.Matches(planet))
+			matches.push_back(&news);
 
 	return matches.empty() ? nullptr : matches[Random::Int(matches.size())];
 }

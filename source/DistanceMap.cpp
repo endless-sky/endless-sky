@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "System.h"
 #include "Wormhole.h"
 
+#include <ranges>
+
 using namespace std;
 
 
@@ -120,8 +122,8 @@ int DistanceMap::Days(const System &target) const
 set<const System *> DistanceMap::Systems() const
 {
 	set<const System *> systems;
-	for(const auto &it : route)
-		systems.insert(it.first);
+	for(const auto &system : route | views::keys)
+		systems.insert(system);
 	return systems;
 }
 

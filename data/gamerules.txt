@@ -36,8 +36,8 @@
 	"capture minimum death benefit" 100000
 	"capture value basis" unset
 	
-	"lock on capture" false
-	"rewiring cost multiplier" .7
+	"lock on capture" true
+	"rewiring cost multiplier" 1.
 	"locked hull value multiplier" .2
 	
 	"universal ramscoop" true
@@ -71,3 +71,6 @@
 	"friendly fire fighter prob multiplier" 1.
 	"friendly fire carrier exception" false
 	"friendly fire damage multiplier" 1.
+	
+	"take off protection" "loose"
+	"take off protection duration" 180

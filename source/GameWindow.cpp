@@ -331,6 +331,10 @@ bool GameWindow::Init(bool headless)
 	UpdateWindowRounding();
 #endif
 
+	const char *glVendor = reinterpret_cast<const char *>(glGetString(GL_VENDOR));
+	const char *glRenderer = reinterpret_cast<const char *>(glGetString(GL_RENDERER));
+	Logger::Log(string("Game window created successfully. Renderer: ") + glVendor + ' ' + glRenderer
+		+ ". OpenGL: " + glVersion + ". GLSL: " + glslVersion + '.', Logger::Level::INFO);
 	return true;
 }
 
@@ -419,7 +423,7 @@ bool GameWindow::SetVSync(Preferences::VSync state)
 #else
 	const int originalState = SDL_GL_GetSwapInterval();
 #endif
-	int interval = 1;
+	int interval;
 	switch(state)
 	{
 		case Preferences::VSync::ADAPTIVE:
@@ -511,7 +515,11 @@ void GameWindow::ToggleFullscreen()
 	// no need to adjust the viewport here.
 	if(IsFullscreen())
 	{
+#ifdef ES_USE_SDL3
+		SDL_SetWindowFullscreen(mainWindow, false);
+#else
 		SDL_SetWindowFullscreen(mainWindow, 0);
+#endif
 		SDL_SetWindowSize(mainWindow, width, height);
 	}
 	else

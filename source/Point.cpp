@@ -179,7 +179,6 @@ Point &Point::operator*=(double scalar)
 #elif defined(__SSE2__)
 	__m128d scalar_vec = _mm_set1_pd(scalar);
 	v = _mm_mul_pd(v, scalar_vec);
-	return *this;
 #else
 	x *= scalar;
 	y *= scalar;
@@ -360,7 +359,7 @@ double Point::DistanceSquared(const Point &point) const
 
 
 
-Point Point::Lerp(const Point &to, const double c) const
+Point Point::Lerp(const Point &to, double c) const
 {
 	return *this + (to - *this) * c;
 }
