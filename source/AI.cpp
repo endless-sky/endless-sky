@@ -914,7 +914,7 @@ void AI::Step(Command &activeCommands)
 			targetTurn = (targetTurn + 1) & 31;
 			if(targetTurn == targetStep || !target || target->IsDestroyed() || (target->IsDisabled() &&
 				(personality.Disables()
-				|| (!HitHelper::IsValid(target.get(), nullptr) && !personality.IsVindictive())))
+				|| (!HitHelper::IsValid(*target, it.get(), nullptr) && !personality.IsVindictive())))
 				|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
 			{
 				target = FindTarget(*it);
@@ -4341,17 +4341,17 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			continue;
 		}
 		// For non-homing weapons:
-		for(const auto &target : enemies)
+		for(const Ship *target : enemies)
 		{
 			// NPCs shoot ships that they just plundered.
-			bool hasBoarded = !ship.IsYours() && Has(ship, target->weak_from_this(), ShipEvent::BOARD);
+			bool hasBoarded = !isYours && Has(ship, target->weak_from_this(), ShipEvent::BOARD);
 			if(target->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
 				continue;
 			// Merciful ships let fleeing ships go.
 			if(target->IsFleeing() && person.IsMerciful())
 				continue;
 			// Don't fire at ships that cannot be hit without targeting.
-			if(target != currentTarget.get() && !HitHelper::IsValid(target, weapon))
+			if(target != currentTarget.get() && !HitHelper::IsValid(*target, &ship, weapon))
 				continue;
 
 			Point p = target->Position() - start;

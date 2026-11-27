@@ -33,11 +33,10 @@ class UI;
 // for example, the spawn rate of person ships or whether universal ramscoops are active.
 class Gamerules {
 public:
-	// Defines which disabled ships can dodge stray projectiles.
+	// Controls which ships are immune to crossfire.
 	enum class CrossfireImmunity : int_fast8_t {
 		NONE = 0,
-		PLAYER_FIGHTERS,
-		ALL_FIGHTERS,
+		PLAYER_SHIPS,
 		ALL_SHIPS,
 	};
 
@@ -116,7 +115,11 @@ public:
 	static const std::string DEPRECIATION_DAILY;
 	static const std::string DEPRECIATION_GRACE_PERIOD;
 	static const std::string DEPRECIATION_MAX_AGE;
-	static const std::string CROSSFIRE_IMMUNITY;
+	static const std::string CROSSFIRE_DISABLED_ONLY;
+	static const std::string CROSSFIRE_RECEIVING;
+	static const std::string CROSSFIRE_RECEIVING_CARRIED;
+	static const std::string CROSSFIRE_CREATING;
+	static const std::string CROSSFIRE_CREATING_CARRIED;
 	static const std::string SYSTEM_DEPARTURE_MIN;
 	static const std::string SYSTEM_ARRIVAL_MIN;
 	static const std::string HABITABLE_BASED_ARRIVAL_DISTANCE;
@@ -202,7 +205,10 @@ public:
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
 	bool DepreciationCargoIsPlunder() const;
-	CrossfireImmunity GetCrossfireImmunity() const;
+	bool CrossfireReceivingDisabledOnly() const;
+	bool CrossfireCreatingDisabledOnly() const;
+	CrossfireImmunity CrossfireReceivingImmunity(bool isCarried) const;
+	CrossfireImmunity CrossfireCreatingImmunity(bool isCarried) const;
 	double SystemDepartureMin() const;
 	std::optional<double> SystemArrivalMin() const;
 	bool HabitableBasedArrivalDistance() const;
@@ -268,7 +274,11 @@ private:
 		bool depreciationCargoIsPlunder = false;
 		int depreciationGracePeriod = 7;
 		int depreciationMaxAge = 1000;
-		CrossfireImmunity crossfireImmunity = CrossfireImmunity::ALL_SHIPS;
+		bool crossfireDisabledOnly = true;
+		CrossfireImmunity crossfireFighterReceiving = CrossfireImmunity::ALL_SHIPS;
+		CrossfireImmunity crossfireReceiving = CrossfireImmunity::NONE;
+		CrossfireImmunity crossfireFighterCreating = CrossfireImmunity::PLAYER_SHIPS;
+		CrossfireImmunity crossfireCreating = CrossfireImmunity::PLAYER_SHIPS;
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
 		bool habitableBasedArrivalDistance = true;

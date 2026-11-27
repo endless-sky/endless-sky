@@ -25,24 +25,40 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 class HitHelper
 {
 public:
-	// Check whether the given ship can be validly hit by non-targeted projectiles.
-	static bool IsValid(const Ship *ship, const Weapon *weapon)
+	// Check whether a ship can be validly hit by a projectile fired from the given shooter.
+	static bool IsValid(const Ship &ship, const Ship *shooter, const Weapon *weapon)
 	{
-		// If a ship isn't disabled, it's always a valid target.
-		if(!ship->IsDisabled())
-			return true;
+		const Gamerules &rules = GameData::GetGamerules();
+		bool isDisabled = ship.IsDisabled();
 		// Certain weapons can't hit disabled ships unless targeting them.
-		if(weapon && !weapon->CanCollideDisabled())
+		if(isDisabled && weapon && !weapon->CanCollideDisabled())
 			return false;
-		// Gamerules can also provide blanket protection to some or all disabled ships.
-		switch(GameData::GetGamerules().GetCrossfireImmunity())
+		// Gamerules can also provide blanket protection to some or all ships.
+		// Crossfire immunity might only apply to disabled ships.
+		if(!isDisabled && rules.CrossfireCreatingDisabledOnly())
+			return true;
+		// Check whether this ship is capable of receiving crossfire.
+		switch(rules.CrossfireReceivingImmunity(ship.CanBeCarried()))
+		{
+			case Gamerules::CrossfireImmunity::NONE:
+				break;
+			case Gamerules::CrossfireImmunity::PLAYER_SHIPS:
+				if(ship.IsYours())
+					return false;
+				break;
+			case Gamerules::CrossfireImmunity::ALL_SHIPS:
+				return false;
+		}
+		// If this hit doesn't have a known shooter, then it is valid.
+		if(!shooter)
+			return true;
+		// Otherwise, check if the firing ship can create crossfire.
+		switch(rules.CrossfireCreatingImmunity(shooter->CanBeCarried()))
 		{
 			case Gamerules::CrossfireImmunity::NONE:
 				return true;
-			case Gamerules::CrossfireImmunity::PLAYER_FIGHTERS:
-				return !(ship->IsYours() && ship->CanBeCarried());
-			case Gamerules::CrossfireImmunity::ALL_FIGHTERS:
-				return !ship->CanBeCarried();
+			case Gamerules::CrossfireImmunity::PLAYER_SHIPS:
+				return !shooter->IsYours();
 			case Gamerules::CrossfireImmunity::ALL_SHIPS:
 				return false;
 		}

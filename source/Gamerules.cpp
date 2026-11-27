@@ -28,6 +28,30 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	void LoadCrossfireImmunity(const DataNode &child, Gamerules::CrossfireImmunity &storage)
+	{
+		const string &value = child.Token(1);
+		if(value == "none")
+			storage = Gamerules::CrossfireImmunity::NONE;
+		else if(value == "only player")
+			storage = Gamerules::CrossfireImmunity::PLAYER_SHIPS;
+		else if(value == "all")
+			storage = Gamerules::CrossfireImmunity::ALL_SHIPS;
+		else
+			child.PrintTrace("Skipping unrecognized value for gamerule:");
+	}
+
+	void SaveCrossfireImmunity(DataWriter &out, const string &key, const Gamerules::CrossfireImmunity &storage)
+	{
+		if(storage == Gamerules::CrossfireImmunity::ALL_SHIPS)
+			out.Write(key, "all");
+		else if(storage == Gamerules::CrossfireImmunity::PLAYER_SHIPS)
+			out.Write(key, "only player");
+		else
+			out.Write(key, "none");
+	}
+}
 
 
 const string Gamerules::LOCK_GAMERULES = "lock gamerules";
@@ -44,7 +68,11 @@ const string Gamerules::DEPRECIATION_CARGO_IS_PLUNDER = "depreciation cargo is p
 const string Gamerules::DEPRECIATION_DAILY = "depreciation daily";
 const string Gamerules::DEPRECIATION_GRACE_PERIOD = "depreciation grace period";
 const string Gamerules::DEPRECIATION_MAX_AGE = "depreciation max age";
-const string Gamerules::CROSSFIRE_IMMUNITY = "crossfire immunity";
+const string Gamerules::CROSSFIRE_DISABLED_ONLY = "crossfire disabled only";
+const string Gamerules::CROSSFIRE_RECEIVING = "crossfire receiving immunity";
+const string Gamerules::CROSSFIRE_RECEIVING_CARRIED = "crossfire carriable receiving immunity";
+const string Gamerules::CROSSFIRE_CREATING = "crossfire creating immunity";
+const string Gamerules::CROSSFIRE_CREATING_CARRIED = "crossfire carriable creating immunity";
 const string Gamerules::SYSTEM_DEPARTURE_MIN = "system departure min";
 const string Gamerules::SYSTEM_ARRIVAL_MIN = "system arrival min";
 const string Gamerules::HABITABLE_BASED_ARRIVAL_DISTANCE = "habitable based arrival distance";
@@ -342,14 +370,53 @@ Gamerules::Gamerules()
 		return std::nullopt;
 	});
 
-	settings[CROSSFIRE_IMMUNITY] = Setting::List("Crossfire immunity",
-		{"none", "player fighters", "all fighters", "all ships"});
-	settings[CROSSFIRE_IMMUNITY].SetOnToggleFunc([this](UI *) -> void {
-		storage.crossfireImmunity = static_cast<CrossfireImmunity>(settings[CROSSFIRE_IMMUNITY].Index());
+	settings[CROSSFIRE_DISABLED_ONLY] = Setting::TrueFalse("Disabled only");
+	settings[CROSSFIRE_DISABLED_ONLY].SetOnToggleFunc([this](UI *) -> void {
+		storage.crossfireDisabledOnly = !storage.crossfireDisabledOnly;
 	});
-	settings[CROSSFIRE_IMMUNITY].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
-		storage.crossfireImmunity = preset.storage.crossfireImmunity;
-		return static_cast<int>(storage.crossfireImmunity);
+	settings[CROSSFIRE_DISABLED_ONLY].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.crossfireDisabledOnly = preset.storage.crossfireDisabledOnly;
+		return storage.crossfireDisabledOnly;
+	});
+
+	settings[CROSSFIRE_RECEIVING] = Setting::List("Can't receive",
+		{"none", "player ships", "all ships"});
+	settings[CROSSFIRE_RECEIVING].SetOnToggleFunc([this](UI *) -> void {
+		storage.crossfireReceiving = static_cast<CrossfireImmunity>(settings[CROSSFIRE_RECEIVING].Index());
+	});
+	settings[CROSSFIRE_RECEIVING].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.crossfireReceiving = preset.storage.crossfireReceiving;
+		return static_cast<int>(storage.crossfireReceiving);
+	});
+
+	settings[CROSSFIRE_RECEIVING_CARRIED] = Setting::List("Can't receive (fighters)",
+		{"none", "player ships", "all ships"});
+	settings[CROSSFIRE_RECEIVING_CARRIED].SetOnToggleFunc([this](UI *) -> void {
+		storage.crossfireFighterReceiving = static_cast<CrossfireImmunity>(settings[CROSSFIRE_RECEIVING_CARRIED].Index());
+	});
+	settings[CROSSFIRE_RECEIVING_CARRIED].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.crossfireFighterReceiving = preset.storage.crossfireFighterReceiving;
+		return static_cast<int>(storage.crossfireFighterReceiving);
+	});
+
+	settings[CROSSFIRE_CREATING] = Setting::List("Can't create",
+		{"none", "player ships", "all ships"});
+	settings[CROSSFIRE_CREATING].SetOnToggleFunc([this](UI *) -> void {
+		storage.crossfireCreating = static_cast<CrossfireImmunity>(settings[CROSSFIRE_CREATING].Index());
+	});
+	settings[CROSSFIRE_CREATING].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.crossfireCreating = preset.storage.crossfireCreating;
+		return static_cast<int>(storage.crossfireCreating);
+	});
+
+	settings[CROSSFIRE_CREATING_CARRIED] = Setting::List("Can't create (fighters)",
+		{"none", "player ships", "all ships"});
+	settings[CROSSFIRE_CREATING_CARRIED].SetOnToggleFunc([this](UI *) -> void {
+		storage.crossfireFighterCreating = static_cast<CrossfireImmunity>(settings[CROSSFIRE_CREATING_CARRIED].Index());
+	});
+	settings[CROSSFIRE_CREATING_CARRIED].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.crossfireFighterCreating = preset.storage.crossfireFighterCreating;
+		return static_cast<int>(storage.crossfireFighterCreating);
 	});
 
 	settings[SYSTEM_DEPARTURE_MIN] = Setting::Unique("Minimum departure distance");
@@ -1075,23 +1142,21 @@ void Gamerules::Load(const DataNode &node)
 			storage.depreciationMaxAge = max<int>(0, child.Value(1));
 		else if(key == DEPRECIATION_CARGO_IS_PLUNDER)
 			storage.depreciationCargoIsPlunder = child.BoolValue(1);
-		else if(key == CROSSFIRE_IMMUNITY || key == "disabled fighters avoid projectiles")
+		else if(key == CROSSFIRE_DISABLED_ONLY)
+			storage.crossfireDisabledOnly = child.BoolValue(1);
+		else if(key == CROSSFIRE_RECEIVING)
+			LoadCrossfireImmunity(child, storage.crossfireReceiving);
+		else if(key == CROSSFIRE_RECEIVING_CARRIED || key == "disabled fighters avoid projectiles")
 		{
-			if(key != CROSSFIRE_IMMUNITY)
+			if(key != CROSSFIRE_RECEIVING)
 				child.PrintTrace("The \"disabled fighters avoid projectiles\" gamerule has been deprecated. "
-					"Use \"crossfire immunity\" instead.");
-			const string &value = child.Token(1);
-			if(value == "none")
-				storage.crossfireImmunity = CrossfireImmunity::NONE;
-			else if(value == "only player" || value == "player fighters")
-				storage.crossfireImmunity = CrossfireImmunity::PLAYER_FIGHTERS;
-			else if(value == "all" || value == "all fighters")
-				storage.crossfireImmunity = CrossfireImmunity::ALL_FIGHTERS;
-			else if(value == "all ships")
-				storage.crossfireImmunity = CrossfireImmunity::ALL_SHIPS;
-			else
-				child.PrintTrace("Skipping unrecognized value for gamerule:");
+					"Use \"" + CROSSFIRE_RECEIVING + "\" instead.");
+			LoadCrossfireImmunity(child, storage.crossfireFighterReceiving);
 		}
+		else if(key == CROSSFIRE_CREATING)
+			LoadCrossfireImmunity(child, storage.crossfireCreating);
+		else if(key == CROSSFIRE_CREATING)
+			LoadCrossfireImmunity(child, storage.crossfireFighterCreating);
 		else if(key == SYSTEM_DEPARTURE_MIN)
 			storage.systemDepartureMin = max(0., child.Value(1));
 		else if(key == SYSTEM_ARRIVAL_MIN)
@@ -1273,17 +1338,16 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write(DEPRECIATION_MAX_AGE, storage.depreciationMaxAge);
 		if(storage.depreciationCargoIsPlunder != preset.storage.depreciationCargoIsPlunder)
 			out.Write(DEPRECIATION_CARGO_IS_PLUNDER, storage.depreciationCargoIsPlunder ? 1 : 0);
-		if(storage.crossfireImmunity != preset.storage.crossfireImmunity)
-		{
-			if(storage.crossfireImmunity == CrossfireImmunity::ALL_SHIPS)
-				out.Write(CROSSFIRE_IMMUNITY, "all ships");
-			else if(storage.crossfireImmunity == CrossfireImmunity::ALL_FIGHTERS)
-				out.Write(CROSSFIRE_IMMUNITY, "all fighters");
-			else if(storage.crossfireImmunity == CrossfireImmunity::PLAYER_FIGHTERS)
-				out.Write(CROSSFIRE_IMMUNITY, "player fighters");
-			else
-				out.Write(CROSSFIRE_IMMUNITY, "none");
-		}
+		if(storage.crossfireDisabledOnly != preset.storage.crossfireDisabledOnly)
+			out.Write(CROSSFIRE_DISABLED_ONLY, storage.crossfireDisabledOnly ? 1 : 0);
+		if(storage.crossfireReceiving != preset.storage.crossfireReceiving)
+			SaveCrossfireImmunity(out, CROSSFIRE_RECEIVING, storage.crossfireReceiving);
+		if(storage.crossfireFighterReceiving != preset.storage.crossfireFighterReceiving)
+			SaveCrossfireImmunity(out, CROSSFIRE_RECEIVING_CARRIED, storage.crossfireFighterReceiving);
+		if(storage.crossfireCreating != preset.storage.crossfireCreating)
+			SaveCrossfireImmunity(out, CROSSFIRE_CREATING, storage.crossfireCreating);
+		if(storage.crossfireFighterCreating != preset.storage.crossfireFighterCreating)
+			SaveCrossfireImmunity(out, CROSSFIRE_CREATING_CARRIED, storage.crossfireFighterCreating);
 		if(storage.systemDepartureMin != preset.storage.systemDepartureMin)
 			out.Write(SYSTEM_DEPARTURE_MIN, storage.systemDepartureMin);
 		if(storage.systemArrivalMin != preset.storage.systemArrivalMin)
@@ -1639,9 +1703,30 @@ bool Gamerules::DepreciationCargoIsPlunder() const
 
 
 
-Gamerules::CrossfireImmunity Gamerules::GetCrossfireImmunity() const
+bool Gamerules::CrossfireReceivingDisabledOnly() const
 {
-	return storage.crossfireImmunity;
+	return storage.crossfireDisabledOnly;
+}
+
+
+
+bool Gamerules::CrossfireCreatingDisabledOnly() const
+{
+	return storage.crossfireDisabledOnly;
+}
+
+
+
+Gamerules::CrossfireImmunity Gamerules::CrossfireReceivingImmunity(bool isCarried) const
+{
+	return isCarried ? storage.crossfireFighterReceiving : storage.crossfireReceiving;
+}
+
+
+
+Gamerules::CrossfireImmunity Gamerules::CrossfireCreatingImmunity(bool isCarried) const
+{
+	return isCarried ? storage.crossfireFighterCreating : storage.crossfireCreating;
 }
 
 
@@ -1908,8 +1993,12 @@ void Gamerules::SyncSettings()
 	settings[RESTRICTED_SAVE_LOADING].SetIndex(RestrictedSaveLoading());
 	settings[LOCK_ON_CAPTURE].SetIndex(LockOnCapture());
 	settings[FRIENDLY_FIRE_CARRIER_EXCEPTION].SetIndex(FriendlyFireCarrierException());
+	settings[CROSSFIRE_DISABLED_ONLY].SetIndex(CrossfireCreatingDisabledOnly());
 	settings[UNIVERSAL_AMMO_RESTOCKING].SetIndex(storage.miscRules[UNIVERSAL_AMMO_RESTOCKING]);
-	settings[CROSSFIRE_IMMUNITY].SetIndex(static_cast<int>(GetCrossfireImmunity()));
+	settings[CROSSFIRE_RECEIVING].SetIndex(static_cast<int>(CrossfireReceivingImmunity(false)));
+	settings[CROSSFIRE_RECEIVING_CARRIED].SetIndex(static_cast<int>(CrossfireReceivingImmunity(true)));
+	settings[CROSSFIRE_CREATING].SetIndex(static_cast<int>(CrossfireCreatingImmunity(false)));
+	settings[CROSSFIRE_CREATING_CARRIED].SetIndex(static_cast<int>(CrossfireCreatingImmunity(true)));
 	settings[FLEET_SIZE_LIMITATION].SetIndex(static_cast<int>(GetFleetSizeLimitation()));
 	settings[PERMADEATH_MODE].SetIndex(static_cast<int>(GetPermadeathMode()));
 	settings[CAPTURE_PROFIT_SHARING].SetIndex(static_cast<int>(GetCaptureProfitSharing()));

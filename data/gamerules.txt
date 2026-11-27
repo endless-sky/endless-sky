@@ -48,8 +48,13 @@
 	"habitable arrival max" 5000
 	"fleet multiplier" 1.
 	
+	"crossfire disabled only" true
+	"crossfire receiving immunity" "none"
+	"crossfire carriable receiving immunity" "all"
+	"crossfire creating immunity" "only player"
+	"crossfire carriable creating immunity" "only player"
+	
 	"lock gamerules" true
-	"crossfire immunity" "all ships"
 	"universal ammo restocking" true
 	
 	"raid fleet roll chance" 1.

@@ -2011,12 +2011,34 @@ tip "Fleet multiplier"
 tip "Lock gamerules"
 	`Controls whether gamerules can be altered after a pilot has been created. If true, the gamerules button will not appear on the main menu for this pilot. If you set this to true on an existing pilot, you will not be able to return to this menu after leaving.`
 
-tip "Crossfire immunity"
-	`Controls which ships, when disabled, will not be hit by projectiles from enemies that are targeted at another ship ("crossfire"). Projectiles that were fired at a ship prior to it being disabled will also lose their targeting and collision with the ship if it is disabled while the projectile is in flight. Note that this does not grant immunity to explosions that happen near a disabled ship.`
-	`- "none": disabled ships can block projectiles targeted at other ships.`
-	`- "player fighters": disabled fighters and drones owned by crossfire.`
-	`- "all fighters": all disabled carried ships are immune to crossfire.`
-	`- "all ships": all disabled ships are immune to crossfire.`
+tip "Disabled only"
+	`Controls whether crossfire immunity only applies to disabled ships. If false, then ships can receive crossfire immunity whether they are disabled or not.`
+	`Crossfire is defined as a projectile collision that occurs against a ship that was not the intended target of the projectile. A ship which is immune to crossfire will therefore only receive damage from projectiles that were directly targeted at it. Note that this does not apply immunity to explosions that happen near a ship.`
+	`Projectiles that were fired at a ship prior to it being disabled will lose their targeting and collision with the ship if it is disabled while the projectile is in flight and the ship is protected by crossfire immunity.`
+
+tip "Can't receive"
+	`Controls which non-carriable ships are prevented from receiving crossfire collisions.`
+	`- "none": all carriable ships can receive crossfire.`
+	`- "player": player-owned carriable ships are immune to crossfire.`
+	`- "all": all fighters are immune to crossfire.`
+
+tip "Can't receive (fighters)"
+	`Controls which carriable ships (fighters and drones) are prevented from receiving crossfire collisions.`
+	`- "none": all fighters can receive crossfire.`
+	`- "player": player-owned fighters are immune to crossfire.`
+	`- "all": all fighters are immune to crossfire.`
+
+tip "Can't create"
+	`Controls which non-carriable ships are prevented from creating crossfire collisions.`
+	`- "none": all ships are capable of creating crossfire.`
+	`- "player ships": only the player's ships can't create crossfire.`
+	`- "all ships": all ships are prevented from creating crossfire.`
+
+tip "Can't create (fighters)"
+	`Controls which carriable ships (fighters and drones) are prevented from creating crossfire collisions.`
+	`- "none": all fighters are capable of creating crossfire.`
+	`- "player ships": only the player's fighters can't create crossfire.`
+	`- "all ships": all fighters are prevented from creating crossfire.`
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
