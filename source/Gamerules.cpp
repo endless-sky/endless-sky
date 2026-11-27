@@ -265,11 +265,12 @@ Gamerules::Gamerules()
 	settings[DEPRECIATION_JETTISONED] = Setting::Unique("Jettisoned value");
 	settings[DEPRECIATION_JETTISONED].SetDisplayFunc([this]() -> pair<string, bool> {
 		string text;
-		if(DepreciationJettisoned().has_value())
+		bool hasValue = DepreciationJettisoned().has_value();
+		if(hasValue)
 			text = Format::Percentage(*DepreciationJettisoned(), 2);
 		else
 			text = "(unset)";
-		return make_pair(text, true);
+		return make_pair(text, hasValue);
 	});
 	settings[DEPRECIATION_JETTISONED].SetOnToggleFunc([this](UI *ui) -> void {
 		if(!ui)
