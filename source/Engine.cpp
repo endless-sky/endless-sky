@@ -2570,7 +2570,7 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 				// Cloaked ships and ships that aren't valid for collisions unless directly targeted are skipped over.
 				const Ship *ship = static_cast<const Ship *>(body);
 				if(body == projectile.Target() || ((!gov || gov->IsEnemy(body->GetGovernment()))
-					&& !ship->IsCloaked() && !HitHelper::IsValid(ship, &weapon)))
+					&& !ship->IsCloaked() && HitHelper::IsValid(ship, &weapon)))
 				{
 					collisions.emplace_back(nullptr, CollisionType::EXPLOSION, 0.);
 					break;
