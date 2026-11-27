@@ -39,10 +39,10 @@ public:
 		{
 			case Gamerules::CrossfireImmunity::NONE:
 				return true;
-			case Gamerules::CrossfireImmunity::ALL_FIGHTERS:
-				return !ship->CanBeCarried();
 			case Gamerules::CrossfireImmunity::PLAYER_FIGHTERS:
 				return !(ship->IsYours() && ship->CanBeCarried());
+			case Gamerules::CrossfireImmunity::ALL_FIGHTERS:
+				return !ship->CanBeCarried();
 			case Gamerules::CrossfireImmunity::ALL_SHIPS:
 				return false;
 		}
