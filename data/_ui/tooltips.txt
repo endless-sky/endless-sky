@@ -2018,9 +2018,9 @@ tip "Disabled only"
 
 tip "Can't receive"
 	`Controls which non-carriable ships are prevented from receiving crossfire collisions.`
-	`- "none": all carriable ships can receive crossfire.`
-	`- "player": player-owned carriable ships are immune to crossfire.`
-	`- "all": all fighters are immune to crossfire.`
+	`- "none": all ships can receive crossfire.`
+	`- "player": player-owned ships are immune to crossfire.`
+	`- "all": all ships are immune to crossfire.`
 
 tip "Can't receive (fighters)"
 	`Controls which carriable ships (fighters and drones) are prevented from receiving crossfire collisions.`
