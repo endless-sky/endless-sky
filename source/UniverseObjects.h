@@ -39,6 +39,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Mission.h"
 #include "News.h"
 #include "Outfit.h"
+#include "Paragraphs.h"
 #include "Person.h"
 #include "Phrase.h"
 #include "Planet.h"
@@ -127,7 +128,7 @@ public:
 	const Set<Government> &Governments() const;
 	const Set<Hazard> &Hazards() const;
 	std::string HelpMessage(const std::string &name) const;
-	const std::map<std::string, std::string> &HelpTemplates() const;
+	const std::map<std::string, Paragraphs> &HelpTemplates() const;
 	const Set<Interface> &Interfaces() const;
 	const Set<Minable> &Minables() const;
 	const Set<Mission> &Missions() const;
@@ -148,7 +149,7 @@ public:
 	const Set<System> &Systems() const;
 	const Set<TestData> &TestDataSets() const;
 	const Set<Test> &Tests() const;
-	const std::string &Tooltip(const std::string &label) const;
+	std::string Tooltip(const std::string &label) const;
 	const Set<Wormhole> &Wormholes() const;
 
 
@@ -219,8 +220,8 @@ private:
 	std::map<CategoryType, CategoryList> categories;
 	CapacityList capacities;
 
-	std::map<std::string, std::string> tooltips;
-	std::map<std::string, std::string> helpMessages;
+	std::map<std::string, Paragraphs> tooltips;
+	std::map<std::string, Paragraphs> helpMessages;
 	std::map<std::string, std::set<std::string>> disabled;
 
 	// A local cache of the menu background interface for thread-safe access.

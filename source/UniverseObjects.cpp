@@ -699,19 +699,10 @@ void UniverseObjects::LoadFile(const filesystem::path &path, const PlayerInfo &p
 		}
 		else if((key == "tip" || key == "help") && hasValue)
 		{
-			string &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
+			Paragraphs &text = (key == "tip" ? tooltips : helpMessages)[node.Token(1)];
 			// Tip and help nodes always clear previous values.
-			text.clear();
-			for(const DataNode &child : node)
-			{
-				if(!text.empty())
-				{
-					text += '\n';
-					if(child.Token(0)[0] != '\t')
-						text += '\t';
-				}
-				text += child.Token(0);
-			}
+			text.Clear();
+			text.Load(node, playerConditions);
 		}
 		else if(key == "substitutions" && node.HasChildren())
 		{
@@ -923,14 +914,13 @@ const Set<Hazard> &UniverseObjects::Hazards() const
 
 string UniverseObjects::HelpMessage(const string &name) const
 {
-	static const string EMPTY;
 	auto it = helpMessages.find(name);
-	return Command::ReplaceNamesWithKeys(it == helpMessages.end() ? EMPTY : it->second);
+	return Command::ReplaceNamesWithKeys(it == helpMessages.end() ? "" : it->second.ToString());
 }
 
 
 
-const std::map<std::string, std::string> &UniverseObjects::HelpTemplates() const
+const map<string, Paragraphs> &UniverseObjects::HelpTemplates() const
 {
 	return helpMessages;
 }
@@ -1002,7 +992,7 @@ const StellarObjectSpriteData &UniverseObjects::ObjectSpriteData(const Sprite *s
 
 
 
-const std::string &UniverseObjects::Rating(const std::string &type, int level) const
+const string &UniverseObjects::Rating(const string &type, int level) const
 {
 	static const string EMPTY;
 	auto it = ratings.find(type);
@@ -1043,14 +1033,14 @@ const Set<News> &UniverseObjects::SpaceportNews() const
 
 
 
-const std::vector<Trade::Commodity> &UniverseObjects::SpecialCommodities() const
+const vector<Trade::Commodity> &UniverseObjects::SpecialCommodities() const
 {
 	return trade.SpecialCommodities();
 }
 
 
 
-const std::vector<StartConditions> &UniverseObjects::StartOptions() const
+const vector<StartConditions> &UniverseObjects::StartOptions() const
 {
 	return startConditions;
 }
@@ -1085,9 +1075,8 @@ const Set<Test> &UniverseObjects::Tests() const
 
 
 
-const string &UniverseObjects::Tooltip(const string &label) const
+string UniverseObjects::Tooltip(const string &label) const
 {
-	static const string EMPTY;
 	auto it = tooltips.find(label);
 	// Special case: the following labels include the percentage of the full price, so they will not match exactly.
 	if(it == tooltips.end() && label.starts_with("cost"))
@@ -1098,7 +1087,7 @@ const string &UniverseObjects::Tooltip(const string &label) const
 		it = tooltips.find("sells for:");
 	if(it == tooltips.end() && label.starts_with("ship: empty hull"))
 		it = tooltips.find("ship: empty hull:");
-	return (it == tooltips.end() ? EMPTY : it->second);
+	return (it == tooltips.end() ? "" : it->second.ToString());
 }
 
 
