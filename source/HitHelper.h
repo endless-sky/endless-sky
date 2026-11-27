@@ -1,4 +1,4 @@
-/* FighterHitHelper.h
+/* HitHelper.h
 Copyright (c) 2024 by tibetiroka
 
 Endless Sky is free software: you can redistribute it and/or modify it under the
@@ -18,21 +18,33 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameData.h"
 #include "Gamerules.h"
 #include "Ship.h"
+#include "Weapon.h"
 
 
 
-class FighterHitHelper {
+class HitHelper
+{
 public:
-	// Checks whether the given ship is a valid target for non-targeted projectiles.
-	static bool IsValidTarget(const Ship *ship)
+	// Check whether the given ship can be validly hit by non-targeted projectiles.
+	static bool IsValid(const Ship *ship, const Weapon *weapon)
 	{
-		if(!ship->CanBeCarried() || !ship->IsDisabled())
+		// If a ship isn't disabled, it's always a valid target.
+		if(!ship->IsDisabled())
+			return true;
+		// Certain weapons can't hit disabled ships unless targeting them.
+		if(weapon && !weapon->CanCollideDisabled())
+			return false;
+		// Carriable ships are valid or not based off of gamerules.
+		if(!ship->CanBeCarried())
 			return true;
 		switch(GameData::GetGamerules().FightersHitWhenDisabled())
 		{
-			case Gamerules::FighterDodgePolicy::ALL: return false;
-			case Gamerules::FighterDodgePolicy::NONE: return true;
-			case Gamerules::FighterDodgePolicy::ONLY_PLAYER: return !ship->IsYours();
+			case Gamerules::FighterDodgePolicy::ALL:
+				return false;
+			case Gamerules::FighterDodgePolicy::NONE:
+				return true;
+			case Gamerules::FighterDodgePolicy::ONLY_PLAYER:
+				return !ship->IsYours();
 		}
 		return false;
 	}
