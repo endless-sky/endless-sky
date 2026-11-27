@@ -1818,6 +1818,12 @@ tip "Escorts expend ammo"
 	`- "frugal": your escorts will only fire their secondary weapons when their HP is low or the hostiles in the system are stronger than your fleet and friendlies.`
 	`- "always": your escorts will always use their secondary weapons when firing.`
 
+tip "   Regenerating ammo"
+	`If a secondary weapon's ammo can be regenerated while in flight, such as fuel gained through having a ramscoop, then your escorts can be told to use that weapon more freely than weapons with limited ammo.`
+	`- "default": your escorts will treat secondary weapons with regenerating ammo the same way they treat all secondary weapons.`
+	`- "obey never": your escorts will use regenerating ammo if "Escorts expend ammo" is set to frugal or always, but not if it is set to never.`
+	`- "freely": your escorts will always use their secondary weapons that can regenerate ammo when firing, even if "Escorts expend ammo" is set to never.`
+
 tip "Flotsam collection"
 	`Control which of your ships can pick up flotsam (cargo floating in space). Flotsam is picked up automatically when your ships overlap it.`
 	`- "off": your ships will never pick up flotsam.`
@@ -2092,6 +2098,15 @@ tip "Carrier exception"
 
 tip "Damage multiplier"
 	`This multiplier is applied to damage dealt by friendly fire. Blast damage and damage against ships being actively targeted are not affected.`
+
+tip "Take off protection"
+	`When you take off from a planet, the game generates five seconds worth of fleet spawns in the system. This rule lets you control which fleets can be spawned based off of their hostility to you or other governments. For any option aside from "off", raid fleets will also be prevented from spawning when you take off.`
+	`- "off": All fleets will be capable of spawning.`
+	`- "loose": Fleets hostile to the current system won't be spawned. For example, pirate fleets won't already be spawned in when you take off from a Republic planet, but they may be if you take off from a pirate planet.`
+	`- "strict": Fleets hostile to the player won't be spawned, even if you're in a system owned by a hostile government.`
+
+tip "Protection duration"
+	`If "take off protection" is on, this specifies an additional number of seconds after take off where hostile fleets will not be spawned. This protection only applies to the system you took off in and is lost upon jumping into another system if there was any remaining time.`
 
 
 # Boarding panel:

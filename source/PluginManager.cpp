@@ -23,6 +23,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Plugin.h"
 #include "Set.h"
 
+#include <ranges>
+
 using namespace std;
 
 namespace {
@@ -170,9 +172,9 @@ void PluginManager::Save()
 	out.Write("state");
 	out.BeginChild();
 	{
-		for(const auto &it : plugins)
-			if(it.second.IsValid())
-				out.Write(it.first, it.second.currentState);
+		for(const auto &[name, plugin] : plugins)
+			if(plugin.IsValid())
+				out.Write(name, plugin.currentState);
 	}
 	out.EndChild();
 }
@@ -194,8 +196,8 @@ bool PluginManager::IsPlugin(const filesystem::path &path)
 // launched via user preferences.
 bool PluginManager::HasChanged()
 {
-	for(const auto &it : plugins)
-		if(it.second.enabled != it.second.currentState)
+	for(const auto &plugin : plugins | views::values)
+		if(plugin.enabled != plugin.currentState)
 			return true;
 	return false;
 }

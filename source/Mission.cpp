@@ -37,6 +37,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cmath>
 #include <limits>
+#include <ranges>
 #include <sstream>
 
 using namespace std;
@@ -108,6 +109,8 @@ namespace {
 				return "on daily";
 			case Mission::Trigger::DISABLED:
 				return "on disabled";
+			case Mission::Trigger::DEADLINE:
+				return "on deadline";
 			default:
 				return "unknown trigger";
 		}
@@ -309,7 +312,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 		else if(key == "complete")
 		{
 			if(!hasValue)
-				child.PrintTrace("Incomplete \"complete\" option. Follow \"complete\" with \"at\".");
+				child.PrintTrace(R"(Incomplete "complete" option. Follow "complete" with "at".)");
 			else if(child.Token(1) == "at")
 			{
 				LocationFilter loaded(child, visitedSystems, visitedPlanets);
@@ -319,7 +322,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 					completionFilter = loaded;
 			}
 			else
-				child.PrintTrace("Unknown \"complete\" option \"" + child.Token(1) + '"');
+				child.PrintTrace(R"(Unknown "complete" option ")" + child.Token(1) + '"');
 		}
 		else if(key == "waypoint" && hasValue)
 		{
@@ -390,6 +393,7 @@ void Mission::Load(const DataNode &node, const ConditionsStore *playerConditions
 				{"waypoint", WAYPOINT},
 				{"daily", DAILY},
 				{"disabled", DISABLED},
+				{"deadline", DEADLINE},
 			};
 			auto it = trigger.find(child.Token(1));
 			if(it != trigger.end())
@@ -456,7 +460,7 @@ void Mission::Save(DataWriter &out, const string &tag) const
 			out.Write("stealth");
 		if(!isVisible)
 			out.Write("invisible");
-		auto saveColor = [&out](const ExclusiveItem<Color> &color, string tokenName) noexcept -> void {
+		auto saveColor = [&out](const ExclusiveItem<Color> &color, const string &tokenName) noexcept -> void {
 			if(!color || !color->IsLoaded())
 				return;
 			if(!color->TrueName().empty())
@@ -587,16 +591,16 @@ void Mission::Save(DataWriter &out, const string &tag) const
 
 		// Save all the actions, because this might be an "available mission" that
 		// has not been received yet but must still be included in the saved game.
-		for(const auto &it : actions)
-			it.second.Save(out);
+		for(const MissionAction &action : actions | views::values)
+			action.Save(out);
 		// Save any "on enter" actions that have not been performed.
-		for(const auto &it : onEnter)
-			if(!didEnter.contains(&it.second))
-				it.second.Save(out);
+		for(const MissionAction &action : onEnter | views::values)
+			if(!didEnter.contains(&action))
+				action.Save(out);
 		for(const MissionAction &action : genericOnEnter)
 			if(!didEnter.contains(&action))
 				action.Save(out);
-		for(const auto &[planet, action] : onLand)
+		for(const MissionAction &action : onLand | views::values)
 			if(!didLand.contains(&action))
 				action.Save(out);
 		for(const MissionAction &action : genericOnLand)
@@ -779,20 +783,20 @@ bool Mission::IsValid() const
 			return false;
 
 	// Actions triggered when entering a system should reference valid systems.
-	for(auto &&it : onEnter)
-		if(!it.first->IsValid() || !it.second.Validate().empty())
+	for(const auto &[system, action] : onEnter)
+		if(!system->IsValid() || !action.Validate().empty())
 			return false;
 	for(const auto &[planet, action] : onLand)
 		if(!planet->IsValid() || !action.Validate().empty())
 			return false;
-	for(auto &&it : actions)
-		if(!it.second.Validate().empty())
-			return false;
-	// Generic "on enter" or "on land" may use a LocationFilter that exclusively references invalid content.
-	for(auto &&action : genericOnEnter)
+	for(const MissionAction &action : actions | views::values)
 		if(!action.Validate().empty())
 			return false;
-	for(const auto &action : genericOnLand)
+	// Generic "on enter" or "on land" may use a LocationFilter that exclusively references invalid content.
+	for(const MissionAction &action : genericOnEnter)
+		if(!action.Validate().empty())
+			return false;
+	for(const MissionAction &action : genericOnLand)
 		if(!action.Validate().empty())
 			return false;
 	if(!clearanceFilter.IsValid())
@@ -1012,7 +1016,7 @@ int64_t Mission::DisplayedPayment() const
 
 
 
-const int Mission::ExpectedJumps() const
+int Mission::ExpectedJumps() const
 {
 	return expectedJumps;
 }
@@ -1217,7 +1221,7 @@ bool Mission::IsSatisfied(const PlayerInfo &player) const
 			return false;
 		// Check for all mission cargo, including that which has 0 mass.
 		auto &cargo = ship->Cargo().MissionCargo();
-		if(cargo.find(this) != cargo.end())
+		if(cargo.contains(this))
 			return false;
 	}
 
@@ -1302,8 +1306,8 @@ string Mission::BlockedMessage(const PlayerInfo &player)
 		out << "no additional space";
 	subs["<capacity>"] = out.str();
 
-	for(const auto &keyValue : subs)
-		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
+	for(const auto &[from, to] : subs)
+		subs[from] = Phrase::ExpandPhrases(to);
 	Format::Expand(subs);
 
 	string message = Format::Replace(blocked, subs);
@@ -1447,8 +1451,8 @@ bool Mission::RequiresGiftedShip(const string &shipId) const
 		if(!waypoints.empty())
 			requiredActions.insert(Trigger::WAYPOINT);
 	}
-	for(const auto &it : actions)
-		if(requiredActions.contains(it.first) && it.second.RequiresGiftedShip(shipId))
+	for(const auto &[trigger, action] : actions)
+		if(requiredActions.contains(trigger) && action.RequiresGiftedShip(shipId))
 			return true;
 
 	return false;
@@ -1509,17 +1513,17 @@ void Mission::Do(const ShipEvent &event, PlayerInfo &player, UI &ui)
 		{
 			// Destroyed ships carrying mission cargo result in failed missions.
 			// Mission cargo may have a quantity of zero (i.e. 0 mass).
-			for(const auto &it : event.Target()->Cargo().MissionCargo())
-				failed |= (it.first == this);
+			for(const auto &mission : event.Target()->Cargo().MissionCargo() | views::keys)
+				failed |= (mission == this);
 			// If any mission passengers were present, this mission is failed.
-			for(const auto &it : event.Target()->Cargo().PassengerList())
-				failed |= (it.first == this && it.second);
+			for(const auto &[mission, count] : event.Target()->Cargo().PassengerList())
+				failed |= (mission == this && count);
 		}
 		else if(event.Type() & ShipEvent::BOARD)
 		{
 			// Fail missions whose cargo is stolen by a boarding vessel.
-			for(const auto &it : event.Actor()->Cargo().MissionCargo())
-				failed |= (it.first == this);
+			for(const auto &mission : event.Actor()->Cargo().MissionCargo() | views::keys)
+				failed |= (mission == this);
 			if(failed)
 				message = "Your " + event.Target()->DisplayModelName() +
 					" \"" + event.Target()->GivenName() + "\" has been plundered. ";
@@ -1766,8 +1770,8 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		subs["<marks>"] = Format::List<set, const System *>(result.markedSystems, getDisplayName);
 
 	// Done making subs, so expand the phrases and recursively substitute.
-	for(const auto &keyValue : subs)
-		subs[keyValue.first] = Phrase::ExpandPhrases(keyValue.second);
+	for(const auto &[from, to] : subs)
+		subs[from] = Phrase::ExpandPhrases(to);
 	Format::Expand(subs);
 
 	// Instantiate the NPCs. This also fills in the "<npc>" substitution.
@@ -1835,7 +1839,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		reason = action.Validate();
 		if(!reason.empty())
 		{
-			Logger::Log("Instantiation Error: Generic \"on enter\" action in mission \""
+			Logger::Log(R"(Instantiation Error: Generic "on enter" action in mission ")"
 				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
 			return result;
 		}
@@ -1847,7 +1851,7 @@ Mission Mission::Instantiate(const PlayerInfo &player, const shared_ptr<Ship> &b
 		reason = action.Validate();
 		if(!reason.empty())
 		{
-			Logger::Log("Instantiation Error: Generic \"on land\" action in mission \""
+			Logger::Log(R"(Instantiation Error: Generic "on land" action in mission ")"
 				+ TrueName() + "\" uses invalid " + std::move(reason), Logger::Level::WARNING);
 			return result;
 		}

@@ -23,7 +23,7 @@ using namespace std;
 
 namespace {
 	// Lookup table for matching special tokens to enumeration values.
-	map<string, int> TOKEN_INDEX = {
+	const map<string, int> TOKEN_INDEX = {
 		{"accept", Endpoint::ACCEPT},
 		{"decline", Endpoint::DECLINE},
 		{"defer", Endpoint::DEFER},
@@ -34,15 +34,6 @@ namespace {
 		{"explode", Endpoint::EXPLODE}
 	};
 }
-
-const int Endpoint::ACCEPT;
-const int Endpoint::DECLINE;
-const int Endpoint::DEFER;
-const int Endpoint::LAUNCH;
-const int Endpoint::FLEE;
-const int Endpoint::DEPART;
-const int Endpoint::DIE;
-const int Endpoint::EXPLODE;
 
 
 
@@ -63,9 +54,9 @@ int Endpoint::TokenIndex(const string &token)
 
 string Endpoint::TokenName(int index)
 {
-	for(const auto &it : TOKEN_INDEX)
-		if(it.second == index)
-			return it.first;
+	for(const auto &[name, endpoint] : TOKEN_INDEX)
+		if(endpoint == index)
+			return name;
 
 	return to_string(index);
 }

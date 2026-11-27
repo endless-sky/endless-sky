@@ -74,13 +74,13 @@ uint32_t Random::Int()
 
 
 
-uint32_t Random::Int(uint32_t upper_bound)
+uint32_t Random::Int(uint32_t upperBound)
 {
 #ifndef __linux__
 	lock_guard<mutex> lock(workaroundMutex);
 #endif
 	const uint32_t x = uniform(gen);
-	return (static_cast<uint64_t>(x) * static_cast<uint64_t>(upper_bound)) >> 32;
+	return (static_cast<uint64_t>(x) * static_cast<uint64_t>(upperBound)) >> 32;
 }
 
 

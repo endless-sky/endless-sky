@@ -39,13 +39,6 @@ TextArea::TextArea(const Rectangle &r)
 
 
 
-// Stub destructor, so that unique_ptrs are destructed in the correct scope.
-TextArea::~TextArea()
-{
-}
-
-
-
 void TextArea::SetRect(const Rectangle &r)
 {
 	// TODO: Is there a use case where we would want the WrapWidth to be

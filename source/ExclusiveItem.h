@@ -74,7 +74,7 @@ private:
 
 
 template<class Type>
-inline ExclusiveItem<Type>::ExclusiveItem(const Type *item) noexcept
+ExclusiveItem<Type>::ExclusiveItem(const Type *item) noexcept
 	: item{item}
 {
 }
@@ -82,7 +82,7 @@ inline ExclusiveItem<Type>::ExclusiveItem(const Type *item) noexcept
 
 
 template<class Type>
-inline ExclusiveItem<Type>::ExclusiveItem(Type &&item)
+ExclusiveItem<Type>::ExclusiveItem(Type &&item)
 	: item{std::shared_ptr<Type>{new Type{item}}}
 {
 }
@@ -90,7 +90,7 @@ inline ExclusiveItem<Type>::ExclusiveItem(Type &&item)
 
 
 template<class Type>
-inline ExclusiveItem<Type>::ExclusiveItem(const std::shared_ptr<Type> &item) noexcept
+ExclusiveItem<Type>::ExclusiveItem(const std::shared_ptr<Type> &item) noexcept
 	: item{item}
 {
 }
@@ -98,7 +98,7 @@ inline ExclusiveItem<Type>::ExclusiveItem(const std::shared_ptr<Type> &item) noe
 
 
 template<class Type>
-inline bool ExclusiveItem<Type>::IsStock() const noexcept
+bool ExclusiveItem<Type>::IsStock() const noexcept
 {
 	return item.index();
 }
@@ -106,7 +106,7 @@ inline bool ExclusiveItem<Type>::IsStock() const noexcept
 
 
 template<class Type>
-inline ExclusiveItem<Type>::operator bool() const noexcept
+ExclusiveItem<Type>::operator bool() const noexcept
 {
 	return Ptr();
 }
@@ -114,7 +114,7 @@ inline ExclusiveItem<Type>::operator bool() const noexcept
 
 
 template<class Type>
-inline const Type *ExclusiveItem<Type>::Ptr() const noexcept
+const Type *ExclusiveItem<Type>::Ptr() const noexcept
 {
 	return item.index() ? std::get<1>(item) : std::get<0>(item).get();
 }
@@ -122,7 +122,7 @@ inline const Type *ExclusiveItem<Type>::Ptr() const noexcept
 
 
 template<class Type>
-inline const Type *ExclusiveItem<Type>::operator->() const noexcept
+const Type *ExclusiveItem<Type>::operator->() const noexcept
 {
 	return Ptr();
 }
@@ -130,7 +130,7 @@ inline const Type *ExclusiveItem<Type>::operator->() const noexcept
 
 
 template<class Type>
-inline const Type &ExclusiveItem<Type>::operator*() const noexcept
+const Type &ExclusiveItem<Type>::operator*() const noexcept
 {
 	return *Ptr();
 }
@@ -138,7 +138,7 @@ inline const Type &ExclusiveItem<Type>::operator*() const noexcept
 
 
 template<class Type>
-inline const std::shared_ptr<Type> &ExclusiveItem<Type>::Mutable() const noexcept
+const std::shared_ptr<Type> &ExclusiveItem<Type>::Mutable() const noexcept
 {
 	assert(!IsStock() && "ExclusiveItem::Mutable cannot grant access to a stock item.");
 	return std::get<0>(item);
@@ -147,7 +147,7 @@ inline const std::shared_ptr<Type> &ExclusiveItem<Type>::Mutable() const noexcep
 
 
 template<class Type>
-inline bool ExclusiveItem<Type>::operator==(const ExclusiveItem &other) const noexcept
+bool ExclusiveItem<Type>::operator==(const ExclusiveItem &other) const noexcept
 {
 	return *this && other ? **this == *other : static_cast<bool>(*this) == static_cast<bool>(other);
 }
@@ -155,7 +155,7 @@ inline bool ExclusiveItem<Type>::operator==(const ExclusiveItem &other) const no
 
 
 template<class Type>
-inline bool ExclusiveItem<Type>::operator!=(const ExclusiveItem &other) const noexcept
+bool ExclusiveItem<Type>::operator!=(const ExclusiveItem &other) const noexcept
 {
 	return !(*this == other);
 }

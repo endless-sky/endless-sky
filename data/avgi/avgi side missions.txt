@@ -419,6 +419,8 @@ mission "Avgi Culture: Park Politics"
 				goto final
 
 			label win
+			action
+				set "drak revelations: avgi"
 			`	You play with bated breath as your pieces slowly inch off the board, until at last victory is yours, a scant single move before Wisteria would have evacuated his final piece. You suspect that while he has given you a fair game, he has perhaps gone easy on you to give you a chance to win.`
 
 			label final

@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Message.h"
 
-#include <cstdint>
 #include <deque>
 #include <string>
 #include <utility>
@@ -41,10 +40,10 @@ public:
 		Entry(int step, const std::string &message, const Message::Category *category)
 			: step(step), message(message), category(category) {}
 
-		int step;
+		int step = 0;
 		int deathStep = -1;
 		std::string message;
-		const Message::Category *category;
+		const Message::Category *category = nullptr;
 	};
 
 

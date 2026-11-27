@@ -51,6 +51,12 @@ public:
 public:
 	// Let every panel know where the current mouse location is.
 	void SetHoverPoint();
+	// main.cpp intercepts from key presses before they can reach UI::Handle.
+	// If the UI is currently accepting keyboard input, such as when the player
+	// is editing commands in the PreferencesPanel or typing into a text box,
+	// then we want all keyboard input to go through the UI.
+	bool CaptureAllKeyboardInput() const;
+	void SetCaptureAllKeyboardInput(bool capture);
 	// Handle an event. The event is handed to each panel on the stack until one
 	// of them handles it. If none do, this returns false.
 	bool Handle(const SDL_Event &event);
@@ -118,6 +124,8 @@ private:
 	bool canSave = false;
 	// Whether the player has requested the game to shut down.
 	bool isDone = false;
+	// Whether main.cpp should send keyboard inputs to the UI first.
+	bool capturingAllKeyboardInput = false;
 
 	std::vector<std::shared_ptr<Panel>> stack;
 	std::vector<std::shared_ptr<Panel>> toPush;

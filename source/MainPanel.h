@@ -35,6 +35,8 @@ class MainPanel : public Panel {
 public:
 	explicit MainPanel(PlayerInfo &player);
 
+	virtual void SetUI(UI *ui) override;
+
 	virtual void Step() override;
 	virtual void Draw() override;
 
@@ -60,16 +62,17 @@ protected:
 
 
 private:
-	void ShowScanDialog(const ShipEvent &event);
+	void ShowScanDialog(const ShipEvent &event) const;
 	bool ShowHailPanel();
 	bool ShowHelp(bool force);
-	void StepEvents(bool &isActive);
+	void StepEvents();
 
 
 private:
 	PlayerInfo &player;
 
 	Engine engine;
+	bool isActive;
 
 	// These are the pending ShipEvents that have yet to be processed.
 	std::list<ShipEvent> eventQueue;

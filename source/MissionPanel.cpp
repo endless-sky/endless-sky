@@ -92,7 +92,7 @@ namespace {
 		// scroll could be non-zero if missions were added/aborted, so return the delta that will reset it.
 		size_t maxViewable = MaxDisplayedMissions(isAccepted);
 		if(missionCount < maxViewable)
-			sideScroll = 0;
+			sideScroll = 0.;
 		else
 		{
 			double maximumScroll = (missionCount - maxViewable) * 20.;
@@ -141,12 +141,9 @@ MissionPanel::MissionPanel(PlayerInfo &player)
 	// Select the first available or accepted mission in the currently selected
 	// system, or along the travel plan.
 	if(!FindMissionForSystem(selectedSystem) && player.HasTravelPlan())
-	{
-		const auto &tp = player.TravelPlan();
-		for(auto it = tp.crbegin(); it != tp.crend(); ++it)
-			if(FindMissionForSystem(*it))
+		for(const System *system : player.TravelPlan() | views::reverse)
+			if(FindMissionForSystem(system))
 				break;
-	}
 
 	SetSelectedScrollAndCenter(true);
 }
@@ -188,9 +185,8 @@ MissionPanel::MissionPanel(const MapPanel &panel)
 		&& !(player.GetSystem() != selectedSystem && FindMissionForSystem(player.GetSystem()))
 		&& player.HasTravelPlan())
 	{
-		const auto &tp = player.TravelPlan();
-		for(auto it = tp.crbegin(); it != tp.crend(); ++it)
-			if(FindMissionForSystem(*it))
+		for(const System *system : player.TravelPlan() | views::reverse)
+			if(FindMissionForSystem(system))
 				break;
 	}
 
@@ -256,10 +252,8 @@ void MissionPanel::Draw()
 	const double jumpRange = flagship ? flagship->JumpNavigation().JumpRange() : 0.;
 	const System *previous = player.GetSystem();
 	const vector<const System *> plan = distance.Plan(*selectedSystem);
-	for(auto it = plan.rbegin(); it != plan.rend(); ++it)
+	for(const System *next : plan | views::reverse)
 	{
-		const System *next = *it;
-
 		bool isJump, isWormhole, isMappable;
 		if(!GetTravelInfo(previous, next, jumpRange, isJump, isWormhole, isMappable, nullptr))
 			break;
@@ -316,7 +310,7 @@ void MissionPanel::Draw()
 	DrawAccepted(pos);
 
 	// Now that the mission lists and map elements are drawn, draw the top-most UI elements.
-	DrawKey();
+	DrawMissionKey();
 	DrawMissionInfo();
 	DrawTooltips();
 	FinishDrawing("is missions");
@@ -718,7 +712,7 @@ void MissionPanel::SetSelectedScrollAndCenter(bool immediate)
 
 
 
-void MissionPanel::DrawKey() const
+void MissionPanel::DrawMissionKey() const
 {
 	static const string CONDITIONS[] = {
 		"available",
@@ -1137,17 +1131,17 @@ void MissionPanel::MakeSpaceAndAccept()
 	if(crewToFire > 0)
 		player.Flagship()->AddCrew(-crewToFire);
 
-	for(const auto &it : player.Cargo().Commodities())
+	for(const auto &[commodity, count] : player.Cargo().Commodities())
 	{
 		if(cargoToSell <= 0)
 			break;
 
-		int toSell = min(cargoToSell, it.second);
-		int64_t price = player.GetSystem()->Trade(it.first);
+		int toSell = min(cargoToSell, count);
+		int64_t price = player.GetSystem()->Trade(commodity);
 
-		int64_t basis = player.GetBasis(it.first, toSell);
-		player.AdjustBasis(it.first, -basis);
-		player.Cargo().Remove(it.first, toSell);
+		int64_t basis = player.GetBasis(commodity, toSell);
+		player.AdjustBasis(commodity, -basis);
+		player.Cargo().Remove(commodity, toSell);
 		player.Accounts().AddCredits(toSell * price);
 		cargoToSell -= toSell;
 	}

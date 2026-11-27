@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "Angle.h"
 
+#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>
@@ -42,7 +43,7 @@ class Minable : public Entity {
 public:
 	class Payload {
 	public:
-		Payload(const DataNode &node);
+		explicit Payload(const DataNode &node);
 
 		// The outfit type that this payload will drop.
 		const Outfit *outfit;
@@ -86,7 +87,7 @@ public:
 	// Determine what flotsam this asteroid will create.
 	const std::vector<Payload> &GetPayload() const;
 
-	// Get the expected value of the flotsams this minable will create when destroyed.
+	// Get the expected value of the flotsam this minable will create when destroyed.
 	int64_t GetExpectedValue() const;
 	// Get the value of the highest quality item that could drop from this minable when destroyed.
 	int64_t GetHighestQualityValue() const;
@@ -103,7 +104,7 @@ protected:
 private:
 	class LiveEffect {
 	public:
-		LiveEffect(const DataNode &node);
+		explicit LiveEffect(const DataNode &node);
 
 		const Effect *effect;
 		// Average interval between instances of the effect, in frames.
@@ -120,23 +121,23 @@ private:
 	std::string noun;
 	// Current angular position relative to the focus of the elliptical orbit,
 	// in radians. An angle of zero is the periapsis point.
-	double theta;
+	double theta = 0.;
 	// Eccentricity of the orbit. 0 is circular and 1 is a parabola.
-	double eccentricity;
+	double eccentricity = 0.;
 	// Angular momentum (radius^2 * angular velocity) will always be conserved.
 	// The object's mass can be ignored, because it is a constant.
-	double angularMomentum;
+	double angularMomentum = 0.;
 	// Scale of the orbit. This is the orbital radius when theta is 90 degrees.
 	// The periapsis and apoapsis radii are scale / (1 +- eccentricity).
-	double orbitScale;
+	double orbitScale = 0.;
 	// Rotation of the orbit - that is, the angle of periapsis - in radians.
-	double rotation;
+	double rotation = 0.;
 	// Rate of spin of the object.
 	Angle spin;
 
 	// Cache the current orbital radius. It can be calculated from theta and the
 	// parameters above, but this avoids having to calculate every radius twice.
-	double radius;
+	double radius = 0.;
 
 	// A random amount of hull that gets added to the object.
 	double randomHull = 0.;

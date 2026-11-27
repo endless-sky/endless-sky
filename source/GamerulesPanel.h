@@ -68,15 +68,15 @@ private:
 
 	void DrawTooltips();
 
-	void HandleGamerulesString(const std::string &str);
+	void HandleGamerulesString(const std::string &str) const;
 	// Scroll the preset list until the selected preset is visible.
 	void ScrollSelectedPreset();
 
 	void HandleUp();
 	void HandleDown();
-	void HandleConfirm();
+	void HandleConfirm() const;
 
-	void SelectPreset(const std::string &name);
+	void SelectPreset(const std::string &name) const;
 
 
 private:

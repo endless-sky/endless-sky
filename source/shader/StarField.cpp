@@ -35,21 +35,21 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 using namespace std;
 
 namespace {
-	const int TILE_SIZE = 256;
+	constexpr int TILE_SIZE = 256;
 	// The star field tiles in 4000 pixel increments. Have the tiling of the haze
 	// field be as different from that as possible. (Note: this may need adjusting
 	// in the future if monitors larger than this width ever become commonplace.)
-	const double HAZE_WRAP = 6627.;
+	constexpr double HAZE_WRAP = 6627.;
 	// Don't let two haze patches be closer to each other than this distance. This
 	// avoids having very bright haze where several patches overlap.
-	const double HAZE_DISTANCE = 1200.;
+	constexpr double HAZE_DISTANCE = 1200.;
 	// This is how many haze fields should be drawn.
-	const size_t HAZE_COUNT = 16;
+	constexpr size_t HAZE_COUNT = 16;
 	// This is how fast the crossfading of previous haze and current haze is
-	const double FADE_PER_FRAME = 0.01;
+	constexpr double FADE_PER_FRAME = 0.01;
 	// An additional zoom factor applied to stars/haze on top of the base zoom, to simulate parallax.
-	const double STAR_ZOOM = 0.70;
-	const double HAZE_ZOOM = 0.90;
+	constexpr double STAR_ZOOM = 0.70;
+	constexpr double HAZE_ZOOM = 0.90;
 
 	void AddHaze(DrawList &drawList, const vector<Body> &haze,
 		const Point &topLeft, const Point &bottomRight, double transparency)
@@ -365,9 +365,9 @@ void StarField::MakeStars(int stars, int width)
 	tileIndex.resize(static_cast<size_t>(tileCols) * tileCols, 0);
 
 	vector<int> off;
-	static const int MAX_OFF = 50;
-	static const int MAX_D = MAX_OFF * MAX_OFF;
-	static const int MIN_D = MAX_D / 4;
+	static constexpr int MAX_OFF = 50;
+	static constexpr int MAX_D = MAX_OFF * MAX_OFF;
+	static constexpr int MIN_D = MAX_D / 4;
 	off.reserve(MAX_OFF * MAX_OFF * 5);
 	for(int x = -MAX_OFF; x <= MAX_OFF; ++x)
 		for(int y = -MAX_OFF; y <= MAX_OFF; ++y)
@@ -414,19 +414,19 @@ void StarField::MakeStars(int stars, int width)
 	for(auto it = temp.begin(); it != temp.end(); )
 	{
 		// Figure out what tile this star is in.
-		int x = *it++;
-		int y = *it++;
-		int index = (x / TILE_SIZE) + (y / TILE_SIZE) * tileCols;
+		int tx = *it++;
+		int ty = *it++;
+		int index = (tx / TILE_SIZE) + (ty / TILE_SIZE) * tileCols;
 
 		// Randomize its sub-pixel position and its size / brightness.
 		int random = Random::Int(4096);
-		float fx = (x & (TILE_SIZE - 1)) + (random & 15) * 0.0625f;
-		float fy = (y & (TILE_SIZE - 1)) + (random >> 8) * 0.0625f;
+		float fx = (tx & (TILE_SIZE - 1)) + (random & 15) * 0.0625f;
+		float fy = (ty & (TILE_SIZE - 1)) + (random >> 8) * 0.0625f;
 		float size = (((random >> 4) & 15) + 20) * 0.0625f;
 
 		// Fill in the data array.
 		auto dataIt = data.begin() + 6 * 4 * tileIndex[index]++;
-		const float CORNER[6] = {
+		constexpr float CORNER[6] = {
 			static_cast<float>(0. * PI),
 			static_cast<float>(.5 * PI),
 			static_cast<float>(1.5 * PI),

@@ -26,6 +26,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "NPC.h"
 #include "TextReplacements.h"
 
+#include <cstdint>
 #include <list>
 #include <map>
 #include <memory>
@@ -129,7 +130,7 @@ public:
 	const std::set<const System *> &TrackedSystems() const;
 	void RecalculateTrackedSystems();
 	void Mark(const std::set<const System *> &systems) const;
-	void Unmark(const std::set<const System *> &system) const;
+	void Unmark(const std::set<const System *> &systems) const;
 	const std::string &Cargo() const;
 	int CargoSize() const;
 	int Fine() const;
@@ -139,8 +140,8 @@ public:
 	int64_t DisplayedPayment() const;
 	// The mission should take this many jumps.
 	// Only matters to available jobs (not saved to file)
-	const int ExpectedJumps() const;
-	int CalculateJumps(const System *const sourceSystem);
+	int ExpectedJumps() const;
+	int CalculateJumps(const System *sourceSystem);
 	// The mission must be completed by this deadline (if there is a deadline).
 	const Date &Deadline() const;
 	// If this mission's deadline was before the given date and it has not been
@@ -192,8 +193,8 @@ public:
 	// action that does pass the UI pointer.)
 	// - ACCEPT, DECLINE, and DEFER if it is from PlayerInfo::MissionCallback(), as in this case the mission already
 	// used the UI to create a conversation or dialog that triggered the callback.
-	// - DAILY is called in PlayerInfo::AdvanceDate and never has access to the UI.
-	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED};
+	enum Trigger {COMPLETE, OFFER, ACCEPT, DECLINE, FAIL, ABORT, DEFER, VISIT, STOPOVER, WAYPOINT, DAILY, DISABLED,
+		DEADLINE};
 	bool Do(Trigger trigger, PlayerInfo &player, UI *ui = nullptr, const std::shared_ptr<Ship> &boardingShip = nullptr);
 
 	// Get a list of NPCs associated with this mission. Every time the player

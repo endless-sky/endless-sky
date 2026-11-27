@@ -96,8 +96,8 @@ void BatchDrawList::Draw() const
 {
 	BatchShader::Bind();
 
-	for(const pair<const Sprite *const, vector<float>> &it : data)
-		BatchShader::Add(it.first, it.second);
+	for(const auto &[sprite, spriteData] : data)
+		BatchShader::Add(sprite, spriteData);
 
 	BatchShader::Unbind();
 }

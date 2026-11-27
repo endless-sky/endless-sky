@@ -53,7 +53,7 @@ void ScrollBar::Draw()
 
 
 
-void ScrollBar::DrawAt(const Point &from)
+void ScrollBar::DrawAt(const Point &from) const
 {
 	Point delta = to - this->from;
 	LineShader::Draw(

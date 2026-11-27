@@ -4010,6 +4010,8 @@ mission "Coalition: Powerless 2"
 				`	"I am glad you're enjoying it. Let's have another look around before the arbiter arrives."`
 					goto accept
 				`	"Back in the arbiter's office, before we left you said she was a champion of something. My translator didn't quite pick it up."`
+			action
+				set "drak revelations: kimek"
 			`	He looks back at you, thinking for a second. "Iiechakayi?" He asks, and as the translator does nothing at all, you nod. "Ah, I see. From Kimek spiritual and cultural beliefs, the word is. Maybe because of that, not translated, it is?" He thinks for a while. "Think I do that the closest words to its meaning, 'cultivating growth,' or maybe 'growing dwelling' are. One of the paths us Kimek follow, it is."`
 			choice
 				`	"So there are more paths?"`

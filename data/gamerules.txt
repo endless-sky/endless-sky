@@ -71,3 +71,6 @@
 	"friendly fire fighter prob multiplier" 1.
 	"friendly fire carrier exception" false
 	"friendly fire damage multiplier" 1.
+	
+	"take off protection" "loose"
+	"take off protection duration" 180
