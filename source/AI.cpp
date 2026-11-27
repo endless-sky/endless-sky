@@ -4219,9 +4219,11 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		bool usesFuel = weapon->FiringFuel() > 0.;
 		if(usesFuel)
 		{
-			// If this ship has a frugal personality, don't fire weapons that
-			// would leave you without enough fuel to jump out of the system.
-			if(isFrugalPersonality && ship.FuelLevel() - ship.JumpNavigation().JumpFuel() < weapon->FiringFuel())
+			// Don't fire weapons that would leave you without enough fuel to jump
+			// out of the system. An exception to this is if the ship has the staying
+			// personality and will never leave this system.
+			double fuel = ship.FuelLevel() - weapon->FiringFuel();
+			if(fuel < (person.IsStaying() ? 0. : ship.JumpNavigation().JumpFuel()))
 				return false;
 			// Player ships should never use fuel weapons if they're set to never use ammo,
 			// unless they're allowed to freely use regenerating ammo and has sufficient fuel generation.
@@ -4244,6 +4246,8 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 		return true;
 	};
 
+	// CanFire is checked separately from CanUse in order to determine
+	// which weapons are at least on target.
 	auto CanFire = [&](const Hardpoint &hardpoint) -> bool {
 		if(!hardpoint.IsReady())
 			return false;
@@ -4285,18 +4289,6 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			continue;
 		const Weapon *weapon = hardpoint.GetWeapon();
 
-		// Special case: if the weapon uses fuel, be careful not to spend so much
-		// fuel that you cannot leave the system if necessary.
-		if(weapon->FiringFuel())
-		{
-			double fuel = ship.FuelLevel();
-			fuel -= weapon->FiringFuel();
-			// If the ship is not ever leaving this system, it does not need to
-			// reserve any fuel.
-			bool isStaying = person.IsStaying();
-			if(!secondary || fuel < (isStaying ? 0. : ship.JumpNavigation().JumpFuel()))
-				continue;
-		}
 		// Figure out where this weapon will fire from.
 		Point start = ship.Position() + ship.Facing().Rotate(hardpoint.GetPoint());
 
