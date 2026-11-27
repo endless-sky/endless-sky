@@ -907,7 +907,14 @@ void AI::Step(Command &activeCommands)
 					outfitScans[&*it].insert(&*target);
 			}
 		}
-		if(isPresent && !personality.IsSwarming())
+		// If this ship is currently in the process of assisting someone, don't
+		// try switching targets. Otherwise, the target it switches to will be
+		// immediately overwritten by the code further down that causes this ship
+		// to target the one it's assisting and move toward it, and that is not a good
+		// thing to happen when between here and then is where ships decide to fire their
+		// weapons.
+		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
+		if(isPresent && !personality.IsSwarming() && !shipToAssist)
 		{
 			// Each ship only switches targets about twice a second, so that it can
 			// focus on damaging one particular ship.
@@ -988,7 +995,6 @@ void AI::Step(Command &activeCommands)
 
 		// If recruited to assist a ship, follow through on the commitment
 		// instead of ignoring it due to other personality traits.
-		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
 		if(shipToAssist)
 		{
 			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()

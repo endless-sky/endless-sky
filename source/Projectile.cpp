@@ -73,6 +73,9 @@ Projectile::Projectile(const Ship &parent, Point position, Angle angle, const We
 	hitsRemaining = weapon->PenetrationCount();
 
 	// If you are boarding your target, do not fire on it.
+	// A fire command sent while boarding is likely the result of
+	// AutoFire trying to hit an untargeted hostile nearby while
+	// this ship is boarding a friendly.
 	if(parent.IsBoarding() || parent.Commands().Has(Command::BOARD))
 		target.reset();
 
