@@ -18,6 +18,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <cstdint>
 #include <map>
 #include <memory>
+#include <optional>
 #include <vector>
 
 class DataNode;
@@ -36,9 +37,10 @@ public:
 	static bool AgingActive();
 	// What fraction of its cost a fully depreciated item has left:
 	static double Full();
-	// The remaining value for plundered or captured items.
+	// The remaining value for plundered, captured, or jettisoned items.
 	static double Plundered();
 	static double Captured();
+	static std::optional<double> Jettisoned();
 	// The cache is invalid if certain depreciation gamerules are changed.
 	static void InvalidateCache();
 
@@ -60,8 +62,10 @@ public:
 	void Buy(const Outfit *outfit, int day, Depreciation *source = nullptr);
 	// Add a captured ship, and all its outfits, to the depreciation record.
 	void Capture(const Ship &ship, int day);
-	// Add a plundered or captured outfit to the depreciation record.
+	// Add a plundered outfit to the depreciation record.
 	void Plunder(const Outfit *outfit, int day, int count);
+	// Add a jettisoned outfit to the depreciation record.
+	void Jettisoned(const Outfit *outfit, int day, int count);
 
 	// Get the value of an entire fleet.
 	int64_t Value(const std::vector<std::shared_ptr<Ship>> &fleet, int day, bool chassisOnly = false) const;
@@ -104,8 +108,7 @@ private:
 	// date of purchase (in days since the epoch) as the key and the number of
 	// ships or outfits obtained on that day as the value. If an item isn't in
 	// the record, it uses the default deprecation.
-	// If an item's date is -1 or -2, that is equivalent to having been captured
-	// or plundered respectively.
+	// If an item's date is negative, it maps to a special depreciation state.
 	std::map<const Ship *, std::map<int, int>> ships;
 	std::map<const Outfit *, std::map<int, int>> outfits;
 };
