@@ -50,8 +50,7 @@ Flotsam::Flotsam(const Outfit *outfit, int count, const Government *sourceGovern
 	// This flotsam was created by the player, so get an exact record of this outfit's value from them.
 	// This is so that if another one of the player's ships picks this flotsam up, the value of the
 	// outfit doesn't change.
-	// This can be skipped if jettisoned outfits have their own depreciation value.
-	if(player && !Depreciation::Jettisoned().has_value())
+	if(player)
 	{
 		int day = player->GetDate().DaysSinceEpoch();
 		Depreciation *source = &player->FleetDepreciation();
