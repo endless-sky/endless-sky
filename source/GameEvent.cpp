@@ -55,7 +55,7 @@ map<string, set<string>> GameEvent::DeferredDefinitions(const list<DataNode> &ch
 			if(key == "system")
 			{
 				// A system is only actually defined by this change node if its position is set.
-				if(any_of(node.begin(), node.end(), [](const DataNode &child) noexcept -> bool
+				if(ranges::any_of(node, [](const DataNode &child) noexcept -> bool
 						{
 							return child.Size() >= 3 && child.Token(0) == "pos";
 						}))

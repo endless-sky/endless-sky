@@ -80,7 +80,7 @@ public:
 
 private:
 	struct Debt {
-		Debt(int64_t amount) : amount(amount) {}
+		explicit Debt(int64_t amount) : amount(amount) {}
 
 		int64_t amount = 0;
 		std::optional<double> interest;

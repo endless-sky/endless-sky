@@ -17,7 +17,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include "audio/Audio.h"
 #include "shader/BatchShader.h"
-#include "CategoryList.h"
 #include "Color.h"
 #include "Command.h"
 #include "ConditionsStore.h"
@@ -57,7 +56,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "RenderBuffer.h"
 #include "shader/RingShader.h"
 #include "Ship.h"
-#include "image/Sprite.h"
 #include "image/SpriteLoadManager.h"
 #include "shader/SpriteShader.h"
 #include "shader/StarField.h"
@@ -72,6 +70,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <algorithm>
 #include <cassert>
 #include <filesystem>
+#include <memory>
 #include <queue>
 #include <ranges>
 #include <utility>
@@ -205,7 +204,7 @@ void GameData::LoadShaders()
 	{
 		filesystem::path base = source / "shaders";
 		if(Files::Exists(base))
-			for(filesystem::path shaderFile : Files::RecursiveList(base))
+			for(const filesystem::path &shaderFile : Files::RecursiveList(base))
 			{
 				filesystem::path shader = shaderFile;
 #ifdef ES_GLES
@@ -356,8 +355,8 @@ void GameData::WriteEconomy(DataWriter &out)
 				[&out](const Purchase &pit)
 				{
 					// Write purchases for all systems, even ones from removed plugins.
-					for(const auto &cit : pit.second)
-						out.Write(pit.first->TrueName(), cit.first, cit.second);
+					for(const auto &[commodity, count] : pit.second)
+						out.Write(pit.first->TrueName(), commodity, count);
 				});
 			out.EndChild();
 		}
@@ -368,14 +367,14 @@ void GameData::WriteEconomy(DataWriter &out)
 		out.Write();
 
 		// Write the per-system data for all systems that are either known-valid, or non-empty.
-		for(const auto &sit : GameData::Systems())
+		for(const auto &system : GameData::Systems() | views::values)
 		{
-			if(!sit.second.IsValid() && !sit.second.HasTrade())
+			if(!system.IsValid() && !system.HasTrade())
 				continue;
 
-			out.WriteToken(sit.second.TrueName());
+			out.WriteToken(system.TrueName());
 			for(const auto &cit : GameData::Commodities())
-				out.WriteToken(static_cast<int>(sit.second.Supply(cit.name)));
+				out.WriteToken(static_cast<int>(system.Supply(cit.name)));
 			out.Write();
 		}
 	}
@@ -388,24 +387,23 @@ void GameData::StepEconomy()
 {
 	// First, apply any purchases the player made. These are deferred until now
 	// so that prices will not change as you are buying or selling goods.
-	for(const auto &pit : purchases)
+	for(const auto &[s, purchaseData] : purchases)
 	{
-		System &system = const_cast<System &>(*pit.first);
-		for(const auto &cit : pit.second)
-			system.SetSupply(cit.first, system.Supply(cit.first) - cit.second);
+		System &system = const_cast<System &>(*s);
+		for(const auto &[commodity, count] : purchaseData)
+			system.SetSupply(commodity, system.Supply(commodity) - count);
 	}
 	purchases.clear();
 
 	// Then, have each system generate new goods for local use and trade.
-	for(auto &it : objects->systems)
-		it.second.StepEconomy();
+	for(auto &system : objects->systems | views::values)
+		system.StepEconomy();
 
 	// Finally, send out the trade goods. This has to be done in a separate step
 	// because otherwise whichever systems trade last would already have gotten
 	// supplied by the other systems.
-	for(auto &it : objects->systems)
+	for(auto &system : objects->systems | views::values)
 	{
-		System &system = it.second;
 		if(!system.Links().empty())
 			for(const Trade::Commodity &commodity : Commodities())
 			{
@@ -472,7 +470,7 @@ void GameData::ResetPersons()
 
 
 // Mark all persons in the given list as dead.
-void GameData::DestroyPersons(vector<string> &names)
+void GameData::DestroyPersons(const vector<string> &names)
 {
 	objects->DestroyPersons(names);
 }
@@ -923,7 +921,7 @@ map<string, shared_ptr<ImageSet>> GameData::FindImages()
 
 				shared_ptr<ImageSet> &imageSet = images[data.name];
 				if(!imageSet)
-					imageSet.reset(new ImageSet(data.name));
+					imageSet = make_shared<ImageSet>(data.name);
 				imageSet->Add(std::move(data));
 			}
 	}

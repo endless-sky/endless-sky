@@ -28,7 +28,7 @@ class System;
 // A miniature map of the nearby systems that displays while on the main panel.
 class MiniMap {
 public:
-	MiniMap(const PlayerInfo &player);
+	explicit MiniMap(const PlayerInfo &player);
 
 	void Step(const std::shared_ptr<Ship> &flagship);
 	void Draw(int step) const;

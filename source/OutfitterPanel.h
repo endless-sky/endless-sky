@@ -63,7 +63,7 @@ protected:
 		const std::string &actionName = "no action specified") const;
 	TransactionResult MoveOutfit(OutfitLocation fromLocation, OutfitLocation toLocation,
 		const std::string &actionName = "no action specified") const;
-	bool ButtonActive(char key, bool shipRelatedOnly = false);
+	bool ButtonActive(char key, bool shipRelatedOnly = false) const;
 	virtual bool ShouldHighlight(const Ship *ship) override;
 	virtual void DrawKey() override;
 	virtual std::optional<Rectangle> KeyArea() const override;
@@ -90,7 +90,7 @@ private:
 	void Refill();
 	// Shared code for reducing the selected ships to those that have the
 	// same quantity of the selected outfit.
-	const std::vector<Ship *> GetShipsToOutfit(bool isInstall = false) const;
+	std::vector<Ship *> GetShipsToOutfit(bool isInstall = false) const;
 
 
 private:

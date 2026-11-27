@@ -57,13 +57,13 @@ public:
 	// Check if a person has been destroyed or captured.
 	bool IsDestroyed() const;
 	// Mark this person as destroyed.
-	void Destroy();
+	void Destroy() const;
 	// Mark this person as no longer destroyed.
-	void Restore();
+	void Restore() const;
 	// Check if a person is already placed somewhere.
 	bool IsPlaced() const;
 	// Mark this person as being no longer "placed" somewhere.
-	void ClearPlacement();
+	void ClearPlacement() const;
 
 	// Determine if this event is targeting a ship in this Person
 	// and handle the outcome of the event. Returns false if

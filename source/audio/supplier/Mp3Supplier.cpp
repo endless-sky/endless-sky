@@ -40,9 +40,9 @@ void Mp3Supplier::Decode()
 	array<unsigned char, INPUT_CHUNK> input{};
 	vector<sample_t> samples;
 	// Objects for MP3 decoding:
-	mad_stream stream;
-	mad_frame frame;
-	mad_synth synth;
+	mad_stream stream{};
+	mad_frame frame{};
+	mad_synth synth{};
 
 	// Initialize the decoder.
 	mad_stream_init(&stream);

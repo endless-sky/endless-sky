@@ -32,14 +32,6 @@ public:
 	Visual(const Effect &effect, Point pos, Point vel, Angle facing, Point hitVelocity = Point(),
 		double inheritedZoom = 1., double parentZoom = 1.);
 
-	// Functions provided by the Body base class:
-	// Frame GetFrame(int step = -1) const;
-	// const Point &Position() const;
-	// const Point &Velocity() const;
-	// const Angle &Facing() const;
-	// Point Unit() const;
-	// double Zoom() const;
-
 	// Step the effect forward.
 	void Move();
 

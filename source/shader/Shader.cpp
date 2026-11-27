@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "../Logger.h"
 
 #include <cctype>
-#include <cstring>
 #include <stdexcept>
 #include <string>
 #include <vector>
@@ -136,7 +135,7 @@ GLuint Shader::Compile(const char *str, GLenum type)
 	glGetShaderiv(object, GL_COMPILE_STATUS, &status);
 	if(status == GL_FALSE)
 	{
-		static const int SIZE = 4096;
+		static constexpr int SIZE = 4096;
 		GLchar message[SIZE];
 		GLsizei length;
 

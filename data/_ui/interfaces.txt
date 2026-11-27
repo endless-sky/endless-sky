@@ -1196,6 +1196,11 @@ interface "gamerules presets"
 
 
 
+# On-screen buttons that send commands can be defined here.
+interface "main hud"
+
+
+
 interface "hud"
 	# Player status.
 	anchor top right

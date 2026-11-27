@@ -23,7 +23,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <functional>
 #include <list>
 #include <memory>
-#include <mutex>
+#include <ranges>
 #include <string>
 #include <vector>
 
@@ -44,8 +44,8 @@ class Panel {
 public:
 	struct Event {
 		Point pos;
-		int id;
-		enum {MOUSE, TOUCH, BUTTON, AXIS} type;
+		int id = 0;
+		enum {MOUSE, TOUCH, BUTTON, AXIS} type = MOUSE;
 	};
 
 
@@ -79,6 +79,7 @@ public:
 	void AddZone(const Rectangle &rect, const std::function<void()> &fun);
 	void AddZone(const Rectangle &rect, const std::function<void(const Event &)> &fun);
 	void AddZone(const Rectangle &rect, SDL_Keycode key);
+	void AddZone(const Rectangle &rect, const Command &command);
 	// Check if a click at the given coordinates triggers a clickable zone. If
 	// so, apply that zone's action and return true.
 	bool ZoneClick(const Point &point);
@@ -135,7 +136,7 @@ protected:
 	void DrawBackdrop() const;
 
 	UI &GetUI() const noexcept;
-	void SetUI(UI *ui);
+	virtual void SetUI(UI *ui);
 
 	// This is not for overriding, but for calling KeyDown with only one or two
 	// arguments. In this form, the command is never set, so you can call this
@@ -228,8 +229,8 @@ template<typename ...FARGS, typename ...ARGS>
 bool Panel::EventVisit(bool (Panel::*f)(FARGS ...), ARGS ...args)
 {
 	// Check if a child panel will consume this event first.
-	for(auto it = children.rbegin(); it != children.rend(); ++it)
-		if((*it)->EventVisit(f, args...))
+	for(auto &it : children | std::views::reverse)
+		if(it->EventVisit(f, args...))
 			return true;
 
 	// If none of our children handled this event, then it could be for us.

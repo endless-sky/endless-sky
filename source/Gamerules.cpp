@@ -77,6 +77,8 @@ const string Gamerules::FRIENDLY_FIRE_ALLY_PROB = "friendly fire allied gov prob
 const string Gamerules::FRIENDLY_FIRE_FIGHTER_PROB_MULT = "friendly fire fighter prob multiplier";
 const string Gamerules::FRIENDLY_FIRE_CARRIER_EXCEPTION = "friendly fire carrier exception";
 const string Gamerules::FRIENDLY_FIRE_DMG_MULT = "friendly fire damage multiplier";
+const string Gamerules::TAKE_OFF_PROTECTION = "take off protection";
+const string Gamerules::TAKE_OFF_PROTECTION_DURATION = "take off protection duration";
 
 
 
@@ -987,6 +989,38 @@ Gamerules::Gamerules()
 		storage.friendlyFireDamageMultiplier = preset.storage.friendlyFireDamageMultiplier;
 		return std::nullopt;
 	});
+
+	settings[TAKE_OFF_PROTECTION] = Setting::List("Take off protection", {"off", "loose", "strict"});
+	settings[TAKE_OFF_PROTECTION].SetOnToggleFunc([this](UI *) -> void {
+		storage.takeOffProtection = static_cast<TakeOffProtection>(settings[TAKE_OFF_PROTECTION].Index());
+	});
+	settings[TAKE_OFF_PROTECTION].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.takeOffProtection = preset.storage.takeOffProtection;
+		return static_cast<int>(storage.takeOffProtection);
+	});
+
+	settings[TAKE_OFF_PROTECTION_DURATION] = Setting::Unique("Protection duration");
+	settings[TAKE_OFF_PROTECTION_DURATION].SetDisplayFunc([this]() -> pair<string, bool> {
+		return make_pair(Format::StepsToSeconds(TakeOffProtectionDuration()),
+			GetTakeOffProtection() != TakeOffProtection::OFF);
+	});
+	settings[TAKE_OFF_PROTECTION_DURATION].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the number of seconds that take off protection is active for. "
+			"(Decimal value greater than or equal to 0.)";
+		auto validate = [](double value) -> bool { return value >= 0.; };
+		ui->Push(DialogPanel::RequestDoubleWithValidation(
+			[this](double value) -> void { storage.takeOffProtectionDuration = value * 60; },
+			validate, message, TakeOffProtectionDuration() / 60.));
+	});
+	settings[TAKE_OFF_PROTECTION_DURATION].SetConditionFunc([this]() -> int {
+		return TakeOffProtectionDuration();
+	});
+	settings[TAKE_OFF_PROTECTION_DURATION].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.takeOffProtectionDuration = preset.storage.takeOffProtectionDuration;
+		return std::nullopt;
+	});
 }
 
 
@@ -1178,6 +1212,20 @@ void Gamerules::Load(const DataNode &node)
 			storage.friendlyFireCarrierException = child.BoolValue(1);
 		else if(key == FRIENDLY_FIRE_DMG_MULT)
 			storage.friendlyFireDamageMultiplier = child.Value(1);
+		else if(key == TAKE_OFF_PROTECTION)
+		{
+			const string &value = child.Token(1);
+			if(value == "off")
+				storage.takeOffProtection = TakeOffProtection::OFF;
+			else if(value == "loose")
+				storage.takeOffProtection = TakeOffProtection::LOOSE;
+			else if(value == "strict")
+				storage.takeOffProtection = TakeOffProtection::STRICT;
+			else
+				child.PrintTrace("Skipping unrecognized value for gamerule:");
+		}
+		else if(key == TAKE_OFF_PROTECTION_DURATION)
+			storage.takeOffProtectionDuration = max<int>(0, child.Value(1));
 		else
 			storage.miscRules[key] = child.IsNumber(1) ? child.Value(1) : child.BoolValue(1);
 	}
@@ -1339,6 +1387,17 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write(FRIENDLY_FIRE_CARRIER_EXCEPTION, storage.friendlyFireCarrierException ? 1 : 0);
 		if(storage.friendlyFireDamageMultiplier != preset.storage.friendlyFireDamageMultiplier)
 			out.Write(FRIENDLY_FIRE_DMG_MULT, storage.friendlyFireDamageMultiplier);
+		if(storage.takeOffProtection != preset.storage.takeOffProtection)
+		{
+			if(storage.takeOffProtection == TakeOffProtection::OFF)
+				out.Write(TAKE_OFF_PROTECTION, "off");
+			else if(storage.takeOffProtection == TakeOffProtection::LOOSE)
+				out.Write(TAKE_OFF_PROTECTION, "loose");
+			else
+				out.Write(TAKE_OFF_PROTECTION, "strict");
+		}
+		if(storage.takeOffProtectionDuration != preset.storage.takeOffProtectionDuration)
+			out.Write(TAKE_OFF_PROTECTION_DURATION, storage.takeOffProtectionDuration);
 
 		const map<string, int> &otherMiscRules = preset.storage.miscRules;
 		for(const auto &[rule, value] : storage.miscRules)
@@ -1809,6 +1868,20 @@ double Gamerules::FriendlyFireDamageMultiplier() const
 
 
 
+Gamerules::TakeOffProtection Gamerules::GetTakeOffProtection() const
+{
+	return storage.takeOffProtection;
+}
+
+
+
+int Gamerules::TakeOffProtectionDuration() const
+{
+	return storage.takeOffProtectionDuration;
+}
+
+
+
 bool Gamerules::operator==(const Gamerules &other) const
 {
 	return name == other.name && storage == other.storage;
@@ -1832,4 +1905,5 @@ void Gamerules::SyncSettings()
 	settings[FLEET_SIZE_LIMITATION].SetIndex(static_cast<int>(GetFleetSizeLimitation()));
 	settings[PERMADEATH_MODE].SetIndex(static_cast<int>(GetPermadeathMode()));
 	settings[CAPTURE_PROFIT_SHARING].SetIndex(static_cast<int>(GetCaptureProfitSharing()));
+	settings[TAKE_OFF_PROTECTION].SetIndex(static_cast<int>(GetTakeOffProtection()));
 }
