@@ -41,7 +41,7 @@ namespace {
 	// to display a warning to the player.
 	map<int, int> keycodeCount;
 	// Need a uint64_t 1 to generate Commands.
-	const uint64_t ONE = 1;
+	constexpr uint64_t ONE = 1;
 }
 
 
@@ -220,14 +220,14 @@ void Command::ReadKeyboard()
 
 	// Each command can only have one keycode, but one keycode can map to
 	// multiple commands. Also, more than one key can be held down at once.
-	for(const auto &it : keycodeForCommand)
+	for(const auto &[command, keyCode] : keycodeForCommand)
 #ifdef ES_USE_SDL3
 		// Use no modifiers for the scancode.
-		if(keyDown[SDL_GetScancodeFromKey(it.second, 0)])
+		if(keyDown[SDL_GetScancodeFromKey(keyCode, nullptr)])
 #else
-		if(keyDown[SDL_GetScancodeFromKey(it.second)])
+		if(keyDown[SDL_GetScancodeFromKey(keyCode)])
 #endif
-			*this |= it.first;
+			*this |= command;
 
 	// Check whether the `Shift` modifier key was pressed for this step.
 	if(SDL_GetModState() & KMOD_SHIFT)
@@ -240,9 +240,9 @@ void Command::ReadKeyboard()
 // than one command, an empty string is returned.
 const string &Command::Description() const
 {
-	static const string empty;
+	static const string EMPTY;
 	auto it = descriptions.find(*this);
-	return (it == descriptions.end() ? empty : it->second);
+	return (it == descriptions.end() ? EMPTY : it->second);
 }
 
 
@@ -251,10 +251,10 @@ const string &Command::Description() const
 // a combination of more than one command, an empty string is returned.
 const string &Command::KeyName() const
 {
-	static const string empty = "(none)";
+	static const string EMPTY = "(none)";
 	auto it = keyName.find(*this);
 
-	return (!HasBinding() ? empty : it->second);
+	return (!HasBinding() ? EMPTY : it->second);
 }
 
 

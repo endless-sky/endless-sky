@@ -235,10 +235,8 @@ bool TradingPanel::KeyDown(SDL_Keycode key, Uint16 mod, const Command &command, 
 		Buy(1000000000);
 	else if(key == 'e' || (key == 's' && shift))
 	{
-		for(const auto &it : player.Cargo().Commodities())
+		for(const auto &[commodity, amount] : player.Cargo().Commodities())
 		{
-			const string &commodity = it.first;
-			const int64_t &amount = it.second;
 			int64_t price = system.Trade(commodity);
 			if(!price || !amount)
 				continue;
@@ -420,7 +418,7 @@ string TradingPanel::OutfitSalesMessage(bool sellMinables) const
 	out << " for " << Format::CreditString(profit) << '?' << endl;
 
 	// Sort by decreasing value.
-	sort(outfitValue.begin(), outfitValue.end(), [](const OutfitInfo &left, const OutfitInfo &right)
+	ranges::sort(outfitValue, [](const OutfitInfo &left, const OutfitInfo &right)
 	{
 		return right.value < left.value;
 	});

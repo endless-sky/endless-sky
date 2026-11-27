@@ -155,7 +155,7 @@ bool Fleet::IsValid(bool requireGovernment) const
 		return false;
 
 	// Any variant a fleet could choose should be valid.
-	if(any_of(variants.begin(), variants.end(),
+	if(ranges::any_of(variants,
 			[](const Variant &v) noexcept -> bool { return !v.IsValid(); }))
 		return false;
 
@@ -206,7 +206,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	double radius = 1000.;
 
 	// The chosen stellar object the fleet will depart from, if any.
-	const StellarObject *object = nullptr;
+	const StellarObject *launchFrom = nullptr;
 	// Only pick a random entry point for this fleet if a source planet was not specified.
 	if(!planet)
 	{
@@ -282,8 +282,8 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 		// If a planet is chosen, also pick a system to travel to after taking off.
 		if(choice >= linkVector.size())
 		{
-			object = stellarVector[choice - linkVector.size()];
-			planet = object->GetPlanet();
+			launchFrom = stellarVector[choice - linkVector.size()];
+			planet = launchFrom->GetPlanet();
 			if(!linkVector.empty())
 				target = linkVector[Random::Int(linkVector.size())];
 		}
@@ -301,7 +301,7 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 	// Find the stellar object for this planet if necessary, and place the ships there.
 	if(planet)
 	{
-		if(!object)
+		if(!launchFrom)
 		{
 			// Search the stellar object associated with the given planet.
 			// If there are many possible candidates (for example for ringworlds),
@@ -321,16 +321,16 @@ void Fleet::Enter(const System &system, list<shared_ptr<Ship>> &ships, const Pla
 				return;
 			}
 
-			object = stellarObjects[Random::Int(stellarObjects.size())];
+			launchFrom = stellarObjects[Random::Int(stellarObjects.size())];
 		}
 
 
 		// To take off from the planet, all non-carried ships must be able to access it.
-		if(planet->IsUnrestricted() || all_of(placed.cbegin(), placed.cend(), [&](const shared_ptr<Ship> &ship)
+		if(planet->IsUnrestricted() || ranges::all_of(std::as_const(placed), [&](const shared_ptr<Ship> &ship)
 				{ return ship->GetParent() || planet->IsAccessible(ship.get()); }))
 		{
-			position = object->Position();
-			radius = object->Radius();
+			position = launchFrom->Position();
+			radius = launchFrom->Radius();
 		}
 		// The chosen planet could not be departed from by all ships in the variant.
 		else
@@ -431,7 +431,7 @@ void Fleet::Place(const System &system, list<shared_ptr<Ship>> &ships, bool carr
 // Do the randomization to make a ship enter or be in the given system.
 const System *Fleet::Enter(const System &system, Ship &ship, const System *source)
 {
-	bool canEnter = (source != nullptr || any_of(system.Links().begin(), system.Links().end(),
+	bool canEnter = (source != nullptr || ranges::any_of(system.Links(),
 		[&ship](const System *link) noexcept -> bool
 		{
 			return !ship.IsRestrictedFrom(*link);
@@ -540,7 +540,7 @@ vector<shared_ptr<Ship>> Fleet::Instantiate(const vector<const Ship *> &ships) c
 
 
 
-bool Fleet::PlaceFighter(const shared_ptr<Ship> &fighter, vector<shared_ptr<Ship>> &placed) const
+bool Fleet::PlaceFighter(const shared_ptr<Ship> &fighter, const vector<shared_ptr<Ship>> &placed) const
 {
 	if(!fighter->CanBeCarried())
 		return false;

@@ -62,7 +62,7 @@ protected:
 
 
 private:
-	void ShowScanDialog(const ShipEvent &event);
+	void ShowScanDialog(const ShipEvent &event) const;
 	bool ShowHailPanel();
 	bool ShowHelp(bool force);
 	void StepEvents();

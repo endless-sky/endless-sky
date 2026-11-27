@@ -36,14 +36,14 @@ void Message::Category::Load(const DataNode &node)
 	name = node.Token(1);
 	isLoaded = true;
 
-	auto setColor = [](const DataNode &node, ExclusiveItem<Color> &color) noexcept -> void {
-		if(node.Size() >= 4)
+	auto setColor = [](const DataNode &n, ExclusiveItem<Color> &color) noexcept -> void {
+		if(n.Size() >= 4)
 			color = ExclusiveItem<Color>{{
-				static_cast<float>(node.Value(1)),
-				static_cast<float>(node.Value(2)),
-				static_cast<float>(node.Value(3))}};
+				static_cast<float>(n.Value(1)),
+				static_cast<float>(n.Value(2)),
+				static_cast<float>(n.Value(3))}};
 		else
-			color = ExclusiveItem<Color>{GameData::Colors().Get(node.Token(1))};
+			color = ExclusiveItem<Color>{GameData::Colors().Get(n.Token(1))};
 	};
 
 	for(const auto &child : node)

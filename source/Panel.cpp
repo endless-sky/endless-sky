@@ -30,6 +30,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 #include <cassert>
 #include <deque>
+#include <ranges>
 #include <vector>
 
 using namespace std;
@@ -133,11 +134,9 @@ void Panel::AddZone(const Rectangle &rect, const Command &command)
 // so, apply that zone's action and return true.
 bool Panel::ZoneClick(const Point &point)
 {
-	for(auto it = children.rbegin(); it != children.rend(); ++it)
-	{
-		if((*it)->ZoneClick(point))
+	for(auto &it : children | views::reverse)
+		if(it->ZoneClick(point))
 			return true;
-	}
 
 	for(const Zone &zone : zones)
 		if(zone.Contains(point))
@@ -620,7 +619,7 @@ int Panel::EnumerateTreeAndFindActivePanel(vector<Panel *> &descendants)
 
 	while(!q.empty())
 	{
-		Panel *p = q.front();
+		p = q.front();
 		if(p->HasFocus())
 			currentFocusIdx = descendants.size();
 		descendants.push_back(p);

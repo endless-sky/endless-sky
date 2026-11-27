@@ -19,6 +19,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Drawable.h"
 #include "Paragraphs.h"
 
+#include <cstdint>
 #include <map>
 #include <memory>
 #include <optional>

@@ -18,7 +18,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DataNode.h"
 
 #include <filesystem>
-#include <istream>
 #include <list>
 #include <string>
 

@@ -21,7 +21,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <map>
 #include <queue>
 #include <set>
-#include <utility>
 #include <vector>
 
 class PlayerInfo;
@@ -52,11 +51,11 @@ public:
 			bool useJumpDrive, int maxSystems = -1, int maxDays = -1);
 
 	// Find out if the given system is reachable.
-	bool HasRoute(const System &system) const;
+	bool HasRoute(const System &target) const;
 	// Find out how many days away the given system is.
-	int Days(const System &system) const;
+	int Days(const System &target) const;
 	// Get the planned route from center to this system.
-	std::vector<const System *> Plan(const System &system) const;
+	std::vector<const System *> Plan(const System &target) const;
 	// Get a set containing all the systems.
 	std::set<const System *> Systems() const;
 
