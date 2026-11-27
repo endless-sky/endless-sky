@@ -437,7 +437,7 @@ void Outfit::Load(const DataNode &node, const ConditionsStore *playerConditions)
 		else if(key == "linked" && hasValue)
 			linkedOutfits.insert(GameData::Outfits().Get(child.Token(1)));
 		else if(key == "description" && hasValue)
-			description.Load(child, playerConditions);
+			description.LoadSingle(child, playerConditions);
 		else if(key == "cost" && hasValue)
 			cost = child.Value(1);
 		else if(key == "mass" && hasValue)

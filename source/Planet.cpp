@@ -268,7 +268,7 @@ void Planet::Load(const DataNode &node, Set<Wormhole> &wormholes, const Conditio
 		else if(key == "music")
 			music = value;
 		else if(key == "description")
-			description.Load(child, playerConditions);
+			description.LoadSingle(child, playerConditions);
 		else if(key == "spaceport")
 		{
 			port.LoadDefaultSpaceport();

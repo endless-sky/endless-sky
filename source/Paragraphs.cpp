@@ -25,6 +25,14 @@ using namespace std;
 void Paragraphs::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
 	for(const DataNode &child : node)
+		LoadSingle(child, playerConditions);
+}
+
+
+
+void Paragraphs::LoadSingle(const DataNode &node, const ConditionsStore *playerConditions)
+{
+	for(const DataNode &child : node)
 		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")
 		{
 			text.emplace_back(ConditionSet(child, playerConditions), node.Token(node.Size() - 1) + "\n");
