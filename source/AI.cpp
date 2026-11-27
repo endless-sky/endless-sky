@@ -409,7 +409,7 @@ namespace {
 
 	bool ShouldSwitchTarget(const shared_ptr<Ship> &target, const Personality &personality)
 	{
-		if(!target || target->IsDestroyed() || !target->IsTargetable())
+		if(!target || !target->IsTargetable())
 			return true;
 		if(target->IsDisabled() && (personality.Disables()
 				|| (!FighterHitHelper::IsValidTarget(target.get()) && !personality.IsVindictive())))
