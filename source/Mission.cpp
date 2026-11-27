@@ -1996,7 +1996,7 @@ bool Mission::ParseContraband(const DataNode &node)
 
 
 
-std::map<std::string, std::string> Mission::ReminderSubstitutions(const PlayerInfo &player) const
+map<string, string> Mission::ReminderSubstitutions(const PlayerInfo &player) const
 {
 	map<string, string> subs;
 	GameData::GetTextReplacements().Substitutions(subs);
