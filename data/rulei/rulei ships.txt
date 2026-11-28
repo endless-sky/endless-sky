@@ -21,10 +21,10 @@ ship "vyu-Ir"
 	attributes
 		category "Unclassified"
 		"cost" 77777777
-		"shields" 68000
+		"shields" 22000
 		"shield generation" 13
 		"shield energy" 13
-		"hull" 49000
+		"hull" 15000
 		"hull repair rate" 1.9
 		"automaton" 1
 		"required crew" 1
