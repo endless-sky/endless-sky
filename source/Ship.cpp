@@ -1916,7 +1916,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 			effect.tick += Random::Int(effect.period + effect.random);
 	}
 	Angle syncedAngle = syncedEffects ? Angle(0.) : Angle::Random();
-	for(Decor decor : decorations)
+	for(Decor &decor : decorations)
 	{
 		decor.tick = decor.delay;
 		if(decor.behavior != DecorBehavior::STATIC)
