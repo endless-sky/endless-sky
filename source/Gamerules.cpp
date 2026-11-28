@@ -1160,14 +1160,14 @@ void Gamerules::Load(const DataNode &node)
 			LoadCrossfireImmunity(child, storage.crossfireReceiving);
 		else if(key == CROSSFIRE_RECEIVING_CARRIED || key == "disabled fighters avoid projectiles")
 		{
-			if(key != CROSSFIRE_RECEIVING)
+			if(key != CROSSFIRE_RECEIVING_CARRIED)
 				child.PrintTrace("The \"disabled fighters avoid projectiles\" gamerule has been deprecated. "
-					"Use \"" + CROSSFIRE_RECEIVING + "\" instead.");
+					"Use \"" + CROSSFIRE_RECEIVING_CARRIED + "\" instead.");
 			LoadCrossfireImmunity(child, storage.crossfireFighterReceiving);
 		}
 		else if(key == CROSSFIRE_CREATING)
 			LoadCrossfireImmunity(child, storage.crossfireCreating);
-		else if(key == CROSSFIRE_CREATING)
+		else if(key == CROSSFIRE_CREATING_CARRIED)
 			LoadCrossfireImmunity(child, storage.crossfireFighterCreating);
 		else if(key == SYSTEM_DEPARTURE_MIN)
 			storage.systemDepartureMin = max(0., child.Value(1));
