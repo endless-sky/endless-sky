@@ -991,6 +991,7 @@ mission "Hai Honeymoon"
 
 
 mission "Pirate Troubles [0]"
+	minor
 	name "Defend <system>"
 	description "A sizable group of pirates has found their way into Hai space and is terrorizing the system. Help the Hai fight back against them."
 	source
@@ -1468,6 +1469,8 @@ mission "Nanachi 1"
 mission "Nanachi 2"
 	name "Escort Nanachi to <planet>"
 	description "Bring Nanachi and her passengers to <destination>."
+	"reminder name" "Assisting Nanachi"
+	reminder "Still waiting for you in Cloudfire's spaceport, Nanachi is starting to lose fur out of stress. Her debts grow every day, and missile strikes are also not good for mental health. Come back to help her with finding the next job, and to escort her out of there."
 	source "Cloudfire"
 	destination "Hai-home"
 	clearance
@@ -1502,6 +1505,8 @@ mission "Nanachi 2"
 mission "Nanachi 3"
 	name "Deliver spices with Nanachi"
 	description "Accompany Nanachi to <stopovers> to pick up some Quarg spices for a festival on <destination> by <date>."
+	"reminder name" "Assisting Nanachi"
+	reminder "Nanachi surely has rested a bit and is waiting for you in Hai-home's spaceport, ready to fetch the Quarg spices from Alta Hai. The festival on Allhome is soon, waste no time."
 	source "Hai-home"
 	stopover "Alta Hai"
 	destination "Allhome"
@@ -1575,6 +1580,8 @@ mission "Nanachi 3"
 mission "Nanachi 4"
 	name "Protect Nanachi"
 	description "Bring Nanachi's ship to <stopovers>, keeping her safe from a pirate fleet that attacked a convoy heading to Hai space, then head back to <destination> by <date>."
+	"reminder name" "Assisting Nanachi"
+	reminder "You have been invited to Allhome's spaceport bar. What are you even doing out here, instead of helping Nanachi to socialize with potential clients?"
 	source "Allhome"
 	stopover "Prime"
 	deadline 17
@@ -1853,6 +1860,8 @@ mission "Strider: Remnant 2"
 	infiltrating
 	passengers 3
 	blocked "The Hai delegation to meet the Remnant requires 3 bunks for the trip, but you don't have enough available space! Return when you have room for the delegation."
+	"reminder name" "Pond Strider Development"
+	reminder "Fetch Her Excellence Ambassador Yashili and her two honorable companions from Allhome when you have 3 spare bunks. No, you can't saw up a human bunk to make two Hai bunks out of it."
 	to offer
 		has "Strider: Remnant 1: done"
 	on offer
@@ -1883,6 +1892,8 @@ mission "Strider: Remnant 3"
 	passengers 3
 	cargo "repair technology" 12
 	blocked "You need <capacity> in order to return the Hai delegation and the repair technology back to <planet>."
+	"reminder name" "Pond Strider Development"
+	reminder "It's just a matter of time till Ambassador Yashili realizes that you embarrassingly forgot to reserve the obviously needed 3 bunks and cargo space for 12 tons of repair tech. Hurry up to free some space and get the job done, if you don't want to make a fool of yourself in the eyes of such an important and probably financially sound client."
 	to offer
 		has "Strider: Remnant 2: done"
 	on offer
@@ -1922,6 +1933,8 @@ mission "Strider: Coalition 1"
 	destination "Ring of Friendship"
 	passengers 3
 	blocked "The Hai delegation to meet the Coalition requires 3 bunks for the trip, but you don't have enough available space! Return when you have room for the delegation."
+	"reminder name" "Pond Strider Development"
+	reminder "Fetch Her Excellence Ambassador Yashili and her two honorable companions from Allhome when you have 3 spare bunks. No, you can't saw up a human bunk to make two Hai bunks out of it."
 	to offer
 		has "strider: coalition"
 	on offer
@@ -1951,6 +1964,8 @@ mission "Strider: Coalition 2"
 	passengers 3
 	cargo "repair technology" 12
 	blocked "You need <capacity> in order to return the Hai delegation and the repair technology back to <planet>."
+	"reminder name" "Pond Strider Development"
+	reminder "It's just a matter of time till Ambassador Yashili realizes that you embarrassingly forgot to reserve the obviously needed 3 bunks and cargo space for 12 tons of repair tech. Hurry up to free some space and get the job done, if you don't want to make a fool of yourself in the eyes of such an important and probably financially sound client."
 	to offer
 		has "Strider: Coalition 1: done"
 	on offer
@@ -2212,6 +2227,8 @@ mission "Hai Film Crew 3"
 	cargo "film equipment" 30
 	passengers 80
 	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	"reminder name" `"Aaaand... Cut!"`
+	reminder "Most people don't realize how many resources a film shooting needs. 80 crew and 30 tons of equipment, for example. And a captain who'll ferry all this. Like you. Likeet seems to be inspired by Darkrest station, so he probably doesn't note if you return a little later. You... will return, right? In space, no one can hear Likeet scream if you don't."
 	source "Darkrest"
 	destination
 		attributes hai

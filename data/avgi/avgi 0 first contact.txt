@@ -445,6 +445,7 @@ mission "Avgi: Defend Ensemble 1"
 	destination "Navigeo Yards"
 	passengers 1
 	blocked "You'll need a free bunk on the <ship> if you want to take Darius anywhere off this station."
+	reminder ""
 	to offer
 		has "Avgi: Humans From the Deep: done"
 	on offer
@@ -553,6 +554,7 @@ mission "Avgi: Defend Ensemble 2"
 	destination "Weledos"
 	passengers 1
 	blocked "You'll need a free bunk on the <ship> to take Darius to <planet>."
+	reminder ""
 	to offer
 		has "Avgi: Defend Ensemble 1: done"
 	on offer
@@ -743,6 +745,7 @@ mission "Avgi: Scout Rescue"
 	mark "Twirl"
 	passengers 12
 	blocked "You'll need <capacity> to complete this mission."
+	reminder ""
 	to offer
 		has "Avgi: Defend Ensemble 2: done"
 	to fail
@@ -807,6 +810,7 @@ mission "Avgi: Scout Rescue"
 mission "Avgi: Frontline Combat"
 	name "Hunt the Aberrant"
 	description "Help the Avgi clear the systems north of Quintessence of Aberrant to free up defensive resources, then return to the <destination>."
+	reminder ""
 	source "Weledos"
 	destination "Feo Platform"
 	waypoint "Corporeal"
@@ -882,6 +886,7 @@ mission "Avgi: Dissonance Outreach 0.5"
 	destination "Peripheria"
 	passengers 2
 	blocked "You'll need two free bunks on the <ship> for Darius and Sora."
+	reminder ""
 	to offer
 		has "Avgi: Frontline Combat: done"
 	on offer
@@ -905,6 +910,7 @@ mission "Avgi: Dissonance Outreach"
 	destination "Outpost Tekis"
 	passengers 3
 	blocked "You'll need <capacity> to transport Darius, Sora, and Hriso."
+	reminder ""
 	clearance "Hriso has an animated argument with the spaceport controller, saying something about access rights, and manages to get you reluctant permission to dock."
 	to offer
 		or
@@ -942,6 +948,7 @@ mission "Avgi: Twilight Escape 1"
 	destination "Vinci"
 	passengers 3
 	blocked "You'll need <capacity> on the <ship> to transport Darius, Sora, and Leon."
+	reminder ""
 	to offer
 		has "Avgi: Dissonance Outreach: done"
 	on offer
@@ -1046,6 +1053,7 @@ mission "Avgi: Twilight Escape 2"
 	destination "Memory"
 	passengers 2
 	blocked "You'll need <capacity> on the <ship> to transport Darious and Sora."
+	reminder ""
 	to offer
 		has "Avgi: Twilight Escape 1: done"
 	on offer
@@ -1076,6 +1084,7 @@ mission "Avgi: Twilight Escape 3"
 	destination "Valhalla"
 	passengers 1
 	blocked "You'll need <capacity> on the <ship> to transport Darius."
+	reminder ""
 	to offer
 		has "Avgi: Twilight Escape 2: done"
 	on offer

@@ -14,6 +14,7 @@
 mission "Liberate Kornephoros"
 	autosave
 	description "Travel with the Free Worlds militia to the <system> system and drive off the Navy fleet that is occupying the system."
+	reminder ""
 	source "Longjump"
 	destination "Deep"
 	clearance
@@ -159,6 +160,7 @@ event "prepare for battle of Kornephoros"
 mission "FW Prisoner Parole"
 	name "Prisoner Parole"
 	description "Escort a fleet of transports carrying prisoners of war to <planet>. The temporary ceasefire will end on <date>."
+	reminder ""
 	source "Deep"
 	destination "New Tibet"
 	deadline 7
@@ -270,6 +272,7 @@ mission "FW Syndicate Diplomacy 1"
 		attributes "dirt belt"
 	passengers 1
 	blocked `Alondo contacts you and says, "Captain, you're going to need a bunk free for me. Do you have space?" You do not, so you should complete or abort another mission to make room for him, then return here.`
+	reminder ""
 	to offer
 		has "FW Prisoner Parole 2: done"
 	on fail
@@ -590,6 +593,7 @@ mission "FW Hope Recon 1"
 	destination "Hope"
 	cargo "sensors" 10
 	blocked `Freya contacts you and says, "<first>, you're going to need ten tons of cargo space for this next mission." You should return here after freeing up <capacity>.`
+	reminder ""
 	to offer
 		has "FW Syndicate Diplomacy 1D: done"
 	on fail
@@ -906,6 +910,7 @@ mission "FW Supply Convoy 1"
 	autosave
 	name "Escort Supply Convoy"
 	description "Escort this convoy carrying equipment from Kraz Cybernetics to the militia base on <destination>."
+	reminder ""
 	source "Rust"
 	destination "Longjump"
 	to offer
@@ -958,6 +963,7 @@ mission "FW Supply Convoy 1"
 mission "FW Pirates 1"
 	name "Pirate Reconnaissance"
 	description "Scout out four pirate systems on the southern fringe of human space, then report back to Tomek on <planet>."
+	reminder ""
 	source "Longjump"
 	waypoint "Antares"
 	waypoint "Men"
@@ -1012,6 +1018,7 @@ mission "FW Pirates 1"
 mission "FW Senate 1"
 	name "Senator Huygens"
 	description "Meet Senator Arianna Huygens on <planet>, and transport her to the new Free Worlds Senate building on Bourne."
+	reminder ""
 	source "Longjump"
 	destination "Mere"
 	to offer
@@ -1035,6 +1042,7 @@ mission "FW Senate 1B"
 	destination "Bourne"
 	passengers 1
 	blocked "You have reached <origin>, but you do not have a bunk free for Senator Huygens. You should return here after freeing up a bunk."
+	reminder ""
 	to offer
 		has "FW Senate 1: done"
 	on fail
@@ -1210,6 +1218,7 @@ mission "FW Pirates Patch"
 mission "FW Pirates: Attack 1"
 	name "Attack Greenrock"
 	description "Disobeying the Senate's orders, head to <destination> and gather a Free Worlds fleet for an all-out attack on the pirate world of Greenrock."
+	reminder ""
 	source "Longjump"
 	destination "Trinket"
 	to offer
@@ -1482,6 +1491,7 @@ event "battle for Greenrock"
 mission "FW Pirates: Attack 3"
 	name "Early Warning"
 	description "The early warning systems you installed on Hope have detected a heightened Navy presence. Travel to <destination> to defend against the potential Navy assault. Any punishment for the invasion of Greenrock will come later."
+	reminder ""
 	source "Greenrock"
 	destination "Deep"
 	to offer
@@ -1545,6 +1555,7 @@ mission "FW Pirates: Diplomacy 1"
 	autosave
 	name "Pirate Diplomacy"
 	description "Following the Senate's orders, travel to <destination> and negotiate with the ruling authorities. Don't fight pirates if you don't have to, and don't let your escort be destroyed."
+	reminder ""
 	source "Longjump"
 	destination "Thule"
 	clearance
@@ -1856,6 +1867,7 @@ mission "FW Early Warning 2"
 	destination "Harmony"
 	passengers 1
 	blocked `JJ contacts you and says, "Captain, you're going to need a bunk free for me. Do you have space?" You do not, so you should complete or abort another mission to make room for him, then return here.`
+	reminder ""
 	to offer
 		has "FW Early Warning 1: done"
 	on fail
@@ -2286,6 +2298,7 @@ mission "FW Refinery 1A"
 	destination "Smuggler's Den"
 	cargo "refinery equipment" 10
 	blocked "You have reached <origin>, but you do not have ten tons of cargo space free for the equipment. Return here when you have made more space available."
+	reminder ""
 	to offer
 		has "FW Refinery 1: done"
 	on fail

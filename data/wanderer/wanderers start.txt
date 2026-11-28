@@ -199,6 +199,7 @@ mission "Wanderers: Diplomacy"
 	description "Travel to the Wanderer homeworld with a Hai ambassador who can help communicate with them."
 	source "Hai-home"
 	destination "Vara K'chrai"
+	blocked ""
 	clearance
 	passengers 1
 	to offer
@@ -692,9 +693,9 @@ event "Sich'ka'ara restored"
 
 
 mission "Wanderers: Defended Vara Ke'sok"
+	landing
 	name "Report to <planet>"
 	description "Report to the Wanderer elders on <destination> that the Unfettered attacks are intensifying and moving farther in from the front."
-	landing
 	source "Vara Ke'sok"
 	destination "Vara K'chrai"
 	to offer
@@ -708,9 +709,11 @@ mission "Wanderers: Defended Vara Ke'sok"
 
 
 mission "Wanderers: Unfettered Diplomacy 1"
+	landing
 	name "Unfettered Diplomacy"
 	description "Pick up a shipment of food on the Wanderer planet <destination>, to be delivered to the Unfettered as a peace offering."
-	landing
+	blocked ""
+	reminder ""
 	source "Vara K'chrai"
 	destination "Var' Kar'i'i"
 	passengers 1
@@ -999,9 +1002,10 @@ mission "Unfettered: Jump Drive Source"
 
 
 mission "Wanderers: Alpha Surveillance A"
+	autosave
 	name "Alpha Surveillance"
 	description "Drop off surveillance micro-satellites in the three Unfettered home systems, then stop by <destination> to see if the Hai government knows anything about an Alpha enclave nearby."
-	autosave
+	reminder ""
 	source "Vara K'chrai"
 	destination "Hai-home"
 	clearance
@@ -1098,6 +1102,7 @@ mission "Wanderers: Alpha Surveillance B"
 mission "Wanderers: Alpha Surveillance C"
 	name "Alpha Surveillance"
 	description "The Wanderers have no technology for tracking a ship that is using a jump drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
+	reminder ""
 	source "Vara K'chrai"
 	destination "Alta Hai"
 	to offer
@@ -1131,6 +1136,7 @@ mission "Wanderers: Alpha Surveillance C"
 mission "Wanderers: Alpha Surveillance C (Naughty)"
 	name "Alpha Surveillance"
 	description "The Wanderers have no technology for tracking a ship that is using a jump drive, but Iktat Rek thinks the Quarg might be able to and suggested visiting them on <destination>."
+	reminder ""
 	source "Vara K'chrai"
 	destination "Alta Hai"
 	to offer
@@ -1284,6 +1290,7 @@ mission "Wanderers: Alpha Surveillance D"
 			has "Wanderers: Alpha Surveillance C (Naughty): done"
 	passengers 1
 	blocked "You need a bunk free in order to take on this mission."
+	reminder ""
 	
 	on offer
 		log "Met a human named Elias Hanover who is friends with the Quarg and who has been given permission to use Quarg technology to track the Alpha ship that is selling jump drives to the Unfettered."
@@ -1388,6 +1395,7 @@ mission "Wanderers: Alpha Surveillance D (Avalon)"
 mission "Wanderers: Alpha Surveillance E"
 	name "Visit Danforth"
 	description "Visit Admiral Danforth on <planet> and see if he is able to supply you with an attack force to locate and destroy the Alpha base."
+	reminder ""
 	source "Alta Hai"
 	destination "Farpoint"
 	passengers 1
@@ -1417,9 +1425,10 @@ mission "Wanderers: Alpha Surveillance E"
 
 
 mission "Wanderers: Alpha Surveillance F"
+	autosave
 	name "Invade Avalon"
 	description "Escort Admiral Danforth's Navy <npc model> to <destination> and land on the planet with them. They will attempt to locate and eliminate the Alpha base."
-	autosave
+	reminder ""
 	source "Farpoint"
 	destination "Avalon"
 	passengers 1
@@ -1524,9 +1533,9 @@ mission "Wanderers: Alpha Surveillance G"
 
 
 mission "Wanderers: Alpha Surveillance H"
+	landing
 	name "Meet up with Danforth"
 	description "Meet Admiral Danforth in the spaceport on <origin>, and talk about what to do next about the Alphas."
-	landing
 	source "Farpoint"
 	"offer precedence" 100
 	to offer
@@ -1595,15 +1604,16 @@ mission "Wanderers: Alpha Surveillance H"
 
 
 mission "Wanderers: Alpha Surveillance I"
+	autosave
 	name "Return Elias to <planet>"
 	description "Bring Elias Hanover back to <destination>, where he will hopefully be safe from Alpha retaliation for driving them out of their base on Avalon."
-	autosave
 	source "Farpoint"
 	destination "Alta Hai"
 	to offer
 		has "Wanderers: Alpha Surveillance G: done"
 	passengers 1
 	blocked "You don't have enough passenger space to take on this mission. Return here when you have a bunk free."
+	reminder ""
 	
 	on offer
 		fail "Wanderers: Alpha Surveillance H"
@@ -1797,9 +1807,10 @@ event "battle for ik'kara'ka"
 		fleet "Wanderer Flycatchers" 400
 
 mission "Wanderers Invaded 2"
+	autosave
 	name "Defend <planet>"
 	description `Drive off the Unfettered fleet attacking <system> to buy the Wanderers more time, then land on <planet>.`
-	autosave
+	reminder ""
 	source "Var' Kar'i'i"
 	destination "Varu Mer'ek"
 	to offer
@@ -1882,14 +1893,15 @@ event "capture of ik'kara'ka"
 		outfitter clear
 
 mission "Wanderers Invaded 3"
+	autosave
 	landing
 	name "Evacuate <origin>"
 	description `Escort another fleet of Wanderer refugee transports to <destination>.`
-	autosave
 	source "Varu Mer'ek"
 	destination "Var' Kar'i'i"
 	passengers 1
 	blocked "You receive a message from Isai indicating that she would like to join you for the next mission, but you don't have space right now. Return when you have a bunk free."
+	reminder ""
 	to offer
 		has "Wanderers Invaded 2: done"
 	on offer
@@ -2065,6 +2077,7 @@ mission "Wanderers Hai Assistance 1"
 	clearance
 	passengers 1
 	blocked "To continue helping the Wanderers, you will need a bunk free for a passenger. Return here when you have space available."
+	reminder ""
 	to offer
 		has "Wanderers Invaded 3C: done"
 	on offer
@@ -2642,6 +2655,7 @@ event "solifuge deployment"
 mission "Wanderers Rescue 1"
 	name "Wanderer Rescue"
 	description "Some Wanderer warriors were left behind on <planet> when the Unfettered captured the planet. Land on the planet with two Wanderer warships, and rescue them."
+	reminder ""
 	autosave
 	source "Vara Ke'sok"
 	destination "Kort Vek'kri"
@@ -2742,6 +2756,7 @@ mission "Wanderers Rek 0"
 	destination "Tik Klai"
 	passengers 1
 	blocked "You need a bunk free in order to carry Iktat Rek."
+	reminder ""
 	to offer
 		has "Wanderers Rescue 1C: done"
 	on offer

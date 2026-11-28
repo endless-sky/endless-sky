@@ -308,6 +308,8 @@ mission "Successors: Ghosts Myurej 4"
 mission "Successors: Ghosts Myurej 5"
 	name "Locate hidden vault"
 	description "Enter House Myurej's hidden vault on <destination>, accompanied by Ijaset and two of House Myurej's soldiers."
+	blocked ""
+	reminder ""
 	source Raaqa-Kvelq-Ryuit
 	destination Kella-Uuoru-Sossa
 	passengers 3
@@ -465,6 +467,8 @@ mission "Successors: Ghosts Myurej 8"
 	landing
 	name "Deliver wedding supplies"
 	description "A dockworker at <origin> has directed you to deliver <tons> of wedding supplies for House Myurej to <destination>."
+	blocked ""
+	reminder ""
 	source Raaqa-Kvelq-Ryuit
 	destination Iyra-Ijasa-Iret
 	cargo "Wedding supplies" 5

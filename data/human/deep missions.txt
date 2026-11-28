@@ -768,6 +768,8 @@ mission "Deep: TMBR 1"
 	source "Greenwater"
 	destination "Midgard"
 	blocked "You have reached <origin>, but you'll need <capacity> to continue this mission. Return here when you have the required space free."
+	"reminder name" "There Might Be Riots"
+	reminder `Meet "There Might Be Riots" on <origin>. Have <capacity> free to transport the full band.`
 	cargo "musical equipment" 4
 	passengers 8
 	to offer
@@ -1488,6 +1490,8 @@ mission "Deep: Remnant 2"
 	waypoint "Aescolanus"
 	cargo "astronomical recorders" 5
 	blocked `You've returned to <planet>, but Ivan informs you that you'll need <capacity> available for this next mission. Return when you have the available space.`
+	"reminder name" "Exploring the Unknown"
+	reminder "Return to <origin> with <capacity> to continue Ivan's research."
 	to offer
 		or
 			has "Deep: Remnant 1: done"
@@ -2520,9 +2524,9 @@ event "battle in arneb end"
 
 
 mission "Stone of our Fathers 1"
+	minor
 	name "Stone of our Fathers"
 	description "Travel to <destination>, and drop Skaldgar off at the home he abandoned long ago."
-	minor
 	passengers 1
 	to offer
 		random < 50
@@ -2604,9 +2608,9 @@ event "Stone waiting"
 
 
 mission "Stone of our Fathers 2"
+	minor
 	name "Stone of our Fathers"
 	description "Return Skaldgar to <destination>."
-	minor
 	passengers 1
 	to offer
 		has "event: Stone waiting"
@@ -2639,9 +2643,9 @@ event "Stone Waiting more"
 
 
 mission "Stone of our Fathers 3"
+	minor
 	name "Stone of our Fathers"
 	description "Take Skaldgar's stone back to his family on <destination>."
-	minor
 	to offer
 		has "event: Stone Waiting more"
 	source "Helheim"
@@ -2673,6 +2677,8 @@ mission "Stone of our Fathers 3"
 mission "Stone of our Fathers 4"
 	name "Stone of our Fathers"
 	description "Take Skaldgar's stone back to his Family-Cairn on <destination>."
+	blocked "You have reached <origin>, but you'll need <capacity> to continue this mission. Return here when you have the required space free."
+	reminder "Meet Helm in the <origin> spaceport. Make sure you have <capacity> available."
 	passengers 1
 	to offer
 		has "Stone of our Fathers 3: done"
@@ -2797,6 +2803,8 @@ mission "Stone of our Fathers 4"
 mission "Stone of our Fathers 5"
 	name "Stone of our Fathers"
 	description "Take Ragnhild and Thorleif back to <destination>."
+	blocked "You have reached <origin>, but you'll need <capacity> to continue this mission. Return here when you have the required space free."
+	reminder "Meet Thorleif in the <origin> spaceport. Make sure you have <capacity> available."
 	passengers 2
 	to offer
 		has "Stone of our Fathers 4: done"
@@ -2884,9 +2892,9 @@ mission "Stone of our Fathers 5"
 
 
 mission "Home for Skadenga 1"
+	minor
 	name "Home for Skadenga"
 	description "Search for the Setstokkr on <stopovers>, and then return back to <planet>."
-	minor
 	to offer
 		random < 50
 	source "Nifel"
@@ -3391,6 +3399,8 @@ mission "Home for Skadenga 3"
 mission "Home for Skadenga 4"
 	name "Transport for Skadenga"
 	description "Travel to <destination> to secure transportation for the Skadenga."
+	"reminder name" "Home for Skadenga"
+	reminder "Meet Hjold in the <origin> spaceport to discuss the next move for the Skadenga."
 	to offer
 		has "Home for Skadenga 2: done"
 		has "event: nifel waiting"
@@ -3614,6 +3624,8 @@ mission "Skadenga Call 2"
 	source "Asgard"
 	destination "Nifel"
 	blocked `You recall that Hjlod wanted you to have 52 bunks spare for the mission. Return when you have enough room.`
+	"reminder name" "Home for Skadenga"
+	reminder "Return to <origin> with 52 bunks to fulfill Hjold's request."
 	passengers 48
 	to offer
 		has "Skadenga Call 1: done"
@@ -3749,7 +3761,10 @@ mission "Skadenga Call 5"
 mission "Home for Skadenga 8"
 	name "<planet> Mystery Man"
 	description "Travel to <destination>, and meet up with Hroar in the spaceport."
+	"reminder name" "Home of Skadenga"
+	reminder "Meet with a mysterious contact in the <origin> spaceport after the Transport Union negotiations broke down."
 	to offer
+		not "Home for Skadenga 4: active"
 		has "Nifel"
 	source "Valhalla"
 	destination "Muspel"
@@ -3771,6 +3786,9 @@ mission "Home for Skadenga 8"
 
 
 mission "Home for Skadenga 9"
+	invisible
+	"reminder name" "Home for Skadenga"
+	reminder "Meet with Hroar in the <origin> spaceport to discuss travel arrangements for the Skadenga."
 	to offer
 		has "Home for Skadenga 8: done"
 	source "Muspel"
@@ -3867,6 +3885,7 @@ mission "Home for Skadenga 10"
 mission "Home for Skadenga 11"
 	name "Evacuate Nifel"
 	description "Escort Hroar's fleet to <destination> to pick up the Skadenga."
+	reminder "Meet with Hroar in the <origin> spaceport to direct the fleet to the Skadenga."
 	source "Muspel"
 	destination "Nifel"
 	to offer
@@ -3947,10 +3966,14 @@ mission "Home for Skadenga 12"
 
 
 
+# TODO: This seems to be a hidden alternative route for this storyline, in which
+# case a reminder shouldn't be used. That also means that a player could stumble
+# upon this a considerable amount of time after having last interacted with the
+# storyline, which isn't ideal.
 mission "Home for Skadenga Captain"
 	landing
 	name "Evacuate <origin>"
-	description `Escort your fleet carrying the Skadenga, to <destination>.`
+	description `Escort your fleet carrying the Skadenga to <destination>.`
 	passengers 2200
 	source "Nifel"
 	destination "Windblain"
@@ -3978,6 +4001,9 @@ event "skadenga life"
 
 
 mission "Home for Skadenga 13"
+	invisible
+	"reminder name" "Home for Skadenga"
+	reminder "Meet with the Skadenga Ondurdis in the <origin> spaceport."
 	source "Windblain"
 	to offer
 		or
@@ -4115,10 +4141,10 @@ mission "Homecoming to Skadenga"
 mission "Stones of Skadenga 1"
 	landing
 	name "Stones of Skadenga"
-	source "Nifel"
-	passengers 5
-	destination "Windblain"
 	description "Return the Skadenga mourners to <destination>."
+	passengers 5
+	source "Nifel"
+	destination "Windblain"
 	to offer
 		has "Homecoming to Skadenga: done"
 	on complete
@@ -4140,9 +4166,9 @@ mission "Stones of Skadenga 2"
 	landing
 	name "Stones of Skadenga"
 	description "Take the mourning Skadenga to <stopovers>, so that they can enact the rites of their dead, then return them to <planet>. Payment is <payment>."
+	passengers 8
 	source "Windblain"
 	stopover "Nifel"
-	passengers 8
 	to offer
 		has "event: skadenga mourners"
 		has "Stones of Skadenga 1: done"

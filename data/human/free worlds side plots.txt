@@ -162,6 +162,7 @@ mission "FW Conservatory 1"
 	destination "Winter"
 	passengers 3
 	blocked "You meet up with Ijs in the spaceport, but he tells you that you will need three bunks for him and some friends. Return here once you have space available."
+	reminder ""
 	to offer
 		has "FW Senate 1B: done"
 		not "fw conservatory founded"
@@ -203,6 +204,7 @@ mission "FW Conservatory 1"
 mission "FW Conservatory 2"
 	name "Escort to <planet>"
 	description "Escort this Free Worlds convoy to <destination>, to trade for terraforming equipment provided by Tarazed and the Syndicate."
+	reminder ""
 	source "Winter"
 	destination "Wayfarer"
 	to offer

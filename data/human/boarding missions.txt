@@ -692,9 +692,9 @@ mission "Slave Crew Rescue"
 		payment 350000
 
 mission "Turn in Tarquin"
+	landing
 	description "Deliver captain Tarquin to law enforcement on the nearest planet."
 	passengers 1
-	landing
 	to offer
 		has "captured tarquin"
 	destination "Earth"

@@ -50,6 +50,7 @@ mission "Heliarch Investigation 1"
 mission "Heliarch Investigation 2"
 	name "Heliarch Investigation"
 	description "Take the Heliarch agents to the marked planets so that they can investigate signs of criminal activity."
+	reminder ""
 	source "Ring of Friendship"
 	destination "Ring of Friendship"
 	passengers 3
@@ -1351,12 +1352,14 @@ mission "Heliarch Containment 1"
 mission "Heliarch Containment 2"
 	name "Pick Up Injured Soldiers"
 	description "Land on <stopovers>, to pick up the <bunks> Heliarch soldiers in need of medical attention, and transport them to <destination> by <date>."
+	blocked ""
+	reminder ""
+	passengers 21
+	deadline
 	source
 		near "Bloptab" 1 4
 	stopover "Delve of Bloptab"
 	destination "Ahr"
-	passengers 21
-	deadline
 	to offer
 		has "Heliarch Containment 1: done"
 		not "joined the lunarium"
@@ -1427,6 +1430,8 @@ mission "Heliarch Containment 2"
 mission "Heliarch Containment 3"
 	name "Informational Medicine"
 	description "While picking up <cargo> from <planet stopovers>, let loose the spy bots the Heliarchs gave you to act as surveillance for the planet."
+	blocked ""
+	reminder ""
 	source "Ring of Power"
 	stopover "Secret Sky"
 	cargo "medication" 15
@@ -1481,6 +1486,7 @@ mission "Heliarch Containment 3"
 mission "Heliarch Containment 4-A"
 	name "Undercover Transports"
 	description "Escort three Kimek Spires full of Heliarch agents to <destination>, where they hope the use of civilian ships will give them the element of surprise."
+	reminder ""
 	source "Ring of Power"
 	destination "Remote Blue"
 	to offer
@@ -1686,6 +1692,7 @@ mission "Heliarch Drills 1"
 mission "Heliarch Drills 2-A"
 	name "Pursuit Drill"
 	description "Land on <planet> while avoiding the Heliarch Hunters."
+	reminder ""
 	source "Belug's Plunge"
 	destination "Shadow of Leaves"
 	"apparent payment" 300000
@@ -2003,6 +2010,7 @@ mission "Heliarch Drills 2-C"
 mission "Heliarch Drills 3"
 	name "Combat Drill"
 	description "Head to the <waypoints> system to fight the <npc>, and report back to <planet> when you succeed. You must only disable the ship. Destroying or capturing it would deem you an enemy of the Heliarchs."
+	reminder ""
 	source "Belug's Plunge"
 	waypoint "Torbab"
 	to offer

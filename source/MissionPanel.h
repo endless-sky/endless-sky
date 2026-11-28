@@ -63,11 +63,17 @@ private:
 	void DrawMissionKey() const;
 	// Draw rings around systems that need to be visited for the given mission.
 	void DrawMissionSystem(const Mission &mission, const Color &color) const;
+	// Draw just the source of this mission, as it is not actually accepted by the player
+	// yet, so they shouldn't know the mission's objectives.
+	void DrawReminder(const Mission &mission, const Color &color) const;
 	// Draw the backgrounds for the "available jobs" and accepted missions/jobs lists.
 	Point DrawPanel(Point pos, const std::string &label, int entries, bool sorter = false) const;
-	// Draw the display names of the given missions, using the reference point.
-	Point DrawList(const std::list<Mission> &missionList, Point pos, const std::list<Mission>::const_iterator &selectIt,
-		const std::list<Mission>::const_iterator &hoverIt, bool separateDeadlineOrPossible = false) const;
+	// Draw the display names of the missions, using the reference point.
+	void DrawAvailable(Point pos) const;
+	void DrawAccepted(Point pos) const;
+	// Draw an individual mission's display name.
+	void DrawMissionName(const Mission &mission, Point &pos, bool &separated, bool isSelected, bool isHovered,
+		bool isAvailable) const;
 	void DrawMissionInfo();
 	void DrawTooltips() const;
 
@@ -75,8 +81,6 @@ private:
 	void Accept(bool force = false);
 	void MakeSpaceAndAccept();
 	void AbortMission();
-
-	int AcceptedVisible() const;
 
 	// Updates availableIt and acceptedIt to select the first available or
 	// accepted mission in the given system. Returns true if a mission was found.
@@ -92,12 +96,12 @@ private:
 	const Interface *missionInterface;
 
 	const std::list<Mission> &available;
-	const std::list<Mission> &accepted;
+	std::list<const Mission *> accepted;
 	int cycleInvolvedIndex = 0;
 	std::list<Mission>::const_iterator availableIt;
 	std::list<Mission>::const_iterator hoverAvailableIt;
-	std::list<Mission>::const_iterator acceptedIt;
-	std::list<Mission>::const_iterator hoverAcceptedIt;
+	std::list<const Mission *>::const_iterator acceptedIt;
+	std::list<const Mission *>::const_iterator hoverAcceptedIt;
 	double availableScroll = 0.;
 	double acceptedScroll = 0.;
 

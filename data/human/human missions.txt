@@ -2000,6 +2000,7 @@ mission "Terraforming 2"
 	destination "Rand"
 	passengers 3
 	blocked "You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Terraforming 1: done"
 	
@@ -2061,6 +2062,7 @@ mission "Terraforming 3"
 	name "Terraforming Rand"
 	description "Plant a thruster on an asteroid to guide it into a collision with the northern pole of Rand."
 	blocked "You'll need more cargo space in order to take the next mission from Eric and Alaric. Return here when you have <capacity>."
+	reminder ""
 	cargo "thruster equipment" 10
 	source "Rand"
 	to offer
@@ -2112,6 +2114,8 @@ mission "Terraforming 3"
 mission "Terraforming 4"
 	name "Terraforming Rand"
 	description "Bring Amy to <destination> to collect some hardy plants that can grow in a low-light environment."
+	blocked ""
+	reminder ""
 	source "Rand"
 	destination "New Portland"
 	to offer
@@ -2139,6 +2143,8 @@ mission "Terraforming 4"
 mission "Terraforming 5"
 	name "Terraforming Rand"
 	description "Bring Amy and <tons> of hardy plants that can grow in a low-light environment back to <destination>."
+	blocked ""
+	reminder ""
 	source "New Portland"
 	destination "Rand"
 	to offer
@@ -2254,6 +2260,7 @@ mission "Terraforming 7"
 	destination "Valhalla"
 	passengers 2
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Terraforming 6: done"
 	
@@ -2313,6 +2320,7 @@ mission "Terraforming 9"
 	passengers 6
 	cargo "scientific equipment" 10
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Terraforming 8: done"
 	
@@ -2337,6 +2345,8 @@ mission "Terraforming 9"
 mission "Terraforming 10"
 	name "Terraforming Tundra"
 	description "Bring the Republic representative overseeing the terraforming project to <destination>, where he will attempt to find an alternative solution to terraforming Tundra that does not involve an asteroid."
+	blocked ""
+	reminder ""
 	source "Tundra"
 	destination "Earth"
 	passengers 1
@@ -2428,6 +2438,7 @@ mission "Terraforming 12"
 	source "Tundra"
 	cargo "thruster equipment" 10
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	to offer
 		has "Terraforming 11: done"
 	
@@ -2552,6 +2563,7 @@ mission "A wolf, a goat, and a cabbage"
 
 
 mission "Terminus exploration"
+	minor
 	name "Missing drone"
 	description "Travel to the <waypoints> system to see if you can find any sign of a probe drone that had been launched by a team of scientists before they were attacked by pirates and forced to flee."
 	source
@@ -2737,6 +2749,7 @@ mission "Lost Boy 3"
 	destination "Placer"
 	passengers 1
 	blocked "This mission requires that you have at least one free bunk. Return once you have the space."
+	reminder ""
 	to offer
 		has "Lost Boy 2: done"
 	
@@ -5675,6 +5688,7 @@ mission "Wool Smuggling 2"
 	description "Deliver <cargo> to the pirate world of <destination>. Payment will be <payment>."
 	cargo "wool garments" 15
 	blocked `The spaceport workers inform you that you need <tons> of cargo free to pick up the woollen goods intended for <planet>.`
+	reminder ""
 	source "New Kansas"
 	destination "Bloodsea"
 	to offer
@@ -5905,9 +5919,9 @@ mission "Quicksilver Mixup 0"
 		dialog phrase "generic cargo on visit"
 
 mission "Quicksilver Mixup 1"
+	landing
 	name "Redirect Package to <planet>"
 	description "Apparently the package labeled for <origin> was actually intended for <planet>. You'll have missed the deadline, so you probably won't be paid the <payment> offered."
-	landing
 	cargo package 1
 	source Silver
 	destination Quicksilver
@@ -5989,9 +6003,9 @@ event "quicksilver mixup 2 available"
 
 
 mission "Quicksilver Mixup 2"
+	minor
 	name "Misposted Mail Delivery"
 	description "Deliver <tons> of misposted mail from <origin> to <planet> by <date> and then come back with the return shipment. You will be paid <payment> after you return from <planet>."
-	minor
 	deadline 10 1
 	source "Silver"
 	destination "Quicksilver"
@@ -6044,10 +6058,10 @@ mission "Quicksilver Mixup 2"
 
 
 mission "Quicksilver Mixup 3"
-	name "Misposted Mail Delivery"
-	deadline 10 1
 	landing
+	name "Misposted Mail Delivery"
 	description "Return to <planet> with <cargo>. You will be paid <payment>."
+	deadline 10 1
 	source "Quicksilver"
 	destination "Silver"
 	cargo "misposted mail" 29
@@ -6223,6 +6237,7 @@ mission "Argosy Hijacking"
 
 
 mission "Blind Man from Martini"
+	minor
 	name "Transport a blind passenger to <planet>"
 	description "This blind man, Douglas, wishes to be transported to <destination>, so he can be with his daughter while she undergoes treatment there. He will pay you <payment>."
 	source Martini
@@ -6651,6 +6666,8 @@ mission "Lost Racer 2 - Ended"
 mission "Lost Racer 2 - Continued"
 	name "Search for Artemis Renard"
 	description "Search the system of <system> for Artemis Renard, especially <planet>."
+	blocked ""
+	reminder ""
 	source "Sunracer"
 	mark "Acamar"
 	destination "Sandswell"
@@ -6837,6 +6854,7 @@ mission "Lost Racer 3"
 	destination "Glory"
 	passengers 2
 	blocked `You're pretty sure Artemis Renard is stranded on this planet, but you don't have an extra bunk to transport her back to civilization. Come back when you have space.`
+	reminder ""
 	to offer
 		has "Lost Racer 2 - Continued: done"
 		or
@@ -7143,6 +7161,8 @@ mission "Moving House 2"
 mission "Moving House 3"
 	name "Moving House, Again"
 	description "Kris is unsatisfied on <origin> and wants your help to move to <destination> instead. Payment is <payment>."
+	blocked ""
+	reminder ""
 	source "Lichen"
 	destination "Thule"
 	passengers 1
@@ -7454,6 +7474,7 @@ mission "Derelict Family Investment 2"
 
 
 mission "Returning to Paradise"
+	minor
 	name "Transport family home to <planet>"
 	description `A family worried about the potential destruction within the Free Worlds wants to cut their vacation short and go home to <destination>. They promise to "pay you very well."`
 	source
@@ -7552,6 +7573,7 @@ mission "Hogshead's Dilemma II"
 
 
 mission "Lost Dog"
+	minor
 	name "Lost dog to <planet>"
 	description "Bring Caesar, a dog you found on <origin>, to their owners on <destination>."
 	source "Calda"
@@ -7866,6 +7888,8 @@ event "adelita 2 offer expired"
 mission "Adelita 2"
 	name "Film Syndicate sweatshop on <planet>"
 	description "Participate in an unauthorized filming of a Syndicate sweatshop on <destination>. You will be paid <payment> after you complete the entire job."
+	blocked ""
+	reminder ""
 	cargo "stealth drones" 1
 	passengers 3
 	"apparent payment" 200000
@@ -8077,6 +8101,8 @@ mission "Adelita 5"
 	landing
 	name "Return Adelita to <planet>"
 	description "Bring everyone back to <destination>. You will be paid <payment> after you complete the entire job."
+	blocked ""
+	reminder ""
 	passengers 3
 	cargo "stealth drones" 1
 	"apparent payment" 200000
@@ -8274,6 +8300,7 @@ mission "Syndicate Business 2"
 	source "Sunracer"
 	destination "Hephaestus"
 	blocked "Howard has offered you an investment opportunity, but mentioned that it'll cost you a million credits up front, and you'll need space on your ship to transport him elsewhere. Better come back when you have that, plus a few more credits."
+	reminder ""
 	to offer
 		has "Syndicate Business 1: done"
 	to accept
@@ -8401,6 +8428,7 @@ event "syndicate business 1m investment done"
 
 
 mission "Syndicate Business 3"
+	minor
 	name "Visit Howard on <planet>"
 	description "Howard wants to tell you about another investment opportunity."
 	source
@@ -8489,6 +8517,7 @@ mission "Syndicate Business 3"
 mission "Syndicate Business 4"
 	name "Escort Howard to <planet>"
 	description "Escort Howard from Megaparsec Inc. to <planet> to learn what favor is needed in exchange for an investment opportunity."
+	reminder ""
 	source "Hephaestus"
 	to offer
 		has "Syndicate Business 3: done"
@@ -8537,6 +8566,7 @@ mission "Syndicate Business 4"
 mission "Syndicate Business 5"
 	name "Disable a Marauder ship in <waypoints>"
 	description "Howard wants you to disable a Marauder ship in exchange for an investment opportunity."
+	reminder ""
 	to offer
 		has "Syndicate Business 4: done"
 	source "Sunracer"
@@ -9026,6 +9056,7 @@ mission "Timothy Radrickson 3: Governor Notification"
 mission "Timothy Radrickson 3a: Rescue the Convoy"
 	name "Rescue <origin> convoy"
 	description "<origin>'s largest ever convoy was intercepted on its way to Tarazed. Merchants report that a large pirate fleet escorting a freighter convoy went to <destination>. Governor Tim has asked you to try and save it before the pirates can plunder it completely."
+	reminder ""
 	source "Rand"
 	destination "Greenrock"
 	deadline 7
@@ -9500,6 +9531,8 @@ event "rad tim dead"
 mission "Timothy Radrickson 5a: Timshank Redemption"
 	name "Meet Tim's contact on <planet>"
 	description "Tim would like you to collect some supplies for him, but first he asked you to meet someone on <stopovers> who could help you out. Tim has 18 days (<date>) before he is reassigned to a camp down south."
+	blocked ""
+	reminder ""
 	cargo "Tim's equipment" 1
 	deadline 18
 	source Oblivion
@@ -10410,6 +10443,7 @@ mission "Timothy Radrickson 5e: Back to Oblivion"
 
 
 mission "Timothy Radrickson 6: News of Death"
+	invisible
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		attributes "urban"
@@ -10529,6 +10563,7 @@ mission "Timothy Radrickson 7: Monk"
 
 
 mission "Timothy Radrickson 7: Hospice"
+	minor
 	source "New Tibet"
 	to offer
 		"timothy radrickson zpreparedness" >= 6
@@ -10630,6 +10665,7 @@ mission "Timothy Radrickson 7: Hospice"
 
 
 mission "Timothy Radrickson 7: Grave"
+	minor
 	source "Oblivion"
 	to offer
 		random < 25
@@ -10765,6 +10801,7 @@ event "stone waiting most"
 
 
 mission "Stone to Hope"
+	minor
 	name "Bring Tosti's stone to <planet>"
 	description "Take Tosti's family stone to <destination>, where the Snaiwaz clan used to live before they immigrated to <origin>."
 	to offer
@@ -10871,6 +10908,8 @@ mission "Stone to Ice Queen"
 	landing
 	name "Bring Ildico to <planet>"
 	description "You found a woman named Ildico Drifa in an abandoned manor on <origin>. She has asked you to bring her to <destination> so she can escape the abandoned planet."
+	blocked ""
+	reminder ""
 	source "Hope"
 	destination "Clark"
 	passengers 1
@@ -11046,6 +11085,8 @@ conversation "Ice Queen End"
 mission "Ice Queen 2"
 	name "Find Ildico's Father"
 	description "Look for Ildico's father on <destination>, where he went after he left Clark."
+	blocked ""
+	reminder ""
 	source "Clark"
 	destination "Glory"
 	passengers 1
@@ -11085,11 +11126,13 @@ mission "Ice Queen 2"
 mission "Ice Queen 3"
 	name "Find Ildico's Father"
 	description "Professor McGiven told you that Ildico's father now works for the Republic on <destination>. Bring Ildico there to see if you can visit him."
-	to offer
-		has "Ice Queen 2: done"
+	blocked ""
+	reminder ""
 	source "Glory"
 	destination "Chiron"
 	passengers 1
+	to offer
+		has "Ice Queen 2: done"
 	on offer
 		conversation
 			`The Academy of Planetary Sciences is a campus the size of a small nation-state on Earth. Various artificially created and maintained microclimates abound as you travel between miniature mountains and micro-savannahs; between marshland and jungle, desert and forest. Impossible machines - some larger than skyscrapers - litter the twisted and ever-changing landscape, and terraforming satellites make meteor showers overhead in the dawn light. This is a place where anything is possible, and land bends eagerly to the whims of the terraforming wizards.`
@@ -11215,6 +11258,8 @@ mission "Ice Queen 5"
 mission "Ice Queen 6"
 	name "Take Ildico to <planet>"
 	description "Smuggle Ildico and her child to <destination>."
+	blocked ""
+	reminder ""
 	source "Chiron"
 	destination "Haven"
 	passengers 2
@@ -11359,6 +11404,7 @@ mission "Ice Queen 7"
 mission "Ice Queen 8"
 	name "Defeat Ildico's rivals"
 	description "Ildico has requested you to destroy a fleet of Marauder ships near the <system> system. Once you're done, return to <planet>."
+	reminder ""
 	source "Haven"
 	to offer
 		has "Ice Queen 7: done"
@@ -11477,6 +11523,7 @@ mission "Ice Queen 8"
 
 
 mission "Ice Queen: News"
+	invisible
 	source
 		government "Republic" "Free Worlds" "Syndicate" "Neutral" "Independent"
 		near "Arneb" 10
@@ -11562,6 +11609,7 @@ mission "Skadenga: Blood of Surtr"
 
 
 mission "Stone to Hope: Thanks"
+	invisible
 	source "Norn"
 	to offer
 		has "Stone to Ice Queen: offered"
@@ -11625,9 +11673,9 @@ mission "Patch Stone Waiting"
 
 
 mission "A Dead Man's Path 1"
+	minor
 	name "Siblings to New China"
 	description "Bring these siblings to New China to hear their father's last will by <date>. They have offered to pay you <payment>."
-	minor
 	passengers 2
 	deadline 7
 	source
@@ -11681,6 +11729,8 @@ mission "A Dead Man's Path 1"
 mission "A Dead Man's Path 2"
 	name "Following Footprints"
 	description "Bring Sophie and Liam through <waypoints>, before finally bringing them to <destination>. They will pay you another <payment>."
+	blocked ""
+	reminder ""
 	passengers 2
 	source "New China"
 	destination "Prime"

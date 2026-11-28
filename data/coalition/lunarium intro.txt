@@ -22,9 +22,9 @@ mission "Lunarium Initial Log"
 		fail
 
 mission "Lunarium: Smuggling: Charity 1"
+	minor
 	name "Charity Delivery"
 	description "Deliver a care package of <cargo> to <destination>, as part of a charity initiative."
-	minor
 	cargo "charity supplies" 22
 	source
 		near "3 Spring Rising" 1 6
@@ -484,9 +484,9 @@ mission "Lunarium: Smuggling: Reactors"
 
 
 mission "House Bebliss 1-A"
+	minor
 	name "Meet with House Bebliss"
 	description "Head to <destination>, where members of House Bebliss wish to discuss a job offer."
-	minor
 	to offer
 		random < 15
 		has "license: Coalition"
@@ -678,9 +678,9 @@ mission "House Bebliss 2-FW"
 		"assisting lunarium" --
 
 mission "House Bebliss 3-FW"
+	landing
 	name "Tell the Free Worlds about the Coalition"
 	description "Go to <destination> with Freya and tell JJ all you've learned about the Coalition."
-	landing
 	to offer
 		has "House Bebliss 2-FW: done"
 		not "assisting heliarchy"
@@ -688,6 +688,7 @@ mission "House Bebliss 3-FW"
 	destination "Bourne"
 	passengers 1
 	blocked `You have reached <origin>, but you need <capacity> in order to take on the next mission. Return here when you have the required space free.`
+	reminder ""
 	on offer
 		conversation
 			`You look around for Freya, asking the local dock workers to point you in the direction of the people researching the Pug tech. They direct you to a quieter, less crowded place, where some warehouse complexes have been set up. Some are painted in the usual Syndicate colors, some are guarded by a few Navy troops, and a Free Worlds flag flies by the entrance of the one you enter. Inside, you see groups of people surrounding the various artifacts that the Pug left behind. Some of them are running complicated-looking tests, but it seems that they are mostly discussing what to do with the artifacts next. One of the graviton transmitters sits opposite to the entrance, half intact, half dismantled, with an array of scientists poking and prodding the machinery inside.`
@@ -842,6 +843,7 @@ mission "House Bebliss 5-FW"
 mission "House Bebliss 6-FW"
 	name "Escort House Bebliss"
 	description "Escort the ship with House Bebliss' representatives to <destination>, where they intend to join Freya in her studies on hyperspace links."
+	reminder ""
 	to offer
 		has "House Bebliss 5-FW: done"
 		not "assisting heliarchy"
@@ -900,9 +902,9 @@ mission "House Bebliss 6-FW"
 event "bebliss research fw"
 
 mission "House Bebliss 7-FW"
+	landing
 	name "The House Always Wins"
 	description "Head to <destination>, where the members of House Bebliss will return the jump drive you provided them, and give you your payment for assisting them."
-	landing
 	to offer
 		has "event: bebliss research fw"
 		not "assisting heliarchy"
@@ -932,9 +934,9 @@ mission "House Bebliss 7-FW"
 
 
 mission "Lunarium: Evacuation 1"
+	minor
 	name "Pick Up Students"
 	description "Head to <destination> to pick up <bunks> students and teachers by <date>, and bring them back to their home planet of Second Viridian."
-	minor
 	deadline 10
 	passengers 35
 	"apparent payment" 386730
@@ -993,10 +995,10 @@ mission "Lunarium: Evacuation 1"
 		"assisting lunarium" --
 
 mission "Lunarium: Evacuation 2"
+	landing
 	name "Transport The Students"
 	description "Now that you've picked up the <bunks> students and teachers, bring them to their home planet of <destination>."
 	passengers 33
-	landing
 	source "Fourth Shadow"
 	destination "Second Viridian"
 	to offer
@@ -1109,10 +1111,10 @@ mission "Lunarium: Evacuation 3"
 		"assisting lunarium" --
 
 mission "Lunarium: Evacuation 4"
+	landing
 	name "Transport The Ranchers"
 	description "Bring the <bunks> ranchers to their world, <destination>."
 	passengers 47
-	landing
 	source "Chosen Nexus"
 	destination "Shifting Sand"
 	to offer
@@ -1181,11 +1183,11 @@ mission "Lunarium: Evacuation 4"
 		"assisting lunarium" --
 
 mission "Lunarium: Evacuation 5"
+	landing
 	name "Pick Up Immigrants"
 	description "Head to <destination> by <date> to pick up <bunks> immigrants, who are seeking to start a new life on Ablub's Invention."
 	deadline 7
 	passengers 116
-	landing
 	source
 		near "Ablub" 1 3
 	destination "Cool Forest"
@@ -1235,10 +1237,10 @@ mission "Lunarium: Evacuation 5"
 			`	He signs off before you're able to inquire on other ways to save them.`
 
 mission "Lunarium: Evacuation 6"
+	landing
 	name "Transport The Immigrants"
 	description "Bring the <bunks> immigrants to their new homes on <destination>."
 	passengers 91
-	landing
 	source "Cool Forest"
 	destination "Ablub's Invention"
 	to offer
@@ -1401,6 +1403,7 @@ mission "Lunarium: Propaganda 2"
 	passengers 11
 	cargo "promotional banners" 1
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	source "Bright Echo"
 	destination "Factory of Eblumab"
 	to offer
@@ -1466,6 +1469,7 @@ mission "Lunarium: Propaganda 3"
 	passengers 5
 	cargo "flyers and skywriting material" 10
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	source "Factory of Eblumab"
 	destination "Sandy Two"
 	to offer
@@ -1529,6 +1533,7 @@ mission "Lunarium: Propaganda 4"
 	passengers 18
 	cargo "promotional posters" 12
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	source "Sandy Two"
 	destination "Warm Slope"
 	to offer
@@ -1788,11 +1793,12 @@ mission "Lunarium: Combat Training 3"
 		"assisting lunarium" --
 
 mission "Lunarium: Combat Training 4"
+	landing
 	name "Homecoming"
 	description "Bring the <bunks> Lunarium members back to the Coalition, to <destination>."
 	passengers 54
-	landing
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	source "Glaze"
 	destination "Factory of Eblumab"
 	to offer
@@ -1873,11 +1879,12 @@ mission "Lunarium: Questions"
 		dialog `You are currently assisting the Heliarchy. Cancel or finish any missions you have for them if you want to join the Lunarium.`
 
 mission "Lunarium: Quarg Interview"
+	landing
 	name "The Interview"
 	description "Travel to <destination> with Oobat, an Arach diplomat from the Lunarium, to try and speak with the Quarg about their thoughts on the current Coalition."
 	passengers 1
-	landing
 	blocked "You need <capacity> in order to take on the next mission. Return here when you have the required space free."
+	reminder ""
 	source "Remote Blue"
 	destination "Lagrange"
 	to offer
@@ -1989,9 +1996,9 @@ mission "Lunarium: Quarg Interview"
 		"assisting lunarium" --
 
 mission "Lunarium: Join"
+	landing
 	name "Report Back"
 	description "Now that you and Oobat have interviewed the Quarg, head back to <destination> to inform the Lunarium leaders of how it went."
-	landing
 	source "Lagrange"
 	destination "Remote Blue"
 	passengers 1

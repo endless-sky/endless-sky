@@ -13,9 +13,9 @@
 # this program. If not, see <https://www.gnu.org/licenses/>.
 
 mission "Deep Archaeology 1"
+	minor
 	name "Deep Archaeology"
 	description "Drop this archaeologist off on <destination>, before making a trip to Midgard in the Deep to collect some samples."
-	minor
 	source
 		attributes "paradise" "north" "near earth"
 		near Miaplacidus 1 20
@@ -153,10 +153,12 @@ mission "Deep Archaeology 4"
 	description "Return to <destination> with some specialized equipment for subterranean mapping."
 	source Vinci
 	destination Midgard
-	to offer
-		has "Deep Archaeology 3: done"
 	cargo "mapping equipment" 4
 	passengers 2
+	blocked ""
+	reminder ""
+	to offer
+		has "Deep Archaeology 3: done"
 	
 	on offer
 		log "People" "Albert Foster" `An archaeologist who is famous for using dubious methods: he has been banned from Quarg space for trying to collect an alloy sample from their ringworld, and is rumored to have also been involved in a scheme involving dinosaur fossils and an illegal genetic resequencer. He is currently based on Vinci, on the edge of the Paradise sector.`
@@ -393,6 +395,7 @@ mission "Rim Archaeology 1"
 	destination "Zug"
 	passengers 1
 	blocked `You consider telling Albert Foster about your findings on Zug, but realize that you don't have a bunk free to take him there! Return when you have free space.`
+	reminder ""
 	to offer
 		has "Sad Archie: done"
 		has "Deep Archaeology 5: done"
@@ -458,6 +461,7 @@ mission "Rim Archaeology 1"
 mission "Rim Archaeology 2A"
 	name "Archaeological Equipment"
 	description "Fetch some excavation equipment from <destination>, and return with it to the dig site on Zug."
+	reminder ""
 	source "Zug"
 	destination "Crossroads"
 	to offer
@@ -489,6 +493,7 @@ mission "Rim Archaeology 2B"
 	to offer
 		has "Rim Archaeology 2A: done"
 	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have at least 28 tons of space free."
+	reminder ""
 	
 	on offer
 		conversation
@@ -529,6 +534,7 @@ mission "Rim Archaeology 3B"
 	to offer
 		has "Rim Archaeology 3A: done"
 	blocked "You do not have enough cargo space to carry the equipment for Albert Foster's archaeological dig. Return here when you have <capacity>."
+	reminder ""
 	
 	on offer
 		conversation
@@ -577,6 +583,7 @@ mission "Rim Archaeology 4B"
 	to offer
 		has "Rim Archaeology 4A: done"
 	blocked "You will need <capacity> to transport the xenobiologist that Albert Foster asked you to fetch. Return here when you have space available."
+	reminder ""
 	
 	on offer
 		conversation
@@ -1253,6 +1260,7 @@ mission "Sheragi Archaeology: The Box 8"
 	passengers 3
 	cargo "Archaeological Equipment" 1
 	blocked `You arrive at the spaceport, but then you realize your ships don't have enough free bunks or cargo space required to bring the archaeologist team with you. You manage to contact them, and in an embarrassing conversation ask them to wait for you while you make sure you're ready.`
+	reminder ""
 	
 	to offer
 		has "Sheragi Archaeology: The Box 7b: done"
@@ -1386,6 +1394,7 @@ mission "Sheragi Archaeology: The Emerald Sword 3"
 	cargo "Outfitting Equipment" 50
 	passengers 150
 	blocked `You arrive to make the preparations to jump to Zubenelhakrabi, but Albert stops you. "Captain, the Emerald Sword is an alien ship, and we have no idea how many people we will need to man it, so I've taken the liberty of hiring some extra crew on top of the specialist team. We're going to need 150 additional crew to help, including us, and 50 tons of cargo to take our materials and the spare jump drive."`
+	reminder ""
 	
 	to offer
 		has "Sheragi Archaeology: The Emerald Sword 2: active"

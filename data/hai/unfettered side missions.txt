@@ -236,11 +236,14 @@ mission "Hai Legacy 2"
 	landing
 	name "Heritage Reclaimed"
 	description "Use your newly acquired Anomalocaris to bring aid to the Unfettered Hai on <planet> by <date>."
-	clearance
-	deadline 7
-	cargo "food (aid)" 121
 	source "Hai-home"
 	destination "Darkcloak"
+	clearance
+	cargo "food (aid)" 121
+	deadline 7
+	blocked "You need <capacity> in order to deliver the aid to the Unfettered Hai on <planet>."
+	"reminder name" "Unfettered Aid"
+	reminder "121 tons of compressed protein- and vitamin-enriched acorn bars would bring relief for a relevant amount of starving Unfettered Hai kits, if you'd have the free cargo space for them."
 	to offer
 		not "Hai Legacy 1: declined"
 		has "First Contact: Unfettered: offered"

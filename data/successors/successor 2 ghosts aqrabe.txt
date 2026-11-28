@@ -124,6 +124,8 @@ mission "Successors: Ghosts Aqrabe Hai"
 mission "Successors: Ghosts Aqrabe 2"
 	name "Keystone testing"
 	description "Escort two of House Aqrabe's ships through the wormhole and convene with them at <stopovers> before returning to <planet>."
+	blocked ""
+	reminder ""
 	source "Kasii-Cavasaa-Oa"
 	stopover "Myiara-Aret-Iir"
 	destination "Kasii-Cavasaa-Oa"
@@ -160,6 +162,8 @@ mission "Successors: Ghosts Aqrabe 2"
 mission "Successors: Ghosts Aqrabe 3"
 	name "Visit stellar garden"
 	description "Attempt to land on the stellar metal garden orbiting the Kasii-Cavaasa star."
+	blocked ""
+	reminder ""
 	source "Kasii-Cavasaa-Oa"
 	stopover "Exotic Metal Garden"
 	destination "Kasii-Cavasaa-Oa"
@@ -219,6 +223,7 @@ mission "Successors: Ghosts Aqrabe 3"
 mission "Successors: Ghosts Aqrabe 4"
 	name "Pick up ship from Kaatrij"
 	description "Pick up a modified Vujlet from House Kaatrij at <destination>."
+	reminder ""
 	clearance
 	source "Kasii-Cavasaa-Oa"
 	destination "Raaqa-Puan-Uuoru"
@@ -256,9 +261,9 @@ mission "Successors: Ghosts Aqrabe 4"
 				accept
 
 mission "Successors: Ghosts Aqrabe 5"
+	landing
 	name "Return to Kasii-Cavasaa-Oa"
 	description "Escort the Nnesa ti-a-Oj back to <destination>."
-	landing
 	source "Raaqa-Puan-Uuoru"
 	destination "Kasii-Cavasaa-Oa"
 	npc save
@@ -388,9 +393,10 @@ mission "Successors: Ghosts Aqrabe 6"
 	destination "Exotic Metal Garden"
 	cargo "Reserved space" 40
 	passengers 2
+	blocked "You will need <capacity> to bring back enough stellar metal from <destination>."
+	reminder ""
 	to offer
 		has	"Successors: Ghosts Aqrabe 5: done"
-	blocked "You will need <capacity> to bring back enough stellar metal from <destination>."
 	on offer
 		conversation
 			`You meet Tiliia and House Kaatrij's observer back in the hangar bay with the specially-equipped Vujlet, which now gleams all over with an oily, iridescent sheen. Tiliia and the observer are in the middle of a heated conversation; you catch a bit of something ending "...foolish to trust an alien," from the observer.`
@@ -401,16 +407,15 @@ mission "Successors: Ghosts Aqrabe 6"
 				accept
 
 mission "Successors: Ghosts Aqrabe 7"
+	landing
 	name "Return to Kasii-Cavasaa-Oa"
 	description "Escape the drone ship and return to <destination> with the stellar metal."
-	landing
 	source "Exotic Metal Garden"
 	destination "Kasii-Cavasaa-Oa"
 	cargo "Stellar metal" 40
 	passengers 2
 	to offer
 		has	"Successors: Ghosts Aqrabe 6: done"
-	blocked "You will need <capacity> to collect the stellar metal. Return in the modified Vujlet when you have the space free."
 	on offer
 		conversation
 			`Several minutes pass after landing before the hull of the <ship> has cooled enough to make it safe for exit - despite Kaatrij's loaned technology, the ship's armor still glows red-hot. The interior of the garden's loading bay is cavernous, the tangled metal strands drawn inside onto giant spools each many meters in diameter.`

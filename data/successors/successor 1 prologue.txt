@@ -344,6 +344,7 @@ mission "Successors: First Contact 3"
 	passengers 1
 	cargo "Animal Transport Container" 1
 	blocked `You speak with Sieasej, who informs you that they require at least 1 free bunk to travel and 1 ton of cargo space to carry the "Kijra-riitaa" back to Successor space.`
+	reminder ""
 	substitutions
 		"<tranq h2h>" "Pug staff"
 		"<tranq h2h>" "Heliarch staff"
