@@ -2012,9 +2012,12 @@ tip "Lock gamerules"
 	`Controls whether gamerules can be altered after a pilot has been created. If true, the gamerules button will not appear on the main menu for this pilot. If you set this to true on an existing pilot, you will not be able to return to this menu after leaving.`
 
 tip "Disabled only"
-	`Controls whether crossfire immunity only applies to disabled ships. If false, then ships can receive crossfire immunity whether they are disabled or not.`
+	`Controls whether crossfire immunity only applies to disabled ships when the firing ship is non-carriable. If false, then ships can receive crossfire immunity from non-carriable ships whether they are disabled or not.`
 	`Crossfire is defined as a projectile collision that occurs against a ship that was not the intended target of the projectile. A ship which is immune to crossfire will therefore only receive damage from projectiles that were directly targeted at it. Note that this does not apply immunity to explosions that happen near a ship.`
 	`Projectiles that were fired at a ship prior to it being disabled will lose their targeting and collision with the ship if it is disabled while the projectile is in flight and the ship is protected by crossfire immunity.`
+
+tip "Disabled only (fighters)"
+	`Controls whether crossfire immunity only applies to disabled ships when the firing ship is carriable. If false, then ships can receive crossfire immunity from carriable ships whether they are disabled or not.`
 
 tip "Can't receive"
 	`Controls which non-carriable ships are prevented from receiving crossfire collisions.`

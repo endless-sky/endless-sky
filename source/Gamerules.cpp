@@ -69,6 +69,7 @@ const string Gamerules::DEPRECIATION_DAILY = "depreciation daily";
 const string Gamerules::DEPRECIATION_GRACE_PERIOD = "depreciation grace period";
 const string Gamerules::DEPRECIATION_MAX_AGE = "depreciation max age";
 const string Gamerules::CROSSFIRE_DISABLED_ONLY = "crossfire disabled only";
+const string Gamerules::CROSSFIRE_DISABLED_ONLY_CARRIED = "crossfire carriable disabled only";
 const string Gamerules::CROSSFIRE_RECEIVING = "crossfire receiving immunity";
 const string Gamerules::CROSSFIRE_RECEIVING_CARRIED = "crossfire carriable receiving immunity";
 const string Gamerules::CROSSFIRE_CREATING = "crossfire creating immunity";
@@ -377,6 +378,15 @@ Gamerules::Gamerules()
 	settings[CROSSFIRE_DISABLED_ONLY].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.crossfireDisabledOnly = preset.storage.crossfireDisabledOnly;
 		return storage.crossfireDisabledOnly;
+	});
+
+	settings[CROSSFIRE_DISABLED_ONLY_CARRIED] = Setting::TrueFalse("Disabled only (fighters)");
+	settings[CROSSFIRE_DISABLED_ONLY_CARRIED].SetOnToggleFunc([this](UI *) -> void {
+		storage.crossfireFighterDisabledOnly = !storage.crossfireFighterDisabledOnly;
+	});
+	settings[CROSSFIRE_DISABLED_ONLY_CARRIED].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.crossfireFighterDisabledOnly = preset.storage.crossfireFighterDisabledOnly;
+		return storage.crossfireFighterDisabledOnly;
 	});
 
 	settings[CROSSFIRE_RECEIVING] = Setting::List("Can't receive",
@@ -1144,6 +1154,8 @@ void Gamerules::Load(const DataNode &node)
 			storage.depreciationCargoIsPlunder = child.BoolValue(1);
 		else if(key == CROSSFIRE_DISABLED_ONLY)
 			storage.crossfireDisabledOnly = child.BoolValue(1);
+		else if(key == CROSSFIRE_DISABLED_ONLY_CARRIED)
+			storage.crossfireFighterDisabledOnly = child.BoolValue(1);
 		else if(key == CROSSFIRE_RECEIVING)
 			LoadCrossfireImmunity(child, storage.crossfireReceiving);
 		else if(key == CROSSFIRE_RECEIVING_CARRIED || key == "disabled fighters avoid projectiles")
@@ -1340,6 +1352,8 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write(DEPRECIATION_CARGO_IS_PLUNDER, storage.depreciationCargoIsPlunder ? 1 : 0);
 		if(storage.crossfireDisabledOnly != preset.storage.crossfireDisabledOnly)
 			out.Write(CROSSFIRE_DISABLED_ONLY, storage.crossfireDisabledOnly ? 1 : 0);
+		if(storage.crossfireFighterDisabledOnly != preset.storage.crossfireFighterDisabledOnly)
+			out.Write(CROSSFIRE_DISABLED_ONLY_CARRIED, storage.crossfireFighterDisabledOnly ? 1 : 0);
 		if(storage.crossfireReceiving != preset.storage.crossfireReceiving)
 			SaveCrossfireImmunity(out, CROSSFIRE_RECEIVING, storage.crossfireReceiving);
 		if(storage.crossfireFighterReceiving != preset.storage.crossfireFighterReceiving)
@@ -1710,9 +1724,9 @@ bool Gamerules::CrossfireReceivingDisabledOnly() const
 
 
 
-bool Gamerules::CrossfireCreatingDisabledOnly() const
+bool Gamerules::CrossfireDisabledOnly(bool isCarried) const
 {
-	return storage.crossfireDisabledOnly;
+	return isCarried ? storage.crossfireFighterDisabledOnly : storage.crossfireDisabledOnly;
 }
 
 
@@ -1993,7 +2007,8 @@ void Gamerules::SyncSettings()
 	settings[RESTRICTED_SAVE_LOADING].SetIndex(RestrictedSaveLoading());
 	settings[LOCK_ON_CAPTURE].SetIndex(LockOnCapture());
 	settings[FRIENDLY_FIRE_CARRIER_EXCEPTION].SetIndex(FriendlyFireCarrierException());
-	settings[CROSSFIRE_DISABLED_ONLY].SetIndex(CrossfireCreatingDisabledOnly());
+	settings[CROSSFIRE_DISABLED_ONLY].SetIndex(CrossfireDisabledOnly(false));
+	settings[CROSSFIRE_DISABLED_ONLY_CARRIED].SetIndex(CrossfireDisabledOnly(true));
 	settings[UNIVERSAL_AMMO_RESTOCKING].SetIndex(storage.miscRules[UNIVERSAL_AMMO_RESTOCKING]);
 	settings[CROSSFIRE_RECEIVING].SetIndex(static_cast<int>(CrossfireReceivingImmunity(false)));
 	settings[CROSSFIRE_RECEIVING_CARRIED].SetIndex(static_cast<int>(CrossfireReceivingImmunity(true)));

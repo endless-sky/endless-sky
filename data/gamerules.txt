@@ -49,6 +49,7 @@
 	"fleet multiplier" 1.
 	
 	"crossfire disabled only" true
+	"crossfire carriable disabled only" true
 	"crossfire receiving immunity" "none"
 	"crossfire carriable receiving immunity" "all"
 	"crossfire creating immunity" "only player"

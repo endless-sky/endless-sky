@@ -35,7 +35,7 @@ public:
 			return false;
 		// Gamerules can also provide blanket protection to some or all ships.
 		// Crossfire immunity might only apply to disabled ships.
-		if(!isDisabled && rules.CrossfireCreatingDisabledOnly())
+		if(!isDisabled && rules.CrossfireDisabledOnly(shooter && shooter->CanBeCarried()))
 			return true;
 		// Check whether this ship is capable of receiving crossfire.
 		switch(rules.CrossfireReceivingImmunity(ship.CanBeCarried()))

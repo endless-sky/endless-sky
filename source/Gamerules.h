@@ -116,6 +116,7 @@ public:
 	static const std::string DEPRECIATION_GRACE_PERIOD;
 	static const std::string DEPRECIATION_MAX_AGE;
 	static const std::string CROSSFIRE_DISABLED_ONLY;
+	static const std::string CROSSFIRE_DISABLED_ONLY_CARRIED;
 	static const std::string CROSSFIRE_RECEIVING;
 	static const std::string CROSSFIRE_RECEIVING_CARRIED;
 	static const std::string CROSSFIRE_CREATING;
@@ -206,7 +207,7 @@ public:
 	int DepreciationMaxAge() const;
 	bool DepreciationCargoIsPlunder() const;
 	bool CrossfireReceivingDisabledOnly() const;
-	bool CrossfireCreatingDisabledOnly() const;
+	bool CrossfireDisabledOnly(bool isCarried) const;
 	CrossfireImmunity CrossfireReceivingImmunity(bool isCarried) const;
 	CrossfireImmunity CrossfireCreatingImmunity(bool isCarried) const;
 	double SystemDepartureMin() const;
@@ -275,10 +276,11 @@ private:
 		int depreciationGracePeriod = 7;
 		int depreciationMaxAge = 1000;
 		bool crossfireDisabledOnly = true;
-		CrossfireImmunity crossfireFighterReceiving = CrossfireImmunity::ALL_SHIPS;
+		bool crossfireFighterDisabledOnly = true;
 		CrossfireImmunity crossfireReceiving = CrossfireImmunity::NONE;
-		CrossfireImmunity crossfireFighterCreating = CrossfireImmunity::PLAYER_SHIPS;
+		CrossfireImmunity crossfireFighterReceiving = CrossfireImmunity::ALL_SHIPS;
 		CrossfireImmunity crossfireCreating = CrossfireImmunity::PLAYER_SHIPS;
+		CrossfireImmunity crossfireFighterCreating = CrossfireImmunity::PLAYER_SHIPS;
 		double systemDepartureMin = 0.;
 		std::optional<double> systemArrivalMin;
 		bool habitableBasedArrivalDistance = true;

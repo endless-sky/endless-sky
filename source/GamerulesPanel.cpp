@@ -398,6 +398,7 @@ void GamerulesPanel::DrawGamerules()
 		"",
 		"Crossfire Settings",
 		Gamerules::CROSSFIRE_DISABLED_ONLY,
+		Gamerules::CROSSFIRE_DISABLED_ONLY_CARRIED,
 		Gamerules::CROSSFIRE_RECEIVING,
 		Gamerules::CROSSFIRE_RECEIVING_CARRIED,
 		Gamerules::CROSSFIRE_CREATING,
