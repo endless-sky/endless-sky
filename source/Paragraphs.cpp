@@ -24,21 +24,26 @@ using namespace std;
 
 void Paragraphs::Load(const DataNode &node, const ConditionsStore *playerConditions)
 {
+	bool first = text.empty();
 	for(const DataNode &child : node)
-		LoadSingle(child, playerConditions);
+	{
+		LoadSingle(child, playerConditions, !first);
+		first = false;
+	}
 }
 
 
 
-void Paragraphs::LoadSingle(const DataNode &node, const ConditionsStore *playerConditions)
+void Paragraphs::LoadSingle(const DataNode &node, const ConditionsStore *playerConditions, bool prependTab)
 {
+	string line = (prependTab ? "\t" : "") + node.Token(node.Size() - 1) + "\n";
 	for(const DataNode &child : node)
 		if(child.Size() == 2 && child.Token(0) == "to" && child.Token(1) == "display")
 		{
-			text.emplace_back(ConditionSet(child, playerConditions), node.Token(node.Size() - 1) + "\n");
+			text.emplace_back(ConditionSet(child, playerConditions), line);
 			return;
 		}
-	text.emplace_back(ConditionSet(), node.Token(node.Size() - 1) + "\n");
+	text.emplace_back(ConditionSet(), line);
 }
 
 

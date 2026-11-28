@@ -38,7 +38,7 @@ public:
 	// Load each of the child nodes of the given node as lines of text.
 	void Load(const DataNode &node, const ConditionsStore *playerConditions);
 	// Load one line of text and possible conditions from the given node.
-	void LoadSingle(const DataNode &node, const ConditionsStore *playerConditions);
+	void LoadSingle(const DataNode &node, const ConditionsStore *playerConditions, bool prependTab = false);
 
 	// Discard all description lines.
 	void Clear();
