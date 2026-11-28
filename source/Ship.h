@@ -45,6 +45,8 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <string>
 #include <vector>
 
+#include "WeightedList.h"
+
 class ConditionsStore;
 class DamageDealt;
 class DataNode;
@@ -877,12 +879,21 @@ private:
 	std::vector<LiveEffect> liveEffects;
 	std::vector<Decor> decorations;
 
-	// Explosions that happen when the ship is dying:
-	std::map<const Effect *, int> explosionEffects;
+	// Explosions that happen when the ship is dying. The base effects come from the ship's hull.
+	std::map<const Effect *, int> baseExplosionEffects;
+	std::map<const Effect *, int> baseFinalExplosions;
+	// The currently in-use explosions as the ship is dying. Can be populated by external sources
+	// to overwrite the base effects, or will be populated from the base effects and effects from
+	// installed outfits when the ship is destroyed.
+	std::optional<WeightedList<const Effect *>> explosionEffects;
+	std::optional<std::map<const Effect *, int>> finalExplosions;
+	// The rate at which explosion effects are created. Increases as the ship
+	// explosion count below reaches its maximum value.
 	unsigned explosionRate = 0;
+	// The explosions that have occurred so far. A ship creates explosions until
+	// this count reaches the total number of possible explosion effects that the
+	// ship can produce.
 	unsigned explosionCount = 0;
-	unsigned explosionTotal = 0;
-	std::map<const Effect *, int> finalExplosions;
 
 	// Target ships, planets, systems, etc.
 	std::weak_ptr<Ship> targetShip;

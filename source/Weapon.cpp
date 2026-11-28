@@ -159,6 +159,16 @@ void Weapon::Load(const DataNode &node)
 			int count = (child.Size() >= 3) ? child.Value(2) : 1;
 			dieEffects[GameData::Effects().Get(child.Token(1))] += count;
 		}
+		else if(key == "kill effect")
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			killEffects[GameData::Effects().Get(child.Token(1))] += count;
+		}
+		else if(key == "kill final effect")
+		{
+			int count = (child.Size() >= 3) ? child.Value(2) : 1;
+			killFinalEffects[GameData::Effects().Get(child.Token(1))] += count;
+		}
 		else if(key == "submunition")
 		{
 			submunitions.emplace_back(
@@ -552,6 +562,20 @@ const map<const Effect *, int> &Weapon::TargetEffects() const
 const map<const Effect *, int> &Weapon::DieEffects() const
 {
 	return dieEffects;
+}
+
+
+
+const map<const Effect *, int> &Weapon::KillEffects() const
+{
+	return killEffects;
+}
+
+
+
+const map<const Effect *, int> &Weapon::KillFinalEffects() const
+{
+	return killFinalEffects;
 }
 
 
