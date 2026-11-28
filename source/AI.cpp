@@ -407,6 +407,18 @@ namespace {
 		return true;
 	}
 
+	bool ShouldSwitchTarget(const shared_ptr<Ship> &target, const Personality &personality)
+	{
+		if(!target || !target->IsTargetable())
+			return true;
+		if(target->IsDisabled() && (personality.Disables()
+				|| (!HitHelper::IsValid(target.get(), nullptr) && !personality.IsVindictive())))
+			return true;
+		if(target->IsFleeing() && personality.IsMerciful())
+			return true;
+		return false;
+	}
+
 	// Constants for the invisible fence timer.
 	constexpr int FENCE_DECAY = 4;
 	constexpr int FENCE_MAX = 600;
@@ -907,18 +919,28 @@ void AI::Step(Command &activeCommands)
 					outfitScans[&*it].insert(&*target);
 			}
 		}
-		if(isPresent && !personality.IsSwarming())
+		// If an NPC is assisting a ship that is not the player's, it will be given the opportunity to
+		// bail out of assisting an ally to instead target a nearby hostile. NPCs will maintain a lock
+		// on assisting the player's ships so that the player doesn't need to repeatedly ask for help.
+		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
+		if(isPresent && !personality.IsSwarming() && (!shipToAssist || !shipToAssist->IsYours()))
 		{
 			// Each ship only switches targets about twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == targetStep || !target || target->IsDestroyed() || (target->IsDisabled() &&
-				(personality.Disables()
-				|| (!HitHelper::IsValid(target.get(), nullptr) && !personality.IsVindictive())))
-				|| (target->IsFleeing() && personality.IsMerciful()) || !target->IsTargetable())
+			if(targetTurn == targetStep || ShouldSwitchTarget(target, personality))
 			{
 				target = FindTarget(*it);
 				it->SetTargetShip(target);
+				// If this ship was in the process of assisting an ally but has switched
+				// to a nearby hostile, cancel the assist request. The assist will be
+				// regained after any hostiles are cleared out. If a friendly target was
+				// returned, then it should be the ship being assisted.
+				if(shipToAssist && target != shipToAssist)
+				{
+					shipToAssist.reset();
+					it->SetShipToAssist(shipToAssist);
+				}
 			}
 		}
 		if(isPresent)
@@ -989,7 +1011,6 @@ void AI::Step(Command &activeCommands)
 
 		// If recruited to assist a ship, follow through on the commitment
 		// instead of ignoring it due to other personality traits.
-		shared_ptr<Ship> shipToAssist = it->GetShipToAssist();
 		if(shipToAssist)
 		{
 			if(shipToAssist->IsDestroyed() || shipToAssist->GetSystem() != it->GetSystem()
@@ -1746,6 +1767,13 @@ shared_ptr<Ship> AI::FindTarget(const Ship &ship) const
 
 shared_ptr<Ship> AI::FindNonHostileTarget(const Ship &ship) const
 {
+	// If this ship is already in the process of assisting an ally,
+	// continue to move to assist it.
+	shared_ptr<Ship> assisting = ship.GetShipToAssist();
+	if(assisting)
+		return assisting;
+
+	// Any other non-hostile target will be because this ship is capable of scanning.
 	shared_ptr<Ship> target;
 
 	// A ship may only make up to 6 successful scans (3 ships scanned if the ship
