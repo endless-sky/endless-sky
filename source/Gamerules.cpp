@@ -389,8 +389,7 @@ Gamerules::Gamerules()
 		return storage.crossfireFighterDisabledOnly;
 	});
 
-	settings[CROSSFIRE_RECEIVING] = Setting::List("Can't receive",
-		{"none", "player ships", "all ships"});
+	settings[CROSSFIRE_RECEIVING] = Setting::List("Can't receive", {"none", "player", "all"});
 	settings[CROSSFIRE_RECEIVING].SetOnToggleFunc([this](UI *) -> void {
 		storage.crossfireReceiving = static_cast<CrossfireImmunity>(settings[CROSSFIRE_RECEIVING].Index());
 	});
@@ -399,8 +398,7 @@ Gamerules::Gamerules()
 		return static_cast<int>(storage.crossfireReceiving);
 	});
 
-	settings[CROSSFIRE_RECEIVING_CARRIED] = Setting::List("Can't receive (fighters)",
-		{"none", "player ships", "all ships"});
+	settings[CROSSFIRE_RECEIVING_CARRIED] = Setting::List("Can't receive (fighters)", {"none", "player", "all"});
 	settings[CROSSFIRE_RECEIVING_CARRIED].SetOnToggleFunc([this](UI *) -> void {
 		storage.crossfireFighterReceiving = static_cast<CrossfireImmunity>(settings[CROSSFIRE_RECEIVING_CARRIED].Index());
 	});
@@ -409,8 +407,7 @@ Gamerules::Gamerules()
 		return static_cast<int>(storage.crossfireFighterReceiving);
 	});
 
-	settings[CROSSFIRE_CREATING] = Setting::List("Can't create",
-		{"none", "player ships", "all ships"});
+	settings[CROSSFIRE_CREATING] = Setting::List("Can't create", {"none", "player", "all"});
 	settings[CROSSFIRE_CREATING].SetOnToggleFunc([this](UI *) -> void {
 		storage.crossfireCreating = static_cast<CrossfireImmunity>(settings[CROSSFIRE_CREATING].Index());
 	});
@@ -419,8 +416,7 @@ Gamerules::Gamerules()
 		return static_cast<int>(storage.crossfireCreating);
 	});
 
-	settings[CROSSFIRE_CREATING_CARRIED] = Setting::List("Can't create (fighters)",
-		{"none", "player ships", "all ships"});
+	settings[CROSSFIRE_CREATING_CARRIED] = Setting::List("Can't create (fighters)", {"none", "player", "all"});
 	settings[CROSSFIRE_CREATING_CARRIED].SetOnToggleFunc([this](UI *) -> void {
 		storage.crossfireFighterCreating = static_cast<CrossfireImmunity>(settings[CROSSFIRE_CREATING_CARRIED].Index());
 	});

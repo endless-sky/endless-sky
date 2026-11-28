@@ -2034,14 +2034,14 @@ tip "Can't receive (fighters)"
 tip "Can't create"
 	`Controls which non-carriable ships are prevented from creating crossfire collisions.`
 	`- "none": all ships are capable of creating crossfire.`
-	`- "player ships": only the player's ships can't create crossfire.`
-	`- "all ships": all ships are prevented from creating crossfire.`
+	`- "player": only the player's ships can't create crossfire.`
+	`- "all": all ships are prevented from creating crossfire.`
 
 tip "Can't create (fighters)"
 	`Controls which carriable ships (fighters and drones) are prevented from creating crossfire collisions.`
 	`- "none": all fighters are capable of creating crossfire.`
-	`- "player ships": only the player's fighters can't create crossfire.`
-	`- "all ships": all fighters are prevented from creating crossfire.`
+	`- "player": only the player's fighters can't create crossfire.`
+	`- "all": all fighters are prevented from creating crossfire.`
 
 tip "Universal ammo stocking"
 	`Controls whether the ammo for most secondary weapons that you have installed or in your cargo will be available for purchase at any outfitter, even if that outfitter does not normally sell ammo of that type. The description of each secondary weapon will indicate whether it can be restocked anywhere when this rule is true.`
