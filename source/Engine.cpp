@@ -2535,6 +2535,7 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 	// object. If the asteroid turns out to be closer than the ship, it
 	// shields the ship (unless the projectile has a blast radius).
 	vector<Collision> collisions;
+	shared_ptr<const Ship> shooter = projectile.ParentShip().lock();
 	const Government *gov = projectile.GetGovernment();
 	const Weapon &weapon = projectile.GetWeapon();
 
@@ -2570,7 +2571,7 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 				// Cloaked ships and ships that aren't valid for collisions unless directly targeted are skipped over.
 				const Ship *ship = static_cast<const Ship *>(body);
 				if(body == projectile.Target() || ((!gov || gov->IsEnemy(body->GetGovernment()))
-					&& !ship->IsCloaked() && HitHelper::IsValid(ship, &weapon)))
+					&& !ship->IsCloaked() && HitHelper::IsValid(*ship, shooter.get(), &weapon)))
 				{
 					collisions.emplace_back(nullptr, CollisionType::EXPLOSION, 0.);
 					break;
@@ -2610,7 +2611,7 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 		// If this collision was on an untargeted disabled ship, ignore it if
 		// the weapon can't hit disabled targets or the hit is on a fighter with
 		// the disabled fighter collision dodging gamerule enabled.
-		if(shipHit && !targetedHit && !HitHelper::IsValid(shipHit.get(), &weapon))
+		if(shipHit && !targetedHit && !HitHelper::IsValid(*shipHit, shooter.get(), &weapon))
 			continue;
 
 		// If the ship is cloaked, and phasing, then skip this ship (during this step).

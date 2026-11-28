@@ -448,8 +448,9 @@ bool Projectile::ShouldBreakTarget(const Entity *target) const
 	if(target->GetGovernment() != targetGovernment)
 		return true;
 	// The target has become disabled and this projectile shouldn't hit disabled targets.
+	shared_ptr<const Ship> parent = parentShip.lock();
 	if(target->EntityType() == Entity::Type::SHIP && !targetDisabled
-			&& !HitHelper::IsValid(static_cast<const Ship *>(target), weapon))
+			&& !HitHelper::IsValid(*static_cast<const Ship *>(target), parent.get(), weapon))
 		return true;
 	return false;
 }

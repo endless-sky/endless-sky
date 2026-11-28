@@ -407,12 +407,13 @@ namespace {
 		return true;
 	}
 
-	bool ShouldSwitchTarget(const shared_ptr<Ship> &target, const Personality &personality)
+	bool ShouldSwitchTarget(const shared_ptr<Ship> &ship, const shared_ptr<Ship> &target,
+		const Personality &personality)
 	{
 		if(!target || !target->IsTargetable())
 			return true;
 		if(target->IsDisabled() && (personality.Disables()
-				|| (!HitHelper::IsValid(target.get(), nullptr) && !personality.IsVindictive())))
+				|| (!HitHelper::IsValid(*target, ship.get(), nullptr) && !personality.IsVindictive())))
 			return true;
 		if(target->IsFleeing() && personality.IsMerciful())
 			return true;
@@ -928,7 +929,7 @@ void AI::Step(Command &activeCommands)
 			// Each ship only switches targets about twice a second, so that it can
 			// focus on damaging one particular ship.
 			targetTurn = (targetTurn + 1) & 31;
-			if(targetTurn == targetStep || ShouldSwitchTarget(target, personality))
+			if(targetTurn == targetStep || ShouldSwitchTarget(it, target, personality))
 			{
 				target = FindTarget(*it);
 				it->SetTargetShip(target);
@@ -4361,17 +4362,17 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			continue;
 		}
 		// For non-homing weapons:
-		for(const auto &target : enemies)
+		for(const Ship *target : enemies)
 		{
 			// NPCs shoot ships that they just plundered.
-			bool hasBoarded = !ship.IsYours() && Has(ship, target->weak_from_this(), ShipEvent::BOARD);
+			bool hasBoarded = !isYours && Has(ship, target->weak_from_this(), ShipEvent::BOARD);
 			if(target->IsDisabled() && (disables || (plunders && !hasBoarded)) && !disabledOverride)
 				continue;
 			// Merciful ships let fleeing ships go.
 			if(target->IsFleeing() && person.IsMerciful())
 				continue;
 			// Don't fire at ships that cannot be hit without targeting.
-			if(target != currentTarget.get() && !HitHelper::IsValid(target, weapon))
+			if(target != currentTarget.get() && !HitHelper::IsValid(*target, &ship, weapon))
 				continue;
 
 			Point p = target->Position() - start;

@@ -397,9 +397,16 @@ void GamerulesPanel::DrawGamerules()
 		Gamerules::PERSON_SPAWN_PERIOD,
 		Gamerules::NO_PERSON_SPAWN_WEIGHT,
 		"",
+		"Crossfire Settings",
+		Gamerules::CROSSFIRE_DISABLED_ONLY,
+		Gamerules::CROSSFIRE_DISABLED_ONLY_CARRIED,
+		Gamerules::CROSSFIRE_RECEIVING,
+		Gamerules::CROSSFIRE_RECEIVING_CARRIED,
+		Gamerules::CROSSFIRE_CREATING,
+		Gamerules::CROSSFIRE_CREATING_CARRIED,
+		"",
 		"Miscellaneous",
 		Gamerules::LOCK_GAMERULES,
-		Gamerules::FIGHTER_DODGE_POLICY,
 		Gamerules::UNIVERSAL_AMMO_RESTOCKING,
 	};
 
