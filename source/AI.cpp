@@ -20,7 +20,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Command.h"
 #include "ConditionsStore.h"
 #include "DistanceMap.h"
-#include "FighterHitHelper.h"
 #include "Flotsam.h"
 #include "text/Format.h"
 #include "FormationPattern.h"
@@ -30,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Government.h"
 #include "Hardpoint.h"
 #include "Hasher.h"
+#include "HitHelper.h"
 #include "JumpType.h"
 #include "image/Mask.h"
 #include "Messages.h"
@@ -412,7 +412,7 @@ namespace {
 		if(!target || !target->IsTargetable())
 			return true;
 		if(target->IsDisabled() && (personality.Disables()
-				|| (!FighterHitHelper::IsValidTarget(target.get()) && !personality.IsVindictive())))
+				|| (!HitHelper::IsValid(target.get(), nullptr) && !personality.IsVindictive())))
 			return true;
 		if(target->IsFleeing() && personality.IsMerciful())
 			return true;
@@ -4379,7 +4379,7 @@ void AI::AutoFire(const Ship &ship, FireCommand &command, bool secondary, bool i
 			if(target->IsFleeing() && person.IsMerciful())
 				continue;
 			// Don't fire at ships that cannot be hit without targeting.
-			if(target != currentTarget.get() && !FighterHitHelper::IsValidTarget(target))
+			if(target != currentTarget.get() && !HitHelper::IsValid(target, weapon))
 				continue;
 
 			Point p = target->Position() - start;

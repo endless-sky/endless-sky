@@ -25,7 +25,6 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "DamageDealt.h"
 #include "DamageProfile.h"
 #include "Effect.h"
-#include "FighterHitHelper.h"
 #include "shader/FillShader.h"
 #include "Fleet.h"
 #include "Flotsam.h"
@@ -36,6 +35,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "Gamerules.h"
 #include "Government.h"
 #include "Hazard.h"
+#include "HitHelper.h"
 #include "Interface.h"
 #include "Logger.h"
 #include "MapPanel.h"
@@ -2566,10 +2566,11 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 			shipCollisions.Circle(projectile.Position(), triggerRadius, inRadius);
 			for(const Body *body : inRadius)
 			{
+				// A ship can trigger a projectile if it was targeted or is an enemy of this projectile's government.
+				// Cloaked ships and ships that aren't valid for collisions unless directly targeted are skipped over.
 				const Ship *ship = static_cast<const Ship *>(body);
-				// Don't trigger off of carried ships that are disabled and not directly targeted.
 				if(body == projectile.Target() || ((!gov || gov->IsEnemy(body->GetGovernment()))
-						&& !ship->IsCloaked() && FighterHitHelper::IsValidTarget(ship)))
+					&& !ship->IsCloaked() && HitHelper::IsValid(ship, &weapon)))
 				{
 					collisions.emplace_back(nullptr, CollisionType::EXPLOSION, 0.);
 					break;
@@ -2606,8 +2607,10 @@ void Engine::FindCollisions(Projectile &projectile, map<Entity *, vector<EntityC
 		if(hit && collisionType == CollisionType::SHIP)
 			shipHit = static_cast<Ship *>(hit)->shared_from_this();
 
-		// Don't collide with carried ships that are disabled and not directly targeted.
-		if(shipHit && !targetedHit && !FighterHitHelper::IsValidTarget(shipHit.get()))
+		// If this collision was on an untargeted disabled ship, ignore it if
+		// the weapon can't hit disabled targets or the hit is on a fighter with
+		// the disabled fighter collision dodging gamerule enabled.
+		if(shipHit && !targetedHit && !HitHelper::IsValid(shipHit.get(), &weapon))
 			continue;
 
 		// If the ship is cloaked, and phasing, then skip this ship (during this step).

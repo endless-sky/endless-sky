@@ -116,6 +116,9 @@ public:
 
 
 private:
+	// Determine if this projectile should entirely break its lock on the current target.
+	bool ShouldBreakTarget(const Entity *target) const;
+	// Check if the lock is temporarily lost, and whether the projectile goes haywire when that occurs.
 	void CheckLock(const Entity &target);
 	void CheckConfused(const Entity &target);
 

@@ -72,6 +72,8 @@ void Weapon::Load(const DataNode &node)
 			isFused = true;
 		else if(key == "no ship collisions")
 			canCollideShips = false;
+		else if(key == "no disabled ship collisions")
+			canCollideDisabled = false;
 		else if(key == "no asteroid collisions")
 			canCollideAsteroids = false;
 		else if(key == "no minable collisions")
