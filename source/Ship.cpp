@@ -899,7 +899,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				description.Clear();
 				hasDescription = true;
 			}
-			description.Load(child, playerConditions);
+			description.LoadSingle(child, playerConditions);
 		}
 		else if(key == "formation" && hasValue)
 			formationPattern = GameData::Formations().Get(child.Token(1));

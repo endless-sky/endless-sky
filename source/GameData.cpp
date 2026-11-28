@@ -708,7 +708,7 @@ const Set<ConditionAlias> &GameData::ConditionAliases()
 
 
 
-const std::set<std::string> &GameData::UniverseWormholeRequirements()
+const set<string> &GameData::UniverseWormholeRequirements()
 {
 	return objects->universeWormholeRequirements;
 }
@@ -815,7 +815,7 @@ void GameData::SetHaze(const Sprite *sprite, bool allowAnimation)
 
 
 
-const string &GameData::Tooltip(const string &label)
+string GameData::Tooltip(const string &label)
 {
 	return objects->Tooltip(label);
 }
@@ -829,7 +829,7 @@ string GameData::HelpMessage(const string &name)
 
 
 
-const map<string, string> &GameData::HelpTemplates()
+const map<string, Paragraphs> &GameData::HelpTemplates()
 {
 	return objects->HelpTemplates();
 }

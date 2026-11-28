@@ -29,6 +29,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include "GameWindow.h"
 #include "Interface.h"
 #include "Logger.h"
+#include "Paragraphs.h"
 #include "Screen.h"
 #include "Setting.h"
 #include "UI.h"
@@ -309,23 +310,22 @@ void Preferences::Init()
 	settings[REACTIVATE_HELP] = Setting::Unique("Reactivate first-time help");
 	settings[REACTIVATE_HELP].SetDisplayFunc([]() -> pair<string, bool> {
 		// Check how many help messages have been displayed.
-		const map<string, string> &help = GameData::HelpTemplates();
 		int shown = 0;
 		int total = 0;
-		for(const auto &it : help)
+		for(const auto &helpName : GameData::HelpTemplates() | views::keys)
 		{
 			// Don't count certain special help messages that are always
 			// active for new players.
 			bool special = false;
 			const string SPECIAL_HELP[] = {"basics", "lost"};
 			for(const string &str : SPECIAL_HELP)
-				if(it.first.find(str) == 0)
+				if(helpName.find(str) == 0)
 					special = true;
 
 			if(!special)
 			{
 				++total;
-				shown += Preferences::HelpShown("help: " + it.first);
+				shown += Preferences::HelpShown("help: " + helpName);
 			}
 		}
 
