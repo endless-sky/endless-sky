@@ -899,7 +899,7 @@ void Ship::Load(const DataNode &node, const ConditionsStore *playerConditions)
 				description.Clear();
 				hasDescription = true;
 			}
-			description.Load(child, playerConditions);
+			description.LoadSingle(child, playerConditions);
 		}
 		else if(key == "formation" && hasValue)
 			formationPattern = GameData::Formations().Get(child.Token(1));
@@ -1916,7 +1916,7 @@ void Ship::Place(Point position, Point velocity, Angle angle, bool isDeparting)
 			effect.tick += Random::Int(effect.period + effect.random);
 	}
 	Angle syncedAngle = syncedEffects ? Angle(0.) : Angle::Random();
-	for(Decor decor : decorations)
+	for(Decor &decor : decorations)
 	{
 		decor.tick = decor.delay;
 		if(decor.behavior != DecorBehavior::STATIC)

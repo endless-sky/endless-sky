@@ -65,6 +65,8 @@ Flotsam::Flotsam(const Outfit *outfit, int count, const Government *sourceGovern
 	// minimum of an aged outfit.
 	// If someone is actually jumping through that many hoops to cheese out a few credits, then
 	// they can have their reward.
+	// Setting the jettisoned value gamerule to be equal to or less than the lowest value from other sources
+	// would also close this loophole.
 }
 
 
@@ -230,12 +232,17 @@ int Flotsam::TransferTo(Ship *collector, PlayerInfo &player)
 
 	// If the collector is the player's, then pass the deprecation record
 	// of this outfit to the player.
-	if(outfit && collector->IsYours())
+	if(outfit && collector->IsYours() && amount)
 	{
 		int day = player.GetDate().DaysSinceEpoch();
-		Depreciation &playerDepreciation = player.FleetDepreciation();
-		for(int i = 0; i < amount; ++i)
-			playerDepreciation.Buy(outfit, day, &depreciation);
+		if(Depreciation::Jettisoned().has_value())
+			player.FleetDepreciation().Jettisoned(outfit, day, amount);
+		else
+		{
+			Depreciation &playerDepreciation = player.FleetDepreciation();
+			for(int i = 0; i < amount; ++i)
+				playerDepreciation.Buy(outfit, day, &depreciation);
+		}
 	}
 
 	return amount;

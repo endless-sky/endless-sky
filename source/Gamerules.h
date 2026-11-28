@@ -111,6 +111,7 @@ public:
 	static const std::string DEPRECIATION_MIN;
 	static const std::string DEPRECIATION_CAPTURED;
 	static const std::string DEPRECIATION_PLUNDERED;
+	static const std::string DEPRECIATION_JETTISONED;
 	static const std::string DEPRECIATION_CARGO_IS_PLUNDER;
 	static const std::string DEPRECIATION_DAILY;
 	static const std::string DEPRECIATION_GRACE_PERIOD;
@@ -202,6 +203,7 @@ public:
 	double DepreciationMin() const;
 	double DepreciationPlundered() const;
 	double DepreciationCaptured() const;
+	std::optional<double> DepreciationJettisoned() const;
 	double DepreciationDaily() const;
 	int DepreciationGracePeriod() const;
 	int DepreciationMaxAge() const;
@@ -271,6 +273,7 @@ private:
 		double depreciationMin = .25;
 		double depreciationPlundered = .25;
 		double depreciationCaptured = .25;
+		std::optional<double> depreciationJettisoned;
 		double depreciationDaily = .997;
 		bool depreciationCargoIsPlunder = false;
 		int depreciationGracePeriod = 7;
