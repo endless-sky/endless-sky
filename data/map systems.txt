@@ -2909,9 +2909,9 @@ system Alcyone
 	trade Electronics 834
 	trade Equipment 728
 	trade Food 418
-	trade "Heavy Metals" 1143
+	trade "Heavy Metals" 1093
 	trade Industrial 857
-	trade "Luxury Goods" 1345
+	trade "Luxury Goods" 1195
 	trade Medical 858
 	trade Metal 440
 	trade Plastic 513
@@ -3729,9 +3729,9 @@ system Almach
 	trade Electronics 815
 	trade Equipment 698
 	trade Food 471
-	trade "Heavy Metals" 1154
+	trade "Heavy Metals" 1004
 	trade Industrial 878
-	trade "Luxury Goods" 1303
+	trade "Luxury Goods" 1153
 	trade Medical 879
 	trade Metal 487
 	trade Plastic 423
@@ -5202,7 +5202,7 @@ system Antares
 	trade Food 414
 	trade "Heavy Metals" 1230
 	trade Industrial 809
-	trade "Luxury Goods" 1353
+	trade "Luxury Goods" 1203
 	trade Medical 958
 	trade Metal 558
 	trade Plastic 495
@@ -14914,9 +14914,9 @@ system Gienah
 	trade Food 579
 	trade "Heavy Metals" 1133
 	trade Industrial 814
-	trade "Luxury Goods" 1345
-	trade Medical 803
-	trade Metal 438
+	trade "Luxury Goods" 1195
+	trade Medical 763
+	trade Metal 398
 	trade Plastic 525
 	fleet "Small Core Pirates" 500
 	fleet "Large Core Pirates" 800
@@ -22220,7 +22220,7 @@ system Men
 	minables silver 10 5.20399
 	trade Clothing 387
 	trade Electronics 909
-	trade Equipment 606
+	trade Equipment 576
 	trade Food 421
 	trade "Heavy Metals" 1171
 	trade Industrial 924
@@ -24353,7 +24353,7 @@ system Nunki
 	trade Clothing 366
 	trade Electronics 881
 	trade Equipment 710
-	trade Food 426
+	trade Food 386
 	trade "Heavy Metals" 1184
 	trade Industrial 924
 	trade "Luxury Goods" 1448
@@ -30013,7 +30013,7 @@ system Shaula
 	trade Food 417
 	trade "Heavy Metals" 1208
 	trade Industrial 788
-	trade "Luxury Goods" 1343
+	trade "Luxury Goods" 1303
 	trade Medical 904
 	trade Metal 589
 	trade Plastic 414
