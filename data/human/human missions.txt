@@ -10085,6 +10085,7 @@ mission "Timothy Radrickson 5d: Greenrock"
 				`	(Find the detoxification medicine.)`
 					goto med1
 					to display
+						"timothy radrickson medicine" <= 1
 						not "med1"
 				`	(Go back to the drug dealer to get the detoxification medicine.)`
 					goto med2
