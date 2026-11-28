@@ -1526,15 +1526,15 @@ mission "FW Pirates: Attack 3"
 	on enter
 		dialog `When you launch, you receive a message from the Terebinth, Alondo's transport. "Greetings, Captain <last>. This is the captain of the F.S. Terebinth. I have the Council in tow. I know that Greenrock has been suppressed, but I wouldn't be surprised if there are pirates looking for revenge. Care to watch my back on our way to <planet>? Thanks."`
 	
-	npc accompany save
-		government "Free Worlds"
-		personality timid escort
-		ship "Falcon" "F.S. Terebinth"
 	npc
 		government "Pirate"
 		personality vindictive
 		system "Sargas"
 		fleet "Large Southern Pirates" 2
+	npc accompany save
+		government "Free Worlds"
+		personality timid escort
+		ship "Falcon" "F.S. Terebinth"
 	
 	on visit
 		dialog phrase "generic arrived-without-npc dialog"
@@ -2196,7 +2196,7 @@ mission "FW Senate Hearing"
 				`	"I knew my fleet could subdue the planet without suffering serious losses."`
 					to display
 						or
-							"has FW Pirates: Invasion Fleet: done"
+							has "FW Pirates: Invasion Fleet: done"
 							"combat rating" >= 8103
 							"armament deterrence" >= 8
 					goto losses
@@ -2207,7 +2207,7 @@ mission "FW Senate Hearing"
 				goto sentence
 			label losses
 			branch intact
-				"has FW Pirates: Invasion Fleet: done"
+				has "FW Pirates: Invasion Fleet: done"
 			`	"And yet the fleet did suffer losses," says the senator. "Not to mention that you took your ships, which are among the strongest in the whole of the Free Worlds, and tied them up an a meaningless battle that risked opening up an entirely new front of the war. Are you saying you did all of this without permission, without even considering the reasons the Free Worlds had decided not to launch an assault, just because you thought you could get away with it?"`
 				goto sentence
 
