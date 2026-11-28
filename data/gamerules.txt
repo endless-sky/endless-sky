@@ -18,6 +18,7 @@
 	"depreciation min" 0.25
 	"depreciation plundered" 0.25
 	"depreciation captured" 0.25
+	"depreciation jettisoned" unset
 	"depreciation grace period" 7
 	"depreciation max age" 1000
 	"depreciation daily" 0.997

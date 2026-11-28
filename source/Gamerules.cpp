@@ -40,6 +40,7 @@ const string Gamerules::DEPRECIATIVE_AGING = "depreciation aging active";
 const string Gamerules::DEPRECIATION_MIN = "depreciation min";
 const string Gamerules::DEPRECIATION_CAPTURED = "depreciation captured";
 const string Gamerules::DEPRECIATION_PLUNDERED = "depreciation plundered";
+const string Gamerules::DEPRECIATION_JETTISONED = "depreciation jettisoned";
 const string Gamerules::DEPRECIATION_CARGO_IS_PLUNDER = "depreciation cargo is plunder";
 const string Gamerules::DEPRECIATION_DAILY = "depreciation daily";
 const string Gamerules::DEPRECIATION_GRACE_PERIOD = "depreciation grace period";
@@ -258,6 +259,33 @@ Gamerules::Gamerules()
 	});
 	settings[DEPRECIATION_PLUNDERED].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
 		storage.depreciationPlundered = preset.storage.depreciationPlundered;
+		return std::nullopt;
+	});
+
+	settings[DEPRECIATION_JETTISONED] = Setting::Unique("Jettisoned value");
+	settings[DEPRECIATION_JETTISONED].SetDisplayFunc([this]() -> pair<string, bool> {
+		string text;
+		bool hasValue = DepreciationJettisoned().has_value();
+		if(hasValue)
+			text = Format::Percentage(*DepreciationJettisoned(), 2);
+		else
+			text = "(unset)";
+		return make_pair(text, hasValue);
+	});
+	settings[DEPRECIATION_JETTISONED].SetOnToggleFunc([this](UI *ui) -> void {
+		if(!ui)
+			return;
+		string message = "Set the jettisoned deprecation value. (Decimal value between 0 and 1.)";
+		auto validate = [](double value) -> bool { return value >= 0.0 && value <= 1.0; };
+		ui->Push(OptionalInputDialogPanel::RequestDoubleWithValidation(
+			[this](optional<double> value) -> void { storage.depreciationJettisoned = value; },
+			validate, message, DepreciationJettisoned()));
+	});
+	settings[DEPRECIATION_JETTISONED].SetConditionFunc([this]() -> int {
+		return DepreciationJettisoned().value_or(0.) * 1000;
+	});
+	settings[DEPRECIATION_JETTISONED].SetResetRuleFunc([this](const Gamerules &preset) -> optional<int> {
+		storage.depreciationJettisoned = preset.storage.depreciationJettisoned;
 		return std::nullopt;
 	});
 
@@ -1066,6 +1094,13 @@ void Gamerules::Load(const DataNode &node)
 			storage.depreciationPlundered = clamp(child.Value(1), 0., 1.);
 		else if(key == DEPRECIATION_CAPTURED)
 			storage.depreciationCaptured = clamp(child.Value(1), 0., 1.);
+		else if(key == DEPRECIATION_JETTISONED)
+		{
+			if(child.Token(1) == "unset")
+				storage.depreciationJettisoned.reset();
+			else
+				storage.depreciationJettisoned = clamp(child.Value(1), 0., 1.);
+		}
 		else if(key == DEPRECIATION_DAILY)
 			storage.depreciationDaily = clamp(child.Value(1), 0., 1.);
 		else if(key == DEPRECIATION_GRACE_PERIOD)
@@ -1259,6 +1294,13 @@ void Gamerules::Save(DataWriter &out, const Gamerules &preset) const
 			out.Write(DEPRECIATION_PLUNDERED, storage.depreciationPlundered);
 		if(storage.depreciationCaptured != preset.storage.depreciationCaptured)
 			out.Write(DEPRECIATION_CAPTURED, storage.depreciationCaptured);
+		if(storage.depreciationJettisoned != preset.storage.depreciationJettisoned)
+		{
+			if(storage.depreciationJettisoned.has_value())
+				out.Write(DEPRECIATION_JETTISONED, *storage.depreciationJettisoned);
+			else
+				out.Write(DEPRECIATION_JETTISONED, "unset");
+		}
 		if(storage.depreciationDaily != preset.storage.depreciationDaily)
 			out.Write(DEPRECIATION_DAILY, storage.depreciationDaily);
 		if(storage.depreciationGracePeriod != preset.storage.depreciationGracePeriod)
@@ -1599,6 +1641,13 @@ double Gamerules::DepreciationPlundered() const
 double Gamerules::DepreciationCaptured() const
 {
 	return storage.depreciationCaptured;
+}
+
+
+
+optional<double> Gamerules::DepreciationJettisoned() const
+{
+	return storage.depreciationJettisoned;
 }
 
 

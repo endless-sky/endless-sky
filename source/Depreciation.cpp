@@ -58,15 +58,16 @@ namespace {
 	// Names for the two kinds of depreciation records.
 	string NAME[2] = {"fleet depreciation", "stock depreciation"};
 
-	// Special "dates" used for recording plundered or captured items when the value of such
+	// Special "dates" used for recording plundered, captured, or jettisoned items when the value of such
 	// items is below the minimum value of fully depreciated items.
 	// A high enough max age and low enough starting date can cause outfits to be dated with these values
 	// without having actually been captured or plundered. While this isn't the intended behavior, it's
-	// also not something that the vanilla starting scenarios can encounter, and would only occur on two
+	// also not something that the vanilla starting scenarios can encounter, and would only occur on three
 	// specific dates for a starting scenario with an early enough date for the max age to overlap with
-	// these two "dates".
+	// these special "dates".
 	constexpr int CAPTURED = -1;
 	constexpr int PLUNDERED = -2;
+	constexpr int JETTISONED = -3;
 
 	// Cache the age on which an item would have the given value.
 	map<double, int> depreciationToAge;
@@ -98,6 +99,13 @@ double Depreciation::Plundered()
 double Depreciation::Captured()
 {
 	return GameData::GetGamerules().DepreciationCaptured();
+}
+
+
+
+optional<double> Depreciation::Jettisoned()
+{
+	return GameData::GetGamerules().DepreciationJettisoned();
 }
 
 
@@ -158,7 +166,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 					// anything not recorded is considered fully depreciated, so
 					// there is no reason to save records for those items.
 					for(const auto &[recordDay, count] : sit.second)
-						if(isStock || (count && (recordDay == PLUNDERED || recordDay == CAPTURED || recordDay > cutoff)))
+						if(isStock || (count && (recordDay < 0 || recordDay > cutoff)))
 							out.Write(recordDay, count);
 				}
 				out.EndChild();
@@ -173,7 +181,7 @@ void Depreciation::Save(DataWriter &out, int day) const
 				out.BeginChild();
 				{
 					for(const auto &[recordDay, count] : oit.second)
-						if(isStock || (count && (recordDay == PLUNDERED || recordDay == CAPTURED || recordDay > cutoff)))
+						if(isStock || (count && (recordDay < 0 || recordDay > cutoff)))
 							out.Write(recordDay, count);
 				}
 				out.EndChild();
@@ -323,6 +331,20 @@ void Depreciation::Plunder(const Outfit *outfit, int day, int count)
 		return;
 
 	day = (!AgingActive() || Plundered() < Min()) ? PLUNDERED : day - DepreciationToAge(Plundered());
+	outfits[outfit][day] += count;
+}
+
+
+
+void Depreciation::Jettisoned(const Outfit *outfit, int day, int count)
+{
+	assert(!isStock && "Outfits cannot be jettisoned into a stock depreciation record.");
+	assert(Jettisoned().has_value() && "Depreciation::Jettisoned should not be called if the jettisoned depreciation "
+		"value is unset.");
+	if(outfit->GetPrecise("uninstallable") || outfit->GetPrecise("nondepreciable"))
+		return;
+
+	day = (!AgingActive() || Jettisoned() < Min()) ? JETTISONED : day - DepreciationToAge(*Jettisoned());
 	outfits[outfit][day] += count;
 }
 
@@ -503,6 +525,8 @@ double Depreciation::Depreciate(int date, int day) const
 		return Plundered();
 	if(date == CAPTURED)
 		return Captured();
+	if(date == JETTISONED)
+		return Jettisoned().value_or(Min());
 	return Depreciate(day - date);
 }
 
