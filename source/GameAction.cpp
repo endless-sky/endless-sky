@@ -234,6 +234,34 @@ void GameAction::LoadSingle(const DataNode &child, const ConditionsStore *player
 		set<const System *> &toUnmark = (child.Size() == 2) ? unmark : unmarkOther[child.Token(2)];
 		toUnmark.insert(GameData::Systems().Get(child.Token(1)));
 	}
+	else if(key == "clearance" && child.Size() >= 3)
+	{
+		const string &action = child.Token(1);
+		const Planet *planet = GameData::Planets().Get(child.Token(2));
+		if(action == "grant")
+		{
+			bool fullAccess = true;
+			string message = "auto";
+			if(child.Size() >= 4)
+			{
+				const string &value = child.Token(3);
+				if(value == "limited")
+					fullAccess = false;
+				else if(value != "full")
+				{
+					child.PrintTrace(R"(Skipping unrecognized "clearance" level":)");
+					return;
+				}
+			}
+			if(child.Size() >= 5)
+				message = child.Token(4);
+			grantClearance[planet] = make_pair(fullAccess, message);
+		}
+		else if(action == "revoke")
+			revokeClearance.insert(planet);
+		else
+			child.PrintTrace(R"(Skipping unrecognized "clearance" action":)");
+	}
 	else if(key == "fail" && hasValue)
 		fail.insert(child.Token(1));
 	else if(key == "fail")
@@ -306,6 +334,10 @@ void GameAction::Save(DataWriter &out) const
 	for(const auto &[mission, unmarks] : unmarkOther)
 		for(const System *system : unmarks)
 			out.Write("unmark", system->TrueName(), mission);
+	for(const auto &[planet, details] : grantClearance)
+		out.Write("clearance", "grant", planet->TrueName(), details.first ? "full" : "limited", details.second);
+	for(const Planet *planet : revokeClearance)
+		out.Write("clearance", "revoke", planet->TrueName());
 	for(const string &name : fail)
 		out.Write("fail", name);
 	if(failCaller)
@@ -360,6 +392,12 @@ string GameAction::Validate() const
 		for(const System *system : unmarks)
 			if(!system->IsValid())
 				return "system \"" + system->TrueName() + "\"";
+	for(const Planet *planet : grantClearance | views::keys)
+		if(!planet->IsValid())
+			return "planet \"" + planet->TrueName() + "\"";
+	for(const Planet *planet : revokeClearance)
+		if(!planet->IsValid())
+			return "planet \"" + planet->TrueName() + "\"";
 
 	// It is OK for this action to try to fail a mission that does not exist.
 	// (E.g. a plugin may be designed for interoperability with other plugins.)
@@ -499,6 +537,12 @@ void GameAction::Do(PlayerInfo &player, UI *ui, const Mission *caller) const
 		}
 	}
 
+	// Revoke clearance before granting new clearance.
+	for(const Planet *planet : revokeClearance)
+		player.RevokeClearance(planet);
+	for(const auto &[planet, details] : grantClearance)
+		player.GrantClearance(planet, details.first, details.second);
+
 	// If this action causes this mission to fail, mark it as failed.
 	// It will not be removed from the player's mission list until it is safe to do so.
 	if(failCaller && caller)
@@ -578,6 +622,8 @@ GameAction GameAction::Instantiate(map<string, string> &subs, int jumps, int pay
 	result.markOther = markOther;
 	result.unmark = unmark;
 	result.unmarkOther = unmarkOther;
+	result.grantClearance = grantClearance;
+	result.revokeClearance = revokeClearance;
 
 	return result;
 }

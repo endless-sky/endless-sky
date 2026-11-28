@@ -156,17 +156,19 @@ HailPanel::HailPanel(PlayerInfo &player, const StellarObject *object)
 		header = gov->DisplayName() + " " + planet->Noun() + " \"" + planet->DisplayName() + "\":";
 	hasLanguage = (gov->Language().empty() || player.Conditions().Get("language: " + gov->Language()));
 
-	// If the player is hailing a planet, determine if a mission grants them clearance before checking
+	// If the player is hailing a planet, determine if they have clearance to land before checking
 	// if they have a language that matches the planet's government. This allows mission clearance
 	// to bypass language barriers.
 	if(planet && player.Flagship())
-		for(const Mission &mission : player.Missions())
-			if(mission.HasClearance(planet) && mission.ClearanceMessage() != "auto")
-			{
-				planet->Bribe(mission.HasFullClearance());
-				SetMessage(mission.ClearanceMessage());
-				return;
-			}
+	{
+		optional<pair<bool, string>> clearance = player.HasClearance(planet);
+		if(clearance.has_value() && clearance->second != "auto")
+		{
+			planet->Bribe(clearance->first);
+			SetMessage(clearance->second);
+			return;
+		}
+	}
 
 	if(!hasLanguage)
 		SetMessage("(An alien voice says something in a language you do not recognize.)");
